@@ -3,7 +3,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'My Site',
+  title: `Pitt Wu's Blog`,
   tagline: 'Dinosaurs are cool',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
@@ -14,9 +14,9 @@ module.exports = {
   projectName: 'docusaurus', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: 'My Site',
+      title: `Pitt Wu's Blog`,
       logo: {
-        alt: 'My Site Logo',
+        alt: `Pitt Wu's Blog Logo`,
         src: 'img/logo.svg',
       },
       items: [
@@ -84,6 +84,9 @@ module.exports = {
         },
       ],
       copyright: `Copyright © 2017 - ${new Date().getFullYear()} Pitt Wu Built with Docusaurus.`,
+    },
+    colorMode: {
+      defaultMode: 'dark',
     },
     prism: {
       theme: lightCodeTheme,

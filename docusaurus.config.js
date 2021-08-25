@@ -22,13 +22,19 @@ module.exports = {
       items: [
         {
           type: 'doc',
+          docId: 'JavaScript/js-intro',
+          position: 'left',
+          label: 'JavaScript',
+        },
+        {
+          type: 'doc',
           docId: 'intro',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Docs',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/wuzhe0912/docusaurus-blog',
           label: 'GitHub',
           position: 'right',
         },
@@ -72,12 +78,12 @@ module.exports = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/wuzhe0912',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © 2017 - ${new Date().getFullYear()} Pitt Wu Built with Docusaurus.`,
     },
     prism: {
       theme: lightCodeTheme,

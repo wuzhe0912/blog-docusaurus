@@ -22,7 +22,7 @@ module.exports = {
       items: [
         {
           type: 'doc',
-          docId: 'JavaScript/js-intro',
+          docId: 'JavaScript/js-outline',
           position: 'left',
           label: 'JavaScript',
         },

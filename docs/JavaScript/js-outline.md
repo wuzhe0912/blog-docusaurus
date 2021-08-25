@@ -1,7 +1,7 @@
 ---
-id: js-intro
+id: js-outline
 description: JS Note
-slug: /js-intro
+slug: /js-outline
 ---
 
 # JavaScript

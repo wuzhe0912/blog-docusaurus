@@ -1,14 +1,16 @@
 ---
 id: 0-arrow-function
-description: '縮減傳統函式寫法，更為簡潔便利。'
+description: 縮減傳統函式寫法，更為簡潔便利
 slug: /arrow-function
 ---
 
-# Arrow Function(箭頭函式)
+# Arrow Function (箭頭函式)
+
+> 縮減傳統函式寫法，更為簡潔便利。
 
 ## 新舊兩種寫法比較
 
-> 傳統函式寫法：
+傳統函式寫法：
 
 ```html
 <!-- html -->
@@ -22,7 +24,7 @@ document.querySelector(".click1").addEventListener("click", function () {
 });
 ```
 
-> 箭頭函式寫法：
+箭頭函式寫法：
 
 ```html
 <!-- html -->

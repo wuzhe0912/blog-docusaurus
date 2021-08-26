@@ -3,8 +3,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: `Pitt Wu's Blog`,
-  tagline: 'Dinosaurs are cool',
+  title: `Pitt Wu's Docusaurus`,
+  tagline: `What's past is prologue.`,
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -14,7 +14,7 @@ module.exports = {
   projectName: 'docusaurus', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: `Pitt Wu's Blog`,
+      title: `Pitt's Blog`,
       logo: {
         alt: `Pitt Wu's Blog Logo`,
         src: 'img/logo.svg',
@@ -22,17 +22,29 @@ module.exports = {
       items: [
         {
           type: 'doc',
-          docId: 'JavaScript/js-outline',
+          docId: 'js-intro',
           position: 'left',
-          label: 'JavaScript',
+          label: 'JS',
         },
         {
           type: 'doc',
-          docId: 'intro',
+          docId: 'php-intro',
           position: 'left',
-          label: 'Docs',
+          label: 'PHP',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
+        {
+          type: 'doc',
+          docId: 'python-intro',
+          position: 'left',
+          label: 'Python',
+        },
+        {
+          type: 'doc',
+          docId: 'tools-intro',
+          position: 'left',
+          label: 'Tools',
+        },
+        {to: '/blog', label: 'Blog', position: 'right'},
         {
           href: 'https://github.com/wuzhe0912/docusaurus-blog',
           label: 'GitHub',
@@ -47,26 +59,26 @@ module.exports = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'JavaScript',
+              to: '/docs/js-intro',
             },
           ],
         },
         {
           title: 'Community',
           items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
-            },
+            // {
+            //   label: 'Stack Overflow',
+            //   href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+            // },
+            // {
+            //   label: 'Discord',
+            //   href: 'https://discordapp.com/invite/docusaurus',
+            // },
+            // {
+            //   label: 'Twitter',
+            //   href: 'https://twitter.com/docusaurus',
+            // },
           ],
         },
         {

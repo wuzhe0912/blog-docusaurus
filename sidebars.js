@@ -15,7 +15,7 @@ module.exports = {
 
   // But you can create a sidebar manually
   JavaScriptSidebar: [
-    'JavaScript/js-outline',
+    'js-intro',
     {
       type: 'category',
       label: 'ES6',
@@ -31,6 +31,33 @@ module.exports = {
     }
   ],
   PHPSidebar: [
-    'intro',
+    'php-intro',
+    {
+      type: 'category',
+      label: 'Native',
+      items: [
+        'PHP/Native/0-php-grammar',
+      ]
+    }
   ],
+  PythonSidebar: [
+    'python-intro',
+    {
+      type: 'category',
+      label: 'Native',
+      items: [
+        'Python/Native/0-python-grammar',
+      ]
+    },
+    {
+      type: 'category',
+      label: 'Selenium',
+      items: [
+        'Python/Selenium/0-install-selenium',
+      ]
+    }
+  ],
+  ToolSidebar: [
+    'tools-intro'
+  ]
 };

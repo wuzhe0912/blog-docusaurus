@@ -28,6 +28,13 @@ module.exports = {
         'JavaScript/ES6/5-spread-rest',
         'JavaScript/ES6/6-template-literals'
       ]
+    },
+    {
+      type: 'category',
+      label: 'Node.js',
+      items: [
+        'JavaScript/Node/0-nvm',
+      ]
     }
   ],
   PHPSidebar: [

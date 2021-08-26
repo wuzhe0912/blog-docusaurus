@@ -5,7 +5,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 module.exports = {
   title: `Pitt Wu's Docusaurus`,
   tagline: `What's past is prologue.`,
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://pitt-docusaurus.netlify.app',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',

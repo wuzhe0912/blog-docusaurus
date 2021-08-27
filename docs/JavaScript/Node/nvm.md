@@ -1,5 +1,5 @@
 ---
-id: 0-nvm
+id: nvm
 description: NVM 控管 Node.js 版本
 slug: /nvm
 ---

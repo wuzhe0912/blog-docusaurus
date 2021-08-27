@@ -6,9 +6,9 @@ slug: /php-intro
 
 # PHP
 
-> 記錄不同環境安裝`PHP`。
+> 記錄不同環境如何安裝 `PHP`。
 
-## Env Install(Mac)
+## Mac
 
 打開終端機 `(iterm2)` 先安裝好 `Homebrew`，再使用指令安裝全域環境：
 
@@ -22,4 +22,4 @@ brew install php
 php --version
 ```
 
-## Env Install(Windows)
+## Windows

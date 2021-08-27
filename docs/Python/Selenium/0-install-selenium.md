@@ -31,3 +31,15 @@ C:\Users\username\AppData\Local\Programs\Python\Python39
 ```bash
 git clone https://github.com/TesterlifeRaymond/BeautifulReport.git
 ```
+
+將 `clone` 下來的檔案，整個資料夾放入 `python` 底下：
+
+```bash
+C:\Users\username\AppData\Local\Programs\Python\Python39\Lib\site-packages\
+```
+
+## install webdriver-manager
+
+```bash
+pip install webdriver-manager
+```

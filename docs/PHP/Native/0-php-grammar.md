@@ -4,7 +4,7 @@ description: PHP 基礎語法
 slug: /php-grammar
 ---
 
-# Grammar
+# Grammar (基礎語法)
 
 > 記錄 `PHP` 基礎語法。
 

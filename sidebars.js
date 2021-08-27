@@ -69,6 +69,13 @@ module.exports = {
     }
   ],
   ToolSidebar: [
-    'tools-intro'
+    'tools-intro',
+    {
+      type: 'category',
+      label: 'Git',
+      items: [
+        'Tools/Git/0-git-install',
+      ]
+    }
   ]
 };

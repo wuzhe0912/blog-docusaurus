@@ -14,6 +14,13 @@ module.exports = {
     'js-intro',
     {
       type: 'category',
+      label: 'Clousure',
+      items: [
+        'JavaScript/Clousure/0-clousure-basic'
+      ]
+    },
+    {
+      type: 'category',
       label: 'ES6',
       items: [
         'JavaScript/ES6/0-arrow-function',

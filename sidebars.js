@@ -9,54 +9,21 @@
   Create as many sidebars as you want.
 */
 
+const JavaScriptList = require('./sidebar/JavaScriptList');
+const ES6List = require('./sidebar/ES6List');
+const NodeList = require('./sidebar/NodeList');
+const PHPList = require('./sidebar/PHPList');
+
 module.exports = {
   JavaScriptSidebar: [
     'js-intro',
-    {
-      type: 'category',
-      label: 'Clousure',
-      items: [
-        'JavaScript/Clousure/0-clousure-basic'
-      ]
-    },
-    {
-      type: 'category',
-      label: 'ES6',
-      items: [
-        'JavaScript/ES6/0-arrow-function',
-        'JavaScript/ES6/1-destructuring',
-        'JavaScript/ES6/2-let-const',
-        'JavaScript/ES6/3-es-modules',
-        'JavaScript/ES6/4-function-default',
-        'JavaScript/ES6/5-spread-rest',
-        'JavaScript/ES6/6-template-literals'
-      ]
-    },
-    {
-      type: 'category',
-      label: 'Node.js',
-      items: [
-        'JavaScript/Node/nvm',
-        'JavaScript/Node/Native/0-node-grammar',
-        {
-          Express: [
-            'JavaScript/Node/Express/0-basic-express',
-          ],
-        }
-      ]
-    }
+    JavaScriptList,
+    ES6List,
+    NodeList
   ],
   PHPSidebar: [
     'php-intro',
-    {
-      type: 'category',
-      label: 'Native',
-      items: [
-        'PHP/Native/0-php-grammar',
-        'PHP/Native/1-php-function-object',
-        'PHP/Native/2-php-array-operating',
-      ]
-    }
+    PHPList,
   ],
   PythonSidebar: [
     'python-intro',

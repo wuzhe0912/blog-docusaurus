@@ -44,6 +44,7 @@ module.exports = {
   ],
   ToolSidebar: [
     'tools-intro',
+    'Tools/0-command-line',
     {
       type: 'category',
       label: 'Git',

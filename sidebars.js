@@ -44,12 +44,12 @@ module.exports = {
   ],
   ToolSidebar: [
     'tools-intro',
-    'Tools/0-command-line',
     {
       type: 'category',
       label: 'Git',
       items: [
         'Tools/Git/0-git-install',
+        'Tools/Git/1-command-line',
       ]
     }
   ]

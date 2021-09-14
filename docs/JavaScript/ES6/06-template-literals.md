@@ -1,10 +1,10 @@
 ---
-id: 6-template-literals
+id: 06-template-literals
 description: 將傳統字串的寫法改寫，更容易插入參數
 slug: /template-literals
 ---
 
-# Template literals (字符串模板)
+# 06 - Template literals (字符串模板)
 
 > 將傳統字串的寫法改寫，更容易插入參數。
 

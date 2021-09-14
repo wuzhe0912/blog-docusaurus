@@ -6,7 +6,7 @@ slug: /nvm
 
 # NVM
 
-> 記錄 `NVM` 如何安裝與切換 `Node.js` 版本指令。
+> 透過 `NVM` 這一工具，管理 `Node` 版本，並記錄如何安裝與切換指令。
 
 ## Install
 

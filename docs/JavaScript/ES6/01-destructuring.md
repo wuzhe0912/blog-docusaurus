@@ -1,10 +1,10 @@
 ---
-id: 1-destructuring
+id: 01-destructuring
 description: 一種更容易取值的方式
 slug: /destructuring
 ---
 
-# Destructuring (解構賦值)
+# 01 - Destructuring (解構賦值)
 
 > 一種更容易取值的方式。
 

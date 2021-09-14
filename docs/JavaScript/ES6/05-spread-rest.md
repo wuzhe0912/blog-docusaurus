@@ -1,10 +1,10 @@
 ---
-id: 5-spread-rest
+id: 05-spread-rest
 description: 展開與其餘，寫法皆是 "..."
 slug: /spread-rest
 ---
 
-# Spread (展開) & Rest (其餘)
+# 05 - Spread (展開) & Rest (其餘)
 
 > 展開與其餘，寫法皆是 "..."。
 

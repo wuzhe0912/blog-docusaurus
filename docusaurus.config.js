@@ -22,9 +22,9 @@ module.exports = {
       items: [
         {
           type: 'doc',
-          docId: 'js-intro',
+          docId: 'javascript-intro',
           position: 'left',
-          label: 'JS',
+          label: 'JavaScript',
         },
         {
           type: 'doc',
@@ -60,17 +60,17 @@ module.exports = {
           items: [
             {
               label: 'JavaScript',
-              to: '/docs/js-intro',
+              to: '/docs/javascript-intro',
             },
           ],
         },
         {
           title: 'Community',
           items: [
-            // {
-            //   label: 'Stack Overflow',
-            //   href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            // },
+            {
+              label: 'GitHub',
+              href: 'https://github.com/wuzhe0912',
+            },
             // {
             //   label: 'Discord',
             //   href: 'https://discordapp.com/invite/docusaurus',
@@ -81,19 +81,15 @@ module.exports = {
             // },
           ],
         },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/wuzhe0912',
-            },
-          ],
-        },
+        // {
+        //   title: 'More',
+        //   items: [
+        //     {
+        //       label: 'Blog',
+        //       to: '/blog',
+        //     },
+        //   ],
+        // },
       ],
       copyright: `Copyright © 2017 - ${new Date().getFullYear()} Pitt Wu Built with Docusaurus.`,
     },

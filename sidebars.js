@@ -13,12 +13,14 @@ const JavaScriptList = require('./sidebar/JavaScriptList');
 const ES6List = require('./sidebar/ES6List');
 const NodeList = require('./sidebar/NodeList');
 const PHPList = require('./sidebar/PHPList');
+const Day30List = require('./sidebar/Day30List');
 
 module.exports = {
   JavaScriptSidebar: [
-    'js-intro',
+    'javascript-intro',
     JavaScriptList,
     ES6List,
+    Day30List,
     NodeList
   ],
   PHPSidebar: [

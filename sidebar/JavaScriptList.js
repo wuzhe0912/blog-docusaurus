@@ -1,10 +1,10 @@
 module.exports = {
   type: 'category',
-  label: 'Native',
+  label: 'Vanilla',
   items: [
     {
       Clousure: [
-        'JavaScript/Native/Clousure/0-clousure-basic'
+        'JavaScript/Vanilla/Clousure/0-clousure-basic'
       ]
     },
     {

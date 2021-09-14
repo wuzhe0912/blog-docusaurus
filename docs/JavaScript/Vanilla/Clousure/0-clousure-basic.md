@@ -1,10 +1,10 @@
 ---
 id: 0-clousure-basic
-description: Clousure(閉包)
+description: Clousure basic
 slug: /clousure-basic
 ---
 
-# Clousure(閉包)
+# Basic
 
 ## What is Clousure?
 

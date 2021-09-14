@@ -1,10 +1,10 @@
 ---
-id: 4-function-default
+id: 04-function-default
 description: 透過設定 Default 值來精簡程式，並迴避一些基礎錯誤
 slug: /function-default
 ---
 
-# Function Default
+# 04 - Function Default
 
 > 透過設定 Default 值來精簡程式，並迴避一些基礎錯誤。
 

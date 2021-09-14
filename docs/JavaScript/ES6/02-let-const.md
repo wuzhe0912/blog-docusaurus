@@ -1,10 +1,10 @@
 ---
-id: 2-let-const
+id: 02-let-const
 description: 關於變數作用域
 slug: /let-const
 ---
 
-# let & const (變數作用域)
+# 02 - let & const (變數作用域)
 
 > 關於變數作用域。
 

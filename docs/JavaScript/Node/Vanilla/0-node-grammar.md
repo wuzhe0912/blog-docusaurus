@@ -1,6 +1,6 @@
 ---
 id: 0-node-grammar
-description: Node 基本語法API
+description: Node 基本語法 API
 slug: /node-grammar
 ---
 

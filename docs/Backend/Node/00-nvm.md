@@ -1,6 +1,6 @@
 ---
-id: nvm
-description: NVM 控管 Node.js 版本
+id: 00-nvm
+description: NVM Control Node.js version
 slug: /nvm
 ---
 

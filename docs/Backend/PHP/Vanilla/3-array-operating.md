@@ -1,7 +1,7 @@
 ---
-id: 2-php-array-operating
+id: 3-array-operating
 description: PHP Array Operating
-slug: /php-array-operating
+slug: /array-operating
 ---
 
 # Array (陣列操作)

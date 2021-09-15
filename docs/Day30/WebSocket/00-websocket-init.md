@@ -1,6 +1,6 @@
 ---
 id: 00-websocket-init
-description: Init with WebSocket
+description: Setting up Environment
 slug: /websocket-init
 ---
 

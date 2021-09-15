@@ -1,7 +1,7 @@
 ---
-id: 0-clousure-basic
-description: Clousure basic
-slug: /clousure-basic
+id: 00-clousure
+description: Clousure Basic
+slug: /clousure
 ---
 
 # Basic

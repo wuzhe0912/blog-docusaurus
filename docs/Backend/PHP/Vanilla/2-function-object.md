@@ -1,7 +1,7 @@
 ---
-id: 1-php-function-object
+id: 2-function-object
 description: PHP Function & Object
-slug: /php-function-object
+slug: /function-object
 ---
 
 # Function & Object (函式與物件)

@@ -22,27 +22,33 @@ module.exports = {
       items: [
         {
           type: 'doc',
+          docId: 'frontend-intro',
+          position: 'left',
+          label: 'Frontend',
+        },
+        {
+          type: 'doc',
           docId: 'javascript-intro',
           position: 'left',
           label: 'JavaScript',
         },
         {
           type: 'doc',
-          docId: 'php-intro',
+          docId: 'backend-intro',
           position: 'left',
-          label: 'PHP',
-        },
-        {
-          type: 'doc',
-          docId: 'python-intro',
-          position: 'left',
-          label: 'Python',
+          label: 'Backend',
         },
         {
           type: 'doc',
           docId: 'tools-intro',
           position: 'left',
           label: 'Tools',
+        },
+        {
+          type: 'doc',
+          docId: 'day30-intro',
+          position: 'right',
+          label: 'Day 30 Series',
         },
         {to: '/blog', label: 'Blog', position: 'right'},
         {

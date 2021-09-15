@@ -1,6 +1,6 @@
 module.exports = {
   type: 'category',
-  label: 'Day 30 Series',
+  label: '2021 iThome Game',
   items: [
     {
       WebSocket: [

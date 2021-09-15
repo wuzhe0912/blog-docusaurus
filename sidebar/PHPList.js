@@ -1,9 +1,17 @@
 module.exports = {
   type: 'category',
-  label: 'Native',
+  label: 'PHP',
   items: [
-    'PHP/Native/0-php-grammar',
-    'PHP/Native/1-php-function-object',
-    'PHP/Native/2-php-array-operating',
+    {
+      Vanilla: [
+        'Backend/PHP/Vanilla/0-setting',
+        'Backend/PHP/Vanilla/1-grammar',
+        'Backend/PHP/Vanilla/2-function-object',
+        'Backend/PHP/Vanilla/3-array-operating',
+      ]
+    },
+    {
+      Laravel: []
+    }
   ]
 }

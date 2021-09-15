@@ -10,40 +10,40 @@
 */
 
 const JavaScriptList = require('./sidebar/JavaScriptList');
-const ES6List = require('./sidebar/ES6List');
 const NodeList = require('./sidebar/NodeList');
 const PHPList = require('./sidebar/PHPList');
-const Day30List = require('./sidebar/Day30List');
+const Day30List = require('./sidebar/2021iThomeList');
 
 module.exports = {
-  JavaScriptSidebar: [
-    'javascript-intro',
+  Frontend: [
+    'frontend-intro',
     JavaScriptList,
-    ES6List,
-    Day30List,
-    NodeList
   ],
-  PHPSidebar: [
-    'php-intro',
+  // JavaScriptSidebar: [
+  //   'javascript-intro',
+  //   NodeList
+  // ],
+  BackendSidebar: [
+    'backend-intro',
     PHPList,
   ],
-  PythonSidebar: [
-    'python-intro',
-    {
-      type: 'category',
-      label: 'Native',
-      items: [
-        'Python/Native/0-python-grammar',
-      ]
-    },
-    {
-      type: 'category',
-      label: 'Selenium',
-      items: [
-        'Python/Selenium/0-install-selenium',
-      ]
-    }
-  ],
+  // PythonSidebar: [
+  //   'python-intro',
+  //   {
+  //     type: 'category',
+  //     label: 'Native',
+  //     items: [
+  //       'Python/Native/0-python-grammar',
+  //     ]
+  //   },
+  //   {
+  //     type: 'category',
+  //     label: 'Selenium',
+  //     items: [
+  //       'Python/Selenium/0-install-selenium',
+  //     ]
+  //   }
+  // ],
   ToolSidebar: [
     'tools-intro',
     {
@@ -54,5 +54,9 @@ module.exports = {
         'Tools/Git/1-command-line',
       ]
     }
+  ],
+  Day30Sidebar: [
+    'day30-intro',
+    Day30List,
   ]
 };

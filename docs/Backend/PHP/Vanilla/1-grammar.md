@@ -1,7 +1,7 @@
 ---
-id: 0-php-grammar
+id: 1-grammar
 description: PHP 基礎語法
-slug: /php-grammar
+slug: /grammar
 ---
 
 # Grammar (基礎語法)

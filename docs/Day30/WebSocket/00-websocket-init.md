@@ -15,9 +15,29 @@ slug: /websocket-init
 1. `socket.io`
 2. `websocket`
 
-前者是 Node.js 最早實作 websocket 的伺服器，因此兼容性最好，如果有考慮冷門瀏覽器的話，會是首選。後者則是 HTML5 新增的特性，因此在使用上，無需引入套件，可以直接原生使用，但可能會無法兼容冷門瀏覽器。
+前者是 Node.js 最早實作 websocket 的伺服器，因此兼容性良好，如果有考慮冷門瀏覽器的話，會是首選。後者則是 HTML5 新增的特性，因此在使用上，無需引入套件，可以直接原生使用，但可能會無法兼容冷門瀏覽器。
 
-## Step
+## Build
+
+> 建立基礎環境
+
+```bash
+mkdir chat
+
+cd chat
+
+touch server.js client.js index.html style.css
+
+# init project
+
+yarn init
+
+yarn add mongodb socket.io
+```
+
+## Require
+
+<!-- ## Step
 
 實作 socket 之前，我需要先梳理一下可能有的步驟，預計拆成三個區塊。
 
@@ -32,55 +52,10 @@ slug: /websocket-init
 - 如果其中一端突然斷掉了，該如何處理?
   1. 連結斷開後的處理
 
-## Build
-
-我首先準備一個基礎環境，用來撰寫理解 socket：
-
-```bash
-mkdir demo
-
-cd demo
-
-touch server.js index.html
-```
-
 ``` bash
 📦demo
  ┣ 📜index.html
  ┗ 📜server.js
-```
-
-Init 建立專案基礎：
-
-```bash
-yarn init
-
-yarn add nodemon -D
-
-yarn add ws express
-```
-
-安裝 nodemon 是為了自動化 reload，方便我改動專案內容時，可以自動監聽變化，[ws](https://github.com/websockets/ws) 則是 Node.js 實作 socket 的一個 Library。
-
-```json
-// package.json
-
-{
-  "name": "demo",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "scripts": {
-    "dev": "nodemon server.js"
-  },
-  "dependencies": {
-    "express": "^4.17.1",
-    "ws": "^8.2.2"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.12"
-  }
-}
 ```
 
 ## Create Server
@@ -141,4 +116,4 @@ server.listen(port, function () {
 // 使用 IIFE 包裹，主要是為了限制作用域範圍
 
 
-```
+``` -->

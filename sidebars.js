@@ -16,7 +16,7 @@ const Day30List = require('./sidebar/2021iThomeList');
 
 module.exports = {
   Frontend: [
-    'frontend-intro',
+    '00-frontend-intro',
     JavaScriptList,
   ],
   // JavaScriptSidebar: [
@@ -24,7 +24,7 @@ module.exports = {
   //   NodeList
   // ],
   BackendSidebar: [
-    'backend-intro',
+    '01-backend-intro',
     PHPList,
   ],
   // PythonSidebar: [

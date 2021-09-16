@@ -5,6 +5,7 @@ module.exports = {
     {
       WebSocket: [
         'Day30/WebSocket/00-setting-up',
+        'Day30/WebSocket/01-build-page',
       ],
     }
   ]

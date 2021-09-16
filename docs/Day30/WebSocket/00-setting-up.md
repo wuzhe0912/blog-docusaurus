@@ -8,14 +8,14 @@ slug: /setting-up
 
 ## Foreword
 
-過往前後端溝通，需要仰賴 client 端發起請求，譬如 `GET or POST`，但這對 server 端來說，卻無法主動回傳。但當我使用 socket 後，只需要透過一次握手，前後端就能建立持久性的雙向連接，達到數據傳輸的目的，同時 server 端也能主動更新訊息給 client 端。
+過往前後端溝通，需要仰賴 client 端發起請求，譬如 `GET or POST`，但這對 server 端來說，卻無法主動回傳。但當我使用 socket 後，只需要透過一次握手(採用 ws 協議，而非 http 協議)，前後端就能建立持久性的雙向連接(full-duplex)，達到數據傳輸的目的，同時 server 端也能主動更新訊息給 client 端。
 
 實作 socket 的作法，目前市場上主流應該是以下兩者：
 
 1. `socket.io`
 2. `websocket`
 
-前者是 Node.js 最早實作 websocket 的伺服器，因此兼容性良好，如果有考慮冷門瀏覽器的話，會是首選。後者則是 HTML5 新增的特性，因此在使用上，無需引入套件，可以直接原生使用，但可能會無法兼容冷門瀏覽器。
+前者是 Node.js 老牌實作 websocket 的伺服器，因此兼容性良好，如果有考慮冷門瀏覽器的話，會是首選。後者則是 HTML5 新增的特性，因此在使用上，有可能會無法兼容冷門瀏覽器。
 
 ## Require
 
@@ -71,7 +71,7 @@ app.listen(Port, () => {
 });
 ```
 
-切換到終端機，執行以下指令，可以 server 已經被建立，印出 console
+切換到終端機，執行以下指令，確認 server 已經被建立，印出 console
 
 ```javascript
 node server.js
@@ -79,7 +79,7 @@ node server.js
 
 ![check server running](https://i.imgur.com/cZyCn3s.png)
 
-但如果每次都需要執行一次 `node server.js` 頗麻煩，所以這邊安裝一個 plugin `nodemon`，讓它幫我 auto reload。
+但如果每次都需要執行 `node server.js` 頗麻煩，所以這邊安裝一個 plugin `nodemon`，讓它幫我 auto reload。
 
 ```bash
 yarn add nodemon -D
@@ -100,6 +100,6 @@ yarn add nodemon -D
 yarn dev
 ```
 
-接著回到 server.js，將 port 改為 5001，檢查終端機正常同步更新，代表沒問題了。
+接著回到 server.js，將 port 改為 5001，檢查終端機，確定正常同步更新，代表沒問題了。
 
 ![nodemon](https://i.imgur.com/aQ9lECR.png)

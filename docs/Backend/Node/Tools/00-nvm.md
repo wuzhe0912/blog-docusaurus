@@ -6,11 +6,13 @@ slug: /nvm
 
 # NVM
 
-> 透過 `NVM` 這一工具，管理 `Node` 版本，並記錄如何安裝與切換指令。
+> 透過 `NVM(Node Version Manager)` 這一工具，管理 `Node` 版本，並記錄如何安裝與切換指令。
 
-## Install
+## Install NVM
 
 ### Mac
+
+使用 `curl` 指令進行安裝。
 
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
@@ -19,18 +21,25 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 接著重新啟動 `iTerm2`，檢查 `nvm` 版本是否安裝成功。
 
 ```bash
-nvm --version               # 檢查 node 版本是否安裝成功
+nvm --version               # 檢查 nvm 版本號是否正常出現
 ```
 
 ### Windows
 
-[nvm-windows](https://github.com/coreybutler/nvm-windows/releases/tag/1.1.7)，下載 `nvm-setup.zip` 進行解壓縮安裝。
+前往 Github 的 [nvm-windows](https://github.com/coreybutler/nvm-windows/releases)，下載 nvm-setup.zip 進行解壓縮安裝 (近期有更新 1.1.8 版本，但建議還是採用 1.1.7)
+。
+
+![nvm-windows](https://i.imgur.com/uFyhtwx.png)
 
 ### check version
 
 ```bash
 nvm --version
 ```
+
+## Install Node
+
+安裝完 NVM 後不代表已經完成 Node 的安裝，我們仍須透過 NVM 的指令來安裝 Node。
 
 ### command
 
@@ -47,6 +56,10 @@ nvm use 12.22.1             # 切換到使用的 Node 版本
 
 nvm alias default 12.22.1   # 設定預設使用的 Node 版本
 ```
+
+安裝完成後檢查版本
+
+![node](https://i.imgur.com/Y9PnGmw.png)
 
 ## Error Fixed(Mac)
 

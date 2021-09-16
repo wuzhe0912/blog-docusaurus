@@ -19,13 +19,10 @@ module.exports = {
     '00-frontend-intro',
     JavaScriptList,
   ],
-  // JavaScriptSidebar: [
-  //   'javascript-intro',
-  //   NodeList
-  // ],
   BackendSidebar: [
     '01-backend-intro',
     PHPList,
+    NodeList
   ],
   // PythonSidebar: [
   //   'python-intro',

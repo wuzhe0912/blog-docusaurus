@@ -19,7 +19,10 @@ slug: /setting-up
 
 ## Require
 
-需要準備 Node.js 環境，推薦使用 NVM 來安裝管理 Node 版本方便切換，可參考這篇文章 [NVM]
+- Node.js
+- Visual Studio Code(任一編輯器)
+
+第一項需要準備 Node.js 環境，推薦使用 NVM 來安裝管理 Node 版本方便切換，可參考這篇文章 [NVM](https://pitt-docusaurus.netlify.app/docs/nvm)，至於編輯器則看個人習慣即可。
 
 ## Build
 
@@ -30,11 +33,73 @@ mkdir chat
 
 cd chat
 
-touch server.js client.js index.html style.css
-
-# init project
+# init project, use npm or yarn
 
 yarn init
-
-yarn add mongodb socket.io
 ```
+
+### plugin
+
+安裝 express 來建立 server，同時使用老牌的 socket.io 來實作。
+
+```bash
+yarn add express socket.io 
+```
+
+### touch file
+
+開始著手建立 js 檔案來寫寫看
+
+```bash
+touch server.js
+
+# package.json 的 main 改為 server.js
+```
+
+## Running Server
+
+在 server.js 寫入以下內容來建立本地的 server
+
+```javascript
+const express = require('express');
+const app = express();
+
+const Port = 5000;
+
+app.listen(Port, () => {
+  console.log(`Server listening on ${Port}`);
+});
+```
+
+切換到終端機，執行以下指令，可以 server 已經被建立，印出 console
+
+```javascript
+node server.js
+```
+
+![check server running](https://i.imgur.com/cZyCn3s.png)
+
+但如果每次都需要執行一次 `node server.js` 頗麻煩，所以這邊安裝一個 plugin `nodemon`，讓它幫我 auto reload。
+
+```bash
+yarn add nodemon -D
+```
+
+同時我在 `package.json` 建立 scripts:
+
+```json
+"scripts": {
+  "dev": "nodemon server.js"
+},
+```
+
+此後，我只需要執行 `yarn dev`，就可以達到想要自動更新 server 的目的，現在測試看看是否可行。
+
+```bash
+# start server
+yarn dev
+```
+
+接著回到 server.js，將 port 改為 5001，檢查終端機正常同步更新，代表沒問題了。
+
+![nodemon](https://i.imgur.com/aQ9lECR.png)

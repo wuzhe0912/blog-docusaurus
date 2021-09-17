@@ -8,7 +8,7 @@ slug: /build-page
 
 > 建立靜態頁面，並將頁面和 terminal 之間建立連線。
 
-## public
+## Public
 
 > 首先創建靜態資料，結構如下：
 
@@ -19,13 +19,13 @@ slug: /build-page
  ┗ 📜index.html
 ```
 
-> 切到 server.js 改寫部分內容，透過 use() 這個中介層來掛載靜態資料。
+> 切到 root 下的 server.js 改寫部分內容，透過 use() 這個中介層來掛載剛剛建立的靜態資料。
 
 ```javascript
 const express = require('express');
 const http = require('http');
 
-const PORT = 5001;
+const PORT = 5000;
 
 const app = express();
 const server = http.createServer(app);
@@ -44,21 +44,48 @@ server.listen(PORT, () => {
 });
 ```
 
-同時在 client.js 先埋一個 `console.log()`，並在 index.html 引入 client.js。
+## Client
+
+> 現在開始著手處理 client 端
+
+先在 client.js 埋下 `console.log()`，並在 index.html 引入 client.js。
+
+```javascript
+// client.js
+console.log('this is client');
+```
+
+```html
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Websocket</title>
+  </head>
+  <body>
+    <h3>This is Client Side.</h3>
+    <script src="./js/client.js"></script>
+  </body>
+</html>
+
+```
 
 現在我需要運行測試一下是否正常。
 
 ```bash
 yarn dev
 
-open localhost:5001
+open localhost:5000
 ```
 
-打開本地的瀏覽器，執行 `http://localhost:5001/`，可以看到 index.html 的內容被渲染出來，同時打開 F12，也能查看到 client.js 的 console 內容，代表靜態資料已被成功掛載到本地的 server 上。
+打開本地的瀏覽器，執行 `http://localhost:5000/`，可以看到 index.html 的內容被渲染出來，同時打開 F12，也能查看到 client.js 的 console 內容，代表靜態資料已被成功掛載到本地的 server 上。
 
-## client & server
+## Connection
 
-> 現在我們需要將 client 端和 server 端，兩邊進行串接，這邊選擇使用 cdn 的方式在 client 端引入。
+> 現在我需要將 client 端和 server 端進行串接，這裡選擇使用 cdn 的方式在 client 端引入。
 
 [copy socket.io cdn script](https://socket.io/docs/v4/client-api/)
 
@@ -74,7 +101,7 @@ open localhost:5001
   </body>
 ```
 
-接著進到 client.js，寫入以下內容
+進到 client.js，寫入以下內容
 
 ```javascript
 // listen client
@@ -86,7 +113,7 @@ socket.on('connect', (server) => {
 });
 ```
 
-再回到 server.js：
+回到 server.js：
 
 ```javascript
 // listen & receive client connection

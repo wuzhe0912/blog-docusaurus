@@ -12,14 +12,14 @@ slug: /grammar
 
 先建立一個 `Demo` 資料夾，然後建立一個 `hello.php` 的檔案，並在檔案中輸入以下內容：
 
-```PHP
+```php
 <?php
   echo('Hello PHP!');
 ```
 
 接著回到終端機，執行以下指令：
 
-```PHP
+```php
 php hello.php
 ```
 
@@ -29,7 +29,7 @@ php hello.php
 
 四種資料型別：
 
-```PHP
+```php
 string   字串    'text'
 interger 整數     15
 float    浮點數   10.2
@@ -38,7 +38,7 @@ bolean   布林值   true or false
 
 `php` 中，變數前方採用 `$` 符號宣告，句尾需添加 `;`：
 
-```PHP
+```php
 $people = 'pitt';
 $number = 100;
 $boolean = true;
@@ -47,7 +47,7 @@ $float = 12.7;
 
 在我的理解中，`php` 的 `echo();` 近似於 `js` 的 `cosole.log();`，所以我如果想要知自己變數的值為多少，可以這樣寫：
 
-```PHP
+```php
 <?php
   $people = 'pitt';
   $number = 100;
@@ -62,7 +62,7 @@ $float = 12.7;
 
 透過轉型可以將上面的變數進行型別轉換：
 
-```PHP
+```php
 $people = (int) $people;      // 0
 $number = (float) $number;    // 100.0
 $boolean = (string) $boolean; // ''
@@ -71,7 +71,7 @@ $float = (integer) $float;    // 12
 
 再配合 `var_dump` 可以印出資料的型別：
 
-```PHP
+```php
 <?php
   $number = (string) 100;
   var_dump($number);  // 印出 string 類型，以及有幾個字元，並印出結果'100'
@@ -79,7 +79,7 @@ $float = (integer) $float;    // 12
 
 此外，也能做四則運算：
 
-```PHP
+```php
 <?php
   $number1 = 12;
   $number2 = 4;
@@ -97,7 +97,7 @@ $float = (integer) $float;    // 12
 
 計算一組跳錶收費，並在 `echo()` 輸出時包含有變數和字串：
 
-```PHP
+```php
 <?php
   $initPrice = 80; // 起跳價格
   $perKilometerPrice = 16; // 每公里價格
@@ -127,7 +127,7 @@ $float = (integer) $float;    // 12
   }
 ```
 
-```PHP
+```php
 // 增加判斷條件
 <?php
   $number = 8;
@@ -140,7 +140,7 @@ $float = (integer) $float;    // 12
   }
 ```
 
-```PHP
+```php
 // 四季判斷
 <?php
   $month = 9;
@@ -161,7 +161,7 @@ $float = (integer) $float;    // 12
 
 印出數字 `0 ~ 8`：
 
-```PHP
+```php
 <?php
   $count = 0;
   while ($count < 10) {
@@ -174,7 +174,7 @@ $float = (integer) $float;    // 12
 
 印出數字 `1 ~ 12`：
 
-```PHP
+```php
 <?php
   for ($count = 1; $count < 13; $count++) {
     echo($count."\r\n");
@@ -183,7 +183,7 @@ $float = (integer) $float;    // 12
 
 將指定數字內，奇數加總總和：
 
-```PHP
+```php
 <?php
   $totalNumber = 0;
   for ($number = 1; $number < 151; $number ++) {
@@ -200,7 +200,7 @@ $float = (integer) $float;    // 12
 
 在 `php` 中，呈現陣列的格式寫法有下列兩種：
 
-```PHP
+```php
 <?php
   $list = ['player', 'wow', 'apple'];
   $numberList = array(1, 2, 3);
@@ -208,7 +208,7 @@ $float = (integer) $float;    // 12
 
 而當我想要印出陣列時，不再使用 `echo()`，而是改用 `print_r()`：
 
-```PHP
+```php
 <?php
   $list = ['player', 'wow', 'apple'];
   $numberList = array(1, 2, 3);
@@ -235,7 +235,7 @@ Array
 
 字典陣列，我理解為類似帶有欄位屬性：
 
-```PHP
+```php
 <?php
   $player = [
     'name' => 'Pitt',
@@ -246,7 +246,7 @@ Array
 
 在陣列操作上，和 `JS` 也是相當雷同：
 
-```PHP
+```php
 <?php
   $numberList = array(1, 2, 3);
   $player = [
@@ -262,7 +262,7 @@ Array
 
 使用 `foreach` 跑迴圈：
 
-```PHP
+```php
 <?php
   $list = ['Ragnarok', 'Black Desert', 'League of Legends', 'Lineage'];
   foreach ($list as $index => $game) {
@@ -272,7 +272,7 @@ Array
 
 如果陣列改為字典式陣列，則寫法調整為對應欄位：
 
-```PHP
+```php
 <?php
   $list = [
     ['name' => 'Ragnarok'],
@@ -291,7 +291,7 @@ Array
 
 > 建立一組陣列，並在其中塞入五張獲利的股票，計算平均每張獲利，以及總獲利：
 
-```PHP
+```php
 <?php
   $stocks = [
     ['profit' => 5],
@@ -314,7 +314,7 @@ Array
 
 > 建立一組陣列，裡面有五位操盤手，依據每個人績效 x10000，做為獎金發放，其中要有一個人無績效，並顯示對應文字，並使用 substr 清除字串最後一個字元：
 
-```PHP
+```php
 <?php
   $people = [
     [ 'name' => 'Alice', 'performance' => '120%' ],
@@ -341,7 +341,7 @@ Array
 
 第二個情境，假設陣列結構調整為如下：
 
-```PHP
+```php
 <?php
   $girls = ['Alice', 'Olive', 'Mavis', 'Lena', 'Alyssa'];
   $report = [
@@ -354,7 +354,7 @@ Array
 
 那麼迴圈的寫法就需要調整如下，使用 `php` 的 `isset()` 過濾：
 
-```PHP
+```php
 <?php
   $girls = ['Alice', 'Olive', 'Mavis', 'Lena', 'Alyssa'];
   $report = [
@@ -377,12 +377,12 @@ Array
 
 在 `php` 中會看到兩種寫法：
 
-```PHP
+```php
 <?php
   echo('Hello PHP!');
 ```
 
-```PHP
+```php
 <?php
   <h2>Hello PHP!</h2>
 ?>

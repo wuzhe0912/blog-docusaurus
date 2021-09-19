@@ -20,7 +20,7 @@ io.on('connection', (socket) => {
 });
 ```
 
-因為我命名的 event 為 `hello-client`，所以接收訊息的 client.js 也必須使用相同命名。
+因為命名的 event 為 `hello-client`，所以接收訊息的 client.js 也必須使用相同命名。
 
 ```javascript
 // client.js

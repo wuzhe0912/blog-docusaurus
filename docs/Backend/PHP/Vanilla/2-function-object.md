@@ -10,7 +10,7 @@ slug: /function-object
 
 其實和 `js` 差異不大，建立一個 `function`，並在當中聲明一些變數，回傳執行結果，並印出來：
 
-```PHP
+```php
 <?php
   function getHeight()
   {
@@ -23,7 +23,7 @@ slug: /function-object
 
 改寫為傳入參數：
 
-```PHP
+```php
 <?php
   function getHeight($shoes)
   {
@@ -37,7 +37,7 @@ slug: /function-object
 
 使用 `class` 建立共用的物件，慣例採用大寫開頭，這邊 `$this` 會指向到整個 `class` 本身：
 
-```PHP
+```php
 <?php
   class People
   {
@@ -64,7 +64,7 @@ slug: /function-object
 
 當我建立好父物件的條件下，我可以透過搭建其他子物件來調用上層物件的方法：
 
-```PHP
+```php
 <?php
   class People
   {
@@ -99,7 +99,7 @@ slug: /function-object
 
 建立一個 `class Pokemon{}` 並且調用它，需各執行一次攻擊和治癒的動作，攻擊時需減少血量，治癒時則恢復一定血量，最終印出當前血量：
 
-```PHP
+```php
 <?php
   class Pokemon
   {

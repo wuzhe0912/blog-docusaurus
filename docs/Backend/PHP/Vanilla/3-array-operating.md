@@ -10,7 +10,7 @@ slug: /array-operating
 
 我的理解是，類似於 `js` 中的解構方式，將字典陣列中對應的屬性欄位抽出來，重新組成陣列：
 
-```PHP
+```php
 <?php
   $list = [
     ['id' => 1, 'name' => 'Calista'],
@@ -25,7 +25,7 @@ slug: /array-operating
 
 印出結果如下：
 
-```PHP
+```php
 Array
 (
     [0] => Calista
@@ -40,7 +40,7 @@ Array
 
 可以找出指定資料中所有欄位，譬如我查找陣列中的第一筆資料，會回傳給第一筆資料中的屬性欄位：
 
-```PHP
+```php
 <?php
   $list = [
     ['id' => 1, 'name' => 'Calista'],
@@ -54,7 +54,7 @@ Array
 
 印出結果：
 
-```PHP
+```php
 Array
 (
   [0] => id
@@ -66,7 +66,7 @@ Array
 
 和 `key` 相反，`value` 自然是取欄位的內容：
 
-```PHP
+```php
 <?php
   $list = [
     ['id' => 1, 'name' => 'Calista'],
@@ -80,7 +80,7 @@ Array
 
 印出結果：
 
-```PHP
+```php
 Array
 (
     [0] => 3
@@ -92,7 +92,7 @@ Array
 
 和 `js` 的 `map()` 方法相同，針對陣列跑迴圈，可以在 `function` 中對某些欄位進行處理後，回傳重組新的陣列：
 
-```PHP
+```php
 <?php
   $list = [
     ['id' => 1, 'name' => 'Calista'],
@@ -110,7 +110,7 @@ Array
 
 印出結果：
 
-```PHP
+```php
 Array
 (
     [0] => Array
@@ -145,7 +145,7 @@ Array
 
 既然有 `map()` 自然也有 `filter()`，過濾條件回傳需要的內容：
 
-```PHP
+```php
 <?php
   $list = [
     ['id' => 1, 'name' => 'Calista'],
@@ -162,7 +162,7 @@ Array
 
 印出結果：
 
-```PHP
+```php
 Array
 (
     [3] => Array
@@ -186,7 +186,7 @@ Array
 
 新增資料到陣列中的最後一筆：
 
-```PHP
+```php
 <?php
   $nums = [1, 2, 3, 4];
   array_push($nums, 7);
@@ -197,7 +197,7 @@ Array
 
 清除陣列中最後一筆資料：
 
-```PHP
+```php
 <?php
   $nums = [1, 2, 3, 4];
   array_pop($nums);
@@ -208,7 +208,7 @@ Array
 
 合併兩組陣列，若有重複屬性的欄位，則新陣列的資料覆蓋舊陣列：
 
-```PHP
+```php
 <?php
   $nums = [
     'id' => 1,
@@ -225,7 +225,7 @@ Array
 
 針對陣列進行排序：
 
-```PHP
+```php
 <?php
   $nums = [2, 1, 34, 11, 23, 90, 5];
   sort($nums);
@@ -236,7 +236,7 @@ Array
 
 針對 `value` 進行排序，主要用於字典陣列，依照英文字母順序：
 
-```PHP
+```php
 <?php
   $nums = [
     'b' => 'Miranda',
@@ -252,7 +252,7 @@ Array
 
 和前者相同，只是改為採用 `key` 值排序：
 
-```PHP
+```php
 <?php
   $nums = [
     'b' => 'Miranda',
@@ -268,7 +268,7 @@ Array
 
 找出資料在陣列中的索引位置：
 
-```PHP
+```php
 <?php
   $nums = ['Miranda', 'Wendy', 'Apple', 'Novia', 'Apple', 'Miranda'];
   echo(array_search('Apple', $nums));
@@ -278,7 +278,7 @@ Array
 
 過濾陣列中重複的值：
 
-```PHP
+```php
 <?php
   $nums = ['Miranda', 'Wendy', 'Apple', 'Novia', 'Apple', 'Miranda'];
   print_r(array_unique($nums));
@@ -288,7 +288,7 @@ Array
 
 若陣列中皆為數字，計算加總：
 
-```PHP
+```php
 <?php
   $nums = [7, 6, 12, 55, 31];
   echo(array_sum($nums));
@@ -298,7 +298,7 @@ Array
 
 取得陣列長度：
 
-```PHP
+```php
 <?php
   $nums = ['Miranda', 'Wendy', 'Apple', 'Novia', 'Apple', 'Miranda'];
   echo(count($nums));

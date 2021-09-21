@@ -1,10 +1,10 @@
 ---
-id: 04-set-chat-page
-description: Set Chat Page
-slug: /set-chat-page
+id: 04-set-chat-page-I
+description: Set Chat Page I
+slug: /set-chat-page-I
 ---
 
-# 04 - Set Chat Page
+# 04 - Set Chat Page I
 
 > 在處理完輸入使用者名稱後，下一步，自然就是進入 Chat 的觸發事件。
 

@@ -1,12 +1,12 @@
 ---
-id: 06-send-message-to-server
+id: 06-forward-message-to-server
 description: Send Message To Server
-slug: /send-message-to-server
+slug: /forward-message-to-server
 ---
 
-# 06 - Send Message To Server
+# 06 - Forward Message To Server
 
-> 印出使用者名稱和訊息內容後，接下來要嘗試將其透過 socket.io 轉發給 server
+[前一章](https://pitt-docusaurus.netlify.app/docs/set-chat-page-II)印出使用者名稱和訊息內容後，接下來要嘗試將其透過 socket.io 轉發給 server。
 
 ## 修正使用體驗
 

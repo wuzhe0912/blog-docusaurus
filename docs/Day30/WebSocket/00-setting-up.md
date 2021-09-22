@@ -87,7 +87,7 @@ yarn add nodemon -D
 
 同時我在 `package.json` 建立 scripts:
 
-```json
+```javascripton
 "scripts": {
   "dev": "nodemon server.js"
 },

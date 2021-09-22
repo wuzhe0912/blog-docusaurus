@@ -118,7 +118,7 @@ slug: /set-chat-page-II
 
 原先的 client.js 在驗證進入時，寫法存在瑕疵，會出現輸入使用者名稱時不斷觸發的問題，所以調整成當點擊進入時，才進行驗證和跳轉。
 
-```js
+```javascript
 // client.js
 nameInput.addEventListener('keyup', (e) => {
   store.setUserName(e.target.value);
@@ -143,7 +143,7 @@ touch element.js
 
 在原先的 `.chat-list` 標籤底下，動態 render，同時預計傳入數個參數，用於抓取動態生成的標籤。
 
-```js
+```javascript
 const getChatList = (data) => {
   const { chatTitle, messageContainerID, messageInputID, chatContainerID } =
     data;
@@ -186,7 +186,7 @@ export default {
 
 建立 data 的預設值
 
-```js
+```javascript
 // ui.js
 const messageContainerID = 'message-container-id';
 const messageInputID = 'message-input-id';
@@ -205,7 +205,7 @@ const createChatList = () => {
 
 導入剛剛的用來 render 的 elemednt.js，抓取最外層的 `.chat-list`，透過 `appendChild()` 來添加子元素。
 
-```js
+```javascript
 import element from './element.js';
 
 const createChatList = () => {
@@ -218,7 +218,7 @@ const createChatList = () => {
 
 抓取輸入框的 DOM，監聽使用者觸發的事件，當輸入完成按下 Enter 按鈕時，除了抓取使用者名稱，同時也印出輸入內容。
 
-```js
+```javascript
 const createChatList = () => {
   // ...
   const messageInput = document.getElementById(messageInputID);

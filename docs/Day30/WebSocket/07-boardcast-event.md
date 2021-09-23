@@ -62,7 +62,9 @@ export default {
 };
 ```
 
-這組 function 用來生成輸入訊息者以及他所輸入的內容。接著，需要將這段 HTML 同樣透過 append 的方式塞入到對話框的訊息列表中。
+上面這組 function 用來生成，輸入訊息者以及他所輸入的內容。
+
+接著，需要將這段 HTML 同樣透過 append 的方式塞到對話框的訊息列表中。
 
 ```javascript
 // ui.js
@@ -78,7 +80,7 @@ export default {
 };
 ```
 
-導出的 appendChatMessage 只是生成靜態的 HTML，仍需要傳入資料來顯示動態內容，所以將其拉到 handler.js 導入：
+導出的 `appendChatMessage()` 只是生成靜態的 HTML，仍需要傳入資料來顯示動態內容，所以將其拉到 handler.js 導入：
 
 ```javascript
 // handler.js
@@ -96,6 +98,6 @@ const connectSocketIoServer = () => {
 };
 ```
 
-現在可以打開數個 browser 來測試，是否能達到多人對話的效果。
+現在可以打開數個 browser 來測試，當不同使用者分別輸入訊息時，是否能達到多人對話的效果。
 
 ![group chat](https://i.imgur.com/Bw595r2.png)

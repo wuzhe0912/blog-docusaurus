@@ -12,6 +12,7 @@ module.exports = {
         'Day30/WebSocket/05-set-chat-page-II',
         'Day30/WebSocket/06-forward-message-to-server',
         'Day30/WebSocket/07-boardcast-event',
+        'Day30/WebSocket/08-check-group',
       ],
     }
   ]

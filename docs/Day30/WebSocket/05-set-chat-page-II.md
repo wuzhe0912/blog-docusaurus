@@ -195,7 +195,7 @@ const chatContainerID = 'chatContainerID';
 const createChatList = () => {
   // default value
   const data = {
-    chatTitle: 'Group Name',
+    chatTitle: 'Group Chat',
     messageContainerID,
     messageInputID,
     chatContainerID,

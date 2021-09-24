@@ -34,15 +34,15 @@ module.exports = {
         },
         {
           type: 'doc',
-          docId: 'tools-intro',
+          docId: 'day30-intro',
           position: 'left',
-          label: 'Tools',
+          label: 'Day 30 Series',
         },
         {
           type: 'doc',
-          docId: 'day30-intro',
-          position: 'right',
-          label: 'Day 30 Series',
+          docId: 'tools-intro',
+          position: 'left',
+          label: 'Tools',
         },
         {to: '/blog', label: 'Blog', position: 'right'},
         {

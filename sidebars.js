@@ -24,6 +24,10 @@ module.exports = {
     PHPList,
     NodeList
   ],
+  Day30Sidebar: [
+    'day30-intro',
+    Day30List,
+  ],
   // PythonSidebar: [
   //   'python-intro',
   //   {
@@ -52,8 +56,4 @@ module.exports = {
       ]
     }
   ],
-  Day30Sidebar: [
-    'day30-intro',
-    Day30List,
-  ]
 };

@@ -16,6 +16,7 @@ module.exports = {
         'Day30/WebSocket/09-direct-message-I',
         'Day30/WebSocket/10-direct-message-II',
         'Day30/WebSocket/11-disconnect-chat',
+        'Day30/WebSocket/12-select-room',
       ],
     }
   ]

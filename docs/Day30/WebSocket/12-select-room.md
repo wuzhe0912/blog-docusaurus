@@ -148,3 +148,5 @@ const createRoomChat = () => {
   roomWrapper.appendChild(room);
 };
 ```
+
+![select room](https://i.imgur.com/kq2TljX.gif)

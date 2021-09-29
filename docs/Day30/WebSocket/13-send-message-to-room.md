@@ -92,3 +92,5 @@ export default {
 };
 
 ```
+
+![send message to room](https://i.imgur.com/ixdVdFG.gif)

@@ -1,5 +1,7 @@
 # Docusaurus Blog
 
+> Use Docusaurus to build personal blog.
+
 ## Website
 
 - [Link](https://pitt-docusaurus.netlify.app/)

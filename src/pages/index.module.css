@@ -6,10 +6,60 @@
  */
 
 .heroBanner {
-  padding: 4rem 0;
+  /* padding: 4rem 0;
   text-align: center;
   position: relative;
-  overflow: hidden;
+  overflow: hidden; */
+}
+
+.heroInner {
+  margin: 0 auto;
+  max-width: 1100px;
+  padding: 0 20px;
+}
+
+.heroProjectTagline {
+  font-size: 60px;
+  margin: 0;
+}
+
+.heroSubTitle {
+  font-size: 36px;
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes heroAnimation {
+  from {
+    opacity: 0;
+    transform: scale(0.1) rotate(30deg);
+    transform-origin: center bottom;
+  }
+
+  50% {
+    transform: rotate(-10deg);
+  }
+
+  70% {
+    transform: rotate(3deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.heroLogo {
+  animation-duration: 2s;
+  animation-name: heroAnimation;
+  margin-left: 30px;
+  float: right;
 }
 
 @media screen and (max-width: 966px) {
@@ -18,8 +68,23 @@
   }
 }
 
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+@media only screen and (max-width: 768px) {
+  .heroInner {
+    padding: 0;
+  }
+
+  .heroLogo {
+    display: block;
+    float: none;
+    margin: 0 auto;
+  }
+
+  .heroProjectTagline {
+    font-size: 48px;
+    text-align: center;
+  }
+
+  .heroSubTitle {
+    font-size: 24px;
+  }
 }

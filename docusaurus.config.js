@@ -4,7 +4,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: `Pitt Wu's Docusaurus`,
-  tagline: `What's past is prologue.`,
+  tagline: '',
   url: 'https://pitt-docusaurus.netlify.app',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -133,17 +133,6 @@ module.exports = {
   ],
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'cn', 'tw'],
-    localeConfigs: {
-      en: {
-        label: 'English'
-      },
-      cn: {
-        label: '简体中文'
-      },
-      tw: {
-        label: '繁體中文'
-      }
-    }
+    locales: ['en', 'zh-cn', 'zh-tw'],
   }
 };

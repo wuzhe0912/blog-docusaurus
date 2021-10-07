@@ -19,7 +19,9 @@ function HomepageHeader() {
             {siteConfig.title}
           </span>
         </h1>
-        <p className={styles.heroSubTitle}>{siteConfig.tagline}</p>
+        <p className={styles.heroSubTitle}>
+          <Translate>What's past is prologue.</Translate>
+        </p>
         <div className={styles.buttons}>
           <Link className="button button--secondary button--lg" to="/docs/frontend-intro">
             Get Started ⏱️

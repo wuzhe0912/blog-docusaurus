@@ -1,0 +1,58 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.Frontend.category.JavaScript": {
+    "message": "JavaScript",
+    "description": "The label for category JavaScript in sidebar Frontend"
+  },
+  "sidebar.Frontend.category.ES6": {
+    "message": "ES6",
+    "description": "The label for category ES6 in sidebar Frontend"
+  },
+  "sidebar.Frontend.category.Clousure": {
+    "message": "Clousure",
+    "description": "The label for category Clousure in sidebar Frontend"
+  },
+  "sidebar.Frontend.category.Hoisting": {
+    "message": "Hoisting",
+    "description": "The label for category Hoisting in sidebar Frontend"
+  },
+  "sidebar.Frontend.category.IIFE": {
+    "message": "IIFE",
+    "description": "The label for category IIFE in sidebar Frontend"
+  },
+  "sidebar.BackendSidebar.category.PHP": {
+    "message": "PHP",
+    "description": "The label for category PHP in sidebar BackendSidebar"
+  },
+  "sidebar.BackendSidebar.category.Vanilla": {
+    "message": "Vanilla",
+    "description": "The label for category Vanilla in sidebar BackendSidebar"
+  },
+  "sidebar.BackendSidebar.category.Laravel": {
+    "message": "Laravel",
+    "description": "The label for category Laravel in sidebar BackendSidebar"
+  },
+  "sidebar.BackendSidebar.category.Node.js": {
+    "message": "Node.js",
+    "description": "The label for category Node.js in sidebar BackendSidebar"
+  },
+  "sidebar.BackendSidebar.category.Tools": {
+    "message": "Tools",
+    "description": "The label for category Tools in sidebar BackendSidebar"
+  },
+  "sidebar.Day30Sidebar.category.2021 iThome Game": {
+    "message": "2021 iThome Game",
+    "description": "The label for category 2021 iThome Game in sidebar Day30Sidebar"
+  },
+  "sidebar.Day30Sidebar.category.WebSocket": {
+    "message": "WebSocket",
+    "description": "The label for category WebSocket in sidebar Day30Sidebar"
+  },
+  "sidebar.ToolSidebar.category.Git": {
+    "message": "Git",
+    "description": "The label for category Git in sidebar ToolSidebar"
+  }
+}

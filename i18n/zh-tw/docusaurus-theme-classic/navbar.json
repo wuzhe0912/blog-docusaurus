@@ -4,11 +4,11 @@
     "description": "The title in the navbar"
   },
   "item.label.Frontend": {
-    "message": "Frontend",
+    "message": "前端",
     "description": "Navbar item with label Frontend"
   },
   "item.label.Backend": {
-    "message": "Backend",
+    "message": "後端",
     "description": "Navbar item with label Backend"
   },
   "item.label.Day 30 Series": {
@@ -16,7 +16,7 @@
     "description": "Navbar item with label Day 30 Series"
   },
   "item.label.Tools": {
-    "message": "Tools",
+    "message": "工具",
     "description": "Navbar item with label Tools"
   },
   "item.label.GitHub": {

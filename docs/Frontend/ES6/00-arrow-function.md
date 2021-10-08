@@ -1,12 +1,10 @@
 ---
 id: 00-arrow-function
-description: 縮減傳統函式寫法，更為簡潔便利
+title: '📜 Arrow Function'
 slug: /arrow-function
 ---
 
-# 00 - Arrow Function (箭頭函式)
-
-> 縮減傳統函式寫法，更為簡潔便利。
+縮減傳統函式寫法，更為簡潔便利。
 
 ## 新舊兩種寫法比較
 

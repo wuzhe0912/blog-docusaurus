@@ -10,6 +10,7 @@
 */
 
 const JavaScriptList = require('./sidebar/JavaScriptList');
+const ES6PlusList = require('./sidebar/ES6PlusList')
 const NodeList = require('./sidebar/NodeList');
 const PHPList = require('./sidebar/PHPList');
 const Day30List = require('./sidebar/2021iThomeList');
@@ -18,6 +19,7 @@ module.exports = {
   Frontend: [
     '00-frontend-intro',
     JavaScriptList,
+    ES6PlusList,
   ],
   BackendSidebar: [
     '01-backend-intro',

@@ -1,12 +1,12 @@
 ---
 id: 01-destructuring
-description: 一種更容易取值的方式
+title: '📜 Destructuring'
 slug: /destructuring
 ---
 
-# 01 - Destructuring (解構賦值)
+一種更容易取值的方式。
 
-> 一種更容易取值的方式。
+## 傳統方式
 
 ```javascript
 const data = {
@@ -17,7 +17,7 @@ const data = {
 console.log(data.str); // 印出 20
 ```
 
-## 解構的做法
+## 解構方式
 
 ```javascript
 const data = {

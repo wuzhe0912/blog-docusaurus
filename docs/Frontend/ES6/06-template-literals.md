@@ -1,12 +1,10 @@
 ---
 id: 06-template-literals
-description: 將傳統字串的寫法改寫，更容易插入參數
+title: '📜 Template literals'
 slug: /template-literals
 ---
 
-# 06 - Template literals (字符串模板)
-
-> 將傳統字串的寫法改寫，更容易插入參數。
+將傳統字串的寫法改寫，更容易插入參數。
 
 ## 傳統寫法
 
@@ -41,7 +39,7 @@ const playerData = (name, job) => {
 console.log(playerData('Pitt', '戰士'))
 ```
 
-也可以應用在加減乘除計算
+加減乘除計算。
 
 ```javascript
 const favoritePhone = 'iPhone 20 Max Pro';
@@ -49,7 +47,7 @@ const currentPrice = 60000;
 console.log(`${favoritePhone} is ${currentPrice * 0.7} now.`);
 ```
 
-透過換行的特性，應用在塞入 `HTML` 區塊
+填入 `HTML`。
 
 ```javascript
 const group = `

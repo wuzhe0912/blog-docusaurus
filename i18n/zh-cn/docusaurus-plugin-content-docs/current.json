@@ -40,7 +40,7 @@
     "description": "The label for category Node.js in sidebar BackendSidebar"
   },
   "sidebar.BackendSidebar.category.Tools": {
-    "message": "Tools",
+    "message": "工具",
     "description": "The label for category Tools in sidebar BackendSidebar"
   },
   "sidebar.Day30Sidebar.category.2021 iThome Game": {
@@ -54,5 +54,9 @@
   "sidebar.ToolSidebar.category.Git": {
     "message": "Git",
     "description": "The label for category Git in sidebar ToolSidebar"
+  },
+  "sidebar.ToolSidebar.category.Terminal": {
+    "message": "Terminal",
+    "description": "The label for category Terminal in sidebar ToolSidebar"
   }
 }

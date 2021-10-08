@@ -1,12 +1,10 @@
 ---
 id: 03-es-modules
-description: 現代 JS 開發，多已採用引入 component 的形式來組成專案結構
+title: '📜 ES Modules'
 slug: /es-modules
 ---
 
-# 03 - ES Modules
-
-> 現代 JS 開發，多已採用引入 component 的形式來組成專案結構。
+現代 `JS` 開發，多已採用 `component` 的形式來組成專案。
 
 ## Named Export(實名匯出)
 

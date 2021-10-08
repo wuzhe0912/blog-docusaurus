@@ -34,15 +34,15 @@ module.exports = {
         },
         {
           type: 'doc',
-          docId: 'day30-intro',
+          docId: 'Tools/Terminal/00-terminal',
           position: 'left',
-          label: 'Day 30 Series',
+          label: 'Tools',
         },
         {
           type: 'doc',
-          docId: 'tools-intro',
+          docId: 'day30-intro',
           position: 'left',
-          label: 'Tools',
+          label: 'Day 30 Series',
         },
         {
           type: 'localeDropdown',
@@ -132,7 +132,7 @@ module.exports = {
     ],
   ],
   i18n: {
-    defaultLocale: 'en',
+    defaultLocale: 'zh-tw',
     locales: ['en', 'zh-cn', 'zh-tw'],
   }
 };

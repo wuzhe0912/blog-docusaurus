@@ -24,36 +24,25 @@ module.exports = {
     PHPList,
     NodeList
   ],
-  Day30Sidebar: [
-    'day30-intro',
-    Day30List,
-  ],
-  // PythonSidebar: [
-  //   'python-intro',
-  //   {
-  //     type: 'category',
-  //     label: 'Native',
-  //     items: [
-  //       'Python/Native/0-python-grammar',
-  //     ]
-  //   },
-  //   {
-  //     type: 'category',
-  //     label: 'Selenium',
-  //     items: [
-  //       'Python/Selenium/0-install-selenium',
-  //     ]
-  //   }
-  // ],
   ToolSidebar: [
-    'tools-intro',
+    {
+      type: 'category',
+      label: 'Terminal',
+      items: [
+        'Tools/Terminal/00-terminal',
+        'Tools/Terminal/01-command-line',
+      ]
+    },
     {
       type: 'category',
       label: 'Git',
       items: [
         'Tools/Git/0-git-install',
-        'Tools/Git/1-command-line',
       ]
     }
+  ],
+  Day30Sidebar: [
+    'day30-intro',
+    Day30List,
   ],
 };

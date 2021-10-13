@@ -14,12 +14,14 @@ const ES6PlusList = require('./sidebar/ES6PlusList')
 const NodeList = require('./sidebar/NodeList');
 const PHPList = require('./sidebar/PHPList');
 const Day30List = require('./sidebar/2021iThomeList');
+const TypeScriptList = require('./sidebar/TypeScriptList');
 
 module.exports = {
   Frontend: [
     '00-frontend-intro',
     JavaScriptList,
     ES6PlusList,
+    TypeScriptList,
   ],
   BackendSidebar: [
     '01-backend-intro',

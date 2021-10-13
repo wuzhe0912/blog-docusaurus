@@ -4,7 +4,7 @@ description: Clousure Basic
 slug: /clousure
 ---
 
-# Basic
+# Clousure
 
 ## What is Clousure?
 

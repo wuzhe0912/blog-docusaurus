@@ -338,3 +338,58 @@ module.exports = {
   },
 };
 ```
+
+## Support TypeScript
+
+I hope this project can support TypeScript, so need install and setting typescript plugin.
+
+```bash
+npm install typescript ts-loader -D
+```
+
+change `index.js -> index.ts` and writting somthing.
+
+```typescript
+// index.ts
+
+const target: string = 'Hello TypeScript';
+console.log(target);
+```
+
+Webpack default it will look for files with the extension `.js` file, and the rule of TypeScript requires not to write the extension when importing file.
+
+Between the two will conflict, so need to change the default search extension file in the resolve. The first pick for TypeScript.
+
+In the rules, need to add node_modules to exclude is to avoid affecting. After all, not every plugin uses Typescript.
+
+```javascript
+module.exports = {
+  entry: './src/index.ts',
+  resolve: {
+    extensions: ['.ts', '.js', '.json'],
+  },
+  module: {
+    rules: [
+      // ...
+      {
+        test: /\.ts$/,
+        use: ['ts-loader'],
+        exclude: /node_modules/,
+      },
+    ],
+  },
+};
+```
+
+Finally, `mkdir tsconfig.json`, this file can write rules about TypeScript.
+
+```json
+{
+  "compilerOptions": {
+    "module": "ES6",
+    "target": "ES5"
+  }
+}
+```
+
+Now, `npm run dev`, the content of `index.ts` printed in browser normally.

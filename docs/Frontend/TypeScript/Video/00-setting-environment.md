@@ -8,7 +8,7 @@ slug: /setting-environment
 
 > Require Node.js environment, I use node version v16.4.2, npm version v7.18.1.
 
-Build package.json
+Build package.json.
 
 ```bash
 cd project-name
@@ -56,7 +56,7 @@ module.exports = {
 };
 ```
 
-Writting something.
+Writting something
 
 ```javascript
 // src/index.js
@@ -64,7 +64,7 @@ Writting something.
 console.log('test webpack');
 ```
 
-Setting scripts.
+Setting scripts
 
 ```javascript
 // package.json
@@ -77,7 +77,7 @@ Setting scripts.
 
 ok, you cna run `npm run build`, and you will see the dist folder is auto generated. And include `main.bundle.js`.
 
-## webpack dev server
+## DevServer
 
 When we development, need server to running in browser, so we install `webpack-dev-server` plugin.
 
@@ -104,7 +104,7 @@ And content is follows as:
 </html>
 ```
 
-In `webpack.config.js`, you can pass through the `devServer` setting parameter.
+In `webpack.config.js` you can pass through the `devServer` setting parameter.
 
 ```javascript
 module.exports = {
@@ -120,3 +120,221 @@ module.exports = {
 ```
 
 Of the above, when `npm run dev`, your project can auto caught dist folder, open in browser port 3002. Because default have hotreload effect, so you don't need to manually setting.
+
+And open browser inspect, you can see page is print `test webpack`.
+
+## css-loader
+
+Webpack can only read javascript, if you want to read css or other syntax, must rely on plugins.
+
+install plugins
+
+```bash
+npm install css-loader style-loader -D
+```
+
+setting webpack.config.js
+
+```javascript
+module.exports = {
+  // ...
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
+};
+```
+
+touch file and test style.
+
+```bash
+mkdir styles
+
+cd  styles
+
+touch index.css
+```
+
+`index.css`
+
+```css
+body {
+  background: blue;
+}
+```
+
+`index.js`
+
+```javascript
+import './styles/index.css';
+```
+
+restart `npm run dev` , can see page background is blue.
+
+## Hash name
+
+I will add `[hash]` in output, because need every `npm run build` can generate a hash name js file, avoid browser cache same file name, Cause client-side page is not update.
+
+```javascript
+module.exports = {
+  output: {
+    // ...
+    filename: 'js/[name].[hash].bundle.js',
+  },
+};
+```
+
+## HtmlWebpackPlugin
+
+Because everytime bundle js file name is different, we can't manually setting html file's src path. Must rely on plugin auto generate html file.
+
+```bash
+npm install html-webpack-plugin -D
+```
+
+Delete dist folder and return root directory, mkdir index.html and create content.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/index.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="app">This App Page</div>
+  </body>
+</html>
+```
+
+setting html-webpack-plugin
+
+```javascript
+module.exports = {
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './index.html',
+    }),
+  ],
+};
+```
+
+test `npm run build` you can see the dist folder will auto generated HTML, JS file.
+
+## MiniCssExtractPlugin
+
+`style-loader` will generate Inline Styles, I hope change to External Style Sheet.
+
+```bash
+npm install mini-css-extract-plugin -D
+```
+
+```javascript
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+module.exports = {
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].[hash].css',
+    }),
+  ],
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+      },
+    ],
+  },
+};
+```
+
+## CleanWebpackPlugin
+
+After using hash, the file name generated will be different each time. After long time, much invalid files will appear in the dist folder. Here you can use plugin to automatically clear before each build.
+
+```bash
+npm install clean-webpack-plugin -D
+```
+
+```javascript
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
+module.exports = {
+  plugins: [
+    new CleanWebpackPlugin(),
+  ],
+};
+```
+
+## Babel
+
+If you want to use ES6+ syntax, sometime browser maybe can't support, so use babel plugin can help you compiler into to ES5.
+
+For example, when you write `const a = 10;`, `const` will compiler to `var`.
+
+```bash
+npm install babel-loader @babel/core @babel/preset-env -D
+
+touch babel.config.json
+```
+
+```javascript
+module.exports = {
+  // ...
+  module: {
+    rules: [
+      // ...
+      {
+        test: /\.m?js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+    ],
+  },
+};
+```
+
+setting babel.config.json
+
+```json
+{
+  "presets": ["@babel/preset-env"]
+}
+```
+
+## source map
+
+The compiled file is difficult to read. If it runs normally before compilation, but an error occurs after compilation, then you need the source-map to view the source code.
+
+```javascript
+module.exports = {
+  devtool: "source-map",
+}
+```
+
+## Asset Modules
+
+Similarly, webpack cannot directly read files such as images, and these files are collectively classified into Assets and used through settings.
+
+```javascript
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpg|gif)$/i,
+        type: 'asset/resource',
+      },
+    ],
+  },
+};
+```

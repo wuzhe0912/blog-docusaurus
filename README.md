@@ -1,12 +1,10 @@
 # Docusaurus Blog
 
-> Use Docusaurus to build personal blog.
+> _Use Docusaurus to build personal blog._
 
 ## Website
 
 - [Link](https://pitt-docusaurus.netlify.app/)
-- Demo
+- Display Image
 
-![](https://i.imgur.com/g3maWBt.png)
-
-## Posts
+![Display Image](https://i.imgur.com/g3maWBt.png)

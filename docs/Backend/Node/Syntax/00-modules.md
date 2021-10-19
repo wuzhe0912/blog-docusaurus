@@ -45,3 +45,18 @@ for (let i = 0; i < 5; i++) {
 ```
 
 Run `node app.js`，now except print `Hello Node.js`，and seen number `0~4` is printed in order.
+
+## filename and dirname
+
+node.js api provide `__filename` to check current file position. And `__dirname` can check folder position.
+
+Notice, these can't run in browser, terminal only.
+
+```javascript
+console.log(__filename);
+console.log(__dirname);
+```
+
+```bash
+node app.js
+```

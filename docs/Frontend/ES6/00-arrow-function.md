@@ -4,11 +4,13 @@ title: '📜 Arrow Function'
 slug: /arrow-function
 ---
 
-縮減傳統函式寫法，更為簡潔便利。
+> _The palest ink is better than the best memory._
 
-## 新舊兩種寫法比較
+## Comparison the old and new methods of writing
 
-傳統函式寫法：
+Reduce `ES5` function writing, to make it more concise and convenient.
+
+`ES5` function is writing as follows :
 
 ```html
 <!-- html -->
@@ -22,7 +24,7 @@ document.querySelector(".click1").addEventListener("click", function () {
 });
 ```
 
-箭頭函式寫法：
+Arrow function :
 
 ```html
 <!-- html -->
@@ -36,58 +38,58 @@ document.querySelector(".click2").addEventListener("click", () => {
 });
 ```
 
-可以看到，將過往 `function()` 改為 `() =>`。
+Can be seen, change `function()` to `() =>`.
 
-## this 指向
+## this
 
-傳統函式中，`this` 會指向 `DOM` 元素本身：
+In `ES5` function, `this` will direct to `DOM` element itself :
 
 ```javascript
 document.querySelector(".click1").addEventListener("click", function () {
-  console.log(this); // 印出整個 a 標籤
+  console.log(this); // print HTML tag
 });
 ```
 
-但是箭頭函式中 `this` 指向會往上一層跑到全域環境，所以也可以理解為在 `arrow function` 中沒有 `this`：
+But, in `Arrow function`, `this` direct will back to the previous level, enter the global environment. It can also be understood as not having `this`.
 
 ```javascript
 document.querySelector(".click2").addEventListener("click", () => {
-  console.log(this); // 印出整個 window 物件
+  console.log(this); // print window object
 });
 ```
 
-因此如果需要找到該 `DOM` 元素，需要透過傳值的方式：
+Therefore, if I wanted to find `DOM` element, need pass by parameter.
 
 ```javascript
 document.querySelector(".click2").addEventListener("click", (e) => {
-  console.log(e.target); // // 印出 a 標籤
+  console.log(e.target); // print HTML tag
 });
 ```
 
-## 變數指定
+## Designated Variable
 
-函式若在前方有宣告變數的情況下，可以簡寫成 `arrow function`：
+If designated variable to function, can also be written as `arrow function`.
 
 ```javascript
-// 但需要注意，若沒有聲明變數，則無法改寫為 arrow function
+// Notice, declare variable is require.
 const plus = () => {
   console.log("test");
 };
 plus();
 ```
 
-傳值的寫法：
+Pass by parameter :
 
 ```javascript
 const plus = (val, subVal) => {
   return val + subVal;
 };
-console.log(plus(4, 14)); // 印出 18
+console.log(plus(4, 14)); // print 18
 ```
 
-若 `return` 僅一行的情況下，還可簡寫成：
+If `return` is only one line, it can also be abbreviated with :
 
 ```javascript
 const plus = (val, subVal) => val + subVal;
-console.log(plus(2, 8)); // 印出 10
+console.log(plus(2, 8)); // print 10
 ```

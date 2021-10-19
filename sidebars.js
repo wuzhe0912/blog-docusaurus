@@ -18,7 +18,7 @@ const TypeScriptList = require('./sidebar/TypeScriptList');
 
 module.exports = {
   Frontend: [
-    '00-frontend-intro',
+    'Frontend/frontend-intro',
     JavaScriptList,
     ES6PlusList,
     TypeScriptList,

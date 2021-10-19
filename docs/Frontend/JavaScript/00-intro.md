@@ -6,8 +6,6 @@ slug: /javascript-intro
 
 # JavaScript
 
-> The best time to plant a tree was 20 years ago. The second best time is now.
-
 ## What is DOM?
 
 我們所撰寫的 `HTML` 文件，瀏覽器會解析成樹狀結構，父層包覆子層形成一個 `document` 文件，每一個元素都可以理解為物件，`DOM` 操作就是透過 `JS` 去操作這些物件去執行行為。同時為了避免操作過程中，污染相同屬性的元素，譬如兩個 `p` 標籤，所以我們會透過 `id` 或 `class` 來指定操作，如下：

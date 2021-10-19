@@ -4,6 +4,8 @@ title: '📹 Setting Environment'
 slug: /setting-environment
 ---
 
+> _There's a nip in the air, cold won't be good for my crops._
+
 ## Init Project
 
 > Require Node.js environment, I use node version v16.4.2, npm version v7.18.1.
@@ -56,7 +58,7 @@ module.exports = {
 };
 ```
 
-Writting something
+writing something
 
 ```javascript
 // src/index.js
@@ -347,7 +349,7 @@ I hope this project can support TypeScript, so need install and setting typescri
 npm install typescript ts-loader -D
 ```
 
-change `index.js -> index.ts` and writting somthing.
+change `index.js -> index.ts` and writing somthing.
 
 ```typescript
 // index.ts

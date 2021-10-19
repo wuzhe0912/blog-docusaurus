@@ -145,7 +145,7 @@ When we get the video data, through operation DOM to render HTML.
 
 Use `map()` will return array, so page is render comma, add `join()` return string.
 
-Use HTML5 `data-*attribute` to store data. When click event can use `getAttribute()` get it.
+Use HTML5 `data-*attribute` to store data. When click event you can use `getAttribute()` to get data.
 
 ```javascript
 // main.ts

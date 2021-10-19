@@ -22,7 +22,7 @@ module.exports = {
       items: [
         {
           type: 'doc',
-          docId: '00-frontend-intro',
+          docId: 'Frontend/frontend-intro',
           position: 'left',
           label: 'Frontend',
         },

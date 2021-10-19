@@ -6,6 +6,11 @@ module.exports = {
       Tools: [
         'Backend/Node/Tools/00-nvm',
       ]
+    },
+    {
+      Syntax: [
+        'Backend/Node/Syntax/00-modules'
+      ]
     }
     // 'JavaScript/Node/Vanilla/0-node-grammar',
     // {

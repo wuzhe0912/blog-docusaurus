@@ -15,6 +15,7 @@ const NodeList = require('./sidebar/NodeList');
 const PHPList = require('./sidebar/PHPList');
 const Day30List = require('./sidebar/2021iThomeList');
 const TypeScriptList = require('./sidebar/TypeScriptList');
+const NextList = require('./sidebar/React/NextList');
 
 module.exports = {
   Frontend: [
@@ -22,6 +23,7 @@ module.exports = {
     JavaScriptList,
     ES6PlusList,
     TypeScriptList,
+    NextList,
   ],
   BackendSidebar: [
     '01-backend-intro',

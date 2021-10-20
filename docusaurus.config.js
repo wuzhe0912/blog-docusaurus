@@ -107,7 +107,7 @@ module.exports = {
     gtag: {
       trackingID: 'G-JVGM10YBH6',
       anonymizeIP: true,
-    }
+    },
   },
   presets: [
     [
@@ -116,8 +116,13 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl:
-            'https://github.com/wuzhe0912/Docusaurus-Blog/tree/master/',
+          editUrl: 'https://github.com/wuzhe0912/Docusaurus-Blog/tree/master/',
+          remarkPlugins: [
+            [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
+          ],
+        },
+        pages: {
+          remarkPlugins: [require('@docusaurus/remark-plugin-npm2yarn')],
         },
         blog: {
           showReadingTime: true,
@@ -134,5 +139,5 @@ module.exports = {
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'zh-cn', 'zh-tw'],
-  }
+  },
 };

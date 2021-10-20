@@ -6,7 +6,7 @@ slug: /nvm
 
 > _My son, the day you were born, the very forests of Lordaeron whispered the name..."Arthas"._
 
-## NVM(Node Version Manager)
+## Node Version Manager
 
 Use nvm control node version, record how to use command install and switch version.
 
@@ -84,4 +84,6 @@ npm config delete prefix
 npm config set prefix $NVM_DIR/versions/node/v8.12.0
 ```
 
-This command mean is delete `npm` setting prefix, and re setting use `nvm` control version.
+This command mean is delete `npm` setting prefix, re setting and use `nvm` control version.
+
+Now, open new tab can seen is normal.

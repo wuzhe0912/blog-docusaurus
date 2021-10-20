@@ -60,3 +60,48 @@ console.log(__dirname);
 ```bash
 node app.js
 ```
+
+## Self Modules
+
+Sometimes, I want to create module for project use, but if there are need more than one module, how should I deal with that?
+
+Build `player` folder and three file. Use index.js control folder index, and other js file will import to index.js.
+
+```bash
+mkdir player
+
+cd player
+
+touch index.js player1.js player2.js
+```
+
+```javascript
+// player1.js
+function barbarian(name) {
+  console.log(`Hello Barbarin : ${name}`);
+}
+exports.barbarian = barbarian;
+
+// player2.js
+function witchDoctor(name) {
+  console.log(`Hello Witch Doctor : ${name}`);
+}
+exports.witchDoctor = witchDoctor;
+
+// index.js
+const player1 = require('./player1');
+const player2 = require('./player2');
+
+exports.barbarian = player1.barbarian;
+exports.witchDoctor = player2.witchDoctor;
+```
+
+Switch to `app.js`, import `player` folder, now can use all function in the `player` folder.
+
+```javascript
+// app.js
+const player = require('./player');
+
+player.barbarian('Mario');
+player.witchDoctor('Paul');
+```

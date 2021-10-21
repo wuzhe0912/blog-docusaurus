@@ -4,6 +4,8 @@ title: '☘️ Fundamentals'
 slug: /fundamentals
 ---
 
+> _My enemy is a notion, not a nation._
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -25,3 +27,69 @@ yarn create next-app
 
 </TabItem>
 </Tabs>
+
+## Setting jsconfig.json
+
+If I want to shorten up import paths, I can do that with module aliases.
+
+```bash
+touch jsconfig.json
+```
+
+```json title="jsconfig.json"
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/styles/*": ["styles/*"]
+    }
+  }
+}
+```
+
+### use methods
+
+```bash
+touch styles/Footer.module.css
+
+mkdir components
+
+touch components/Footer.js
+```
+
+You can seen import paths already use `@/styles`.
+
+```js title="components/Footer.js"
+import styles from '@/styles/Footer.module.css';
+
+export default function Footer() {
+  return (
+    <footer className={styles.footer}>
+      <p>Copyright &copy; PittWu 2021</p>
+    </footer>
+  );
+}
+```
+
+## Add Icon Library
+
+### install
+
+```bash
+yarn add react-icons
+```
+
+### use icon
+
+```js title="pages/404.js"
+import { FaExclamationTriangle } from 'react-icons/fa';
+
+export default function NotFoundPage() {
+  return (
+    <div>
+      <FaExclamationTriangle /> 404
+    </div>
+  );
+}
+```

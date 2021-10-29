@@ -34,9 +34,9 @@ module.exports = {
         },
         {
           type: 'doc',
-          docId: 'Tools/Terminal/00-terminal',
+          docId: 'Computer/Terminal/00-cmder',
           position: 'left',
-          label: 'Tools',
+          label: 'Computer',
         },
         {
           type: 'doc',

@@ -1,6 +1,6 @@
 ---
 id: 00-modules
-title: Modules
+title: 🥐 Modules
 slug: /modules
 ---
 
@@ -41,7 +41,7 @@ Now, try to run loop.
 ```javascript
 for (let i = 0; i < 5; i++) {
   console.log(i);
-};
+}
 ```
 
 Run `node app.js`，now except print `Hello Node.js`，and seen number `0~4` is printed in order.
@@ -61,7 +61,7 @@ console.log(__dirname);
 node app.js
 ```
 
-## Self Modules
+## Self Made Modules
 
 Sometimes, I want to create module for project use, but if there are need more than one module, how should I deal with that?
 
@@ -104,4 +104,61 @@ const player = require('./player');
 
 player.barbarian('Mario');
 player.witchDoctor('Paul');
+```
+
+## Common Modules built in Node.js
+
+### path
+
+Use `path` to check current file location, and use `join()` to stuff in the parameters into the path.
+
+```javascript
+const path = require('path');
+
+let target = path.join(__dirname, 'test.js');
+console.log(target);
+```
+
+- [Reference](https://nodejs.org/docs/latest/api/path.html#pathjoinpaths)
+
+Other api use method can also be found in the official documentation.
+
+### url
+
+Use `url` api can parse url path and return url object, include protocol, host and path such as.
+
+```javascript
+const url = require('url');
+
+const blogURL = 'https://pitt-docusaurus.netlify.app/docs/modules';
+
+const parsedURL = url.parse(blogURL);
+
+console.log(parsedURL);
+console.log(parsedURL.host);
+```
+
+### fs (file system)
+
+Use `fs` can record what happens when past in the system. Convenient for checking and currecting errors.
+
+Here, I try to build a markdown file and write something.
+
+```javascript
+const fs = require('fs');
+
+fs.writeFile('player.md', 'Test write Markdown file.', (e) => {
+  if (e) throw e;
+
+  console.log('File has been written.');
+});
+```
+
+read it.
+
+```javascript
+fs.readFile('./player.md', 'utf-8', (e, data) => {
+  if (e) throw e;
+  console.log(data);
+});
 ```

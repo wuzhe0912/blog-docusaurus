@@ -10,7 +10,7 @@
 */
 
 const JavaScriptList = require('./sidebar/JavaScriptList');
-const ES6PlusList = require('./sidebar/ES6PlusList')
+const ES6PlusList = require('./sidebar/ES6PlusList');
 const NodeList = require('./sidebar/NodeList');
 const PHPList = require('./sidebar/PHPList');
 const Day30List = require('./sidebar/2021iThomeList');
@@ -25,30 +25,21 @@ module.exports = {
     TypeScriptList,
     NextList,
   ],
-  BackendSidebar: [
-    '01-backend-intro',
-    PHPList,
-    NodeList
-  ],
-  ToolSidebar: [
+  Backend: ['01-backend-intro', PHPList, NodeList],
+  Computer: [
     {
       type: 'category',
       label: 'Terminal',
       items: [
-        'Tools/Terminal/00-terminal',
-        'Tools/Terminal/01-command-line',
-      ]
+        'Computer/Terminal/00-cmder',
+        'Computer/Terminal/01-command-line',
+      ],
     },
     {
       type: 'category',
-      label: 'Git',
-      items: [
-        'Tools/Git/0-git-install',
-      ]
-    }
+      label: 'Browser',
+      items: ['Computer/Browser/00-ip'],
+    },
   ],
-  Day30Sidebar: [
-    'day30-intro',
-    Day30List,
-  ],
+  Day30: ['day30-intro', Day30List],
 };

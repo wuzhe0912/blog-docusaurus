@@ -1,6 +1,6 @@
 ---
 id: 00-nvm
-title: NVM
+title: 🥐 NVM
 slug: /nvm
 ---
 

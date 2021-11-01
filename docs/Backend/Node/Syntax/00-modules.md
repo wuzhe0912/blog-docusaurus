@@ -1,6 +1,6 @@
 ---
 id: 00-modules
-title: 🥐 Modules
+title: 📦 Modules
 slug: /modules
 ---
 

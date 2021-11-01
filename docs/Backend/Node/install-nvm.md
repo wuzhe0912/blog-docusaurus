@@ -1,7 +1,7 @@
 ---
-id: 00-nvm
-title: 🥐 NVM
-slug: /nvm
+id: install-nvm
+title: 📦 Install(NVM)
+slug: /install-nvm
 ---
 
 > _My son, the day you were born, the very forests of Lordaeron whispered the name..."Arthas"._

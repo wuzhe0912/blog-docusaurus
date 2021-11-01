@@ -22,13 +22,13 @@ module.exports = {
       items: [
         {
           type: 'doc',
-          docId: 'Frontend/frontend-intro',
+          docId: 'Frontend/frontend-note',
           position: 'left',
           label: 'Frontend',
         },
         {
           type: 'doc',
-          docId: '01-backend-intro',
+          docId: 'Backend/backend-note',
           position: 'left',
           label: 'Backend',
         },

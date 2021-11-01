@@ -9,21 +9,25 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import Translate, { translate } from '@docusaurus/Translate';
 
 function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className={styles.heroInner}>
         <h1 className={styles.heroProjectTagline}>
-          <img className={styles.heroLogo} src={useBaseUrl('/img/docusaurus.svg')} />
-          <span>
-            {siteConfig.title}
-          </span>
+          <img
+            className={styles.heroLogo}
+            src={useBaseUrl('/img/docusaurus.svg')}
+          />
+          <span>{siteConfig.title}</span>
         </h1>
         <p className={styles.heroSubTitle}>
           <Translate>What's past is prologue.</Translate>
         </p>
         <div className={styles.buttons}>
-          <Link className="button button--secondary button--lg" to="/docs/frontend-intro">
+          <Link
+            className="button button--secondary button--lg"
+            to="/docs/frontend-note"
+          >
             Get Started ⏱️
           </Link>
         </div>
@@ -33,11 +37,12 @@ function HomepageHeader() {
 }
 
 export default function Home() {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
       title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      description="Description will go into a meta tag in <head />"
+    >
       <HomepageHeader />
       <main>
         <HomepageFeatures />

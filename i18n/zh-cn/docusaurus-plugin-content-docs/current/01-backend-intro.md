@@ -1,7 +1,7 @@
 ---
-id: 01-backend-intro
+id: backend-note
 description: Backend Note Collection
-slug: /backend-intro
+slug: /backend-note
 ---
 
 # Introduction

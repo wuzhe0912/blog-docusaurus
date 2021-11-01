@@ -1,7 +1,7 @@
 ---
-id: frontend-intro
-title: ⚔️ Frontend Introduction
-slug: /frontend-intro
+id: frontend-note
+title: ⚔️ Frontend Note
+slug: /frontend-note
 ---
 
 > _The best time to plant a tree was 20 years ago. The second best time is now._

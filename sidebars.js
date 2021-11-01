@@ -16,16 +16,17 @@ const PHPList = require('./sidebar/PHPList');
 const Day30List = require('./sidebar/2021iThomeList');
 const TypeScriptList = require('./sidebar/TypeScriptList');
 const NextList = require('./sidebar/React/NextList');
+const PythonList = require('./sidebar/PythonList');
 
 module.exports = {
   Frontend: [
-    'Frontend/frontend-intro',
+    'Frontend/frontend-note',
     JavaScriptList,
     ES6PlusList,
     TypeScriptList,
     NextList,
   ],
-  Backend: ['01-backend-intro', PHPList, NodeList],
+  Backend: ['Backend/backend-note', PHPList, NodeList, PythonList],
   Computer: [
     {
       type: 'category',

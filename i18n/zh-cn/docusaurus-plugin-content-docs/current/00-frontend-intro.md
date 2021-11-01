@@ -1,7 +1,7 @@
 ---
-id: 00-frontend-intro
+id: 00-frontend-note
 description: Frontend Note Collection
-slug: /frontend-intro
+slug: /frontend-note
 ---
 
 # Introduction

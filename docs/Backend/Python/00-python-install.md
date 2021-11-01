@@ -1,12 +1,16 @@
 ---
-id: install
+id: 00-python-install
 title: 🎃 Install
-slug: /install
+slug: /python-install
 ---
 
 > _It's never too late to learn._
 
-Record how to install python and packages in different environments.
+Record how to install `Python` and packages in different environments.
+
+## Mac
+
+under construction...
 
 ## Windows
 

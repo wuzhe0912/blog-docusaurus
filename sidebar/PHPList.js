@@ -2,16 +2,16 @@ module.exports = {
   type: 'category',
   label: 'PHP',
   items: [
+    'Backend/PHP/00-php-install',
     {
-      Vanilla: [
-        'Backend/PHP/Vanilla/0-setting',
-        'Backend/PHP/Vanilla/1-grammar',
-        'Backend/PHP/Vanilla/2-function-object',
-        'Backend/PHP/Vanilla/3-array-operating',
-      ]
+      Syntax: [
+        'Backend/PHP/Syntax/1-grammar',
+        'Backend/PHP/Syntax/2-function-object',
+        'Backend/PHP/Syntax/3-array-operating',
+      ],
     },
     {
-      Laravel: []
-    }
-  ]
-}
+      Laravel: [],
+    },
+  ],
+};

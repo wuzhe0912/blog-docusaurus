@@ -114,7 +114,7 @@ $float = (integer) $float;    // 12
 
 ## 條件判斷
 
-``` php
+```php
 // if / else
 <?php
   $number = 9;
@@ -373,19 +373,21 @@ Array
   }
 ```
 
-## 關於閉合標籤
+## About Closing Tag
 
-在 `php` 中會看到兩種寫法：
+When do I need to use closing tag.
+
+If only php code, example `echo()`, you don't need to use closing tag.
 
 ```php
 <?php
   echo('Hello PHP!');
 ```
 
+But if you want to use `HTML` in php, must add closing tag.
+
 ```php
 <?php
   <h2>Hello PHP!</h2>
 ?>
 ```
-
-在單純只有 `php` 的程式時，譬如 `echo()` 不建議寫閉合標籤，但倘若當中嵌有 `HTML` 的 `tag` 時，則需要添加 `?>` 閉合標籤。

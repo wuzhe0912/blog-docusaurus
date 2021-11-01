@@ -1,5 +1,5 @@
 module.exports = {
   type: 'category',
   label: 'Python',
-  items: ['Backend/Python/install'],
+  items: ['Backend/Python/00-python-install'],
 };

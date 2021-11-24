@@ -40,10 +40,16 @@ module.exports = {
         },
         {
           type: 'doc',
-          docId: 'day30-intro',
+          docId: 'Summary/Cryptocurrency/00-bitcoin',
           position: 'left',
-          label: 'Day 30 Series',
+          label: 'Summary',
         },
+        // {
+        //   type: 'doc',
+        //   docId: 'day30-intro',
+        //   position: 'left',
+        //   label: 'Day 30 Series',
+        // },
         {
           type: 'localeDropdown',
           position: 'right',

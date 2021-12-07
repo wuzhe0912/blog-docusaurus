@@ -1,23 +1,19 @@
-/**
- * Creating a sidebar enables you to:
-  - create an ordered group of docs
-  - render a sidebar for each doc of that group
-  - provide next/previous navigation
+// Frontend
+const JavaScriptList = require('./sidebar/Frontend/JavaScriptList');
+const ES6PlusList = require('./sidebar/Frontend/ES6PlusList');
+const TypeScriptList = require('./sidebar/Frontend/TypeScriptList');
+const NextList = require('./sidebar/Frontend/NextList');
+const InterviewList = require('./sidebar/Frontend/InterviewList');
 
-  The sidebars can be generated from the filesystem, or explicitly defined here.
+// Backend
+const NodeList = require('./sidebar/Backend/NodeList');
+const PythonList = require('./sidebar/Backend/PythonList');
+const PHPList = require('./sidebar/Backend/PHPList');
 
-  Create as many sidebars as you want.
-*/
-
-const JavaScriptList = require('./sidebar/JavaScriptList');
-const ES6PlusList = require('./sidebar/ES6PlusList');
-const NodeList = require('./sidebar/NodeList');
-const PHPList = require('./sidebar/PHPList');
-const Day30List = require('./sidebar/2021iThomeList');
-const TypeScriptList = require('./sidebar/TypeScriptList');
-const NextList = require('./sidebar/React/NextList');
-const PythonList = require('./sidebar/PythonList');
+// Summary
 const CryptocurrencyList = require('./sidebar/Summary/CryptocurrencyList');
+
+const Day30List = require('./sidebar/2021iThomeList');
 
 module.exports = {
   Frontend: [
@@ -26,8 +22,9 @@ module.exports = {
     ES6PlusList,
     TypeScriptList,
     NextList,
+    InterviewList,
   ],
-  Backend: ['Backend/backend-note', PHPList, NodeList, PythonList],
+  Backend: ['Backend/backend-note', NodeList, PythonList, PHPList],
   Computer: [
     {
       type: 'category',

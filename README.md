@@ -1,10 +1,17 @@
 # Docusaurus Blog
 
-> _Use Docusaurus to build personal blog._
+###### tags: `Blog`
 
-## Website
-
-- [Link](https://pitt-docusaurus.netlify.app/)
-- Display Image
+🔗 [Website View]()
 
 ![Display Image](https://i.imgur.com/g3maWBt.png)
+
+## Technologies
+
+- React(Docusaurus)
+- Markdown
+
+## Future Features
+
+- i18n, default use english language, add traditional chinese & Simplified Chinese.
+- try to use gitter.

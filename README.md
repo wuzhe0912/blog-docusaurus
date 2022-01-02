@@ -2,7 +2,7 @@
 
 ###### tags: `Blog`
 
-🔗 [Website View](https://docusaurus-pitt-blog.vercel.app/)
+🔗 [Website View](https://pitt-wu-blog.vercel.app/)
 
 ![Display Image](https://i.imgur.com/g3maWBt.png)
 

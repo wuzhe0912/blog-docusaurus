@@ -3,7 +3,6 @@ const JavaScriptList = require('./sidebar/Frontend/JavaScriptList');
 const ES6PlusList = require('./sidebar/Frontend/ES6PlusList');
 const TypeScriptList = require('./sidebar/Frontend/TypeScriptList');
 const NextList = require('./sidebar/Frontend/NextList');
-const InterviewList = require('./sidebar/Frontend/InterviewList');
 const ToolsList = require('./sidebar/Frontend/ToolsList');
 
 // Backend
@@ -11,10 +10,8 @@ const NodeList = require('./sidebar/Backend/NodeList');
 const PythonList = require('./sidebar/Backend/PythonList');
 const PHPList = require('./sidebar/Backend/PHPList');
 
-// Summary
-const CryptocurrencyList = require('./sidebar/Summary/CryptocurrencyList');
-
-const Day30List = require('./sidebar/2021iThomeList');
+// Interview
+const LeetCodeList = require('./sidebar/Interview/LeetCodeList');
 
 module.exports = {
   Frontend: [
@@ -23,10 +20,10 @@ module.exports = {
     ES6PlusList,
     TypeScriptList,
     NextList,
-    InterviewList,
     ToolsList,
   ],
   Backend: ['Backend/backend-note', NodeList, PythonList, PHPList],
+  Interview: ['Interview/interview-entry', LeetCodeList],
   Computer: [
     {
       type: 'category',
@@ -42,6 +39,4 @@ module.exports = {
       items: ['Computer/Browser/00-ip'],
     },
   ],
-  Summary: [CryptocurrencyList],
-  Day30: ['day30-intro', Day30List],
 };

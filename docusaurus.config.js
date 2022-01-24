@@ -34,15 +34,15 @@ module.exports = {
         },
         {
           type: 'doc',
-          docId: 'Computer/Terminal/00-cmder',
+          docId: 'Interview/interview-entry',
           position: 'left',
-          label: 'Computer',
+          label: 'Interview Questions',
         },
         {
           type: 'doc',
-          docId: 'Summary/Cryptocurrency/00-bitcoin',
+          docId: 'Computer/Terminal/00-cmder',
           position: 'left',
-          label: 'Summary',
+          label: 'Computer',
         },
         // {
         //   type: 'doc',
@@ -63,7 +63,7 @@ module.exports = {
       ],
     },
     footer: {
-      style: 'dark',
+      style: 'light',
       links: [
         {
           title: 'Docs',

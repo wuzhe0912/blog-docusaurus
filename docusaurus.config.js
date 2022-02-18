@@ -22,7 +22,7 @@ module.exports = {
       items: [
         {
           type: 'doc',
-          docId: 'Frontend/frontend-note',
+          docId: 'Frontend/frontend-entry',
           position: 'left',
           label: 'Frontend',
         },
@@ -31,12 +31,6 @@ module.exports = {
           docId: 'Backend/backend-note',
           position: 'left',
           label: 'Backend',
-        },
-        {
-          type: 'doc',
-          docId: 'Interview/interview-entry',
-          position: 'left',
-          label: 'Interview Questions',
         },
         {
           type: 'doc',
@@ -69,8 +63,8 @@ module.exports = {
           title: 'Docs',
           items: [
             {
-              label: 'JavaScript',
-              to: '/docs/javascript-intro',
+              label: 'Frontend',
+              to: '/docs/frontend-entry',
             },
           ],
         },
@@ -110,10 +104,6 @@ module.exports = {
       theme: lightCodeTheme,
       darkTheme: darkCodeTheme,
     },
-    gtag: {
-      trackingID: 'G-JVGM10YBH6',
-      anonymizeIP: true,
-    },
   },
   presets: [
     [
@@ -126,6 +116,10 @@ module.exports = {
           remarkPlugins: [
             [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
           ],
+        },
+        gtag: {
+          trackingID: 'G-JVGM10YBH6',
+          anonymizeIP: true,
         },
         pages: {
           remarkPlugins: [require('@docusaurus/remark-plugin-npm2yarn')],
@@ -143,7 +137,7 @@ module.exports = {
     ],
   ],
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en', 'zh-cn', 'zh-tw'],
+    defaultLocale: 'zh-tw',
+    locales: ['en', 'zh-tw', 'zh-cn'],
   },
 };

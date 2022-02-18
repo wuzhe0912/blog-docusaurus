@@ -21,14 +21,14 @@ function HomepageHeader() {
           <span>{siteConfig.title}</span>
         </h1>
         <p className={styles.heroSubTitle}>
-          <Translate>What's past is prologue.</Translate>
+          <Translate>凡是過往，皆為序章。</Translate>
         </p>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/frontend-note"
+            to="/docs/frontend-entry"
           >
-            Get Started ⏱️
+            立即開始 ⏱️
           </Link>
         </div>
       </div>

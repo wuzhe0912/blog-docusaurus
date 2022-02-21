@@ -24,19 +24,4 @@ module.exports = {
     ToolsList,
   ],
   Backend: ['Backend/backend-note', NodeList, PythonList, PHPList],
-  Computer: [
-    {
-      type: 'category',
-      label: 'Terminal',
-      items: [
-        'Computer/Terminal/00-cmder',
-        'Computer/Terminal/01-command-line',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Browser',
-      items: ['Computer/Browser/00-ip'],
-    },
-  ],
 };

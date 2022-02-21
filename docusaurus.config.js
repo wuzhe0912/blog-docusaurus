@@ -33,18 +33,6 @@ module.exports = {
           label: 'Backend',
         },
         {
-          type: 'doc',
-          docId: 'Computer/Terminal/00-cmder',
-          position: 'left',
-          label: 'Computer',
-        },
-        // {
-        //   type: 'doc',
-        //   docId: 'day30-intro',
-        //   position: 'left',
-        //   label: 'Day 30 Series',
-        // },
-        {
           type: 'localeDropdown',
           position: 'right',
         },
@@ -75,25 +63,8 @@ module.exports = {
               label: 'GitHub',
               href: 'https://github.com/wuzhe0912',
             },
-            // {
-            //   label: 'Discord',
-            //   href: 'https://discordapp.com/invite/docusaurus',
-            // },
-            // {
-            //   label: 'Twitter',
-            //   href: 'https://twitter.com/docusaurus',
-            // },
           ],
         },
-        // {
-        //   title: 'More',
-        //   items: [
-        //     {
-        //       label: 'Blog',
-        //       to: '/blog',
-        //     },
-        //   ],
-        // },
       ],
       copyright: `Copyright © 2017 - ${new Date().getFullYear()} Pitt Wu Built with Docusaurus.`,
     },

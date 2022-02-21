@@ -1,6 +1,6 @@
 ---
 id: 00-position
-title: '📃 Position'
+title: '📜 Position'
 slug: /css-position
 ---
 

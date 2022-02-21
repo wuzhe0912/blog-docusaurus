@@ -6,7 +6,7 @@ slug: /tiktok-questions
 
 ## CSS
 
-- [x] `CSS` 中 `position` 有哪些值 ? 作用分別是什麼 ? => 關聯 : [Position](../../CSS/00-position.md)
+- [x] `CSS` 中 `position` 有哪些值 ? 作用分別是什麼 ? => 關聯 : [position](../../CSS/00-position.md)
 - [ ] `CSS` 有那些選擇器 ?
 - [ ] 請說明什麼是 `BFC` ? 有什麼作用 ? 如何形成 ?
 - [ ] 能否提出 `flex` 排版有什麼優點 ?
@@ -25,7 +25,7 @@ slug: /tiktok-questions
 
 ### Vanilla JS
 
-- [ ] 請解釋對 `DOM tree` 的理解。=> related : [[dom]]
+- [x] 請解釋對 `DOM tree` 的理解。=> related : [dom](../../JavaScript/00-dom.md)
 - [ ] `apply` 和 `call` 的作用與區別 ?
 - [ ] Please try to explain what's the `Prototype Chain(原型鏈)` ?
 - [ ] 請解釋 `instance` 原理。
@@ -76,8 +76,7 @@ slug: /tiktok-questions
 
 ### Vue
 
-- [ ] `Vue` 的資料綁定機制是如何實現的 ?
-- [ ] 承上題，在 `2.0` 版本和 `3.0` 版本又有怎樣的差異 ?
+- [ ] `Vue` 的資料綁定機制是如何實現的 ? 在 `2.0` 版本和 `3.0` 版本又有怎樣的差異 ?
 - [ ] `nextTick` 是如何實現的 ?
 - [ ] 請試說明 `computed` 和 `watch` 的差異 ?
 - [ ] `keep-alive` 是什麼 ? 如何實作的 ?

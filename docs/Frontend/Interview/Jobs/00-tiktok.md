@@ -25,7 +25,7 @@ slug: /tiktok-questions
 
 ### Vanilla JS
 
-- [x] 請解釋對 `DOM tree` 的理解。=> related : [dom](../../JavaScript/00-dom.md)
+- [x] 請解釋對 `DOM tree` 的理解。=> related : [dom](../../JavaScript/DOM/00-dom-basic.md)
 - [ ] `apply` 和 `call` 的作用與區別 ?
 - [ ] Please try to explain what's the `Prototype Chain(原型鏈)` ?
 - [ ] 請解釋 `instance` 原理。

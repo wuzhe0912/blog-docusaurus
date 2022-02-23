@@ -1,7 +1,7 @@
 ---
-id: 00-js-dom
-title: '📜 DOM'
-slug: /js-dom
+id: 00-dom-basic
+title: '📜 DOM 基礎'
+slug: /dom-basic
 ---
 
 > 關聯 : [TikTok Questions](../Interview/Jobs/00-tiktok.md)

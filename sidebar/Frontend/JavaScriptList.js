@@ -1,5 +1,15 @@
 module.exports = {
   type: 'category',
   label: 'JavaScript',
-  items: ['Frontend/JavaScript/00-js-dom', 'Frontend/JavaScript/00-clousure'],
+  items: [
+    {
+      DOM: ['Frontend/JavaScript/DOM/00-dom-basic'],
+    },
+    {
+      Variable: [
+        'Frontend/JavaScript/Variable/00-call-by-where',
+        'Frontend/JavaScript/Variable/01-scope',
+      ],
+    },
+  ],
 };

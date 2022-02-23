@@ -12,6 +12,9 @@ const NodeList = require('./sidebar/Backend/NodeList');
 const PythonList = require('./sidebar/Backend/PythonList');
 const PHPList = require('./sidebar/Backend/PHPList');
 
+// Reflection
+const InvestList = require('./sidebar/Reflection/InvestList');
+
 module.exports = {
   Frontend: [
     'Frontend/frontend-entry',
@@ -24,4 +27,5 @@ module.exports = {
     ToolsList,
   ],
   Backend: ['Backend/backend-note', NodeList, PythonList, PHPList],
+  Reflection: [InvestList],
 };

@@ -37,5 +37,5 @@ slug: /css-position
 
 ## Reference
 
-- [CodePen](https://codepen.io/wuzhe0912/pen/vYWeJmz)
+- [CodePen - position](https://codepen.io/wuzhe0912/pen/vYWeJmz)
 - [position](https://zh-tw.learnlayout.com/position.html)

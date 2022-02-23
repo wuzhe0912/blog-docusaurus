@@ -33,6 +33,12 @@ module.exports = {
           label: 'Backend',
         },
         {
+          type: 'doc',
+          docId: 'Reflection/Invest/00-short-notes',
+          position: 'left',
+          label: 'Reflection',
+        },
+        {
           type: 'localeDropdown',
           position: 'right',
         },

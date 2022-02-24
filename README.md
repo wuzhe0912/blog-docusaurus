@@ -1,4 +1,4 @@
-# Docusaurus Blog
+# Pitt Wu's Blog (Docusaurus)
 
 ###### tags: `Blog`
 

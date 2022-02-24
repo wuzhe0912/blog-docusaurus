@@ -1,6 +1,9 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
+const currentYear = new Date().getFullYear();
+console.log(123, currentYear);
+
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: `Pitt Wu's Docusaurus`,
@@ -34,7 +37,7 @@ module.exports = {
         },
         {
           type: 'doc',
-          docId: 'Reflection/Invest/00-short-notes',
+          docId: 'Reflection/reflection-entry',
           position: 'left',
           label: 'Reflection',
         },
@@ -72,7 +75,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © 2017 - ${new Date().getFullYear()} Pitt Wu Built with Docusaurus.`,
+      copyright: `Copyright © 2017 - ${currentYear} Pitt Wu Built with Docusaurus.`,
     },
     colorMode: {
       defaultMode: 'dark',

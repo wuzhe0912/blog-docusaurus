@@ -6,6 +6,7 @@ const TypeScriptList = require('./sidebar/Frontend/TypeScriptList');
 const NextList = require('./sidebar/Frontend/NextList');
 const ToolsList = require('./sidebar/Frontend/ToolsList');
 const InterviewList = require('./sidebar/Frontend/InterviewList');
+const GuideList = require('./sidebar/Frontend/GuideList');
 
 // Backend
 const NodeList = require('./sidebar/Backend/NodeList');
@@ -26,6 +27,7 @@ module.exports = {
     TypeScriptList,
     NextList,
     ToolsList,
+    GuideList,
   ],
   Backend: ['Backend/backend-note', NodeList, PythonList, PHPList],
   Reflection: ['Reflection/reflection-entry', InvestList, MonthList],

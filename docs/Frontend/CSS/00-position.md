@@ -1,10 +1,10 @@
 ---
 id: 00-position
 title: '📜 Position'
-slug: /css-position
+slug: /position
 ---
 
-> 關聯 : [TikTok Questions](../Interview/Jobs/00-tiktok.md)
+> [關聯 : TikTok Questions](../Interview/Jobs/00-tiktok.md/#css)
 
 `static`, `relative`, `absolute`, `sticky`, `fixed` 這些是較為常用的語法。
 

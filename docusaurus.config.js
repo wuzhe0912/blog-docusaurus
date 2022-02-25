@@ -2,7 +2,6 @@ const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 const currentYear = new Date().getFullYear();
-console.log(123, currentYear);
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {

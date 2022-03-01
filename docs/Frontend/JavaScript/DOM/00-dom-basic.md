@@ -4,7 +4,7 @@ title: '📜 DOM 基礎'
 slug: /dom-basic
 ---
 
-> 關聯 : [TikTok Questions](../../Interview/Jobs/00-tiktok.md)
+> 關聯 : [TikTok Questions](../../Interview/Jobs/00-tiktok.md/#vanilla-js)
 
 ## 什麼是 DOM ?
 

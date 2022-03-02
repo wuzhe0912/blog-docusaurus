@@ -6,10 +6,6 @@ slug: /tiktok-questions
 
 ## CSS
 
-> Progress : 14%
-
-<!-- (2/14)*100% -->
-
 1. [x] `CSS` 中 `position` 有哪些值 ? 作用分別是什麼 ? [關聯 : Position](../../CSS/00-position.md)
 2. [ ] `CSS` 有那些選擇器 ?
 3. [ ] 請說明什麼是 `BFC` ? 有什麼作用 ? 如何形成 ?
@@ -24,6 +20,8 @@ slug: /tiktok-questions
 12. [ ] 行內元素和塊級元素有哪些 ? 它們的區別又是什麼 ?
 13. [ ] `CSS3` 有哪些新特性 ?
 14. [ ] 層疊上下文是什麼 ?
+15. [ ] 請說明網頁頁面生成的過程。
+16. [ ] 承上題，`reflow(重排)` 和 `repaint(重繪)` 分別是什麼 ? 有什麼區別 ?
 
 ## JavaScript
 
@@ -33,8 +31,6 @@ slug: /tiktok-questions
 - [ ] `apply` 和 `call` 的作用與區別 ?
 - [ ] Please try to explain what's the `Prototype Chain(原型鏈)` ?
 - [ ] 請解釋 `instance` 原理。
-- [ ] 請說明網頁頁面生成的過程。
-- [ ] 承上題，`reflow(重排)` 和 `repaint(重繪)` 分別是什麼 ? 有什麼區別 ?
 - [ ] 請解釋什麼是事件模型 ?
 - [ ] 請說明 `Closure` 的作用與原理。
 - [ ] 請說明為何 `0.1 + 0.2 !== 0.3` ?

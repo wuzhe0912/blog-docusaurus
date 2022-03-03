@@ -21,7 +21,7 @@ slug: /tiktok-questions
 13. [ ] `CSS3` 有哪些新特性 ?
 14. [ ] 層疊上下文是什麼 ?
 15. [ ] 請說明網頁頁面生成的過程。
-16. [ ] 承上題，`reflow(重排)` 和 `repaint(重繪)` 分別是什麼 ? 有什麼區別 ?
+16. [x] 承上題，`reflow(重排)` 和 `repaint(重繪)` 分別是什麼 ? 有什麼區別 ?[關聯 : Reflow & Repaint](../../CSS/02-reflow-repaint.md)
 
 ## JavaScript
 
@@ -88,7 +88,7 @@ slug: /tiktok-questions
 ## Browser
 
 - [ ] 請說明 `https` 的加密過程是如何運作的 ?
-- [ ] 請說明三次握手的過程 ?
+- [x] 請說明三次握手的過程 ? [關聯 : Three-Way Handshake](../../Browser/01-three-way-handshake.md)
 - [ ] 承上題，請說明從輸入網址到渲染畫面這段過程中，經歷了那些事情 ?
 - [ ] 請解釋瀏覽器的緩存策略是如何運作的 ?
 - [ ] `http 2.0` 做了那些改進 ?

@@ -7,6 +7,7 @@ const NextList = require('./sidebar/Frontend/NextList');
 const ToolsList = require('./sidebar/Frontend/ToolsList');
 const InterviewList = require('./sidebar/Frontend/InterviewList');
 const GuideList = require('./sidebar/Frontend/GuideList');
+const BrowserList = require('./sidebar/Frontend/BrowserList');
 
 // Backend
 const NodeList = require('./sidebar/Backend/NodeList');
@@ -26,6 +27,7 @@ module.exports = {
     ES6PlusList,
     TypeScriptList,
     NextList,
+    BrowserList,
     ToolsList,
     GuideList,
   ],

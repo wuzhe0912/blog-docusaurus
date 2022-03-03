@@ -18,7 +18,7 @@ slug: /tiktok-questions
 10. [ ] 浮動元素會造成什麼影響 ? 如何清除浮動 ?
 11. [ ] 能否提出 `CSS` 的樣式隔離方法 ?
 12. [ ] 行內元素和塊級元素有哪些 ? 它們的區別又是什麼 ?
-13. [ ] `CSS3` 有哪些新特性 ?
+13. [x] `CSS3` 有哪些新特性 ?[關聯 : CSS3 Features](../../CSS/03-css3-features.md)
 14. [ ] 層疊上下文是什麼 ?
 15. [ ] 請說明網頁頁面生成的過程。
 16. [x] 承上題，`reflow(重排)` 和 `repaint(重繪)` 分別是什麼 ? 有什麼區別 ?[關聯 : Reflow & Repaint](../../CSS/02-reflow-repaint.md)

@@ -5,5 +5,6 @@ module.exports = {
     'Frontend/CSS/00-position',
     'Frontend/CSS/01-box-model',
     'Frontend/CSS/02-reflow-repaint',
+    'Frontend/CSS/03-css3-features',
   ],
 };

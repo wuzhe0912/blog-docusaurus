@@ -1,10 +1,10 @@
 ---
 id: 00-dom-basic
-title: '📜 DOM 基礎'
+title: '📜 Basic'
 slug: /dom-basic
 ---
 
-> 關聯 : [TikTok Questions](../../Interview/Jobs/00-tiktok.md/#vanilla-js)
+> [關聯 : TikTok Questions](../../Interview/Jobs/00-tiktok.md/#vanilla-js)
 
 ## 什麼是 DOM ?
 

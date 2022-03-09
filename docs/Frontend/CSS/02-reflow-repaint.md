@@ -66,3 +66,8 @@ element.classList.add('update');
 - 如果需要執行動畫，可以在絕對定位的元素(absolute, fixed)上使用，這樣對其他元素影響不大，僅會觸發重繪，可以避免回流。
 - 透過使用 CSS3 的部分屬性，可以觸發 client 端的硬體加速，可以提升動畫的效能。
   - `transform`, `opacity`, `filters`, `Will-change`。
+
+## Reference
+
+- [浏览器的回流与重绘 (Reflow & Repaint)](https://juejin.cn/post/6844903569087266823)
+- [介绍回流与重绘（Reflow & Repaint），以及如何进行优化?](https://juejin.cn/post/7064077572132323365)

@@ -6,11 +6,11 @@ slug: /tiktok-questions
 
 ## CSS
 
-1. [x] `CSS` 中 `position` 有哪些值 ? 作用分別是什麼 ? [關聯 : Position](../../CSS/00-position.md)
+1. [x] [`CSS` 中 `position` 有哪些值 ? 作用分別是什麼 ?](../../CSS/00-position.md)
 2. [ ] `CSS` 有那些選擇器 ?
 3. [ ] 請說明什麼是 `BFC` ? 有什麼作用 ? 如何形成 ?
 4. [ ] 能否提出 `flex` 排版有什麼優點 ?
-5. [x] 請說明盒子模型。[關聯 : Box Model](../../CSS/01-box-model.md)
+5. [x] [請說明盒子模型。](../../CSS/01-box-model.md)
 6. [ ] 請嘗試提出各種讓 `div` 置中的解法。
 7. [ ] `CSS` 的優先級別是如何判斷的 ?
 8. [ ] 請實作一個雙飛翼佈局。
@@ -18,26 +18,26 @@ slug: /tiktok-questions
 10. [ ] 浮動元素會造成什麼影響 ? 如何清除浮動 ?
 11. [ ] 能否提出 `CSS` 的樣式隔離方法 ?
 12. [ ] 行內元素和塊級元素有哪些 ? 它們的區別又是什麼 ?
-13. [x] `CSS3` 有哪些新特性 ?[關聯 : CSS3 Features](../../CSS/03-css3-features.md)
+13. [x] [`CSS3` 有哪些新特性 ?](../../CSS/03-css3-features.md)
 14. [ ] 層疊上下文是什麼 ?
 15. [ ] 請說明網頁頁面生成的過程。
-16. [x] 承上題，`reflow(重排)` 和 `repaint(重繪)` 分別是什麼 ? 有什麼區別 ?[關聯 : Reflow & Repaint](../../CSS/02-reflow-repaint.md)
+16. [x] [承上題，`reflow(重排)` 和 `repaint(重繪)` 分別是什麼 ? 有什麼區別 ?](../../CSS/02-reflow-repaint.md)
 
 ## JavaScript
 
 ### Vanilla JS
 
-- [x] 請解釋對 `DOM tree` 的理解。[關聯 : DOM](../../JavaScript/DOM/00-dom-basic.md)
+- [x] [請解釋對 `DOM tree` 的理解。](../../JavaScript/DOM/00-dom-basic.md)
 - [ ] `apply` 和 `call` 的作用與區別 ?
-- [ ] Please try to explain what's the `Prototype Chain(原型鏈)` ?
+- [ ] 請解釋什麼是 `Prototype Chain(原型鏈)` ?
 - [ ] 請解釋 `instance` 原理。
 - [ ] 請解釋什麼是事件模型 ?
 - [ ] 請說明 `Closure` 的作用與原理。
-- [ ] 請說明為何 `0.1 + 0.2 !== 0.3` ?
+- [x] [請說明為何 `0.1 + 0.2 !== 0.3` ?](../../JavaScript/General/00-decimal-points.md)
 - [ ] 試說明前端模組化的機制有哪些 ? 如何應用 ?
 - [ ] 試說明 `generator` 的原理。
 - [ ] 請解釋渲染合成層是什麼 ?
-- [ ] Please try to explain what's the `Hoisting(變量提升)` ?
+- [ ] 請解釋什麼是 `Hoisting(變量提升)` ?
 - [ ] `new` 運算符具體做了什麼事情 ?
 - [ ] 什麼是 `IIFE(立即執行函式)` ?
 - [ ] 請解釋事件循環機制。
@@ -60,7 +60,7 @@ slug: /tiktok-questions
 
 ### React
 
-- [ ] What's the higher-order component(HOC)(高階組件), please give examples.
+- [ ] 請舉例解釋什麼是 `HOC(高階組件)` ?
 - [ ] `React` 的合成事件是什麼 ? 與原生事件的差別 ?
 - [ ] `React` 中為什麼需要合成事件 ?
 - [ ] 為什麼有時候 `React` 兩次 `setState` 只執行一次 ?
@@ -88,7 +88,7 @@ slug: /tiktok-questions
 ## Browser
 
 - [ ] 請說明 `https` 的加密過程是如何運作的 ?
-- [x] 請說明三次握手的過程 ? [關聯 : Three-Way Handshake](../../Browser/01-three-way-handshake.md)
+- [x] [請說明三次握手的過程 ?](../../Browser/01-three-way-handshake.md)
 - [ ] 承上題，請說明從輸入網址到渲染畫面這段過程中，經歷了那些事情 ?
 - [ ] 請解釋瀏覽器的緩存策略是如何運作的 ?
 - [ ] `http 2.0` 做了那些改進 ?

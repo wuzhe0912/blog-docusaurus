@@ -4,7 +4,7 @@ title: '📜 Position'
 slug: /position
 ---
 
-> [關聯 : TikTok Questions](../Interview/Jobs/00-tiktok.md/#css)
+> [關聯 : TikTok Questions](../Interview/Jobs/00-tiktok.md/#html--css)
 
 `static`, `relative`, `absolute`, `sticky`, `fixed` 這些是較為常用的語法。
 

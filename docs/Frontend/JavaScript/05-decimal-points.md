@@ -1,10 +1,10 @@
 ---
-id: 00-decimal-points
+id: 05-decimal-points
 title: '📜 Why 0.1 + 0.2 !== 0.3 ?'
 slug: /decimal-points
 ---
 
-> [關聯 : TikTok Questions](../../Interview/Jobs/00-tiktok.md/#vanilla-js)
+> [TikTok Questions](../Interview/Jobs/00-tiktok.md/#vanilla-js)
 
 ## 原因
 

@@ -1,0 +1,57 @@
+---
+id: 06-specificity
+title: '📜 Specificity'
+slug: /specificity
+---
+
+> [TikTok Questions](../Interview/Jobs/00-tiktok.md/#html--css)
+
+## Intro
+
+> CSS 選擇器的優先級別判斷，是為了解決元素最終採用哪一個樣式的問題，如下 :
+
+```html
+<div id="app" class="wrapper">What color ?</div>
+```
+
+```css
+#app {
+  color: blue;
+}
+
+.wrapper {
+  color: red;
+}
+```
+
+這個案例中，最終會出現藍色，因為這邊應用了 ID 和 class 兩個選擇器，而 ID 的權重大於 class，因此 class 的樣式會被覆蓋。
+
+## 權重順序
+
+> 行內樣式 > ID > class > tag
+
+如果一段 HTML 的程式中，在標籤內寫有行內樣式，那預設他的權重會最大，蓋過 css 文件中的樣式，如下 :
+
+```html
+<div id="app" class="wrapper" style="color: #f00">What color ?</div>
+```
+
+但一般開發中，不會使用這種撰寫方式，因為既不好維護，同時也容易產生污染樣式的問題。
+
+## 特例
+
+如果真的遇到行內樣式，且無法移除，希望能透過 css 文件來覆蓋，可以採用 `!important` :
+
+```html
+<div id="app" class="wrapper" style="color: #f00">What color ?</div>
+```
+
+```css
+#app {
+  color: blue !important;
+}
+```
+
+當然，如果可以的話，也是盡可能不要使用 `!important`。雖然行內樣式同樣也能添加 `!important`，但筆者是不會這樣撰寫樣式的。
+
+所以，多數情況下，個人也不採用 ID 選擇器，多以 class 來構建整個樣式表。

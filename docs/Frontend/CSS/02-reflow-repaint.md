@@ -4,7 +4,7 @@ title: '📜 Reflow & Repaint'
 slug: /reflow-repaint
 ---
 
-> [關聯 : TikTok Questions](../Interview/Jobs/00-tiktok.md/#css)
+> [關聯 : TikTok Questions](../Interview/Jobs/00-tiktok.md/#html--css)
 
 ## 回流 / 重排(reflow)
 

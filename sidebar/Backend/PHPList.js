@@ -10,8 +10,5 @@ module.exports = {
         'Backend/PHP/Syntax/3-array-operating',
       ],
     },
-    {
-      Laravel: [],
-    },
   ],
 };

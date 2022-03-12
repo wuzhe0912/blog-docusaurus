@@ -27,19 +27,19 @@ slug: /tiktok-questions
 
 ### Vanilla JS
 
-- [x] [請解釋對 `DOM tree` 的理解。](../../JavaScript/DOM/00-dom-basic.md)
+- [x] [請解釋對 `DOM tree` 的理解。](../../JavaScript/03-dom.md)
 - [ ] `apply` 和 `call` 的作用與區別 ?
 - [ ] 請解釋什麼是 `Prototype Chain(原型鏈)` ?
 - [ ] 請解釋 `instance` 原理。
 - [ ] 請解釋什麼是事件模型 ?
 - [ ] 請說明 `Closure` 的作用與原理。
-- [x] [請說明為何 `0.1 + 0.2 !== 0.3` ?](../../JavaScript/General/00-decimal-points.md)
+- [x] [請說明為何 `0.1 + 0.2 !== 0.3` ?](../../JavaScript/05-decimal-points.md)
 - [ ] 試說明前端模組化的機制有哪些 ? 如何應用 ?
 - [ ] 試說明 `generator` 的原理。
 - [ ] 請解釋渲染合成層是什麼 ?
 - [ ] 請解釋什麼是 `Hoisting(變量提升)` ?
 - [ ] `new` 運算符具體做了什麼事情 ?
-- [x] [什麼是 `IIFE(立即執行函式)` ?](../../JavaScript/General/01-IIFE.md)
+- [x] [什麼是 `IIFE(立即執行函式)` ?](../../JavaScript/04-IIFE.md)
 - [ ] 請解釋事件循環機制。
 - [ ] `uglify` 原理是什麼 ?
 - [ ] 請說明你對作用域的理解。

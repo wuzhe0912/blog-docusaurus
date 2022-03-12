@@ -6,17 +6,12 @@ const TypeScriptList = require('./sidebar/Frontend/TypeScriptList');
 const NextList = require('./sidebar/Frontend/NextList');
 const ToolsList = require('./sidebar/Frontend/ToolsList');
 const InterviewList = require('./sidebar/Frontend/InterviewList');
-const GuideList = require('./sidebar/Frontend/GuideList');
 const BrowserList = require('./sidebar/Frontend/BrowserList');
 
 // Backend
 const NodeList = require('./sidebar/Backend/NodeList');
 const PythonList = require('./sidebar/Backend/PythonList');
 const PHPList = require('./sidebar/Backend/PHPList');
-
-// Reflection
-const InvestList = require('./sidebar/Reflection/InvestList');
-const MonthList = require('./sidebar/Reflection/MonthlyList');
 
 module.exports = {
   Frontend: [
@@ -29,8 +24,6 @@ module.exports = {
     NextList,
     BrowserList,
     ToolsList,
-    GuideList,
   ],
   Backend: ['Backend/backend-note', NodeList, PythonList, PHPList],
-  Reflection: ['Reflection/reflection-entry', InvestList, MonthList],
 };

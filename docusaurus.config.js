@@ -34,17 +34,11 @@ module.exports = {
           position: 'left',
           label: 'Backend',
         },
-        {
-          type: 'doc',
-          docId: 'Reflection/reflection-entry',
-          position: 'left',
-          label: 'Reflection',
-        },
-        {
-          type: 'localeDropdown',
-          position: 'right',
-        },
-        // {to: '/blog', label: 'Blog', position: 'right'},
+        { to: '/blog', label: 'Blog', position: 'left' },
+        // {
+        //   type: 'localeDropdown',
+        //   position: 'right',
+        // },
         {
           href: 'https://github.com/wuzhe0912/docusaurus-blog',
           label: 'GitHub',
@@ -116,7 +110,7 @@ module.exports = {
     ],
   ],
   i18n: {
-    defaultLocale: 'zh-tw',
+    defaultLocale: 'en',
     locales: ['en', 'zh-tw', 'zh-cn'],
   },
 };

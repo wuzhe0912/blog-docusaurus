@@ -1,6 +1,6 @@
 ---
 id: frontend-entry
-title: ⚔️ 前端筆記
+title: ⚔️ Frontend Note
 slug: /frontend-entry
 ---
 
@@ -8,7 +8,7 @@ slug: /frontend-entry
 >
 > <!-- > _The best time to plant a tree was 20 years ago. The second best time is now._ -->
 
-## 關於
+## About
 
 身為開發者，時時跟進新技術，撰寫自己的 Blog，似乎是件理所當然的事。
 

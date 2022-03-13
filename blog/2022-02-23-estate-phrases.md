@@ -8,6 +8,10 @@ author_image_url: https://raw.githubusercontent.com/wuzhe0912/image-save/master/
 tags: [Real Estate]
 ---
 
+隨手記錄一下，閱讀投資文章的感觸。
+
+<!--truncate-->
+
 > 2022.02.23
 
 1. 賺錢的本質是交換，我能拿什麼和社會交換？

@@ -4,7 +4,7 @@ title: '📜 CSS3 Features'
 slug: /css3-features
 ---
 
-> [關聯 : TikTok Questions](../Interview/Jobs/00-tiktok.md/#html--css)
+> [TikTok Questions](../Interview/Jobs/00-tiktok.md/#html--css)
 
 ## 1. 新選擇器
 

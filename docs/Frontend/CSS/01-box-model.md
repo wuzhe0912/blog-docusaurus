@@ -4,7 +4,7 @@ title: '📜 Box Model'
 slug: /box-model
 ---
 
-> [關聯 : TikTok Questions](../Interview/Jobs/00-tiktok.md/#html--css)
+> [TikTok Questions](../Interview/Jobs/00-tiktok.md/#html--css)
 
 ## 預設值
 

@@ -1,12 +1,12 @@
 ---
-id: 01-box-model
+id: box-model
 title: '📜 Box Model'
 slug: /box-model
 ---
 
-> [TikTok Questions](../Interview/Jobs/00-tiktok.md/#html--css)
+> [Questions](../collection.md#⚙️-CSS--World)
 
-## 預設值
+## Default
 
 `Box Model` 在 `CSS` 當中是被用來討論如何設計佈局的術語。他本身可以理解為一個包裹 `HTML` 元素的盒子，中間有四個主要的屬性 :
 

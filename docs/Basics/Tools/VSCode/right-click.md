@@ -1,24 +1,24 @@
 ---
-id: 00-right-click
-title: 'Right Click Folder'
+id: right-click
+title: '🔋 Right Click On Windows Folder'
 slug: /right-click
 ---
 
-## How to use right-click menu open files(Windows)?
+## Reason
 
 Some files are not opened with Visual Studio Code by default.
 
-When I want to edit with VS Code, I have to open VS Code first and then drag the file to VS Code, which is a bit tedious.
+When I want to edit with VSCode, I have to open VSCode first and then drag the file to VSCode, which is a bit tedious.
 
 A more convenient way is to add the Open VS Code option to the right-click menu.
 
-## First scenario : Install
+## Install
 
 When installing Visual Studio Code, there are two options that ask if you want to add Open VS Code to the right-click menu.
 
 If ignore this option and install it directly, you can add VS Code to the menu in other ways.
 
-## Second scenario : use register
+## Register
 
 Create a vscode.txt file and paste the following content into vscode.txt.
 

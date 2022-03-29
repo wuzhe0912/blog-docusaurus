@@ -15,7 +15,6 @@ slug: /tiktok-questions
 - [x] [`CSS3` 有哪些新特性 ?](../../CSS/03-css3-features.md)
 - [ ] 層疊上下文是什麼 ?
 - [ ] 請說明網頁頁面生成的過程。
-- [x] [承上題，`reflow(重排)` 和 `repaint(重繪)` 分別是什麼 ? 有什麼區別 ?](../../CSS/02-reflow-repaint.md)
 
 ### Layout
 
@@ -32,28 +31,6 @@ slug: /tiktok-questions
 - [ ] 請嘗試提出各種讓 `div` 置中的解法。
 
 ## JavaScript
-
-### Vanilla JS
-
-- [x] [請解釋對 `DOM tree` 的理解。](../../JavaScript/03-dom.md)
-- [ ] `apply` 和 `call` 的作用與區別 ?
-- [ ] 請解釋什麼是 `Prototype Chain(原型鏈)` ?
-- [ ] 請解釋 `instance` 原理。
-- [ ] 請解釋什麼是事件模型 ?
-- [ ] 請說明 `Closure` 的作用與原理。
-- [x] [請說明為何 `0.1 + 0.2 !== 0.3` ?](../../JavaScript/05-decimal-points.md)
-- [ ] 試說明前端模組化的機制有哪些 ? 如何應用 ?
-- [ ] 試說明 `generator` 的原理。
-- [ ] 請解釋渲染合成層是什麼 ?
-- [ ] 請解釋什麼是 `Hoisting(變量提升)` ?
-- [ ] `new` 運算符具體做了什麼事情 ?
-- [x] [什麼是 `IIFE(立即執行函式)` ?](../../JavaScript/04-IIFE.md)
-- [ ] 請解釋事件循環機制。
-- [ ] `uglify` 原理是什麼 ?
-- [ ] 請說明你對作用域的理解。
-- [ ] 什麼情境下會需要使用策略模式 ?
-- [ ] `history` 和 `hash` 兩種路由方式最大的區別是什麼 ?
-- [ ] 適配器和外觀模式的區別 ?
 
 #### Function 實作
 
@@ -96,8 +73,6 @@ slug: /tiktok-questions
 ## Browser
 
 - [ ] 請說明 `https` 的加密過程是如何運作的 ?
-- [x] [請說明三次握手的過程 ?](../../Browser/01-three-way-handshake.md)
-- [ ] 承上題，請說明從輸入網址到渲染畫面這段過程中，經歷了那些事情 ?
 - [ ] 請解釋瀏覽器的緩存策略是如何運作的 ?
 - [ ] `http 2.0` 做了那些改進 ?
 - [ ] 承上題，`http 2.0` 有哪些不足 ? `http 3.0` 則又是什麼 ?

@@ -1,12 +1,12 @@
 ---
-id: 05-decimal-points
+id: decimal-points
 title: '📜 Why 0.1 + 0.2 !== 0.3 ?'
 slug: /decimal-points
 ---
 
-> [TikTok Questions](../Interview/Jobs/00-tiktok.md/#vanilla-js)
+> [Questions](../collection.md/#⚙️-JS--Basics)
 
-## 原因
+## Reason
 
 在多數的程式語言中，包含 JS 在內，當我們檢測這段數字時都會拿到 fasle 的結果 :
 

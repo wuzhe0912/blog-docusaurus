@@ -1,10 +1,10 @@
 ---
-id: 02-reflow-repaint
-title: '📜 Reflow & Repaint'
+id: reflow-repaint
+title: '📜  Reflow & Repaint'
 slug: /reflow-repaint
 ---
 
-> [TikTok Questions](../Interview/Jobs/00-tiktok.md/#html--css)
+> [Questions](../collection.md/#⚙️-browser)
 
 ## 回流 / 重排(reflow)
 

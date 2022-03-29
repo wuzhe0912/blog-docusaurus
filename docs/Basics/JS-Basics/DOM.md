@@ -1,10 +1,10 @@
 ---
-id: 03-dom
+id: DOM
 title: '📜 DOM'
 slug: /DOM
 ---
 
-> [TikTok Questions](../Interview/Jobs/00-tiktok.md/#vanilla-js)
+> [Questions](../collection.md/#⚙️-JS--Basics)
 
 ## 什麼是 DOM ?
 

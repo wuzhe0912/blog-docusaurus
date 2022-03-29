@@ -24,17 +24,23 @@ module.exports = {
       items: [
         {
           type: 'doc',
-          docId: 'Frontend/frontend-entry',
+          docId: 'Basics/collection',
           position: 'left',
-          label: 'Frontend',
+          label: 'Basics',
         },
-        {
-          type: 'doc',
-          docId: 'Backend/backend-note',
-          position: 'left',
-          label: 'Backend',
-        },
-        { to: '/blog', label: 'Blog', position: 'left' },
+        // {
+        //   type: 'doc',
+        //   docId: 'Frontend/frontend-entry',
+        //   position: 'left',
+        //   label: 'Frontend',
+        // },
+        // {
+        //   type: 'doc',
+        //   docId: 'Backend/backend-note',
+        //   position: 'left',
+        //   label: 'Backend',
+        // },
+        // { to: '/blog', label: 'Blog', position: 'left' },
         // {
         //   type: 'localeDropdown',
         //   position: 'right',

@@ -1,10 +1,10 @@
 ---
-id: 04-IIFE
+id: IIFE
 title: '📜 IIFE'
 slug: /IIFE
 ---
 
-> [TikTok Questions](../Interview/Jobs/00-tiktok.md/#vanilla-js)
+> [Questions](../collection.md/#⚙️-JS--Basics)
 
 ## Intro
 

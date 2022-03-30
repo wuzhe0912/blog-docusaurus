@@ -60,7 +60,7 @@ module.exports = {
           items: [
             {
               label: 'Frontend',
-              to: '/docs/frontend-entry',
+              to: '/docs/Basics/collection',
             },
           ],
         },

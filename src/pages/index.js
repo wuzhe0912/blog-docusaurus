@@ -26,7 +26,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/frontend-entry"
+            to="/docs/Basics/collection"
           >
             立即開始 ⏱️
           </Link>

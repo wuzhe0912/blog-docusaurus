@@ -1,12 +1,10 @@
 ---
-id: 03-css3-features
+id: css3-features
 title: '📜 CSS3 Features'
 slug: /css3-features
 ---
 
-> [TikTok Questions](../Interview/Jobs/00-tiktok.md/#html--css)
-
-## 1. 新選擇器
+## 1. New Select
 
 | Select             | example             | description                                                                                        |
 | ------------------ | ------------------- | -------------------------------------------------------------------------------------------------- |
@@ -24,7 +22,7 @@ slug: /css3-features
 | [attribute$=value] | a[src$=".text"]     | 選擇 src 屬性中，以 ".text" 結尾的每個 a 標籤                                                      |
 | [attribute*=value] | a[src*="test"]      | 選擇 src 屬性中，包含 "test" string 的每個 a 標籤                                                  |
 
-## 2. 新樣式
+## 2. New Style
 
 ### border
 
@@ -38,17 +36,17 @@ border-image  // 改用圖片來繪製邊框
 
 - [box-shadow demo](https://www.w3schools.com/cssref/playdemo.asp?filename=playcss_box-shadow)
 
-### 背景
+### background
 
 > background-clip、background-origin、background-size、background-break，個人常用 background-size 來縮放調整背景圖片大小。
 
-### 文字
+### text
 
 選擇是否採用瀏覽器默認的文字換行，或是依照單字換行等，[word-break](https://developer.mozilla.org/en-US/docs/Web/CSS/word-break)。
 
 當文字過長時，也可以使用 ellipsis 來做省略符號，text-shadow 則是添加陰影，text-decoration 可以增加樣式渲染，包含填充顏色或是調整寬度。
 
-### 顏色
+### color
 
 允許使用兩種方式來渲染顏色，分別是 rgba 和 hsla。
 

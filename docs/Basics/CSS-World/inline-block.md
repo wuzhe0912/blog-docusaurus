@@ -1,10 +1,8 @@
 ---
-id: 05-inline-block
+id: inline-block
 title: '📜 Inline and Block'
 slug: /inline-block
 ---
-
-> [TikTok Questions](../Interview/Jobs/00-tiktok.md/#html--css)
 
 ## Block Elements
 

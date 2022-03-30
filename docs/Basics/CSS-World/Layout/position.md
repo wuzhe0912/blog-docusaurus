@@ -1,10 +1,8 @@
 ---
-id: 00-position
+id: position
 title: '📜 Position'
 slug: /position
 ---
-
-> [TikTok Questions](../Interview/Jobs/00-tiktok.md/#html--css)
 
 `static`, `relative`, `absolute`, `sticky`, `fixed` 這些是較為常用的語法。
 

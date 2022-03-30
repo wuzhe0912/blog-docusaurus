@@ -1,16 +1,16 @@
 ---
-id: 01-three-way-handshake
-title: '📜 三次握手'
+id: three-way-handshake
+title: '🧭 Three Way Handshake'
 slug: /three-way-handshake
 ---
 
-> [關聯 : TikTok Questions](../Interview/Jobs/00-tiktok.md/#browser)
+> [Questions](../collection.md/#⚙️-Network)
 
-## 三次握手的基本邏輯
+## Basic
 
 > 三次握手是指在 `TCP/IP` 的網路中，服務器端和客戶端之間建立連接的過程。在過程中會經歷三個步驟，來確認雙方的接受和發送能力都正常，同時也要透過初始序列號(ISN)來確保資料的同步和安全性。
 
-### TCP 訊息類型
+### TCP Message Type
 
 在開始理解步驟前，需要先明白，每個類型的訊息，其主要功能為何 ?
 
@@ -21,33 +21,33 @@ slug: /three-way-handshake
 | SYN-ACK | 同步確認，除了發出己方的 SYN，並送出 ACK           |
 | FIN     | 終止連結                                           |
 
-### 基本步驟
+### Steps
 
 1. client 端開始和 server 端建立連接，並發出 SYN 訊息，告知 server 端準備開始通信，以及它送出的序列號是多少 ?
 2. server 端接收 SYN 訊息後，準備響應給 client 端，先將接收到的 SYN 序列號 +1，並透過 ACK 發回，同時也發出 server 端自己的 SYN 訊息。
 3. client 端確認 server 端已響應，雙方都已經建立穩定連結，開始傳輸數據。
 
-### 實際範例
+### Example
 
 Host A 向主機發送一個 TCP SYN 數據資料，其中會包含一個隨機序列號，這邊假設為 1000
 
-```
+```bash
 Host A ===(SYN=1000)===> Server
 ```
 
 Server 需要針對 Host A 給出的序列號進行響應，所以會將序列號 + 1，同時給出自己的 SYN
 
-```
+```bash
 Host A <===(SYN=2000 ACK=1001)=== Server
 ```
 
 Host A 接收到 Server 的 SYN 後，需要發出確認的序列號來回應，所以會將 Server 給的序列號 + 1
 
-```
+```bash
 Host A ===(ACK=2001)===> Server
 ```
 
-## 提問
+## Questions
 
 ### 如果只有兩次握手可以嗎 ?
 

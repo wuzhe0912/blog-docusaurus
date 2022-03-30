@@ -1,10 +1,8 @@
 ---
-id: 06-specificity
-title: '📜 Specificity'
-slug: /specificity
+id: select-weight
+title: '📜 Select Weight'
+slug: /select-weight
 ---
-
-> [TikTok Questions](../Interview/Jobs/00-tiktok.md/#html--css)
 
 ## Intro
 
@@ -26,9 +24,9 @@ slug: /specificity
 
 這個案例中，最終會出現藍色，因為這邊應用了 ID 和 class 兩個選擇器，而 ID 的權重大於 class，因此 class 的樣式會被覆蓋。
 
-## 權重順序
+## Weight Sequence
 
-> 行內樣式 > ID > class > tag
+> inline style > ID > class > tag
 
 如果一段 HTML 的程式中，在標籤內寫有行內樣式，那預設他的權重會最大，蓋過 css 文件中的樣式，如下 :
 

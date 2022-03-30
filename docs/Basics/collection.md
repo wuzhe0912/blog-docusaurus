@@ -50,12 +50,12 @@ slug: /collection
 
 ### 🛠️ Variable Scope related Hoisting
 
-- 1. [ ] What's `variable scope(變數作用域)` ?
-- 2. [ ] What's `Hoisting(變量提升)` ?
+1. [ ] What's `variable scope(變數作用域)` ?
+2. [ ] What's `Hoisting(變量提升)` ?
 
 ### 🛠️ IIFE
 
-- 1. [x] [What's `IIFE(立即執行函式)` ?](./JS-Basics/IIFE.md)
+1. [x] [What's `IIFE(立即執行函式)` ?](./JS-Basics/IIFE.md)
 
 ### 🛠️ Function
 

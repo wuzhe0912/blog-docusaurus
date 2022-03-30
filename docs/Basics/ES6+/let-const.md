@@ -1,5 +1,5 @@
 ---
-id: 02-let-const
+id: let-const
 title: '📜 Let & Const'
 slug: /let-const
 ---

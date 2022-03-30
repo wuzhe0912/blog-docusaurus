@@ -1,5 +1,5 @@
 ---
-id: 00-arrow-function
+id: arrow-function
 title: '📜 Arrow Function'
 slug: /arrow-function
 ---
@@ -19,8 +19,8 @@ Reduce `ES5` function writing, to make it more concise and convenient.
 
 ```javascript
 // js
-document.querySelector(".click1").addEventListener("click", function () {
-  console.log("click1");
+document.querySelector('.click1').addEventListener('click', function () {
+  console.log('click1');
 });
 ```
 
@@ -33,8 +33,8 @@ Arrow function :
 
 ```javascript
 // js
-document.querySelector(".click2").addEventListener("click", () => {
-  console.log("click2");
+document.querySelector('.click2').addEventListener('click', () => {
+  console.log('click2');
 });
 ```
 
@@ -45,7 +45,7 @@ Can be seen, change `function()` to `() =>`.
 In `ES5` function, `this` will direct to `DOM` element itself :
 
 ```javascript
-document.querySelector(".click1").addEventListener("click", function () {
+document.querySelector('.click1').addEventListener('click', function () {
   console.log(this); // print HTML tag
 });
 ```
@@ -53,7 +53,7 @@ document.querySelector(".click1").addEventListener("click", function () {
 But, in `Arrow function`, `this` direct will back to the previous level, enter the global environment. It can also be understood as not having `this`.
 
 ```javascript
-document.querySelector(".click2").addEventListener("click", () => {
+document.querySelector('.click2').addEventListener('click', () => {
   console.log(this); // print window object
 });
 ```
@@ -61,7 +61,7 @@ document.querySelector(".click2").addEventListener("click", () => {
 Therefore, if I wanted to find `DOM` element, need pass by parameter.
 
 ```javascript
-document.querySelector(".click2").addEventListener("click", (e) => {
+document.querySelector('.click2').addEventListener('click', (e) => {
   console.log(e.target); // print HTML tag
 });
 ```
@@ -73,7 +73,7 @@ If designated variable to function, can also be written as `arrow function`.
 ```javascript
 // Notice, declare variable is require.
 const plus = () => {
-  console.log("test");
+  console.log('test');
 };
 plus();
 ```

@@ -4,8 +4,6 @@ title: '📜 IIFE'
 slug: /IIFE
 ---
 
-> [Questions](../collection.md/#⚙️-JS--Basics)
-
 ## Intro
 
 > IIFE 又稱立即執行函式，與一般函式的寫法有所差異，外層需多包裹一層 `()`，並且具有立即被執行的特性 :
@@ -108,11 +106,11 @@ const Score = (() => {
 })();
 
 Score.increment();
-console.log(Score.current());
+console.log(Score.current()); // result 1 => 0 + 1 = 1
 Score.increment();
-console.log(Score.current());
+console.log(Score.current()); // result 2 => 1 + 1 = 2
 Score.reset();
-console.log(Score.current());
+console.log(Score.current()); // result 0 => reset = 0
 ```
 
 另一種寫法：

@@ -5,6 +5,10 @@ const NetworkList = require('./sidebar/Basics/NetworkList');
 const BrowserList = require('./sidebar/Basics/BrowserList');
 const ToolsList = require('./sidebar/Basics/ToolsList');
 const LeetCodeList = require('./sidebar/Basics/LeetCodeList');
+
+// Read
+const HistoryList = require('./sidebar/Read/HistoryList');
+
 // const ES6PlusList = require('./sidebar/Frontend/ES6PlusList');
 // const TypeScriptList = require('./sidebar/Frontend/TypeScriptList');
 // const NextList = require('./sidebar/Frontend/NextList');
@@ -28,5 +32,5 @@ module.exports = {
     // TypeScriptList,
     // NextList,
   ],
-  // Backend: ['Backend/backend-note', NodeList, PythonList, PHPList],
+  Read: ['Read/summary', HistoryList],
 };

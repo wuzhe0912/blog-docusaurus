@@ -28,12 +28,12 @@ module.exports = {
           position: 'left',
           label: 'Basics',
         },
-        // {
-        //   type: 'doc',
-        //   docId: 'Frontend/frontend-entry',
-        //   position: 'left',
-        //   label: 'Frontend',
-        // },
+        {
+          type: 'doc',
+          docId: 'Read/summary',
+          position: 'left',
+          label: 'Read',
+        },
         // {
         //   type: 'doc',
         //   docId: 'Backend/backend-note',

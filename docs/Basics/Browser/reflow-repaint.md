@@ -1,6 +1,6 @@
 ---
 id: reflow-repaint
-title: '📜  Reflow & Repaint'
+title: '🌐 Reflow & Repaint'
 slug: /reflow-repaint
 ---
 

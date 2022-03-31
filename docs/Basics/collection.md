@@ -16,7 +16,6 @@ slug: /collection
 - [x] [行內元素和塊級元素有哪些 ? 它們的區別又是什麼 ?](./CSS-World/inline-block.md)
 - [x] [`CSS3` 有哪些新特性 ?](./CSS-World/css3-features.md)
 - [ ] 層疊上下文是什麼 ?
-- [ ] 請說明網頁頁面生成的過程。
 
 ### 🛠️ Layout
 
@@ -81,6 +80,7 @@ slug: /collection
 
 ## ⚙️ Browser
 
+- [ ] [Please explain the process of rendering the page by browser.](./Browser/render-page.md)
 - [x] [What are `reflow(重排)` and `repaint(重繪)` ? What's the difference ?](./Browser/reflow-repaint.md)
 - [ ] 請解釋瀏覽器的緩存策略是如何運作的 ?
 - [ ] 如何檢查內存是否洩漏 ?

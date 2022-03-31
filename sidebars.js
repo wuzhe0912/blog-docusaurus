@@ -8,6 +8,7 @@ const LeetCodeList = require('./sidebar/Basics/LeetCodeList');
 
 // Read
 const HistoryList = require('./sidebar/Read/HistoryList');
+const ProgramsList = require('./sidebar/Read/ProgramsList');
 
 // const ES6PlusList = require('./sidebar/Frontend/ES6PlusList');
 // const TypeScriptList = require('./sidebar/Frontend/TypeScriptList');
@@ -32,5 +33,5 @@ module.exports = {
     // TypeScriptList,
     // NextList,
   ],
-  Read: ['Read/summary', HistoryList],
+  Read: ['Read/summary', HistoryList, ProgramsList],
 };

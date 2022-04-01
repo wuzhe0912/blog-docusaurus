@@ -1,6 +1,6 @@
 ---
 id: render-page
-title: '🌐 瀏覽器渲染頁面的流程'
+title: '🌐 Process of rendering page'
 slug: /render-page
 ---
 
@@ -34,7 +34,27 @@ browser 構建頁面的動作流程，就如同真實世界中構建房屋的類
 
 ## Layout
 
-隨著 Render Tree 的完成，瀏覽器接下來需要考慮整個頁面如何排版，就如同房屋需要考慮幾房的佈局，以及使用多少的水泥與磚頭等等。在排列 Layout 的過程中，除了會考慮節點的大小，也要根據 [Box Model](../CSS-World/Layout/box-model.md) 來處理，每一個 element 都可以視為一個 box，每個 box 在進行排列和嵌套。
+隨著 Render Tree 的完成，瀏覽器接下來需要考慮整個頁面如何排版，就如同房屋需要考慮幾房的佈局，以及使用多少的水泥與磚頭等等。在排列 Layout 的過程中，除了會考慮節點的大小，也要根據 [Box Model](../CSS-World/Layout/box-model.md) 來處理，每一個 element 都可以視為一個 box，每個 box 在進行排列和嵌套，同時，佈局排列完成後，瀏覽器就會開始進行繪製。
+
+## Example
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <script src="index.js"></script>
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+```
+
+執行過程 =>
+
+1. browser 請求 html 文件，server 回傳 html 文件，browser 開始構建 DOM
+2. 在解析到 link 標籤時，請求 css 文件，server 回傳 css 文件，準備構建 CSSOM
+3. 接著解析
 
 ## Reference
 

@@ -34,12 +34,12 @@ module.exports = {
           position: 'left',
           label: 'Read',
         },
-        // {
-        //   type: 'doc',
-        //   docId: 'Backend/backend-note',
-        //   position: 'left',
-        //   label: 'Backend',
-        // },
+        {
+          type: 'doc',
+          docId: 'Schedule/planning',
+          position: 'left',
+          label: 'Schedule',
+        },
         // { to: '/blog', label: 'Blog', position: 'left' },
         // {
         //   type: 'localeDropdown',

@@ -10,14 +10,8 @@ const LeetCodeList = require('./sidebar/Basics/LeetCodeList');
 const HistoryList = require('./sidebar/Read/HistoryList');
 const ProgramsList = require('./sidebar/Read/ProgramsList');
 
-// const ES6PlusList = require('./sidebar/Frontend/ES6PlusList');
-// const TypeScriptList = require('./sidebar/Frontend/TypeScriptList');
-// const NextList = require('./sidebar/Frontend/NextList');
-
-// Backend
-// const NodeList = require('./sidebar/Backend/NodeList');
-// const PythonList = require('./sidebar/Backend/PythonList');
-// const PHPList = require('./sidebar/Backend/PHPList');
+// Schedule
+const firstYearList = require('./sidebar/Schedule/2022List');
 
 module.exports = {
   Basics: [
@@ -28,10 +22,7 @@ module.exports = {
     BrowserList,
     ToolsList,
     LeetCodeList,
-    // InterviewList,
-    // ES6PlusList,
-    // TypeScriptList,
-    // NextList,
   ],
   Read: ['Read/summary', HistoryList, ProgramsList],
+  Schedule: ['Schedule/planning', firstYearList],
 };

@@ -8,7 +8,7 @@ slug: /stage-1
 
 - [ ] clone google docs demo use socket.io
 - [ ] Nuxt.js movie demo
-- [ ] VanillaJS interview question x 12
+- [ ] interview question x 12
 
 ## Tutor
 

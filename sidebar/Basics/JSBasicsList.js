@@ -11,5 +11,8 @@ module.exports = {
     'Basics/JS-Basics/DOM',
     'Basics/JS-Basics/IIFE',
     'Basics/JS-Basics/decimal-points',
+    {
+      Asynchronous_Related: ['Basics/JS-Basics/async-defer'],
+    },
   ],
 };

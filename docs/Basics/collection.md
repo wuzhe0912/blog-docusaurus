@@ -33,8 +33,8 @@ slug: /collection
 - [x] [What is `DOM tree` ?](./JS-Basics/DOM.md)
 - [x] [Why `0.1 + 0.2 !== 0.3` ?](./JS-Basics/decimal-points.md)
 - [ ] `apply` 和 `call` 的作用與區別 ?
-- [ ] 請解釋什麼是 `Prototype Chain(原型鏈)` ?
-- [ ] 請解釋 `instance` 原理。
+- [ ] What is `Prototype Chain(原型鏈)` ?
+- [ ] What is `instance` ?
 - [ ] 請解釋什麼是事件模型 ?
 - [ ] 試說明 `generator` 的原理。
 - [ ] 請解釋渲染合成層是什麼 ?
@@ -64,6 +64,7 @@ slug: /collection
 
 ## ⚙️ Asynchronous
 
+- [x] [What's the difference between async and defer ?](./JS-Basics/async-defer.md)
 - [ ] 請實作一個 `promise`。
 
 ## ⚙️ Network

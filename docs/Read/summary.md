@@ -1,6 +1,6 @@
 ---
 id: summary
-title: 📖 Summary
+title: Summary
 slug: /summary
 ---
 

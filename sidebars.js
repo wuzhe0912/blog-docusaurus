@@ -11,7 +11,7 @@ const HistoryList = require('./sidebar/Read/HistoryList');
 const ProgramsList = require('./sidebar/Read/ProgramsList');
 
 // Schedule
-const firstYearList = require('./sidebar/Schedule/2022List');
+const ScramList = require('./sidebar/Schedule/ScramList');
 
 module.exports = {
   Basics: [
@@ -24,5 +24,5 @@ module.exports = {
     LeetCodeList,
   ],
   Read: ['Read/summary', HistoryList, ProgramsList],
-  Schedule: ['Schedule/planning', firstYearList],
+  Schedule: [ScramList],
 };

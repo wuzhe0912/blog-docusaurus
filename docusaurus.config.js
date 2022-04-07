@@ -36,7 +36,7 @@ module.exports = {
         },
         {
           type: 'doc',
-          docId: 'Schedule/planning',
+          docId: 'Schedule/Scram/scram-2022',
           position: 'left',
           label: 'Schedule',
         },

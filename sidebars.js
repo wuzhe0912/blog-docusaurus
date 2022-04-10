@@ -1,6 +1,7 @@
 // Basics
 const CSSWorldList = require('./sidebar/Basics/CSSWorldList');
 const JSBasicsList = require('./sidebar/Basics/JSBasicsList');
+const JSDemoList = require('./sidebar/Basics/JSDemoList');
 const NetworkList = require('./sidebar/Basics/NetworkList');
 const BrowserList = require('./sidebar/Basics/BrowserList');
 const ToolsList = require('./sidebar/Basics/ToolsList');
@@ -18,6 +19,7 @@ module.exports = {
     'Basics/collection',
     CSSWorldList,
     JSBasicsList,
+    JSDemoList,
     NetworkList,
     BrowserList,
     ToolsList,

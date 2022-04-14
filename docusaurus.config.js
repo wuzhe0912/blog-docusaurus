@@ -24,6 +24,12 @@ module.exports = {
       items: [
         {
           type: 'doc',
+          docId: 'Slip-Box/slip-box-notes',
+          position: 'left',
+          label: 'Slip-Box',
+        },
+        {
+          type: 'doc',
           docId: 'Basics/collection',
           position: 'left',
           label: 'Basics',

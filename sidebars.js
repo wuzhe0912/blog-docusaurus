@@ -1,3 +1,6 @@
+// Slip-Box
+const VariableList = require('./sidebar/variableList.js');
+
 // Basics
 const CSSWorldList = require('./sidebar/Basics/CSSWorldList');
 const JSBasicsList = require('./sidebar/Basics/JSBasicsList');

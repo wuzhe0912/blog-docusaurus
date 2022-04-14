@@ -4,6 +4,12 @@ title: Summary
 slug: /summary
 ---
 
+## Quick Summary
+
+1. 用三段話來說明這本書的內容。
+2. 這本書為我帶來怎樣的改變?
+3. 三個自己最喜歡的句子或段落。
+
 ## History
 
 - [ ] [人類群星閃耀時](./History/star-moments-humanity.md)

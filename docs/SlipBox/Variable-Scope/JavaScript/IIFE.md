@@ -41,7 +41,6 @@ slug: /IIFE
 ```javascript
 // global
 const name = 'Yumi';
-
 const Hello = () => {
   return `Hello ${name}!`;
 };

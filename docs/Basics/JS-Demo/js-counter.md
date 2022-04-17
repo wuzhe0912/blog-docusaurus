@@ -4,7 +4,7 @@ title: '📜 Counter'
 slug: /js-counter
 ---
 
-> Use VanillaJS build counter.
+> Use vanilla js build counter.
 
 ## Prepare template and style
 
@@ -66,7 +66,7 @@ slug: /js-counter
 }
 ```
 
-## 開始操作 DOM 元素
+## 操作 DOM 元素
 
 ### 抓取指定的元素建立變數
 

@@ -1,14 +1,14 @@
 ---
-id: closures
-title: '📜 Closures'
-slug: /closures
+id: closure
+title: '📜 Closure'
+slug: /closure
 ---
 
-## What is Closures ?
+## What is Closure ?
 
-closures 除了包含本身是一個 function 外，也含括了自身內部的環境，同時也能去獲取外部 function 的變數。
+closure 除了包含本身是一個 function 外，也含括了自身內部的環境，同時也能去獲取外部 function 的變數。
 
-因此可以理解為，closures 本身是一個 child function，用來保存處理 parent function 的變數。
+因此可以理解為，closure 本身是一個 child function，用來保存處理 parent function 的變數。
 
 之所以需要這個功能，在於多數高階語言，大多帶有 `Garbage Collection(垃圾回收機制)`，JS 自然也不例外。
 
@@ -16,7 +16,7 @@ closures 除了包含本身是一個 function 外，也含括了自身內部的�
 
 ## Scope
 
-先從作用域的角度來看待 closures 的運作
+先從作用域的角度來看待其運作方式
 
 ```javascript
 // global scope
@@ -68,7 +68,7 @@ console.log(a); // print 5
 
 但如果在這邊 `console.log(b)` 則會拿到 error，因為 b 這個變數其作用域仍在 function 內。
 
-## Example 1
+## Exam Question 1
 
 > 建立符合下述條件的 function
 
@@ -90,7 +90,7 @@ console.log(plus(2, 5));
 ```
 
 ```javascript
-// use closures save variable
+// use closure save variable
 
 function plus(value) {
   return function (subValue) {
@@ -121,7 +121,7 @@ console.log(plus(2, 5));
 console.log(plus(2)(5));
 ```
 
-## Example 2
+## Exam Question 2
 
 > 請利用閉包的特性，將數字遞增
 

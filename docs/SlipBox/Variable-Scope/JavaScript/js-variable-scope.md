@@ -1,7 +1,7 @@
 ---
-id: variable-scope
+id: js-variable-scope
 title: '📜 Variable and Scope'
-slug: /variable-scope
+slug: /js-variable-scope
 ---
 
 ## var, let, const

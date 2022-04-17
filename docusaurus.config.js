@@ -24,27 +24,15 @@ module.exports = {
       items: [
         {
           type: 'doc',
-          docId: 'Slip-Box/slip-box-notes',
+          docId: 'SlipBox/slip-box-notes',
           position: 'left',
-          label: 'Slip-Box',
-        },
-        {
-          type: 'doc',
-          docId: 'Basics/collection',
-          position: 'left',
-          label: 'Basics',
+          label: 'SlipBox',
         },
         {
           type: 'doc',
           docId: 'Read/summary',
           position: 'left',
           label: 'Read',
-        },
-        {
-          type: 'doc',
-          docId: 'Schedule/Scram/scram-2022',
-          position: 'left',
-          label: 'Schedule',
         },
         // { to: '/blog', label: 'Blog', position: 'left' },
         // {

@@ -4,9 +4,9 @@ title: ⚔️ Collection
 slug: /collection
 ---
 
-> 種一棵樹最好的時間是十年前，其次則是現在。
->
-> <!-- > _The best time to plant a tree was 20 years ago. The second best time is now._ -->
+> _The best time to plant a tree was 20 years ago. The second best time is now._
+
+<!-- 種一棵樹最好的時間是十年前，其次則是現在。 -->
 
 ## ⚙️ CSS World
 
@@ -30,7 +30,7 @@ slug: /collection
 
 ## ⚙️ JS Basics
 
-- [x] [What is `DOM tree` ?](./JS-Basics/DOM.md)
+- [x] [What's `DOM tree` ?](./JS-Basics/DOM.md)
 - [x] [Why `0.1 + 0.2 !== 0.3` ?](./JS-Basics/decimal-points.md)
 - [ ] `apply` 和 `call` 的作用與區別 ?
 - [ ] What is `Prototype Chain(原型鏈)` ?

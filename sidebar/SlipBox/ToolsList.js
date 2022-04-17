@@ -3,10 +3,10 @@ module.exports = {
   label: 'Tools',
   items: [
     {
-      Terminal: ['Basics/Tools/Terminal/cmder'],
+      Terminal: ['SlipBox/Tools/Terminal/cmder'],
     },
     {
-      VSCode: ['Basics/Tools/VSCode/right-click'],
+      VSCode: ['SlipBox/Tools/VSCode/right-click'],
     },
   ],
 };

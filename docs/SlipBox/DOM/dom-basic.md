@@ -1,12 +1,12 @@
 ---
-id: DOM
-title: '📜 DOM'
-slug: /DOM
+id: dom-basic
+title: '📜 DOM Basic'
+slug: /dom-basic
 ---
 
 > [Questions](../collection.md/#⚙️-JS--Basics)
 
-## 什麼是 DOM ?
+## What's DOM ?
 
 `DOM` 的全名是 `Document Object Model`，可以理解為一個介面接口，瀏覽器透過這個接口來讀取 `HTML` 文件，並依此生成樹狀結構，所以又通常稱為 `DOM Tree`。
 

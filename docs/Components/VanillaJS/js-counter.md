@@ -4,8 +4,6 @@ title: '📜 Counter'
 slug: /js-counter
 ---
 
-> Use vanilla js build counter.
-
 ## Prepare template and style
 
 ### HTML

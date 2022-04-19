@@ -30,6 +30,12 @@ module.exports = {
         },
         {
           type: 'doc',
+          docId: 'Components/components-list',
+          position: 'left',
+          label: 'Components',
+        },
+        {
+          type: 'doc',
           docId: 'Read/summary',
           position: 'left',
           label: 'Read',

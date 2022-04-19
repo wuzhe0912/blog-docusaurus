@@ -8,7 +8,7 @@ slug: /decimal-points
 
 ## Reason
 
-在多數的程式語言中，包含 JS 在內，當我們檢測這段數字時都會拿到 fasle 的結果 :
+在多數的程式語言中，包含 JS 在內，當我們檢測這段數字時都會拿到 false 的結果 :
 
 ```javascript
 0.1 + 0.2 == 0.3 // false

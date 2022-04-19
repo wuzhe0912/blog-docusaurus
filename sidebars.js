@@ -7,8 +7,8 @@ const NetworkList = require('./sidebar/SlipBox/NetworkList');
 const BrowserList = require('./sidebar/SlipBox/BrowserList');
 const ToolsList = require('./sidebar/SlipBox/ToolsList');
 
-// Basics
-const LeetCodeList = require('./sidebar/Basics/LeetCodeList');
+// Components
+const LeetCodeList = require('./sidebar/Frontend/LeetCodeListst');
 
 // Read
 const HistoryList = require('./sidebar/Read/HistoryList');

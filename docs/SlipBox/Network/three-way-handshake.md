@@ -4,7 +4,7 @@ title: '🧭 Three Way Handshake'
 slug: /three-way-handshake
 ---
 
-> [Questions](../collection.md/#⚙️-Network)
+> Questions
 
 ## Basic
 

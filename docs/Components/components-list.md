@@ -1,6 +1,6 @@
 ---
 id: components-list
-title: 📦 Components List
+title: 📦 Notes
 slug: /components-list
 ---
 

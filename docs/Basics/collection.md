@@ -11,18 +11,18 @@ slug: /collection
 ## ⚙️ CSS World
 
 - [ ] `CSS` 有那些選擇器 ?
-- [x] [`CSS` 的優先級別是如何判斷的 ?](./CSS-World/select-weight.md)
+- [x] `CSS` 的優先級別是如何判斷的 ?
 - [ ] 能否提出 `CSS` 的樣式隔離方法 ?
-- [x] [行內元素和塊級元素有哪些 ? 它們的區別又是什麼 ?](./CSS-World/inline-block.md)
-- [x] [`CSS3` 有哪些新特性 ?](./CSS-World/css3-features.md)
+- [x] 行內元素和塊級元素有哪些 ? 它們的區別又是什麼 ?
+- [x] `CSS3` 有哪些新特性 ?
 - [ ] 層疊上下文是什麼 ?
 
 ### 🛠️ Layout
 
-- [x] [請說明盒子模型。](./CSS-World/Layout/box-model.md)
+- [x] 請說明盒子模型。
 - [ ] 請說明什麼是 `BFC` ? 有什麼作用 ? 如何形成 ?
 - [ ] 浮動元素會造成什麼影響 ? 如何清除浮動 ?
-- [x] [`CSS` 中 `position` 有哪些值 ? 作用分別是什麼 ?](./CSS-World/Layout/position.md)
+- [x] `CSS` 中 `position` 有哪些值 ? 作用分別是什麼 ?
 - [ ] 能否提出 `flex` 排版有什麼優點 ?
 - [ ] 請實作一個雙飛翼佈局。
 - [ ] 請實作一個聖杯佈局。
@@ -30,8 +30,8 @@ slug: /collection
 
 ## ⚙️ JS Basics
 
-- [x] [What's `DOM tree` ?](./JS-Basics/DOM.md)
-- [x] [Why `0.1 + 0.2 !== 0.3` ?](./JS-Basics/decimal-points.md)
+- [x] What's `DOM tree` ?
+- [x] [Why `0.1 + 0.2 !== 0.3` ?
 - [ ] `apply` 和 `call` 的作用與區別 ?
 - [ ] What is `Prototype Chain(原型鏈)` ?
 - [ ] What is `instance` ?
@@ -48,13 +48,13 @@ slug: /collection
 
 ### 🛠️ Variable Related
 
-1. [x] [What's `variable scope(變數作用域)` ?](./JS-Basics/variable-scope.md)
-2. [x] [What's `Closures(閉包)` ?](./JS-Basics/closures.md)
+1. [x] What's `variable scope(變數作用域)` ?
+2. [x] What's `Closures(閉包)` ?
 3. [ ] What's `Hoisting(變量提升)` ?
 
 ### 🛠️ IIFE
 
-1. [x] [What's `IIFE(立即執行函式)` ?](./JS-Basics/IIFE.md)
+1. [x] What's `IIFE(立即執行函式)` ?
 
 ### 🛠️ Function
 
@@ -64,12 +64,12 @@ slug: /collection
 
 ## ⚙️ Asynchronous
 
-- [x] [What's the difference between async and defer ?](./JS-Basics/async-defer.md)
+- [x] What's the difference between async and defer ?
 - [ ] 請實作一個 `promise`。
 
 ## ⚙️ Network
 
-- [x] [請說明三次握手的過程。](./Network/three-way-handshake.md)
+- [x] 請說明三次握手的過程。
 - [ ] 承上題，請說明從輸入網址到渲染畫面這段過程中，經歷了那些事情 ?
 - [ ] `http 2.0` 做了那些改進 ?
 - [ ] 承上題，`http 2.0` 有哪些不足 ? `http 3.0` 則又是什麼 ?
@@ -81,8 +81,8 @@ slug: /collection
 
 ## ⚙️ Browser
 
-- [ ] [Please explain the process of rendering the page by browser.](./Browser/render-page.md)
-- [x] [What are `reflow(重排)` and `repaint(重繪)` ? What's the difference ?](./Browser/reflow-repaint.md)
+- [ ] Please explain the process of rendering the page by browser.
+- [x] What are `reflow(重排)` and `repaint(重繪)` ? What's the difference ?
 - [ ] 請解釋瀏覽器的緩存策略是如何運作的 ?
 - [ ] 如何檢查內存是否洩漏 ?
 - [ ] 請問 `TCP` 滑動視窗是什麼 ?

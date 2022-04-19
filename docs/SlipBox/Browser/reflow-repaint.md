@@ -4,7 +4,7 @@ title: '🌐 Reflow & Repaint'
 slug: /reflow-repaint
 ---
 
-> [Questions](../collection.md/#⚙️-browser)
+> Questions
 
 ## 回流 / 重排(reflow)
 

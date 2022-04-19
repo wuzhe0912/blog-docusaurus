@@ -8,7 +8,7 @@ const BrowserList = require('./sidebar/SlipBox/BrowserList');
 const ToolsList = require('./sidebar/SlipBox/ToolsList');
 
 // Components
-const LeetCodeList = require('./sidebar/Frontend/LeetCodeListst');
+const VanillaJSList = require('./sidebar/Components/VanillaJSList');
 
 // Read
 const HistoryList = require('./sidebar/Read/HistoryList');
@@ -25,5 +25,6 @@ module.exports = {
     BrowserList,
     ToolsList,
   ],
+  Components: ['Components/components-list', VanillaJSList],
   Read: ['Read/summary', HistoryList, ProgramsList],
 };

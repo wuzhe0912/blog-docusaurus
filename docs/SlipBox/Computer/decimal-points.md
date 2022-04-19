@@ -4,7 +4,7 @@ title: '📜 Why 0.1 + 0.2 !== 0.3 ?'
 slug: /decimal-points
 ---
 
-> [Questions](../collection.md/#⚙️-JS--Basics)
+> Questions
 
 ## Reason
 

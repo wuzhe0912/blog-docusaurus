@@ -4,7 +4,7 @@ title: '📜 DOM Basic'
 slug: /dom-basic
 ---
 
-> [Questions](../collection.md/#⚙️-JS--Basics)
+> Questions
 
 ## What's DOM ?
 

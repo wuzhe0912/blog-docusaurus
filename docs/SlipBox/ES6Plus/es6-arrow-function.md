@@ -1,7 +1,7 @@
 ---
-id: arrow-function
+id: es6-arrow-function
 title: '📜 Arrow Function'
-slug: /arrow-function
+slug: /es6-arrow-function
 ---
 
 > _The palest ink is better than the best memory._

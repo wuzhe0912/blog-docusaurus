@@ -1,7 +1,7 @@
 ---
-id: 05-spread-rest
+id: es6-spread-rest
 title: '📜 Spread & Rest'
-slug: /spread-rest
+slug: /es6-spread-rest
 ---
 
 展開與其餘，寫法皆是 "..."。
@@ -23,7 +23,7 @@ const mobile = {
 const apple = {
   ...mobile,
   name: 'iphone',
-  os: 'ios'
+  os: 'ios',
 };
 console.log(apple); // { name: "iphone", year: "2021", os: "ios" }
 ```
@@ -59,6 +59,6 @@ console.log(others); // {job: "ranger", weapon: "bow"}
 
 ```javascript
 const list = ['健達', '77乳加', '德芙', '特趣'];
-const [ first, ...others ] = list;
+const [first, ...others] = list;
 console.log(others); // (3) ["77乳加", "德芙", "特趣"]
 ```

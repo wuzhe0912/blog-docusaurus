@@ -36,7 +36,7 @@ module.exports = {
         },
         {
           type: 'doc',
-          docId: 'Read/summary',
+          docId: 'Read/read-list',
           position: 'left',
           label: 'Read',
         },

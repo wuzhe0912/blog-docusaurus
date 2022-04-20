@@ -1,6 +1,6 @@
 ---
 id: right-click
-title: '🔋 Right Click On Windows Folder'
+title: '📜 Right Click On Windows Folder'
 slug: /right-click
 ---
 

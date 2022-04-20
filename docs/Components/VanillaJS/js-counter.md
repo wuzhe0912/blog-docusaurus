@@ -1,6 +1,6 @@
 ---
 id: js-counter
-title: '📜 Counter'
+title: '📁 Counter'
 slug: /js-counter
 ---
 

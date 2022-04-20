@@ -1,6 +1,6 @@
 ---
 id: three-way-handshake
-title: '🧭 Three Way Handshake'
+title: '📜 Three Way Handshake'
 slug: /three-way-handshake
 ---
 

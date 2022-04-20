@@ -1,6 +1,6 @@
 ---
 id: ip-dns-port
-title: 🧭 IP, DNS and Port
+title: 📜 IP, DNS and Port
 slug: /ip-dns-port
 ---
 

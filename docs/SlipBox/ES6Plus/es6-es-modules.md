@@ -1,7 +1,7 @@
 ---
-id: 03-es-modules
+id: es6-es-modules
 title: '📜 ES Modules'
-slug: /es-modules
+slug: /es6-es-modules
 ---
 
 現代 `JS` 開發，多已採用 `component` 的形式來組成專案。
@@ -51,11 +51,7 @@ export {
 承上，`as`語法同樣能運用在匯入的時機：
 
 ```javascript
-import {
-  deviceName as device,
-  productDetail,
-  mobileList,
-} from './utils.js';
+import { deviceName as device, productDetail, mobileList } from './utils.js';
 
 console.log(device, productDetail); // 'iPhone' '德芙巧克力'
 ```

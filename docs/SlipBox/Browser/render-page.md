@@ -1,6 +1,6 @@
 ---
 id: render-page
-title: '🌐 Process of rendering page'
+title: '📜 Process of rendering page'
 slug: /render-page
 ---
 

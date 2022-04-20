@@ -1,6 +1,6 @@
 ---
 id: cmder
-title: '🔋 Cmder'
+title: '📜 Cmder'
 slug: /cmder
 ---
 

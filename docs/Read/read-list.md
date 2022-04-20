@@ -1,7 +1,7 @@
 ---
-id: summary
-title: Summary
-slug: /summary
+id: read-list
+title: 📦 Notes
+slug: /read-list
 ---
 
 ## Quick Summary

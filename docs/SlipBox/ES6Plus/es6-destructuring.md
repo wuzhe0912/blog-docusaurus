@@ -1,7 +1,7 @@
 ---
-id: 01-destructuring
+id: es6-destructuring
 title: '📜 Destructuring'
-slug: /destructuring
+slug: /es6-destructuring
 ---
 
 一種更容易取值的方式。
@@ -10,7 +10,7 @@ slug: /destructuring
 
 ```javascript
 const data = {
-  player: "Pitt",
+  player: 'Pitt',
   str: 20,
   agi: 30,
 };
@@ -23,10 +23,10 @@ console.log(data.str); // 印出 20
 const data = {
   player: 'Pitt',
   str: 20,
-  agi: 30
-}
-const { player, str, agi } = data
-console.log(player, str, agi) // Pitt 20 30
+  agi: 30,
+};
+const { player, str, agi } = data;
+console.log(player, str, agi); // Pitt 20 30
 ```
 
 透過 `key` 將物件中的資料解構出來。
@@ -40,12 +40,12 @@ const data = {
   player: 'Pitt',
   str: 20,
   agi: 30,
-}
+};
 const playerData = {
   data,
   newPlayer: 'Numi',
-}
-console.log(playerData)
+};
+console.log(playerData);
 ```
 
 印出以下展開結果
@@ -66,8 +66,8 @@ console.log(playerData)
 從陣列中進行解構取值時，會採用依序的方式：
 
 ```javascript
-const list = ['德芙', '77乳加', '特趣', '健達', '明治']
-const [ first, second ] = list;
+const list = ['德芙', '77乳加', '特趣', '健達', '明治'];
+const [first, second] = list;
 console.log(first); // 德芙
 console.log(second); // 77乳加
 ```

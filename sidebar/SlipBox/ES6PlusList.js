@@ -1,13 +1,12 @@
 module.exports = {
   type: 'category',
-  label: 'ES6+',
+  label: 'ES6Plus',
   items: [
-    'SlipBox/ES6/00-arrow-function',
-    'SlipBox/ES6/01-destructuring',
-    'SlipBox/ES6/02-let-const',
-    'SlipBox/ES6/03-es-modules',
-    'SlipBox/ES6/04-function-default',
-    'SlipBox/ES6/05-spread-rest',
-    'SlipBox/ES6/06-template-literals',
+    'SlipBox/ES6Plus/es6-arrow-function',
+    'SlipBox/ES6Plus/es6-destructuring',
+    'SlipBox/ES6Plus/es6-es-modules',
+    'SlipBox/ES6Plus/es6-function-default',
+    'SlipBox/ES6Plus/es6-spread-rest',
+    'SlipBox/ES6Plus/es6-template-literals',
   ],
 };

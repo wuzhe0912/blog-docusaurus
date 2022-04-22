@@ -59,8 +59,8 @@ module.exports = {
           title: 'Docs',
           items: [
             {
-              label: 'Frontend',
-              to: '/docs/collection',
+              label: 'SlipBox',
+              to: '/docs/slip-box-notes',
             },
           ],
         },

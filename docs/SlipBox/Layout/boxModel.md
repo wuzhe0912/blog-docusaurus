@@ -1,7 +1,7 @@
 ---
-id: box-model
+id: boxModel
 title: '📜 Box Model'
-slug: /box-model
+slug: /boxModel
 ---
 
 ## Default

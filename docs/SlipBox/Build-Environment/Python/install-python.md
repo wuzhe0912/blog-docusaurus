@@ -1,7 +1,7 @@
 ---
-id: 00-python-install
-title: 🎃 Install
-slug: /python-install
+id: install-python
+title: '📜 Install Python'
+slug: /install-python
 ---
 
 > _It's never too late to learn._

@@ -1,6 +1,6 @@
 ---
 id: tiktok
-title: 📜 TikTok Questions
+title: '☕ TikTok Questions'
 slug: /tiktok
 ---
 
@@ -128,7 +128,6 @@ slug: /tiktok
 
 - [ ] 請實作節流函式。
 - [ ] 請實作防抖函式。
-- [ ]
 - [ ] 如何減少白屏時間 ?
 - [ ] 請試說明前端性能優化指標(RAIL)。
 - [ ] 承上題，你能提出哪些前端性能優化的方法 ?

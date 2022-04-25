@@ -1,12 +1,8 @@
 ---
-id: 1-grammar
-description: PHP 基礎語法
-slug: /grammar
+id: php-basic-grammar
+title: Basic Grammar
+slug: /php-basic-grammar
 ---
-
-# Grammar (基礎語法)
-
-> 記錄 `PHP` 基礎語法。
 
 ## Hello PHP
 

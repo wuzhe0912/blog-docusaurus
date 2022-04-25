@@ -1,6 +1,6 @@
 ---
 id: install-nvm
-title: 📦 Install(NVM)
+title: '📜 Install NVM'
 slug: /install-nvm
 ---
 

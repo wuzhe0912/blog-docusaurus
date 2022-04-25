@@ -1,10 +1,8 @@
 ---
-id: 3-array-operating
-description: PHP Array Operating
-slug: /array-operating
+id: php-array-operating
+title: Array Operating
+slug: /php-array-operating
 ---
-
-# Array (陣列操作)
 
 ## array_column
 

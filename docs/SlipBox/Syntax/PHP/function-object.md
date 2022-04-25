@@ -1,12 +1,10 @@
 ---
-id: 2-function-object
-description: PHP Function & Object
-slug: /function-object
+id: php-function-object
+title: Function & Object
+slug: /php-function-object
 ---
 
-# Function & Object (函式與物件)
-
-## function (函式)
+## Function
 
 其實和 `js` 差異不大，建立一個 `function`，並在當中聲明一些變數，回傳執行結果，並印出來：
 

@@ -1,7 +1,7 @@
 ---
-id: 00-php-install
-title: ⛰️ Install
-slug: /php-install
+id: install-php
+title: '📜 Install PHP'
+slug: /install-php
 ---
 
 > _Little money, few friends._

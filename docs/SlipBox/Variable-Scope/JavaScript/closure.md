@@ -137,7 +137,7 @@ obj.add(); // print 2
 
 ### First Solution : return variable
 
-這邊不使用 [Arrow Function](../ES6+/arrow-function.md)，改用一般 function 的形式。
+這邊不使用 Arrow Function，改用一般 function 的形式。
 
 ```javascript
 function plus() {

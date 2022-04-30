@@ -1,6 +1,6 @@
 ---
 id: read-list
-title: 📦 Notes
+title: 📦 Read
 slug: /read-list
 ---
 

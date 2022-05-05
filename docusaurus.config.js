@@ -30,6 +30,12 @@ module.exports = {
         },
         {
           type: 'doc',
+          docId: 'Interview/interview-notes',
+          position: 'left',
+          label: 'Interview',
+        },
+        {
+          type: 'doc',
           docId: 'Components/components-list',
           position: 'left',
           label: 'Components',

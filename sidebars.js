@@ -1,6 +1,4 @@
 // Slip-Box
-// -- interview --
-const InterviewList = require('./sidebar/SlipBox/InterviewList');
 // -- Layout & styles --
 const CSSWorldList = require('./sidebar/SlipBox/CSSWorldList');
 const LayoutList = require('./sidebar/SlipBox/LayoutList');
@@ -13,6 +11,9 @@ const ES6PlusList = require('./sidebar/SlipBox/ES6PlusList');
 const NetworkList = require('./sidebar/SlipBox/NetworkList');
 const BrowserList = require('./sidebar/SlipBox/BrowserList');
 const ToolsList = require('./sidebar/SlipBox/ToolsList');
+
+// Interview
+const InterviewList = require('./sidebar/SlipBox/InterviewList');
 
 // Components
 const VanillaJSList = require('./sidebar/Components/VanillaJSList');

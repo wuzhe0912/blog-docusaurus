@@ -41,6 +41,7 @@ module.exports = {
     // -- tools --
     ToolsList,
   ],
+  Interview: ['Interview/interview-list', 'Interview/network-browser'],
   Components: ['Components/components-list', VanillaJSList],
   Read: ['Read/read-list', HistoryList, ProgramsList],
 };

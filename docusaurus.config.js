@@ -46,11 +46,11 @@ module.exports = {
           position: 'left',
           label: 'Read',
         },
-        // { to: '/blog', label: 'Blog', position: 'left' },
-        // {
-        //   type: 'localeDropdown',
-        //   position: 'right',
-        // },
+        { to: '/blog', label: 'Blog', position: 'left' },
+        {
+          type: 'localeDropdown',
+          position: 'right',
+        },
         {
           href: 'https://github.com/wuzhe0912/docusaurus-blog',
           label: 'GitHub',
@@ -122,7 +122,7 @@ module.exports = {
     ],
   ],
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en', 'zh-tw', 'zh-cn'],
+    defaultLocale: 'zh-tw',
+    locales: ['zh-tw', 'en'],
   },
 };

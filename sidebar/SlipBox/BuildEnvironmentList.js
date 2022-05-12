@@ -3,6 +3,11 @@ module.exports = {
   label: 'Build-Environment',
   items: [
     {
+      TypeScript: [
+        'SlipBox/Build-Environment/TypeScript/ts-setting-environment',
+      ],
+    },
+    {
       Node: ['SlipBox/Build-Environment/Node/install-nvm'],
     },
     {

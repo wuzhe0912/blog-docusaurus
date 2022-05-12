@@ -4,8 +4,6 @@ title: '📜 Install NVM'
 slug: /install-nvm
 ---
 
-> _My son, the day you were born, the very forests of Lordaeron whispered the name..."Arthas"._
-
 ## Node Version Manager
 
 Use nvm control node version, record how to use command install and switch version.

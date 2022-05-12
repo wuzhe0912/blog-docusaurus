@@ -30,23 +30,11 @@ module.exports = {
         },
         {
           type: 'doc',
-          docId: 'Interview/interview-notes',
+          docId: 'RoadMap/road-map-notes',
           position: 'left',
-          label: 'Interview',
+          label: 'RoadMap',
         },
-        {
-          type: 'doc',
-          docId: 'Components/components-list',
-          position: 'left',
-          label: 'Components',
-        },
-        {
-          type: 'doc',
-          docId: 'Read/read-list',
-          position: 'left',
-          label: 'Read',
-        },
-        { to: '/blog', label: 'Blog', position: 'left' },
+        // { to: '/blog', label: 'Blog', position: 'left' },
         {
           type: 'localeDropdown',
           position: 'right',

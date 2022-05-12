@@ -1,6 +1,6 @@
 ---
 id: inline-block
-title: '📜 Inline and Block'
+title: '🌺 Inline and Block'
 slug: /inline-block
 ---
 

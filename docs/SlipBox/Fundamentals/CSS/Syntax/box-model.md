@@ -1,7 +1,7 @@
 ---
-id: boxModel
-title: '📜 Box Model'
-slug: /boxModel
+id: css-box-model
+title: '🌺 Box Model'
+slug: /css-box-model
 ---
 
 ## Default
@@ -33,9 +33,9 @@ div {
 
 ## border-box
 
-顯然這種方式並不可靠，會使前端開發時被迫需要一直計算寬高，為了改善開發體驗，需要改採另一模式。
+顯然上述這種方式並不可靠，會使前端開發時，被迫需要一直計算元素寬高，為了改善開發體驗，自然得改採另一模式，即 `border-box`。
 
-如下，在初始化時將 `box-sizing` 的值設為 `border-box` :
+如下例，在樣式初始化時將全體元素 `box-sizing` 的值設為 `border-box` :
 
 ```css
 * {

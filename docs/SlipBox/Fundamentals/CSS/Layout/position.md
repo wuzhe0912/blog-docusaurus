@@ -1,6 +1,6 @@
 ---
 id: position
-title: '📜 Position'
+title: '🌺 Position'
 slug: /position
 ---
 

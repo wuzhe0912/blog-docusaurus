@@ -1,10 +1,8 @@
 ---
-id: 00-setting-environment
-title: '📹 Setting Environment'
-slug: /setting-environment
+id: ts-setting-environment
+title: 'Setting Environment'
+slug: /ts-setting-environment
 ---
-
-> _There's a nip in the air, cold won't be good for my crops._
 
 ## Init Project
 
@@ -270,9 +268,7 @@ npm install clean-webpack-plugin -D
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  plugins: [
-    new CleanWebpackPlugin(),
-  ],
+  plugins: [new CleanWebpackPlugin()],
 };
 ```
 
@@ -320,8 +316,8 @@ The compiled file is difficult to read. If it runs normally before compilation, 
 
 ```javascript
 module.exports = {
-  devtool: "source-map",
-}
+  devtool: 'source-map',
+};
 ```
 
 ## Asset Modules

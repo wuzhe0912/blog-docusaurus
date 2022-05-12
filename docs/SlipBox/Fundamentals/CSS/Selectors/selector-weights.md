@@ -1,7 +1,7 @@
 ---
-id: select-weight
-title: '📜 Select Weight'
-slug: /select-weight
+id: selector-weights
+title: '🌺 Selector Weights'
+slug: /selector-weights
 ---
 
 ## Intro

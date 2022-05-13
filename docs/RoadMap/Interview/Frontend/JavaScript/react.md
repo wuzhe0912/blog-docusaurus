@@ -1,7 +1,7 @@
 ---
-id: js-frameworks-questions
-title: '☕ Frameworks Questions'
-slug: /js-frameworks-questions
+id: vue-questions
+title: '☕ Vue.js Questions'
+slug: /vue-questions
 ---
 
 ## ⚙️ Vue.js

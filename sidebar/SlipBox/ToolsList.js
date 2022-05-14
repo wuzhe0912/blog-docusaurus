@@ -4,8 +4,6 @@ module.exports = {
   items: [
     {
       Terminal: ['SlipBox/Tools/Terminal/cmder'],
-    },
-    {
       VSCode: ['SlipBox/Tools/VSCode/right-click'],
     },
   ],

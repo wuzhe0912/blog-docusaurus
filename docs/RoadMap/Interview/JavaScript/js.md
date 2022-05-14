@@ -1,13 +1,13 @@
 ---
-id: vanilla-js-questions
-title: '☕ JS Questions'
-slug: /vanilla-js-questions
+id: js-questions
+title: '☕ Vanilla JS'
+slug: /js-questions
 ---
 
 ## ⚙️ Basic
 
 - [x] What's `DOM tree` ?
-- [x] [Why `0.1 + 0.2 !== 0.3` ?
+- [x] [Why `0.1 + 0.2 !== 0.3` ?]
 - [ ] `apply` 和 `call` 的作用與區別 ?
 - [ ] What is `Prototype Chain(原型鏈)` ?
 - [ ] What is `instance` ?

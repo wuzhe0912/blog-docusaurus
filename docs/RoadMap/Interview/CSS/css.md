@@ -1,7 +1,7 @@
 ---
-id: html-css-questions
-title: '☕ Frameworks Questions'
-slug: /html-css-questions
+id: css-questions
+title: '☕ CSS'
+slug: /css-questions
 ---
 
 ## ⚙️ CSS World

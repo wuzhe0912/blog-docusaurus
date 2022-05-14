@@ -1,6 +1,6 @@
 ---
 id: react-developer
-title: '☕ React Developer'
+title: '☑️ React Developer'
 slug: /react-developer
 ---
 

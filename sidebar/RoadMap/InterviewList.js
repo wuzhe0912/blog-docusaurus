@@ -6,9 +6,13 @@ module.exports = {
       CSS: ['RoadMap/Interview/CSS/css-questions'],
       JavaScript: [
         'RoadMap/Interview/JavaScript/js-questions',
-        'RoadMap/Interview/JavaScript/vue-questions',
         'RoadMap/Interview/JavaScript/react-questions',
+        {
+          Closure: [],
+          IIFE: [],
+        },
       ],
+      Vue: ['RoadMap/Interview/Vue/vue-questions'],
     },
   ],
 };

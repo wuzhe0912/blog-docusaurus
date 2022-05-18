@@ -12,7 +12,7 @@ module.exports = {
           IIFE: [],
         },
       ],
-      Vue: ['RoadMap/Interview/Vue/vue-questions'],
+      Vue: ['RoadMap/Interview/Vue/vue-basic', 'RoadMap/Interview/Vue/vue-api'],
     },
   ],
 };

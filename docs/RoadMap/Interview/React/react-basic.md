@@ -1,10 +1,8 @@
 ---
-id: react-questions
-title: '☕ React'
-slug: /react-questions
+id: react-basic
+title: '☕ Basic'
+slug: /react-basic
 ---
-
-## ⚙️ Basic
 
 - [ ] 請舉例解釋什麼是 `HOC(高階組件)` ?
 - [ ] `React` 的合成事件是什麼 ? 與原生事件的差別 ?

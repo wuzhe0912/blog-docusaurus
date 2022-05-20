@@ -29,14 +29,6 @@ slug: /js-questions
 
 - [x] What's `Closure` ?
 
-## ⚙️ Hoisting(變量提升)
-
-- [ ] What's `Hoisting` ?
-
-## ⚙️ IIFE(立即執行函式)
-
-- [x] What's `IIFE` ?
-
 ## ⚙️ Asynchronous(非同步)
 
 - [x] What's the difference between async and defer ?

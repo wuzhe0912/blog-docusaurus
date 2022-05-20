@@ -18,11 +18,9 @@ module.exports = {
         {
           DOM: ['SlipBox/Fundamentals/JavaScript/DOM/dom-basic'],
           Basics: ['SlipBox/Fundamentals/JavaScript/Basics/async-defer'],
-          Scope: ['SlipBox/Fundamentals/JavaScript/Scope/scope-of-variables'],
         },
       ],
       ES6Plus: [
-        'SlipBox/Fundamentals/ES6Plus/es6-arrow-function',
         'SlipBox/Fundamentals/ES6Plus/es6-destructuring',
         'SlipBox/Fundamentals/ES6Plus/es6-es-modules',
         'SlipBox/Fundamentals/ES6Plus/es6-function-default',

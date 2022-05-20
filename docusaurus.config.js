@@ -7,7 +7,7 @@ const currentYear = new Date().getFullYear();
 module.exports = {
   title: `Pitt Wu's Docusaurus`,
   tagline: '',
-  url: 'https://pitt-docusaurus.netlify.app',
+  url: 'https://pitt-wu-blog.vercel.app',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -35,10 +35,10 @@ module.exports = {
           label: 'RoadMap',
         },
         // { to: '/blog', label: 'Blog', position: 'left' },
-        {
-          type: 'localeDropdown',
-          position: 'right',
-        },
+        // {
+        //   type: 'localeDropdown',
+        //   position: 'right',
+        // },
         {
           href: 'https://github.com/wuzhe0912/docusaurus-blog',
           label: 'GitHub',
@@ -71,7 +71,7 @@ module.exports = {
       copyright: `Copyright © 2017 - ${currentYear} Pitt Wu Built with Docusaurus.`,
     },
     colorMode: {
-      defaultMode: 'dark',
+      defaultMode: 'light',
     },
     prism: {
       theme: lightCodeTheme,

@@ -14,5 +14,5 @@ module.exports = {
     ToolsList,
     BuildEnvironmentList,
   ],
-  RoadMap: ['RoadMap/road-map-notes', RoadMapList, InterviewList],
+  RoadMap: ['RoadMap/road-map-notes', InterviewList, RoadMapList],
 };

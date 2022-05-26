@@ -22,7 +22,7 @@ code .
 
 切到 `app.js` 試寫入以下內容:
 
-```javascript
+```js
 const app = 'Hello Node.js';
 
 console.log(app);
@@ -38,16 +38,16 @@ node app.js
 
 再來我們嘗試套入迴圈:
 
-```javascript
+```js
 for (let i = 0; i < 5; i++) {
   console.log(i);
-};
+}
 ```
 
 同樣執行 `node app.js`，除了剛剛 `Hello Node.js`，還能看到數字 `0~4` 被依序印出來。
 
-## __filename
+## \_\_filename
 
-```javascript
+```js
 console.log(__filename);
 ```

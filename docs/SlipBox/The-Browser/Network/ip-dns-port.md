@@ -14,7 +14,7 @@ In computer, everything is composed of 0 and 1, this smallest unit is also calle
 
 When I arrange to 8 numbers of 0 and 1. I can get :
 
-```javascript
+```js
 2^8=256   // 0~255
 ```
 

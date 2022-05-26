@@ -8,7 +8,7 @@ slug: /boardcast-event
 
 > 當某個使用者輸入訊息發送到 server 後，若當前環境為留言板或公共頻道，server 端則必須推播訊息給該名使用者以外的所有人。雖然聽起來好像不好處理，但其實只要利用 socket 建立連線後永久傳輸的特性，server 端透過 `emit()` 向 client 推播轉發，client 則保持用 `on()` 監聽變化。
 
-```javascript
+```js
 // server.js
 io.on('connection', (socket) => {
   console.log(`Server：${socket.id}`);
@@ -20,7 +20,7 @@ io.on('connection', (socket) => {
 });
 ```
 
-```javascript
+```js
 // handler.js
 const connectSocketIoServer = () => {
   socket = io('/');
@@ -28,8 +28,8 @@ const connectSocketIoServer = () => {
   // ...
 
   socket.on('group-chat-message', (data) => {
-    console.log(data)
-  })
+    console.log(data);
+  });
 };
 ```
 
@@ -41,7 +41,7 @@ const connectSocketIoServer = () => {
 
 需要渲染即時的訊息內容，同樣透過操作 DOM 來塞入 HTML，這邊補上一個之前漏掉的 function。
 
-```javascript
+```js
 // element.js
 const getChatMessageContent = (data) => {
   const { author, messageText } = data;
@@ -66,7 +66,7 @@ export default {
 
 接著，需要將這段 HTML 同樣透過 append 的方式塞到對話框的訊息列表中。
 
-```javascript
+```js
 // ui.js
 const appendChatMessage = (data) => {
   const groupChatMessage = document.getElementById(messageContainerID);
@@ -82,7 +82,7 @@ export default {
 
 導出的 `appendChatMessage()` 只是生成靜態的 HTML，仍需要傳入資料來顯示動態內容，所以將其拉到 handler.js 導入：
 
-```javascript
+```js
 // handler.js
 import ui from '../ui.js';
 

@@ -10,7 +10,7 @@ slug: /es6-spread-rest
 
 定義一個物件：
 
-```javascript
+```js
 const mobile = {
   name: 'android',
   year: '2021',
@@ -19,7 +19,7 @@ const mobile = {
 
 透過展開語法，複製到新的物件：
 
-```javascript
+```js
 const apple = {
   ...mobile,
   name: 'iphone',
@@ -30,7 +30,7 @@ console.log(apple); // { name: "iphone", year: "2021", os: "ios" }
 
 將原先的物件進行複製後，新增到新的物件中，如果兩者有重複的屬性時，新物件覆蓋掉舊物件相同屬性欄位。同樣的，展開語法也能用於複製陣列：
 
-```javascript
+```js
 const number = [1, 2, 3];
 const newNumber = [...number, 3, 4, 5];
 console.log(newNumber); // (6) [1, 2, 3, 3, 4, 5]
@@ -45,7 +45,7 @@ console.log(newList); // (6) ["a", "b", "c", "c", "d", "e"]
 
 相比展開語法是解壓縮的概念，其餘語法則是壓縮。當解構時出取出部分資料，可以透過其餘語法，將剩下的欄位壓縮到一組變數中：
 
-```javascript
+```js
 const player = {
   name: 'Pitt',
   job: 'ranger',
@@ -57,7 +57,7 @@ console.log(others); // {job: "ranger", weapon: "bow"}
 
 同理也能運作在陣列上：
 
-```javascript
+```js
 const list = ['健達', '77乳加', '德芙', '特趣'];
 const [first, ...others] = list;
 console.log(others); // (3) ["77乳加", "德芙", "特趣"]

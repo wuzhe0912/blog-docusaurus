@@ -12,7 +12,7 @@ slug: /send-message-to-room
 
 同樣先從 ui 出發，檢查使用者是否在房間中輸入訊息，監聽鍵盤事件，當觸發時則傳遞訊息資料給 handler.js。
 
-```javascript
+```js
 // ui.js
 const createRoomChat = () => {
   // ...
@@ -41,7 +41,7 @@ const createRoomChat = () => {
 
 handler 將取得的資料透過 emit 轉發給 server-side，同時建立 socket 連線。
 
-```javascript
+```js
 // handler.js
 const sendRoomMessage = (data) => {
   socket.emit('room-message', data);
@@ -50,7 +50,7 @@ const sendRoomMessage = (data) => {
 
 server-side 除了監聽 `connection()`，將房間 ID 存入外，同時也得將它再轉發回 handler.js，方便中介層重新遞給 ui.js。
 
-```javascript
+```js
 // server.js
 socket.on('room-message', (data) => {
   const { roomId } = data;
@@ -59,7 +59,7 @@ socket.on('room-message', (data) => {
 });
 ```
 
-```javascript
+```js
 // handler.js
 socket.on('room-message', (data) => {
   ui.appendRoomChatMessage(data);
@@ -70,7 +70,7 @@ socket.on('room-message', (data) => {
 
 渲染的部分就和公共頻道類似，無論是抓取 DOM 和動態塞入資料都是一樣的邏輯。
 
-```javascript
+```js
 // ui.js
 const appendRoomChatMessage = (data) => {
   const { roomId, author, messageContent } = data;
@@ -90,7 +90,6 @@ export default {
   // ...
   appendRoomChatMessage,
 };
-
 ```
 
 ![send message to room](https://i.imgur.com/ixdVdFG.gif)

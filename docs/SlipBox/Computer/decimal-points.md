@@ -10,7 +10,7 @@ slug: /decimal-points
 
 在多數的程式語言中，包含 JS 在內，當我們檢測這段數字時都會拿到 false 的結果 :
 
-```javascript
+```js
 0.1 + 0.2 == 0.3 // false
 
 # or
@@ -24,7 +24,7 @@ slug: /decimal-points
 
 但因為這些尾數都非常龐大，所以我無意在這邊過度深入，僅知道電腦計算 0.1 和 0.2 這兩個小數時，拿到的近似值都略大於該數。
 
-```javascript
+```js
 0.1 => 0.10000000000000000555
 0.2 => 0.2000000000000000111
 ```
@@ -37,7 +37,7 @@ slug: /decimal-points
 
 > [math.js](https://github.com/josdejong/mathjs)
 
-```javascript
+```js
 const math = require('mathjs');
 
 const a = 0.1;
@@ -49,7 +49,7 @@ console.log(math.format(math.bignumber(a)), math.bignumber(b)); // result 0.3
 
 > [decimal.js](https://github.com/MikeMcl/decimal.js)
 
-```javascript
+```js
 const Decimal = require('decimal.js');
 
 const a = new Decimal(0.1);
@@ -60,7 +60,7 @@ console.log(a.plus(b).toString()); // result 0.3
 
 > [big.js](https://github.com/MikeMcl/big.js/)
 
-```javascript
+```js
 const Big = require('big.js');
 const a = new Big(0.1);
 const b = 0.2;
@@ -72,7 +72,7 @@ console.log(a.plus(b).toString()); // result 0.3 => type = string
 
 > [Number.prototype.toFixed()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed)
 
-```javascript
+```js
 parseFloat((0.1 + 0.2).toFixed(2)); // result 0.3
 ```
 

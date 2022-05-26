@@ -14,7 +14,7 @@ slug: /scope-of-variables
 
 為了理解上面這段解釋，透過下面的 code 來查看 :
 
-```javascript
+```js
 // function scope
 
 function checkScope() {
@@ -28,7 +28,7 @@ console.log(a); // print a is not defined
 console.log(b); // print 20
 ```
 
-```javascript
+```js
 // block scope
 
 function checkScope() {
@@ -48,13 +48,13 @@ console.log(b); // print b is not defined
 
 在前面有提到，當使用 const 宣告的常數，雖然無法被重新賦值。但在`object` 和 `array` 中，仍可以額外塞入資料。
 
-```javascript
+```js
 const a = { player: 'Pitt' };
 a.newPlayer = 'Kuki';
 console.log(a); // { player: "Pitt", newPlayer: "Kuki" }
 ```
 
-```javascript
+```js
 const b = [1, 2, 3];
 b.push(4);
 console.log(b); // [1, 2, 3, 4]

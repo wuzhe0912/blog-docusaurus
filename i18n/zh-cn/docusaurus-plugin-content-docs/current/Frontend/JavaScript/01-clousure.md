@@ -18,7 +18,7 @@ slug: /clousure
 
 > 建立符合下述條件的 `function`
 
-```javascript
+```js
 // question
 plus(2, 5); // output 7
 plus(2)(5); // output 7
@@ -26,7 +26,7 @@ plus(2)(5); // output 7
 
 > 第一種解法，利用分拆的方式處理:
 
-```javascript
+```js
 function plus(value, subValue) {
   return value + subValue;
 }
@@ -34,7 +34,7 @@ function plus(value, subValue) {
 console.log(plus(2, 5));
 ```
 
-```javascript
+```js
 // 利用子函式可以保存變數的特性進行 return
 
 function plus(value) {
@@ -50,7 +50,7 @@ console.log(plus(2)(5));
 
 > 第二種解法，我們導入條件判斷，這樣就能達成一個 `function` 來解決兩個問題:
 
-```javascript
+```js
 function plus(value, subValue) {
   if (arguments.length > 1) {
     return value + subValue;
@@ -71,7 +71,7 @@ console.log(plus(2)(5));
 
 > Please implement a counter
 
-```javascript
+```js
 // 利用閉包的特性，將數字遞增
 
 function plus() {
@@ -79,13 +79,13 @@ function plus() {
 }
 
 var obj = plus();
-obj.add() // 印出 1
-obj.add() // 印出 2
+obj.add(); // 印出 1
+obj.add(); // 印出 2
 ```
 
 > 第一種解法:
 
-```javascript
+```js
 function plus() {
   let cash = 0;
   let counter = {
@@ -106,7 +106,7 @@ obj.add();
 
 > 第二種解法:
 
-```javascript
+```js
 function plus() {
   let cash = 0;
   return {

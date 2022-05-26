@@ -14,14 +14,14 @@ slug: /build-page
 
 ```markdown
 📦public
- ┣ 📂js
- ┃ ┗ 📜client.js
- ┗ 📜index.html
+┣ 📂js
+┃ ┗ 📜client.js
+┗ 📜index.html
 ```
 
 > 切到 root 下的 server.js 改寫部分內容，透過 use() 這個中介層來掛載剛剛建立的靜態資料。
 
-```javascript
+```js
 const express = require('express');
 const http = require('http');
 
@@ -50,7 +50,7 @@ server.listen(PORT, () => {
 
 先在 client.js 埋下 `console.log()`，並在 index.html 引入 client.js。
 
-```javascript
+```js
 // client.js
 console.log('this is client');
 ```
@@ -70,7 +70,6 @@ console.log('this is client');
     <script src="./js/client.js"></script>
   </body>
 </html>
-
 ```
 
 現在我需要運行測試一下是否正常。
@@ -92,30 +91,30 @@ open localhost:5000
 切到 index.html 並貼上 script
 
 ```html
-  <body>
-    <h3>This is Client Side.</h3>
-    //...
+<body>
+  <h3>This is Client Side.</h3>
+  //...
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="./js/client.js"></script>
-  </body>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="./js/client.js"></script>
+</body>
 ```
 
 進到 client.js，寫入以下內容
 
-```javascript
+```js
 // listen client
 const socket = io('/');
 
 socket.on('connect', (server) => {
-  console.log(server)
+  console.log(server);
   console.log(`Client Successfully connected：${socket.id}`);
 });
 ```
 
 回到 server.js：
 
-```javascript
+```js
 // listen & receive client connection
 io.on('connection', (socket) => {
   console.log(`Server：${socket.id}`);

@@ -44,7 +44,7 @@ slug: /set-username
   justify-content: center;
   width: 580px;
   height: 300px;
-  background: linear-gradient(96.78deg, #7CB8F7 0%, #2A8BF2 100%);
+  background: linear-gradient(96.78deg, #7cb8f7 0%, #2a8bf2 100%);
   border-radius: 6px;
 }
 
@@ -57,7 +57,7 @@ slug: /set-username
 .enter-btn {
   width: 120px;
   height: 30px;
-  background: linear-gradient(92.68deg, #7CB8F7 0%, #2A8BF2 100%);
+  background: linear-gradient(92.68deg, #7cb8f7 0%, #2a8bf2 100%);
   border-radius: 6px;
   color: #fff;
   margin-top: 12px;
@@ -71,13 +71,13 @@ slug: /set-username
 
 切換到 client.js，先抓取 input 的 class
 
-```javascript
+```js
 const nameInput = document.querySelector('.enter-input');
 ```
 
 因為可以預期這個輸入框的動作，是讓使用者輸入名稱，所以需要監聽輸入的動作
 
-```javascript
+```js
 nameInput.addEventListener('keyup', (e) => {
   console.log(e.target.value);
 });
@@ -97,7 +97,7 @@ nameInput.addEventListener('keyup', (e) => {
 
 切到 store.js 輸入以下內容
 
-```javascript
+```js
 let username = null;
 
 const getUserName = () => {
@@ -120,7 +120,7 @@ export default {
 <script type="module" src="./js/client.js"></script>
 ```
 
-```javascript
+```js
 // client.js
 import store from './store.js';
 
@@ -131,7 +131,7 @@ nameInput.addEventListener('keyup', (e) => {
 });
 ```
 
-```javascript
+```js
 // store.js
 
 const setUserName = (value) => {

@@ -10,15 +10,15 @@ slug: /function-default
 
 假設建立一組 `function` 將陣列中的每個元素轉為 `string`：
 
-```javascript
+```js
 const ArrayToString = (array) => {
-  if(!array) array = []
+  if (!array) array = [];
   const mapString = array.map((item) => {
-    return item.toString()
-  })
-  return mapString
-}
-console.log(ArrayToString([1, 2, 3]))
+    return item.toString();
+  });
+  return mapString;
+};
+console.log(ArrayToString([1, 2, 3]));
 ```
 
 如果 `API` 送的資料為空陣列，則會造成執行 `map` 時跳 `error`，因此過往需要在函式，添加`if`來進行判斷。
@@ -27,24 +27,24 @@ console.log(ArrayToString([1, 2, 3]))
 
 透過設定 `default` 值，則可以省略 `if` 判斷式：
 
-```javascript
+```js
 const ArrayToString = (array = []) => {
   const mapString = array.map((item) => {
-    return item.toString()
-  })
-  return mapString
-}
-console.log(ArrayToString())
+    return item.toString();
+  });
+  return mapString;
+};
+console.log(ArrayToString());
 ```
 
 如此則會回傳預設值，不至於報錯卡住無法執行。
 
 ## 簡寫寫法
 
-```javascript
+```js
 const ArrayToString = (array = []) => {
-  const mapString = array.map((item) => item.toString())
-  return mapString
-}
-console.log(ArrayToString([2, 4, 6]))
+  const mapString = array.map((item) => item.toString());
+  return mapString;
+};
+console.log(ArrayToString([2, 4, 6]));
 ```

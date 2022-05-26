@@ -17,7 +17,10 @@ module.exports = {
           IIFE: ['RoadMap/Interview/JavaScript/IIFE/IIFE-basic'],
         },
       ],
-      ES6Plus: ['RoadMap/Interview/ES6Plus/es6-arrow-function'],
+      ES6Plus: [
+        'RoadMap/Interview/ES6Plus/es6-arrow-function',
+        'RoadMap/Interview/ES6Plus/es6-template-literals',
+      ],
       Vue: [
         'RoadMap/Interview/Vue/vue-basic',
         'RoadMap/Interview/Vue/vue-api',

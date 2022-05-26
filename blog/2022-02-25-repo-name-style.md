@@ -14,24 +14,24 @@ Unified use of lowercase letters.
 
 ### 常態應用(例如個人技術 blog)
 
-```javascript
+```js
 ${功能}-${技術框架名稱}`
 ```
 
 ### example (筆記示範)
 
-```javascript
+```js
 ${功能}-example-${技術框架名稱}
 ```
 
 ### 小型 demo 展示
 
-```javascript
+```js
 ${功能}-app-${技術框架名稱}
 ```
 
 ### component (組件)
 
-```javascript
+```js
 ${功能}-component-${技術框架名稱}
 ```

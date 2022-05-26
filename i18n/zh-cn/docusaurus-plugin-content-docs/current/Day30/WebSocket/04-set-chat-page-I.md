@@ -13,18 +13,18 @@ slug: /set-chat-page-I
 先處理結構
 
 ```html
-  <body>
-    <main class="wrapper">
-      <section class="enter-box">
-        <input type="text" class="enter-input" placeholder="Create New Name" />
-        <button type="button" class="enter-btn">Enter Chat</button>
-      </section>
-      <section class="chat-box display-none">
-        <span class="username-label"></span>
-        <div class="chat-container"></div>
-      </section>
-    </main>
-  </body>
+<body>
+  <main class="wrapper">
+    <section class="enter-box">
+      <input type="text" class="enter-input" placeholder="Create New Name" />
+      <button type="button" class="enter-btn">Enter Chat</button>
+    </section>
+    <section class="chat-box display-none">
+      <span class="username-label"></span>
+      <div class="chat-container"></div>
+    </section>
+  </main>
+</body>
 ```
 
 這兩個 section 可以理解為兩個 component，前者用來顯示進入頁面，後者則是聊天頁面。另外，為了處理轉換頁面後的差異，添加簡單的 CSS 來隱藏或顯示內容。
@@ -49,7 +49,7 @@ slug: /set-chat-page-I
 
 同樣使用[上一章](https://pitt-docusaurus.netlify.app/docs/set-username#set-name)寫的 `nameInput()` 來進一步監聽 click 事件。
 
-```javascript
+```js
 nameInput.addEventListener('keyup', (e) => {
   store.setUserName(e.target.value);
 
@@ -74,7 +74,7 @@ touch ui.js
 
 ![ui.js](https://i.imgur.com/1FFbpjy.png)
 
-```javascript
+```js
 // ui.js
 const goToChat = () => {
   const enterPage = document.querySelector('.enter-box');
@@ -89,7 +89,7 @@ const goToChat = () => {
 
 除了切換頁面外，也需要將剛剛輸入的使用者名稱顯示出來，所以這時就要調用 `store.js` 中預存的 username，使用 `getUserName()`。再取得 username 之後，同樣是操作 DOM 來進行顯示，最後則是匯出，準備讓 client.js 使用。
 
-```javascript
+```js
 // ui.js
 import store from './store.js';
 
@@ -111,7 +111,7 @@ export default {
 
 回到 client.js，讓 click 事件觸發時，調用 `goToChat()`，進而達到我們的目的。
 
-```javascript
+```js
 import ui from './ui.js';
 
 // ...

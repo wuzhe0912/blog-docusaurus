@@ -10,38 +10,38 @@ slug: /template-literals
 
 需要透過 `+` 號還有空格來明確區分參數和字串：
 
-```javascript
+```js
 const playerData = (name, job) => {
-  return '玩家名稱：' + name + '，職業：' + job
-}
-console.log(playerData('Pitt', '戰士'))
+  return '玩家名稱：' + name + '，職業：' + job;
+};
+console.log(playerData('Pitt', '戰士'));
 ```
 
 ## 字符串模板寫法
 
-```javascript
+```js
 // 將 '' 改為 ``，參數則透過 ${} 進行包裹
 const playerData = (name, job) => {
-  return `玩家名稱：${name}，職業：${job}`
-}
-console.log(playerData('Pitt', '戰士'))
+  return `玩家名稱：${name}，職業：${job}`;
+};
+console.log(playerData('Pitt', '戰士'));
 ```
 
 同時字串模板也支援換行功能，當字串模板為換行時，顯示時也同時會換行：
 
-```javascript
+```js
 const playerData = (name, job) => {
   return `
   玩家名稱：${name}
   ，職業：${job}
-  `
-}
-console.log(playerData('Pitt', '戰士'))
+  `;
+};
+console.log(playerData('Pitt', '戰士'));
 ```
 
 加減乘除計算。
 
-```javascript
+```js
 const favoritePhone = 'iPhone 20 Max Pro';
 const currentPrice = 60000;
 console.log(`${favoritePhone} is ${currentPrice * 0.7} now.`);
@@ -49,13 +49,13 @@ console.log(`${favoritePhone} is ${currentPrice * 0.7} now.`);
 
 填入 `HTML`。
 
-```javascript
+```js
 const group = `
   <div class="container">
     <label>
       <input type="checkbox"> Checked
     </label>
   </div>
-`
+`;
 document.body.innerHTML = group;
 ```

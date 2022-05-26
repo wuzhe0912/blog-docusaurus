@@ -12,7 +12,7 @@ slug: /let-const
 
 - example 1:
 
-```javascript
+```js
 if (true) {
   var name = 'Pitt';
 }
@@ -21,7 +21,7 @@ console.log(name); // 印出 Pitt
 
 - example 2:
 
-```javascript
+```js
 var array = [2, 4, 6];
 if (true) {
   var array = [2];
@@ -37,7 +37,7 @@ console.log(array); // 印出 [2]
 
 - example 1:
 
-```javascript
+```js
 if (true) {
   let name = 'Pitt';
 }
@@ -46,7 +46,7 @@ console.log(name); // 印出 name is not defined
 
 - example 2:
 
-```javascript
+```js
 let array = [2, 4, 6];
 if (true) {
   let array = [2];
@@ -62,7 +62,7 @@ console.log(array); // 印出 [2, 4, 6]
 
 - example:
 
-```javascript
+```js
 if (true) {
   const text = 'game';
   text = 'new game';
@@ -76,7 +76,7 @@ if (true) {
 
 - example：
 
-```javascript
+```js
 const a = { player: 'Pitt' };
 a = 'Yuki';
 console.log(a); // error Assignment to constant variable.
@@ -86,7 +86,7 @@ console.log(a); // error Assignment to constant variable.
 
 - example 1：
 
-```javascript
+```js
 const a = { player: 'Pitt' };
 a.newPlayer = 'Kuki';
 console.log(a); // { player: "Pitt", newPlayer: "Kuki" }
@@ -94,7 +94,7 @@ console.log(a); // { player: "Pitt", newPlayer: "Kuki" }
 
 - example 2：
 
-```javascript
+```js
 const b = [1, 2, 3];
 b.push(4);
 console.log(b); // [1, 2, 3, 4]

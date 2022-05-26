@@ -21,14 +21,6 @@ slug: /js-questions
 - [ ] `history` 和 `hash` 兩種路由方式最大的區別是什麼 ?
 - [ ] 適配器和外觀模式的區別 ?
 
-## ⚙️ Scope(作用域)
-
-- [x] What's `variable scope` ?
-
-## ⚙️ Closure(閉包)
-
-- [x] What's `Closure` ?
-
 ## ⚙️ Asynchronous(非同步)
 
 - [x] What's the difference between async and defer ?

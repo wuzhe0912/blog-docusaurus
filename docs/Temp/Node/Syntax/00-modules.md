@@ -22,7 +22,7 @@ code .
 
 Switch to `app.js` writing something like this :
 
-```javascript
+```js
 const app = 'Hello Node.js';
 
 console.log(app);
@@ -38,7 +38,7 @@ We can see terminal print `Hello Node.js`, this is most basic use node.js run js
 
 Now, try to run loop.
 
-```javascript
+```js
 for (let i = 0; i < 5; i++) {
   console.log(i);
 }
@@ -52,7 +52,7 @@ node.js api provide `__filename` to check current file position. And `__dirname`
 
 Notice, these can't run in browser, terminal only.
 
-```javascript
+```js
 console.log(__filename);
 console.log(__dirname);
 ```
@@ -75,7 +75,7 @@ cd player
 touch index.js player1.js player2.js
 ```
 
-```javascript
+```js
 // player1.js
 function barbarian(name) {
   console.log(`Hello Barbarin : ${name}`);
@@ -98,7 +98,7 @@ exports.witchDoctor = player2.witchDoctor;
 
 Switch to `app.js`, import `player` folder, now can use all function in the `player` folder.
 
-```javascript
+```js
 // app.js
 const player = require('./player');
 
@@ -112,7 +112,7 @@ player.witchDoctor('Paul');
 
 Use `path` to check current file location, and use `join()` to stuff in the parameters into the path.
 
-```javascript
+```js
 const path = require('path');
 
 let target = path.join(__dirname, 'test.js');
@@ -127,7 +127,7 @@ Other api use method can also be found in the official documentation.
 
 Use `url` api can parse url path and return url object, include protocol, host and path such as.
 
-```javascript
+```js
 const url = require('url');
 
 const blogURL = 'https://pitt-docusaurus.netlify.app/docs/modules';
@@ -144,7 +144,7 @@ Use `fs` can record what happens when past in the system. Convenient for checkin
 
 Here, I try to build a markdown file and write something.
 
-```javascript
+```js
 const fs = require('fs');
 
 fs.writeFile('player.md', 'Test write Markdown file.', (e) => {
@@ -156,7 +156,7 @@ fs.writeFile('player.md', 'Test write Markdown file.', (e) => {
 
 read it.
 
-```javascript
+```js
 fs.readFile('./player.md', 'utf-8', (e, data) => {
   if (e) throw e;
   console.log(data);

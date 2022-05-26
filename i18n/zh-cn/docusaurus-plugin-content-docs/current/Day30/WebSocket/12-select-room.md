@@ -31,7 +31,7 @@ slug: /select-room
   width: 200px;
   height: 30px;
   border-radius: 6px;
-  margin-bottom: 12px;  // add
+  margin-bottom: 12px; // add
 }
 
 .enter-btn {
@@ -44,7 +44,7 @@ slug: /select-room
 
 先在 stroe 建立 function，用於保存 room 的 ID，方便存取使用。同時將原先的 code，進行合併整理。
 
-```javascript
+```js
 // store.js
 let username = null;
 let socketId = null;
@@ -76,7 +76,7 @@ export default {
 
 當使用者點擊下拉選單時，監聽他所選擇的項目，並將該項目的值存入 store。
 
-```javascript
+```js
 // client.js
 const roomSelect = document.getElementById('rooms-select');
 
@@ -89,7 +89,7 @@ roomSelect.addEventListener('change', (e) => {
 
 維持使用 `register-new-user` 這組 socket，替原先傳入的 userData 多增加一組 roomId。
 
-```javascript
+```js
 // handler.js
 const registerActiveSession = () => {
   const userData = {
@@ -100,7 +100,7 @@ const registerActiveSession = () => {
 };
 ```
 
-```javascript
+```js
 // server.js
 socket.on('register-new-user', (userData) => {
   const { username, roomId } = userData;
@@ -121,7 +121,7 @@ socket.on('register-new-user', (userData) => {
 
 頁面渲染的部分，基本 copy 公共頻道的做法，只是調整傳入的 id，讓頻道顯示名稱改為對應的房間名。
 
-```javascript
+```js
 // ui.js
 const goToChat = () => {
   // ...

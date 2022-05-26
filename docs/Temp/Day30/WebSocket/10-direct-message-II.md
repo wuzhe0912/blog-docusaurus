@@ -13,16 +13,16 @@ slug: /direct-message-II
 先將 HTML 和 CSS 進行部分調整，並添加簡單樣式，方便待會直接套用在動態生成的內容上。
 
 ```html
-  <body>
-    <main class="wrapper">
-      // ...
-      <section class="chat-box display-none">
-        <p class="username-text">
-          登入的使用者：<span class="username-label"></span>
-        </p>
-      </section>
-    </main>
-  </body>
+<body>
+  <main class="wrapper">
+    // ...
+    <section class="chat-box display-none">
+      <p class="username-text">
+        登入的使用者：<span class="username-label"></span>
+      </p>
+    </section>
+  </main>
+</body>
 ```
 
 ```css
@@ -57,7 +57,7 @@ slug: /direct-message-II
 
 當玩家 A 對玩家 B 發送私人訊息時，server-side 先檢查接收訊息的一方是否還在聊天頁面中，並建立一組 socket 發給中介層。
 
-```javascript
+```js
 // server.js
 socket.on('direct-message', (data) => {
   const { receiverSocketId } = data;
@@ -78,7 +78,7 @@ socket.on('direct-message', (data) => {
 
 中介層監聽收到資料後，轉給 ui 的函式 `appendDirectChatMessage()` 使用。
 
-```javascript
+```js
 // handler.js
 socket.on('direct-message', (data) => {
   ui.appendDirectChatMessage(data);
@@ -89,7 +89,7 @@ socket.on('direct-message', (data) => {
 
 在 ui.js 使用資料前，仍要先準備好動態 render 的 HTML。除了傳入文字訊息內容，同時也檢查目前頁面 render 的部分，屬於訊息發送者還是接收者，再根據狀態決定樣式。
 
-```javascript
+```js
 // element.js
 const getDirectChatMessage = (data) => {
   const { textContent, alighRight } = data;
@@ -104,7 +104,7 @@ const getDirectChatMessage = (data) => {
 
 ui.js 接收到中介層的資料後進行解構，根據狀態決定抓取接收者或是發送者的 ID。
 
-```javascript
+```js
 // ui.js
 const appendDirectChatMessage = (messageData) => {
   const { authorSocketId, author, messageContent, receiverSocketId, isAuthor } =

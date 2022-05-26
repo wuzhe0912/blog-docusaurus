@@ -10,7 +10,7 @@ slug: /es6-function-default
 
 假設建立一組 `function` 將陣列中的每個元素轉為 `string`：
 
-```javascript
+```js
 const ArrayToString = (array) => {
   if (!array) array = [];
   const mapString = array.map((item) => {
@@ -27,7 +27,7 @@ console.log(ArrayToString([1, 2, 3]));
 
 透過設定 `default` 值，則可以省略 `if` 判斷式：
 
-```javascript
+```js
 const ArrayToString = (array = []) => {
   const mapString = array.map((item) => {
     return item.toString();
@@ -41,7 +41,7 @@ console.log(ArrayToString());
 
 ## 簡寫寫法
 
-```javascript
+```js
 const ArrayToString = (array = []) => {
   const mapString = array.map((item) => item.toString());
   return mapString;

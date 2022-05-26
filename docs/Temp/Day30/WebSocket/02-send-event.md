@@ -12,7 +12,7 @@ slug: /send-event
 
 首先，我們在 server.js 使用之前建立的 `connection()` 撰寫要發出的訊息：
 
-```javascript
+```js
 // server.js
 io.on('connection', (socket) => {
   // ...
@@ -22,7 +22,7 @@ io.on('connection', (socket) => {
 
 因為命名的 event 為 `hello-client`，所以接收訊息的 client.js 也必須使用相同命名。
 
-```javascript
+```js
 // client.js
 socket.on('hello-client', (server) => {
   console.log(`Client Receive：${server}`);
@@ -39,7 +39,7 @@ socket.on('hello-client', (server) => {
 
 但我們希望是兩端都能接收和發送，所以接下來我需要反向操作，由 client 端傳給 server 端。
 
-```javascript
+```js
 // client.js
 socket.on('hello-client', (server) => {
   // ...
@@ -47,7 +47,7 @@ socket.on('hello-client', (server) => {
 });
 ```
 
-```javascript
+```js
 // server.js
 io.on('connection', (socket) => {
   // ...

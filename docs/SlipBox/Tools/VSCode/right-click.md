@@ -22,7 +22,7 @@ If ignore this option and install it directly, you can add VS Code to the menu i
 
 Create a vscode.txt file and paste the following content into vscode.txt.
 
-```javascript
+```js
 Windows Registry Editor Version 5.00
 
 [HKEY_CLASSES_ROOT\*\shell\Open with VS Code]

@@ -43,7 +43,7 @@ table-layout: fixed;
 - 盡可能在較低層級的 DOM 節點上來改動樣式，避免因為觸發父元素樣式變動，導致其下所有子元素全部被影響。
 - 不應該操作 DOM 去逐一調整樣式，而是應該將需要改變的樣式透過 class 定義好之後，再透過 JS 進行切換。
 
-```javascript
+```js
 // bad
 const element = document.querySelector('.wrapper');
 element.style.margin = '4px';
@@ -51,7 +51,7 @@ element.style.padding = '6px';
 element.style.borderRadius = '10px';
 ```
 
-```javascript
+```js
 // good
 .update {
   margin: 4px;

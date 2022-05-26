@@ -14,9 +14,9 @@ slug: /direct-message-I
 
 ## Emit Message
 
-抓取輸入框的 DOM，監聽輸入訊息的動作，當送出時(即按下 Enter 事件)，記錄訊息的作者名，作者ID，訊息內容，接收方的ID。並且同樣轉給中介層。
+抓取輸入框的 DOM，監聽輸入訊息的動作，當送出時(即按下 Enter 事件)，記錄訊息的作者名，作者 ID，訊息內容，接收方的 ID。並且同樣轉給中介層。
 
-```javascript
+```js
 // ui.js
 const newMessageInput = document.getElementById(messageInputID);
 newMessageInput.addEventListener('keydown', (e) => {
@@ -45,7 +45,7 @@ newMessageInput.addEventListener('keydown', (e) => {
 
 中介層透過同一組 `sendDirectMessage()` 拿到資料後，一樣透過 emit 發給 server-side。並且建立一組 socket(`direct-message`)。
 
-```javascript
+```js
 const sendDirectMessage = (data) => {
   socket.emit('direct-message', data);
 };
@@ -55,7 +55,7 @@ const sendDirectMessage = (data) => {
 
 server-side 很單純地透過 `on()` 達到監聽的目的，並輸出在 terminal 上。
 
-```javascript
+```js
 socket.on('direct-message', (data) => {
   console.log('direct-message', data);
 });

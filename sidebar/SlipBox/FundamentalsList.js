@@ -14,19 +14,6 @@ module.exports = {
           Layout: ['SlipBox/Fundamentals/CSS/Layout/position'],
         },
       ],
-      JavaScript: [
-        {
-          DOM: ['SlipBox/Fundamentals/JavaScript/DOM/dom-basic'],
-          Basics: ['SlipBox/Fundamentals/JavaScript/Basics/async-defer'],
-        },
-      ],
-      ES6Plus: [
-        'SlipBox/Fundamentals/ES6Plus/es6-destructuring',
-        'SlipBox/Fundamentals/ES6Plus/es6-es-modules',
-        'SlipBox/Fundamentals/ES6Plus/es6-function-default',
-        'SlipBox/Fundamentals/ES6Plus/es6-spread-rest',
-        'SlipBox/Fundamentals/ES6Plus/es6-template-literals',
-      ],
       PHP: [
         'SlipBox/Fundamentals/PHP/php-basic-grammar',
         'SlipBox/Fundamentals/PHP/php-function-object',

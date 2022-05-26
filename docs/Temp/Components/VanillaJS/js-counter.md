@@ -68,7 +68,7 @@ slug: /js-counter
 
 ### 抓取指定的元素建立變數
 
-```javascript
+```js
 // Variables
 const addNumber = document.querySelector('.cheveron-up');
 const reduceNumber = document.querySelector('.cheveron-down');
@@ -77,7 +77,7 @@ const numberDisplay = document.querySelector('.cheveron-number');
 
 ### 透過 event 事件測試是否成功抓取元素
 
-```javascript
+```js
 addNumber.addEventListener('click', (e) => {
   console.log('up', e);
 });
@@ -95,7 +95,7 @@ reduceNumber.addEventListener('click', (e) => {
 
 不過獲取出來的內容會是 `string`，所以我們必須透過 `Number()` 方法將其轉為 `number`，這樣才能進行加減計算。
 
-```javascript
+```js
 addNumber.addEventListener('click', () => {
   const currentNumber = Number(numberDisplay.textContent);
   numberDisplay.textContent = currentNumber + 1;

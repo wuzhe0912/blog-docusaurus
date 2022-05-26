@@ -30,7 +30,7 @@ touch src/index.js webpack.config.js
 
 Now you can see the structure as follows.
 
-```javascript
+```js
  ┣ 📂src
  ┃ ┗ 📜index.js
  ┣ 📜.gitignore
@@ -42,7 +42,7 @@ Now you can see the structure as follows.
 
 Use node.js path api to generate dist in output bundle and setting entry file.
 
-```javascript
+```js
 // webpack.config.js
 
 const path = require('path');
@@ -58,7 +58,7 @@ module.exports = {
 
 writing something
 
-```javascript
+```js
 // src/index.js
 
 console.log('test webpack');
@@ -66,7 +66,7 @@ console.log('test webpack');
 
 Setting scripts
 
-```javascript
+```js
 // package.json
 {
   "scripts": {
@@ -106,7 +106,7 @@ And content is follows as:
 
 In `webpack.config.js` you can pass through the `devServer` setting parameter.
 
-```javascript
+```js
 module.exports = {
   mode: 'development',
   // ...
@@ -135,7 +135,7 @@ npm install css-loader style-loader -D
 
 setting webpack.config.js
 
-```javascript
+```js
 module.exports = {
   // ...
   module: {
@@ -169,7 +169,7 @@ body {
 
 `index.js`
 
-```javascript
+```js
 import './styles/index.css';
 ```
 
@@ -179,7 +179,7 @@ restart `npm run dev` , can see page background is blue.
 
 I will add `[hash]` in output, because need every `npm run build` can generate a hash name js file, avoid browser cache same file name, Cause client-side page is not update.
 
-```javascript
+```js
 module.exports = {
   output: {
     // ...
@@ -216,7 +216,7 @@ Delete dist folder and return root directory, mkdir index.html and create conten
 
 setting html-webpack-plugin
 
-```javascript
+```js
 module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
@@ -236,7 +236,7 @@ test `npm run build` you can see the dist folder will auto generated HTML, JS fi
 npm install mini-css-extract-plugin -D
 ```
 
-```javascript
+```js
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
@@ -264,7 +264,7 @@ After using hash, the file name generated will be different each time. After lon
 npm install clean-webpack-plugin -D
 ```
 
-```javascript
+```js
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
@@ -284,7 +284,7 @@ npm install babel-loader @babel/core @babel/preset-env -D
 touch babel.config.json
 ```
 
-```javascript
+```js
 module.exports = {
   // ...
   module: {
@@ -314,7 +314,7 @@ setting babel.config.json
 
 The compiled file is difficult to read. If it runs normally before compilation, but an error occurs after compilation, then you need the source-map to view the source code.
 
-```javascript
+```js
 module.exports = {
   devtool: 'source-map',
 };
@@ -324,7 +324,7 @@ module.exports = {
 
 Similarly, webpack cannot directly read files such as images, and these files are collectively classified into Assets and used through settings.
 
-```javascript
+```js
 module.exports = {
   module: {
     rules: [
@@ -360,7 +360,7 @@ Between the two will conflict, so need to change the default search extension fi
 
 In the rules, need to add node_modules to exclude is to avoid affecting. After all, not every plugin uses Typescript.
 
-```javascript
+```js
 module.exports = {
   entry: './src/index.ts',
   resolve: {

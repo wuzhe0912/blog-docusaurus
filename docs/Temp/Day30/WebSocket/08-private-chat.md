@@ -16,7 +16,7 @@ slug: /build-private-chat
 
 另外補充，當使用者登入啟動連線後，連線 socket 的 id 也會被保存 store.js 中，方便隨時可以使用。
 
-```javascript
+```js
 // handler.js
 import store from '../store.js';
 
@@ -39,7 +39,7 @@ const registerActiveSession = () => {
 
 預先保留狀態使用的 function。
 
-```javascript
+```js
 // store.js
 let socketId = null;
 let activeChatGroup = [];
@@ -56,14 +56,13 @@ export default {
   getActiveChatGroup,
   setActiveChatGroup,
 };
-
 ```
 
 ## Server
 
 當 server-side 透過監聽拿到資料後，可以組出一個物件，包含使用 `socket.id` 當作唯一值的 key，以及 username。每登入一個使用者，就建立一組物件，並將這些物件透過其餘的方式，push 到外層宣告的陣列 `connectPeers`，最後再經 `boardcastConnectedPeers()` 將陣列作為參數轉發回 handler.js。
 
-```javascript
+```js
 // server.js
 let connectPeers = [];
 
@@ -101,7 +100,7 @@ client-side 拿到傳輸過來的資料後進行拆解，首先去 store 調出�
 
 最後將篩選過的物件，同樣透過其餘的方式，push 到 stroe 內保存的陣列，讓下一次使用者登入觸發時，可以再次使用。
 
-```javascript
+```js
 const updateActiveChatGroup = (data) => {
   const { connectPeers } = data;
   const userSocketId = store.getSocketId();

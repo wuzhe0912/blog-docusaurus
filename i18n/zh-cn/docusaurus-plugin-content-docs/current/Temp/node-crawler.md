@@ -1,6 +1,6 @@
 ---
 id: node-crawler
-description: About Crawler with Node.js 
+description: About Crawler with Node.js
 slug: /node-crawler
 ---
 
@@ -24,7 +24,7 @@ yarn add selenium-webdriver
 
 在 `index.js` 下寫入以下內容，測試自動運行
 
-```javascript
+```js
 const webdriver = require('selenium-webdriver');
 
 async function openCrawlerWeb() {

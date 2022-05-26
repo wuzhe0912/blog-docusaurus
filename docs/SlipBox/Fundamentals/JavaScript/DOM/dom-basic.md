@@ -29,7 +29,7 @@ slug: /dom-basic
 
 抓取對應 `id` 名稱的元素，而通常 `id` 應為唯一值，所以這會是一個有效獲取元素的方法 :
 
-```javascript
+```js
 const myApp = document.getElementById('app');
 ```
 
@@ -37,7 +37,7 @@ const myApp = document.getElementById('app');
 
 雖然是抓取 `class name`，但會回傳一個陣列，陣列中會包含所有相同 `class name` 的元素。
 
-```javascript
+```js
 const container = document.getElementsByClassName('container');
 ```
 
@@ -45,7 +45,7 @@ const container = document.getElementsByClassName('container');
 
 承上，同樣是回傳陣列，但差別在於，他抓取指定名稱的標籤。
 
-```javascript
+```js
 const buttons = document.getElementsByTagName('button');
 ```
 
@@ -53,7 +53,7 @@ const buttons = document.getElementsByTagName('button');
 
 字如其名，查詢選擇器的名稱，因此寫法上就如同 `CSS` :
 
-```javascript
+```js
 const btns = document.querySelector('.btn');
 ```
 
@@ -61,7 +61,7 @@ const btns = document.querySelector('.btn');
 
 查找所有相同選擇器名稱的元素，並回傳到同一陣列中 :
 
-```javascript
+```js
 const btn = document.querySelectorAll('.btn');
 ```
 

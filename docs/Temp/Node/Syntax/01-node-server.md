@@ -10,7 +10,7 @@ slug: /node-server
 
 I want to build a basic server in localhost.
 
-```javascript
+```js
 // app.js
 
 const http = require('http');
@@ -33,7 +33,7 @@ Run terminal `node app.js` and open browser, you will see the output on page.
 
 Sometimes we want to switch between different page, such as home or product. Therefore we need get the URL parameters from current page.
 
-```javascript
+```js
 const url = require('url');
 
 const server = http.createServer((req, res) => {
@@ -52,7 +52,7 @@ const server = http.createServer((req, res) => {
 
 If I want to return HTML tag, I must follow the writing format.
 
-```javascript
+```js
 const server = http.createServer((req, res) => {
   if (req.url === '/') {
     res.writeHead(200, { 'Content-Type': 'text/html' });
@@ -70,7 +70,7 @@ Restart Cmder and refresh browser, can see h1 tag is render on page.
 
 Under the structure of MVC, HTML is passed to the client through the server. So we can use `fs` to read the html file.
 
-```javascript
+```js
 const fs = require('fs');
 const path = require('path');
 

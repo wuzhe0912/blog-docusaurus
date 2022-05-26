@@ -10,7 +10,7 @@ slug: /es6-es-modules
 
 透過直接定義變數後匯出：
 
-```javascript
+```js
 <!-- 建立 tools.js 這個檔案並直接定義變數並匯出 -->
 export const price = 1500;
 
@@ -21,7 +21,7 @@ export const sellFunc = () => {
 
 匯入檔案：
 
-```javascript
+```js
 import { price, sellFunc } from './tools.js';
 
 sellFunc(price); // 價格：1500
@@ -29,7 +29,7 @@ sellFunc(price); // 價格：1500
 
 另一方面，也可以先將變數全部定義好，在統一匯出：
 
-```javascript
+```js
 <!-- utils.js -->
 const deviceName = 'iPhone';
 const mobileList = ['Samsung', 'Apple', 'Oppo'];
@@ -50,7 +50,7 @@ export {
 
 承上，`as`語法同樣能運用在匯入的時機：
 
-```javascript
+```js
 import { deviceName as device, productDetail, mobileList } from './utils.js';
 
 console.log(device, productDetail); // 'iPhone' '德芙巧克力'
@@ -58,7 +58,7 @@ console.log(device, productDetail); // 'iPhone' '德芙巧克力'
 
 需要注意一點，若非使用打包工具建立的環境下，一般`script`無法判別`module`，需再加上`type`：
 
-```javascript
+```js
 <script type="module" src="./js/index.js"></script>
 ```
 
@@ -66,14 +66,14 @@ console.log(device, productDetail); // 'iPhone' '德芙巧克力'
 
 實名匯出在匯入時，必須變數名稱相對應，因此開發時必須要確認匯出的變數有哪些，才能進入匯入的動作，如果希望改成先不管匯出的變數名稱，而是可以直接匯入的話，則使用預設匯出：
 
-```javascript
+```js
 <!-- tools.js -->
 export default ['Samsung', 'Apple', 'Oppo'];
 ```
 
 匯入時名稱可自定義：
 
-```javascript
+```js
 import list from './tools';
 
 console.log(list); // (3) ['Samsung', 'Apple', 'Oppo']
@@ -81,7 +81,7 @@ console.log(list); // (3) ['Samsung', 'Apple', 'Oppo']
 
 在實名匯出時，包裹的{}並非物件，但在預設匯出時接的{}就是物件，所以`as`語法在預設匯出無法使用：
 
-```javascript
+```js
 <!-- utils.js -->
 const device = 'iPhone';
 const number = 600;
@@ -94,7 +94,7 @@ export default {
 
 因為匯出時是物件，所以在匯入後，也必須以物件的形式操作：
 
-```javascript
+```js
 import myPhone from './utils';
 
 const { number } = myPhone;

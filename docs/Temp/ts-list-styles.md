@@ -8,7 +8,7 @@ slug: /list-styles
 
 Folder structure
 
-```javascript
+```js
 📦src
  ┣ 📂api
  ┃ ┗ 📜fetch.ts
@@ -115,7 +115,7 @@ Video data use googleapis provide video.json.
 
 > [source](http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/videos.json)
 
-```javascript
+```js
 // fetch.ts
 
 const url =
@@ -147,13 +147,14 @@ Use `map()` will return array, so page is render comma, add `join()` return stri
 
 Use HTML5 `data-*attribute` to store data. When click event you can use `getAttribute()` to get data.
 
-```javascript
+```js
 // main.ts
 
 import fetchApi from './api/fetch';
 
 const videoArray = fetchApi.videos;
-const imgUrl = 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/';
+const imgUrl =
+  'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/';
 
 const listItem = videoArray
   .map((video) => {
@@ -168,7 +169,8 @@ const listItem = videoArray
         </div>
       </li>
     `;
-  }).join('');
+  })
+  .join('');
 
 const listWrapper = document.querySelector('.list-wrapper');
 listWrapper.innerHTML = listItem;

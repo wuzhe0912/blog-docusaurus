@@ -43,7 +43,7 @@ yarn init
 安裝 express 來建立 server，同時使用老牌的 socket.io 來實作。
 
 ```bash
-yarn add express socket.io 
+yarn add express socket.io
 ```
 
 ### touch file
@@ -60,7 +60,7 @@ touch server.js
 
 在 server.js 寫入以下內容來建立本地的 server
 
-```javascript
+```js
 const express = require('express');
 const app = express();
 
@@ -73,7 +73,7 @@ app.listen(Port, () => {
 
 切換到終端機，執行以下指令，確認 server 已經被建立，印出 console
 
-```javascript
+```js
 node server.js
 ```
 
@@ -87,7 +87,7 @@ yarn add nodemon -D
 
 同時我在 `package.json` 建立 scripts:
 
-```javascripton
+```json
 "scripts": {
   "dev": "nodemon server.js"
 },

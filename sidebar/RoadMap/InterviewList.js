@@ -21,14 +21,18 @@ module.exports = {
         'RoadMap/Interview/ES6Plus/es6-arrow-function',
         'RoadMap/Interview/ES6Plus/es6-template-literals',
       ],
-      Vue: [
-        'RoadMap/Interview/Vue/vue-basic',
-        'RoadMap/Interview/Vue/vue-api',
-        'RoadMap/Interview/Vue/vue-props',
-        'RoadMap/Interview/Vue/vue-router',
-        'RoadMap/Interview/Vue/vue-vuex',
+      Frameworks: [
+        {
+          General: [
+            'RoadMap/Interview/JS-Frameworks/General/js-frameworks-general-basic',
+          ],
+          Lifecycle: [
+            'RoadMap/Interview/JS-Frameworks/Lifecycle/lifecycle-basic',
+          ],
+          Props: ['RoadMap/Interview/JS-Frameworks/Props/props-basic'],
+          Router: ['RoadMap/Interview/JS-Frameworks/Router/router-basic'],
+        },
       ],
-      React: ['RoadMap/Interview/React/react-basic'],
     },
   ],
 };

@@ -4,12 +4,6 @@ title: '☕ Basic'
 slug: /react-basic
 ---
 
-### 1. What's the React ?
-
-### 2. What's the features of React ? What are the advantages and disadvantages ?
-
-### 3. What's the JSX ? Why can't the browser read JSX ?
-
 <!-- - [ ] 請舉例解釋什麼是 `HOC(高階組件)` ?
 - [ ] `React` 的合成事件是什麼 ? 與原生事件的差別 ?
 - [ ] `React` 中為什麼需要合成事件 ?

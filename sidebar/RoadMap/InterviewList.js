@@ -22,15 +22,11 @@ module.exports = {
         'RoadMap/Interview/ES6Plus/es6-template-literals',
       ],
       Frameworks: [
+        'RoadMap/Interview/JS-Frameworks/js-frameworks-general-basic',
+        'RoadMap/Interview/JS-Frameworks/lifecycle-basic',
+        'RoadMap/Interview/JS-Frameworks/props-basic',
         {
-          General: [
-            'RoadMap/Interview/JS-Frameworks/General/js-frameworks-general-basic',
-          ],
-          Lifecycle: [
-            'RoadMap/Interview/JS-Frameworks/Lifecycle/lifecycle-basic',
-          ],
-          Props: ['RoadMap/Interview/JS-Frameworks/Props/props-basic'],
-          Router: ['RoadMap/Interview/JS-Frameworks/Router/router-basic'],
+          Router: ['RoadMap/Interview/JS-Frameworks/Router/vue-router'],
         },
       ],
     },

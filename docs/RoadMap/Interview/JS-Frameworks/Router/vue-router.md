@@ -1,6 +1,6 @@
 ---
 id: vue-router
-title: '☕ Router'
+title: '☕ Vue Router'
 slug: /vue-router
 ---
 

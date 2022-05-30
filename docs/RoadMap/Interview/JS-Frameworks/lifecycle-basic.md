@@ -1,6 +1,6 @@
 ---
 id: lifecycle-basic
-title: '☕ Basic'
+title: '☕ Lifecycle'
 slug: /lifecycle-basic
 ---
 
@@ -46,3 +46,5 @@ slug: /lifecycle-basic
 - mounted：DOM 元素素掛載完成，資料渲染到畫面上。
 
 ## ⚙️ React
+
+### 1. Please explain the lifecycle of React

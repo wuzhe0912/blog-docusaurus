@@ -1,6 +1,6 @@
 ---
 id: props-basic
-title: '☕ Basic'
+title: '☕ Props'
 slug: /props-basic
 ---
 
@@ -76,3 +76,5 @@ export default {
 在上述中，button 會顯示`傳遞內容`文字，但如果今天將父層的資料移除，則會顯示`預設內容`文字。額外需要注意一點，如果引入的 component 採用駝峰式命名，在 template 時需要改為 dash 的間隔形式，避免和 HTML 標籤產生相同命名的錯誤。
 
 ## ⚙️ React
+
+### 1. What’s the difference between `state` and `props` ?

@@ -4,7 +4,7 @@ title: '☕ Scope of Variables'
 slug: /scope-of-variables
 ---
 
-### What’s the difference between var, let, const ?
+### 1. What’s the difference between var, let, const ?
 
 在理解變數作用域之前，需要先知道目前 JS 宣告變數的方式
 
@@ -44,7 +44,7 @@ console.log(b); // print b is not defined
 
 顯然，當使用 var 來做變數宣告時，會衝出判斷式的界線，導致汙染變數的問題，反之，let and const 則沒有這個問題，因此目前開發建議僅採用 let or const。
 
-### About `const`
+#### About `const`
 
 在前面有提到，當使用 const 宣告的常數，雖然無法被重新賦值。但在`object` 和 `array` 中，仍可以額外塞入資料。
 

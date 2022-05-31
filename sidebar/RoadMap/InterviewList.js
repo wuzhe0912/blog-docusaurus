@@ -3,6 +3,7 @@ module.exports = {
   label: 'Interview Questions',
   items: [
     {
+      Review: ['RoadMap/Interview/Review/review-list'],
       CSS: ['RoadMap/Interview/CSS/css-questions'],
       JavaScript: [
         {
@@ -22,11 +23,25 @@ module.exports = {
         'RoadMap/Interview/ES6Plus/es6-template-literals',
       ],
       Frameworks: [
-        'RoadMap/Interview/JS-Frameworks/js-frameworks-general-basic',
-        'RoadMap/Interview/JS-Frameworks/lifecycle-basic',
-        'RoadMap/Interview/JS-Frameworks/props-basic',
         {
+          React: ['RoadMap/Interview/JS-Frameworks/React/react-common'],
+          Vue: [
+            'RoadMap/Interview/JS-Frameworks/Vue/vue-common',
+            'RoadMap/Interview/JS-Frameworks/Vue/vue-api',
+          ],
+          Lifecycle: [
+            'RoadMap/Interview/JS-Frameworks/Lifecycle/vue-lifecycle',
+            'RoadMap/Interview/JS-Frameworks/Lifecycle/react-lifecycle',
+          ],
+          Props: [
+            'RoadMap/Interview/JS-Frameworks/Props/vue-props',
+            'RoadMap/Interview/JS-Frameworks/Props/react-props',
+          ],
           Router: ['RoadMap/Interview/JS-Frameworks/Router/vue-router'],
+          Store: [
+            'RoadMap/Interview/JS-Frameworks/Store/vuex',
+            'RoadMap/Interview/JS-Frameworks/Store/redux',
+          ],
         },
       ],
     },

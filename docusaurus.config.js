@@ -24,15 +24,15 @@ module.exports = {
       items: [
         {
           type: 'doc',
-          docId: 'SlipBox/slip-box-notes',
-          position: 'left',
-          label: 'SlipBox',
-        },
-        {
-          type: 'doc',
           docId: 'RoadMap/road-map-notes',
           position: 'left',
           label: 'RoadMap',
+        },
+        {
+          type: 'doc',
+          docId: 'SlipBox/slip-box-notes',
+          position: 'left',
+          label: 'SlipBox',
         },
         // { to: '/blog', label: 'Blog', position: 'left' },
         // {

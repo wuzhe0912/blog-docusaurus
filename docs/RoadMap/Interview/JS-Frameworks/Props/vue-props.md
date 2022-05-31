@@ -1,10 +1,8 @@
 ---
-id: props-basic
-title: '☕ Props'
-slug: /props-basic
+id: vue-props
+title: '🏷️ Vue Props'
+slug: /vue-props
 ---
-
-## ⚙️ Vue
 
 ### 1. Why say `Vue.js` is one-way data flow ?
 
@@ -35,7 +33,7 @@ slug: /props-basic
 
 使用方法上，接受傳值的子組件需要在 template 上使用 slot 標籤，這個標籤內的內容，則會渲染父組件傳過來的內容或 DOM 元素。當然，如果父組件沒有傳值，也可以顯示子組件的預設內容。
 
-#### Useage
+#### Usage
 
 ```js
 // father component
@@ -74,7 +72,3 @@ export default {
 ```
 
 在上述中，button 會顯示`傳遞內容`文字，但如果今天將父層的資料移除，則會顯示`預設內容`文字。額外需要注意一點，如果引入的 component 採用駝峰式命名，在 template 時需要改為 dash 的間隔形式，避免和 HTML 標籤產生相同命名的錯誤。
-
-## ⚙️ React
-
-### 1. What’s the difference between `state` and `props` ?

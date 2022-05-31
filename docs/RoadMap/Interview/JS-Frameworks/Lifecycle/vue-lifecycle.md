@@ -1,10 +1,8 @@
 ---
-id: lifecycle-basic
-title: '☕ Lifecycle'
-slug: /lifecycle-basic
+id: vue-lifecycle
+title: '🏷️ Vue Lifecycle'
+slug: /vue-lifecycle
 ---
-
-## ⚙️ Vue
 
 ### 1. Please explain the lifecycle of Vue.js (2.x)
 
@@ -45,6 +43,4 @@ slug: /lifecycle-basic
 - beforeMount：同上一階段，DOM 元素仍為空。
 - mounted：DOM 元素素掛載完成，資料渲染到畫面上。
 
-## ⚙️ React
-
-### 1. Please explain the lifecycle of React
+### 3. What’s the difference between `2.x` and `3.x` ?

@@ -1,6 +1,6 @@
 ---
 id: vue-router
-title: '☕ Vue Router'
+title: '🏷️ Vue Router'
 slug: /vue-router
 ---
 
@@ -37,7 +37,7 @@ SPA 頁面的重點就在於由前端來模擬路由，讓使用者看似在切�
 
 當後端沒有配合設置的狀況下，為什麼使用 hash 模式可行？因為網址列中的 #，在它後面的內容不會經過 server 端，單純只會在 client 處理，因此不受影響。
 
-#### Useage
+#### Usage
 
 倘若專案本身是用來搭建後台 CMS，其實 hash 模式亦不受影響，因為網址美醜不影響使用者。反之，如果今天是產品網頁，會面向一般使用者，則需要配合使用 history 模式。
 

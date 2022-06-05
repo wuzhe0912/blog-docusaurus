@@ -1,6 +1,6 @@
 ---
 id: css-box-model
-title: '🌺 Box Model'
+title: '🏷️ Box Model'
 slug: /css-box-model
 ---
 

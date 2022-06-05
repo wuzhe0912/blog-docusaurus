@@ -3,8 +3,21 @@ module.exports = {
   label: 'Interview Questions',
   items: [
     {
-      Review: ['RoadMap/Interview/Review/review-list'],
-      CSS: ['RoadMap/Interview/CSS/css-questions'],
+      CSS: [
+        {
+          Syntax: [
+            'RoadMap/Interview/CSS/Syntax/css-syntax',
+            'RoadMap/Interview/CSS/Syntax/selector-weights',
+            'RoadMap/Interview/CSS/Syntax/inline-block',
+            'RoadMap/Interview/CSS/Syntax/css3-features',
+            'RoadMap/Interview/CSS/Syntax/css-box-model',
+            'RoadMap/Interview/CSS/Syntax/css-position',
+          ],
+        },
+        {
+          Layout: ['RoadMap/Interview/CSS/Layout/css-layout'],
+        },
+      ],
       JavaScript: [
         {
           Scope: [
@@ -20,6 +33,10 @@ module.exports = {
       ],
       ES6Plus: [
         'RoadMap/Interview/ES6Plus/es6-arrow-function',
+        'RoadMap/Interview/ES6Plus/es6-destructuring',
+        'RoadMap/Interview/ES6Plus/es6-es-modules',
+        'RoadMap/Interview/ES6Plus/es6-function-default',
+        'RoadMap/Interview/ES6Plus/es6-spread-rest',
         'RoadMap/Interview/ES6Plus/es6-template-literals',
       ],
       Frameworks: [

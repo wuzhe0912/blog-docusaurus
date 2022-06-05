@@ -1,6 +1,6 @@
 ---
 id: css3-features
-title: '🌺 CSS3 Features'
+title: '🏷️ CSS3 Features'
 slug: /css3-features
 ---
 

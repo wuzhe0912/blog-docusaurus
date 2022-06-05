@@ -1,6 +1,6 @@
 ---
 id: selector-weights
-title: '🌺 Selector Weights'
+title: '🏷️ Selector Weights'
 slug: /selector-weights
 ---
 

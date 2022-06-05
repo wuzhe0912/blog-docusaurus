@@ -1,6 +1,6 @@
 ---
 id: es6-template-literals
-title: '☕ Template literals'
+title: '📜 Template literals'
 slug: /es6-template-literals
 ---
 

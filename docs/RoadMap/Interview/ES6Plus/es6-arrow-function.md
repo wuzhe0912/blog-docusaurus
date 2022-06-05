@@ -1,6 +1,6 @@
 ---
 id: es6-arrow-function
-title: '☕ Arrow Function'
+title: '📜 Arrow Function'
 slug: /es6-arrow-function
 ---
 

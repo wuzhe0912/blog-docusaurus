@@ -1,7 +1,7 @@
 ---
-id: position
-title: '🌺 Position'
-slug: /position
+id: css-position
+title: '🏷️ Position'
+slug: /css-position
 ---
 
 `static`, `relative`, `absolute`, `sticky`, `fixed` 這些是較為常用的語法。

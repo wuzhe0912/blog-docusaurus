@@ -61,6 +61,14 @@ module.exports = {
           ],
         },
       ],
+      Network: [
+        {
+          Browser: [
+            'RoadMap/Interview/Network/Browser/render-page',
+            'RoadMap/Interview/Network/Browser/reflow-repaint',
+          ],
+        },
+      ],
     },
   ],
 };

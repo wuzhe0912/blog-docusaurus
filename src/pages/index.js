@@ -26,7 +26,7 @@ function HomepageHeader() {
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/slip-box-notes"
+            to="/docs/road-map-notes"
           >
             立即開始 ⏱️
           </Link>

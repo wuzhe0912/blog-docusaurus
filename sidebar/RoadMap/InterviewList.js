@@ -69,6 +69,7 @@ module.exports = {
           ],
         },
       ],
+      Other: ['RoadMap/Interview/Other/temp-01'],
     },
   ],
 };

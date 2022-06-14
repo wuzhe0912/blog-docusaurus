@@ -106,9 +106,9 @@ export default {
 
 ### 4. What’s the difference between `computed` and `watch` ?
 
-computed 除了計算屬性的特性外，其主要目的，是為了在目前已有的資料上進行更新，所以本身帶有緩存的特性。相反的 watch 則是監聽資料的變化，每次監聽時資料都處於初始化。
+`computed` 除了計算屬性的特性外，其主要目的，是為了在目前已有的資料上進行更新，所以本身帶有緩存的特性，而 `watch` 則僅是監聽資料的變化。
 
-所以，如果某筆資料必須相依另外一筆資料來計算的話，則使用 computed，反之，如果只是要單純監聽資料變化，則使用 watch。
+所以使用上，要考慮到應用情境，如果某筆資料必須相依另外一筆資料來計算的話，則使用 `computed`，反之，如果只是要單純監聽資料變化，則使用 `watch`。
 
 ### 5. Why `v-for` must setting key value ?
 

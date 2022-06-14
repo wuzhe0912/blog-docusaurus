@@ -10,7 +10,7 @@ slug: /vue-props
 
 舉例來說，常見的 modal(彈窗)，通常會被封裝到 component，而每個頁面引入 model 後，所需要顯示的內容各有不同，包含標題和內文都有所差異，這時就會透過父組件傳入資料來顯示對應內容，同時子組件顯示的內容中，也能透過`@emit`來觸發一些預期行為，可能是關閉視窗，也可能是改變某些狀態。
 
-### 2. What are the ways of props data between component ?
+### 2. What's the ways of props data between component ?
 
 #### 狹義，主要是父子組件傳值、同層級傳值、全域管理
 

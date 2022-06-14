@@ -44,3 +44,14 @@ slug: /vue-lifecycle
 - mounted：DOM 元素素掛載完成，資料渲染到畫面上。
 
 ### 3. What’s the difference between `2.x` and `3.x` ?
+
+#### 語意化的差異
+
+| Vue 2        | Vue 3          | Remark |
+| ------------ | -------------- | ------ |
+| beforeCreate | setup()        |        |
+| created      | setup()        |        |
+| beforeMount  | onBeforeMount  |        |
+| mounted      | onMounted      |        |
+| beforeUpdate | onBeforeUpdate |        |
+| updated      | onUpdated      |        |

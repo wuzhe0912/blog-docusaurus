@@ -7,6 +7,8 @@ slug: /personal-todo
 ## Personal Todo
 
 - [ ] Vue2 with TypeScript(for maintain job project).
+  - [x] basic project setting.
+  - [ ] use in vuex.
 - [ ] build project in docker, and understanding the basic foundation CI/CD process.
 - [ ] Vue3 with TypeScript project.
 

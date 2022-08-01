@@ -6,8 +6,13 @@ slug: /personal-todo
 
 ## Personal Todo
 
-- [ ] Vue2 with TypeScript(for maintain job project)
+- [ ] Vue2 with TypeScript(for maintain job project).
 - [ ] build project in docker, and understanding the basic foundation CI/CD process.
+- [ ] Vue3 with TypeScript project.
+
+## Language
+
+- [ ] TOEIC: 750+
 
 ## Skills Endorsement
 
@@ -22,7 +27,6 @@ slug: /personal-todo
   - [ ] Git
   - [ ] Rest APIs
   - [ ] Angular
-  - [ ] jQuery
   - [ ] OOP
   - [ ] SEO
 

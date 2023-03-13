@@ -2,10 +2,11 @@ const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 const currentYear = new Date().getFullYear();
+console.log(currentYear);
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: `Pitt Wu's Docusaurus`,
+  title: `Coding and Storytelling`,
   tagline: '',
   url: 'https://pitt-wu-blog.vercel.app',
   baseUrl: '/',
@@ -16,9 +17,9 @@ module.exports = {
   projectName: 'docusaurus', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: `Pitt Wu's Blog`,
+      title: `Pitt Wu's Story`,
       logo: {
-        alt: `Pitt Wu's Blog Logo`,
+        alt: `Pitt Wu's Story Logo`,
         src: 'img/logo.svg',
       },
       items: [
@@ -71,7 +72,7 @@ module.exports = {
       copyright: `Copyright © 2017 - ${currentYear} Pitt Wu Built with Docusaurus.`,
     },
     colorMode: {
-      defaultMode: 'light',
+      defaultMode: 'dark',
     },
     prism: {
       theme: lightCodeTheme,

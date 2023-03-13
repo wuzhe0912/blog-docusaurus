@@ -20,15 +20,13 @@ function HomepageHeader() {
           />
           <span>{siteConfig.title}</span>
         </h1>
-        <p className={styles.heroSubTitle}>
-          <Translate>凡是過往，皆為序章。</Translate>
-        </p>
+        <p className={styles.heroSubTitle}>Beat magic with magic</p>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
             to="/docs/road-map-notes"
           >
-            立即開始 ⏱️
+            Get Started ⚡
           </Link>
         </div>
       </div>

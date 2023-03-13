@@ -2,7 +2,6 @@ const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 const currentYear = new Date().getFullYear();
-console.log(currentYear);
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
@@ -25,16 +24,22 @@ module.exports = {
       items: [
         {
           type: 'doc',
-          docId: 'RoadMap/road-map-notes',
+          docId: 'SoftwareEngineer/software-engineer',
           position: 'left',
-          label: 'RoadMap',
+          label: 'Software Engineer',
         },
-        {
-          type: 'doc',
-          docId: 'SlipBox/slip-box-notes',
-          position: 'left',
-          label: 'SlipBox',
-        },
+        // {
+        //   type: 'doc',
+        //   docId: 'RoadMap/road-map-notes',
+        //   position: 'left',
+        //   label: 'RoadMap',
+        // },
+        // {
+        //   type: 'doc',
+        //   docId: 'SlipBox/slip-box-notes',
+        //   position: 'left',
+        //   label: 'SlipBox',
+        // },
         // { to: '/blog', label: 'Blog', position: 'left' },
         // {
         //   type: 'localeDropdown',
@@ -50,21 +55,25 @@ module.exports = {
     footer: {
       style: 'light',
       links: [
-        {
-          title: 'Docs',
-          items: [
-            {
-              label: 'SlipBox',
-              to: '/docs/slip-box-notes',
-            },
-          ],
-        },
+        // {
+        //   title: 'Docs',
+        //   items: [
+        //     {
+        //       label: 'SlipBox',
+        //       to: '/docs/slip-box-notes',
+        //     },
+        //   ],
+        // },
         {
           title: 'Community',
           items: [
             {
               label: 'GitHub',
               href: 'https://github.com/wuzhe0912',
+            },
+            {
+              label: 'Linkedin',
+              href: 'https://linkedin.com/in/pitt-wu',
             },
           ],
         },

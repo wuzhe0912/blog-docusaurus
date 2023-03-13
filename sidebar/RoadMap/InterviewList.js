@@ -28,16 +28,7 @@ module.exports = {
             'RoadMap/Interview/JavaScript/Hoisting/hoisting-questions-01',
           ],
           Closure: ['RoadMap/Interview/JavaScript/Closure/closure-basic'],
-          IIFE: ['RoadMap/Interview/JavaScript/IIFE/IIFE-basic'],
         },
-      ],
-      ES6Plus: [
-        'RoadMap/Interview/ES6Plus/es6-arrow-function',
-        'RoadMap/Interview/ES6Plus/es6-destructuring',
-        'RoadMap/Interview/ES6Plus/es6-es-modules',
-        'RoadMap/Interview/ES6Plus/es6-function-default',
-        'RoadMap/Interview/ES6Plus/es6-spread-rest',
-        'RoadMap/Interview/ES6Plus/es6-template-literals',
       ],
       Frameworks: [
         {

@@ -11,6 +11,7 @@ module.exports = {
         'SoftwareEngineer/Node/Day40/day4-mongodb-edit-delete',
         'SoftwareEngineer/Node/Day40/day5-async-await',
         'SoftwareEngineer/Node/Day40/day6-mongoose-schema',
+        'SoftwareEngineer/Node/Day40/day7-model-mongoose-add',
       ],
     },
   ],

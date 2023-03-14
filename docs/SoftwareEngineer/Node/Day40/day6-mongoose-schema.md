@@ -6,7 +6,7 @@ slug: /day6-mongoose-schema
 
 ## Requirements Specification
 
-> 請參考以下需求，設計手搖飲的 Schema
+請參考以下 spec，設計手搖飲的 Schema
 
 ```js
 - product: must be string, required, error message is '產品未填寫'
@@ -24,7 +24,7 @@ const drinkSchema = new Schema({
 });
 ```
 
-## Refactor
+## Answer
 
 ```js
 import { Schema, model } from 'mongoose';

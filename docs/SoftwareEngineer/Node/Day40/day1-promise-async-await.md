@@ -1,6 +1,6 @@
 ---
 id: day1-promise-async-await
-title: '📜 Day-1(promise, async/await)'
+title: '📜 Day-1 Promise, Async/Await'
 slug: /day1-promise-async-await
 ---
 

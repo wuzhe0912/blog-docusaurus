@@ -1,6 +1,6 @@
 ---
 id: day2-then-catch
-title: '📜 Day-2(then, catch)'
+title: '📜 Day-2 then(), catch()'
 slug: /day2-then-catch
 ---
 

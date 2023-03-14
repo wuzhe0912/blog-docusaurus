@@ -1,12 +1,14 @@
 ---
-id: install-nvm
-title: '📜 Install'
-slug: /install-nvm
+id: nvm-install
+title: '📜 NVM'
+slug: /nvm-install
 ---
 
-## Node Version Manager
+## What is NVM?
 
-Use nvm control node version, record how to use command install and switch version.
+nvm is a version manager for node.js, designed to be installed per-user, and invoked per-shell.Works by creating symlinks to node executables for each installed version of node. Supports the following shells: bash, zsh, fish, and powershell. Is built to be extended. It ships with built-in support for npm, and can be extended to support yarn, grunt, gulp, bower, ember, meteor, and more.
+
+## Install
 
 ### Mac
 
@@ -30,17 +32,19 @@ Last version is v1.1.8, but I use v1.1.7.
 
 ![nvm-windows](https://i.imgur.com/uFyhtwx.png)
 
+## NVM Command List
+
 ### Check version
 
 ```bash
 nvm --version
 ```
 
-## Install Node.js
+### Install Node.js
 
-When we after install nvm, just can use nvm command to install node.
+After installing nvm, you can only use the nvm command to install node.
 
-### command
+#### Check remote node version list
 
 ```bash
 nvm ls-remote               # check remote node version list(Mac only)

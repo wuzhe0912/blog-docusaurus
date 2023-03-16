@@ -1,7 +1,7 @@
 ---
-id: closure-basic
-title: '☕ Basic'
-slug: /closure-basic
+id: Closure
+title: '📜 Closure'
+slug: /Closure
 ---
 
 ## What is Closure ?

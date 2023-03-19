@@ -13,6 +13,8 @@ module.exports = {
         'SoftwareEngineer/Node/Day40/day6-mongoose-schema',
         'SoftwareEngineer/Node/Day40/day7-model-mongoose-add',
         'SoftwareEngineer/Node/Day40/day8-schema',
+        'SoftwareEngineer/Node/Day40/day9-mongoose-edit-delete',
+        // 'SoftwareEngineer/Node/Day40/day10-model',
       ],
     },
   ],

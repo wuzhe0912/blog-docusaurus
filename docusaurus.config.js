@@ -22,29 +22,13 @@ module.exports = {
         src: 'img/logo.svg',
       },
       items: [
+        { to: '/blog', label: 'Blog', position: 'left' },
         {
           type: 'doc',
           docId: 'SoftwareEngineer/software-engineer',
           position: 'left',
           label: 'Software Engineer',
         },
-        // {
-        //   type: 'doc',
-        //   docId: 'RoadMap/road-map-notes',
-        //   position: 'left',
-        //   label: 'RoadMap',
-        // },
-        // {
-        //   type: 'doc',
-        //   docId: 'SlipBox/slip-box-notes',
-        //   position: 'left',
-        //   label: 'SlipBox',
-        // },
-        // { to: '/blog', label: 'Blog', position: 'left' },
-        // {
-        //   type: 'localeDropdown',
-        //   position: 'right',
-        // },
         {
           href: 'https://github.com/wuzhe0912/docusaurus-blog',
           label: 'GitHub',
@@ -55,15 +39,6 @@ module.exports = {
     footer: {
       style: 'light',
       links: [
-        // {
-        //   title: 'Docs',
-        //   items: [
-        //     {
-        //       label: 'SlipBox',
-        //       to: '/docs/slip-box-notes',
-        //     },
-        //   ],
-        // },
         {
           title: 'Community',
           items: [

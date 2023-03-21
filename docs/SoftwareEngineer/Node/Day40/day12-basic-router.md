@@ -1,6 +1,6 @@
 ---
 id: day12-basic-router
-title: '📜 Day-11 Basic Router'
+title: '📜 Day-12 Basic Router'
 slug: /day12-basic-router
 ---
 

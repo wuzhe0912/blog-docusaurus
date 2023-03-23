@@ -17,6 +17,7 @@ module.exports = {
         'SoftwareEngineer/Node/Day40/day10-model',
         'SoftwareEngineer/Node/Day40/day11-express',
         'SoftwareEngineer/Node/Day40/day12-basic-router',
+        'SoftwareEngineer/Node/Day40/day13-express-generator',
       ],
     },
   ],

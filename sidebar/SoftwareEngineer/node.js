@@ -21,6 +21,7 @@ module.exports = {
         'SoftwareEngineer/Node/Day40/day14-request-query',
         'SoftwareEngineer/Node/Day40/day15-request-body',
       ],
+      Week: ['SoftwareEngineer/Node/Week/week1-mongodb-operations'],
     },
   ],
 };

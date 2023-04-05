@@ -20,6 +20,8 @@ module.exports = {
         'SoftwareEngineer/Node/Day40/day13-express-generator',
         'SoftwareEngineer/Node/Day40/day14-request-query',
         'SoftwareEngineer/Node/Day40/day15-request-body',
+        'SoftwareEngineer/Node/Day40/day16-request-params',
+        'SoftwareEngineer/Node/Day40/day17-mongoose-populate',
       ],
       Week: ['SoftwareEngineer/Node/Week/week1-mongodb-operations'],
     },

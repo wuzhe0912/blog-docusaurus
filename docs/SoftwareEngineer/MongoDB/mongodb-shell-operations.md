@@ -1,7 +1,7 @@
 ---
-id: week1-mongodb-operations
-title: '📜 Week 1 - MongoDB Operations'
-slug: /week1-mongodb-operations
+id: mongodb-shell-operations
+title: '📜 MongoDB Shell Operations'
+slug: /mongodb-shell-operations
 ---
 
 ## Requirements Specification

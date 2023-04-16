@@ -4,6 +4,9 @@ module.exports = {
   items: [
     'SoftwareEngineer/Node/nvm-install',
     {
+      SocialLogin: ['SoftwareEngineer/Node/Social-Login/node-google-login'],
+    },
+    {
       Day40: [
         'SoftwareEngineer/Node/Day40/day1-promise-async-await',
         'SoftwareEngineer/Node/Day40/day2-then-catch',
@@ -23,7 +26,6 @@ module.exports = {
         'SoftwareEngineer/Node/Day40/day16-request-params',
         'SoftwareEngineer/Node/Day40/day17-mongoose-populate',
       ],
-      Week: ['SoftwareEngineer/Node/Week/week1-mongodb-operations'],
     },
   ],
 };

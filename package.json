@@ -5,7 +5,7 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "initial": "rm -rf yarn.lock node_modules && yarn && yarn dev",
-    "dev": "docusaurus start --port 3002",
+    "dev": "docusaurus start --port 3010",
     "dev-cn": "docusaurus start --locale zh-cn",
     "dev-tw": "docusaurus start --locale zh-tw",
     "build": "docusaurus build",

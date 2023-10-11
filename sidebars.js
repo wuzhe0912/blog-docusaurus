@@ -3,10 +3,13 @@ const JavaScriptList = require('./sidebar/SoftwareEngineer/javascript.js');
 const NodeJSList = require('./sidebar/SoftwareEngineer/node.js');
 const PHPList = require('./sidebar/SoftwareEngineer/php.js');
 const MongoDBList = require('./sidebar/SoftwareEngineer/mongodb.js');
-// Interview
+// Interview - Temp Remove
 const LeetCodeList = require('./sidebar/SoftwareEngineer/leetCode.js');
 const BrowserList = require('./sidebar/SoftwareEngineer/browser.js');
 const ComputerList = require('./sidebar/SoftwareEngineer/computer.js');
+// Interview Questions
+const ReactQuestionList = require('./sidebar/InterviewQuestions/react.js');
+const VueQuestionList = require('./sidebar/InterviewQuestions/vue.js');
 
 module.exports = {
   SoftwareEngineer: [
@@ -18,5 +21,10 @@ module.exports = {
     LeetCodeList,
     BrowserList,
     ComputerList,
+  ],
+  InterviewQuestions: [
+    'InterviewQuestions/interview-questions',
+    VueQuestionList,
+    ReactQuestionList,
   ],
 };

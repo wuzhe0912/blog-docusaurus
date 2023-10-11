@@ -30,6 +30,12 @@ module.exports = {
           label: 'Software Engineer',
         },
         {
+          type: 'doc',
+          docId: 'InterviewQuestions/interview-questions',
+          position: 'left',
+          label: 'Interview Questions',
+        },
+        {
           href: 'https://github.com/wuzhe0912/docusaurus-blog',
           label: 'GitHub',
           position: 'right',
@@ -61,6 +67,11 @@ module.exports = {
     prism: {
       theme: lightCodeTheme,
       darkTheme: darkCodeTheme,
+    },
+    docs: {
+      sidebar: {
+        hideable: true,
+      },
     },
   },
   presets: [

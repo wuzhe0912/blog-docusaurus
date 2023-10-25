@@ -11,7 +11,6 @@ module.exports = {
         'SoftwareEngineer/JavaScript/Syntax/async-defer',
       ],
       ES6: [
-        'SoftwareEngineer/JavaScript/ES6/scope-of-variables',
         'SoftwareEngineer/JavaScript/ES6/arrow-function',
         'SoftwareEngineer/JavaScript/ES6/destructuring',
         'SoftwareEngineer/JavaScript/ES6/spread-rest',

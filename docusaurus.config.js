@@ -22,7 +22,7 @@ module.exports = {
         src: 'img/logo.svg',
       },
       items: [
-        { to: '/blog', label: 'Blog', position: 'left' },
+        { to: '/blog', label: 'Blog', position: 'right' },
         {
           type: 'doc',
           docId: 'SoftwareEngineer/software-engineer',

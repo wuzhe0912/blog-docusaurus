@@ -8,7 +8,9 @@ const LeetCodeList = require('./sidebar/SoftwareEngineer/leetCode.js');
 const BrowserList = require('./sidebar/SoftwareEngineer/browser.js');
 const ComputerList = require('./sidebar/SoftwareEngineer/computer.js');
 // Interview Questions
-const ReactQuestionList = require('./sidebar/InterviewQuestions/react.js');
+const HttpMethodsList = require('./sidebar/InterviewQuestions/httpMethods.js');
+const JavaScriptQuestionList = require('./sidebar/InterviewQuestions/javascript.js');
+// const ReactQuestionList = require('./sidebar/InterviewQuestions/react.js');
 const VueQuestionList = require('./sidebar/InterviewQuestions/vue.js');
 
 module.exports = {
@@ -24,7 +26,8 @@ module.exports = {
   ],
   InterviewQuestions: [
     'InterviewQuestions/interview-questions',
+    HttpMethodsList,
+    JavaScriptQuestionList,
     VueQuestionList,
-    ReactQuestionList,
   ],
 };

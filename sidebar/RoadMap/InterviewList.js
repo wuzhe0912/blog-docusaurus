@@ -33,10 +33,7 @@ module.exports = {
       Frameworks: [
         {
           React: ['RoadMap/Interview/JS-Frameworks/React/react-common'],
-          Vue: [
-            'RoadMap/Interview/JS-Frameworks/Vue/vue-common',
-            'RoadMap/Interview/JS-Frameworks/Vue/vue-api',
-          ],
+          Vue: ['RoadMap/Interview/JS-Frameworks/Vue/vue-common'],
           Lifecycle: [
             'RoadMap/Interview/JS-Frameworks/Lifecycle/vue-lifecycle',
             'RoadMap/Interview/JS-Frameworks/Lifecycle/react-lifecycle',

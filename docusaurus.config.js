@@ -36,6 +36,12 @@ module.exports = {
           label: 'Interview Questions',
         },
         {
+          type: 'doc',
+          docId: 'Coding/coding',
+          position: 'left',
+          label: 'Coding',
+        },
+        {
           href: 'https://github.com/wuzhe0912/docusaurus-blog',
           label: 'GitHub',
           position: 'right',

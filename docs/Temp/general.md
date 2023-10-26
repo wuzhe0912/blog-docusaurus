@@ -12,4 +12,5 @@ slug: /leet-code-general-questions
 - [ ] 合併二維有序數組成一個有序數組。
 - [ ] 找出數組中和為 `sum` 的 `n` 個數。
 - [ ] 判斷括號字符串是否有效。
-- [ ] 數組去重。
+
+[Web Skills](https://andreasbm.github.io/web-skills/)

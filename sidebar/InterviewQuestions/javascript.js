@@ -4,5 +4,6 @@ module.exports = {
   items: [
     'InterviewQuestions/JavaScript/javascript-best-practices',
     'InterviewQuestions/JavaScript/scope-of-variables',
+    'InterviewQuestions/JavaScript/event-loop',
   ],
 };

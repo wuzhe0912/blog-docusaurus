@@ -1,8 +1,13 @@
 module.exports = {
   type: 'category',
-  label: '📁 HTTP Methods',
+  label: '📁 HTTP',
   items: [
-    'InterviewQuestions/HTTP-Methods/http-methods-get',
-    'InterviewQuestions/HTTP-Methods/http-methods-post',
+    {
+      '📁 HTTP Methods': [
+        'InterviewQuestions/HTTP/Methods/http-methods-get',
+        'InterviewQuestions/HTTP/Methods/http-methods-post',
+      ],
+    },
+    'InterviewQuestions/HTTP/web-storage',
   ],
 };

@@ -7,10 +7,9 @@ slug: /css-syntax
 ## Questions
 
 1. [x] [How is the priority of the selector determined ?](./01-selector-weights.md)
-2. [x] [What are the inline and block elements ? What's the difference between them ?](./02-inline-block.md)
-3. [x] [What are the new features of `CSS3` ?](./03-css3-features.md)
-4. [x] [Please explain what's the `box-model`.](./04-box-model.md)
-5. [x] [What are the values of `position` ? What are the roles of each value ?](./05-position.md)
+2. [x] [What are the new features of `CSS3` ?](./03-css3-features.md)
+3. [x] [Please explain what's the `box-model`.](./04-box-model.md)
+4. [x] [What are the values of `position` ? What are the roles of each value ?](./05-position.md)
 
 ## Temp
 

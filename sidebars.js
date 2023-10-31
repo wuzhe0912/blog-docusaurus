@@ -12,6 +12,7 @@ const HttpMethodsList = require('./sidebar/InterviewQuestions/httpMethods.js');
 const JavaScriptQuestionList = require('./sidebar/InterviewQuestions/javascript.js');
 // const ReactQuestionList = require('./sidebar/InterviewQuestions/react.js');
 const VueQuestionList = require('./sidebar/InterviewQuestions/vue.js');
+const CSSQuestionList = require('./sidebar/InterviewQuestions/css.js');
 const ToolsList = require('./sidebar/InterviewQuestions/tools.js');
 const WebSecurityList = require('./sidebar/InterviewQuestions/web-security.js');
 const ExperienceList = require('./sidebar/InterviewQuestions/experience.js');
@@ -32,6 +33,7 @@ module.exports = {
     HttpMethodsList,
     JavaScriptQuestionList,
     VueQuestionList,
+    CSSQuestionList,
     ToolsList,
     WebSecurityList,
     ExperienceList,

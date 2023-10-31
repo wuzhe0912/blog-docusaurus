@@ -44,6 +44,33 @@ slug: /vue-api
 
 ## 4. What’s the difference between `computed` and `watch` ?
 
-computed 除了計算屬性的特性外，其主要目的，是為了在目前已有的資料上進行更新，所以本身帶有緩存的特性，而 watch 則僅是監聽資料的變化。
+### computed(計算屬性)
 
-所以使用上，要考慮到應用情境，如果某筆資料必須相依另外一筆資料來計算的話，則使用 computed，反之，如果只是要單純監聽資料變化，則使用 watch。
+- 緩存機制：computed 計算出來的結果會被緩存，當資料沒有改變時，不會重新計算，這點有助於效能，同時他又具有自動追蹤數據變化的功能。
+- 簡潔的語法與同步計算功能：這兩點促使透過 computed 建立的變數，也可以直接渲染在 template 上面。
+- 舉例來說：
+
+```JS
+import { ref, computed } from 'vue';
+
+const cart = ref([
+  { id: 1, name: 'Apple', price: 2, quantity: 3 },
+  { id: 2, name: 'Banana', price: 1, quantity: 2 },
+]);
+
+const cartTotal = computed(() => {
+  console.log("Recalculating cart total...");
+  return cart.value.reduce((acc, item) => acc + item.price * item.quantity, 0);
+});
+```
+
+我可能有一個情境是，需要保持計算購物車內的總價，這時可以透過 computed 只在購物車的內容出現變化才做計算。
+
+### watch(監聽屬性)
+
+- watch 可以監聽資料的變化，當資料變化時，可以觸發相應的函式。
+- 手動追蹤數據變化：watch 需要手動追蹤數據的變化，這點和 computed 不同，computed 會自動追蹤數據的變化。
+- watch 可以執行非同步操作，因此可以拿來 call api。
+- 可以監聽多個資料的變化，可以選擇當其中一個資料產生變化時，觸發相應的函式。
+- 非立即反應：watch 允許延遲變化，典型的案例是，將防抖節流的 function 放在 watch 中使用。
+- 條件執行：雖然 computed 內也能進行 if 判斷，但因為 computed 主要特性用在自動計算，所以如果是需要進行條件判斷的話，watch 會更適合。

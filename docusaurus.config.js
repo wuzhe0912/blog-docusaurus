@@ -23,12 +23,12 @@ module.exports = {
       },
       items: [
         { to: '/blog', label: 'Blog', position: 'right' },
-        {
-          type: 'doc',
-          docId: 'SoftwareEngineer/software-engineer',
-          position: 'left',
-          label: 'Software Engineer',
-        },
+        // {
+        //   type: 'doc',
+        //   docId: 'SoftwareEngineer/software-engineer',
+        //   position: 'left',
+        //   label: 'Software Engineer',
+        // },
         {
           type: 'doc',
           docId: 'InterviewQuestions/interview-questions',

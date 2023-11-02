@@ -4,12 +4,15 @@ title: 📄 Random Number
 slug: /random-number
 ---
 
-## Implement a `random()` that takes a `min` and `max` and returns a random number between `min` and `max`
+## Question Description
 
-> The function should return a random integer between the min and max values.
+Implement a `random()` that takes a `min` and `max` and returns a random number between `min` and `max`.
 
-```typescript
-// typescript version
+The function should return a random integer between the min and max values.
+
+## TypeScript Version
+
+```ts
 function createRandomNumber(min: number, max: number): number {
   if (min >= max) {
     throw new Error('傳入的 min 參數不可大於或等於 max');

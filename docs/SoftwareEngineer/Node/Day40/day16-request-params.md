@@ -46,5 +46,5 @@ router.get('/:id', async (req, res) => {
 ### Postman Test
 
 1. Set the HTTP method to "GET".
-2. Enter the URL: `http://localhost:3000/posts/<post_id>`, replacing <post_id> with the actual ID of a post.
+2. Enter the URL: `http://localhost:3000/posts/<post_id>`, replacing `<post_id>` with the actual ID of a post.
 3. Click the "Send" button to make the request.

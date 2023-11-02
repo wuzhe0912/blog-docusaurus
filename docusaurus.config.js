@@ -1,5 +1,5 @@
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const lightCodeTheme = require('prism-react-renderer').themes.github;
+const darkCodeTheme = require('prism-react-renderer').themes.dracula;
 
 const currentYear = new Date().getFullYear();
 
@@ -61,6 +61,10 @@ module.exports = {
             {
               label: 'Linkedin',
               href: 'https://linkedin.com/in/pitt-wu',
+            },
+            {
+              label: 'CakeResume',
+              href: 'https://www.cakeresume.com/me/pittwu',
             },
           ],
         },

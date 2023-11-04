@@ -30,8 +30,10 @@ a, br, button, br, code, img, input, span, strong, svg, textarea, label.
 
 在 display 中有一種 `inline-block` 的屬性，可以將區塊元素轉換成行內元素，但是仍保有區塊元素的特性，例如可以設定寬高、margin、padding 等屬性。意味著這個元素在排版上，會像行內元素一樣水平排列，但又能 block 屬性來達到推開其他元素的排版效果。
 
-## Reference
+### Reference
 
 - [Inline elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Inline_elements)
 - [Block-level elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Block-level_elements)
 - [CSS 教學-關於 display:inline、block、inline-block 的差別](https://ytclion.medium.com/css%E6%95%99%E5%AD%B8-%E9%97%9C%E6%96%BCdisplay-inline-inline-block-block%E7%9A%84%E5%B7%AE%E5%88%A5-1034f38eda82)
+
+## 2. What does `* { box-sizing: border-box; }` do?

@@ -14,5 +14,3 @@ slug: /browser-dom
 4. Layout(佈局)：擁有 Render Tree 後，browser 就可以開始計算每個節點的佈局。
 5. Paint(繪製)：根據 Render Tree 和 Layout，browser 就可以開始繪製頁面。
 6. 最終渲染完成，網頁會在瀏覽器上呈現。
-
-7. JS 考題: return，break，continue 的区别?

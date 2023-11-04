@@ -18,7 +18,6 @@ module.exports = {
         'SoftwareEngineer/JavaScript/ES6/function-default',
         'SoftwareEngineer/JavaScript/ES6/template-literals',
       ],
-      Demo: ['SoftwareEngineer/JavaScript/Demo/js-demo-counter'],
     },
   ],
 };

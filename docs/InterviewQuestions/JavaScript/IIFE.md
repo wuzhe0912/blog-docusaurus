@@ -1,10 +1,10 @@
 ---
 id: IIFE
-title: '📜 IIFE'
+title: '📄 IIFE'
 slug: /IIFE
 ---
 
-### What's the IIFE ?
+## 1. What's the IIFE ?
 
 IIFE 又稱立即執行函式，與一般函式的寫法有所差異，外層需多包裹一層 `()`，並且具有立即被執行的特性 :
 
@@ -32,9 +32,9 @@ IIFE 又稱立即執行函式，與一般函式的寫法有所差異，外層需
 
 但需要注意的是，IIFE 僅能在初始時被執行，或是透過其本身內部重複呼叫，而無法透過外部再次呼叫執行。
 
-### Why use IIFE ?
+## 2. Why use IIFE ?
 
-#### scope
+### scope
 
 基於變數在 function 中被銷毀的特性，可以透過 IIFE 來達到隔離的效果，避免污染全域的變數。如下圖：
 
@@ -58,7 +58,7 @@ console.log(name); // result Yumi
 console.log(Hello()); // result Hello Yumi!
 ```
 
-#### private variable and methods
+### private variable and methods
 
 使用 IIFE 搭配 closure 可以建立 Private variable and methods，也就意味著可以在 function 中保存變數，每次呼叫這個 function，可以根據前一次的結果進行調整，譬如遞增或遞減。
 
@@ -81,7 +81,7 @@ increment(); // I have 2 credits.
 
 但需要注意的是，變數因為沒有被銷毀，如果濫用的話，會佔用記憶體，影響效能。
 
-#### module
+### module
 
 透過物件的形式來執行，可以透過下面的案例看到，除了遞增變數也能進行初始化：
 

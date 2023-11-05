@@ -102,3 +102,11 @@ element.classList.add('update');
 - [Render-tree Construction, Layout, and Paint](https://web.dev/articles/critical-rendering-path/render-tree-construction)
 - [浏览器的回流与重绘 (Reflow & Repaint)](https://juejin.cn/post/6844903569087266823)
 - [介绍回流与重绘（Reflow & Repaint），以及如何进行优化?](https://juejin.cn/post/7064077572132323365)
+
+## 3. Please describe when will the browser send the options to the server
+
+> 請說明瀏覽器何時會向 server 端發送 options
+
+多數情況下，是應用在 CORS 場景，在實際送出請求之前，會先有一個 preflight(預檢) 的動作，瀏覽器會先發送一個 OPTIONS 請求，詢問 server 是否允許這個跨域請求，如果 server 回應允許，瀏覽器才會發送真正的請求，反之，如果不允許，則瀏覽器跳出 error。
+
+另外，假如請求的 method 不是 `GET`, `HEAD`, `POST` 也會觸發 OPTIONS 請求。

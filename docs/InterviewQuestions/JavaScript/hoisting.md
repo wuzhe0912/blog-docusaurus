@@ -1,10 +1,10 @@
 ---
-id: Hoisting
-title: '📜 Hoisting'
-slug: /Hoisting
+id: hoisting
+title: '📄 Hoisting'
+slug: /hoisting
 ---
 
-## What’s Hoisting ?
+## 1. What’s Hoisting ?
 
 JS 的運行可以拆解為兩階段，分別是創造與執行：
 
@@ -50,8 +50,6 @@ getName();
 
 在創造階段時，function 是最優先的，其次才是變數。
 
-## Correct and wrong writing style
-
 ### Correct
 
 ```js
@@ -85,9 +83,7 @@ console.log(name); // print undefined，因為還未拿到賦值，只拿到預�
 name = 'Pitt';
 ```
 
-## Example
-
-### What's `name` printed ?
+## 2. What's `name` printed ?
 
 ```js
 whoseName();

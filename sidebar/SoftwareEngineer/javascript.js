@@ -5,9 +5,6 @@ module.exports = {
     {
       Syntax: [
         'SoftwareEngineer/JavaScript/Syntax/DOM',
-        'SoftwareEngineer/JavaScript/Syntax/IIFE',
-        'SoftwareEngineer/JavaScript/Syntax/Hoisting',
-        'SoftwareEngineer/JavaScript/Syntax/Closure',
         'SoftwareEngineer/JavaScript/Syntax/async-defer',
       ],
       ES6: [

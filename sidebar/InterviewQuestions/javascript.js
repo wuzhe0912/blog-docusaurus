@@ -7,5 +7,7 @@ module.exports = {
     'InterviewQuestions/JavaScript/javascript-best-practices',
     'InterviewQuestions/JavaScript/event-loop',
     'InterviewQuestions/JavaScript/promise-async-await',
+    'InterviewQuestions/JavaScript/closure',
+    'InterviewQuestions/JavaScript/framework',
   ],
 };

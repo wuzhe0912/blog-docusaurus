@@ -1,10 +1,10 @@
 ---
-id: Closure
-title: '📜 Closure'
-slug: /Closure
+id: closure
+title: '📄 Closure'
+slug: /closure
 ---
 
-## What is Closure ?
+## 1. What is Closure ?
 
 closure 除了包含本身是一個 function 外，也含括了自身內部的環境，同時也能去獲取外部 function 的變數。
 
@@ -14,7 +14,7 @@ closure 除了包含本身是一個 function 外，也含括了自身內部的�
 
 每當 function 執行完畢後，即會觸發這個機制，將內部作用域內容銷毀。
 
-## Scope
+### Scope
 
 先從作用域的角度來看待其運作方式
 
@@ -68,7 +68,7 @@ console.log(a); // print 5
 
 但如果在這邊 `console.log(b)` 則會拿到 error，因為 b 這個變數其作用域仍在 function 內。
 
-## Exam Question 1
+## 2. Create a function that meets the following conditions
 
 > 建立符合下述條件的 function
 
@@ -121,7 +121,7 @@ console.log(plus(2, 5));
 console.log(plus(2)(5));
 ```
 
-## Exam Question 2
+## 3. Please take advantage of the closure feature to increase the number
 
 > 請利用閉包的特性，將數字遞增
 

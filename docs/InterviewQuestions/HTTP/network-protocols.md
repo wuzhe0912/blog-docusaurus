@@ -20,7 +20,7 @@ slug: /network-protocols
 
 ## 2. What is Three Way Handshake?
 
-三次握手是指在 `TCP/IP` 的網路中，服務器端和客戶端之間建立連接的過程。在過程中會經歷三個步驟，來確認雙方的接受和發送能力都正常，同時也要透過初始序列號(ISN)來確保資料的同步和安全性。
+三次握手是指在 `TCP/IP` 的網路中，server 端和 client 端之間建立連接的過程。在過程中會經歷三個步驟，來確認雙方的接受和發送能力都正常，同時也要透過初始序列號(ISN)來確保資料的同步和安全性。
 
 ### TCP Message Type
 
@@ -79,3 +79,21 @@ ISN 全稱 Initial Sequence Number，用來告訴接收方，我方發送數據�
 
 - [TCP 3-Way Handshake (SYN, SYN-ACK,ACK)](https://www.guru99.com/tcp-3-way-handshake.html)
 - [淘宝二面，面试官居然把 TCP 三次握手问的这么详细](https://www.eet-china.com/mp/a44399.html)
+
+## 3. Please describe the HTTP caching mechanism
+
+HTTP 快取機制是一種在 HTTP 協議中用於臨時儲存（或"快取"）網頁資料的技術，目的是減少服務器負擔、降低延遲以及提高網頁加載速度。這裡有幾種主要的快取策略：
+
+1. **強快取（Freshness）**：通過設置`Expires`或`Cache-Control: max-age`響應 head，指示資料可以在特定時間內被視為新鮮的，client 端無需向服務器確認即可直接使用。
+
+2. **驗證快取（Validation）**：使用`Last-Modified`和`ETag`響應 head，client 端可以向服務器發送一個條件性請求，若資料未修改則返回 304（Not Modified）狀態碼，表示可以使用本地快取資料。
+
+3. **協商快取（Negotiation）**：這種方式依賴於`Vary`響應 head，服務器根據 client 端的請求（如`Accept-Language`）來決定是否提供不同版本的快取內容。
+
+4. **不快取（No-store）**：如果設置了`Cache-Control: no-store`，則表示資料不應被快取，每次請求都需要從服務器獲取最新的資料。
+
+快取策略的選擇會根據資料的類型和更新頻率等因素來確定，有效的快取策略可以顯著提升網絡應用的性能。
+
+### Service Worker
+
+個人經驗，在替 Web App 設定好 PWA 後，可以將一些基礎的樣式或是 logo，甚至可以準備離線用的 offline.html，註冊在 service-worker.js 中，這樣即使客戶處於斷線狀態下，透過這個快取機制，也能知道目前網站或網路狀態，保持一定程度的使用體驗。

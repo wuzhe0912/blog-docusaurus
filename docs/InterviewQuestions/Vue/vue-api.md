@@ -74,3 +74,5 @@ const cartTotal = computed(() => {
 - 可以監聽多個資料的變化，可以選擇當其中一個資料產生變化時，觸發相應的函式。
 - 非立即反應：watch 允許延遲變化，典型的案例是，將防抖節流的 function 放在 watch 中使用。
 - 條件執行：雖然 computed 內也能進行 if 判斷，但因為 computed 主要特性用在自動計算，所以如果是需要進行條件判斷的話，watch 會更適合。
+
+## 5. Please explain Vue lifecycle hooks(include vue 2 & vue 3)

@@ -34,7 +34,7 @@ receiveData({ name: 'PittWu', type: 'player' });
 
 CORS 是一種比 JSONP 更安全、更現代的技術。它通過 HTTP 頭部 `Access-Control-Allow-Origin` 來告訴瀏覽器該請求是被允許的。伺服器設定相關的 CORS 頭部信息來決定哪些來源可以訪問它的資源。
 
-假如 `http://client.com` 的前端想要訪問 `http://api.example.com` 的資源，`api.example.com` 需要在其響應中包含下列 HTTP 頭部：
+假如 `http://client.com` 的前端想要訪問 `http://api.example.com` 的資源，`api.example.com` 需要在其響應中包含下列 HTTP header：
 
 ```http
 Access-Control-Allow-Origin: http://client.com

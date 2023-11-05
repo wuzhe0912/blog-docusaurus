@@ -10,15 +10,12 @@ slug: /network-browser
 
 ## ⚙️ Network
 
-- [ ] 承上題，請說明從輸入網址到渲染畫面這段過程中，經歷了那些事情 ?
 - [ ] `http 2.0` 做了那些改進 ?
 - [ ] 承上題，`http 2.0` 有哪些不足 ? `http 3.0` 則又是什麼 ?
 - [ ] 請說明 `https` 的加密過程是如何運作的 ?
 
 ## ⚙️ Browser
 
-- [ ] Please explain the process of rendering the page by browser.
-- [x] What are `reflow(重排)` and `repaint(重繪)` ? What's the difference ?
 - [ ] 請解釋瀏覽器的緩存策略是如何運作的 ?
 - [ ] 如何檢查內存是否洩漏 ?
 - [ ] 請問 `TCP` 滑動視窗是什麼 ?

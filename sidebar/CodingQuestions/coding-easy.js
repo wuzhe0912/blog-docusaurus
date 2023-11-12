@@ -6,5 +6,6 @@ module.exports = {
     'Coding/Easy/random-number',
     'Coding/Easy/string-repeat',
     'Coding/Easy/sort-array',
+    'Coding/Easy/find-most-frequent-char',
   ],
 };

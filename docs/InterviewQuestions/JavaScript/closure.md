@@ -6,13 +6,15 @@ slug: /closure
 
 ## 1. What is Closure ?
 
-closure 除了包含本身是一個 function 外，也含括了自身內部的環境，同時也能去獲取外部 function 的變數。
+在思考閉包之前，需要先思考變數作用域和 `Garbage Collection(垃圾回收機制)`
+
+<!-- closure 除了包含本身是一個 function 外，也含括了自身內部的環境，同時也能去獲取外部 function 的變數。
 
 因此可以理解為，closure 本身是一個 child function，用來保存處理 parent function 的變數。
 
 之所以需要這個功能，在於多數高階語言，大多帶有 `Garbage Collection(垃圾回收機制)`，JS 自然也不例外。
 
-每當 function 執行完畢後，即會觸發這個機制，將內部作用域內容銷毀。
+每當 function 執行完畢後，即會觸發這個機制，將內部作用域內容銷毀。 -->
 
 ### Scope
 
@@ -23,7 +25,7 @@ closure 除了包含本身是一個 function 外，也含括了自身內部的�
 let a = 1;
 
 function parentFunction() {
-  // local scope
+  // function scope
   let b = 2;
 
   function childFunction() {

@@ -65,9 +65,9 @@ function d() {
 d();
 ```
 
-### Answer
+### 理解執行順序
 
-首先看 function d
+首先看 `d()`
 
 ```js
 function d() {
@@ -87,3 +87,45 @@ Druid;
 Rogue;
 Mage;
 ```
+
+## 3. What is the output of the following snippet?
+
+```js
+function printing() {
+  console.log(1);
+  setTimeout(function () {
+    console.log(2);
+  }, 1000);
+  setTimeout(function () {
+    console.log(3);
+  }, 0);
+
+  new Promise((resolve, reject) => {
+    console.log(4);
+    resolve(5);
+  }).then((foo) => {
+    console.log(6);
+  });
+
+  console.log(7);
+}
+
+printing();
+
+// output ?
+```
+
+### 注意 Promise 的區塊
+
+這題當初在面試時，對 Promise 的原理不夠熟悉，忽略了在 Promise 中 `conoole.log(4)` 所屬的區塊，不屬於非同步狀態(非 `.then()` 和 `.catch()`)，因此在撰寫答案上，出現不小瑕疵。
+
+```js
+1;
+4;
+7;
+6;
+3;
+2;
+```
+
+這個運作順序邏輯如下，首先跑同步執行序，即 1, 4, 7 三組數字，而 `setTimeout` 中的 `console.log` 則依照 event loop 的機制，會先將非同步的程式碼放到 queue 中。同步任務執行完畢後，接著先執行 `microtask queue` 中的程式碼，因此會先執行 `Promise` 中的 `console.log(6)`。最後，開始執行非同步的任務，依照延遲秒數決定先後順序，因此印出 3, 2。

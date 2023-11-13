@@ -6,19 +6,13 @@ slug: /closure
 
 ## 1. What is Closure ?
 
-在思考閉包之前，需要先思考變數作用域和 `Garbage Collection(垃圾回收機制)`
+> 什麼是 Closure ?
 
-<!-- closure 除了包含本身是一個 function 外，也含括了自身內部的環境，同時也能去獲取外部 function 的變數。
+要理解閉包，需要先明白 JavaScript 的變數作用域，以及 function 是如何訪問外部變數的。
 
-因此可以理解為，closure 本身是一個 child function，用來保存處理 parent function 的變數。
+### Variable Scope(變數作用域)
 
-之所以需要這個功能，在於多數高階語言，大多帶有 `Garbage Collection(垃圾回收機制)`，JS 自然也不例外。
-
-每當 function 執行完畢後，即會觸發這個機制，將內部作用域內容銷毀。 -->
-
-### Scope
-
-先從作用域的角度來看待其運作方式
+在 JavaScript 中，變數的作用域分為兩種，分別是 global scope & function scope。
 
 ```js
 // global scope
@@ -30,49 +24,43 @@ function parentFunction() {
 
   function childFunction() {
     let c = 3;
-    console.log(a, b, c);
+    console.log(a, b, c); // print 1 2 3, can access global scope & function scope
   }
 
   childFunction();
 }
 
 parentFunction();
-console.log(a, b, c);
+console.log(a); // print 1, can access global scope
+console.log(b, c); // 產生錯誤，無法存取 function scope 內的變數
 ```
 
-在 child 中，因為變數還能正常獲取，所以可以 print 1 2 3，但一回到 global 環境中，因為 b c 變數都已被銷毀，也就無法 print。
+### Closure example
 
-倘若今天要進行疊加計算之類的作法，無論 call 幾次 parentFunction 都會拿到相同的結果，所以為了處理這個需求，可以更改如下:
+Closure 的觸發條件是，有一個子函式定義在父函式內，且透過 return 的方式回傳，達到保存子函式內的環境變數(等於迴避了 `Garbage Collection(垃圾回收機制)`)。
 
 ```js
-// global scope
-let a = 1;
+function parentFunction() {
+  let count = 0;
 
-const parentFunction = () => {
-  // local scope
-  let b = 2;
-
-  const childFunction = () => {
-    console.log((a += 2));
-    console.log((b += 4));
+  return function childFunction() {
+    count += 1;
+    console.log(`目前計數：${count}`);
   };
+}
 
-  return childFunction;
-};
+const counter = parentFunction();
 
-const result = parentFunction();
-result(); // 3, 6
-result(); // 5, 10
-console.log(a); // print 5
+counter(); // print 目前計數：1
+counter(); // print 目前計數：2
+// count 變數不會被回收，因為 childFunction 仍然存在，並且每次呼叫都會更新 count 的值
 ```
 
-這樣一來，無論 call 幾次 function，都能持續計算 global variable 的疊加結果。
-
-但如果在這邊 `console.log(b)` 則會拿到 error，因為 b 這個變數其作用域仍在 function 內。
+但要注意，因為閉包會將變數保存在記憶體中，所以如果變數過多，會導致記憶體占用過大(不能濫用閉包)，進而影響效能。
 
 ## 2. Create a function that meets the following conditions
 
-> 建立符合下述條件的 function
+> 建立符合下述條件的 function(使用閉包觀念來處理)
 
 ```js
 plus(2, 5); // output 7

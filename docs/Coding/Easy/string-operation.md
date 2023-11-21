@@ -1,10 +1,10 @@
 ---
-id: string-repeat
-title: 📄 String Repeat
-slug: /string-repeat
+id: string-operation
+title: 📄 String Operation
+slug: /string-operation
 ---
 
-## Question Description
+## 1. String Repeat
 
 嘗試設計一個 function，允許將 string 重複指定的次數。
 
@@ -40,3 +40,5 @@ function repeatString(str, num) {
   return repeatedString;
 }
 ```
+
+## 2. String

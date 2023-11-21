@@ -1,6 +1,6 @@
 ---
 id: vue-api
-title: 📄 Basic & API
+title: 📄 Vue Basic & API
 slug: /vue-api
 ---
 

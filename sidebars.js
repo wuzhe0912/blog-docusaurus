@@ -1,8 +1,8 @@
 // ---Interview Questions---
 const HttpQuestionList = require('./sidebar/InterviewQuestions/http.js');
 const JavaScriptQuestionList = require('./sidebar/InterviewQuestions/javascript.js');
-// const ReactQuestionList = require('./sidebar/InterviewQuestions/react.js');
 const VueQuestionList = require('./sidebar/InterviewQuestions/vue.js');
+const ReactQuestionList = require('./sidebar/InterviewQuestions/react.js');
 const CSSQuestionList = require('./sidebar/InterviewQuestions/css.js');
 const BrowserQuestionList = require('./sidebar/InterviewQuestions/browser.js');
 const ToolsList = require('./sidebar/InterviewQuestions/tools.js');
@@ -16,6 +16,7 @@ module.exports = {
     'InterviewQuestions/interview-questions',
     JavaScriptQuestionList,
     VueQuestionList,
+    ReactQuestionList,
     CSSQuestionList,
     ToolsList,
     BrowserQuestionList,

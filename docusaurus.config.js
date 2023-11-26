@@ -42,6 +42,12 @@ module.exports = {
           label: 'Coding',
         },
         {
+          type: 'doc',
+          docId: 'LeetCode/leet-code',
+          position: 'left',
+          label: 'LeetCode',
+        },
+        {
           href: 'https://github.com/wuzhe0912/docusaurus-blog',
           label: 'GitHub',
           position: 'right',

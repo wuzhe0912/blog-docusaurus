@@ -10,6 +10,8 @@ const WebSecurityList = require('./sidebar/InterviewQuestions/web-security.js');
 const ExperienceList = require('./sidebar/InterviewQuestions/experience.js');
 // ---Coding---
 const CodingEasyList = require('./sidebar/CodingQuestions/coding-easy.js');
+// ---LeetCode---
+const LeetCodeEasyList = require('./sidebar/LeetCodeQuestions/leet-code-easy.js');
 
 module.exports = {
   InterviewQuestions: [
@@ -25,4 +27,5 @@ module.exports = {
     ExperienceList,
   ],
   Coding: ['Coding/coding', CodingEasyList],
+  LeetCode: ['LeetCode/leet-code', LeetCodeEasyList],
 };

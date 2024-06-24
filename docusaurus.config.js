@@ -1,5 +1,6 @@
 const lightCodeTheme = require('prism-react-renderer').themes.github;
 const darkCodeTheme = require('prism-react-renderer').themes.dracula;
+require('dotenv').config();
 
 const currentYear = new Date().getFullYear();
 
@@ -49,8 +50,9 @@ module.exports = {
         },
         {
           href: 'https://github.com/wuzhe0912/docusaurus-blog',
-          label: 'GitHub',
           position: 'right',
+          className: 'header-github-link',
+          'aria-label': 'GitHub repository',
         },
       ],
     },
@@ -90,7 +92,7 @@ module.exports = {
       },
     },
     algolia: {
-      appId: process.env.ALGOLIA_API_ID,
+      appId: process.env.ALGOLIA_APP_ID,
       apiKey: process.env.ALGOLIA_API_KEY,
       indexName: process.env.ALGOLIA_API_INDEX_NAME,
       contextualSearch: true,

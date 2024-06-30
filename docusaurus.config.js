@@ -24,12 +24,6 @@ module.exports = {
       },
       items: [
         { to: '/blog', label: 'Blog', position: 'right' },
-        // {
-        //   type: 'doc',
-        //   docId: 'SoftwareEngineer/software-engineer',
-        //   position: 'left',
-        //   label: 'Software Engineer',
-        // },
         {
           type: 'doc',
           docId: 'InterviewQuestions/interview-questions',
@@ -41,6 +35,12 @@ module.exports = {
           docId: 'Coding/coding',
           position: 'left',
           label: 'Coding',
+        },
+        {
+          type: 'doc',
+          docId: 'Quiz/quiz',
+          position: 'left',
+          label: '❓Quiz',
         },
         {
           type: 'doc',

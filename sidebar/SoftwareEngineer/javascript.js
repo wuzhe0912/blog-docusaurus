@@ -3,10 +3,7 @@ module.exports = {
   label: 'JavaScript',
   items: [
     {
-      Syntax: [
-        'SoftwareEngineer/JavaScript/Syntax/DOM',
-        'SoftwareEngineer/JavaScript/Syntax/async-defer',
-      ],
+      Syntax: ['SoftwareEngineer/JavaScript/Syntax/DOM'],
       ES6: [
         'SoftwareEngineer/JavaScript/ES6/arrow-function',
         'SoftwareEngineer/JavaScript/ES6/destructuring',

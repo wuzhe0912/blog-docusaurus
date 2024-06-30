@@ -4,19 +4,29 @@ import styles from './HomepageFeatures.module.css';
 
 const FeatureList = [
   {
-    title: '技術開發',
+    title: '公平世界',
     Svg: require('../../static/img/undraw_docusaurus_mountain.svg').default,
-    description: <>紀錄自己的學習筆記，並透過分享的形式重新審視。</>,
+    description: (
+      <>錢流向了不缺錢的人，愛流向了不缺愛的人，苦流向了最能吃苦的人。</>
+    ),
   },
   {
-    title: '個人成長',
+    title: '人生迷途',
     Svg: require('../../static/img/undraw_docusaurus_tree.svg').default,
-    description: <>簡單分享自己的生活點滴，記錄閱讀與生活探索。</>,
+    description: (
+      <>
+        人生最大的樂趣就是像無頭蒼蠅一樣亂撞，並慶祝那些意外地轉折與突如其來的災難，還有什麼比徹底迷失方向更能證明你活著呢？
+      </>
+    ),
   },
   {
-    title: 'AI 應用',
+    title: '夢想現實',
     Svg: require('../../static/img/undraw_docusaurus_react.svg').default,
-    description: <>逐步研究使用 AI 來進行自動化應用，並嘗試尋找落地可行性。</>,
+    description: (
+      <>
+        當你還年輕時，不要覺得自己人生就這樣了，等到你年紀更大一些，就會發現要保持這樣都沒這麼容易。
+      </>
+    ),
   },
 ];
 

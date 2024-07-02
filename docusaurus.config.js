@@ -23,6 +23,7 @@ module.exports = {
         src: 'img/logo.svg',
       },
       items: [
+        { type: 'localeDropdown', position: 'right' },
         { to: '/blog', label: 'Blog', position: 'right' },
         {
           type: 'doc',
@@ -34,7 +35,7 @@ module.exports = {
           type: 'doc',
           docId: 'Coding/coding',
           position: 'left',
-          label: 'Coding',
+          label: '⌨️ Coding',
         },
         {
           type: 'doc',
@@ -132,6 +133,11 @@ module.exports = {
   ],
   i18n: {
     defaultLocale: 'zh-tw',
-    locales: ['zh-tw', 'en'],
+    locales: ['zh-tw', 'en', 'ja', 'fr', 'de', 'ar'],
+    localeConfigs: {
+      ar: {
+        direction: 'rtl',
+      },
+    },
   },
 };

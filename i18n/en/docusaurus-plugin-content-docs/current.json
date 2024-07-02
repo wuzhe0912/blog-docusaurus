@@ -1,0 +1,62 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.InterviewQuestions.category.📁 JavaScript (ES6+)": {
+    "message": "📁 JavaScript (ES6+)",
+    "description": "The label for category 📁 JavaScript (ES6+) in sidebar InterviewQuestions"
+  },
+  "sidebar.InterviewQuestions.category.📁 Vue": {
+    "message": "📁 Vue",
+    "description": "The label for category 📁 Vue in sidebar InterviewQuestions"
+  },
+  "sidebar.InterviewQuestions.category.📁 React": {
+    "message": "📁 React",
+    "description": "The label for category 📁 React in sidebar InterviewQuestions"
+  },
+  "sidebar.InterviewQuestions.category.📁 CSS": {
+    "message": "📁 CSS",
+    "description": "The label for category 📁 CSS in sidebar InterviewQuestions"
+  },
+  "sidebar.InterviewQuestions.category.📁 Tools": {
+    "message": "📁 Tools",
+    "description": "The label for category 📁 Tools in sidebar InterviewQuestions"
+  },
+  "sidebar.InterviewQuestions.category.📁 Browser": {
+    "message": "📁 Browser",
+    "description": "The label for category 📁 Browser in sidebar InterviewQuestions"
+  },
+  "sidebar.InterviewQuestions.category.📁 HTTP": {
+    "message": "📁 HTTP",
+    "description": "The label for category 📁 HTTP in sidebar InterviewQuestions"
+  },
+  "sidebar.InterviewQuestions.category.📁 Web Security": {
+    "message": "📁 Web Security",
+    "description": "The label for category 📁 Web Security in sidebar InterviewQuestions"
+  },
+  "sidebar.InterviewQuestions.category.📁 Experience": {
+    "message": "📁 Experience",
+    "description": "The label for category 📁 Experience in sidebar InterviewQuestions"
+  },
+  "sidebar.Coding.category.📁 Easy": {
+    "message": "📁 Easy",
+    "description": "The label for category 📁 Easy in sidebar Coding"
+  },
+  "sidebar.Quiz.category.JavaScript": {
+    "message": "JavaScript",
+    "description": "The label for category JavaScript in sidebar Quiz"
+  },
+  "sidebar.Quiz.category.Easy": {
+    "message": "Easy",
+    "description": "The label for category Easy in sidebar Quiz"
+  },
+  "sidebar.Quiz.category.Medium": {
+    "message": "Medium",
+    "description": "The label for category Medium in sidebar Quiz"
+  },
+  "sidebar.LeetCode.category.📁 Easy": {
+    "message": "📁 Easy",
+    "description": "The label for category 📁 Easy in sidebar LeetCode"
+  }
+}

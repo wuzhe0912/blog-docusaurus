@@ -18,11 +18,11 @@ Vue2 使用 `Object.defineProperty` 來實現雙向綁定，這個方法可以�
 
 2. **Dependency Collection(依賴收集)**
 
-   每當組件中的渲染函數被執行時，會讀取 data 中的屬性，這時候就會觸發 `getter`，Vue 會記錄這些 Dependency，確保當資料變化時，能夠通知到依賴這些資料的 component。
+   每當組件中的渲染函式被執行時，會讀取 data 中的屬性，這時候就會觸發 `getter`，Vue 會記錄這些 Dependency，確保當資料變化時，能夠通知到依賴這些資料的 component。
 
 3. **Dispatching Updates(派發更新)**
 
-   當資料被修改時，會觸發 `setter`，這時候 Vue 會通知到所有依賴這些資料的 component，並且重新執行渲染函數，更新 DOM。
+   當資料被修改時，會觸發 `setter`，這時候 Vue 會通知到所有依賴這些資料的 component，並且重新執行渲染函式，更新 DOM。
 
 #### Vue2 Simple Example
 

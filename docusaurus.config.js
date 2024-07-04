@@ -6,7 +6,7 @@ const currentYear = new Date().getFullYear();
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: `Coding and Storytelling`,
+  title: "Pitt Wu's Story",
   tagline: '',
   url: 'https://pitt-wu-blog.vercel.app',
   baseUrl: '/',

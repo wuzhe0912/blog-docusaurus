@@ -77,8 +77,17 @@ module.exports = {
             },
           ],
         },
+        {
+          title: 'More',
+          items: [
+            {
+              label: 'Instagram(My Son)',
+              href: 'https://www.instagram.com/little_seal0627/',
+            },
+          ],
+        },
       ],
-      copyright: `Copyright © 2017 - ${currentYear} Pitt Wu Built with Docusaurus.`,
+      copyright: `Copyright © ${currentYear} Pitt Wu Built with Docusaurus.`,
     },
     colorMode: {
       defaultMode: 'dark',

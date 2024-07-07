@@ -10,7 +10,6 @@ const WebSecurityList = require('./sidebar/InterviewQuestions/web-security.js');
 const ExperienceList = require('./sidebar/InterviewQuestions/experience.js');
 // ---Coding---
 const LodashFunctionsEasyList = require('./sidebar/Coding/lodash-functions-easy.js');
-const CodingEasyList = require('./sidebar/Coding/coding-easy.js');
 // ---Quiz---
 const QuizJavaScriptList = require('./sidebar/Quiz/quiz-javascript.js');
 // ---LeetCode---
@@ -29,7 +28,7 @@ module.exports = {
     WebSecurityList,
     ExperienceList,
   ],
-  Coding: ['Coding/coding', LodashFunctionsEasyList, CodingEasyList],
+  Coding: ['Coding/coding', LodashFunctionsEasyList],
   Quiz: ['Quiz/quiz', QuizJavaScriptList],
   LeetCode: ['LeetCode/leet-code', LeetCodeEasyList],
 };

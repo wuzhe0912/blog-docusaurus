@@ -1,11 +1,11 @@
 ---
 id: lodash-functions-easy-clamp
-title: 'Clamp'
+title: '📄 Clamp'
 slug: /lodash-functions-easy-clamp
 tags: [Coding, Easy]
 ---
 
-## 概述
+## 問題描述
 
 實現 `clamp` 函式，將數值限制在指定的範圍內。
 

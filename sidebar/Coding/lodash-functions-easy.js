@@ -5,6 +5,7 @@ module.exports = {
     {
       '🖋️ Easy': [
         'Coding/LodashFunctions/Easy/lodash-functions-easy-clamp',
+        'Coding/LodashFunctions/Easy/find-value-in-array',
         'Coding/LodashFunctions/Easy/counter-number',
         'Coding/LodashFunctions/Easy/random-number',
         'Coding/LodashFunctions/Easy/string-operation',

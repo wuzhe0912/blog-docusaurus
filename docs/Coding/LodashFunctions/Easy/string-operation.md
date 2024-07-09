@@ -67,3 +67,87 @@ console.log(getFileExtension(fileNameWithoutExtension2)); // "flv"
 console.log(getFileExtension(fileNameWithoutExtension3)); // "mov"
 console.log(getFileExtension(fileNameWithoutExtension4)); // ""
 ```
+
+## 3. 尋找陣列中的最長字串
+
+嘗試設計一個 function，可以找出陣列中最長的字串。
+
+### 解法一：使用 `reduce()` 方法
+
+```js
+const stringArray = ['apple', 'banana', 'orange', 'kiwi', 'strawberry'];
+
+const longestString = (stringArray) => {
+  return stringArray.reduce(
+    (acc, cur) => (acc.length > cur.length ? acc : cur),
+    ''
+  );
+};
+
+console.log(longestString(stringArray)); // "strawberry"
+```
+
+### 解法二：使用 `sort()` 方法
+
+```js
+const stringArray = ['apple', 'banana', 'orange', 'kiwi', 'strawberry'];
+
+const longestString = (stringArray) => {
+  return stringArray.sort((a, b) => b.length - a.length)[0];
+};
+
+console.log(longestString(stringArray)); // "strawberry"
+```
+
+## 4. 將字串轉換為駝峰式大小寫
+
+嘗試設計一個 function，可以將字串轉換為駝峰式大小寫。
+
+### 解法一：使用 `replace()` 方法
+
+```js
+const camelCase = (str) => {
+  return str.replace(/-([a-z])/g, (match, char) => char.toUpperCase());
+};
+
+console.log(camelCase('hello-world')); // "helloWorld"
+```
+
+### 解法二：使用 `split()` 方法
+
+```js
+const camelCase = (str) => {
+  return str
+    .split('-')
+    .map((word, index) =>
+      index === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1)
+    )
+    .join('');
+};
+
+console.log(camelCase('hello-world')); // "helloWorld"
+```
+
+## 5. 找出陣列中的重複字串次數
+
+### 解法一：使用 `reduce()` 方法找出重複字串次數
+
+```js
+const stringArray = [
+  'apple',
+  'banana',
+  'orange',
+  'kiwi',
+  'strawberry',
+  'apple',
+];
+
+const countDuplicateString = (stringArray) => {
+  return stringArray.reduce((acc, cur) => {
+    acc[cur] = (acc[cur] || 0) + 1;
+    return acc;
+  }, {});
+};
+
+console.log(countDuplicateString(stringArray)); // { apple: 2, banana: 1, orange: 1, kiwi: 1, strawberry: 1 }
+```

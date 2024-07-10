@@ -8,7 +8,7 @@ slug: /string-operation
 
 嘗試設計一個 function，允許將 string 重複指定的次數。
 
-### 解法一：`repeat()` solution(ES6+)
+### I. 使用 `repeat()` solution(ES6+)
 
 因為現在 String 已經支援 `repeat()`，所以可以直接使用。
 
@@ -18,11 +18,11 @@ const repeatedString = 'Pitt';
 console.log(`Name Repeat : ${repeatedString.repeat(3)}`); // "Name Repeat : PittPittPitt"
 ```
 
-### Reference
+#### Reference
 
 [String.prototype.repeat()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/repeat)
 
-### 解法二：使用迴圈
+### II. 使用迴圈
 
 如果不使用 `repeat()`，也可以使用迴圈，透過傳參數的方式，約束在正整數的條件下達成。
 
@@ -53,7 +53,7 @@ const fileNameWithoutExtension3 = 'movie.mov';
 const fileNameWithoutExtension4 = '.gitignore';
 ```
 
-### 解法一：使用 split 取得檔案名稱
+### I. 使用 split 取得檔案名稱
 
 ```js
 const getFileExtension = (fileName) => {
@@ -70,9 +70,19 @@ console.log(getFileExtension(fileNameWithoutExtension4)); // ""
 
 ## 3. 尋找陣列中的最長字串
 
-嘗試設計一個 function，可以找出陣列中最長的字串。
+### I. 使用 `sort()` 方法
 
-### 解法一：使用 `reduce()` 方法
+```js
+const stringArray = ['apple', 'banana', 'orange', 'kiwi', 'strawberry'];
+
+const longestString = (stringArray) => {
+  return stringArray.sort((a, b) => b.length - a.length)[0];
+};
+
+console.log(longestString(stringArray)); // "strawberry"
+```
+
+### II. 使用 `reduce()` 方法
 
 ```js
 const stringArray = ['apple', 'banana', 'orange', 'kiwi', 'strawberry'];
@@ -87,23 +97,11 @@ const longestString = (stringArray) => {
 console.log(longestString(stringArray)); // "strawberry"
 ```
 
-### 解法二：使用 `sort()` 方法
-
-```js
-const stringArray = ['apple', 'banana', 'orange', 'kiwi', 'strawberry'];
-
-const longestString = (stringArray) => {
-  return stringArray.sort((a, b) => b.length - a.length)[0];
-};
-
-console.log(longestString(stringArray)); // "strawberry"
-```
-
 ## 4. 將字串轉換為駝峰式大小寫
 
 嘗試設計一個 function，可以將字串轉換為駝峰式大小寫。
 
-### 解法一：使用 `replace()` 方法
+### I. 使用 `replace()` 方法
 
 ```js
 const camelCase = (str) => {
@@ -113,7 +111,7 @@ const camelCase = (str) => {
 console.log(camelCase('hello-world')); // "helloWorld"
 ```
 
-### 解法二：使用 `split()` 方法
+### II. 使用 `split()` 方法
 
 ```js
 const camelCase = (str) => {
@@ -130,7 +128,30 @@ console.log(camelCase('hello-world')); // "helloWorld"
 
 ## 5. 找出陣列中的重複字串次數
 
-### 解法一：使用 `reduce()` 方法找出重複字串次數
+### I. 使用 `Map()` 方法
+
+```js
+const stringArray = [
+  'apple',
+  'banana',
+  'orange',
+  'kiwi',
+  'strawberry',
+  'apple',
+];
+
+const countDuplicateString = (stringArray) => {
+  const map = new Map();
+  stringArray.forEach((item) => {
+    map.set(item, (map.get(item) || 0) + 1);
+  });
+  return Object.fromEntries(map);
+};
+
+console.log(countDuplicateString(stringArray)); // { apple: 2, banana: 1, orange: 1, kiwi: 1, strawberry: 1 }
+```
+
+### II. 使用 `reduce()` 方法找出重複字串次數
 
 ```js
 const stringArray = [
@@ -150,4 +171,40 @@ const countDuplicateString = (stringArray) => {
 };
 
 console.log(countDuplicateString(stringArray)); // { apple: 2, banana: 1, orange: 1, kiwi: 1, strawberry: 1 }
+```
+
+### III. 使用 `Object.groupBy()` 方法(ES2023+)
+
+```js
+const stringArray = ['apple', 'banana', 'orange', 'kiwi', 'strawberry'];
+
+const countDuplicateString = (stringArray) => {
+  return Object.groupBy(stringArray);
+};
+
+console.log(countDuplicateString(stringArray)); // { apple: 2, banana: 1, orange: 1, kiwi: 1, strawberry: 1 }
+```
+
+## 6. 找出陣列中字串的副檔名，並過濾重複的副檔名
+
+### I. 使用 `split()` 方法
+
+```js
+const files = [
+  'document.docx',
+  'image.jpg',
+  'script.js',
+  'style.css',
+  'data.json',
+  'image.png',
+  'new-image.png',
+];
+
+const getFileExtension = (files) => {
+  return files
+    .map((file) => file.split('.').pop())
+    .filter((file, index, self) => self.indexOf(file) === index);
+};
+
+console.log(getFileExtension(files)); // ["docx", "jpg", "js", "css", "json", "png"]
 ```

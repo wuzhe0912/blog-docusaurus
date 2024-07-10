@@ -12,6 +12,7 @@ module.exports = {
         'Coding/LodashFunctions/Easy/sort-array',
         'Coding/LodashFunctions/Easy/find-most-frequent-char',
       ],
+      '🖋️ Medium': ['Coding/LodashFunctions/Medium/multi-dimensional-array'],
     },
   ],
 };

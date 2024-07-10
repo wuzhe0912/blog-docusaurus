@@ -16,9 +16,7 @@ tags: [Coding, Easy]
 - 如果 `number` 大於 `upper`，則返回 `upper`。
 - 否則，返回 `number`。
 
-## 解法一
-
-> 最直接的暴力解法，使用 `if` 條件判斷。
+## I. 暴力解，使用 `if` 條件判斷
 
 ```javascript
 function clamp(number, lower, upper) {
@@ -32,9 +30,7 @@ function clamp(number, lower, upper) {
 }
 ```
 
-## 解法二
-
-> 使用 `Math.min` 和 `Math.max` 函式。
+## II. 使用 `Math.min` 和 `Math.max` 函式
 
 ```javascript
 function clamp(number, lower, upper) {

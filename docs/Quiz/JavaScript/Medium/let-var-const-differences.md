@@ -1,6 +1,6 @@
 ---
 id: let-var-const-differences
-title: 'What are the differences between variables created using let, var or const ?'
+title: 📄 請說明 var, let, const 三者的差異
 slug: /let-var-const-differences
 tags: [JavaScript, Quiz, Medium]
 ---
@@ -11,7 +11,7 @@ JavaScript 中有三種宣告變數的關鍵字：`var`、`let` 和 `const`。�
 
 ## 主要差異
 
-| 行為       | var              | let                 | const               |
+| 行為       | `var`            | `let`               | `const`             |
 | ---------- | ---------------- | ------------------- | ------------------- |
 | 作用域     | 函式作用域或全域 | 區塊作用域          | 區塊作用域          |
 | 初始化     | 可選             | 可選                | 必須                |

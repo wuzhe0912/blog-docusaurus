@@ -1,13 +1,9 @@
 ---
 id: js-null-undefined
-title: 'What is the difference between `null` and `undefined`?'
+title: '📄 請解釋 null 和 undefined 的差異'
 slug: /js-null-undefined
 tags: [JavaScript, Quiz, Easy]
 ---
-
-## 題目描述
-
-What is the difference between `null` and `undefined` ?
 
 ## 比對兩者差異
 

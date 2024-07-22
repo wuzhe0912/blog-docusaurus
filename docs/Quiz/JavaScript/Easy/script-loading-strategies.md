@@ -1,6 +1,6 @@
 ---
 id: script-loading-strategies
-title: 'Describe the difference between <script>, <script async> and <script defer>'
+title: '📄 請說明 `<script>`、`<script async>` 和 `<script defer>` 三者區別'
 slug: /script-loading-strategies
 tags: [JavaScript, Quiz, Easy]
 ---

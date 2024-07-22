@@ -1,6 +1,6 @@
 ---
 id: coding
-title: 📗 Index
+title: 📗 Coding Index
 slug: /coding
 ---
 

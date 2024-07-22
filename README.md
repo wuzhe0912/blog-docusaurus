@@ -1,6 +1,4 @@
-# Pitt Wu's Blog (Docusaurus)
-
-###### tags: `Blog`
+# Pitt Wu's Blog with Docusaurus
 
 🔗 [Website View](https://pitt-wu-blog.vercel.app/)
 
@@ -13,5 +11,4 @@
 
 ## Future Features
 
-- i18n, default use english language, add traditional chinese & Simplified Chinese.
 - try to use gitter.

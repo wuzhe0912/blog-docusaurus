@@ -1,64 +1,64 @@
 ---
 id: script-loading-strategies
-title: 'Describe the difference between <script>, <script async> and <script defer>'
+title: 📄 Please explain the differences between <script>, <script async>, and <script defer>
 slug: /script-loading-strategies
 tags: [JavaScript, Quiz, Easy]
 ---
 
-## 概述
+## Overview
 
-在 HTML 中，我們有三種主要的方式來載入 JavaScript 檔案：
+In HTML, we have three main ways to load JavaScript files:
 
 1. `<script>`
 2. `<script async>`
 3. `<script defer>`
 
-這三種方式在載入和執行腳本時有不同的行為。
+These three methods have different behaviors when loading and executing scripts.
 
-## 詳細比較
+## Detailed Comparison
 
-### 1. `<script>`
+### `<script>`
 
-- **行為**：當瀏覽器遇到這種標籤時，會停止解析 HTML，下載並執行腳本，然後再繼續解析 HTML。
-- **使用時機**：適用於對頁面渲染至關重要的腳本。
-- **優點**：確保腳本按順序執行。
-- **缺點**：可能會延遲頁面的渲染。
+- **Behavior**: When the browser encounters this tag, it stops parsing HTML, downloads and executes the script, then continues parsing HTML.
+- **When to use**: Suitable for scripts that are critical to page rendering.
+- **Advantages**: Ensures scripts are executed in order.
+- **Disadvantages**: May delay page rendering.
 
 ```html
 <script src="important.js"></script>
 ```
 
-### 2. `<script async>`
+### `<script async>`
 
-- **行為**：瀏覽器會在背景下載腳本，同時繼續解析 HTML。腳本下載完成後立即執行，可能會中斷 HTML 的解析。
-- **使用時機**：適用於獨立的腳本，如分析或廣告腳本。
-- **優點**：不會阻塞 HTML 解析，可以提高頁面載入速度。
-- **缺點**：執行順序不保證，可能在 DOM 未完全載入時執行。
+- **Behavior**：The browser downloads the script in the background while continuing to parse HTML. The script is executed immediately after download, which may interrupt HTML parsing.
+- **When to use**：Suitable for independent scripts, such as analytics or advertising scripts.
+- **Advantages**：Does not block HTML parsing, can improve page load speed.
+- **Disadvantages**：Execution order is not guaranteed, may execute before the DOM is fully loaded.
 
 ```html
 <script async src="analytics.js"></script>
 ```
 
-### 3. `<script defer>`
+### `<script defer>`
 
-- **行為**：瀏覽器會在背景下載腳本，但會等到 HTML 解析完成後才執行。多個 defer 腳本會按照它們在 HTML 中的順序執行。
-- **使用時機**：適用於需要完整 DOM 結構，但不是立即需要的腳本。
-- **優點**：不會阻塞 HTML 解析，保證執行順序，適合依賴 DOM 的腳本。
-- **缺點**：如果腳本很重要，可能會延遲頁面的互動時間。
+- **Behavior**：The browser downloads the script in the background but waits until HTML parsing is complete before executing. Multiple deferred scripts are executed in the order they appear in the HTML.
+- **When to use**：Suitable for scripts that need the complete DOM structure but are not immediately necessary.
+- **Advantages**：Does not block HTML parsing, guarantees execution order, suitable for DOM-dependent scripts.
+- **Disadvantages**：If the script is important, it may delay the page's interactive time.
 
 ```html
 <script defer src="ui-enhancements.js"></script>
 ```
 
-## 案例
+## Case Study
 
-假設以你正在準備一場約會：
+Imagine you're preparing for a date：
 
 1. **`<script>`**：
-   就像你停下所有準備工作，專心打電話給另一半確認約會細節。雖然確保了溝通，但可能會延誤你的準備時間。
+   It's like stopping all your preparations to make a phone call to your partner to confirm date details. While it ensures communication, it might delay your preparation time.
 
 2. **`<script async>`**：
-   相當於你一邊準備一邊用藍牙耳機與另一半通話。效率提高了，但可能會因為太專注通話而穿錯衣服。
+   This is equivalent to using a Bluetooth headset to talk to your partner while preparing. Efficiency is improved, but you might wear the wrong clothes because you're too focused on the call.
 
 3. **`<script defer>`**：
-   等同於你先發訊息給另一半，告訴他們你會在準備完畢後回電。這樣你可以專心準備，等一切就緒後再好好溝通。
+   This is like sending a message to your partner, telling them you'll call back after you're done preparing. This way, you can focus on preparing and communicate properly when everything is ready.

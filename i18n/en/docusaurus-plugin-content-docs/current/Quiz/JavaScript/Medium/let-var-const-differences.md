@@ -1,29 +1,29 @@
 ---
 id: let-var-const-differences
-title: 'What are the differences between variables created using let, var or const ?'
+title: 📄 Please explain the differences between var, let, and const
 slug: /let-var-const-differences
 tags: [JavaScript, Quiz, Medium]
 ---
 
-## 概述
+## Overview
 
-JavaScript 中有三種宣告變數的關鍵字：`var`、`let` 和 `const`。雖然它們都用於宣告變數，但在作用域、初始化、重複宣告、重新賦值和訪問時機等方面有所不同。
+JavaScript has three keywords for declaring variables: `var`, `let`, and `const`. While they are all used to declare variables, they differ in terms of scope, initialization, redeclaration, reassignment, and accessibility timing.
 
-## 主要差異
+## Main Differences
 
-| 行為       | var              | let                 | const               |
-| ---------- | ---------------- | ------------------- | ------------------- |
-| 作用域     | 函式作用域或全域 | 區塊作用域          | 區塊作用域          |
-| 初始化     | 可選             | 可選                | 必須                |
-| 重複宣告   | 允許             | 不允許              | 不允許              |
-| 重新賦值   | 允許             | 允許                | 不允許              |
-| 宣告前訪問 | 返回 undefined   | 拋出 ReferenceError | 拋出 ReferenceError |
+| Behavior                  | `var`              | `let`                 | `const`               |
+| ------------------------- | ------------------ | --------------------- | --------------------- |
+| Scope                     | Function or global | Block                 | Block                 |
+| Initialization            | Optional           | Optional              | Required              |
+| Redeclaration             | Allowed            | Not allowed           | Not allowed           |
+| Reassignment              | Allowed            | Allowed               | Not allowed           |
+| Access before declaration | Returns undefined  | Throws ReferenceError | Throws ReferenceError |
 
-## 詳細說明
+## Detailed Explanation
 
-### 1. 作用域
+### Scope
 
-`var` 的作用域是函式作用域或全域作用域，而 `let` 和 `const` 是區塊作用域（包括函式、if-else 區塊或 for 迴圈）。
+`var` has function or global scope, while `let` and `const` have block scope (including functions, if-else blocks, or for loops).
 
 ```javascript
 function scopeExample() {
@@ -53,23 +53,23 @@ console.log(letInBlock); // ReferenceError: letInBlock is not defined
 console.log(constInBlock); // ReferenceError: constInBlock is not defined
 ```
 
-### 2. 初始化
+### Initialization
 
-`var` 和 `let` 可以在宣告時不進行初始化，而 `const` 必須在宣告時初始化。
+`var` and `let` can be declared without initialization, while `const` must be initialized at declaration.
 
 ```javascript
-var varVariable;  // 有效
-let letVariable;  // 有效
+var varVariable;  // Valid
+let letVariable;  // Valid
 const constVariable;  // SyntaxError: Missing initializer in const declaration
 ```
 
-### 3. 重複宣告
+### Redeclaration
 
-在同一作用域內，`var` 允許重複宣告同一變數，而 `let` 和 `const` 不允許。
+Within the same scope, `var` allows redeclaration of the same variable, while `let` and `const` do not.
 
 ```javascript
 var x = 1;
-var x = 2; // 有效，x 現在等於 2
+var x = 2; // Valid, x is now 2
 
 let y = 1;
 let y = 2; // SyntaxError: Identifier 'y' has already been declared
@@ -78,36 +78,36 @@ const z = 1;
 const z = 2; // SyntaxError: Identifier 'z' has already been declared
 ```
 
-### 4. 重新賦值
+### Reassignment
 
-`var` 和 `let` 宣告的變數可以重新賦值，而 `const` 宣告的變數不能重新賦值。
+`var` and `let` can be reassigned, while `const` cannot be reassigned.
 
 ```javascript
 var x = 1;
-x = 2; // 有效
+x = 2; // Valid
 
 let y = 1;
-y = 2; // 有效
+y = 2; // Valid
 
 const z = 1;
 z = 2; // TypeError: Assignment to a constant variable
 ```
 
-注意：雖然 `const` 宣告的變數不能重新賦值，但如果它是一個物件或陣列，其內容仍然可以修改。
+Note: Although variables declared with `const` cannot be reassigned, if it's an object or array, its contents can still be modified.
 
 ```javascript
 const obj = { key: 'value' };
-obj.key = 'new value'; // 有效
+obj.key = 'new value'; // Valid
 console.log(obj); // { key: 'new value' }
 
 const arr = [1, 2, 3];
-arr.push(4); // 有效
+arr.push(4); // Valid
 console.log(arr); // [1, 2, 3, 4]
 ```
 
-### 5. 宣告前訪問（暫時性死區）
+### Access before declaration (Temporal Dead Zone)
 
-`var` 宣告的變數會被提升並自動初始化為 `undefined`，而 `let` 和 `const` 宣告的變數雖然也會被提升，但不會被初始化，在宣告之前訪問會拋出 `ReferenceError`。
+Variables declared with var are hoisted and automatically initialized to undefined, while variables declared with let and const are also hoisted but not initialized, throwing a ReferenceError if accessed before declaration.
 
 ```javascript
 console.log(x); // undefined
@@ -120,9 +120,9 @@ console.log(z); // ReferenceError: Cannot access 'z' before initialization
 const z = 5;
 ```
 
-## 最佳實踐
+## Best Practices
 
-1. 優先使用 `const`：對於不需要重新賦值的變數，使用 `const` 可以提高代碼的可讀性和可維護性。
-2. 其次使用 `let`：當需要重新賦值時，使用 `let`。
-3. 避免使用 `var`：由於 `var` 的作用域和提升行為可能導致意外問題，建議在現代 JavaScript 開發中避免使用。
-4. 注意瀏覽器兼容性：如果需要支援舊版瀏覽器，可以使用 Babel 等工具將 `let` 和 `const` 轉譯為 `var`。
+1. Prefer `const`: For variables that don't need to be reassigned, use `const` to improve code readability and maintainability.
+2. Use `let` secondarily: When reassignment is needed, use `let`.
+3. Avoid `var`: Due to var's scope and hoisting behavior that can lead to unexpected issues, it's recommended to avoid it in modern JavaScript development.
+4. Consider browser compatibility: If support for older browsers is needed, tools like Babel can be used to transpile `let` and `const` to `var`.

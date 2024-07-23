@@ -13,7 +13,7 @@ tags: [HTML, JavaScript, Quiz, Medium]
 | HTTP Request   | 是，可以透過 Cookie header 帶給 Server 端                                      | 否               | 否                   |
 | 總容量         | 4KB                                                                            | 5MB              | 5MB                  |
 | 存取(訪問)範圍 | 跨視窗/分頁                                                                    | 同一分頁         | 跨視窗/分頁          |
-| 安全性         | JavaScript 無法存取 `HttpOnly cookies`                                         |                  |                      |
+| 安全性         | JavaScript 無法存取 `HttpOnly cookies`                                         | 無               | 無                   |
 
 ## 名詞解釋
 

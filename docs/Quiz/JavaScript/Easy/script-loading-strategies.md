@@ -1,6 +1,6 @@
 ---
 id: script-loading-strategies
-title: '📄 請說明 `<script>`、`<script async>` 和 `<script defer>` 三者區別'
+title: 📄 請說明 <script>, <script async>, <script defer> 三者區別
 slug: /script-loading-strategies
 tags: [JavaScript, Quiz, Easy]
 ---
@@ -17,7 +17,7 @@ tags: [JavaScript, Quiz, Easy]
 
 ## 詳細比較
 
-### 1. `<script>`
+### `<script>`
 
 - **行為**：當瀏覽器遇到這種標籤時，會停止解析 HTML，下載並執行腳本，然後再繼續解析 HTML。
 - **使用時機**：適用於對頁面渲染至關重要的腳本。
@@ -28,7 +28,7 @@ tags: [JavaScript, Quiz, Easy]
 <script src="important.js"></script>
 ```
 
-### 2. `<script async>`
+### `<script async>`
 
 - **行為**：瀏覽器會在背景下載腳本，同時繼續解析 HTML。腳本下載完成後立即執行，可能會中斷 HTML 的解析。
 - **使用時機**：適用於獨立的腳本，如分析或廣告腳本。
@@ -39,7 +39,7 @@ tags: [JavaScript, Quiz, Easy]
 <script async src="analytics.js"></script>
 ```
 
-### 3. `<script defer>`
+### `<script defer>`
 
 - **行為**：瀏覽器會在背景下載腳本，但會等到 HTML 解析完成後才執行。多個 defer 腳本會按照它們在 HTML 中的順序執行。
 - **使用時機**：適用於需要完整 DOM 結構，但不是立即需要的腳本。

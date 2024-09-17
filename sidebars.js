@@ -6,12 +6,12 @@ const ReactQuestionList = require('./sidebar/InterviewQuestions/react.js');
 const CSSQuestionList = require('./sidebar/InterviewQuestions/css.js');
 const BrowserQuestionList = require('./sidebar/InterviewQuestions/browser.js');
 const ToolsList = require('./sidebar/InterviewQuestions/tools.js');
-const WebSecurityList = require('./sidebar/InterviewQuestions/web-security.js');
 const ExperienceList = require('./sidebar/InterviewQuestions/experience.js');
 // ---Coding---
 const LodashFunctionsEasyList = require('./sidebar/Coding/lodash-functions-easy.js');
 // ---Quiz---
 const QuizJavaScriptList = require('./sidebar/Quiz/quiz-javascript.js');
+const QuizSecurityList = require('./sidebar/Quiz/security.js');
 // ---LeetCode---
 const LeetCodeEasyList = require('./sidebar/LeetCodeQuestions/leet-code-easy.js');
 
@@ -25,10 +25,9 @@ module.exports = {
     ToolsList,
     BrowserQuestionList,
     HttpQuestionList,
-    WebSecurityList,
     ExperienceList,
   ],
   Coding: ['Coding/coding', LodashFunctionsEasyList],
-  Quiz: ['Quiz/quiz', QuizJavaScriptList],
+  Quiz: ['Quiz/quiz', QuizJavaScriptList, QuizSecurityList],
   LeetCode: ['LeetCode/leet-code', LeetCodeEasyList],
 };

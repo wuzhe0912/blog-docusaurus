@@ -14,6 +14,8 @@ const QuizJavaScriptList = require('./sidebar/Quiz/quiz-javascript.js');
 const QuizSecurityList = require('./sidebar/Quiz/security.js');
 // ---LeetCode---
 const LeetCodeEasyList = require('./sidebar/LeetCodeQuestions/leet-code-easy.js');
+// ---AI---
+const AIPromptsList = require('./sidebar/AI/prompts.js');
 
 module.exports = {
   InterviewQuestions: [
@@ -30,4 +32,5 @@ module.exports = {
   Coding: ['Coding/coding', LodashFunctionsEasyList],
   Quiz: ['Quiz/quiz', QuizJavaScriptList, QuizSecurityList],
   LeetCode: ['LeetCode/leet-code', LeetCodeEasyList],
+  AI: ['AI/ai-index', AIPromptsList],
 };

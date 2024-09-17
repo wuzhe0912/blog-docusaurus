@@ -50,6 +50,12 @@ module.exports = {
           label: 'LeetCode',
         },
         {
+          type: 'doc',
+          docId: 'AI/ai-index',
+          position: 'left',
+          label: 'AI',
+        },
+        {
           href: 'https://github.com/wuzhe0912/docusaurus-blog',
           position: 'right',
           className: 'header-github-link',

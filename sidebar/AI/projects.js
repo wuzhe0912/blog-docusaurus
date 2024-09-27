@@ -1,6 +1,6 @@
 module.exports = {
   type: 'category',
-  label: '📗 Prompts',
+  label: '📗 Projects',
   items: [
     {
       '🖋️ JavaScript': [

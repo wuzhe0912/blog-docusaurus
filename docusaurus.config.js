@@ -35,13 +35,13 @@ module.exports = {
           type: 'doc',
           docId: 'Coding/coding',
           position: 'left',
-          label: '⌨️ Coding',
+          label: 'Coding',
         },
         {
           type: 'doc',
           docId: 'Quiz/quiz',
           position: 'left',
-          label: '❓Quiz',
+          label: 'Quiz',
         },
         {
           type: 'doc',

@@ -665,7 +665,7 @@ showHistoryData() >> 印出 console.log 文字為「您總共計算 3 次 BMI �
   6. 高複用性：通過 `BMI_CATEGORIES` 物件重用 BMI 類別的資訊。
 
 ```jsx
-// 使用 const 聲明不變的物件，遵循「使用具有意義且可閱讀的名稱」原則
+// 定義 BMI 類別常數
 const BMI_CATEGORIES = {
   overThin: { state: '過輕', color: '藍色' },
   normal: { state: '正常', color: '紅色' },
@@ -675,16 +675,19 @@ const BMI_CATEGORIES = {
   severeFat: { state: '重度肥胖', color: '綠色' },
 };
 
-// 使用 const 聲明不變的陣列
+// init BMI record array
 const records = [];
 
-// 函式名稱清楚說明它的功能，遵循「函式名稱應該說明它做的內容」原則
+// 計算 BMI 值
 function calculateBMI(height, weight) {
+  // 使用 BMI 公式：體重(kg) / (身高(m)的平方)
+  // 將身高從公分轉換為公尺，並四捨五入到小數點後兩位
   return (weight / (height / 100) ** 2).toFixed(2);
 }
 
-// 使用簡單的 if-else 結構來判斷 BMI 類別，易於理解
+// 根據 BMI 值判斷體重狀態
 function getBMIState(bmi) {
+  // 使用 if-else 結構來判斷 BMI 落在哪個區間
   if (bmi < 18.5) return 'overThin';
   if (bmi < 24) return 'normal';
   if (bmi < 27) return 'overWeight';
@@ -693,8 +696,9 @@ function getBMIState(bmi) {
   return 'severeFat';
 }
 
-// 函式只做一件事，遵循「一個函式只做一件事情」原則
+// 新增 BMI 紀錄到歷史資料中
 function addRecord(bmi, category) {
+  // 將新的 BMI 紀錄推入 records 陣列
   records.push({
     bmi: bmi,
     state: BMI_CATEGORIES[category].state,
@@ -702,32 +706,42 @@ function addRecord(bmi, category) {
   });
 }
 
+// 主要的 BMI 計算和輸出函式
 function printBMI(height, weight) {
+  // 檢查輸入是否有效
   if (height <= 0 || weight <= 0) {
     return '身高和體重必須為正數';
   }
 
+  // 計算 BMI
   const bmi = calculateBMI(height, weight);
+  // 取得 BMI 對應的狀態類別
   const category = getBMIState(bmi);
 
+  // 將本次計算結果加入紀錄
   addRecord(bmi, category);
 
+  // 回傳結果
   return `您的體重${BMI_CATEGORIES[category].state}，健康指數為${BMI_CATEGORIES[category].color}`;
 }
 
+// 顯示 BMI 計算歷史紀錄
 function showHistoryData() {
+  // 檢查是否有歷史紀錄
   if (records.length === 0) {
     return '目前沒有 BMI 紀錄';
   }
 
+  // 取得最後一次 BMI 紀錄
   const lastRecord = records[records.length - 1];
+  // 回傳歷史資料摘要
   return `您總共計算 ${records.length} 次 BMI 紀錄，最後一次 BMI 指數為 ${lastRecord.bmi}，體重${lastRecord.state}！健康指數為${lastRecord.color}！`;
 }
 
-// Example usage
-console.log(printBMI(170, 60)); // 正常 BMI
-console.log(printBMI(180, 120)); // 肥胖 BMI
-console.log(showHistoryData()); // 顯示歷史資料
+// example usage
+console.log(printBMI(170, 60)); // 計算並輸出正常 BMI
+console.log(printBMI(180, 70)); // 計算並輸出肥胖 BMI
+console.log(showHistoryData()); // 顯示歷史資料摘要
 ```
 
 </details>

@@ -4,8 +4,13 @@ module.exports = {
   items: [
     {
       '🖋️ JavaScript': [
-        'AI/Prompts/javascript-prompts',
-        'AI/Prompts/vue-prompts',
+        'AI/Prompts/JavaScript/javascript-prompts',
+        'AI/Prompts/JavaScript/vue-prompts',
+      ],
+    },
+    {
+      '🖋️ Strategic Planning': [
+        'AI/Prompts/StrategicPlanning/first-principles-goal-achievement',
       ],
     },
   ],

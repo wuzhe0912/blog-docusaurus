@@ -1,6 +1,6 @@
 ---
 id: react-api
-title: 📄 React Basic & API
+title: 📄 Basic & API
 slug: /react-api
 ---
 
@@ -49,3 +49,5 @@ useEffect(() => {
   };
 }, [state]);
 ```
+
+## 2. What is the difference between Real DOM and Virtual DOM ?

@@ -55,12 +55,6 @@ module.exports = {
           position: 'left',
           label: 'AI',
         },
-        {
-          href: 'https://github.com/wuzhe0912/docusaurus-blog',
-          position: 'right',
-          className: 'header-github-link',
-          'aria-label': 'GitHub repository',
-        },
       ],
     },
     footer: {

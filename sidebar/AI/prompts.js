@@ -11,6 +11,9 @@ module.exports = {
       ],
     },
     {
+      '🖋️ Full-Stack': ['AI/Prompts/FullStack/mern-prompts'],
+    },
+    {
       '🖋️ Strategic Planning': [
         'AI/Prompts/StrategicPlanning/first-principles-goal-achievement',
       ],

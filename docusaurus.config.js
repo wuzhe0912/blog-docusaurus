@@ -55,8 +55,15 @@ module.exports = {
           position: 'left',
           label: 'AI',
         },
+        {
+          type: 'doc',
+          docId: 'ShowCase/showcase',
+          position: 'left',
+          label: 'ShowCase',
+        },
       ],
     },
+
     footer: {
       style: 'light',
       links: [
@@ -115,7 +122,6 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
           editUrl: 'https://github.com/wuzhe0912/Docusaurus-Blog/tree/master/',
           remarkPlugins: [
             [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],

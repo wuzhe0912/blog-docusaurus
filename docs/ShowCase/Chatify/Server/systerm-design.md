@@ -1,6 +1,6 @@
 ---
 id: chatify-server-system-design
-title: 💬 System Design
+title: 📚 System Design
 slug: /chatify-server-system-design
 ---
 

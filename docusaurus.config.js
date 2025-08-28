@@ -84,15 +84,15 @@ module.exports = {
             },
           ],
         },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Instagram(My Son)',
-              href: 'https://www.instagram.com/little_seal0627/',
-            },
-          ],
-        },
+        // {
+        //   title: 'More',
+        //   items: [
+        //     {
+        //       label: '',
+        //       href: '',
+        //     },
+        //   ],
+        // },
       ],
       copyright: `Copyright © ${currentYear} Pitt Wu Built with Docusaurus.`,
     },
@@ -148,11 +148,12 @@ module.exports = {
   ],
   i18n: {
     defaultLocale: 'zh-tw',
-    locales: ['zh-tw', 'en', 'ja', 'fr', 'de', 'ar'],
-    localeConfigs: {
-      ar: {
-        direction: 'rtl',
-      },
-    },
+    locales: ['zh-tw', 'en', 'ja'],
+    // locales: ['zh-tw', 'en', 'ja', 'fr', 'de', 'ar'],
+    // localeConfigs: {
+    //   ar: {
+    //     direction: 'rtl',
+    //   },
+    // },
   },
 };

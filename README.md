@@ -8,7 +8,3 @@
 
 - React(Docusaurus)
 - Markdown
-
-## Future Features
-
-- try to use gitter.

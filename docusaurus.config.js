@@ -11,10 +11,14 @@ module.exports = {
   url: 'https://pitt-wu-blog.vercel.app',
   baseUrl: '/',
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'facebook', // Usually your GitHub org/user name.
   projectName: 'docusaurus', // Usually your repo name.
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
+  },
   themeConfig: {
     navbar: {
       title: `Pitt Wu's Story`,

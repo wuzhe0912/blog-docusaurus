@@ -21,11 +21,11 @@
     "write-heading-ids": "docusaurus write-heading-ids"
   },
   "dependencies": {
-    "@docusaurus/core": "^3.8.1",
-    "@docusaurus/plugin-google-gtag": "^3.8.1",
-    "@docusaurus/preset-classic": "^3.8.1",
-    "@docusaurus/remark-plugin-npm2yarn": "^3.8.1",
-    "@docusaurus/theme-search-algolia": "^3.8.1",
+    "@docusaurus/core": "^3.9.2",
+    "@docusaurus/plugin-google-gtag": "^3.9.2",
+    "@docusaurus/preset-classic": "^3.9.2",
+    "@docusaurus/remark-plugin-npm2yarn": "^3.9.2",
+    "@docusaurus/theme-search-algolia": "^3.9.2",
     "@mdx-js/react": "^3.0.0",
     "@svgr/webpack": "^5.5.0",
     "clsx": "^1.1.1",
@@ -36,12 +36,12 @@
     "url-loader": "^4.1.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^3.8.1",
-    "@docusaurus/types": "^3.8.1",
+    "@docusaurus/module-type-aliases": "^3.9.2",
+    "@docusaurus/types": "^3.9.2",
     "dotenv": "^16.4.5"
   },
   "engines": {
-    "node": ">=18.0 || >=20.0 || >=22.0"
+    "node": ">=20.0 || >=22.0"
   },
   "browserslist": {
     "production": [

@@ -3,7 +3,10 @@ module.exports = {
   label: 'Web Security',
   items: [
     {
-      Easy: ['Quiz/WebSecurity/Easy/client-side-security'],
+      type: 'category',
+      label: 'Easy',
+      key: 'quiz-websecurity-easy',
+      items: ['Quiz/WebSecurity/Easy/client-side-security'],
     },
   ],
 };

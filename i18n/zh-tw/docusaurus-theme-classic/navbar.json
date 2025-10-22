@@ -1,0 +1,30 @@
+{
+  "title": {
+    "message": "Pitt Wu 的故事",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Pitt Wu 的故事 Logo",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Blog": {
+    "message": "部落格",
+    "description": "Navbar item with label Blog"
+  },
+  "item.label.Interview Questions": {
+    "message": "面試問題",
+    "description": "Navbar item with label Interview Questions"
+  },
+  "item.label.⌨️ Coding": {
+    "message": "⌨️ 程式設計",
+    "description": "Navbar item with label ⌨️ Coding"
+  },
+  "item.label.❓Quiz": {
+    "message": "❓ 測驗",
+    "description": "Navbar item with label ❓Quiz"
+  },
+  "item.label.LeetCode": {
+    "message": "LeetCode",
+    "description": "Navbar item with label LeetCode"
+  }
+}

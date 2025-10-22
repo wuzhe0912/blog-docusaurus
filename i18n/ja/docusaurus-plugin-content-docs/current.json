@@ -43,20 +43,60 @@
     "message": "📁 Easy",
     "description": "The label for category 📁 Easy in sidebar Coding"
   },
+  "sidebar.Coding.category.📁 LodashFunctions": {
+    "message": "📁 LodashFunctions",
+    "description": "The label for category 📁 LodashFunctions in sidebar Coding"
+  },
   "sidebar.Quiz.category.JavaScript": {
     "message": "JavaScript",
     "description": "The label for category JavaScript in sidebar Quiz"
   },
-  "sidebar.Quiz.category.Easy": {
+  "sidebar.Quiz.category.quiz-javascript-easy": {
     "message": "Easy",
-    "description": "The label for category Easy in sidebar Quiz"
+    "description": "The label for category Easy in sidebar Quiz JavaScript"
   },
-  "sidebar.Quiz.category.Medium": {
+  "sidebar.Quiz.category.quiz-javascript-medium": {
     "message": "Medium",
-    "description": "The label for category Medium in sidebar Quiz"
+    "description": "The label for category Medium in sidebar Quiz JavaScript"
+  },
+  "sidebar.Quiz.category.Web Security": {
+    "message": "Web Security",
+    "description": "The label for category Web Security in sidebar Quiz"
+  },
+  "sidebar.Quiz.category.quiz-websecurity-easy": {
+    "message": "Easy",
+    "description": "The label for category Easy in sidebar Quiz WebSecurity"
   },
   "sidebar.LeetCode.category.📁 Easy": {
     "message": "📁 Easy",
     "description": "The label for category 📁 Easy in sidebar LeetCode"
+  },
+  "sidebar.AI.category.📗 Prompts": {
+    "message": "📗 Prompts",
+    "description": "The label for category 📗 Prompts in sidebar AI"
+  },
+  "sidebar.AI.category.🖋️ JavaScript": {
+    "message": "🖋️ JavaScript",
+    "description": "The label for category 🖋️ JavaScript in sidebar AI"
+  },
+  "sidebar.AI.category.🖋️ Full-Stack": {
+    "message": "🖋️ Full-Stack",
+    "description": "The label for category 🖋️ Full-Stack in sidebar AI"
+  },
+  "sidebar.AI.category.🖋️ Strategic Planning": {
+    "message": "🖋️ Strategic Planning",
+    "description": "The label for category 🖋️ Strategic Planning in sidebar AI"
+  },
+  "sidebar.ShowCase.category.💬 Chatify App": {
+    "message": "💬 Chatify App",
+    "description": "The label for category 💬 Chatify App in sidebar ShowCase"
+  },
+  "sidebar.ShowCase.category.💻 Client": {
+    "message": "💻 Client",
+    "description": "The label for category 💻 Client in sidebar ShowCase"
+  },
+  "sidebar.ShowCase.category.🔋 Server": {
+    "message": "🔋 Server",
+    "description": "The label for category 🔋 Server in sidebar ShowCase"
   }
 }

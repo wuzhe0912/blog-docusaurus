@@ -2,7 +2,6 @@ module.exports = {
   type: 'category',
   label: '📁 專案實戰案例',
   items: [
-    'InterviewQuestions/Project-Case/project-case',
     'InterviewQuestions/Project-Case/project-overview',
     {
       type: 'category',

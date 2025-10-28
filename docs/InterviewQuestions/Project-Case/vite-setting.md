@@ -4,8 +4,6 @@ title: '📄 Vite 配置與優化'
 slug: /vite-setting
 ---
 
-# Vite 配置與多租戶架構
-
 > 如何用 Vite 管理 27 個品牌版型的多租戶系統，實現動態編譯與環境隔離。
 
 ---

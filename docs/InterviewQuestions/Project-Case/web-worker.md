@@ -4,8 +4,6 @@ title: '📄 Web Worker'
 slug: /web-worker
 ---
 
-# Web Worker 多執行緒應用
-
 > **Web Worker** 是一個在瀏覽器背景執行緒中運行 JavaScript 的 API，讓你能夠執行耗時的運算而不會阻塞主執行緒（UI 執行緒）。
 
 ## 🎯 核心概念

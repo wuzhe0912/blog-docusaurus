@@ -1,7 +1,8 @@
 ---
 id: event-loop
-title: 📄 Event Loop
+title: '[Medium] 📄 Event Loop'
 slug: /event-loop
+tags: [JavaScript, Quiz, Medium]
 ---
 
 ## 1. Why Javascript need asynchronous ? And please explain callback and event loop
@@ -78,3 +79,4 @@ requestAnimationFrame(moveElement);
 ```
 
 `moveElement()` 會在每一幀（通常是每秒 60 幀）更新元素的位置，直到達到 500 pixel。這種做法通常會比使用 `setInterval` 達到更平滑、更自然的動畫效果。
+

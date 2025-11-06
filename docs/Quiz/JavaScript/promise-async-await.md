@@ -1,7 +1,8 @@
 ---
 id: promise-async-await
-title: 📄 Promise & async await
+title: '[Medium] 📄 Promise & async await'
 slug: /promise-async-await
+tags: [JavaScript, Quiz, Medium]
 ---
 
 ## 1. What is Promise ?
@@ -117,7 +118,7 @@ printing();
 
 ### 注意 Promise 的區塊
 
-這題當初在面試時，對 Promise 的原理不夠熟悉，忽略了在 Promise 中 `conoole.log(4)` 所屬的區塊，不屬於非同步狀態(非 `.then()` 和 `.catch()`)，因此在撰寫答案上，出現不小瑕疵。
+這題當初在面試時，對 Promise 的原理不夠熟悉，忽略了在 Promise 中 `console.log(4)` 所屬的區塊，不屬於非同步狀態(非 `.then()` 和 `.catch()`)，因此在撰寫答案上，出現不小瑕疵。
 
 ```js
 1;

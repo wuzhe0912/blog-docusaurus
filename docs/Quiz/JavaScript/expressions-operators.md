@@ -1,7 +1,8 @@
 ---
 id: expressions-operators
-title: 📄 Expressions and Operators
+title: '[Easy] 📄 Expressions and Operators'
 slug: /expressions-operators
+tags: [JavaScript, Quiz, Easy]
 ---
 
 ## 1. What is the difference between `==` and `===` ?
@@ -20,3 +21,4 @@ slug: /expressions-operators
 ```
 
 這對開發者來說，是很大的心智負擔，因此普遍建議使用 `===` 來取代 `==`，避免預期外的錯誤。
+

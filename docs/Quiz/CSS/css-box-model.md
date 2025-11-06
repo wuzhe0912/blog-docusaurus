@@ -1,7 +1,8 @@
 ---
 id: css-box-model
-title: '🏷️ Box Model'
+title: '[Easy] 🏷️ Box Model'
 slug: /css-box-model
+tags: [CSS, Quiz, Easy]
 ---
 
 ## Default
@@ -50,3 +51,4 @@ div {
 - [The box model](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model)
 - [學習 CSS 版面配置](https://zh-tw.learnlayout.com/box-sizing.html)
 - [CSS Box Model](https://www.w3schools.com/css/css_boxmodel.asp)
+

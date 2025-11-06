@@ -1,7 +1,8 @@
 ---
 id: framework
-title: 📄 Framework
+title: '[Hard] 📄 Framework'
 slug: /framework
+tags: [JavaScript, Quiz, Hard]
 ---
 
 ## 1. Please explain and compare the advantages and disadvantages of SPA and SSR
@@ -36,3 +37,4 @@ slug: /framework
 ### 結論
 
 原則上，如果是後台的系統，在沒有 SEO 的需求下，應該是沒必要使用 SSR 框架，除非是仰賴搜尋引擎的產品網頁，那確實可以評估採用 SSR 框架開發。
+

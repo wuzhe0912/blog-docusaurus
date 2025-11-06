@@ -1,7 +1,8 @@
 ---
 id: selector-weight
-title: '📄 Selector Weight'
+title: '[Easy] 🏷️ Selector Weight'
 slug: /selector-weight
+tags: [CSS, Quiz, Easy]
 ---
 
 ## 1. How to calculate the weight of a selector ?
@@ -53,3 +54,4 @@ CSS 選擇器的優先級別判斷，是為了解決元素最終採用哪一個�
 ```
 
 當然，如果可以的話，也是盡可能不要使用 `!important`。雖然行內樣式同樣也能添加 `!important`，但個人是不考慮這樣的樣式撰寫方式。同時，除非有特例情境，否則也不採用 ID 選擇器，基本以 class 來構建整個樣式表。
+

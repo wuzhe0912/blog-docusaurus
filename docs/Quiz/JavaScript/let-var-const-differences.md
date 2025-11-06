@@ -1,6 +1,6 @@
 ---
 id: let-var-const-differences
-title: "[Medium] 📄 請說明 var, let, const 三者的差異"
+title: '[Medium] 📄 var, let, const'
 slug: /let-var-const-differences
 tags: [JavaScript, Quiz, Medium]
 ---
@@ -126,4 +126,3 @@ const z = 5;
 2. 其次使用 `let`：當需要重新賦值時，使用 `let`。
 3. 避免使用 `var`：由於 `var` 的作用域和提升行為可能導致意外問題，建議在現代 JavaScript 開發中避免使用。
 4. 注意瀏覽器兼容性：如果需要支援舊版瀏覽器，可以使用 Babel 等工具將 `let` 和 `const` 轉譯為 `var`。
-

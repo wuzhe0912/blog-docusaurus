@@ -1,7 +1,8 @@
 ---
 id: element-properties
-title: '📄 Element Properties'
+title: '[Easy] 🏷️ Element Properties'
 slug: /element-properties
+tags: [CSS, Quiz, Easy]
 ---
 
 ## 1. What are the inline and block elements ? What's the difference between them ?
@@ -37,3 +38,4 @@ a, br, button, br, code, img, input, span, strong, svg, textarea, label.
 - [CSS 教學-關於 display:inline、block、inline-block 的差別](https://ytclion.medium.com/css%E6%95%99%E5%AD%B8-%E9%97%9C%E6%96%BCdisplay-inline-inline-block-block%E7%9A%84%E5%B7%AE%E5%88%A5-1034f38eda82)
 
 ## 2. What does `* { box-sizing: border-box; }` do?
+

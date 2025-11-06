@@ -1,7 +1,8 @@
 ---
 id: javascript-best-practices
-title: 📄 Best Practices
+title: '[Medium] 📄 Best Practices'
 slug: /javascript-best-practices
+tags: [JavaScript, Quiz, Medium]
 ---
 
 ## 1. Why you shouldn't use `index` as a key in lists and iterators?
@@ -12,3 +13,4 @@ slug: /javascript-best-practices
 
 - What happens if there is no key in `v-for`?
 - Why you shouldn't use `index` as a key in `React` lists and iterators?
+

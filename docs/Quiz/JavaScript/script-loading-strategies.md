@@ -1,6 +1,6 @@
 ---
 id: script-loading-strategies
-title: "[Easy] 📄 請說明 <script>, <script async>, <script defer> 三者區別"
+title: '[Easy] 📄 <script>, <script async>, <script defer>'
 slug: /script-loading-strategies
 tags: [JavaScript, Quiz, Easy]
 ---
@@ -76,4 +76,3 @@ tags: [JavaScript, Quiz, Easy]
 ```javascript
 <script async src="https://www.google-analytics.com/analytics.js"></script>
 ```
-

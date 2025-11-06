@@ -1,41 +1,48 @@
-// ---Interview Questions---
-const HttpQuestionList = require('./sidebar/InterviewQuestions/http.js');
-const JavaScriptQuestionList = require('./sidebar/InterviewQuestions/javascript.js');
-const VueQuestionList = require('./sidebar/InterviewQuestions/vue.js');
-const ReactQuestionList = require('./sidebar/InterviewQuestions/react.js');
-const CSSQuestionList = require('./sidebar/InterviewQuestions/css.js');
-const BrowserQuestionList = require('./sidebar/InterviewQuestions/browser.js');
-const ToolsList = require('./sidebar/InterviewQuestions/tools.js');
-const ExperienceList = require('./sidebar/InterviewQuestions/experience.js');
-const ProjectCaseList = require('./sidebar/InterviewQuestions/project-case.js');
-// ---Coding---
-const LodashFunctionsEasyList = require('./sidebar/Coding/lodash-functions.js');
-// ---Quiz---
+// ---Knowledge (深度概念講解)---
+const HttpKnowledgeList = require('./sidebar/Knowledge/http.js');
+const JavaScriptKnowledgeList = require('./sidebar/Knowledge/javascript.js');
+const VueKnowledgeList = require('./sidebar/Knowledge/vue.js');
+const ReactKnowledgeList = require('./sidebar/Knowledge/react.js');
+const CSSKnowledgeList = require('./sidebar/Knowledge/css.js');
+const BrowserKnowledgeList = require('./sidebar/Knowledge/browser.js');
+const ToolsKnowledgeList = require('./sidebar/Knowledge/tools.js');
+const ProjectCaseList = require('./sidebar/Knowledge/project-case.js');
+// ---Quiz (快速問答測驗)---
 const QuizJavaScriptList = require('./sidebar/Quiz/quiz-javascript.js');
 const QuizSecurityList = require('./sidebar/Quiz/security.js');
-// ---LeetCode---
+// ---Coding (手寫程式實現)---
+const LodashFunctionsList = require('./sidebar/Coding/lodash-functions.js');
+// ---LeetCode (演算法題)---
 const LeetCodeEasyList = require('./sidebar/LeetCodeQuestions/leet-code-easy.js');
+// ---Experience (面試經驗)---
+const ExperienceList = require('./sidebar/Experience/experience.js');
 // ---AI---
 const AIPromptsList = require('./sidebar/AI/prompts.js');
 // ---ShowCase---
 const ChatifyList = require('./sidebar/ShowCase/chatify.js');
 
 module.exports = {
-  InterviewQuestions: [
-    'InterviewQuestions/interview-questions',
-    JavaScriptQuestionList,
-    VueQuestionList,
-    ReactQuestionList,
-    CSSQuestionList,
-    ToolsList,
-    BrowserQuestionList,
-    HttpQuestionList,
-    ExperienceList,
+  Knowledge: [
+    'Knowledge/knowledge',
+    JavaScriptKnowledgeList,
+    VueKnowledgeList,
+    ReactKnowledgeList,
+    CSSKnowledgeList,
+    HttpKnowledgeList,
+    BrowserKnowledgeList,
+    ToolsKnowledgeList,
     ProjectCaseList,
+    {
+      type: 'category',
+      label: '📝 Quiz 測驗',
+      collapsible: true,
+      collapsed: true,
+      items: [QuizJavaScriptList, QuizSecurityList],
+    },
   ],
-  Coding: ['Coding/coding', LodashFunctionsEasyList],
-  Quiz: ['Quiz/quiz', QuizJavaScriptList, QuizSecurityList],
+  Coding: ['Coding/coding', LodashFunctionsList],
   LeetCode: ['LeetCode/leet-code', LeetCodeEasyList],
+  Experience: ['Experience/experience', ExperienceList],
   AI: ['AI/ai-index', AIPromptsList],
   ShowCase: ['ShowCase/showcase', ChatifyList],
 };

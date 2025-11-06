@@ -1,6 +1,6 @@
 ---
 id: client-side-security
-title: 📄 Client Side Security
+title: "[Easy] 📄 Client Side Security"
 slug: /client-side-security
 ---
 
@@ -46,3 +46,4 @@ XSS，即跨站腳本攻擊，是指攻擊者通過注入惡意的腳本，使�
 ### 預防 DOM-based XSS
 
 原則上，我們盡可能不讓使用者直接將 HTML 插入到頁面上，如果有情境上的需求，框架本身也有類似的指令可以協助，例如 React 的 `dangerouslySetInnerHTML`，Vue 的 `v-html`，盡可能自動防止 XSS，但如果需要使用原生 JS 開發，也盡量使用 `textContent`, `createElement`, `setAttribute` 來操作 DOM。
+

@@ -1,6 +1,6 @@
 ---
 id: web-storage
-title: 📄 請解釋 cookie, sessionStorage, localStorage 的差異
+title: "[Medium] 📄 請解釋 cookie, sessionStorage, localStorage 的差異"
 slug: /web-storage
 tags: [HTML, JavaScript, Quiz, Medium]
 ---
@@ -39,3 +39,4 @@ tags: [HTML, JavaScript, Quiz, Medium]
 
 - 常用於儲存使用者的個人偏好設定，例如 dark mode、i18n 語系等。
 - 或者儲存 login 的 token。
+

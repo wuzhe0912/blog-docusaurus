@@ -31,9 +31,9 @@ module.exports = {
         { to: '/blog', label: 'Blog', position: 'right' },
         {
           type: 'doc',
-          docId: 'InterviewQuestions/interview-questions',
+          docId: 'Knowledge/knowledge',
           position: 'left',
-          label: 'Interview Questions',
+          label: 'Knowledge',
         },
         {
           type: 'doc',
@@ -43,15 +43,15 @@ module.exports = {
         },
         {
           type: 'doc',
-          docId: 'Quiz/quiz',
-          position: 'left',
-          label: 'Quiz',
-        },
-        {
-          type: 'doc',
           docId: 'LeetCode/leet-code',
           position: 'left',
           label: 'LeetCode',
+        },
+        {
+          type: 'doc',
+          docId: 'Experience/experience',
+          position: 'left',
+          label: 'Experience',
         },
         {
           type: 'doc',

@@ -1,6 +1,6 @@
 ---
 id: script-loading-strategies
-title: 📄 請說明 <script>, <script async>, <script defer> 三者區別
+title: "[Easy] 📄 請說明 <script>, <script async>, <script defer> 三者區別"
 slug: /script-loading-strategies
 tags: [JavaScript, Quiz, Easy]
 ---
@@ -62,3 +62,18 @@ tags: [JavaScript, Quiz, Easy]
 
 3. **`<script defer>`**：
    等同於你先發訊息給另一半，告訴他們你會在準備完畢後回電。這樣你可以專心準備，等一切就緒後再好好溝通。
+
+## 目前使用概況
+
+現代框架的開發體系下，通常不需要手動設定 `<script>`，例如 Vite 預設採用 module 即 defer 的行為。
+
+```javascript
+<script type="module" src="/src/main.js"></script>
+```
+
+除非是特例的三方腳本，例如 google analytics 等。
+
+```javascript
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+```
+

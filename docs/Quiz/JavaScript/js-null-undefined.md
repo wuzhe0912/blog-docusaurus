@@ -1,6 +1,6 @@
 ---
 id: js-null-undefined
-title: 📄 請解釋 null 和 undefined 的差異
+title: '[Easy] 📄 請解釋 null 和 undefined 的差異'
 slug: /js-null-undefined
 tags: [JavaScript, Quiz, Easy]
 ---

@@ -38,3 +38,50 @@ tags: [JavaScript, Quiz, Hard]
 
 原則上，如果是後台的系統，在沒有 SEO 的需求下，應該是沒必要使用 SSR 框架，除非是仰賴搜尋引擎的產品網頁，那確實可以評估採用 SSR 框架開發。
 
+## 2. 請闡述使用過的 Web Framework，並比較其優缺點
+
+**兩者近年都往「以函式為主的組件開發」收斂：**
+
+> Vue 3 透過 Composition API，把邏輯拆成可重用的 composable；React 則以 Hooks 為核心。在開發者體驗上兩者相當接近，不過整體而言，Vue 的上手成本較低，React 則在生態與彈性上更強。
+
+### Vue（以 Vue 3 為主）
+
+**優點：**
+
+- **學習曲線較平滑**：  
+  SFC（Single File Component）把 template / script / style 聚在一起，對於從傳統前端（後端模板）轉過來的開發者很友善。
+- **官方約定明確、對團隊有利**：  
+  官方提供的風格指南與慣例清楚（檔案結構、命名、組件拆分方式），新成員接手專案時較容易維持一致性。
+- **核心生態完整**：  
+  官方維護 Vue Router、Pinia（或 Vuex）、CLI / Vite Plugin 等，從建專案到狀態管理、路由都有「官方解法」，降低選型成本。
+- **Composition API 提升可維護性**：  
+  可以依功能拆出 composable（例如 useAuth、useForm），在大型專案中共用邏輯、減少重複程式碼。
+
+**缺點：**
+
+- **生態與社群規模略小於 React**：  
+  第三方套件數量與多樣性不如 React，有些前沿工具或整合（例如設計系統、特殊場景的 library）會先以 React 為主。
+- **就業市場相對集中在特定區域／產業**：  
+  相較 React，國外或跨國團隊多半以 React 為主，在職涯彈性上相對劣勢很多（但在華語圈則持各半）。
+
+---
+
+### React
+
+**優點：**
+
+- **生態圈龐大、技術更新速度快**：  
+  幾乎所有前端新技術、設計系統或第三方服務，都會優先提供 React 版本（例如各種 UI Library、Chart、Editor、Design System）。
+- **彈性高、可因專案自由組合技術棧**：  
+  可搭配 Redux / Zustand / Recoil 等多種狀態管理，也有 Next.js、Remix 等 Meta Framework，從 SPA 到 SSR、SSG、CSR 都有成熟方案。
+- **與 TypeScript、前端工程化整合成熟**：  
+  社群對型別與大型專案的最佳實務討論很多，對長期維護的大型專案有幫助。
+
+**缺點：**
+
+- **自由度高，團隊需要自訂規範**：  
+  在沒有明確 coding style、架構約定的情況下，不同開發者可能用完全不同的寫法與狀態管理方式，後續維護成本會提高。
+- **學習曲線實際上不低**：  
+  除了 React 本身（JSX、Hooks 思維）以外，還要面對 Router、狀態管理、資料抓取、SSR 等一連串選型，新手容易迷失在「要選哪個 library」。
+- **API 變動與最佳實務演進較快**：  
+  例如從 Class Component 到 Function Component + Hooks、再到 Server Components 等，老專案與新寫法共存時，需要額外的遷移與維護成本。

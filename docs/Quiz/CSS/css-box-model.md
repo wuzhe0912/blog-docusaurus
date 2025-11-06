@@ -46,9 +46,126 @@ div {
 
 如此一來，就會改採對內填充的形式，元素的寬高設計更為直覺，不必為了 `padding` 或 `border` 去增減數字。
 
+## 對比例題
+
+假設有以下相同的樣式設定：
+
+```css
+.box {
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+  border: 5px solid #000;
+  margin: 20px;
+}
+```
+
+### content-box（預設值）
+
+- **實際佔用寬度** = `100px(width)` + `20px(左右 padding)` + `10px(左右 border)` = `130px`
+- **實際佔用高度** = `100px(height)` + `20px(上下 padding)` + `10px(上下 border)` = `130px`
+- **content 區域** = `100px × 100px`
+- **注意**：`margin` 不計入元素寬度，但會影響與其他元素的距離
+
+### border-box
+
+- **實際佔用寬度** = `100px`（padding 和 border 向內擠壓）
+- **實際佔用高度** = `100px`
+- **content 區域** = `100px` - `20px(左右 padding)` - `10px(左右 border)` = `70px × 70px`
+- **注意**：`margin` 同樣不計入元素寬度
+
+### 視覺化對比
+
+```
+content-box:
+┌─────────── margin (20px) ───────────┐
+│  ┌──────── border (5px) ──────────┐ │
+│  │  ┌──── padding (10px) ──────┐ │ │
+│  │  │                           │ │ │
+│  │  │   content (100×100)       │ │ │
+│  │  │                           │ │ │
+│  │  └───────────────────────────┘ │ │
+│  └─────────────────────────────────┘ │
+└─────────────────────────────────────┘
+總寬度：130px（不含 margin）
+
+border-box:
+┌─────────── margin (20px) ───────────┐
+│  ┌──────── border (5px) ──────────┐ │
+│  │  ┌──── padding (10px) ──────┐ │ │
+│  │  │                           │ │ │
+│  │  │   content (70×70)         │ │ │
+│  │  │                           │ │ │
+│  │  └───────────────────────────┘ │ │
+│  └─────────────────────────────────┘ │
+└─────────────────────────────────────┘
+總寬度：100px（不含 margin）
+```
+
+## 常見陷阱
+
+### 1. margin 的處理
+
+無論是 `content-box` 或 `border-box`，**margin 都不會被計入元素的寬高**，兩種模式只影響 `padding` 和 `border` 的計算方式。
+
+```css
+.box {
+  box-sizing: border-box;
+  width: 100px;
+  padding: 10px;
+  border: 5px solid;
+  margin: 20px; /* 不計入 width */
+}
+/* 元素實際佔用寬度仍是 100px，但與其他元素的距離會多 20px */
+```
+
+### 2. 百分比寬度
+
+當使用百分比寬度時，計算方式也會受到 `box-sizing` 影響：
+
+```css
+.parent {
+  width: 200px;
+}
+
+.child {
+  width: 50%; /* 繼承父元素的 50% = 100px */
+  padding: 10px;
+  border: 5px solid;
+}
+
+/* content-box: 實際佔用 130px（可能超出父元素） */
+/* border-box: 實際佔用 100px（剛好是父元素的 50%） */
+```
+
+### 3. inline 元素
+
+`box-sizing` 對 `inline` 元素不起作用，因為 inline 元素的 `width` 和 `height` 設定本身就無效。
+
+```css
+span {
+  display: inline;
+  width: 100px; /* 無效 */
+  box-sizing: border-box; /* 也無效 */
+}
+```
+
+### 4. min-width / max-width
+
+`min-width` 和 `max-width` 同樣受到 `box-sizing` 影響：
+
+```css
+.box {
+  box-sizing: border-box;
+  min-width: 100px; /* 包含 padding 和 border */
+  padding: 10px;
+  border: 5px solid;
+}
+/* content 最小寬度 = 100 - 20 - 10 = 70px */
+```
+
 ## Reference
 
 - [The box model](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model)
 - [學習 CSS 版面配置](https://zh-tw.learnlayout.com/box-sizing.html)
 - [CSS Box Model](https://www.w3schools.com/css/css_boxmodel.asp)
-

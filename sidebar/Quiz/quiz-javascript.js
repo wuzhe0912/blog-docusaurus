@@ -5,11 +5,12 @@ module.exports = {
     // Easy
     'Quiz/JavaScript/script-loading-strategies',
     'Quiz/JavaScript/js-null-undefined',
-    'Quiz/JavaScript/expressions-operators',
+    'Quiz/JavaScript/operators',
     // Medium
     'Quiz/JavaScript/let-var-const-differences',
     'Quiz/JavaScript/web-storage',
-    'Quiz/JavaScript/promise-async-await',
+    'Quiz/JavaScript/promise',
+    'Quiz/JavaScript/async-await',
     'Quiz/JavaScript/hoisting',
     'Quiz/JavaScript/event-loop',
     'Quiz/JavaScript/javascript-best-practices',

@@ -463,8 +463,8 @@ Promise.resolve()
 
 ## 相關主題
 
-- [async/await](/async-await) - 更優雅的 Promise 語法糖
-- [Event Loop](/event-loop) - 深入理解 JavaScript 的非同步機制
+- [async/await](/docs/async-await) - 更優雅的 Promise 語法糖
+- [Event Loop](/docs/event-loop) - 深入理解 JavaScript 的非同步機制
 
 ## Reference
 

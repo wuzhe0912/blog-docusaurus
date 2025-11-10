@@ -5,7 +5,7 @@ slug: /async-await
 tags: [JavaScript, Quiz, Medium]
 ---
 
-> 💡 建議先閱讀 [Promise](/promise) 了解基礎概念
+> 💡 建議先閱讀 [Promise](/docs/promise) 了解基礎概念
 
 ## 什麼是 async/await？
 
@@ -545,8 +545,8 @@ console.log('4');
 
 ## 相關主題
 
-- [Promise](/promise) - async/await 的基礎
-- [Event Loop](/event-loop) - 理解執行順序
+- [Promise](/docs/promise) - async/await 的基礎
+- [Event Loop](/docs/event-loop) - 理解執行順序
 
 ## Reference
 

@@ -393,5 +393,3 @@ Hoisting 優先級（從高到低）：
 ## 相關主題
 
 - [var, let, const 差異](/docs/let-var-const-differences)
-- [執行上下文 (Execution Context)](/docs/execution-context)
-- [作用域 (Scope)](/docs/scope)

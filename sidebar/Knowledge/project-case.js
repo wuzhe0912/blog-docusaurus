@@ -9,6 +9,7 @@ module.exports = {
       collapsed: false,
       items: [
         'Knowledge/Project-Case/optimization',
+        'Knowledge/Project-Case/large-data-optimization',
         'Knowledge/Project-Case/virtual-scroll',
       ],
     },

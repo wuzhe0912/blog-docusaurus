@@ -8,6 +8,9 @@ module.exports = {
     'Quiz/JavaScript/operators',
     // Medium
     'Quiz/JavaScript/let-var-const-differences',
+    'Quiz/JavaScript/primitive-vs-reference',
+    'Quiz/JavaScript/this-binding',
+    'Quiz/JavaScript/http-caching',
     'Quiz/JavaScript/web-storage',
     'Quiz/JavaScript/promise',
     'Quiz/JavaScript/async-await',

@@ -1,12 +1,12 @@
 // ---Knowledge (深度概念講解)---
 const HttpKnowledgeList = require('./sidebar/Knowledge/http.js');
-const VueKnowledgeList = require('./sidebar/Knowledge/vue.js');
 const ReactKnowledgeList = require('./sidebar/Knowledge/react.js');
 const BrowserKnowledgeList = require('./sidebar/Knowledge/browser.js');
 const ToolsKnowledgeList = require('./sidebar/Knowledge/tools.js');
 const ProjectCaseList = require('./sidebar/Knowledge/project-case.js');
 // ---Quiz (快速問答測驗)---
 const QuizJavaScriptList = require('./sidebar/Quiz/quiz-javascript.js');
+const QuizVueList = require('./sidebar/Quiz/quiz-vue.js');
 const QuizCSSList = require('./sidebar/Quiz/quiz-css.js');
 const QuizSecurityList = require('./sidebar/Quiz/security.js');
 // ---Coding (手寫程式實現)---
@@ -23,7 +23,6 @@ const ChatifyList = require('./sidebar/ShowCase/chatify.js');
 module.exports = {
   Knowledge: [
     'Knowledge/knowledge',
-    VueKnowledgeList,
     ReactKnowledgeList,
     HttpKnowledgeList,
     BrowserKnowledgeList,
@@ -34,7 +33,7 @@ module.exports = {
       label: '📝 Quiz 測驗',
       collapsible: true,
       collapsed: true,
-      items: [QuizJavaScriptList, QuizCSSList, QuizSecurityList],
+      items: [QuizJavaScriptList, QuizVueList, QuizCSSList, QuizSecurityList],
     },
   ],
   Coding: ['Coding/coding', LodashFunctionsList],

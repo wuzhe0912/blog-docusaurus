@@ -26,6 +26,250 @@ tags: [JavaScript, Quiz, Easy]
 
 **最佳實踐**：永遠使用 `===` 和 `!==`，除非你非常清楚為什麼要用 `==`。
 
+### 面試題目
+
+#### 題目 1：基本類型比較
+
+試判斷以下表達式的結果：
+
+```javascript
+1 == '1'; // ?
+1 === '1'; // ?
+```
+
+**答案：**
+
+```javascript
+1 == '1'; // true
+1 === '1'; // false
+```
+
+**解析：**
+
+- **`==`（相等運算符）**：會進行類型轉換
+  - 字串 `'1'` 會被轉換為數字 `1`
+  - 然後比較 `1 == 1`，結果為 `true`
+- **`===`（嚴格相等運算符）**：不進行類型轉換
+  - `number` 和 `string` 類型不同，直接返回 `false`
+
+**類型轉換規則：**
+
+```javascript
+// == 的類型轉換優先順序
+// 1. 如果有 number，將另一邊轉為 number
+'1' == 1; // '1' → 1，結果 true
+'2' == 2; // '2' → 2，結果 true
+'0' == 0; // '0' → 0，結果 true
+
+// 2. 如果有 boolean，將 boolean 轉為 number
+true == 1; // true → 1，結果 true
+false == 0; // false → 0，結果 true
+'1' == true; // '1' → 1, true → 1，結果 true
+
+// 3. 字串轉數字的陷阱
+'' == 0; // '' → 0，結果 true
+' ' == 0; // ' ' → 0，結果 true（空白字串轉為 0）
+```
+
+#### 題目 2：null 和 undefined 的比較
+
+試判斷以下表達式的結果：
+
+```javascript
+undefined == null; // ?
+undefined === null; // ?
+```
+
+**答案：**
+
+```javascript
+undefined == null; // true
+undefined === null; // false
+```
+
+**解析：**
+
+這是 JavaScript 的**特殊規則**：
+
+- **`undefined == null`**：`true`
+  - ES 規範特別規定：`null` 和 `undefined` 用 `==` 比較時相等
+  - 這是唯一一個 `==` 有用的場景：檢查變數是否為 `null` 或 `undefined`
+- **`undefined === null`**：`false`
+  - 它們是不同類型（`undefined` 是 `undefined` 類型，`null` 是 `object` 類型）
+  - 嚴格比較時不相等
+
+**實務應用：**
+
+```javascript
+// 檢查變數是否為 null 或 undefined
+function isNullOrUndefined(value) {
+  return value == null; // 同時檢查 null 和 undefined
+}
+
+isNullOrUndefined(null); // true
+isNullOrUndefined(undefined); // true
+isNullOrUndefined(0); // false
+isNullOrUndefined(''); // false
+
+// 等價於（但更簡潔）
+function isNullOrUndefined(value) {
+  return value === null || value === undefined;
+}
+```
+
+**注意陷阱：**
+
+```javascript
+// null 和 undefined 只與彼此相等
+null == undefined; // true
+null == 0; // false
+null == false; // false
+null == ''; // false
+
+undefined == 0; // false
+undefined == false; // false
+undefined == ''; // false
+
+// 但用 === 時，只與自己相等
+null === null; // true
+undefined === undefined; // true
+null === undefined; // false
+```
+
+#### 題目 3：綜合比較
+
+試判斷以下表達式的結果：
+
+```javascript
+0 == false; // ?
+0 === false; // ?
+'' == false; // ?
+'' === false; // ?
+null == false; // ?
+undefined == false; // ?
+```
+
+**答案：**
+
+```javascript
+0 == false; // true（false → 0）
+0 === false; // false（類型不同：number vs boolean）
+'' == false; // true（'' → 0, false → 0）
+'' === false; // false（類型不同：string vs boolean）
+null == false; // false（null 只等於 null 和 undefined）
+undefined == false; // false（undefined 只等於 null 和 undefined）
+```
+
+**轉換流程圖：**
+
+```javascript
+// 0 == false 的轉換過程
+0 == false;
+0 == 0; // false 轉為數字 0
+true; // 結果
+
+// '' == false 的轉換過程
+'' == false;
+'' == 0; // false 轉為數字 0
+0 == 0; // '' 轉為數字 0
+true; // 結果
+
+// null == false 的特殊情況
+null == false;
+// null 不會轉換！根據規範，null 只等於 null 和 undefined
+false; // 結果
+```
+
+#### 題目 4：對象比較
+
+試判斷以下表達式的結果：
+
+```javascript
+[] == []; // ?
+[] === []; // ?
+{} == {}; // ?
+{} === {}; // ?
+```
+
+**答案：**
+
+```javascript
+[] == []; // false
+[] === []; // false
+{} == {}; // false
+{} === {}; // false
+```
+
+**解析：**
+
+- 對象（包括陣列、物件）的比較是**引用比較**
+- 即使內容相同，但如果是不同的對象實例，就不相等
+- `==` 和 `===` 對對象的行為一致（都比較引用）
+
+```javascript
+// 只有引用相同才相等
+const arr1 = [];
+const arr2 = arr1; // 引用相同的陣列
+arr1 == arr2; // true
+arr1 === arr2; // true
+
+// 即使內容相同，但是不同實例
+const arr3 = [1, 2, 3];
+const arr4 = [1, 2, 3];
+arr3 == arr4; // false（不同引用）
+arr3 === arr4; // false（不同引用）
+
+// 物件同理
+const obj1 = { name: 'Alice' };
+const obj2 = { name: 'Alice' };
+obj1 == obj2; // false
+obj1 === obj2; // false
+```
+
+#### 面試快速記憶
+
+**`==` 的類型轉換規則（從上到下優先）：**
+
+1. `null == undefined` → `true`（特殊規則）
+2. `number == string` → 將 string 轉為 number
+3. `number == boolean` → 將 boolean 轉為 number
+4. `string == boolean` → 都轉為 number
+5. 對象比較引用，不進行轉換
+
+**`===` 的規則（簡單）：**
+
+1. 類型不同 → `false`
+2. 類型相同 → 比較值（基本類型）或引用（對象類型）
+
+**最佳實踐：**
+
+```javascript
+// ✅ 永遠使用 ===
+if (value === 0) {
+}
+if (name === 'Alice') {
+}
+
+// ✅ 唯一例外：檢查 null/undefined
+if (value == null) {
+  // value 是 null 或 undefined
+}
+
+// ❌ 避免使用 ==（除了上述例外）
+if (value == 0) {
+} // 不好
+if (name == 'Alice') {
+} // 不好
+```
+
+**面試回答模板：**
+
+> "`==` 會進行類型轉換，可能導致不直覺的結果，例如 `0 == '0'` 為 `true`。`===` 是嚴格比較，不進行類型轉換，類型不同就直接返回 `false`。
+>
+> 最佳實踐是永遠使用 `===`，唯一例外是 `value == null` 可以同時檢查 `null` 和 `undefined`。
+>
+> 特別注意 `null == undefined` 為 `true`，但 `null === undefined` 為 `false`，這是 JavaScript 的特殊規定。"
+
 ---
 
 ## 2. What is the difference between `&&` and `||` ? Please explain short-circuit evaluation
@@ -323,7 +567,7 @@ const canAccess = isAdmin || hasReadPermission;
 
 ## 快速記憶卡
 
-| 運算符        | 用途       | 記憶口訣               |
+| 運算符        | 用途       | 記憶點                 |
 | ------------- | ---------- | ---------------------- |
 | `===`         | 嚴格相等   | 永遠用這個，忘掉 `==`  |
 | `&&`          | 短路 AND   | 左假即停，返回假值     |

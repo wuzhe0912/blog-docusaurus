@@ -6,6 +6,7 @@ module.exports = {
     'Quiz/CSS/selector-weight',
     'Quiz/CSS/css-box-model',
     'Quiz/CSS/css-pseudo-elements',
+    'Quiz/CSS/theme-switching',
     'Quiz/CSS/css-units',
   ],
 };

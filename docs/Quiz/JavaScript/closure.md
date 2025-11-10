@@ -167,9 +167,278 @@ obj.add();
 obj.add();
 ```
 
+## 4. What will be printed in this nested function call?
+
+> 這段巢狀函式呼叫會印出什麼？
+
+```js
+function a(aa) {
+  aa();
+}
+
+function b(bb) {
+  bb();
+}
+
+function c() {
+  console.log('hello');
+}
+
+a(b(c));
+```
+
+### 解析
+
+**執行結果**：
+
+```
+hello
+TypeError: aa is not a function
+```
+
+### 詳細執行流程
+
+```js
+// 執行 a(b(c))
+// JavaScript 從內到外執行函式
+
+// 步驟 1：執行最內層 b(c)
+b(c)
+  ↓
+// c 函式被當作參數傳入 b
+// b 函式內部執行 bb()，也就是 c()
+c() // 印出 'hello'
+  ↓
+// b 函式沒有 return 語句
+// 所以返回 undefined
+return undefined
+
+// 步驟 2：執行 a(undefined)
+a(undefined)
+  ↓
+// undefined 被當作參數傳入 a
+// a 函式內部嘗試執行 aa()
+// 也就是 undefined()
+undefined() // ❌ 報錯：TypeError: aa is not a function
+```
+
+### 為什麼會這樣？
+
+#### 1. 函式執行順序（從內到外）
+
+```js
+// 範例
+console.log(add(multiply(2, 3)));
+           ↑    ↑
+           |    └─ 2. 先執行 multiply(2, 3) → 6
+           └────── 3. 再執行 add(6)
+
+// 相同概念
+a(b(c))
+  ↑ ↑
+  | └─ 1. 先執行 b(c)
+  └─── 2. 再執行 a(b(c) 的結果)
+```
+
+#### 2. 函式沒有 return 時返回 undefined
+
+```js
+function b(bb) {
+  bb(); // 執行了，但沒有 return
+} // 隱含 return undefined
+
+// 等同於
+function b(bb) {
+  bb();
+  return undefined; // JavaScript 自動加上
+}
+```
+
+#### 3. 嘗試呼叫非函式會報錯
+
+```js
+const notAFunction = undefined;
+notAFunction(); // TypeError: notAFunction is not a function
+
+// 其他會報錯的情況
+null(); // TypeError
+123(); // TypeError
+'string'(); // TypeError
+```
+
+### 如何修正？
+
+#### 方法 1：讓 b 函式回傳一個函式
+
+```js
+function a(aa) {
+  aa();
+}
+
+function b(bb) {
+  bb();
+  return function () {
+    console.log('b executed');
+  };
+}
+
+function c() {
+  console.log('hello');
+}
+
+a(b(c));
+// 輸出：
+// hello
+// b executed
+```
+
+#### 方法 2：直接傳入函式，不要先執行
+
+```js
+function a(aa) {
+  aa();
+}
+
+function b(bb) {
+  return function () {
+    bb();
+  };
+}
+
+function c() {
+  console.log('hello');
+}
+
+a(b(c)); // 只印出 'hello'
+
+// 或者這樣寫
+a(() => b(c)); // 印出 'hello'
+```
+
+#### 方法 3：改變執行邏輯
+
+```js
+function a(aa) {
+  aa();
+}
+
+function b(bb) {
+  bb();
+}
+
+function c() {
+  console.log('hello');
+}
+
+// 分開執行
+b(c); // 印出 'hello'
+a(() => console.log('a executed')); // 印出 'a executed'
+```
+
+### 相關考題
+
+#### 題目 1：如果改成這樣呢？
+
+```js
+function a(aa) {
+  return aa();
+}
+
+function b(bb) {
+  return bb();
+}
+
+function c() {
+  console.log('hello');
+  return 'world';
+}
+
+console.log(a(b(c)));
+```
+
+<details>
+<summary>點擊查看答案</summary>
+
+```
+hello
+world
+```
+
+**解析**：
+
+1. `b(c)` → 執行 `c()`，印出 `'hello'`，回傳 `'world'`
+2. `a('world')` → 執行 `'world'()`... 等等，這還是會報錯！
+
+**正確答案**：
+
+```
+hello
+TypeError: aa is not a function
+```
+
+因為 `b(c)` 回傳 `'world'`（字串），`a('world')` 嘗試執行 `'world'()`，字串不是函式，所以報錯。
+
+</details>
+
+#### 題目 2：如果全部都有 return 呢？
+
+```js
+function a(aa) {
+  return aa;
+}
+
+function b(bb) {
+  return bb;
+}
+
+function c() {
+  return 'hello';
+}
+
+const result = a(b(c));
+console.log(result);
+console.log(result());
+```
+
+<details>
+<summary>點擊查看答案</summary>
+
+```
+[Function: c]
+hello
+```
+
+**解析**：
+
+1. `b(c)` → 回傳 `c` 函式本身（沒有執行）
+2. `a(c)` → 回傳 `c` 函式本身
+3. `result` 是 `c` 函式
+4. `result()` → 執行 `c()`，回傳 `'hello'`
+
+</details>
+
+### 記憶重點
+
+```javascript
+// 函式呼叫優先級
+a(b(c))
+  ↓
+// 1. 先執行最內層
+b(c) // 如果 b 沒有 return，就是 undefined
+  ↓
+// 2. 再執行外層
+a(undefined) // 嘗試執行 undefined() 會報錯
+
+// 解決方法
+// ✅ 1. 確保中間函式有回傳函式
+// ✅ 2. 或使用箭頭函式包裝
+a(() => b(c))
+```
+
 ## Reference
 
 - [Closures](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Closures)
 - [Day6 [JavaScript 基礎] 垃圾回收機制](https://ithelp.ithome.com.tw/articles/10214185)
 - [MDN - JavaScript 記憶體管理](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management)
-
+- [MDN - Functions](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Functions)
+- [MDN - TypeError](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/TypeError)

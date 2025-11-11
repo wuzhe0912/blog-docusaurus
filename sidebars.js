@@ -6,6 +6,7 @@ const ToolsKnowledgeList = require('./sidebar/Knowledge/tools.js');
 const ProjectCaseList = require('./sidebar/Knowledge/project-case.js');
 // ---Quiz (快速問答測驗)---
 const QuizJavaScriptList = require('./sidebar/Quiz/quiz-javascript.js');
+const QuizTypeScriptList = require('./sidebar/Quiz/quiz-typescript.js');
 const QuizVueList = require('./sidebar/Quiz/quiz-vue.js');
 const QuizCSSList = require('./sidebar/Quiz/quiz-css.js');
 const QuizSecurityList = require('./sidebar/Quiz/security.js');
@@ -33,7 +34,7 @@ module.exports = {
       label: '📝 Quiz 測驗',
       collapsible: true,
       collapsed: true,
-      items: [QuizJavaScriptList, QuizVueList, QuizCSSList, QuizSecurityList],
+      items: [QuizJavaScriptList, QuizTypeScriptList, QuizVueList, QuizCSSList, QuizSecurityList],
     },
   ],
   Coding: ['Coding/coding', LodashFunctionsList],

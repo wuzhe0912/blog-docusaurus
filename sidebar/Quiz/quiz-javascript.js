@@ -10,6 +10,7 @@ module.exports = {
     'Quiz/JavaScript/let-var-const-differences',
     'Quiz/JavaScript/primitive-vs-reference',
     'Quiz/JavaScript/this-binding',
+    'Quiz/JavaScript/set-map',
     'Quiz/JavaScript/http-caching',
     'Quiz/JavaScript/web-storage',
     'Quiz/JavaScript/promise',

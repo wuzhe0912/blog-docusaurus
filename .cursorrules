@@ -1,0 +1,108 @@
+# Blog Docusaurus 專案規則
+
+## 語言與格式規範
+
+1. **語言使用**：
+   - 所有文件內容必須使用**繁體中文**
+   - 標題可以使用中英文對照格式：`## 1. What is X? > 什麼是 X？`
+   - 程式碼註解使用繁體中文
+
+2. **Emoji 使用**：
+   - **避免過多 emoji**，保持專業簡潔
+   - 標題中的 emoji 僅在必要時使用（如現有文件已有 emoji 標題時可保持一致）
+   - 內容中盡量不使用 emoji
+
+3. **文件結構**：
+   - 遵循現有的文件格式和結構
+   - 參考 `docs/Quiz/JavaScript/primitive-vs-reference.md` 或 `docs/Quiz/JavaScript/this-binding.md` 的格式
+   - 使用 frontmatter 設定 id、title、slug、tags
+
+## 側邊欄配置規則
+
+**重要**：建立新的 Quiz 文件時，必須同時更新對應的側邊欄配置檔案！
+
+### JavaScript Quiz 文件
+- 文件位置：`docs/Quiz/JavaScript/[filename].md`
+- 側邊欄配置：`sidebar/Quiz/quiz-javascript.js`
+- 格式：`'Quiz/JavaScript/[filename]'`（不需要 `.md` 副檔名）
+- 根據難度分類（Easy/Medium/Hard）放在對應區塊
+
+### CSS Quiz 文件
+- 文件位置：`docs/Quiz/CSS/[filename].md`
+- 側邊欄配置：`sidebar/Quiz/quiz-css.js`
+
+### Vue Quiz 文件
+- 文件位置：`docs/Quiz/Vue/[filename].md`
+- 側邊欄配置：`sidebar/Quiz/quiz-vue.js`
+
+### WebSecurity Quiz 文件
+- 文件位置：`docs/Quiz/WebSecurity/[filename].md`
+- 側邊欄配置：`sidebar/Quiz/security.js`
+
+## 面試題目文件規範
+
+1. **Frontmatter 格式**：
+```yaml
+---
+id: [kebab-case-id]
+title: '[難度] 標題'
+slug: /[kebab-case-id]
+tags: [JavaScript, Quiz, Medium]
+---
+```
+
+2. **內容結構**：
+   - 標題使用中英文對照
+   - 包含理論說明、範例程式碼、面試題目
+   - 面試題目使用 `<details>` 標籤隱藏答案
+   - 包含「最佳實踐」和「面試總結」章節
+   - 最後加上 Reference 連結
+
+3. **面試準備索引**：
+   - 如果建立新的面試題目，記得更新 `docs/Experience/2025-11-interview-prep.md`
+   - 格式：`- [**題目描述**](/docs/[slug])`
+
+## 檔案命名規範
+
+- 使用 kebab-case（小寫字母與連字號）
+- 範例：`set-map.md`、`this-binding.md`、`primitive-vs-reference.md`
+
+## 檢查清單
+
+建立新文件時，請確認：
+
+- [ ] 文件使用繁體中文
+- [ ] 避免過多 emoji
+- [ ] Front Matter 格式正確（包含 tags）
+- [ ] 已更新對應的側邊欄配置檔案
+- [ ] 已更新面試準備索引（如適用）
+- [ ] 文件格式與現有文件一致
+- [ ] 程式碼範例正確且可執行
+- [ ] 已檢查 lint 錯誤
+
+## 側邊欄配置範例
+
+```javascript
+// sidebar/Quiz/quiz-javascript.js
+module.exports = {
+  type: 'category',
+  label: 'JavaScript',
+  items: [
+    // Easy
+    'Quiz/JavaScript/script-loading-strategies',
+    // Medium
+    'Quiz/JavaScript/let-var-const-differences',
+    'Quiz/JavaScript/set-map', // 新加入的檔案
+    // Hard
+    'Quiz/JavaScript/closure',
+  ],
+};
+```
+
+## 注意事項
+
+1. **側邊欄配置是手動的**：Docusaurus 不會自動偵測新文件，必須手動加入
+2. **路徑格式**：側邊欄中使用的是相對路徑，從 `docs/` 開始，不需要 `.md` 副檔名
+3. **分類順序**：按照 Easy → Medium → Hard 的順序排列
+4. **一致性**：保持與現有文件的格式和風格一致
+

@@ -25,6 +25,24 @@ slug: /2025-11-interview-prep
 - [**請解釋 async/await 是什麼？如何使用**](/docs/async-await)
 - [**請解釋 Hoisting 的原理**](/docs/hoisting)
 - [**請解釋 `this` 的使用情境**](/docs/this-binding)
+- [**請說明 Set 和 Map 的使用場景與差異**](/docs/set-map)
+
+## TypeScript
+
+- [**TypeScript 與 JavaScript 的差異是什麼？**](/docs/typescript-vs-javascript)
+- [**請說明 TypeScript 的基本型別與型別註解**](/docs/basic-types)
+- [**Interface 和 Type Alias 的差異是什麼？**](/docs/interface-vs-type)
+- [**請解釋泛型（Generics）的概念與使用**](/docs/generics)
+
+## Vue
+
+- [**Vue 3 有哪些新特性？**](/docs/vue3-new-features)
+- [**Composition API 和 Options API 的差異是什麼？**](/docs/composition-vs-options-api)
+- [**ref 和 reactive 的差異是什麼？**](/docs/ref-vs-reactive)
+- [**watch 和 watchEffect 的差異是什麼？**](/docs/watch-vs-watcheffect)
+- [**請解釋 Vue 的生命週期鉤子**](/docs/vue-lifecycle)
+- [**Vue 組件之間有哪些溝通方式？**](/docs/vue-component-communication)
+- [**請解釋 Vue2 和 Vue3 雙向綁定的原理**](/docs/vue-two-way-data-binding)
 
 ## Framework
 

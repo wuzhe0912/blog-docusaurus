@@ -1,6 +1,6 @@
 ---
 id: async-await
-title: '[Medium] 📄 async/await'
+title: '[Medium] 📄 Async/Await'
 slug: /async-await
 tags: [JavaScript, Quiz, Medium]
 ---
@@ -12,6 +12,7 @@ tags: [JavaScript, Quiz, Medium]
 `async/await` 是 ES2017 (ES8) 引入的語法糖，建立在 Promise 之上，讓非同步程式碼看起來像同步程式碼，更容易閱讀和維護。
 
 **核心概念**：
+
 - `async` 函數總是回傳一個 Promise
 - `await` 只能在 `async` 函數內使用
 - `await` 會暫停函數執行，等待 Promise 完成
@@ -528,6 +529,7 @@ console.log('4');
 ```
 
 解析：
+
 1. `console.log('1')` - 同步執行
 2. `test()` 被調用，`console.log('2')` - 同步執行
 3. `await Promise.resolve()` - 將後續程式碼放入 micro task
@@ -553,4 +555,3 @@ console.log('4');
 - [async function - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
 - [await - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await)
 - [Async/await - JavaScript.info](https://javascript.info/async-await)
-

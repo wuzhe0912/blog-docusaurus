@@ -14,6 +14,7 @@ JavaScript 的資料型別分為兩大類：**原始型別**和**參考型別**�
 ### 原始型別（Primitive Types）
 
 **特點**：
+
 - 儲存在**堆疊（Stack）**中
 - 傳遞時**複製值本身**（Call by Value）
 - 不可變的（Immutable）
@@ -46,6 +47,7 @@ const bigInt = 9007199254740991n;
 ### 參考型別（Reference Types）
 
 **特點**：
+
 - 儲存在**堆積（Heap）**中
 - 傳遞時**複製參考（記憶體地址）**（Call by Reference）
 - 可變的（Mutable）
@@ -60,7 +62,7 @@ const obj = { name: 'John' };
 const arr = [1, 2, 3];
 
 // 3. Function（函式）
-const func = function() {};
+const func = function () {};
 
 // 4. Date
 const date = new Date();
@@ -84,9 +86,9 @@ const set = new Set();
 ```javascript
 // 原始型別：傳值
 let a = 10;
-let b = a;  // 複製值
+let b = a; // 複製值
 
-b = 20;     // 修改 b
+b = 20; // 修改 b
 
 console.log(a); // 10（不受影響）
 console.log(b); // 20
@@ -111,9 +113,9 @@ console.log(b); // 20
 ```javascript
 // 參考型別：傳址
 let obj1 = { name: 'John' };
-let obj2 = obj1;  // 複製記憶體地址
+let obj2 = obj1; // 複製記憶體地址
 
-obj2.name = 'Jane';  // 透過 obj2 修改
+obj2.name = 'Jane'; // 透過 obj2 修改
 
 console.log(obj1.name); // 'Jane'（被影響！）
 console.log(obj2.name); // 'Jane'
@@ -158,16 +160,17 @@ console.log('函式外 num:', num);
 ```
 
 **解釋**：
+
 - `num` 是原始型別（Number）
 - 傳入函式時**複製值**，`x` 和 `num` 是兩個獨立的變數
 - 修改 `x` 不會影響 `num`
 
 ```javascript
 // 執行流程
-let num = 50;          // Stack: num = 50
-changeValue(num);      // Stack: x = 50（複製）
-x = 100;               // Stack: x = 100（只修改 x）
-console.log(num);      // Stack: num = 50（不受影響）
+let num = 50; // Stack: num = 50
+changeValue(num); // Stack: x = 50（複製）
+x = 100; // Stack: x = 100（只修改 x）
+console.log(num); // Stack: num = 50（不受影響）
 ```
 
 </details>
@@ -194,6 +197,7 @@ console.log('函式外 person.name:', person.name);
 ```
 
 **解釋**：
+
 - `person` 是參考型別（Object）
 - 傳入函式時**複製記憶體地址**
 - `obj` 和 `person` 指向**同一個物件**
@@ -201,10 +205,10 @@ console.log('函式外 person.name:', person.name);
 
 ```javascript
 // 記憶體示意
-let person = { name: 'Original' };  // Heap: 建立物件 @0x001
-changeObject(person);                // Stack: obj = @0x001（複製地址）
-obj.name = 'Changed';                // Heap: @0x001.name = 'Changed'
-console.log(person.name);            // Heap: @0x001.name（同一個物件）
+let person = { name: 'Original' }; // Heap: 建立物件 @0x001
+changeObject(person); // Stack: obj = @0x001（複製地址）
+obj.name = 'Changed'; // Heap: @0x001.name = 'Changed'
+console.log(person.name); // Heap: @0x001.name（同一個物件）
 ```
 
 </details>
@@ -240,6 +244,7 @@ console.log('B:', person.name);
 **解釋**：
 
 **test1：修改屬性**
+
 ```javascript
 function test1(obj) {
   obj.name = 'Modified'; // ✅ 修改原物件的屬性
@@ -248,6 +253,7 @@ function test1(obj) {
 ```
 
 **test2：重新賦值**
+
 ```javascript
 function test2(obj) {
   obj = { name: 'New Object' }; // ❌ 只改變 obj 的指向
@@ -309,6 +315,7 @@ console.log('4:', numbers);
 ```
 
 **解釋**：
+
 - `modifyArray`：修改原陣列內容，`numbers` 被影響
 - `reassignArray`：只改變參數的指向，`numbers` 不受影響
 
@@ -342,17 +349,20 @@ console.log('C:', obj1 === obj3);
 **解釋**：
 
 **原始型別**：比較值
+
 ```javascript
-10 === 10 // true（值相同）
+10 === 10; // true（值相同）
 ```
 
 **參考型別**：比較記憶體地址
+
 ```javascript
-obj1 === obj2 // false（不同物件，不同地址）
-obj1 === obj3 // true（指向同一個物件）
+obj1 === obj2; // false（不同物件，不同地址）
+obj1 === obj3; // true（指向同一個物件）
 ```
 
 **記憶體示意**：
+
 ```text
 obj1 ────> @0x001: { value: 10 }
 obj2 ────> @0x002: { value: 10 } (內容相同但地址不同)
@@ -372,9 +382,9 @@ obj3 ────> @0x001: { value: 10 } (與 obj1 相同地址)
 #### 方法 1：展開運算子（Spread Operator）
 
 ```javascript
-const original = { 
-  name: 'John', 
-  address: { city: 'Taipei' } 
+const original = {
+  name: 'John',
+  address: { city: 'Taipei' },
 };
 
 const copy = { ...original };
@@ -440,16 +450,17 @@ console.log(original.hobbies); // ['reading', 'gaming']（不受影響）
 ```
 
 **限制**：
+
 ```javascript
 const obj = {
-  date: new Date(),          // ❌ 會變成字串
-  func: () => {},            // ❌ 會被忽略
-  undef: undefined,          // ❌ 會被忽略
-  symbol: Symbol('test'),    // ❌ 會被忽略
-  regexp: /abc/,             // ❌ 會變成 {}
-  circular: null,            // ❌ 循環參考會報錯
+  date: new Date(), // ❌ 會變成字串
+  func: () => {}, // ❌ 會被忽略
+  undef: undefined, // ❌ 會被忽略
+  symbol: Symbol('test'), // ❌ 會被忽略
+  regexp: /abc/, // ❌ 會變成 {}
+  circular: null, // ❌ 循環參考會報錯
 };
-obj.circular = obj;          // 循環參考
+obj.circular = obj; // 循環參考
 
 JSON.parse(JSON.stringify(obj)); // 會出錯或遺失資料
 ```
@@ -470,11 +481,13 @@ console.log(copy.date instanceof Date); // true
 ```
 
 **優點**：
+
 - ✅ 支援 Date、RegExp、Map、Set 等
 - ✅ 支援循環參考
 - ✅ 效能較好
 
 **限制**：
+
 - ❌ 不支援函式
 - ❌ 不支援 Symbol
 
@@ -541,13 +554,13 @@ const copy = _.cloneDeep(original);
 
 ### 淺拷貝 vs 深拷貝比較
 
-| 特性 | 淺拷貝 | 深拷貝 |
-| --- | --- | --- |
+| 特性     | 淺拷貝       | 深拷貝       |
+| -------- | ------------ | ------------ |
 | 複製層級 | 只複製第一層 | 複製所有層級 |
-| 巢狀物件 | 仍是參考 | 完全獨立 |
-| 效能 | 快 | 慢 |
-| 記憶體 | 省 | 多 |
-| 使用場景 | 簡單物件 | 複雜巢狀結構 |
+| 巢狀物件 | 仍是參考     | 完全獨立     |
+| 效能     | 快           | 慢           |
+| 記憶體   | 省           | 多           |
+| 使用場景 | 簡單物件     | 複雜巢狀結構 |
 
 ## 5. Common Pitfalls
 
@@ -723,18 +736,20 @@ for (let i = 0; i < 3; i++) {
 ### 快速記憶
 
 **原始型別（Primitive）**：
+
 - String, Number, Boolean, Undefined, Null, Symbol, BigInt
 - 傳值（Call by Value）
 - 儲存在 Stack
 - 不可變（Immutable）
 
 **參考型別（Reference）**：
+
 - Object, Array, Function, Date, RegExp, etc.
 - 傳址（Call by Reference）
 - 儲存在 Heap
 - 可變（Mutable）
 
-### 面試回答模板
+### 面試回答範例
 
 **Q: JavaScript 是 Call by Value 還是 Call by Reference？**
 
@@ -751,4 +766,3 @@ for (let i = 0; i < 3; i++) {
 - [MDN - structuredClone()](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone)
 - [MDN - Spread Syntax](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
 - [深入淺出 JavaScript](https://javascript.info/object-copy)
-

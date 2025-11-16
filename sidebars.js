@@ -12,6 +12,7 @@ const QuizCSSList = require('./sidebar/Quiz/quiz-css.js');
 const QuizSecurityList = require('./sidebar/Quiz/security.js');
 // ---Coding (手寫程式實現)---
 const LodashFunctionsList = require('./sidebar/Coding/lodash-functions.js');
+const JavaScriptList = require('./sidebar/Coding/javascript.js');
 // ---LeetCode (演算法題)---
 const LeetCodeEasyList = require('./sidebar/LeetCodeQuestions/leet-code-easy.js');
 // ---Experience (面試經驗)---
@@ -37,7 +38,7 @@ module.exports = {
       items: [QuizJavaScriptList, QuizTypeScriptList, QuizVueList, QuizCSSList, QuizSecurityList],
     },
   ],
-  Coding: ['Coding/coding', LodashFunctionsList],
+  Coding: ['Coding/coding', LodashFunctionsList, JavaScriptList],
   LeetCode: ['LeetCode/leet-code', LeetCodeEasyList],
   Experience: ['Experience/experience', ExperienceList],
   AI: ['AI/ai-index', AIPromptsList],

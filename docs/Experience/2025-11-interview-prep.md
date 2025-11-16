@@ -43,6 +43,9 @@ slug: /2025-11-interview-prep
 - [**請解釋 Vue 的生命週期鉤子**](/docs/vue-lifecycle)
 - [**Vue 組件之間有哪些溝通方式？**](/docs/vue-component-communication)
 - [**請解釋 Vue2 和 Vue3 雙向綁定的原理**](/docs/vue-two-way-data-binding)
+- [**請解釋 Vue3 的靜態提升是什麼？**](/docs/static-hoisting)
+- [**請比較 Pinia 和 Vuex 的差異**](/docs/vuex-vs-pinia)
+- [**請解釋 Vue3 的 Fragment 是什麼？**](/docs/vue3-new-features#3-fragment多根節點)
 
 ## Framework
 
@@ -51,3 +54,9 @@ slug: /2025-11-interview-prep
 ## 效能優化
 
 - [**當畫面上有上萬筆資料時，該如何進行優化處理？**](/docs/large-data-optimization)
+
+## 手寫實作
+
+- [**JS 實作一個 Deep Clone**](/docs/deep-clone)
+- [**JS 實作一個 Function 回傳 String 中出現次數最多的字母**](/docs/find-most-frequent-char-js)
+- [**JS 實作物件路徑解析（get/set）**](/docs/object-path-parsing)

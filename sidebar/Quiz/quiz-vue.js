@@ -12,6 +12,8 @@ module.exports = {
     'Quiz/Vue/ref-vs-reactive',
     'Quiz/Vue/watch-vs-watcheffect',
     'Quiz/Vue/pinia-store-management',
+    'Quiz/Vue/vuex-vs-pinia',
+    'Quiz/Vue/static-hoisting',
     // Hard
     'Quiz/Vue/vue-two-way-data-binding',
   ],

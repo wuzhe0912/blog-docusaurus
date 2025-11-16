@@ -35,7 +35,7 @@ Vue 3 引入了許多新特性和改進，主要包括：
 <template>
   <div>
     <button @click="showModal = true">開啟 Modal</button>
-    
+
     <!-- 使用 Teleport 將 Modal 渲染到 body -->
     <Teleport to="body">
       <div v-if="showModal" class="modal">
@@ -66,7 +66,7 @@ const showModal = ref(false);
 
 > Fragment 是什麼？
 
-**定義**：Vue 3 允許組件有多個根節點，不需要包裹在單一元素中。
+**定義**：Vue 3 允許組件有多個根節點，不需要包裹在單一元素中。這是一個隱式的 Fragment，不需要像 React 那樣使用 `<Fragment>` 標籤。
 
 ### Vue 2 vs Vue 3
 
@@ -92,7 +92,17 @@ const showModal = ref(false);
 </template>
 ```
 
+### 為什麼需要 Fragment？
+
+在 Vue 2 中，組件必須有單一根節點，這導致開發者經常需要添加額外的包裹元素（如 `<div>`），這些元素：
+
+1. **破壞語意化 HTML**：添加無意義的包裹元素
+2. **增加 DOM 層級**：影響樣式選擇器和效能
+3. **樣式控制困難**：需要處理額外包裹元素的樣式
+
 ### 使用場景
+
+#### 場景 1：語意化 HTML 結構
 
 ```vue
 <template>
@@ -106,6 +116,153 @@ const showModal = ref(false);
   <footer>
     <p>頁尾</p>
   </footer>
+</template>
+```
+
+#### 場景 2：列表項組件
+
+```vue
+<!-- ListItem.vue -->
+<template>
+  <li class="item-title">{{ title }}</li>
+  <li class="item-description">{{ description }}</li>
+</template>
+
+<script setup>
+defineProps({
+  title: String,
+  description: String,
+});
+</script>
+```
+
+#### 場景 3：條件渲染多個元素
+
+```vue
+<template>
+  <div v-if="showHeader" class="header">標題</div>
+  <div v-if="showContent" class="content">內容</div>
+  <div v-if="showFooter" class="footer">頁尾</div>
+</template>
+```
+
+### 屬性繼承（Attribute Inheritance）
+
+當組件有多個根節點時，屬性繼承的行為會有所不同。
+
+**單根節點**：屬性會自動繼承到根元素
+
+```vue
+<!-- 父組件 -->
+<MyComponent class="custom-class" id="my-id" />
+
+<!-- 子組件（單根） -->
+<template>
+  <div>內容</div>
+</template>
+
+<!-- 渲染結果 -->
+<div class="custom-class" id="my-id">內容</div>
+```
+
+**多根節點**：屬性不會自動繼承，需要手動指定
+
+```vue
+<!-- 父組件 -->
+<MyComponent class="custom-class" id="my-id" />
+
+<!-- 子組件（多根） -->
+<template>
+  <div>第一個根</div>
+  <div>第二個根</div>
+</template>
+
+<!-- 渲染結果：屬性不會自動繼承 -->
+<div>第一個根</div>
+<div>第二個根</div>
+```
+
+**解決方案**：使用 `$attrs` 手動綁定屬性
+
+```vue
+<!-- 子組件 -->
+<template>
+  <div v-bind="$attrs">第一個根</div>
+  <div>第二個根</div>
+</template>
+
+<!-- 渲染結果 -->
+<div class="custom-class" id="my-id">第一個根</div>
+<div>第二個根</div>
+```
+
+**使用 `inheritAttrs: false` 控制繼承行為**：
+
+```vue
+<script setup>
+defineOptions({
+  inheritAttrs: false, // 禁用自動繼承
+});
+</script>
+
+<template>
+  <div v-bind="$attrs">第一個根</div>
+  <div>第二個根</div>
+</template>
+```
+
+### Fragment vs React Fragment
+
+| 特性         | Vue 3 Fragment     | React Fragment                    |
+| ------------ | ------------------ | --------------------------------- |
+| **語法**     | 隱式（不需要標籤） | 顯式（需要 `<Fragment>` 或 `<>`） |
+| **Key 屬性** | 不需要             | 需要時使用 `<Fragment key={...}>` |
+| **屬性繼承** | 需要手動處理       | 不支援屬性                        |
+
+**Vue 3**：
+
+```vue
+<!-- Vue 3：隱式 Fragment -->
+<template>
+  <h1>標題</h1>
+  <p>內容</p>
+</template>
+```
+
+**React**：
+
+```jsx
+// React：顯式 Fragment
+function Component() {
+  return (
+    <>
+      <h1>標題</h1>
+      <p>內容</p>
+    </>
+  );
+}
+```
+
+### 注意事項
+
+1. **屬性繼承**：多根節點時，屬性不會自動繼承，需要使用 `$attrs` 手動綁定
+2. **樣式作用域**：多根節點時，`scoped` 樣式會應用到所有根節點
+3. **邏輯包裹**：如果邏輯上需要包裹，還是應該使用單一根節點
+
+```vue
+<!-- ✅ 好的做法：邏輯上需要包裹 -->
+<template>
+  <div class="card">
+    <h2>標題</h2>
+    <p>內容</p>
+  </div>
+</template>
+
+<!-- ⚠️ 避免：為了多根而多根 -->
+<template>
+  <h2>標題</h2>
+  <p>內容</p>
+  <!-- 如果這兩個元素邏輯上應該是一組，應該包裹 -->
 </template>
 ```
 
@@ -141,6 +298,7 @@ const AsyncComponent = defineAsyncComponent(() =>
 ### 使用場景
 
 1. **非同步組件載入**
+
    ```vue
    <Suspense>
      <AsyncUserProfile :userId="userId" />
@@ -189,9 +347,15 @@ const AsyncComponent = defineAsyncComponent(() =>
 <!-- CustomForm.vue -->
 <template>
   <div>
-    <input :value="username" @input="$emit('update:username', $event.target.value)" />
+    <input
+      :value="username"
+      @input="$emit('update:username', $event.target.value)"
+    />
     <input :value="email" @input="$emit('update:email', $event.target.value)" />
-    <input :value="password" @input="$emit('update:password', $event.target.value)" />
+    <input
+      :value="password"
+      @input="$emit('update:password', $event.target.value)"
+    />
   </div>
 </template>
 
@@ -215,20 +379,24 @@ defineEmits(['update:username', 'update:email', 'update:password']);
 **使用 Teleport 的場景**：
 
 1. **Modal 對話框**
+
    ```vue
    <Teleport to="body">
      <Modal v-if="showModal" />
    </Teleport>
    ```
+
    - 解決 z-index 問題
    - 不受父組件樣式影響
 
 2. **Tooltip 提示**
+
    ```vue
    <Teleport to="body">
      <Tooltip v-if="showTooltip" />
    </Teleport>
    ```
+
    - 避免被父組件 overflow 隱藏
 
 3. **Notification 通知**
@@ -240,6 +408,7 @@ defineEmits(['update:username', 'update:email', 'update:password']);
    - 統一管理通知位置
 
 **不使用 Teleport 的情況**：
+
 - 一般內容不需要
 - 不需要特殊 DOM 位置的組件
 
@@ -255,6 +424,7 @@ defineEmits(['update:username', 'update:email', 'update:password']);
 **優勢**：
 
 1. **減少不必要的 DOM 元素**
+
    ```vue
    <!-- Vue 2：需要額外的 div -->
    <template>
@@ -263,7 +433,7 @@ defineEmits(['update:username', 'update:email', 'update:password']);
        <main>...</main>
      </div>
    </template>
-   
+
    <!-- Vue 3：不需要額外的元素 -->
    <template>
      <header>...</header>
@@ -272,17 +442,160 @@ defineEmits(['update:username', 'update:email', 'update:password']);
    ```
 
 2. **更好的語意化 HTML**
+
    - 不需要為了 Vue 的限制而添加無意義的包裹元素
+   - 保持 HTML 結構的語意化
 
 3. **更靈活的樣式控制**
+
    - 不需要處理額外包裹元素的樣式
+   - 減少 CSS 選擇器的複雜度
 
 4. **減少 DOM 層級**
+
    - 更淺的 DOM 樹，效能更好
+   - 減少瀏覽器渲染成本
+
+5. **更好的可維護性**
+   - 程式碼更簡潔，不需要額外的包裹元素
+   - 組件結構更清晰
 
 </details>
 
-### 題目 3：Suspense 的使用
+### 題目 3：Fragment 屬性繼承問題
+
+請說明當組件有多個根節點時，屬性繼承的行為是什麼？如何解決？
+
+<details>
+<summary>點擊查看答案</summary>
+
+**問題**：
+
+當組件有多個根節點時，父組件傳遞的屬性（如 `class`、`id` 等）不會自動繼承到任何一個根節點。
+
+**範例**：
+
+```vue
+<!-- 父組件 -->
+<MyComponent class="custom-class" id="my-id" />
+
+<!-- 子組件（多根） -->
+<template>
+  <div>第一個根</div>
+  <div>第二個根</div>
+</template>
+
+<!-- 渲染結果：屬性不會自動繼承 -->
+<div>第一個根</div>
+<div>第二個根</div>
+```
+
+**解決方案**：
+
+1. **使用 `$attrs` 手動綁定屬性**
+
+```vue
+<!-- 子組件 -->
+<template>
+  <div v-bind="$attrs">第一個根</div>
+  <div>第二個根</div>
+</template>
+
+<!-- 渲染結果 -->
+<div class="custom-class" id="my-id">第一個根</div>
+<div>第二個根</div>
+```
+
+2. **使用 `inheritAttrs: false` 控制繼承行為**
+
+```vue
+<script setup>
+defineOptions({
+  inheritAttrs: false, // 禁用自動繼承
+});
+</script>
+
+<template>
+  <div v-bind="$attrs">第一個根</div>
+  <div>第二個根</div>
+</template>
+```
+
+3. **選擇性地綁定特定屬性**
+
+```vue
+<template>
+  <div :class="$attrs.class">第一個根</div>
+  <div :id="$attrs.id">第二個根</div>
+</template>
+```
+
+**關鍵點**：
+
+- 單根節點：屬性自動繼承
+- 多根節點：屬性不會自動繼承，需要手動處理
+- 使用 `$attrs` 可以訪問所有未在 `props` 中定義的屬性
+
+</details>
+
+### 題目 4：Fragment vs React Fragment
+
+請比較 Vue 3 Fragment 和 React Fragment 的差異。
+
+<details>
+<summary>點擊查看答案</summary>
+
+**主要差異**：
+
+| 特性         | Vue 3 Fragment           | React Fragment                    |
+| ------------ | ------------------------ | --------------------------------- |
+| **語法**     | 隱式（不需要標籤）       | 顯式（需要 `<Fragment>` 或 `<>`） |
+| **Key 屬性** | 不需要                   | 需要時使用 `<Fragment key={...}>` |
+| **屬性繼承** | 需要手動處理（`$attrs`） | 不支援屬性                        |
+
+**Vue 3**：
+
+```vue
+<!-- Vue 3：隱式 Fragment，直接寫多個根節點 -->
+<template>
+  <h1>標題</h1>
+  <p>內容</p>
+</template>
+```
+
+**React**：
+
+```jsx
+// React：顯式 Fragment，需要使用標籤
+function Component() {
+  return (
+    <>
+      <h1>標題</h1>
+      <p>內容</p>
+    </>
+  );
+}
+
+// 或使用 Fragment
+import { Fragment } from 'react';
+function Component() {
+  return (
+    <Fragment>
+      <h1>標題</h1>
+      <p>內容</p>
+    </Fragment>
+  );
+}
+```
+
+**優勢比較**：
+
+- **Vue 3**：語法更簡潔，不需要額外標籤
+- **React**：更明確，可以添加 key 屬性
+
+</details>
+
+### 題目 5：Suspense 的使用
 
 請實作一個使用 `Suspense` 載入非同步組件的範例。
 
@@ -373,10 +686,7 @@ const onReject = (error) => {
 </Suspense>
 
 <!-- 4. 多個 v-model 使用明確的命名 -->
-<CustomForm
-  v-model:username="username"
-  v-model:email="email"
-/>
+<CustomForm v-model:username="username" v-model:email="email" />
 ```
 
 ### 避免的做法
@@ -408,6 +718,7 @@ const onReject = (error) => {
 ### 快速記憶
 
 **Vue 3 主要新特性**：
+
 - **Composition API**：新的組件寫法
 - **Teleport**：將組件渲染到其他 DOM 位置
 - **Fragment**：支援多個根節點
@@ -415,6 +726,7 @@ const onReject = (error) => {
 - **多個 v-model**：支援多個 v-model 綁定
 
 **使用場景**：
+
 - Modal/Tooltip → `Teleport`
 - 語意化 HTML → `Fragment`
 - 非同步組件 → `Suspense`
@@ -436,4 +748,3 @@ const onReject = (error) => {
 - [Vue 3 Fragment](https://v3-migration.vuejs.org/breaking-changes/fragments.html)
 - [Vue 3 Suspense](https://vuejs.org/guide/built-ins/suspense.html)
 - [Vue 3 Multiple v-model](https://vuejs.org/guide/components/v-model.html#multiple-v-model-bindings)
-

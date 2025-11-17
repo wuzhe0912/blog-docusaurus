@@ -31,6 +31,9 @@ Vue 3 引入了許多新特性和改進，主要包括：
 
 **常見場景**：Modal、Tooltip、Notification 等需要渲染到 body 的組件
 
+<details>
+<summary>點此展開 Teleport 範例</summary>
+
 ```vue
 <template>
   <div>
@@ -55,6 +58,8 @@ import { ref } from 'vue';
 const showModal = ref(false);
 </script>
 ```
+
+</details>
 
 ### 優勢
 

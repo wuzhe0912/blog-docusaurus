@@ -15,6 +15,9 @@ tags: [Vue, Quiz, Medium]
 
 **定義**：`ref` 用來建立一個響應式的**基本型別值**或**物件引用**。
 
+<details>
+<summary>點此展開 ref 基本範例</summary>
+
 ```vue
 <script setup>
 import { ref } from 'vue';
@@ -36,9 +39,14 @@ count.value++; // 修改值
 </script>
 ```
 
+</details>
+
 ### reactive
 
 **定義**：`reactive` 用來建立一個響應式的**物件**（不能直接用於基本型別）。
+
+<details>
+<summary>點此展開 reactive 基本範例</summary>
 
 ```vue
 <script setup>
@@ -59,6 +67,8 @@ console.log(state.count); // 0
 state.count++; // 修改值
 </script>
 ```
+
+</details>
 
 ## 2. ref vs reactive: Key Differences
 
@@ -89,6 +99,9 @@ const message = reactive('Hello'); // ❌ 錯誤：基本型別不行
 
 **ref**：需要使用 `.value` 存取
 
+<details>
+<summary>點此展開 ref 存取範例</summary>
+
 ```vue
 <script setup>
 import { ref } from 'vue';
@@ -108,7 +121,12 @@ count.value = 10;
 </template>
 ```
 
+</details>
+
 **reactive**：直接存取屬性
+
+<details>
+<summary>點此展開 reactive 存取範例</summary>
 
 ```vue
 <script setup>
@@ -125,6 +143,8 @@ state.count = 10;
   <div>{{ state.count }}</div>
 </template>
 ```
+
+</details>
 
 ### 3. 重新賦值
 

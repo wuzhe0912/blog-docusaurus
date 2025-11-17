@@ -23,6 +23,9 @@ tags: [Vue, Quiz, Medium]
 
 **編譯前的 Template**：
 
+<details>
+<summary>點此展開 Template 範例</summary>
+
 ```vue
 <template>
   <div>
@@ -33,7 +36,12 @@ tags: [Vue, Quiz, Medium]
 </template>
 ```
 
+</details>
+
 **編譯後的 JavaScript**（簡化版）：
+
+<details>
+<summary>點此展開編譯後 JavaScript 範例</summary>
 
 ```js
 // 靜態節點被提升到頂部，只建立一次
@@ -48,6 +56,8 @@ function render() {
   ]);
 }
 ```
+
+</details>
 
 ### 優勢
 
@@ -79,6 +89,9 @@ function render() {
 
 ### 範例 1：基本靜態提升
 
+<details>
+<summary>點此展開基本靜態提升範例</summary>
+
 ```vue
 <template>
   <div>
@@ -89,7 +102,12 @@ function render() {
 </template>
 ```
 
+</details>
+
 **編譯後**：
+
+<details>
+<summary>點此展開編譯後結果</summary>
 
 ```js
 // 所有靜態節點都被提升
@@ -102,7 +120,12 @@ function render() {
 }
 ```
 
+</details>
+
 ### 範例 2：混合靜態與動態內容
+
+<details>
+<summary>點此展開混合內容範例</summary>
 
 ```vue
 <template>
@@ -115,7 +138,12 @@ function render() {
 </template>
 ```
 
+</details>
+
 **編譯後**：
+
+<details>
+<summary>點此展開編譯後結果</summary>
 
 ```js
 // 只有完全靜態的節點被提升
@@ -133,7 +161,12 @@ function render() {
 }
 ```
 
+</details>
+
 ### 範例 3：靜態屬性提升
+
+<details>
+<summary>點此展開靜態屬性範例</summary>
 
 ```vue
 <template>
@@ -144,7 +177,12 @@ function render() {
 </template>
 ```
 
+</details>
+
 **編譯後**：
+
+<details>
+<summary>點此展開編譯後結果</summary>
 
 ```js
 // 靜態屬性物件也被提升
@@ -158,6 +196,8 @@ function render() {
 }
 ```
 
+</details>
+
 ## 3. v-once Directive
 
 > v-once 指令
@@ -169,6 +209,9 @@ function render() {
 `v-once` 告訴編譯器這個元素及其子元素應該只渲染一次，即使包含動態綁定，也只會在初次渲染時計算一次，後續不會更新。
 
 ### 基本用法
+
+<details>
+<summary>點此展開 v-once 基本範例</summary>
 
 ```vue
 <template>
@@ -200,6 +243,8 @@ setTimeout(() => {
 }, 1000);
 </script>
 ```
+
+</details>
 
 ### v-once vs 靜態提升
 

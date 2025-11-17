@@ -15,14 +15,14 @@ tags: [Vue, Quiz, Medium, Vuex, Pinia]
 
 ### 核心差異總覽
 
-| 特性 | Vuex | Pinia |
-| --- | --- | --- |
-| **Vue 版本** | Vue 2 | Vue 3 |
-| **API 複雜度** | 較複雜（需要 mutations） | 更簡潔（不需要 mutations） |
-| **TypeScript 支援** | 需要額外配置 | 原生完整支援 |
-| **模組化** | 嵌套模組 | 扁平化，每個 store 獨立 |
-| **體積** | 較大 | 更小（約 1KB） |
-| **開發體驗** | 良好 | 更好（HMR、Devtools） |
+| 特性                | Vuex                     | Pinia                      |
+| ------------------- | ------------------------ | -------------------------- |
+| **Vue 版本**        | Vue 2                    | Vue 3                      |
+| **API 複雜度**      | 較複雜（需要 mutations） | 更簡潔（不需要 mutations） |
+| **TypeScript 支援** | 需要額外配置             | 原生完整支援               |
+| **模組化**          | 嵌套模組                 | 扁平化，每個 store 獨立    |
+| **體積**            | 較大                     | 更小（約 1KB）             |
+| **開發體驗**        | 良好                     | 更好（HMR、Devtools）      |
 
 ## 2. API 差異比較
 
@@ -31,6 +31,9 @@ tags: [Vue, Quiz, Medium, Vuex, Pinia]
 ### 2.1 State（狀態）
 
 **Vuex**：
+
+<details>
+<summary>點此展開 Vuex state 範例</summary>
 
 ```javascript
 // Vuex Store
@@ -48,7 +51,12 @@ export default createStore({
 });
 ```
 
+</details>
+
 **Pinia**：
+
+<details>
+<summary>點此展開 Pinia state 範例</summary>
 
 ```typescript
 // Pinia Store
@@ -66,6 +74,8 @@ export const useCounterStore = defineStore('counter', {
 });
 ```
 
+</details>
+
 **關鍵差異**：
 
 - **Vuex**：`state` 可以是物件或函數
@@ -74,6 +84,9 @@ export const useCounterStore = defineStore('counter', {
 ### 2.2 Mutations vs Actions
 
 **Vuex**：需要 `mutations` 來同步修改 state
+
+<details>
+<summary>點此展開 Vuex mutations/actions 範例</summary>
 
 ```javascript
 // Vuex
@@ -101,7 +114,12 @@ export default createStore({
 });
 ```
 
+</details>
+
 **Pinia**：不需要 `mutations`，直接在 `actions` 中修改 state
+
+<details>
+<summary>點此展開 Pinia actions 範例</summary>
 
 ```typescript
 // Pinia
@@ -121,6 +139,8 @@ export const useCounterStore = defineStore('counter', {
 });
 ```
 
+</details>
+
 **關鍵差異**：
 
 - **Vuex**：必須透過 `mutations` 同步修改 state，`actions` 透過 `commit` 調用 `mutations`
@@ -129,6 +149,9 @@ export const useCounterStore = defineStore('counter', {
 ### 2.3 Getters（計算屬性）
 
 **Vuex**：
+
+<details>
+<summary>點此展開 Vuex getters 範例</summary>
 
 ```javascript
 // Vuex
@@ -144,7 +167,12 @@ export default createStore({
 });
 ```
 
+</details>
+
 **Pinia**：
+
+<details>
+<summary>點此展開 Pinia getters 範例</summary>
 
 ```typescript
 // Pinia
@@ -162,6 +190,8 @@ export const useCounterStore = defineStore('counter', {
 });
 ```
 
+</details>
+
 **關鍵差異**：
 
 - **Vuex**：getters 接收 `(state, getters)` 作為參數
@@ -170,6 +200,9 @@ export const useCounterStore = defineStore('counter', {
 ### 2.4 在組件中使用
 
 **Vuex**：
+
+<details>
+<summary>點此展開 Vuex 組件使用範例</summary>
 
 ```vue
 <template>
@@ -198,7 +231,12 @@ export default {
 </script>
 ```
 
+</details>
+
 **Pinia**：
+
+<details>
+<summary>點此展開 Pinia 組件使用範例</summary>
 
 ```vue
 <template>
@@ -221,6 +259,8 @@ const { increment } = store;
 </script>
 ```
 
+</details>
+
 **關鍵差異**：
 
 - **Vuex**：使用 `mapState`、`mapGetters`、`mapActions` 輔助函數
@@ -233,6 +273,9 @@ const { increment } = store;
 ### 3.1 Vuex Modules（嵌套模組）
 
 **Vuex**：使用嵌套模組，需要 `namespaced: true`
+
+<details>
+<summary>點此展開 Vuex 模組化範例</summary>
 
 ```javascript
 // stores/user.js
@@ -262,9 +305,14 @@ export default createStore({
 this.$store.dispatch('user/SET_NAME', 'Jane'); // 需要命名空間前綴
 ```
 
+</details>
+
 ### 3.2 Pinia Stores（扁平化）
 
 **Pinia**：每個 store 都是獨立的，無需嵌套
+
+<details>
+<summary>點此展開 Pinia store 範例</summary>
 
 ```typescript
 // stores/user.ts
@@ -288,6 +336,8 @@ const userStore = useUserStore();
 userStore.setName('Jane'); // 直接調用，無需命名空間
 ```
 
+</details>
+
 **關鍵差異**：
 
 - **Vuex**：需要嵌套模組，使用 `namespaced: true`，調用時需要命名空間前綴
@@ -300,6 +350,9 @@ userStore.setName('Jane'); // 直接調用，無需命名空間
 ### 4.1 Vuex TypeScript 支援
 
 **Vuex**：需要額外配置型別
+
+<details>
+<summary>點此展開 Vuex TypeScript 範例</summary>
 
 ```typescript
 // stores/types.ts
@@ -335,9 +388,14 @@ const store = useStore<State>();
 // 需要手動定義型別，沒有完整的型別推斷
 ```
 
+</details>
+
 ### 4.2 Pinia TypeScript 支援
 
 **Pinia**：原生完整支援，自動型別推斷
+
+<details>
+<summary>點此展開 Pinia TypeScript 範例</summary>
 
 ```typescript
 // stores/counter.ts
@@ -370,6 +428,8 @@ store.doubleCount; // 完整的型別推斷
 store.increment(); // 完整的型別推斷
 ```
 
+</details>
+
 **關鍵差異**：
 
 - **Vuex**：需要手動定義型別，型別推斷不完整
@@ -380,6 +440,9 @@ store.increment(); // 完整的型別推斷
 > 完整範例對比
 
 ### 5.1 Vuex 完整範例
+
+<details>
+<summary>點此展開 Vuex 完整範例</summary>
 
 ```javascript
 // stores/index.js
@@ -420,6 +483,11 @@ export default createStore({
 });
 ```
 
+</details>
+
+<details>
+<summary>點此展開 Vuex 組件完整範例</summary>
+
 ```vue
 <!-- 組件中使用 Vuex -->
 <template>
@@ -446,7 +514,12 @@ export default {
 </script>
 ```
 
+</details>
+
 ### 5.2 Pinia 完整範例
+
+<details>
+<summary>點此展開 Pinia 完整範例</summary>
 
 ```typescript
 // stores/counter.ts
@@ -478,6 +551,11 @@ export const useCounterStore = defineStore('counter', {
 });
 ```
 
+</details>
+
+<details>
+<summary>點此展開 Pinia 組件完整範例</summary>
+
 ```vue
 <!-- 組件中使用 Pinia -->
 <template>
@@ -498,6 +576,8 @@ const { count, doubleCount } = storeToRefs(store);
 const { increment, fetchCount } = store;
 </script>
 ```
+
+</details>
 
 ## 6. 遷移指南
 
@@ -526,20 +606,37 @@ app.use(pinia);
 
 3. **轉換 Store 定義**
 
+<details>
+<summary>點此展開遷移程式碼對照</summary>
+
 ```javascript
 // Vuex
 export default createStore({
   state: { count: 0 },
-  mutations: { INCREMENT(state) { state.count++; } },
-  actions: { increment({ commit }) { commit('INCREMENT'); } },
+  mutations: {
+    INCREMENT(state) {
+      state.count++;
+    },
+  },
+  actions: {
+    increment({ commit }) {
+      commit('INCREMENT');
+    },
+  },
 });
 
 // Pinia
 export const useCounterStore = defineStore('counter', {
   state: () => ({ count: 0 }),
-  actions: { increment() { this.count++; } },
+  actions: {
+    increment() {
+      this.count++;
+    },
+  },
 });
 ```
+
+</details>
 
 4. **更新組件使用方式**
 
@@ -598,18 +695,22 @@ userStore.setName('John');
 **主要差異**：
 
 1. **API 複雜度**
+
    - Vuex 需要 `mutations` 來同步修改 state
    - Pinia 不需要 `mutations`，`actions` 可以直接修改 state
 
 2. **TypeScript 支援**
+
    - Vuex 需要額外配置，型別推斷不完整
    - Pinia 原生完整支援，自動型別推斷
 
 3. **模組化**
+
    - Vuex 使用嵌套模組，需要 `namespaced: true`
    - Pinia 每個 store 獨立，無需命名空間
 
 4. **開發體驗**
+
    - Pinia 體積更小、支援 HMR、更好的 Devtools 支援
 
 5. **Vue 版本**
@@ -626,10 +727,12 @@ userStore.setName('John');
 **原因**：
 
 1. **Vue 3 的響應式系統**
+
    - Vue 3 使用 Proxy，可以直接追蹤物件的修改
    - 不需要像 Vue 2 那樣透過 mutations 來追蹤狀態變化
 
 2. **簡化 API**
+
    - 移除 mutations 可以簡化 API，減少樣板程式碼
    - Actions 可以直接修改 state，無論是同步還是非同步操作
 
@@ -658,10 +761,12 @@ actions: { setCount(count) { this.count = count; } },
 **選擇建議**：
 
 1. **新專案**
+
    - Vue 3 專案：**推薦使用 Pinia**
    - Vue 2 專案：使用 Vuex
 
 2. **現有專案**
+
    - Vue 2 + Vuex：可以繼續使用 Vuex，或考慮升級到 Vue 3 + Pinia
    - Vue 3 + Vuex：可以考慮遷移到 Pinia（但非必須）
 
@@ -671,6 +776,7 @@ actions: { setCount(count) { this.count = count; } },
    - 團隊熟悉 Vuex：可以繼續使用 Vuex
 
 **總結**：
+
 - Vue 3 新專案：**強烈推薦 Pinia**
 - Vue 2 專案：使用 Vuex
 - 現有 Vue 3 + Vuex 專案：可以考慮遷移，但非必須
@@ -722,13 +828,13 @@ const { count } = store; // 失去響應性
 
 **Vuex vs Pinia**：
 
-| 特性 | Vuex | Pinia |
-| --- | --- | --- |
-| **Mutations** | ✅ 需要 | ❌ 不需要 |
+| 特性           | Vuex        | Pinia       |
+| -------------- | ----------- | ----------- |
+| **Mutations**  | ✅ 需要     | ❌ 不需要   |
 | **TypeScript** | ⚠️ 需要配置 | ✅ 原生支援 |
-| **模組化** | 嵌套模組 | 扁平化 |
-| **API** | 較複雜 | 更簡潔 |
-| **Vue 版本** | Vue 2 | Vue 3 |
+| **模組化**     | 嵌套模組    | 扁平化      |
+| **API**        | 較複雜      | 更簡潔      |
+| **Vue 版本**   | Vue 2       | Vue 3       |
 
 **關鍵差異**：
 
@@ -752,4 +858,3 @@ const { count } = store; // 失去響應性
 - [Vuex 官方文檔](https://vuex.vuejs.org/)
 - [Pinia 官方文檔](https://pinia.vuejs.org/)
 - [從 Vuex 遷移到 Pinia](https://pinia.vuejs.org/cookbook/migration-vuex.html)
-

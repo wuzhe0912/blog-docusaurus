@@ -61,5 +61,53 @@ module.exports = {
         'Experience/Project-Architecture/project-architecture-browser-compatibility',
       ],
     },
+    {
+      type: 'category',
+      label: '🌐 SSR & SEO',
+      items: [
+        'Experience/SSR-SEO/ssr-seo-interview-index',
+        {
+          type: 'category',
+          label: 'Lv1 基礎',
+          key: 'ssr-seo-lv1',
+          items: ['Experience/SSR-SEO/ssr-seo-lv1-seo-basic'],
+        },
+        {
+          type: 'category',
+          label: 'Lv2 進階',
+          key: 'ssr-seo-lv2',
+          items: [
+            'Experience/SSR-SEO/ssr-seo-lv2-seo-optimization',
+            'Experience/SSR-SEO/ssr-seo-lv2-ssr-implementation',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Lv3 延伸',
+          key: 'ssr-seo-lv3',
+          items: ['Experience/SSR-SEO/ssr-seo-lv3-ssr-challenges'],
+        },
+      ],
+    },
+    {
+      type: 'category',
+      label: '📦 狀態管理',
+      items: [
+        'Experience/State-Management/state-management-interview-index',
+        {
+          type: 'category',
+          label: 'Vue',
+          key: 'state-management-vue',
+          items: [
+            'Experience/State-Management/Vue/state-management-vue-pinia-setup',
+            'Experience/State-Management/Vue/state-management-vue-pinia-store-patterns',
+            'Experience/State-Management/Vue/state-management-vue-pinia-usage',
+            'Experience/State-Management/Vue/state-management-vue-pinia-persistence',
+            'Experience/State-Management/Vue/state-management-vue-pinia-best-practices',
+            'Experience/State-Management/Vue/state-management-vue-vuex-vs-pinia',
+          ],
+        },
+      ],
+    },
   ],
 };

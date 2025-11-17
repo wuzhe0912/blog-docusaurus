@@ -425,7 +425,7 @@ console.log(result); // 3
 
 ## 🔗 相關主題
 
-- [路由層級優化 →](/docs/experience/performance/lv2-route-optimization)
-- [圖片載入優化 →](/docs/experience/performance/lv2-image-optimization)
+- [路由層級優化 →](/docs/experience/performance/lv1-route-optimization)
+- [圖片載入優化 →](/docs/experience/performance/lv1-image-optimization)
 - [虛擬滾動實作 →](/docs/experience/performance/lv3-virtual-scroll)
-- [專案總覽 →](/docs/experience/performance/lv4-project-overview)
+- [大量資料優化策略 →](/docs/experience/performance/lv3-large-data-optimization)

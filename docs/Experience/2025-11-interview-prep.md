@@ -57,7 +57,7 @@ slug: /2025-11-interview-prep
 
 ## 效能優化
 
-- [**當畫面上有上萬筆資料時，該如何進行優化處理？**](/docs/large-data-optimization)
+- [**當畫面上有上萬筆資料時，該如何進行優化處理？**](/docs/experience/performance/lv3-large-data-optimization)
 
 ## 手寫實作
 

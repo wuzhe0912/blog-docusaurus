@@ -1,7 +1,8 @@
 ---
-id: vite-setting
-title: '📄 Vite 配置與優化'
-slug: /vite-setting
+id: project-architecture-vite-setting
+title: 'Vite 配置與多租戶系統'
+slug: /experience/project-architecture/vite-setting
+tags: [Experience, Interview, Project-Architecture]
 ---
 
 > 如何用 Vite 管理 27 個品牌版型的多租戶系統，實現動態編譯與環境隔離。

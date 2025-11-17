@@ -1,7 +1,8 @@
 ---
-id: large-data-optimization
-title: '📄 大量資料優化策略'
-slug: /large-data-optimization
+id: performance-lv3-large-data-optimization
+title: '[Lv3] 大量資料優化策略：方案選擇與實作'
+slug: /experience/performance/lv3-large-data-optimization
+tags: [Experience, Interview, Performance, Lv3]
 ---
 
 > 當畫面需要顯示上萬筆資料時，如何在效能、使用者體驗和開發成本間取得平衡？
@@ -228,7 +229,7 @@ const items = ref(
 
 #### 詳細說明
 
-👉 **深入瞭解：[虛擬滾動完整實作 →](/docs/virtual-scroll)**
+👉 **深入瞭解：[虛擬滾動完整實作 →](/docs/experience/performance/lv3-virtual-scroll)**
 
 ---
 
@@ -435,7 +436,7 @@ function searchData(keyword) {
 }
 ```
 
-👉 **詳細說明：[Web Worker 應用 →](/docs/web-worker)**
+👉 **詳細說明：[Web Worker 應用 →](/docs/experience/performance/lv3-web-worker)**
 
 ---
 
@@ -757,9 +758,9 @@ A: 使用多種工具組合：
 
 ## 📚 相關筆記
 
-- [虛擬滾動完整實作 →](/docs/virtual-scroll)
-- [前端效能優化總覽 →](/docs/optimization)
-- [Web Worker 應用 →](/docs/web-worker)
+- [虛擬滾動完整實作 →](/docs/experience/performance/lv3-virtual-scroll)
+- [網頁效能優化總覽 →](/docs/experience/performance)
+- [Web Worker 應用 →](/docs/experience/performance/lv3-web-worker)
 
 ---
 

@@ -1,7 +1,8 @@
 ---
-id: web-worker
-title: '📄 Web Worker'
-slug: /web-worker
+id: performance-lv3-web-worker
+title: '[Lv3] Web Worker 應用：背景運算不阻塞 UI'
+slug: /experience/performance/lv3-web-worker
+tags: [Experience, Interview, Performance, Lv3]
 ---
 
 > **Web Worker** 是一個在瀏覽器背景執行緒中運行 JavaScript 的 API，讓你能夠執行耗時的運算而不會阻塞主執行緒（UI 執行緒）。
@@ -424,6 +425,7 @@ console.log(result); // 3
 
 ## 🔗 相關主題
 
-- [前端效能優化 →](./optimization.md)
-- [虛擬滾動 →](./virtual-scroll.md)
-- [專案總覽 →](./project-overview.md)
+- [路由層級優化 →](/docs/experience/performance/lv2-route-optimization)
+- [圖片載入優化 →](/docs/experience/performance/lv2-image-optimization)
+- [虛擬滾動實作 →](/docs/experience/performance/lv3-virtual-scroll)
+- [專案總覽 →](/docs/experience/performance/lv4-project-overview)

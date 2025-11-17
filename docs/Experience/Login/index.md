@@ -9,13 +9,13 @@ tags: [Experience, Interview, Login]
 
 ---
 
-## Lv1 基礎題
+## Lv1 基礎
 
 - [過往專案的登入機制是怎麼實作的？](/docs/experience/login/lv1-project-implementation)
 - [Session-based 和 Token-based 有什麼差異？](/docs/experience/login/lv1-session-vs-token)
 - [JWT 的結構是什麼？](/docs/experience/login/lv1-jwt-structure)
 
-## Lv2 進階題
+## Lv2 進階
 
 - Token 可能存放在哪些位置？需要注意哪些安全議題？（待整理）
 - 前端如何自動在每個 API 請求中帶上 Token？（待整理）

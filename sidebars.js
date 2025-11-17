@@ -2,7 +2,7 @@
 const HttpKnowledgeList = require('./sidebar/Knowledge/http.js');
 const BrowserKnowledgeList = require('./sidebar/Knowledge/browser.js');
 const ToolsKnowledgeList = require('./sidebar/Knowledge/tools.js');
-const ProjectCaseList = require('./sidebar/Knowledge/project-case.js');
+// ProjectCaseList 已移除：專案實戰案例已移至 Experience/Performance 和 Experience/Project-Architecture
 // ---Quiz (快速問答測驗)---
 const QuizJavaScriptList = require('./sidebar/Quiz/quiz-javascript.js');
 const QuizTypeScriptList = require('./sidebar/Quiz/quiz-typescript.js');
@@ -28,7 +28,6 @@ module.exports = {
     HttpKnowledgeList,
     BrowserKnowledgeList,
     ToolsKnowledgeList,
-    ProjectCaseList,
     {
       type: 'category',
       label: '📝 Quiz 測驗',

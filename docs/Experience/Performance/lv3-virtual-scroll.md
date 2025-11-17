@@ -1,10 +1,13 @@
 ---
-id: virtual-scroll
-title: '📄 虛擬滾動'
-slug: /virtual-scroll
+id: performance-lv3-virtual-scroll
+title: '[Lv3] 虛擬滾動實作：處理大量資料渲染'
+slug: /experience/performance/lv3-virtual-scroll
+tags: [Experience, Interview, Performance, Lv3]
 ---
 
 > 當頁面需要渲染 1000+ 筆資料時，虛擬滾動可以將 DOM 節點從 1000+ 降至 20-30 個，記憶體使用降低 80%。
+
+---
 
 ## 📋 面試情境題
 
@@ -362,10 +365,3 @@ onMounted(() => {
 - 公開網站、部落格 → 傳統分頁
 - 混合方案：Virtual Scroll + 「載入更多」按鈕
 
----
-
-## 相關筆記
-
-- [前端效能優化 →](./optimization.md)
-- [Web Worker 應用 →](./web-worker.md)
-- [專案總覽 →](./project-overview.md)

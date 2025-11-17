@@ -1,10 +1,9 @@
 ---
-id: browser
-title: '📄 瀏覽器兼容性'
-slug: /browser
+id: project-architecture-browser-compatibility
+title: '瀏覽器兼容性處理'
+slug: /experience/project-architecture/browser-compatibility
+tags: [Experience, Interview, Project-Architecture]
 ---
-
-# 瀏覽器兼容性處理
 
 > 處理跨瀏覽器兼容性問題，特別是 Safari 和移動端的特殊處理。
 
@@ -28,3 +27,4 @@ text-size-adjust: none;
 ## 前綴詞
 
 透過手動 + 自動設定 Autoprefixer 來處理前綴詞。
+

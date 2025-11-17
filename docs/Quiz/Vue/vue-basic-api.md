@@ -606,9 +606,9 @@ export default {
 <div v-show="type !== 'A'">其他類型</div>
 ```
 
-### 使用場景建議
+### computed 與 watch 的使用建議
 
-#### 使用 `v-if` 的情況：
+#### 使用 `v-if` 的情境
 
 1. ✅ 條件很少改變
 2. ✅ 初始條件為 false，且可能永遠不會變成 true
@@ -626,7 +626,7 @@ export default {
 </template>
 ```
 
-#### 使用 `v-show` 的情況：
+#### 使用 `v-show` 的情境
 
 1. ✅ 需要頻繁切換顯示狀態
 2. ✅ 組件初始化成本高，希望保留狀態
@@ -704,7 +704,7 @@ export default {
 </script>
 ```
 
-### 記憶點
+### v-if 與 v-show 記憶點
 
 > - `v-if`：不顯示時就不渲染，適合不常改變的條件
 > - `v-show`：一開始就渲染好，隨時準備顯示，適合頻繁切換
@@ -717,14 +717,14 @@ export default {
 
 ### `computed`（計算屬性）
 
-#### 特性
+#### 核心特性（computed）
 
 1. **緩存機制**：`computed` 計算出來的結果會被緩存，只有當依賴的響應式資料改變時才會重新計算
 2. **自動追蹤依賴**：會自動追蹤計算過程中使用到的響應式資料
 3. **同步計算**：必須是同步操作，且必須有回傳值
 4. **簡潔的語法**：可以直接在 template 中使用，如同 data 中的屬性
 
-#### 使用場景
+#### 常見使用場景（computed）
 
 ```vue
 <!-- Vue 3 <script setup> 寫法 -->
@@ -815,25 +815,19 @@ const filteredItems = computed(() => {
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      items: Array.from({ length: 1000 }, (_, i) => i),
-    };
-  },
-  computed: {
-    expensiveComputed() {
-      console.log('computed 執行'); // 只執行一次
-      return this.items.reduce((sum, item) => sum + item, 0);
-    },
-  },
-  methods: {
-    expensiveMethod() {
-      console.log('method 執行'); // 執行三次
-      return this.items.reduce((sum, item) => sum + item, 0);
-    },
-  },
+<script setup>
+import { computed, ref } from 'vue';
+
+const items = ref(Array.from({ length: 1000 }, (_, index) => index));
+
+const expensiveComputed = computed(() => {
+  console.log('computed 執行'); // 只執行一次
+  return items.value.reduce((sum, item) => sum + item, 0);
+});
+
+const expensiveMethod = () => {
+  console.log('method 執行'); // 每次呼叫都會重新計算
+  return items.value.reduce((sum, item) => sum + item, 0);
 };
 </script>
 ```
@@ -841,41 +835,37 @@ export default {
 #### `computed` 的 getter 和 setter
 
 ```vue
-<script>
-export default {
-  data() {
-    return {
-      firstName: 'John',
-      lastName: 'Doe',
-    };
+<script setup>
+import { computed, onMounted, ref } from 'vue';
+
+const firstName = ref('John');
+const lastName = ref('Doe');
+
+const fullName = computed({
+  // getter：讀取時執行
+  get() {
+    return `${firstName.value} ${lastName.value}`;
   },
-  computed: {
-    fullName: {
-      // getter：讀取時執行
-      get() {
-        return `${this.firstName} ${this.lastName}`;
-      },
-      // setter：設定時執行
-      set(newValue) {
-        const names = newValue.split(' ');
-        this.firstName = names[0];
-        this.lastName = names[names.length - 1];
-      },
-    },
+  // setter：設定時執行
+  set(newValue) {
+    const names = newValue.split(' ');
+    firstName.value = names[0] ?? '';
+    lastName.value = names[names.length - 1] ?? '';
   },
-  mounted() {
-    console.log(this.fullName); // 'John Doe'（觸發 getter）
-    this.fullName = 'Jane Smith'; // 觸發 setter
-    console.log(this.firstName); // 'Jane'
-    console.log(this.lastName); // 'Smith'
-  },
-};
+});
+
+onMounted(() => {
+  console.log(fullName.value); // 'John Doe'（觸發 getter）
+  fullName.value = 'Jane Smith'; // 觸發 setter
+  console.log(firstName.value); // 'Jane'
+  console.log(lastName.value); // 'Smith'
+});
 </script>
 ```
 
 ### `watch`（監聽屬性）
 
-#### 特性
+#### 核心特性（watch）
 
 1. **手動追蹤資料變化**：需要明確指定要監聽哪個資料
 2. **可執行非同步操作**：適合呼叫 API、設定計時器等
@@ -883,7 +873,7 @@ export default {
 4. **可以監聽多個資料**：透過陣列或物件深度監聽
 5. **提供新舊值**：可以拿到變化前後的值
 
-#### 使用場景
+#### 常見使用場景（watch）
 
 ```vue
 <!-- Vue 3 <script setup> 寫法 -->
@@ -1048,24 +1038,17 @@ onMounted(() => {
 #### 監聽多個資料來源
 
 ```vue
-<script>
-import { watch } from 'vue';
+<!-- Vue 3 <script setup> 寫法 -->
+<script setup>
+import { ref, watch } from 'vue';
 
-export default {
-  setup() {
-    const firstName = ref('John');
-    const lastName = ref('Doe');
+const firstName = ref('John');
+const lastName = ref('Doe');
 
-    // Vue 3 Composition API：監聽多個資料
-    watch([firstName, lastName], ([newFirst, newLast], [oldFirst, oldLast]) => {
-      console.log(
-        `名字從 ${oldFirst} ${oldLast} 變更為 ${newFirst} ${newLast}`
-      );
-    });
-
-    return { firstName, lastName };
-  },
-};
+// Vue 3 Composition API：監聽多個資料
+watch([firstName, lastName], ([newFirst, newLast], [oldFirst, oldLast]) => {
+  console.log(`名字從 ${oldFirst} ${oldLast} 變更為 ${newFirst} ${newLast}`);
+});
 </script>
 ```
 
@@ -1084,7 +1067,7 @@ export default {
 
 ### 使用場景建議
 
-#### 使用 `computed` 的情況：
+#### 使用 `computed` 的情境
 
 1. ✅ 需要**基於現有資料計算新資料**
 2. ✅ 計算結果會在 template 中**多次使用**（利用緩存）
@@ -1092,29 +1075,38 @@ export default {
 4. ✅ 需要**格式化、過濾、排序**資料
 
 ```vue
-<script>
-export default {
-  computed: {
-    // ✅ 格式化資料
-    formattedDate() {
-      return new Date(this.timestamp).toLocaleDateString();
-    },
+<script setup>
+import { computed, ref } from 'vue';
 
-    // ✅ 過濾列表
-    activeUsers() {
-      return this.users.filter((user) => user.isActive);
-    },
+const timestamp = ref(Date.now());
+const users = ref([
+  { id: 1, name: 'Alice', isActive: true },
+  { id: 2, name: 'Bob', isActive: false },
+  { id: 3, name: 'Carol', isActive: true },
+]);
+const cart = ref([
+  { id: 1, name: 'Apple', price: 2, quantity: 3 },
+  { id: 2, name: 'Banana', price: 1, quantity: 5 },
+]);
 
-    // ✅ 計算總和
-    totalPrice() {
-      return this.cart.reduce((sum, item) => sum + item.price, 0);
-    },
-  },
-};
+// ✅ 格式化資料
+const formattedDate = computed(() => {
+  return new Date(timestamp.value).toLocaleDateString();
+});
+
+// ✅ 過濾列表
+const activeUsers = computed(() => {
+  return users.value.filter((user) => user.isActive);
+});
+
+// ✅ 計算總和
+const totalPrice = computed(() => {
+  return cart.value.reduce((sum, item) => sum + item.price, 0);
+});
 </script>
 ```
 
-#### 使用 `watch` 的情況：
+#### 使用 `watch` 的情境
 
 1. ✅ 需要**執行非同步操作**（如 API 請求）
 2. ✅ 需要**執行副作用**（如更新 localStorage）
@@ -1123,31 +1115,49 @@ export default {
 5. ✅ 需要**條件性執行**複雜邏輯
 
 ```vue
-<script>
-export default {
-  watch: {
-    // ✅ API 請求
-    async userId(newId) {
-      this.user = await fetch(`/api/users/${newId}`).then((r) => r.json());
-    },
+<script setup>
+import { ref, watch } from 'vue';
 
-    // ✅ localStorage 同步
-    settings: {
-      handler(newSettings) {
-        localStorage.setItem('settings', JSON.stringify(newSettings));
-      },
-      deep: true,
-    },
+const userId = ref(1);
+const user = ref(null);
 
-    // ✅ 防抖搜尋
-    searchQuery(newQuery) {
-      clearTimeout(this.timer);
-      this.timer = setTimeout(() => {
-        this.performSearch(newQuery);
-      }, 500);
-    },
+// ✅ API 請求
+watch(userId, async (newId) => {
+  user.value = await fetch(`/api/users/${newId}`).then((response) =>
+    response.json()
+  );
+});
+
+const settings = ref({
+  theme: 'dark',
+  notifications: true,
+});
+
+// ✅ localStorage 同步
+watch(
+  settings,
+  (newSettings) => {
+    localStorage.setItem('settings', JSON.stringify(newSettings));
   },
+  { deep: true }
+);
+
+const searchQuery = ref('');
+let searchTimer = null;
+
+const performSearch = (keyword) => {
+  console.log(`搜尋：${keyword}`);
 };
+
+// ✅ 防抖搜尋
+watch(searchQuery, (newQuery) => {
+  if (searchTimer) {
+    clearTimeout(searchTimer);
+  }
+  searchTimer = setTimeout(() => {
+    performSearch(newQuery);
+  }, 500);
+});
 </script>
 ```
 
@@ -1156,50 +1166,41 @@ export default {
 #### 錯誤用法 ❌
 
 ```vue
-<script>
-export default {
-  data() {
-    return {
-      firstName: 'John',
-      lastName: 'Doe',
-      fullName: '',
-    };
-  },
-  watch: {
-    // ❌ 錯誤：應該用 computed
-    firstName(newFirst) {
-      this.fullName = `${newFirst} ${this.lastName}`;
-    },
-    lastName(newLast) {
-      this.fullName = `${this.firstName} ${newLast}`;
-    },
-  },
-};
+<script setup>
+import { ref, watch } from 'vue';
+
+const firstName = ref('John');
+const lastName = ref('Doe');
+const fullName = ref('');
+
+// ❌ 錯誤：應該用 computed，而非 watch
+watch(firstName, (newFirst) => {
+  fullName.value = `${newFirst} ${lastName.value}`;
+});
+
+watch(lastName, (newLast) => {
+  fullName.value = `${firstName.value} ${newLast}`;
+});
 </script>
 ```
 
 #### 正確用法 ✅
 
 ```vue
-<script>
-export default {
-  data() {
-    return {
-      firstName: 'John',
-      lastName: 'Doe',
-    };
-  },
-  computed: {
-    // ✅ 正確：用 computed 計算衍生資料
-    fullName() {
-      return `${this.firstName} ${this.lastName}`;
-    },
-  },
-};
+<script setup>
+import { computed, ref } from 'vue';
+
+const firstName = ref('John');
+const lastName = ref('Doe');
+
+// ✅ 正確：用 computed 計算衍生資料
+const fullName = computed(() => {
+  return `${firstName.value} ${lastName.value}`;
+});
 </script>
 ```
 
-### 記憶點
+### computed 與 watch 記憶點
 
 > **「`computed` 算資料，`watch` 做事情」**
 >

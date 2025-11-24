@@ -25,3 +25,4 @@ tags: [Experience, Interview, Performance]
 - [虛擬滾動實作：處理大量資料渲染](/docs/experience/performance/lv3-virtual-scroll)
 - [Web Worker 應用：背景運算不阻塞 UI](/docs/experience/performance/lv3-web-worker)
 - [大量資料優化策略：方案選擇與實作](/docs/experience/performance/lv3-large-data-optimization)
+- [Nuxt 3 效能優化：Bundle Size、SSR 速度與圖片優化](/docs/experience/performance/lv3-nuxt-performance)

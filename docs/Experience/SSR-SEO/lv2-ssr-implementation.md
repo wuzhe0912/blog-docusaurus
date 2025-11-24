@@ -1,5 +1,4 @@
 ---
-id: ssr-seo-lv2-ssr-implementation
 title: '[Lv2] SSR 實作：Data Fetching 與 SEO Meta 管理'
 slug: /experience/ssr-seo/lv2-ssr-implementation
 tags: [Experience, Interview, SSR-SEO, Lv2]
@@ -40,13 +39,13 @@ const { data: product } = await useFetch(`/api/products/${route.params.id}`);
 
 **關鍵參數說明：**
 
-| 參數 | 說明 | 預設值 |
-|------|------|--------|
-| `key` | 唯一識別碼，用於 request deduplication | 自動生成 |
-| `lazy` | 是否延遲載入（不阻塞 SSR） | `false` |
-| `server` | 是否在 Server Side 執行 | `true` |
-| `default` | 預設值 | `null` |
-| `transform` | 資料轉換函式 | - |
+| 參數        | 說明                                   | 預設值   |
+| ----------- | -------------------------------------- | -------- |
+| `key`       | 唯一識別碼，用於 request deduplication | 自動生成 |
+| `lazy`      | 是否延遲載入（不阻塞 SSR）             | `false`  |
+| `server`    | 是否在 Server Side 執行                | `true`   |
+| `default`   | 預設值                                 | `null`   |
+| `transform` | 資料轉換函式                           | -        |
 
 ### 2.3 完整實作範例
 
@@ -75,11 +74,13 @@ const { data: product } = await useFetch(`/api/products/${route.params.id}`, {
 **關鍵點說明：**
 
 1. **`key` 參數**
+
    - 用於 request deduplication（避免重複請求）
    - 相同 key 的請求會被合併
    - 建議使用唯一識別碼（如：`product-${id}`）
 
 2. **`lazy: false`**
+
    - SSR 時會等待資料載入完成才渲染
    - 確保搜尋引擎能看到完整內容
    - 如果設為 `true`，SSR 時不會等待，可能導致內容不完整
@@ -93,11 +94,11 @@ const { data: product } = await useFetch(`/api/products/${route.params.id}`, {
 
 **差異對比：**
 
-| 功能 | useFetch | useAsyncData |
-|------|----------|--------------|
-| **用途** | 直接呼叫 API | 執行任意非同步操作 |
-| **自動處理** | ✅ 自動處理 URL、headers | ❌ 需要手動處理 |
-| **適用場景** | API 請求 | 資料庫查詢、檔案讀取等 |
+| 功能         | useFetch                 | useAsyncData           |
+| ------------ | ------------------------ | ---------------------- |
+| **用途**     | 直接呼叫 API             | 執行任意非同步操作     |
+| **自動處理** | ✅ 自動處理 URL、headers | ❌ 需要手動處理        |
+| **適用場景** | API 請求                 | 資料庫查詢、檔案讀取等 |
 
 **使用範例：**
 
@@ -111,6 +112,52 @@ const { data } = await useAsyncData('products', async () => {
   const result = await someAsyncOperation();
   return result;
 });
+```
+
+### 2.5 $fetch vs useFetch
+
+**面試常考題：什麼時候該用 `$fetch`，什麼時候該用 `useFetch`？**
+
+**1. $fetch**
+
+- **定義**：Nuxt 3 底層使用的 HTTP 客戶端（基於 `ofetch`）。
+- **行為**：單純發送 HTTP 請求，**不會**處理 SSR 狀態同步（Hydration）。
+- **風險**：如果在 `setup()` 中直接使用 `$fetch`，Server 端會請求一次，Client 端 Hydration 時會**再次請求**（Double Fetch），且可能導致 Hydration Mismatch。
+- **適用場景**：
+  - 使用者互動觸發的請求（如：點擊按鈕送出表單、載入更多）。
+  - Client-side only 的邏輯。
+  - Middleware 或 Server API route 內部。
+
+**2. useFetch**
+
+- **定義**：包裝了 `useAsyncData` + `$fetch` 的 Composable。
+- **行為**：
+  - 自動產生 key 進行 Request Deduplication。
+  - 處理 SSR 狀態傳輸（將 Server 取得的資料傳給 Client，避免 Client 再次請求）。
+  - 提供響應式回傳值（`data`, `pending`, `error`, `refresh`）。
+- **適用場景**：
+  - 頁面初始化需要的資料（Page Load）。
+  - 依賴 URL 參數變動的資料取得。
+
+**總結比較：**
+
+| 特性             | useFetch                     | $fetch                         |
+| ---------------- | ---------------------------- | ------------------------------ |
+| **SSR 狀態同步** | ✅ 有 (Hydration Friendly)   | ❌ 無 (可能 Double Fetch)      |
+| **響應式 (Ref)** | ✅ 回傳 Ref 物件             | ❌ 回傳 Promise (Raw Data)     |
+| **主要用途**     | 頁面資料載入 (Data Fetching) | 事件處理、操作型請求 (Actions) |
+
+```typescript
+// ⭕️ 正確：頁面載入使用 useFetch
+const { data } = await useFetch('/api/user');
+
+// ⭕️ 正確：點擊事件使用 $fetch
+const submitForm = async () => {
+  await $fetch('/api/submit', { method: 'POST', body: form });
+};
+
+// ❌ 錯誤：在 setup 中直接使用 $fetch (導致 Double Fetch)
+const data = await $fetch('/api/user');
 ```
 
 ---
@@ -140,7 +187,10 @@ useHead({
     { property: 'og:image', content: () => product.value?.image },
   ],
   link: [
-    { rel: 'canonical', href: () => `https://example.com/products/${product.value?.id}` },
+    {
+      rel: 'canonical',
+      href: () => `https://example.com/products/${product.value?.id}`,
+    },
   ],
 });
 ```
@@ -148,6 +198,7 @@ useHead({
 **關鍵點說明：**
 
 1. **使用函式回傳值**
+
    - 使用 `() => product.value?.name` 而非直接 `product.value?.name`
    - 確保資料更新時 Meta Tags 也會更新
    - 支援響應式更新
@@ -173,6 +224,7 @@ useSeoMeta({
 ```
 
 **優點：**
+
 - ✅ 語法更簡潔
 - ✅ 自動處理 Open Graph 和 Twitter Card
 - ✅ 支援響應式更新
@@ -235,6 +287,7 @@ useHead({
 **情境：** 電商平台有 10 萬+ SKU，需要確保每個產品頁都能被 Google 正確索引。
 
 **挑戰：**
+
 - 大量動態路由頁面（`/products/[id]`）
 - 每個頁面需要獨特的 SEO 內容
 - 需要處理 404 情境
@@ -246,11 +299,14 @@ useHead({
 
 ```typescript
 // pages/products/[id].vue
-const { data: product, error } = await useFetch(`/api/products/${route.params.id}`, {
-  key: `product-${route.params.id}`,
-  lazy: false, // SSR 時等待完成
-  server: true, // 確保 server side 執行
-});
+const { data: product, error } = await useFetch(
+  `/api/products/${route.params.id}`,
+  {
+    key: `product-${route.params.id}`,
+    lazy: false, // SSR 時等待完成
+    server: true, // 確保 server side 執行
+  }
+);
 
 // 處理 404 情境
 if (error.value || !product.value) {
@@ -262,6 +318,7 @@ if (error.value || !product.value) {
 ```
 
 **關鍵點：**
+
 - ✅ 使用 `lazy: false` 確保 SSR 時等待資料載入
 - ✅ 正確處理 404，返回 404 status code
 - ✅ 使用 `key` 避免重複請求
@@ -295,6 +352,7 @@ useHead({
 ```
 
 **關鍵點：**
+
 - ✅ 每個產品頁都有獨特的 title、description
 - ✅ 設定 canonical URL 避免重複內容
 - ✅ 支援 Open Graph 標籤
@@ -334,6 +392,7 @@ useHead({
 ```
 
 **關鍵點：**
+
 - ✅ 正確返回 404 status code
 - ✅ 404 頁面設定 `noindex, nofollow`
 - ✅ 提供友善的錯誤訊息
@@ -341,11 +400,13 @@ useHead({
 ### 4.3 實作效果
 
 **優化前：**
+
 - ❌ 搜尋引擎無法看到產品內容（只在客戶端載入）
 - ❌ 所有產品頁共用相同的 Meta Tags
 - ❌ 404 頁面沒有正確處理
 
 **優化後：**
+
 - ✅ 搜尋引擎能看到完整的產品內容
 - ✅ 每個產品頁都有獨特的 SEO Meta Tags
 - ✅ 正確處理 404，避免索引錯誤頁面
@@ -360,6 +421,7 @@ useHead({
 **情境：** SSR 會增加 server loading，需要優化效能。
 
 **挑戰：**
+
 - Server Side 需要處理大量請求
 - 避免重複請求相同資料
 - 需要快取機制
@@ -379,6 +441,7 @@ const { data: product } = await useFetch(`/api/products/${id}`, {
 ```
 
 **效果：**
+
 - ✅ 多個組件同時請求相同資料時，只會發送一次請求
 - ✅ 減少 server loading
 - ✅ 提升效能
@@ -408,25 +471,26 @@ export default defineNuxtConfig({
 // server/api/products/[id].ts
 export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id');
-  
+
   // 使用 Nitro Cache
   const cached = await useStorage('cache').getItem(`product-${id}`);
   if (cached) {
     return cached;
   }
-  
+
   const product = await fetchProduct(id);
-  
+
   // 設定快取
   await useStorage('cache').setItem(`product-${id}`, product, {
     ttl: 60 * 60, // 1 小時
   });
-  
+
   return product;
 });
 ```
 
 **關鍵點：**
+
 - ✅ 減少資料庫查詢
 - ✅ 提升回應速度
 - ✅ 降低 server loading
@@ -443,7 +507,7 @@ export default defineNuxtConfig({
     // 需要 SEO 的頁面：SSR
     '/products/**': { ssr: true },
     '/articles/**': { ssr: true },
-    
+
     // 不需要 SEO 的頁面：CSR
     '/dashboard/**': { ssr: false },
     '/user/**': { ssr: false },
@@ -463,6 +527,7 @@ definePageMeta({
 ```
 
 **關鍵點：**
+
 - ✅ 減少不必要的 SSR 處理
 - ✅ 提升效能
 - ✅ 根據需求選擇 SSR/CSR
@@ -490,6 +555,7 @@ export default defineNuxtConfig({
 ```
 
 **關鍵點：**
+
 - ✅ 減少首次渲染時間
 - ✅ 提升 FCP 指標
 - ✅ 改善使用者體驗
@@ -497,12 +563,14 @@ export default defineNuxtConfig({
 ### 5.3 實作效果
 
 **優化前：**
+
 - ❌ Server loading 過高
 - ❌ 重複請求相同資料
 - ❌ 沒有快取機制
 - ❌ 所有頁面都使用 SSR
 
 **優化後：**
+
 - ✅ Request deduplication 減少重複請求
 - ✅ Server-side caching 提升回應速度
 - ✅ 區分 SSR/CSR 頁面，減少不必要的 SSR
@@ -519,6 +587,7 @@ export default defineNuxtConfig({
 > 在 Nuxt 3 專案中，使用 `useFetch` 在 Server Side 預先載入資料。關鍵設定包括：`key` 用於 request deduplication，避免重複請求；`lazy: false` 確保 SSR 時等待資料載入完成；`server: true` 確保在 Server Side 執行。這樣可以確保搜尋引擎能看到完整的頁面內容。
 
 **關鍵點：**
+
 - ✅ `key` 參數的作用（request deduplication）
 - ✅ `lazy: false` 的重要性（SSR 時等待完成）
 - ✅ `server: true` 確保 Server Side 執行
@@ -530,6 +599,7 @@ export default defineNuxtConfig({
 > 使用 `useHead` 或 `useSeoMeta` 根據資料動態生成 SEO Meta Tags。關鍵是使用函式回傳值（如：`() => product.value?.name`），確保資料更新時 Meta Tags 也會更新。同時設定完整的 SEO 元素，包括 title、description、Open Graph、canonical URL 等。
 
 **關鍵點：**
+
 - ✅ 使用函式回傳值支援響應式更新
 - ✅ 完整的 SEO Meta Tags 結構
 - ✅ 動態路由頁面的 SEO 處理
@@ -541,6 +611,7 @@ export default defineNuxtConfig({
 > 為了優化 SSR 效能，實作了幾個策略：首先，使用 `key` 參數做 request deduplication，避免重複請求；其次，使用 Nitro Cache 做 server-side caching，減少資料庫查詢；最後，區分需要 SEO 的頁面和不需要 SEO 的頁面，不需要 SEO 的頁面使用 CSR，減少不必要的 SSR 處理。
 
 **關鍵點：**
+
 - ✅ Request deduplication
 - ✅ Server-side caching
 - ✅ 區分 SSR/CSR 頁面
@@ -552,10 +623,12 @@ export default defineNuxtConfig({
 ### 7.1 Data Fetching
 
 1. **總是設定 `key`**
+
    - 避免重複請求
    - 提升效能
 
 2. **根據需求選擇 `lazy`**
+
    - 需要 SEO 的頁面：`lazy: false`
    - 不需要 SEO 的頁面：`lazy: true`
 
@@ -566,10 +639,12 @@ export default defineNuxtConfig({
 ### 7.2 SEO Meta Tags
 
 1. **使用函式回傳值**
+
    - 支援響應式更新
    - 確保資料更新時 Meta Tags 也會更新
 
 2. **設定完整的 SEO 元素**
+
    - title、description
    - Open Graph、Twitter Card
    - canonical URL
@@ -581,10 +656,12 @@ export default defineNuxtConfig({
 ### 7.3 效能優化
 
 1. **使用快取機制**
+
    - Server-side caching
    - 減少資料庫查詢
 
 2. **區分 SSR/CSR**
+
    - 需要 SEO 的頁面：SSR
    - 不需要 SEO 的頁面：CSR
 
@@ -601,9 +678,9 @@ export default defineNuxtConfig({
 > 在 Nuxt 3 專案中，實作了完整的 SSR 資料載入與 SEO Meta Tags 管理。首先，使用 `useFetch` 在 Server Side 預先載入資料，確保搜尋引擎能看到完整內容。關鍵設定包括 `key` 用於 request deduplication、`lazy: false` 確保 SSR 時等待完成、`server: true` 確保在 Server Side 執行。其次，使用 `useHead` 根據資料動態生成 SEO Meta Tags，支援動態路由頁面。最後，為了優化效能，實作了 request deduplication、server-side caching，以及區分 SSR/CSR 頁面。
 
 **關鍵點：**
+
 - ✅ useFetch/useAsyncData 的正確使用
 - ✅ 動態 Meta Tags 管理（useHead）
 - ✅ 動態路由 SEO 優化
 - ✅ 效能優化策略
 - ✅ 實際專案經驗
-

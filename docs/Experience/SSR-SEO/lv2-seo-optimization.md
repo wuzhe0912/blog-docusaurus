@@ -1,5 +1,4 @@
 ---
-id: ssr-seo-lv2-seo-optimization
 title: '[Lv2] SEO 進階優化：動態 Meta Tags 與追蹤整合'
 slug: /experience/ssr-seo/lv2-seo-optimization
 tags: [Experience, Interview, SSR-SEO, Lv2]

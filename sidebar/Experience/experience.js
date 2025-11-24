@@ -1,6 +1,6 @@
 module.exports = {
   type: 'category',
-  label: '面試心得',
+  label: '實作紀錄',
   items: [
     'Experience/2025-11-interview-prep',
     'Experience/2023-experience',
@@ -49,6 +49,7 @@ module.exports = {
             'Experience/Performance/performance-lv3-virtual-scroll',
             'Experience/Performance/performance-lv3-web-worker',
             'Experience/Performance/performance-lv3-large-data-optimization',
+            'Experience/Performance/lv3-nuxt-performance',
           ],
         },
       ],
@@ -65,27 +66,28 @@ module.exports = {
       type: 'category',
       label: '🌐 SSR & SEO',
       items: [
-        'Experience/SSR-SEO/ssr-seo-interview-index',
+        'Experience/SSR-SEO/index',
         {
           type: 'category',
-          label: 'Lv1 基礎',
-          key: 'ssr-seo-lv1',
-          items: ['Experience/SSR-SEO/ssr-seo-lv1-seo-basic'],
-        },
-        {
-          type: 'category',
-          label: 'Lv2 進階',
-          key: 'ssr-seo-lv2',
+          label: 'SEO',
+          key: 'ssr-seo-seo',
           items: [
-            'Experience/SSR-SEO/ssr-seo-lv2-seo-optimization',
-            'Experience/SSR-SEO/ssr-seo-lv2-ssr-implementation',
+            'Experience/SSR-SEO/lv1-seo-basic',
+            'Experience/SSR-SEO/lv2-seo-optimization',
+            'Experience/SSR-SEO/lv3-i18n-seo',
           ],
         },
         {
           type: 'category',
-          label: 'Lv3 延伸',
-          key: 'ssr-seo-lv3',
-          items: ['Experience/SSR-SEO/ssr-seo-lv3-ssr-challenges'],
+          label: 'SSR',
+          key: 'ssr-seo-ssr',
+          items: [
+            'Experience/SSR-SEO/lv2-nuxt-rendering-modes',
+            'Experience/SSR-SEO/lv2-nuxt-lifecycle-hydration',
+            'Experience/SSR-SEO/lv2-ssr-implementation',
+            'Experience/SSR-SEO/lv2-nuxt-server-features',
+            'Experience/SSR-SEO/lv3-ssr-challenges',
+          ],
         },
       ],
     },

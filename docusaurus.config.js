@@ -37,6 +37,12 @@ module.exports = {
         },
         {
           type: 'doc',
+          docId: 'Experience/2025-11-interview-prep',
+          position: 'left',
+          label: 'Experience',
+        },
+        {
+          type: 'doc',
           docId: 'Coding/coding',
           position: 'left',
           label: 'Coding',
@@ -46,12 +52,6 @@ module.exports = {
           docId: 'LeetCode/leet-code',
           position: 'left',
           label: 'LeetCode',
-        },
-        {
-          type: 'doc',
-          docId: 'Experience/experience',
-          position: 'left',
-          label: 'Experience',
         },
         {
           type: 'doc',

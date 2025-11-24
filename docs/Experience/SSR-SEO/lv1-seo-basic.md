@@ -1,5 +1,4 @@
 ---
-id: ssr-seo-lv1-seo-basic
 title: '[Lv1] SEO 基礎實作：Router 模式與 Meta Tags'
 slug: /experience/ssr-seo/lv1-seo-basic
 tags: [Experience, Interview, SSR-SEO, Lv1]

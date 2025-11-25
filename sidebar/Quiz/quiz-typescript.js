@@ -3,11 +3,10 @@ module.exports = {
   label: 'TypeScript',
   items: [
     // Easy
-    'Quiz/TypeScript/typescript-vs-javascript',
-    'Quiz/TypeScript/basic-types',
+    'Knowledge/JavaScript-Ecosystem/TypeScript/typescript-vs-javascript',
+    'Knowledge/JavaScript-Ecosystem/TypeScript/basic-types',
     // Medium
-    'Quiz/TypeScript/interface-vs-type',
-    'Quiz/TypeScript/generics',
+    'Knowledge/JavaScript-Ecosystem/TypeScript/interface-vs-type',
+    'Knowledge/JavaScript-Ecosystem/TypeScript/generics',
   ],
 };
-

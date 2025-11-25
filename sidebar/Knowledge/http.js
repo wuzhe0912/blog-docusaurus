@@ -2,8 +2,8 @@ module.exports = {
   type: 'category',
   label: 'HTTP',
   items: [
-    'Knowledge/HTTP/http-methods',
-    'Knowledge/HTTP/cross-origin-resource-sharing',
-    'Knowledge/HTTP/network-protocols',
+    'Knowledge/Browser-Network/HTTP/http-methods',
+    'Knowledge/Browser-Network/HTTP/cross-origin-resource-sharing',
+    'Knowledge/Browser-Network/HTTP/network-protocols',
   ],
 };

@@ -24,22 +24,38 @@ const ChatifyList = require('./sidebar/ShowCase/chatify.js');
 module.exports = {
   Knowledge: [
     'Knowledge/knowledge',
-    HttpKnowledgeList,
-    BrowserKnowledgeList,
-    ToolsKnowledgeList,
     {
       type: 'category',
-      label: '📝 Quiz 測驗',
-      collapsible: true,
-      collapsed: true,
+      label: '🌐 Browser & Network',
+      items: [HttpKnowledgeList, BrowserKnowledgeList],
+    },
+    {
+      type: 'category',
+      label: '📒 JavaScript Ecosystem',
+      items: [QuizJavaScriptList, QuizTypeScriptList],
+    },
+    {
+      type: 'category',
+      label: '⚛️ Frontend Frameworks',
+      items: [QuizReactList, QuizVueList],
+    },
+    {
+      type: 'category',
+      label: '🎨 CSS & UI',
+      items: [QuizCSSList],
+    },
+    {
+      type: 'category',
+      label: '🛡️ Web Security',
       items: [
-        QuizJavaScriptList,
-        QuizTypeScriptList,
-        QuizReactList,
-        QuizVueList,
-        QuizCSSList,
         QuizSecurityList,
+        // 未來若有 Knowledge/Web-Security 的深度文章可加在此處
       ],
+    },
+    {
+      type: 'category',
+      label: '🛠️ Engineering & Tools',
+      items: [ToolsKnowledgeList],
     },
   ],
   Experience: ['Experience/2025-11-interview-prep', ExperienceList],

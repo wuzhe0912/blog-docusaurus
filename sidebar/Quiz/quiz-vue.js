@@ -3,16 +3,16 @@ module.exports = {
   label: 'Vue',
   items: [
     // Easy
-    'Quiz/Vue/vue3-new-features',
+    'Knowledge/Frontend-Frameworks/Vue/vue3-new-features',
     // Medium
-    'Quiz/Vue/vue-basic-api',
-    'Quiz/Vue/vue-lifecycle',
-    'Quiz/Vue/vue-component-communication',
-    'Quiz/Vue/composition-vs-options-api',
-    'Quiz/Vue/ref-vs-reactive',
-    'Quiz/Vue/watch-vs-watcheffect',
-    'Quiz/Vue/static-hoisting',
+    'Knowledge/Frontend-Frameworks/Vue/vue-basic-api',
+    'Knowledge/Frontend-Frameworks/Vue/vue-lifecycle',
+    'Knowledge/Frontend-Frameworks/Vue/vue-component-communication',
+    'Knowledge/Frontend-Frameworks/Vue/composition-vs-options-api',
+    'Knowledge/Frontend-Frameworks/Vue/ref-vs-reactive',
+    'Knowledge/Frontend-Frameworks/Vue/watch-vs-watcheffect',
+    'Knowledge/Frontend-Frameworks/Vue/static-hoisting',
     // Hard
-    'Quiz/Vue/vue-two-way-data-binding',
+    'Knowledge/Frontend-Frameworks/Vue/vue-two-way-data-binding',
   ],
 };

@@ -422,7 +422,77 @@ export default {
 | `v-bind`  | 單向綁定屬性     | `:`  | `<img :src="url">`          |
 | `v-html`  | 渲染 HTML 字串   | 無   | `<div v-html="html"></div>` |
 
-## 3. Please explain the difference between `v-show` and `v-if`
+## 3. How to access HTML elements (Template Refs)?
+
+> Vue 若欲操作 HTML 元素，例如取得 input 元素並讓其聚焦 (focus) 該如何使用？
+
+在 Vue 中，我們不建議使用 `document.querySelector` 來獲取 DOM 元素，而是使用 **Template Refs**。
+
+### Options API (Vue 2 / Vue 3)
+
+使用 `ref` 屬性在模板中標記元素，然後透過 `this.$refs` 訪問。
+
+```vue
+<template>
+  <div>
+    <input ref="inputElement" />
+    <button @click="focusInput">Focus Input</button>
+  </div>
+</template>
+
+<script>
+export default {
+  methods: {
+    focusInput() {
+      // 訪問 DOM 元素
+      this.$refs.inputElement.focus();
+    },
+  },
+  mounted() {
+    // 確保組件掛載後再訪問
+    console.log(this.$refs.inputElement);
+  },
+};
+</script>
+```
+
+### Composition API (Vue 3)
+
+在 `<script setup>` 中，我們宣告一個同名的 `ref` 變數來獲取元素。
+
+```vue
+<template>
+  <div>
+    <input ref="inputElement" />
+    <button @click="focusInput">Focus Input</button>
+  </div>
+</template>
+
+<script setup>
+import { ref, onMounted } from 'vue';
+
+// 1. 宣告一個與 template ref 同名的變數，初始值為 null
+const inputElement = ref(null);
+
+const focusInput = () => {
+  // 2. 透過 .value 訪問 DOM
+  inputElement.value?.focus();
+};
+
+onMounted(() => {
+  // 3. 確保組件掛載後再訪問
+  console.log(inputElement.value);
+});
+</script>
+```
+
+**注意**：
+
+- 變數名稱必須與 template 中的 `ref` 屬性值完全一致。
+- 必須在組件掛載 (`onMounted`) 後才能訪問到 DOM 元素，否則會是 `null`。
+- 如果是用在 `v-for` 迴圈中，ref 會是一個陣列。
+
+## 4. Please explain the difference between `v-show` and `v-if`
 
 > 請解釋 `v-show` 和 `v-if` 的區別
 
@@ -709,7 +779,7 @@ export default {
 > - `v-if`：不顯示時就不渲染，適合不常改變的條件
 > - `v-show`：一開始就渲染好，隨時準備顯示，適合頻繁切換
 
-## 4. What's the difference between `computed` and `watch`?
+## 5. What's the difference between `computed` and `watch`?
 
 > `computed` 和 `watch` 有什麼差別？
 
@@ -1206,6 +1276,57 @@ const fullName = computed(() => {
 >
 > - `computed`：用來**計算新的資料**（如格式化、過濾、總和）
 > - `watch`：用來**執行動作**（如 API 請求、儲存資料、顯示通知）
+
+### 實作練習題：計算 x \* y
+
+> 題目：x=0, y=5 現在有一個按鈕每點擊一次，x 就加 1。請使用 Vue 的 computed 或 watch 其中一個功能來實作「x \* y 的結果」。
+
+#### 解法一：使用 `computed` (推薦)
+
+這是最適合的場景，因為結果是依賴 x 和 y 計算出來的新資料。
+
+```vue
+<template>
+  <div>
+    <p>X: {{ x }}, Y: {{ y }}</p>
+    <p>Result (X * Y): {{ result }}</p>
+    <button @click="x++">Increment X</button>
+  </div>
+</template>
+
+<script setup>
+import { ref, computed } from 'vue';
+
+const x = ref(0);
+const y = ref(5);
+
+// ✅ 推薦：簡單、直觀、自動追蹤依賴
+const result = computed(() => x.value * y.value);
+</script>
+```
+
+#### 解法二：使用 `watch` (較繁瑣)
+
+雖然也可以做到，但需要手動維護 `result` 變數，且需要考慮初始值問題。
+
+```vue
+<script setup>
+import { ref, watch } from 'vue';
+
+const x = ref(0);
+const y = ref(5);
+const result = ref(0);
+
+// ❌ 較不推薦：需要手動更新，且要設定 immediate 才會在初始時計算
+watch(
+  [x, y],
+  ([newX, newY]) => {
+    result.value = newX * newY;
+  },
+  { immediate: true }
+);
+</script>
+```
 
 ## Reference
 

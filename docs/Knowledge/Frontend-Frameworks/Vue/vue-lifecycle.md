@@ -287,9 +287,44 @@ export default {
   - ✅ 取消未完成的 API 請求
   - ✅ 清理第三方套件實例
 
-### 5. 特殊生命週期鉤子
+### 5. 特殊組件：KeepAlive
 
-#### `activated` / `deactivated` (配合 `<keep-alive>` 使用)
+#### 什麼是 `<KeepAlive>`？
+
+`<KeepAlive>` 是一個 Vue 的內建組件，主要功能是**緩存組件實例**，避免組件在切換時被銷毀。
+
+- **預設行為**：當組件切換（例如路由切換或 `v-if` 切換）時，Vue 會銷毀舊組件並創建新組件。
+- **KeepAlive 行為**：被 `<KeepAlive>` 包裹的組件在切換時，狀態會被保留在記憶體中，不會被銷毀。
+
+#### 核心功能與特性
+
+1. **狀態緩存**：保留表單輸入內容、滾動位置等。
+2. **效能優化**：避免重複渲染和重複的 API 請求。
+3. **專屬生命週期**：提供 `activated` 和 `deactivated` 兩個獨有的鉤子。
+
+#### 適用場景
+
+1. **多標籤頁切換**：例如後台管理系統的 Tabs。
+2. **列表與詳情頁切換**：從列表頁進入詳情頁後返回，希望能保留列表的滾動位置和篩選條件。
+3. **複雜表單**：填寫到一半切換到其他頁面查看資料，返回時表單內容不應丟失。
+
+#### 使用範例
+
+```vue
+<template>
+  <KeepAlive include="UserList,ProductList">
+    <component :is="currentComponent" />
+  </KeepAlive>
+</template>
+```
+
+- `include`：只有名稱匹配的組件會被緩存。
+- `exclude`：名稱匹配的組件**不會**被緩存。
+- `max`：最多緩存多少個組件實例。
+
+### 6. 特殊生命週期鉤子
+
+#### `activated` / `deactivated` (配合 `<KeepAlive>` 使用)
 
 ```vue
 <template>

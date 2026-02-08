@@ -11,7 +11,7 @@ function ProfileHeader() {
         alt="Pitt Wu"
       />
       <h1 className={styles.name}>Pitt Wu</h1>
-      <p className={styles.role}>Frontend Engineer</p>
+      <p className={styles.role}>Software / Product Engineer</p>
       <div className={styles.headerLinks}>
         <a
           href="https://github.com/wuzhe0912"
@@ -41,29 +41,6 @@ function ProfileHeader() {
   );
 }
 
-function AboutSection() {
-  return (
-    <section className={styles.section}>
-      <div className={styles.container}>
-        <h2>About</h2>
-        <div className={styles.prose}>
-          <p>
-            我是一名前端工程師，在 Vue.js / Nuxt.js
-            生態系有多年的深度開發經驗。從 SSR 架構設計、效能優化到狀態管理，
-            我經手過不同規模的專案，也踩過不少坑。
-          </p>
-          <p>
-            我相信好的工程師不只是會寫程式，更重要的是能在真實的限制條件下做出合理的決策——在時間壓力、技術債、團隊能力之間找到平衡點。
-            這個網站記錄了我在這個過程中的思考，包括成功的選擇，也包括那些事後才發現走錯的路。
-          </p>
-          <p>
-            工作之外，我是一個孩子的父親。我偏好遠端或混合制工作，相信好的產出不需要被辦公室的牆壁限制。
-          </p>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 const expertiseAreas = [
   {
@@ -127,8 +104,7 @@ function ExpertiseSection() {
 }
 
 const opportunities = [
-  '遠端 / 混合制的前端或全端職位',
-  '技術顧問與前端架構諮詢',
+  '遠端 / 混合制的軟體工程師或產品工程師職位',
   'Side Project 合作',
   '技術社群分享與交流',
 ];
@@ -166,11 +142,10 @@ export default function About() {
   return (
     <Layout
       title="About"
-      description="About Pitt Wu - Frontend Engineer specializing in Vue/Nuxt ecosystem."
+      description="About Pitt Wu - Software / Product Engineer."
     >
       <main className={styles.main}>
         <ProfileHeader />
-        <AboutSection />
         <ExpertiseSection />
         <WorkWithMe />
       </main>

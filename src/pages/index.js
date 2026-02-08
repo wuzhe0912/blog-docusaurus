@@ -66,41 +66,6 @@ function HomepageHeader() {
   );
 }
 
-const pillars = [
-  {
-    title: 'Vue / Nuxt 深度實戰',
-    description:
-      '不是教你 API 怎麼用，而是分享真實專案中 SSR 架構的取捨、Hydration 的踩坑、狀態管理的遷移決策。',
-  },
-  {
-    title: '效能優化實錄',
-    description:
-      '從 Core Web Vitals 到 Bundle 瘦身，記錄每次效能優化的完整過程：問題發現、分析思路、解決方案、最終數據。',
-  },
-  {
-    title: 'AI 時代的工程師',
-    description:
-      '探索如何將 AI 工具融入工程工作流，在模型能力快速進化的時代，重新定義工程師的價值。',
-  },
-];
-
-function Pillars() {
-  return (
-    <section className={styles.pillars}>
-      <div className={styles.pillarsContainer}>
-        <h2 className={styles.pillarsTitle}>我寫什麼</h2>
-        <div className={styles.pillarGrid}>
-          {pillars.map(({ title, description }) => (
-            <div className={styles.pillar} key={title}>
-              <h3>{title}</h3>
-              <p>{description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 function ContactCTA() {
   return (
@@ -147,7 +112,6 @@ export default function Home() {
     >
       <HomepageHeader />
       <main>
-        <Pillars />
         <HomepageFeatures />
         <ContactCTA />
       </main>

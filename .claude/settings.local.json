@@ -9,7 +9,8 @@
       "Bash(for locale in en ja zh-tw zh-cn ko es)",
       "Bash(do echo \"=== $locale ===\")",
       "Bash(python3:*)",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(git push:*)"
     ]
   }
 }

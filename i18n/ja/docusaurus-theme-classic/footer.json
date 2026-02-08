@@ -14,9 +14,5 @@
   "link.item.label.CakeResume": {
     "message": "CakeResume",
     "description": "The label of footer link with label=CakeResume linking to https://www.cakeresume.com/me/pittwu"
-  },
-  "copyright": {
-    "message": "Copyright © 2017 - 2024 Pitt Wu Built with Docusaurus.",
-    "description": "The footer copyright"
   }
 }

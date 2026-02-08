@@ -28,6 +28,7 @@ module.exports = {
       },
       items: [
         { type: 'localeDropdown', position: 'right' },
+        { to: '/about', label: 'About', position: 'right' },
         { to: '/blog', label: 'Blog', position: 'right' },
         {
           type: 'doc',

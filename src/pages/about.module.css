@@ -1,0 +1,173 @@
+/* stylelint-disable docusaurus/copyright-header */
+
+/* ── Profile Header ── */
+
+.profileHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5rem 2rem 3rem;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+  border: 3px solid var(--ifm-color-emphasis-200);
+}
+
+.name {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.role {
+  font-size: 1.2rem;
+  color: var(--ifm-color-emphasis-600);
+  margin: 0.25rem 0 1rem;
+}
+
+.headerLinks {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.headerLinks a {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: opacity 0.2s;
+}
+
+.headerLinks a:hover {
+  opacity: 0.75;
+  text-decoration: underline;
+}
+
+.divider {
+  color: var(--ifm-color-emphasis-400);
+  font-size: 0.85rem;
+}
+
+/* ── Sections ── */
+
+.section {
+  padding: 3rem 2rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.container h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+/* ── Prose ── */
+
+.prose p {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--ifm-color-emphasis-800);
+  margin-bottom: 1.25rem;
+}
+
+.prose a {
+  color: var(--ifm-color-primary);
+  font-weight: 500;
+}
+
+/* ── Expertise Grid ── */
+
+.expertiseGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.expertiseCard {
+  padding: 1.5rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 10px;
+  transition: border-color 0.2s;
+}
+
+.expertiseCard:hover {
+  border-color: var(--ifm-color-primary);
+}
+
+.expertiseCard h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+}
+
+.expertiseCard ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.expertiseCard li {
+  font-size: 0.9rem;
+  color: var(--ifm-color-emphasis-700);
+  padding: 0.3rem 0;
+  line-height: 1.5;
+}
+
+.expertiseCard li::before {
+  content: '>';
+  color: var(--ifm-color-primary);
+  font-weight: 700;
+  margin-right: 0.5rem;
+  font-size: 0.8rem;
+}
+
+/* ── Opportunities ── */
+
+.opportunities {
+  padding-left: 1.25rem;
+}
+
+.opportunities li {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--ifm-color-emphasis-800);
+  margin-bottom: 0.4rem;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 768px) {
+  .profileHeader {
+    padding: 3rem 1.5rem 2rem;
+  }
+
+  .avatar {
+    width: 96px;
+    height: 96px;
+  }
+
+  .name {
+    font-size: 2rem;
+  }
+
+  .section {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .expertiseGrid {
+    grid-template-columns: 1fr;
+  }
+}

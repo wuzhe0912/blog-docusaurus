@@ -18,6 +18,15 @@
   padding: 0 20px;
 }
 
+.heroIntro {
+  text-align: center;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  color: var(--ifm-color-primary-lightest);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
 .heroProjectTagline {
   font-size: 60px;
   margin: 0;
@@ -33,6 +42,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
+}
+
+.buttonOutline {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  color: #fff;
+}
+
+.buttonOutline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.8);
+  color: #fff;
 }
 
 @keyframes heroAnimation {
@@ -63,6 +85,102 @@
   float: right;
 }
 
+/* ── Pillars ── */
+
+.pillars {
+  padding: 4rem 2rem;
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.pillarsContainer {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.pillarsTitle {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+}
+
+.pillarGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.pillar {
+  padding: 1.75rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 12px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.pillar:hover {
+  border-color: var(--ifm-color-primary);
+  transform: translateY(-2px);
+}
+
+.pillar h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 0.6rem;
+}
+
+.pillar p {
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.92rem;
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ── CTA ── */
+
+.cta {
+  padding: 4rem 2rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  text-align: center;
+}
+
+.ctaContainer {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.ctaTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.ctaDesc {
+  font-size: 1.05rem;
+  color: var(--ifm-color-emphasis-700);
+  margin-bottom: 1.75rem;
+}
+
+.ctaLinks {
+  display: flex;
+  gap: 2.5rem;
+  justify-content: center;
+}
+
+.ctaLinks a {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: opacity 0.2s;
+}
+
+.ctaLinks a:hover {
+  opacity: 0.75;
+  text-decoration: underline;
+}
+
+/* ── Responsive ── */
+
 @media screen and (max-width: 966px) {
   .heroBanner {
     padding: 2rem;
@@ -87,5 +205,26 @@
 
   .heroSubTitle {
     font-size: 24px;
+  }
+
+  .heroIntro {
+    font-size: 0.95rem;
+  }
+
+  .pillarGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .pillars {
+    padding: 3rem 1.5rem;
+  }
+
+  .cta {
+    padding: 3rem 1.5rem;
+  }
+
+  .ctaLinks {
+    gap: 1.5rem;
+    flex-wrap: wrap;
   }
 }

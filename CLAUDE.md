@@ -77,3 +77,21 @@ Ex.
 - CSS 使用 CSS Modules（`.module.css`），善用 Infima CSS 變數（`var(--ifm-*)`）
 - 元件樣式需支援 dark/light mode 和 RWD
 - 內容以繁體中文為預設語言撰寫，技術專有名詞保持英文
+- i18n footer.json 不要放 copyright key，讓 config 動態產生年份
+- 套件管理使用 bun，不用 yarn
+
+## User Preferences
+
+- 保留首頁幽默短語（rotating titles/subtitles + 三張哲學卡片），這是個人風格
+- 對 AI 生成文案很敏感，寫文字時避免公式化、行銷感的語氣
+- 不要過度包裝自己的頭銜或能力（不自稱顧問等）
+- 目標：Frontend Engineer → Software / Product Engineer（一年內轉型）
+
+## Current Status
+
+- 首頁：Hero + 哲學卡片 + CTA，已完成 i18n
+- About：ProfileHeader + Expertise + WorkWithMe，已完成 i18n
+- Pillars 區塊暫時移除，等內容方向確定後加回
+- About 敘事段落暫時移除，履歷內已夠多
+- 新語系（zh-cn, ko, es）缺 theme 翻譯，需跑 `docusaurus write-translations`
+- Navbar 重組、docs 內容重組尚未開始

@@ -1,0 +1,128 @@
+{
+  "homepage.hero.readBlog": {
+    "message": "Leer el blog"
+  },
+  "homepage.hero.aboutMe": {
+    "message": "Sobre mí"
+  },
+  "homepage.cta.title": {
+    "message": "Open to Opportunities"
+  },
+  "homepage.cta.description": {
+    "message": "Actualmente estoy abierto a trabajo remoto, colaboraciones técnicas o cualquier conversación interesante."
+  },
+  "homepage.cta.learnMore": {
+    "message": "Saber más"
+  },
+  "homepage.meta.description": {
+    "message": "Software / Product Engineer. Escribo sobre decisiones de ingeniería, lecciones en producción y desarrollo potenciado por IA."
+  },
+  "homepage.features.fairWorld.title": {
+    "message": "Mundo justo"
+  },
+  "homepage.features.fairWorld.description": {
+    "message": "El dinero fluye hacia quienes no lo necesitan, el amor hacia quienes les sobra, y el sufrimiento hacia quienes más lo aguantan."
+  },
+  "homepage.features.lifeJourney.title": {
+    "message": "Perdidos en la vida"
+  },
+  "homepage.features.lifeJourney.description": {
+    "message": "El mayor placer de la vida es ir dando tumbos como una mosca sin cabeza, celebrando los giros inesperados y las catástrofes repentinas. Al fin y al cabo, ¿qué mejor prueba de estar vivo que estar completamente perdido?"
+  },
+  "homepage.features.dreamReality.title": {
+    "message": "Sueños y realidad"
+  },
+  "homepage.features.dreamReality.description": {
+    "message": "Cuando eres joven, no pienses que tu vida ya está decidida. Cuando seas mayor, descubrirás que ni siquiera mantener lo que tienes es tan fácil."
+  },
+  "about.role": {
+    "message": "Software / Product Engineer"
+  },
+  "about.expertise.heading": {
+    "message": "Experiencia"
+  },
+  "about.expertise.vueNuxt.title": {
+    "message": "Ecosistema Vue / Nuxt"
+  },
+  "about.expertise.vueNuxt.item1": {
+    "message": "Vue 3 Composition API"
+  },
+  "about.expertise.vueNuxt.item2": {
+    "message": "Nuxt SSR / SSG"
+  },
+  "about.expertise.vueNuxt.item3": {
+    "message": "Mecanismo de Hydration"
+  },
+  "about.expertise.vueNuxt.item4": {
+    "message": "Gestión del ciclo de vida"
+  },
+  "about.expertise.frontend.title": {
+    "message": "Arquitectura Frontend"
+  },
+  "about.expertise.frontend.item1": {
+    "message": "Diseño de gestión de estado (Pinia)"
+  },
+  "about.expertise.frontend.item2": {
+    "message": "Patrones de comunicación entre componentes"
+  },
+  "about.expertise.frontend.item3": {
+    "message": "Planificación de arquitectura de proyecto"
+  },
+  "about.expertise.frontend.item4": {
+    "message": "Configuración y optimización de Bundler"
+  },
+  "about.expertise.performance.title": {
+    "message": "Optimización de rendimiento"
+  },
+  "about.expertise.performance.item1": {
+    "message": "Core Web Vitals"
+  },
+  "about.expertise.performance.item2": {
+    "message": "Optimización de imágenes y recursos"
+  },
+  "about.expertise.performance.item3": {
+    "message": "Virtual Scroll"
+  },
+  "about.expertise.performance.item4": {
+    "message": "Web Workers"
+  },
+  "about.expertise.ai.title": {
+    "message": "Flujo de trabajo con IA"
+  },
+  "about.expertise.ai.item1": {
+    "message": "Proceso de desarrollo integrado con LLM"
+  },
+  "about.expertise.ai.item2": {
+    "message": "Prácticas de ingeniería AI-augmented"
+  },
+  "about.expertise.ai.item3": {
+    "message": "Prompt Engineering"
+  },
+  "about.expertise.ai.item4": {
+    "message": "Diseño de flujos de trabajo automatizados"
+  },
+  "about.workWithMe.heading": {
+    "message": "Trabajemos juntos"
+  },
+  "about.workWithMe.intro": {
+    "message": "Actualmente estoy abierto a las siguientes oportunidades:"
+  },
+  "about.workWithMe.opportunity1": {
+    "message": "Posiciones de ingeniero de software o producto en remoto / híbrido"
+  },
+  "about.workWithMe.opportunity2": {
+    "message": "Colaboraciones en proyectos paralelos"
+  },
+  "about.workWithMe.opportunity3": {
+    "message": "Charlas e intercambios en comunidades tecnológicas"
+  },
+  "about.workWithMe.contact": {
+    "message": "Si crees que podríamos colaborar, no dudes en contactarme a través de {linkedinLink}."
+  },
+  "about.meta.title": {
+    "message": "About"
+  },
+  "about.meta.description": {
+    "message": "Sobre Pitt Wu - Software / Product Engineer."
+  }
+}

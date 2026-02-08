@@ -1,0 +1,128 @@
+{
+  "homepage.hero.readBlog": {
+    "message": "블로그 읽기"
+  },
+  "homepage.hero.aboutMe": {
+    "message": "소개"
+  },
+  "homepage.cta.title": {
+    "message": "Open to Opportunities"
+  },
+  "homepage.cta.description": {
+    "message": "현재 원격 근무, 기술 협업, 또는 흥미로운 대화에 열려 있습니다."
+  },
+  "homepage.cta.learnMore": {
+    "message": "더 알아보기"
+  },
+  "homepage.meta.description": {
+    "message": "Software / Product Engineer. 엔지니어링 의사결정, 프로덕션 교훈, AI 활용 개발에 대해 글을 씁니다."
+  },
+  "homepage.features.fairWorld.title": {
+    "message": "공평한 세상"
+  },
+  "homepage.features.fairWorld.description": {
+    "message": "돈은 돈이 필요 없는 사람에게 흘러가고, 사랑은 사랑이 넘치는 사람에게 흘러가고, 고생은 가장 잘 견디는 사람에게 흘러간다."
+  },
+  "homepage.features.lifeJourney.title": {
+    "message": "인생의 미로"
+  },
+  "homepage.features.lifeJourney.description": {
+    "message": "인생 최고의 즐거움은 머리 없는 파리처럼 이리저리 부딪히며, 예상치 못한 전환과 갑작스러운 재난을 축하하는 것이다. 완전히 길을 잃는 것보다 더 확실하게 살아있음을 증명하는 것이 있을까?"
+  },
+  "homepage.features.dreamReality.title": {
+    "message": "꿈과 현실"
+  },
+  "homepage.features.dreamReality.description": {
+    "message": "젊을 때는 인생이 이게 다라고 생각하지 마라. 나이가 더 들면, 이 상태를 유지하는 것조차 쉽지 않다는 걸 알게 될 테니까."
+  },
+  "about.role": {
+    "message": "Software / Product Engineer"
+  },
+  "about.expertise.heading": {
+    "message": "전문 분야"
+  },
+  "about.expertise.vueNuxt.title": {
+    "message": "Vue / Nuxt 생태계"
+  },
+  "about.expertise.vueNuxt.item1": {
+    "message": "Vue 3 Composition API"
+  },
+  "about.expertise.vueNuxt.item2": {
+    "message": "Nuxt SSR / SSG"
+  },
+  "about.expertise.vueNuxt.item3": {
+    "message": "Hydration 메커니즘"
+  },
+  "about.expertise.vueNuxt.item4": {
+    "message": "라이프사이클 관리"
+  },
+  "about.expertise.frontend.title": {
+    "message": "프론트엔드 아키텍처"
+  },
+  "about.expertise.frontend.item1": {
+    "message": "상태 관리 설계 (Pinia)"
+  },
+  "about.expertise.frontend.item2": {
+    "message": "컴포넌트 통신 패턴"
+  },
+  "about.expertise.frontend.item3": {
+    "message": "프로젝트 아키텍처 설계"
+  },
+  "about.expertise.frontend.item4": {
+    "message": "Bundler 설정 및 최적화"
+  },
+  "about.expertise.performance.title": {
+    "message": "성능 최적화"
+  },
+  "about.expertise.performance.item1": {
+    "message": "Core Web Vitals"
+  },
+  "about.expertise.performance.item2": {
+    "message": "이미지 및 리소스 최적화"
+  },
+  "about.expertise.performance.item3": {
+    "message": "Virtual Scroll"
+  },
+  "about.expertise.performance.item4": {
+    "message": "Web Workers"
+  },
+  "about.expertise.ai.title": {
+    "message": "AI 개발 워크플로"
+  },
+  "about.expertise.ai.item1": {
+    "message": "LLM 통합 개발 프로세스"
+  },
+  "about.expertise.ai.item2": {
+    "message": "AI-augmented 엔지니어링 실천"
+  },
+  "about.expertise.ai.item3": {
+    "message": "Prompt Engineering"
+  },
+  "about.expertise.ai.item4": {
+    "message": "자동화 워크플로 설계"
+  },
+  "about.workWithMe.heading": {
+    "message": "함께 일해요"
+  },
+  "about.workWithMe.intro": {
+    "message": "현재 다음과 같은 기회에 열려 있습니다:"
+  },
+  "about.workWithMe.opportunity1": {
+    "message": "원격 / 하이브리드 소프트웨어 엔지니어 또는 프로덕트 엔지니어 포지션"
+  },
+  "about.workWithMe.opportunity2": {
+    "message": "사이드 프로젝트 협업"
+  },
+  "about.workWithMe.opportunity3": {
+    "message": "기술 커뮤니티 발표 및 교류"
+  },
+  "about.workWithMe.contact": {
+    "message": "협업의 가능성이 있다고 느끼신다면, {linkedinLink}을 통해 편하게 연락해 주세요."
+  },
+  "about.meta.title": {
+    "message": "About"
+  },
+  "about.meta.description": {
+    "message": "Pitt Wu 소개 - Software / Product Engineer."
+  }
+}

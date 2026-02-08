@@ -417,22 +417,130 @@
     "message": "此頁面未列出。搜尋引擎不會為其索引，只有擁有直接連結的使用者才能存取它。",
     "description": "The unlisted content banner message"
   },
+  "homepage.hero.readBlog": {
+    "message": "閱讀文章"
+  },
+  "homepage.hero.aboutMe": {
+    "message": "關於我"
+  },
+  "homepage.cta.title": {
+    "message": "Open to Opportunities"
+  },
+  "homepage.cta.description": {
+    "message": "我目前對遠端工作、技術合作、或任何有趣的對話保持開放。"
+  },
+  "homepage.cta.learnMore": {
+    "message": "了解更多"
+  },
+  "homepage.meta.description": {
+    "message": "Software / Product Engineer. Writing about engineering decisions, production lessons, and AI-augmented development."
+  },
   "homepage.features.fairWorld.title": {
-    "message": "公平的世界"
+    "message": "公平世界"
   },
   "homepage.features.fairWorld.description": {
-    "message": "金錢流向不需要的人，愛流向擁有很多的人，困難流向能夠承受最多的人。"
+    "message": "錢流向了不缺錢的人，愛流向了不缺愛的人，苦流向了最能吃苦的人。"
   },
   "homepage.features.lifeJourney.title": {
-    "message": "人生旅程"
+    "message": "人生迷途"
   },
   "homepage.features.lifeJourney.description": {
-    "message": "生命中最大的喜悅就是像無頭蒼蠅一樣磕磕碰碰，慶祝意外轉折和突然災難。還有什麼比完全迷失更好的生命證明呢？"
+    "message": "人生最大的樂趣就是像無頭蒼蠅一樣亂撞，並慶祝那些意外地轉折與突如其來的災難，還有什麼比徹底迷失方向更能證明你活著呢？"
   },
   "homepage.features.dreamReality.title": {
-    "message": "夢想與現實"
+    "message": "夢想現實"
   },
   "homepage.features.dreamReality.description": {
-    "message": "年輕時，不要認為你的人生已經註定。隨著年齡增長，你會發現即使保持這種狀態也變得困難。"
+    "message": "當你還年輕時，不要覺得自己人生就這樣了，等到你年紀更大一些，就會發現要保持這樣都沒這麼容易。"
+  },
+  "about.role": {
+    "message": "Software / Product Engineer"
+  },
+  "about.expertise.heading": {
+    "message": "Expertise"
+  },
+  "about.expertise.vueNuxt.title": {
+    "message": "Vue / Nuxt 生態系"
+  },
+  "about.expertise.vueNuxt.item1": {
+    "message": "Vue 3 Composition API"
+  },
+  "about.expertise.vueNuxt.item2": {
+    "message": "Nuxt SSR / SSG"
+  },
+  "about.expertise.vueNuxt.item3": {
+    "message": "Hydration 機制"
+  },
+  "about.expertise.vueNuxt.item4": {
+    "message": "生命週期管理"
+  },
+  "about.expertise.frontend.title": {
+    "message": "前端架構"
+  },
+  "about.expertise.frontend.item1": {
+    "message": "狀態管理設計（Pinia）"
+  },
+  "about.expertise.frontend.item2": {
+    "message": "元件通訊模式"
+  },
+  "about.expertise.frontend.item3": {
+    "message": "專案架構規劃"
+  },
+  "about.expertise.frontend.item4": {
+    "message": "Bundler 配置與優化"
+  },
+  "about.expertise.performance.title": {
+    "message": "效能優化"
+  },
+  "about.expertise.performance.item1": {
+    "message": "Core Web Vitals"
+  },
+  "about.expertise.performance.item2": {
+    "message": "圖片與資源最佳化"
+  },
+  "about.expertise.performance.item3": {
+    "message": "Virtual Scroll"
+  },
+  "about.expertise.performance.item4": {
+    "message": "Web Workers"
+  },
+  "about.expertise.ai.title": {
+    "message": "AI 開發工作流"
+  },
+  "about.expertise.ai.item1": {
+    "message": "LLM 整合開發流程"
+  },
+  "about.expertise.ai.item2": {
+    "message": "AI-augmented 工程實踐"
+  },
+  "about.expertise.ai.item3": {
+    "message": "Prompt Engineering"
+  },
+  "about.expertise.ai.item4": {
+    "message": "自動化工作流設計"
+  },
+  "about.workWithMe.heading": {
+    "message": "Work With Me"
+  },
+  "about.workWithMe.intro": {
+    "message": "我目前對以下機會保持開放："
+  },
+  "about.workWithMe.opportunity1": {
+    "message": "遠端 / 混合制的軟體工程師或產品工程師職位"
+  },
+  "about.workWithMe.opportunity2": {
+    "message": "Side Project 合作"
+  },
+  "about.workWithMe.opportunity3": {
+    "message": "技術社群分享與交流"
+  },
+  "about.workWithMe.contact": {
+    "message": "如果你覺得我們可能有合作的空間，歡迎透過 {linkedinLink} 聯繫我。"
+  },
+  "about.meta.title": {
+    "message": "About"
+  },
+  "about.meta.description": {
+    "message": "About Pitt Wu - Software / Product Engineer."
   }
 }

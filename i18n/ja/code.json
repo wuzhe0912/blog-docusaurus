@@ -417,6 +417,24 @@
     "message": "このページは非公開です。 検索対象外となり、このページのリンクに直接アクセスできるユーザーのみに公開されます。",
     "description": "The unlisted content banner message"
   },
+  "homepage.hero.readBlog": {
+    "message": "ブログを読む"
+  },
+  "homepage.hero.aboutMe": {
+    "message": "自己紹介"
+  },
+  "homepage.cta.title": {
+    "message": "Open to Opportunities"
+  },
+  "homepage.cta.description": {
+    "message": "現在、リモートワーク、技術的なコラボレーション、またはあらゆる面白い会話に対してオープンです。"
+  },
+  "homepage.cta.learnMore": {
+    "message": "詳しく見る"
+  },
+  "homepage.meta.description": {
+    "message": "Software / Product Engineer。エンジニアリングの意思決定、本番環境での教訓、AI活用開発について発信しています。"
+  },
   "homepage.features.fairWorld.title": {
     "message": "公平な世界"
   },
@@ -434,5 +452,95 @@
   },
   "homepage.features.dreamReality.description": {
     "message": "若いときは、自分の人生はこれだと思わないでください。年を重ねるにつれ、それを維持することさえ難しいことに気づくでしょう。"
+  },
+  "about.role": {
+    "message": "Software / Product Engineer"
+  },
+  "about.expertise.heading": {
+    "message": "専門分野"
+  },
+  "about.expertise.vueNuxt.title": {
+    "message": "Vue / Nuxt エコシステム"
+  },
+  "about.expertise.vueNuxt.item1": {
+    "message": "Vue 3 Composition API"
+  },
+  "about.expertise.vueNuxt.item2": {
+    "message": "Nuxt SSR / SSG"
+  },
+  "about.expertise.vueNuxt.item3": {
+    "message": "Hydration メカニズム"
+  },
+  "about.expertise.vueNuxt.item4": {
+    "message": "ライフサイクル管理"
+  },
+  "about.expertise.frontend.title": {
+    "message": "フロントエンドアーキテクチャ"
+  },
+  "about.expertise.frontend.item1": {
+    "message": "状態管理設計（Pinia）"
+  },
+  "about.expertise.frontend.item2": {
+    "message": "コンポーネント通信パターン"
+  },
+  "about.expertise.frontend.item3": {
+    "message": "プロジェクト構成設計"
+  },
+  "about.expertise.frontend.item4": {
+    "message": "Bundler 設定と最適化"
+  },
+  "about.expertise.performance.title": {
+    "message": "パフォーマンス最適化"
+  },
+  "about.expertise.performance.item1": {
+    "message": "Core Web Vitals"
+  },
+  "about.expertise.performance.item2": {
+    "message": "画像・アセットの最適化"
+  },
+  "about.expertise.performance.item3": {
+    "message": "Virtual Scroll"
+  },
+  "about.expertise.performance.item4": {
+    "message": "Web Workers"
+  },
+  "about.expertise.ai.title": {
+    "message": "AI 開発ワークフロー"
+  },
+  "about.expertise.ai.item1": {
+    "message": "LLM 統合開発プロセス"
+  },
+  "about.expertise.ai.item2": {
+    "message": "AI-augmented エンジニアリング実践"
+  },
+  "about.expertise.ai.item3": {
+    "message": "Prompt Engineering"
+  },
+  "about.expertise.ai.item4": {
+    "message": "自動化ワークフロー設計"
+  },
+  "about.workWithMe.heading": {
+    "message": "一緒に働きませんか"
+  },
+  "about.workWithMe.intro": {
+    "message": "現在、以下の機会を受け付けています："
+  },
+  "about.workWithMe.opportunity1": {
+    "message": "リモート / ハイブリッド勤務のソフトウェアエンジニアまたはプロダクトエンジニア職"
+  },
+  "about.workWithMe.opportunity2": {
+    "message": "サイドプロジェクトのコラボレーション"
+  },
+  "about.workWithMe.opportunity3": {
+    "message": "技術コミュニティでの登壇・交流"
+  },
+  "about.workWithMe.contact": {
+    "message": "コラボレーションの可能性を感じていただけましたら、{linkedinLink} からお気軽にご連絡ください。"
+  },
+  "about.meta.title": {
+    "message": "About"
+  },
+  "about.meta.description": {
+    "message": "Pitt Wu について - Software / Product Engineer。"
   }
 }

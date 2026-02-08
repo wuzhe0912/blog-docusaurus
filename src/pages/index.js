@@ -52,13 +52,13 @@ function HomepageHeader() {
             className="button button--secondary button--lg"
             to="/blog"
           >
-            閱讀文章
+            <Translate id="homepage.hero.readBlog">閱讀文章</Translate>
           </Link>
           <Link
             className={clsx('button button--lg', styles.buttonOutline)}
             to="/about"
           >
-            關於我
+            <Translate id="homepage.hero.aboutMe">關於我</Translate>
           </Link>
         </div>
       </div>
@@ -66,38 +66,21 @@ function HomepageHeader() {
   );
 }
 
-
 function ContactCTA() {
   return (
     <section className={styles.cta}>
       <div className={styles.ctaContainer}>
-        <h2 className={styles.ctaTitle}>Open to Opportunities</h2>
+        <h2 className={styles.ctaTitle}>
+          <Translate id="homepage.cta.title">Open to Opportunities</Translate>
+        </h2>
         <p className={styles.ctaDesc}>
-          我目前對遠端工作、技術合作、或任何有趣的對話保持開放。
+          <Translate id="homepage.cta.description">
+            我目前對遠端工作、技術合作、或任何有趣的對話保持開放。
+          </Translate>
         </p>
-        <div className={styles.ctaLinks}>
-          <a
-            href="https://github.com/wuzhe0912"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub
-          </a>
-          <a
-            href="https://linkedin.com/in/pitt-wu"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            LinkedIn
-          </a>
-          <a
-            href="https://www.cakeresume.com/me/pittwu"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            CakeResume
-          </a>
-        </div>
+        <Link className={styles.ctaButton} to="/about">
+          <Translate id="homepage.cta.learnMore">了解更多</Translate>
+        </Link>
       </div>
     </section>
   );
@@ -108,7 +91,11 @@ export default function Home() {
   return (
     <Layout
       title={`${siteConfig.title}`}
-      description="Frontend Engineer specializing in Vue/Nuxt. Writing about engineering decisions, production lessons, and AI-augmented development."
+      description={translate({
+        id: 'homepage.meta.description',
+        message:
+          'Software / Product Engineer. Writing about engineering decisions, production lessons, and AI-augmented development.',
+      })}
     >
       <HomepageHeader />
       <main>

@@ -1,0 +1,128 @@
+{
+  "homepage.hero.readBlog": {
+    "message": "阅读文章"
+  },
+  "homepage.hero.aboutMe": {
+    "message": "关于我"
+  },
+  "homepage.cta.title": {
+    "message": "Open to Opportunities"
+  },
+  "homepage.cta.description": {
+    "message": "我目前对远程工作、技术合作、或任何有趣的对话保持开放。"
+  },
+  "homepage.cta.learnMore": {
+    "message": "了解更多"
+  },
+  "homepage.meta.description": {
+    "message": "Software / Product Engineer. Writing about engineering decisions, production lessons, and AI-augmented development."
+  },
+  "homepage.features.fairWorld.title": {
+    "message": "公平世界"
+  },
+  "homepage.features.fairWorld.description": {
+    "message": "钱流向了不缺钱的人，爱流向了不缺爱的人，苦流向了最能吃苦的人。"
+  },
+  "homepage.features.lifeJourney.title": {
+    "message": "人生迷途"
+  },
+  "homepage.features.lifeJourney.description": {
+    "message": "人生最大的乐趣就是像无头苍蝇一样乱撞，并庆祝那些意外的转折与突如其来的灾难，还有什么比彻底迷失方向更能证明你活着呢？"
+  },
+  "homepage.features.dreamReality.title": {
+    "message": "梦想现实"
+  },
+  "homepage.features.dreamReality.description": {
+    "message": "当你还年轻时，不要觉得自己人生就这样了，等到你年纪更大一些，就会发现要保持这样都没这么容易。"
+  },
+  "about.role": {
+    "message": "Software / Product Engineer"
+  },
+  "about.expertise.heading": {
+    "message": "专业领域"
+  },
+  "about.expertise.vueNuxt.title": {
+    "message": "Vue / Nuxt 生态系"
+  },
+  "about.expertise.vueNuxt.item1": {
+    "message": "Vue 3 Composition API"
+  },
+  "about.expertise.vueNuxt.item2": {
+    "message": "Nuxt SSR / SSG"
+  },
+  "about.expertise.vueNuxt.item3": {
+    "message": "Hydration 机制"
+  },
+  "about.expertise.vueNuxt.item4": {
+    "message": "生命周期管理"
+  },
+  "about.expertise.frontend.title": {
+    "message": "前端架构"
+  },
+  "about.expertise.frontend.item1": {
+    "message": "状态管理设计（Pinia）"
+  },
+  "about.expertise.frontend.item2": {
+    "message": "组件通信模式"
+  },
+  "about.expertise.frontend.item3": {
+    "message": "项目架构规划"
+  },
+  "about.expertise.frontend.item4": {
+    "message": "Bundler 配置与优化"
+  },
+  "about.expertise.performance.title": {
+    "message": "性能优化"
+  },
+  "about.expertise.performance.item1": {
+    "message": "Core Web Vitals"
+  },
+  "about.expertise.performance.item2": {
+    "message": "图片与资源优化"
+  },
+  "about.expertise.performance.item3": {
+    "message": "Virtual Scroll"
+  },
+  "about.expertise.performance.item4": {
+    "message": "Web Workers"
+  },
+  "about.expertise.ai.title": {
+    "message": "AI 开发工作流"
+  },
+  "about.expertise.ai.item1": {
+    "message": "LLM 集成开发流程"
+  },
+  "about.expertise.ai.item2": {
+    "message": "AI-augmented 工程实践"
+  },
+  "about.expertise.ai.item3": {
+    "message": "Prompt Engineering"
+  },
+  "about.expertise.ai.item4": {
+    "message": "自动化工作流设计"
+  },
+  "about.workWithMe.heading": {
+    "message": "Work With Me"
+  },
+  "about.workWithMe.intro": {
+    "message": "我目前对以下机会保持开放："
+  },
+  "about.workWithMe.opportunity1": {
+    "message": "远程 / 混合办公的软件工程师或产品工程师职位"
+  },
+  "about.workWithMe.opportunity2": {
+    "message": "Side Project 合作"
+  },
+  "about.workWithMe.opportunity3": {
+    "message": "技术社区分享与交流"
+  },
+  "about.workWithMe.contact": {
+    "message": "如果你觉得我们可能有合作的空间，欢迎通过 {linkedinLink} 联系我。"
+  },
+  "about.meta.title": {
+    "message": "About"
+  },
+  "about.meta.description": {
+    "message": "About Pitt Wu - Software / Product Engineer."
+  }
+}

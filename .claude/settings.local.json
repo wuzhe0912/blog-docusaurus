@@ -5,7 +5,11 @@
       "Bash(ls:*)",
       "Bash(git add:*)",
       "Bash(git commit -m \"$\\(cat <<''EOF''\n[Feature]Redesign homepage and add About page\n\nRedesign homepage with personal branding while preserving existing humor elements. Add content pillars section, CTA, and a new About page with profile, expertise, and work-with-me sections.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>\nEOF\n\\)\")",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(for locale in en ja zh-tw zh-cn ko es)",
+      "Bash(do echo \"=== $locale ===\")",
+      "Bash(python3:*)",
+      "Bash(done)"
     ]
   }
 }

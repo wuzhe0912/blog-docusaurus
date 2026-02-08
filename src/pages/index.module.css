@@ -160,23 +160,22 @@
   margin-bottom: 1.75rem;
 }
 
-.ctaLinks {
-  display: flex;
-  gap: 2.5rem;
-  justify-content: center;
-}
-
-.ctaLinks a {
-  color: var(--ifm-color-primary);
+.ctaButton {
+  display: inline-block;
+  background: var(--ifm-color-primary);
+  color: #fff;
+  padding: 0.65rem 1.75rem;
+  border-radius: 8px;
   font-weight: 600;
-  text-decoration: none;
   font-size: 1rem;
+  text-decoration: none;
   transition: opacity 0.2s;
 }
 
-.ctaLinks a:hover {
-  opacity: 0.75;
-  text-decoration: underline;
+.ctaButton:hover {
+  color: #fff;
+  opacity: 0.85;
+  text-decoration: none;
 }
 
 /* ── Responsive ── */

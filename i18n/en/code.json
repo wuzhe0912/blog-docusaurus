@@ -417,6 +417,24 @@
     "message": "This page is unlisted. Search engines will not index it, and only users having a direct link can access it.",
     "description": "The unlisted content banner message"
   },
+  "homepage.hero.readBlog": {
+    "message": "Read Blog"
+  },
+  "homepage.hero.aboutMe": {
+    "message": "About Me"
+  },
+  "homepage.cta.title": {
+    "message": "Open to Opportunities"
+  },
+  "homepage.cta.description": {
+    "message": "I'm currently open to remote work, technical collaborations, or any interesting conversations."
+  },
+  "homepage.cta.learnMore": {
+    "message": "Learn More"
+  },
+  "homepage.meta.description": {
+    "message": "Software / Product Engineer. Writing about engineering decisions, production lessons, and AI-augmented development."
+  },
   "homepage.features.fairWorld.title": {
     "message": "Fair World"
   },
@@ -434,5 +452,95 @@
   },
   "homepage.features.dreamReality.description": {
     "message": "When you're young, don't think your life is set. As you get older, you'll realize that even maintaining this state becomes challenging."
+  },
+  "about.role": {
+    "message": "Software / Product Engineer"
+  },
+  "about.expertise.heading": {
+    "message": "Expertise"
+  },
+  "about.expertise.vueNuxt.title": {
+    "message": "Vue / Nuxt Ecosystem"
+  },
+  "about.expertise.vueNuxt.item1": {
+    "message": "Vue 3 Composition API"
+  },
+  "about.expertise.vueNuxt.item2": {
+    "message": "Nuxt SSR / SSG"
+  },
+  "about.expertise.vueNuxt.item3": {
+    "message": "Hydration Mechanism"
+  },
+  "about.expertise.vueNuxt.item4": {
+    "message": "Lifecycle Management"
+  },
+  "about.expertise.frontend.title": {
+    "message": "Frontend Architecture"
+  },
+  "about.expertise.frontend.item1": {
+    "message": "State Management Design (Pinia)"
+  },
+  "about.expertise.frontend.item2": {
+    "message": "Component Communication Patterns"
+  },
+  "about.expertise.frontend.item3": {
+    "message": "Project Architecture Planning"
+  },
+  "about.expertise.frontend.item4": {
+    "message": "Bundler Configuration & Optimization"
+  },
+  "about.expertise.performance.title": {
+    "message": "Performance Optimization"
+  },
+  "about.expertise.performance.item1": {
+    "message": "Core Web Vitals"
+  },
+  "about.expertise.performance.item2": {
+    "message": "Image & Asset Optimization"
+  },
+  "about.expertise.performance.item3": {
+    "message": "Virtual Scroll"
+  },
+  "about.expertise.performance.item4": {
+    "message": "Web Workers"
+  },
+  "about.expertise.ai.title": {
+    "message": "AI Development Workflow"
+  },
+  "about.expertise.ai.item1": {
+    "message": "LLM-Integrated Development Process"
+  },
+  "about.expertise.ai.item2": {
+    "message": "AI-augmented Engineering Practices"
+  },
+  "about.expertise.ai.item3": {
+    "message": "Prompt Engineering"
+  },
+  "about.expertise.ai.item4": {
+    "message": "Automation Workflow Design"
+  },
+  "about.workWithMe.heading": {
+    "message": "Work With Me"
+  },
+  "about.workWithMe.intro": {
+    "message": "I'm currently open to the following opportunities:"
+  },
+  "about.workWithMe.opportunity1": {
+    "message": "Remote / hybrid Software Engineer or Product Engineer roles"
+  },
+  "about.workWithMe.opportunity2": {
+    "message": "Side project collaborations"
+  },
+  "about.workWithMe.opportunity3": {
+    "message": "Tech community talks and exchanges"
+  },
+  "about.workWithMe.contact": {
+    "message": "If you think there might be room for collaboration, feel free to reach out via {linkedinLink}."
+  },
+  "about.meta.title": {
+    "message": "About"
+  },
+  "about.meta.description": {
+    "message": "About Pitt Wu - Software / Product Engineer."
   }
 }

@@ -153,12 +153,6 @@ module.exports = {
   ],
   i18n: {
     defaultLocale: 'zh-tw',
-    locales: ['zh-tw', 'en', 'ja'],
-    // locales: ['zh-tw', 'en', 'ja', 'fr', 'de', 'ar'],
-    // localeConfigs: {
-    //   ar: {
-    //     direction: 'rtl',
-    //   },
-    // },
+    locales: ['zh-tw', 'zh-cn', 'en', 'ja', 'ko', 'es'],
   },
 };

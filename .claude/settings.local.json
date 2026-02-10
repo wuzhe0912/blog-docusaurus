@@ -10,7 +10,10 @@
       "Bash(do echo \"=== $locale ===\")",
       "Bash(python3:*)",
       "Bash(done)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(claude:*)",
+      "Bash(for:*)",
+      "Bash(bun pm:*)"
     ]
   }
 }

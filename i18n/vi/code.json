@@ -1,172 +1,103 @@
 {
-  "homepage.hero.readBlog": {
-    "message": "Leer el blog"
-  },
-  "homepage.hero.aboutMe": {
-    "message": "Sobre mí"
-  },
-  "homepage.cta.title": {
-    "message": "Open to Opportunities"
-  },
-  "homepage.cta.description": {
-    "message": "Actualmente estoy abierto a trabajo remoto, colaboraciones técnicas o cualquier conversación interesante."
-  },
-  "homepage.cta.learnMore": {
-    "message": "Saber más"
-  },
-  "homepage.meta.description": {
-    "message": "Software / Product Engineer. Escribo sobre decisiones de ingeniería, lecciones en producción y desarrollo potenciado por IA."
-  },
   "homepage.features.fairWorld.title": {
-    "message": "Mundo justo"
+    "message": "公平世界"
   },
   "homepage.features.fairWorld.description": {
-    "message": "El dinero fluye hacia quienes no lo necesitan, el amor hacia quienes les sobra, y el sufrimiento hacia quienes más lo aguantan."
+    "message": "錢流向了不缺錢的人，愛流向了不缺愛的人，苦流向了最能吃苦的人。"
   },
   "homepage.features.lifeJourney.title": {
-    "message": "Perdidos en la vida"
+    "message": "人生迷途"
   },
   "homepage.features.lifeJourney.description": {
-    "message": "El mayor placer de la vida es ir dando tumbos como una mosca sin cabeza, celebrando los giros inesperados y las catástrofes repentinas. Al fin y al cabo, ¿qué mejor prueba de estar vivo que estar completamente perdido?"
+    "message": "人生最大的樂趣就是像無頭蒼蠅一樣亂撞，並慶祝那些意外地轉折與突如其來的災難，還有什麼比徹底迷失方向更能證明你活著呢？"
   },
   "homepage.features.dreamReality.title": {
-    "message": "Sueños y realidad"
+    "message": "夢想現實"
   },
   "homepage.features.dreamReality.description": {
-    "message": "Cuando eres joven, no pienses que tu vida ya está decidida. Cuando seas mayor, descubrirás que ni siquiera mantener lo que tienes es tan fácil."
+    "message": "當你還年輕時，不要覺得自己人生就這樣了，等到你年紀更大一些，就會發現要保持這樣都沒這麼容易。"
   },
   "about.role": {
     "message": "Software / Product Engineer"
   },
   "about.expertise.heading": {
-    "message": "Experiencia"
-  },
-  "about.expertise.vueNuxt.title": {
-    "message": "Ecosistema Vue / Nuxt"
-  },
-  "about.expertise.vueNuxt.item1": {
-    "message": "Vue 3 Composition API"
-  },
-  "about.expertise.vueNuxt.item2": {
-    "message": "Nuxt SSR / SSG"
-  },
-  "about.expertise.vueNuxt.item3": {
-    "message": "Mecanismo de Hydration"
-  },
-  "about.expertise.vueNuxt.item4": {
-    "message": "Gestión del ciclo de vida"
-  },
-  "about.expertise.frontend.title": {
-    "message": "Arquitectura Frontend"
-  },
-  "about.expertise.frontend.item1": {
-    "message": "Diseño de gestión de estado (Pinia)"
-  },
-  "about.expertise.frontend.item2": {
-    "message": "Patrones de comunicación entre componentes"
-  },
-  "about.expertise.frontend.item3": {
-    "message": "Planificación de arquitectura de proyecto"
-  },
-  "about.expertise.frontend.item4": {
-    "message": "Configuración y optimización de Bundler"
-  },
-  "about.expertise.performance.title": {
-    "message": "Optimización de rendimiento"
-  },
-  "about.expertise.performance.item1": {
-    "message": "Core Web Vitals"
-  },
-  "about.expertise.performance.item2": {
-    "message": "Optimización de imágenes y recursos"
-  },
-  "about.expertise.performance.item3": {
-    "message": "Virtual Scroll"
-  },
-  "about.expertise.performance.item4": {
-    "message": "Web Workers"
-  },
-  "about.expertise.ai.title": {
-    "message": "Flujo de trabajo con IA"
-  },
-  "about.expertise.ai.item1": {
-    "message": "Proceso de desarrollo integrado con LLM"
-  },
-  "about.expertise.ai.item2": {
-    "message": "Prácticas de ingeniería AI-augmented"
-  },
-  "about.expertise.ai.item3": {
-    "message": "Prompt Engineering"
-  },
-  "about.expertise.ai.item4": {
-    "message": "Diseño de flujos de trabajo automatizados"
+    "message": "Expertise"
   },
   "about.workWithMe.heading": {
-    "message": "Trabajemos juntos"
+    "message": "Work With Me"
   },
   "about.workWithMe.intro": {
-    "message": "Actualmente estoy abierto a las siguientes oportunidades:"
-  },
-  "about.workWithMe.opportunity1": {
-    "message": "Posiciones de ingeniero de software o producto en remoto / híbrido"
-  },
-  "about.workWithMe.opportunity2": {
-    "message": "Colaboraciones en proyectos paralelos"
-  },
-  "about.workWithMe.opportunity3": {
-    "message": "Charlas e intercambios en comunidades tecnológicas"
+    "message": "我目前對以下機會保持開放："
   },
   "about.workWithMe.contact": {
-    "message": "Si crees que podríamos colaborar, no dudes en contactarme a través de {linkedinLink}."
+    "message": "如果你覺得我們可能有合作的空間，歡迎透過 {linkedinLink} 聯繫我。"
   },
   "about.meta.title": {
     "message": "About"
   },
   "about.meta.description": {
-    "message": "Sobre Pitt Wu - Software / Product Engineer."
+    "message": "About Pitt Wu - Software / Product Engineer."
+  },
+  "homepage.hero.readBlog": {
+    "message": "閱讀文章"
+  },
+  "homepage.hero.aboutMe": {
+    "message": "關於我"
+  },
+  "homepage.cta.title": {
+    "message": "Open to Opportunities"
+  },
+  "homepage.cta.description": {
+    "message": "我目前對遠端工作、技術合作、或任何有趣的對話保持開放。"
+  },
+  "homepage.cta.learnMore": {
+    "message": "了解更多"
+  },
+  "homepage.meta.description": {
+    "message": "Software / Product Engineer. Writing about engineering decisions, production lessons, and AI-augmented development."
   },
   "theme.ErrorPageContent.title": {
-    "message": "Esta página ha fallado.",
+    "message": "Trang này đã gặp lỗi.",
     "description": "The title of the fallback page when the page crashed"
   },
   "theme.BackToTopButton.buttonAriaLabel": {
-    "message": "Volver al principio",
+    "message": "Trở lại đầu trang",
     "description": "The ARIA label for the back to top button"
   },
   "theme.blog.archive.title": {
-    "message": "Archivo",
+    "message": "Lưu trữ",
     "description": "The page & hero title of the blog archive page"
   },
   "theme.blog.archive.description": {
-    "message": "Archivo",
+    "message": "Lưu trữ",
     "description": "The page & hero description of the blog archive page"
   },
   "theme.blog.paginator.navAriaLabel": {
-    "message": "Navegación por la página de la lista de blogs ",
+    "message": "Thanh điều hướng của trang danh sách bài viết",
     "description": "The ARIA label for the blog pagination"
   },
   "theme.blog.paginator.newerEntries": {
-    "message": "Entradas más recientes",
+    "message": "Bài mới hơn",
     "description": "The label used to navigate to the newer blog posts page (previous page)"
   },
   "theme.blog.paginator.olderEntries": {
-    "message": "Entradas más antiguas",
+    "message": "Bài cũ hơn",
     "description": "The label used to navigate to the older blog posts page (next page)"
   },
   "theme.blog.post.paginator.navAriaLabel": {
-    "message": "Barra de paginación de publicaciones del blog",
+    "message": "Thanh điều hướng của trang bài viết",
     "description": "The ARIA label for the blog posts pagination"
   },
   "theme.blog.post.paginator.newerPost": {
-    "message": "Publicación más reciente",
+    "message": "Bài mới hơn",
     "description": "The blog post button label to navigate to the newer/previous post"
   },
   "theme.blog.post.paginator.olderPost": {
-    "message": "Publicación más antigua",
+    "message": "Bài cũ hơn",
     "description": "The blog post button label to navigate to the older/next post"
   },
   "theme.tags.tagsPageLink": {
-    "message": "Ver Todas las Etiquetas",
+    "message": "Xem tất cả thẻ",
     "description": "The label of the link targeting the tag list page"
   },
   "theme.colorToggle.ariaLabel.mode.system": {
@@ -174,134 +105,134 @@
     "description": "The name for the system color mode"
   },
   "theme.colorToggle.ariaLabel.mode.light": {
-    "message": "modo claro",
+    "message": "chế độ sáng",
     "description": "The name for the light color mode"
   },
   "theme.colorToggle.ariaLabel.mode.dark": {
-    "message": "modo oscuro",
+    "message": "chế độ tối",
     "description": "The name for the dark color mode"
   },
   "theme.colorToggle.ariaLabel": {
-    "message": "Cambiar entre modo oscuro y claro (actualmente {mode})",
+    "message": "Chuyển đổi chế độ sáng và tối (hiện tại là {mode})",
     "description": "The ARIA label for the color mode toggle"
   },
   "theme.docs.breadcrumbs.navAriaLabel": {
-    "message": "Rastro de navegación",
+    "message": "Liên kết điều hướng",
     "description": "The ARIA label for the breadcrumbs"
   },
   "theme.docs.DocCard.categoryDescription.plurals": {
-    "message": "1 artículo|{count} artículos",
+    "message": "{count} mục",
     "description": "The default description for a category card in the generated index about how many items this category includes"
   },
   "theme.docs.paginator.navAriaLabel": {
-    "message": "Página del documento",
+    "message": "Trang tài liệu",
     "description": "The ARIA label for the docs pagination"
   },
   "theme.docs.paginator.previous": {
-    "message": "Anterior",
+    "message": "Trước",
     "description": "The label used to navigate to the previous doc"
   },
   "theme.docs.paginator.next": {
-    "message": "Siguiente",
+    "message": "Kế tiếp",
     "description": "The label used to navigate to the next doc"
   },
   "theme.docs.tagDocListPageTitle.nDocsTagged": {
-    "message": "Un documento etiquetado|{count} documentos etiquetados",
+    "message": "{count} tài liệu đã gắn thẻ",
     "description": "Pluralized label for \"{count} docs tagged\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.docs.tagDocListPageTitle": {
-    "message": "{nDocsTagged} con \"{tagName}\"",
+    "message": "{nDocsTagged} được gắn thẻ \"{tagName}\"",
     "description": "The title of the page for a docs tag"
   },
   "theme.docs.versionBadge.label": {
-    "message": "Version: {versionLabel}"
+    "message": "Phiên bản: {versionLabel}"
   },
   "theme.docs.versions.unreleasedVersionLabel": {
-    "message": "Esta es la documentación sin publicar para {siteTitle}, versión {versionLabel}.",
+    "message": "Đây là tài liệu chưa được phát hành chính thức của {siteTitle} phiên bản {versionLabel}.",
     "description": "The label used to tell the user that he's browsing an unreleased doc version"
   },
   "theme.docs.versions.unmaintainedVersionLabel": {
-    "message": "Esta es la documentación para {siteTitle} {versionLabel}, que ya no se mantiene activamente.",
+    "message": "Đây là tài liệu của {siteTitle} {versionLabel}, hiện không còn được bảo trì.",
     "description": "The label used to tell the user that he's browsing an unmaintained doc version"
   },
   "theme.docs.versions.latestVersionSuggestionLabel": {
-    "message": "Para la documentación actualizada, vea {latestVersionLink} ({versionLabel}).",
+    "message": "Để xem các cập nhật mới nhất, vui lòng xem phiên bản {latestVersionLink} ({versionLabel}).",
     "description": "The label used to tell the user to check the latest version"
   },
   "theme.docs.versions.latestVersionLinkLabel": {
-    "message": "última versión",
+    "message": "phiên bản mới nhất",
     "description": "The label used for the latest version suggestion link label"
   },
   "theme.common.editThisPage": {
-    "message": "Editar esta página",
+    "message": "Sửa trang này",
     "description": "The link label to edit the current page"
   },
   "theme.common.headingLinkTitle": {
-    "message": "Enlace directo al {heading}",
+    "message": "Đường dẫn trực tiếp đến {heading}",
     "description": "Title for link to heading"
   },
   "theme.lastUpdated.atDate": {
-    "message": " en {date}",
+    "message": " vào {date}",
     "description": "The words used to describe on which date a page has been last updated"
   },
   "theme.lastUpdated.byUser": {
-    "message": " por {user}",
+    "message": " bởi {user}",
     "description": "The words used to describe by who the page has been last updated"
   },
   "theme.lastUpdated.lastUpdatedAtBy": {
-    "message": "Última actualización{atDate}{byUser}",
+    "message": "Cập nhật lần cuối{atDate}{byUser}",
     "description": "The sentence used to display when a page has been last updated, and by who"
   },
   "theme.navbar.mobileVersionsDropdown.label": {
-    "message": "Versiones",
+    "message": "Phiên bản",
     "description": "The label for the navbar versions dropdown on mobile view"
   },
   "theme.NotFound.title": {
-    "message": "Página No Encontrada",
+    "message": "Không tìm thấy trang",
     "description": "The title of the 404 page"
   },
   "theme.tags.tagsListLabel": {
-    "message": "Etiquetas:",
+    "message": "Thẻ:",
     "description": "The label alongside a tag list"
   },
   "theme.admonition.caution": {
-    "message": "precaución",
+    "message": "cẩn thận",
     "description": "The default label used for the Caution admonition (:::caution)"
   },
   "theme.admonition.danger": {
-    "message": "peligro",
+    "message": "cảnh báo",
     "description": "The default label used for the Danger admonition (:::danger)"
   },
   "theme.admonition.info": {
-    "message": "info",
+    "message": "thông tin",
     "description": "The default label used for the Info admonition (:::info)"
   },
   "theme.admonition.note": {
-    "message": "nota",
+    "message": "ghi chú",
     "description": "The default label used for the Note admonition (:::note)"
   },
   "theme.admonition.tip": {
-    "message": "tip",
+    "message": "mẹo",
     "description": "The default label used for the Tip admonition (:::tip)"
   },
   "theme.admonition.warning": {
-    "message": "aviso",
+    "message": "cảnh báo",
     "description": "The default label used for the Warning admonition (:::warning)"
   },
   "theme.AnnouncementBar.closeButtonAriaLabel": {
-    "message": "Cerrar",
+    "message": "Đóng",
     "description": "The ARIA label for close button of announcement bar"
   },
   "theme.blog.sidebar.navAriaLabel": {
-    "message": "Navegación de publicaciones recientes",
+    "message": "Điều hướng các bài viết gần đây trên blog",
     "description": "The ARIA label for recent posts in the blog sidebar"
   },
   "theme.DocSidebarItem.expandCategoryAriaLabel": {
-    "message": "Ampliar la categoría '{label}' de la barra lateral",
+    "message": "Xem thêm danh mục '{label}'",
     "description": "The ARIA label to expand the sidebar category"
   },
   "theme.DocSidebarItem.collapseCategoryAriaLabel": {
-    "message": "Colapsar categoría '{label}' de la barra lateral",
+    "message": "Thu gọn danh mục '{label}'",
     "description": "The ARIA label to collapse the sidebar category"
   },
   "theme.IconExternalLink.ariaLabel": {
@@ -309,80 +240,80 @@
     "description": "The ARIA label for the external link icon"
   },
   "theme.NavBar.navAriaLabel": {
-    "message": "Principal",
+    "message": "Thanh điều hướng",
     "description": "The ARIA label for the main navigation"
   },
-  "theme.navbar.mobileLanguageDropdown.label": {
-    "message": "Idiomas",
-    "description": "The label for the mobile language switcher dropdown"
-  },
   "theme.NotFound.p1": {
-    "message": "No pudimos encontrar lo que buscaba.",
+    "message": "Chúng tôi không thể tìm thấy nội dung bạn đang tìm kiếm.",
     "description": "The first paragraph of the 404 page"
   },
   "theme.NotFound.p2": {
-    "message": "Comuníquese con el dueño del sitio que le proporcionó la URL original y hágale saber que su vínculo está roto.",
+    "message": "Vui lòng liên hệ với trang web đã đưa bạn đến đây và thông báo rằng đường dẫn này bị lỗi.",
     "description": "The 2nd paragraph of the 404 page"
   },
+  "theme.navbar.mobileLanguageDropdown.label": {
+    "message": "Ngôn ngữ",
+    "description": "The label for the mobile language switcher dropdown"
+  },
   "theme.TOCCollapsible.toggleButtonLabel": {
-    "message": "En esta página",
+    "message": "Trên trang này",
     "description": "The label used by the button on the collapsible TOC component"
   },
   "theme.blog.post.readMore": {
-    "message": "Leer Más",
+    "message": "Đọc tiếp",
     "description": "The label used in blog post item excerpts to link to full blog posts"
   },
   "theme.blog.post.readMoreLabel": {
-    "message": "Leer más acerca de {title}",
+    "message": "Đọc thêm về {title}",
     "description": "The ARIA label for the link to full blog posts from excerpts"
   },
   "theme.blog.post.readingTime.plurals": {
-    "message": "Lectura de un minuto|{readingTime} min de lectura",
+    "message": "{readingTime} phút để đọc",
     "description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
-  "theme.CodeBlock.wordWrapToggle": {
-    "message": "Alternar ajuste de palabras",
-    "description": "The title attribute for toggle word wrapping button of code block lines"
-  },
   "theme.CodeBlock.copy": {
-    "message": "Copiar",
+    "message": "Sao chép",
     "description": "The copy button label on code blocks"
   },
   "theme.CodeBlock.copied": {
-    "message": "Copiado",
+    "message": "Đã sao chép",
     "description": "The copied button label on code blocks"
   },
   "theme.CodeBlock.copyButtonAriaLabel": {
-    "message": "Copiar código",
+    "message": "Sao chép mã vào bộ nhớ tạm",
     "description": "The ARIA label for copy code blocks button"
   },
+  "theme.CodeBlock.wordWrapToggle": {
+    "message": "Chuyển đổi văn bản xuống dòng",
+    "description": "The title attribute for toggle word wrapping button of code block lines"
+  },
   "theme.docs.breadcrumbs.home": {
-    "message": "Página de Inicio",
+    "message": "Trang chủ",
     "description": "The ARIA label for the home page in the breadcrumbs"
   },
   "theme.docs.sidebar.collapseButtonTitle": {
-    "message": "Colapsar barra lateral",
+    "message": "Thu gọn thanh bên",
     "description": "The title attribute for collapse button of doc sidebar"
   },
   "theme.docs.sidebar.collapseButtonAriaLabel": {
-    "message": "Colapsar barra lateral",
+    "message": "Thu gọn thanh bên",
     "description": "The title attribute for collapse button of doc sidebar"
   },
   "theme.docs.sidebar.navAriaLabel": {
-    "message": "Barra lateral de Documentos",
+    "message": "Thanh điều hướng tài liệu",
     "description": "The ARIA label for the sidebar navigation"
   },
   "theme.docs.sidebar.closeSidebarButtonAriaLabel": {
-    "message": "Cerrar barra de lateral",
+    "message": "Đóng thanh điều hướng",
     "description": "The ARIA label for close button of mobile sidebar"
   },
-  "theme.docs.sidebar.toggleSidebarButtonAriaLabel": {
-    "message": "Alternar barra lateral",
-    "description": "The ARIA label for hamburger menu button of mobile navigation"
-  },
   "theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel": {
-    "message": "← Volver al menú principal",
+    "message": "← Trở lại menu chính",
     "description": "The label of the back button to return to main menu, inside the mobile navbar sidebar secondary menu (notably used to display the docs sidebar)"
+  },
+  "theme.docs.sidebar.toggleSidebarButtonAriaLabel": {
+    "message": "Đóng - mở thanh điều hướng",
+    "description": "The ARIA label for hamburger menu button of mobile navigation"
   },
   "theme.navbar.mobileDropdown.collapseButton.expandAriaLabel": {
     "message": "Expand the dropdown",
@@ -393,250 +324,250 @@
     "description": "The ARIA label of the button to collapse the mobile dropdown navbar item"
   },
   "theme.docs.sidebar.expandButtonTitle": {
-    "message": "Expandir barra lateral",
+    "message": "Mở rộng thanh bên",
     "description": "The ARIA label and title attribute for expand button of doc sidebar"
   },
   "theme.docs.sidebar.expandButtonAriaLabel": {
-    "message": "Expandir barra lateral",
+    "message": "Mở rộng thanh bên",
     "description": "The ARIA label and title attribute for expand button of doc sidebar"
   },
   "theme.SearchBar.seeAll": {
-    "message": "Ver todos los {count} resultados"
+    "message": "Xem tất cả {count} kết quả"
   },
   "theme.SearchPage.documentsFound.plurals": {
-    "message": "Un documento encontrado|{count} documentos encontrados",
+    "message": "Tìm thấy {count} kết quả",
     "description": "Pluralized label for \"{count} documents found\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.SearchPage.existingResultsTitle": {
-    "message": "Resultados de búsqueda para \"{query}\"",
+    "message": "Kết quả tìm kiếm cho \"{query}\"",
     "description": "The search page title for non-empty query"
   },
   "theme.SearchPage.emptyResultsTitle": {
-    "message": "Búsqueda en la documentación",
+    "message": "Tìm kiếm",
     "description": "The search page title for empty query"
   },
   "theme.SearchPage.inputPlaceholder": {
-    "message": "Escribe tu búsqueda aquí",
+    "message": "Nhập tìm kiếm của bạn ở đây",
     "description": "The placeholder for search page input"
   },
   "theme.SearchPage.inputLabel": {
-    "message": "Buscar",
+    "message": "Tìm kiếm",
     "description": "The ARIA label for search page input"
   },
   "theme.SearchPage.algoliaLabel": {
-    "message": "Con tecnología de Algolia",
+    "message": "Được cung cấp bởi Algolia",
     "description": "The description label for Algolia mention"
   },
   "theme.SearchPage.noResultsText": {
-    "message": "No se encontraron resultados",
+    "message": "Không tìm thấy kết quả",
     "description": "The paragraph for empty search result"
   },
   "theme.SearchPage.fetchingNewResults": {
-    "message": "Obteniendo nuevos resultados...",
+    "message": "Đang tải thêm kết quả...",
     "description": "The paragraph for fetching new search results"
   },
   "theme.SearchBar.label": {
-    "message": "Buscar",
+    "message": "Tìm kiếm",
     "description": "The ARIA label and placeholder for search button"
   },
   "theme.SearchModal.searchBox.resetButtonTitle": {
-    "message": "Limpiar la búsqueda",
+    "message": "Xóa truy vấn",
     "description": "The label and ARIA label for search box reset button"
   },
   "theme.SearchModal.searchBox.cancelButtonText": {
-    "message": "Cancelar",
+    "message": "Hủy bỏ",
     "description": "The label and ARIA label for search box cancel button"
   },
   "theme.SearchModal.searchBox.placeholderText": {
-    "message": "Buscar documentos",
+    "message": "Search docs",
     "description": "The placeholder text for the main search input field"
   },
   "theme.SearchModal.searchBox.placeholderTextAskAi": {
-    "message": "Hacer otra pregunta...",
+    "message": "Ask another question...",
     "description": "The placeholder text when in AI question mode"
   },
   "theme.SearchModal.searchBox.placeholderTextAskAiStreaming": {
-    "message": "Respondiendo...",
+    "message": "Answering...",
     "description": "The placeholder text for search box when AI is streaming an answer"
   },
   "theme.SearchModal.searchBox.enterKeyHint": {
-    "message": "buscar",
+    "message": "search",
     "description": "The hint for the search box enter key text"
   },
   "theme.SearchModal.searchBox.enterKeyHintAskAi": {
-    "message": "enviar",
+    "message": "enter",
     "description": "The hint for the Ask AI search box enter key text"
   },
   "theme.SearchModal.searchBox.searchInputLabel": {
-    "message": "Buscar",
+    "message": "Search",
     "description": "The ARIA label for search input"
   },
   "theme.SearchModal.searchBox.backToKeywordSearchButtonText": {
-    "message": "Volver a búsqueda por palabras clave",
+    "message": "Back to keyword search",
     "description": "The text for back to keyword search button"
   },
   "theme.SearchModal.searchBox.backToKeywordSearchButtonAriaLabel": {
-    "message": "Volver a búsqueda por palabras clave",
+    "message": "Back to keyword search",
     "description": "The ARIA label for back to keyword search button"
   },
   "theme.SearchModal.startScreen.recentSearchesTitle": {
-    "message": "Reciente",
+    "message": "Gần đây",
     "description": "The title for recent searches"
   },
   "theme.SearchModal.startScreen.noRecentSearchesText": {
-    "message": "Sin búsquedas recientes",
+    "message": "Không có tìm kiếm nào gần đây",
     "description": "The text when there are no recent searches"
   },
   "theme.SearchModal.startScreen.saveRecentSearchButtonTitle": {
-    "message": "Guardar esta búsqueda",
+    "message": "Lưu tìm kiếm này",
     "description": "The title for save recent search button"
   },
   "theme.SearchModal.startScreen.removeRecentSearchButtonTitle": {
-    "message": "Eliminar esta búsqueda del historial",
+    "message": "Xóa tìm kiếm này khỏi lịch sử",
     "description": "The title for remove recent search button"
   },
   "theme.SearchModal.startScreen.favoriteSearchesTitle": {
-    "message": "Favorito",
+    "message": "Yêu thích",
     "description": "The title for favorite searches"
   },
   "theme.SearchModal.startScreen.removeFavoriteSearchButtonTitle": {
-    "message": "Eliminar esta búsqueda de favoritos",
+    "message": "Xóa tìm kiếm này khỏi danh sách yêu thích",
     "description": "The title for remove favorite search button"
   },
   "theme.SearchModal.startScreen.recentConversationsTitle": {
-    "message": "Conversaciones recientes",
+    "message": "Recent conversations",
     "description": "The title for recent conversations"
   },
   "theme.SearchModal.startScreen.removeRecentConversationButtonTitle": {
-    "message": "Eliminar esta conversación del historial",
+    "message": "Remove this conversation from history",
     "description": "The title for remove recent conversation button"
   },
   "theme.SearchModal.errorScreen.titleText": {
-    "message": "No se pueden obtener resultados",
+    "message": "Không thể tìm nạp dữ liệu",
     "description": "The title for error screen"
   },
   "theme.SearchModal.errorScreen.helpText": {
-    "message": "Quizás quieras comprobar tu conexión de red.",
+    "message": "Bạn nên kiểm tra lại kết nối mạng của mình.",
     "description": "The help text for error screen"
   },
   "theme.SearchModal.resultsScreen.askAiPlaceholder": {
-    "message": "Preguntar a la IA: ",
+    "message": "Ask AI: ",
     "description": "The placeholder text for Ask AI input"
   },
   "theme.SearchModal.askAiScreen.disclaimerText": {
-    "message": "Las respuestas son generadas por IA y pueden contener errores. Verifique las respuestas.",
+    "message": "Answers are generated with AI which can make mistakes. Verify responses.",
     "description": "The disclaimer text for AI answers"
   },
   "theme.SearchModal.askAiScreen.relatedSourcesText": {
-    "message": "Fuentes relacionadas",
+    "message": "Related sources",
     "description": "The text for related sources"
   },
   "theme.SearchModal.askAiScreen.thinkingText": {
-    "message": "Pensando...",
+    "message": "Thinking...",
     "description": "The text when AI is thinking"
   },
   "theme.SearchModal.askAiScreen.copyButtonText": {
-    "message": "Copiar",
+    "message": "Copy",
     "description": "The text for copy button"
   },
   "theme.SearchModal.askAiScreen.copyButtonCopiedText": {
-    "message": "¡Copiado!",
+    "message": "Copied!",
     "description": "The text for copy button when copied"
   },
   "theme.SearchModal.askAiScreen.copyButtonTitle": {
-    "message": "Copiar",
+    "message": "Copy",
     "description": "The title for copy button"
   },
   "theme.SearchModal.askAiScreen.likeButtonTitle": {
-    "message": "Me gusta",
+    "message": "Like",
     "description": "The title for like button"
   },
   "theme.SearchModal.askAiScreen.dislikeButtonTitle": {
-    "message": "No me gusta",
+    "message": "Dislike",
     "description": "The title for dislike button"
   },
   "theme.SearchModal.askAiScreen.thanksForFeedbackText": {
-    "message": "¡Gracias por tu opinión!",
+    "message": "Thanks for your feedback!",
     "description": "The text for thanks for feedback"
   },
   "theme.SearchModal.askAiScreen.preToolCallText": {
-    "message": "Buscando...",
+    "message": "Searching...",
     "description": "The text before tool call"
   },
   "theme.SearchModal.askAiScreen.duringToolCallText": {
-    "message": "Buscando ",
+    "message": "Searching for ",
     "description": "The text during tool call"
   },
   "theme.SearchModal.askAiScreen.afterToolCallText": {
-    "message": "Se buscó ",
+    "message": "Searched for",
     "description": "The text after tool call"
   },
   "theme.SearchModal.footer.selectText": {
-    "message": "seleccionar",
+    "message": "để chọn",
     "description": "The select text for footer"
   },
   "theme.SearchModal.footer.submitQuestionText": {
-    "message": "Enviar pregunta",
+    "message": "Submit question",
     "description": "The submit question text for footer"
   },
   "theme.SearchModal.footer.selectKeyAriaLabel": {
-    "message": "tecla Enter",
+    "message": "Nhập khóa",
     "description": "The ARIA label for select key in footer"
   },
   "theme.SearchModal.footer.navigateText": {
-    "message": "navegar",
+    "message": "để điều hướng",
     "description": "The navigate text for footer"
   },
   "theme.SearchModal.footer.navigateUpKeyAriaLabel": {
-    "message": "Flecha arriba",
+    "message": "Mũi tên lên",
     "description": "The ARIA label for navigate up key in footer"
   },
   "theme.SearchModal.footer.navigateDownKeyAriaLabel": {
-    "message": "Flecha abajo",
+    "message": "Mũi tên xuống",
     "description": "The ARIA label for navigate down key in footer"
   },
   "theme.SearchModal.footer.closeText": {
-    "message": "cerrar",
+    "message": "để đóng",
     "description": "The close text for footer"
   },
   "theme.SearchModal.footer.closeKeyAriaLabel": {
-    "message": "tecla Escape",
+    "message": "Phím thoát",
     "description": "The ARIA label for close key in footer"
   },
   "theme.SearchModal.footer.searchByText": {
-    "message": "Buscar por",
+    "message": "Tìm kiếm theo",
     "description": "The 'Powered by' text for footer"
   },
   "theme.SearchModal.footer.backToSearchText": {
-    "message": "Volver a la búsqueda",
+    "message": "Back to search",
     "description": "The back to search text for footer"
   },
   "theme.SearchModal.noResultsScreen.noResultsText": {
-    "message": "Sin resultados para",
+    "message": "Không có kết quả dành cho",
     "description": "The text when there are no results"
   },
   "theme.SearchModal.noResultsScreen.suggestedQueryText": {
-    "message": "Intenta buscando por",
+    "message": "Thử tìm kiếm",
     "description": "The text for suggested query"
   },
   "theme.SearchModal.noResultsScreen.reportMissingResultsText": {
-    "message": "Crees que esta consulta debería devolver resultados?",
+    "message": "Tin rằng truy vấn này sẽ trả về kết quả?",
     "description": "The text for reporting missing results"
   },
   "theme.SearchModal.noResultsScreen.reportMissingResultsLinkText": {
-    "message": "Háganos saber.",
+    "message": "Hãy để chúng tôi biết.",
     "description": "The link text for reporting missing results"
   },
   "theme.SearchModal.placeholder": {
-    "message": "Buscar documentos",
+    "message": "Tìm kiếm tài liệu",
     "description": "The placeholder of the input of the DocSearch pop-up modal"
   },
   "theme.blog.post.plurals": {
-    "message": "Una publicación|{count} publicaciones",
+    "message": "{count} bài viết",
     "description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.blog.tagTitle": {
-    "message": "{nPosts} etiquetados con \"{tagName}\"",
+    "message": "{nPosts} được gắn thẻ \"{tagName}\"",
     "description": "The title of the page for a blog tag"
   },
   "theme.blog.author.pageTitle": {
@@ -644,43 +575,43 @@
     "description": "The title of the page for a blog author"
   },
   "theme.blog.authorsList.pageTitle": {
-    "message": "Authors",
+    "message": "Tác giả",
     "description": "The title of the authors page"
   },
   "theme.blog.authorsList.viewAll": {
-    "message": "View All Authors",
+    "message": "Xem tất cả tác giả",
     "description": "The label of the link targeting the blog authors page"
   },
   "theme.blog.author.noPosts": {
-    "message": "This author has not written any posts yet.",
+    "message": "Tác giả này chưa viết bài nào.",
     "description": "The text for authors with 0 blog post"
   },
   "theme.contentVisibility.unlistedBanner.title": {
-    "message": "Página sin clasificar",
+    "message": "Trang không công khai",
     "description": "The unlisted content banner title"
   },
   "theme.contentVisibility.unlistedBanner.message": {
-    "message": "Esta página está sin clasificar. Los motores de búsqueda no la indexaran, y solo los usuarios con el enlace directo podrán acceder a esta.",
+    "message": "Trang này không công khai. Công cụ tìm kiếm sẽ không đánh chỉ mục trang này và chỉ những ai có liên kết mới có thể truy cập trang.",
     "description": "The unlisted content banner message"
   },
   "theme.contentVisibility.draftBanner.title": {
-    "message": "Draft page",
+    "message": "Trang nháp",
     "description": "The draft content banner title"
   },
   "theme.contentVisibility.draftBanner.message": {
-    "message": "This page is a draft. It will only be visible in dev and be excluded from the production build.",
+    "message": "Trang này là bản nháp. Nó chỉ hiển thị trong môi trường phát triển và bị loại khỏi bản sản xuất.",
     "description": "The draft content banner message"
   },
   "theme.ErrorPageContent.tryAgain": {
-    "message": "Intente de nuevo",
+    "message": "Thử lại",
     "description": "The label of the button to try again rendering when the React error boundary captures an error"
   },
   "theme.common.skipToMainContent": {
-    "message": "Saltar al contenido principal",
+    "message": "Chuyển tới nội dung chính",
     "description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
   },
   "theme.tags.tagsPageTitle": {
-    "message": "Etiquetas",
+    "message": "Thẻ",
     "description": "The title of the tag list page"
   }
 }

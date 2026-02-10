@@ -127,7 +127,7 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: 'https://github.com/wuzhe0912/Docusaurus-Blog/tree/master/',
+          editUrl: 'https://github.com/wuzhe0912/blog-docusaurus/tree/master/',
           remarkPlugins: [
             [require('@docusaurus/remark-plugin-npm2yarn'), { sync: true }],
           ],
@@ -142,8 +142,7 @@ module.exports = {
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/blog/',
+          editUrl: 'https://github.com/wuzhe0912/blog-docusaurus/tree/master/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

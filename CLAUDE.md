@@ -74,6 +74,7 @@ Ex.
 
 ## Conventions
 
+- **Commit 訊息禁止加 `Co-Authored-By` 或任何自動署名行**，只留標題訊息
 - CSS 使用 CSS Modules（`.module.css`），善用 Infima CSS 變數（`var(--ifm-*)`）
 - 元件樣式需支援 dark/light mode 和 RWD
 - 內容以繁體中文為預設語言撰寫，技術專有名詞保持英文

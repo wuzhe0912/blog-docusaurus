@@ -13,7 +13,9 @@
       "Bash(git push:*)",
       "Bash(claude:*)",
       "Bash(for:*)",
-      "Bash(bun pm:*)"
+      "Bash(bun pm:*)",
+      "Bash(bun run build:*)",
+      "Bash(bun run docusaurus write-translations:*)"
     ]
   }
 }

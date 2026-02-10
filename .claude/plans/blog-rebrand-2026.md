@@ -31,7 +31,7 @@ Blog 成為主角，舊 docs 降級為 Notes。繁中先寫，10 語系同步。
 
 ### Step 1.3 — 更新 authors.yml
 
-- `blog/authors.yml` title: `Frontend Engineer` → `Software Developer`
+- `blog/authors.yml` title: `Frontend Engineer` → `Software / Product Engineer`
 - **Commit:** `[Chore][blog] Update author title`
 
 ### Step 1.4 — 新增 4 語系

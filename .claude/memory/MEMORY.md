@@ -13,5 +13,5 @@
 
 ## Active Gotchas
 
-- .claude/ 目錄要一起 commit，不然 git status 會一直卡著
+- .claude/ 目錄要一起 commit，不然 git status 會一直卡著。**每次 commit 前都要 `git status` 檢查 .claude/ 有無未 commit 的變更**
 - dev server 新增檔案後可能需要重啟才能解析 CSS modules

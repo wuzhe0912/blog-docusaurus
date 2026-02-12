@@ -7,36 +7,20 @@
     "message": "Pitt Wu's Story Logo",
     "description": "The alt text of navbar logo"
   },
-  "item.label.About": {
-    "message": "About",
-    "description": "Navbar item with label About"
-  },
   "item.label.Blog": {
-    "message": "Blog",
+    "message": "블로그",
     "description": "Navbar item with label Blog"
   },
-  "item.label.Knowledge": {
-    "message": "Knowledge",
-    "description": "Navbar item with label Knowledge"
+  "item.label.Projects": {
+    "message": "프로젝트",
+    "description": "Navbar item with label Projects"
   },
-  "item.label.Experience": {
-    "message": "Experience",
-    "description": "Navbar item with label Experience"
+  "item.label.Notes": {
+    "message": "노트",
+    "description": "Navbar item with label Notes"
   },
-  "item.label.Coding": {
-    "message": "Coding",
-    "description": "Navbar item with label Coding"
-  },
-  "item.label.LeetCode": {
-    "message": "LeetCode",
-    "description": "Navbar item with label LeetCode"
-  },
-  "item.label.AI": {
-    "message": "AI",
-    "description": "Navbar item with label AI"
-  },
-  "item.label.ShowCase": {
-    "message": "ShowCase",
-    "description": "Navbar item with label ShowCase"
+  "item.label.About": {
+    "message": "소개",
+    "description": "Navbar item with label About"
   }
 }

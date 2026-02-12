@@ -8,23 +8,19 @@
     "description": "The alt text of navbar logo"
   },
   "item.label.Blog": {
-    "message": "Blog",
+    "message": "ブログ",
     "description": "Navbar item with label Blog"
   },
-  "item.label.Interview Questions": {
-    "message": "Interview Questions",
-    "description": "Navbar item with label Interview Questions"
+  "item.label.Projects": {
+    "message": "プロジェクト",
+    "description": "Navbar item with label Projects"
   },
-  "item.label.⌨️ Coding": {
-    "message": "⌨️ Coding",
-    "description": "Navbar item with label ⌨️ Coding"
+  "item.label.Notes": {
+    "message": "ノート",
+    "description": "Navbar item with label Notes"
   },
-  "item.label.❓Quiz": {
-    "message": "❓Quiz",
-    "description": "Navbar item with label ❓Quiz"
-  },
-  "item.label.LeetCode": {
-    "message": "LeetCode",
-    "description": "Navbar item with label LeetCode"
+  "item.label.About": {
+    "message": "紹介",
+    "description": "Navbar item with label About"
   }
 }

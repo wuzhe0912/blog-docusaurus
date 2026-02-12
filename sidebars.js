@@ -22,7 +22,7 @@ const AIPromptsList = require('./sidebar/AI/prompts.js');
 const ChatifyList = require('./sidebar/ShowCase/chatify.js');
 
 module.exports = {
-  Knowledge: [
+  Notes: [
     'Knowledge/knowledge',
     {
       type: 'category',
@@ -47,20 +47,36 @@ module.exports = {
     {
       type: 'category',
       label: '🛡️ Web Security',
-      items: [
-        QuizSecurityList,
-        // 未來若有 Knowledge/Web-Security 的深度文章可加在此處
-      ],
+      items: [QuizSecurityList],
     },
     {
       type: 'category',
       label: '🛠️ Engineering & Tools',
       items: [ToolsKnowledgeList],
     },
+    {
+      type: 'category',
+      label: '💼 Experience',
+      items: ['Experience/2025-11-interview-prep', ExperienceList],
+    },
+    {
+      type: 'category',
+      label: '⌨️ Coding',
+      items: ['Coding/coding', LodashFunctionsList, JavaScriptList],
+    },
+    {
+      type: 'category',
+      label: '📊 LeetCode',
+      items: ['LeetCode/leet-code', LeetCodeEasyList],
+    },
+    {
+      type: 'category',
+      label: '🤖 AI',
+      items: ['AI/ai-index', AIPromptsList],
+    },
   ],
-  Experience: ['Experience/2025-11-interview-prep', ExperienceList],
-  Coding: ['Coding/coding', LodashFunctionsList, JavaScriptList],
-  LeetCode: ['LeetCode/leet-code', LeetCodeEasyList],
-  AI: ['AI/ai-index', AIPromptsList],
-  ShowCase: ['ShowCase/showcase', ChatifyList],
+  Projects: [
+    'ShowCase/showcase',
+    ChatifyList,
+  ],
 };

@@ -11,20 +11,16 @@
     "message": "部落格",
     "description": "Navbar item with label Blog"
   },
-  "item.label.Interview Questions": {
-    "message": "面試問題",
-    "description": "Navbar item with label Interview Questions"
+  "item.label.Projects": {
+    "message": "作品集",
+    "description": "Navbar item with label Projects"
   },
-  "item.label.⌨️ Coding": {
-    "message": "⌨️ 程式設計",
-    "description": "Navbar item with label ⌨️ Coding"
+  "item.label.Notes": {
+    "message": "筆記",
+    "description": "Navbar item with label Notes"
   },
-  "item.label.❓Quiz": {
-    "message": "❓ 測驗",
-    "description": "Navbar item with label ❓Quiz"
-  },
-  "item.label.LeetCode": {
-    "message": "LeetCode",
-    "description": "Navbar item with label LeetCode"
+  "item.label.About": {
+    "message": "關於我",
+    "description": "Navbar item with label About"
   }
 }

@@ -1,12 +1,16 @@
 ---
 id: knowledge
-title: 知識庫
+title: 技術筆記
 slug: /knowledge
 ---
 
 > _It's not whether you get knocked down, it's whether you get up._
 >
 > _It's never too late to learn._
+
+這裡收錄了我在前端開發過程中整理的技術筆記與問答。如果你想看更完整的思考脈絡和職涯故事，歡迎到 [Blog](/blog) 逛逛。
+
+---
 
 ## 📚 Domain Overview
 
@@ -33,6 +37,22 @@ React 與 Vue 的框架原理、生命週期、狀態管理與最佳實踐。
 ### 🛠️ Engineering & Tools
 
 前端工程化工具、打包策略以及效能優化 (Performance) 的進階技巧。
+
+### 💼 Experience
+
+面試準備與實戰經驗分享。
+
+### ⌨️ Coding
+
+Lodash 函式手寫實現與 JavaScript 進階練習。
+
+### 📊 LeetCode
+
+演算法題解與思路筆記。
+
+### 🤖 AI
+
+AI Prompts 與工具應用筆記。
 
 ---
 

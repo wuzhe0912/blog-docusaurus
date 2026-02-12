@@ -27,45 +27,21 @@ module.exports = {
         src: 'img/logo.svg',
       },
       items: [
-        { type: 'localeDropdown', position: 'right' },
-        { to: '/about', label: 'About', position: 'right' },
-        { to: '/blog', label: 'Blog', position: 'right' },
-        {
-          type: 'doc',
-          docId: 'Knowledge/knowledge',
-          position: 'left',
-          label: 'Knowledge',
-        },
-        {
-          type: 'doc',
-          docId: 'Experience/2025-11-interview-prep',
-          position: 'left',
-          label: 'Experience',
-        },
-        {
-          type: 'doc',
-          docId: 'Coding/coding',
-          position: 'left',
-          label: 'Coding',
-        },
-        {
-          type: 'doc',
-          docId: 'LeetCode/leet-code',
-          position: 'left',
-          label: 'LeetCode',
-        },
-        {
-          type: 'doc',
-          docId: 'AI/ai-index',
-          position: 'left',
-          label: 'AI',
-        },
+        { to: '/blog', label: 'Blog', position: 'left' },
         {
           type: 'doc',
           docId: 'ShowCase/showcase',
+          label: 'Projects',
           position: 'left',
-          label: 'ShowCase',
         },
+        {
+          type: 'doc',
+          docId: 'Knowledge/knowledge',
+          label: 'Notes',
+          position: 'left',
+        },
+        { to: '/about', label: 'About', position: 'right' },
+        { type: 'localeDropdown', position: 'right' },
       ],
     },
 
@@ -141,8 +117,10 @@ module.exports = {
         },
         blog: {
           showReadingTime: true,
-          // Please change this to your repo.
           editUrl: 'https://github.com/wuzhe0912/blog-docusaurus/tree/master/',
+          blogSidebarCount: 'ALL',
+          blogSidebarTitle: 'All Posts',
+          postsPerPage: 10,
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

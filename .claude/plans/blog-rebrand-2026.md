@@ -1,5 +1,7 @@
 # Blog AI 時代轉型 — 執行計劃
 
+> **Last updated:** 2026-02-12
+
 ## Context
 
 網站從「技術 wiki」轉型為「個人品牌 + 職涯故事」。
@@ -9,126 +11,49 @@ Blog 成為主角，舊 docs 降級為 Notes。繁中先寫，10 語系同步。
 
 ## Phase 1: 技術基礎修復（6 commits）
 
-### Step 1.1 — 刪除 placeholder 頁面
+> **Status:** DONE  |  **Completed:** 2026-02-11
 
-- 刪除 `src/pages/markdown-page.md`
-- 驗證：`bun run build`
-- **Commit:** `[Chore][pages] Remove unused markdown-page placeholder`
+- [x] **Step 1.1** — 刪除 placeholder 頁面（`src/pages/markdown-page.md`）
+- [x] **Step 1.2** — 修正 editUrl（docs + blog 指向正確 repo）
+- [x] **Step 1.3** — 更新 authors.yml（title → Software / Product Engineer）
+- [x] **Step 1.4** — 新增 4 語系（pt-BR, de, fr, vi）到 config + package.json
+- [x] **Step 1.5** — 產生 theme 翻譯檔（7 locale 的 write-translations）
+- [x] **Step 1.6** — Commit .claude/ 設定變更
 
-### Step 1.2 — 修正 editUrl
+### Commits
 
-修改 `docusaurus.config.js`：
-
-- **L130** docs editUrl: `Docusaurus-Blog` → `blog-docusaurus`
-  ```
-  editUrl: 'https://github.com/wuzhe0912/blog-docusaurus/tree/master/',
-  ```
-- **L145-146** blog editUrl: facebook/docusaurus → 自己的 repo
-  ```
-  editUrl: 'https://github.com/wuzhe0912/blog-docusaurus/tree/master/',
-  ```
-- **Commit:** `[Fix][config] Fix editUrl to point to correct repository`
-
-### Step 1.3 — 更新 authors.yml
-
-- `blog/authors.yml` title: `Frontend Engineer` → `Software / Product Engineer`
-- **Commit:** `[Chore][blog] Update author title`
-
-### Step 1.4 — 新增 4 語系
-
-- `docusaurus.config.js` L156:
-  ```js
-  locales: ['zh-tw', 'zh-cn', 'en', 'ja', 'ko', 'es', 'pt-BR', 'de', 'fr', 'vi'],
-  ```
-- `package.json` 新增對應 dev/build scripts：
-  ```
-  "dev:pt-BR", "dev:de", "dev:fr", "dev:vi"
-  "build:pt-BR", "build:de", "build:fr", "build:vi"
-  ```
-- **Commit:** `[Feature][config] Add pt-BR, de, fr, vi locales to i18n config`
-
-### Step 1.5 — 產生 theme 翻譯檔
-
-- 對 7 個 locale 執行 `bun run docusaurus write-translations --locale {locale}`：
-  zh-cn, ko, es, pt-BR, de, fr, vi
-- 產出結構：`i18n/{locale}/docusaurus-theme-classic/` + `i18n/{locale}/code.json`
-- **Commit:** `[Chore][config] Generate theme translation files for all new locales`
-
-### Step 1.6 — Commit .claude/ 變更
-
-- `.claude/settings.local.json`（已修改未 commit）
-- **Commit:** `[Chore][config] Update claude settings`
+| Step | Commit Message |
+|------|---------------|
+| 1.1 | `[Chore][pages] Remove unused markdown-page placeholder` |
+| 1.2 | `[Fix][config] Fix editUrl to point to correct repository` |
+| 1.3 | `[Chore][blog] Update author title` |
+| 1.4 | `[Feature][config] Add pt-BR, de, fr, vi locales to i18n config` |
+| 1.5 | `[Chore][config] Generate theme translation files for all new locales` |
+| 1.6 | `[Chore][config] Update claude settings` |
 
 ---
 
 ## Phase 2: 網站架構重設計（1 commit）
 
-### Step 2.1 — Navbar 重組
+> **Status:** DONE  |  **Completed:** 2026-02-12
 
-`docusaurus.config.js` navbar.items 從 8 項改為 5 項：
+- [x] **Step 2.1** — Navbar 重組（8 項 → 5 項：Blog, Projects, Notes, About, localeDropdown）
+- [x] **Step 2.2** — Sidebar 整併（6 sidebar → 2：Notes + Projects）
+- [x] **Step 2.3** — 更新 Notes 入口頁（標題改「技術筆記」，加引導文字指向 Blog）
+- [x] **Step 2.4** — Blog 設定加強（blogSidebarCount: ALL, postsPerPage: 10）
+- [x] **Step 2.5** — Navbar i18n（全 10 語系 navbar.json 更新為 Blog/Projects/Notes/About）
+- [x] **Step 2.6** — 驗證 `bun run build` 全 10 語系通過（0 errors）
 
-```js
-items: [
-  { to: '/blog', label: 'Blog', position: 'left' },
-  { type: 'doc', docId: 'ShowCase/showcase', label: 'Projects', position: 'left' },
-  { type: 'doc', docId: 'Knowledge/knowledge', label: 'Notes', position: 'left' },
-  { to: '/about', label: 'About', position: 'right' },
-  { type: 'localeDropdown', position: 'right' },
-],
-```
+### 變更檔案
 
-### Step 2.2 — Sidebar 整併
+| 檔案 | 變更內容 |
+|------|---------|
+| `docusaurus.config.js` | navbar.items 8→5, blog 加 sidebar/pagination 設定 |
+| `sidebars.js` | 6 sidebar → Notes + Projects |
+| `docs/Knowledge/knowledge.md` | 標題→技術筆記，新增 Blog 引導 + 4 個新 section 描述 |
+| `i18n/*/navbar.json` (x10) | 移除舊 key，新增 Blog/Projects/Notes/About 翻譯 |
 
-`sidebars.js` 從 6 個 sidebar 合併為 2 個：
-
-```js
-module.exports = {
-  Notes: [
-    'Knowledge/knowledge',
-    { type: 'category', label: '🌐 Browser & Network', items: [...] },
-    { type: 'category', label: '📒 JavaScript Ecosystem', items: [...] },
-    { type: 'category', label: '⚛️ Frontend Frameworks', items: [...] },
-    { type: 'category', label: '🎨 CSS & UI', items: [...] },
-    { type: 'category', label: '🛡️ Web Security', items: [...] },
-    { type: 'category', label: '🛠️ Engineering & Tools', items: [...] },
-    { type: 'category', label: '💼 Experience', items: ['Experience/2025-11-interview-prep', ExperienceList] },
-    { type: 'category', label: '⌨️ Coding', items: ['Coding/coding', LodashFunctionsList, JavaScriptList] },
-    { type: 'category', label: '📊 LeetCode', items: ['LeetCode/leet-code', LeetCodeEasyList] },
-    { type: 'category', label: '🤖 AI', items: ['AI/ai-index', AIPromptsList] },
-  ],
-  Projects: [
-    'ShowCase/showcase',
-    ChatifyList,
-  ],
-};
-```
-
-- sidebar/ 下的模組檔不動
-
-### Step 2.3 — 更新 Notes 入口頁
-
-`docs/Knowledge/knowledge.md`：更新標題為「技術筆記」，加入引導文字指向 Blog。
-
-### Step 2.4 — Blog 設定加強
-
-`docusaurus.config.js` blog 區塊加入：
-
-```js
-blog: {
-  showReadingTime: true,
-  editUrl: '...',
-  blogSidebarCount: 'ALL',
-  blogSidebarTitle: 'All Posts',
-  postsPerPage: 10,
-},
-```
-
-### Step 2.5 — Navbar i18n
-
-更新全 10 語系 `i18n/{locale}/docusaurus-theme-classic/navbar.json`：
-
-- 刪除舊 key（Interview Questions, ⌨️ Coding, ❓Quiz, LeetCode, Knowledge, Experience, AI, ShowCase）
-- 新增 key：Blog, Projects, Notes, About
+### Navbar i18n 對照表
 
 | Key      | zh-tw  | en       | ja           | zh-cn  | ko       | es        | pt-BR    | de        | fr       | vi         |
 | -------- | ------ | -------- | ------------ | ------ | -------- | --------- | -------- | --------- | -------- | ---------- |
@@ -137,14 +62,19 @@ blog: {
 | Notes    | 筆記   | Notes    | ノート       | 笔记   | 노트     | Notas     | Notas    | Notizen   | Notes    | Ghi chú    |
 | About    | 關於我 | About    | 紹介         | 关于我 | 소개     | Acerca de | Sobre    | Über mich | À propos | Giới thiệu |
 
-### Step 2.6 — 驗證
+### Commit
 
-- `bun run build` 全語系無錯誤
-- **Commit:** `[Feature][config] Redesign navbar and sidebar for personal brand positioning`
+`[Feature][config] Redesign navbar and sidebar for personal brand positioning`
 
 ---
 
 ## Phase 3: 內容策略 & 第一篇文章（2-3 commits）
+
+> **Status:** PENDING
+
+- [ ] **Step 3.1** — 建立 `blog/tags.yml`（career, engineering, ai-tools, year-review, side-projects, life）
+- [ ] **Step 3.2** — 第一篇文章 `blog/2026/02-10-why-i-rebuilt-my-blog.md`（**需本人撰寫正文**）
+- [ ] **Step 3.3** — 文章 i18n（翻譯到 9 語系）
 
 ### Step 3.1 — Blog tags
 
@@ -187,6 +117,12 @@ life:
 ---
 
 ## Phase 4: i18n 完善（3 commits）
+
+> **Status:** PENDING
+
+- [ ] **Step 4.1** — Theme 翻譯（code.json + footer.json 全語系補完）
+- [ ] **Step 4.2** — 補翻現有 blog（5 篇 × 缺少的語系）
+- [ ] **Step 4.3** — 清理 i18n 殘留（en/ja 下的舊 docs 翻譯）
 
 ### Step 4.1 — Theme 翻譯
 
@@ -242,6 +178,6 @@ life:
 | 階段    | 新增                                                | 修改                                                                                 | 刪除                       |
 | ------- | --------------------------------------------------- | ------------------------------------------------------------------------------------ | -------------------------- |
 | Phase 1 | ~70 個 i18n 檔（write-translations 產出）           | docusaurus.config.js, blog/authors.yml, package.json, .claude/settings.local.json    | src/pages/markdown-page.md |
-| Phase 2 | ~7 個 navbar.json（新語系）                         | docusaurus.config.js, sidebars.js, docs/Knowledge/knowledge.md, 3 個現有 navbar.json | —                          |
+| Phase 2 | —                                                   | docusaurus.config.js, sidebars.js, docs/Knowledge/knowledge.md, 10 個 navbar.json   | —                          |
 | Phase 3 | blog/tags.yml, 1 篇 blog + 9 個翻譯                 | —                                                                                    | —                          |
 | Phase 4 | ~70 個 code.json/footer.json 翻譯, ~40 個 blog 翻譯 | 補完現有 code.json                                                                   | ~70 個過期 docs 翻譯       |

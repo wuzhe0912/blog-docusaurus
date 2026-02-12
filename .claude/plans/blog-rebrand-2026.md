@@ -11,7 +11,7 @@ Blog 成為主角，舊 docs 降級為 Notes。繁中先寫，10 語系同步。
 
 ## Phase 1: 技術基礎修復（6 commits）
 
-> **Status:** DONE  |  **Completed:** 2026-02-11
+> **Status:** DONE | **Completed:** 2026-02-11
 
 - [x] **Step 1.1** — 刪除 placeholder 頁面（`src/pages/markdown-page.md`）
 - [x] **Step 1.2** — 修正 editUrl（docs + blog 指向正確 repo）
@@ -22,20 +22,20 @@ Blog 成為主角，舊 docs 降級為 Notes。繁中先寫，10 語系同步。
 
 ### Commits
 
-| Step | Commit Message |
-|------|---------------|
-| 1.1 | `[Chore][pages] Remove unused markdown-page placeholder` |
-| 1.2 | `[Fix][config] Fix editUrl to point to correct repository` |
-| 1.3 | `[Chore][blog] Update author title` |
-| 1.4 | `[Feature][config] Add pt-BR, de, fr, vi locales to i18n config` |
-| 1.5 | `[Chore][config] Generate theme translation files for all new locales` |
-| 1.6 | `[Chore][config] Update claude settings` |
+| Step | Commit Message                                                         |
+| ---- | ---------------------------------------------------------------------- |
+| 1.1  | `[Chore][pages] Remove unused markdown-page placeholder`               |
+| 1.2  | `[Fix][config] Fix editUrl to point to correct repository`             |
+| 1.3  | `[Chore][blog] Update author title`                                    |
+| 1.4  | `[Feature][config] Add pt-BR, de, fr, vi locales to i18n config`       |
+| 1.5  | `[Chore][config] Generate theme translation files for all new locales` |
+| 1.6  | `[Chore][config] Update claude settings`                               |
 
 ---
 
 ## Phase 2: 網站架構重設計（1 commit）
 
-> **Status:** DONE  |  **Completed:** 2026-02-12
+> **Status:** DONE | **Completed:** 2026-02-12
 
 - [x] **Step 2.1** — Navbar 重組（8 項 → 5 項：Blog, Projects, Notes, About, localeDropdown）
 - [x] **Step 2.2** — Sidebar 整併（6 sidebar → 2：Notes + Projects）
@@ -46,12 +46,12 @@ Blog 成為主角，舊 docs 降級為 Notes。繁中先寫，10 語系同步。
 
 ### 變更檔案
 
-| 檔案 | 變更內容 |
-|------|---------|
-| `docusaurus.config.js` | navbar.items 8→5, blog 加 sidebar/pagination 設定 |
-| `sidebars.js` | 6 sidebar → Notes + Projects |
+| 檔案                          | 變更內容                                            |
+| ----------------------------- | --------------------------------------------------- |
+| `docusaurus.config.js`        | navbar.items 8→5, blog 加 sidebar/pagination 設定   |
+| `sidebars.js`                 | 6 sidebar → Notes + Projects                        |
 | `docs/Knowledge/knowledge.md` | 標題→技術筆記，新增 Blog 引導 + 4 個新 section 描述 |
-| `i18n/*/navbar.json` (x10) | 移除舊 key，新增 Blog/Projects/Notes/About 翻譯 |
+| `i18n/*/navbar.json` (x10)    | 移除舊 key，新增 Blog/Projects/Notes/About 翻譯     |
 
 ### Navbar i18n 對照表
 
@@ -65,6 +65,80 @@ Blog 成為主角，舊 docs 降級為 Notes。繁中先寫，10 語系同步。
 ### Commit
 
 `[Feature][config] Redesign navbar and sidebar for personal brand positioning`
+
+---
+
+## Phase 2.5: 預設語系切換 en + Vercel 語系偵測（2 commits）
+
+> **Status:** DONE  |  **Completed:** 2026-02-12
+
+- [x] **Step 2.5.1** — 複製 docs/ 和 blog/ 到 zh-tw i18n 目錄（103 docs + 5 blog）
+- [x] **Step 2.5.2** — 修改 defaultLocale → `en`，locales 順序 en 排首位
+- [x] **Step 2.5.3** — 建立 `vercel.json`，啟用 Vercel i18n 瀏覽器語系偵測
+- [x] **Step 2.5.4** — 清理 `i18n/en/.../docs/current/` 舊結構檔案（5 個目錄全刪）
+- [x] **Step 2.5.5** — 驗證 `bun run build` 全 10 語系通過（0 errors）
+
+### 背景
+
+改 `defaultLocale` 為 `en`，讓根路徑 `/` 服務英文內容，提升國際 SEO。
+搭配 Vercel i18n routing 自動偵測 `Accept-Language`，將使用者導向對應語系。
+
+### Step 2.5.1 — 複製 zh-tw 內容
+
+Docusaurus fallback 機制：非預設語系沒有翻譯檔時 fallback 到 `docs/`。
+但未來 `docs/` 會逐步翻成英文，所以 zh-tw 需要 explicit copies 避免跟著變。
+
+```
+docs/* → i18n/zh-tw/docusaurus-plugin-content-docs/current/
+blog/* → i18n/zh-tw/docusaurus-plugin-content-blog/
+```
+
+- 約 103 個 docs + 5 個 blog 檔案
+- 保持完整目錄結構
+
+### Step 2.5.2 — 修改 defaultLocale
+
+`docusaurus.config.js`:
+
+```js
+i18n: {
+  defaultLocale: 'en',
+  locales: ['en', 'zh-tw', 'zh-cn', 'ja', 'ko', 'es', 'pt-BR', 'de', 'fr', 'vi'],
+},
+```
+
+### Step 2.5.3 — 建立 vercel.json
+
+```json
+{
+  "i18n": {
+    "locales": ["en", "zh-tw", "zh-cn", "ja", "ko", "es", "pt-BR", "de", "fr", "vi"],
+    "defaultLocale": "en"
+  }
+}
+```
+
+Vercel 自動讀取 `Accept-Language` header：
+- 繁中瀏覽器 → `/zh-tw/`
+- 日文瀏覽器 → `/ja/`
+- 英文瀏覽器 → `/`（根路徑）
+
+### Step 2.5.4 — 清理舊 en docs 翻譯
+
+`i18n/en/docusaurus-plugin-content-docs/current/` 有 44 個檔案使用舊目錄結構（InterviewQuestions/, Quiz/），不對應現在的 docs 路徑。全部刪除。
+
+### 注意事項
+
+- 切換後，根路徑 `/` 暫時顯示繁中內容（因為 `docs/` source 仍是繁中）
+- 英文內容需後續逐步翻譯替換 `docs/` 中的檔案
+- zh-tw 用戶透過 Vercel 自動導向 `/zh-tw/`，看到 explicit copies，不受影響
+
+### Commits
+
+| Scope | Commit Message |
+|-------|---------------|
+| 2.5.1-2.5.2 | `[Feature][config] Switch defaultLocale to en and copy zh-tw content` |
+| 2.5.3-2.5.5 | `[Feature][config] Add Vercel i18n routing and clean up stale en translations` |
 
 ---
 
@@ -122,7 +196,7 @@ life:
 
 - [ ] **Step 4.1** — Theme 翻譯（code.json + footer.json 全語系補完）
 - [ ] **Step 4.2** — 補翻現有 blog（5 篇 × 缺少的語系）
-- [ ] **Step 4.3** — 清理 i18n 殘留（en/ja 下的舊 docs 翻譯）
+- [ ] **Step 4.3** — 清理 i18n 殘留（ja 下的舊 docs 翻譯；en 舊翻譯已在 Phase 2.5 清理）
 
 ### Step 4.1 — Theme 翻譯
 
@@ -152,10 +226,9 @@ life:
 
 現有過期 docs 翻譯（使用舊目錄結構 InterviewQuestions/, Quiz/ 等）：
 
-- `i18n/en/docusaurus-plugin-content-docs/current/` — ~40 個舊檔案
-- `i18n/ja/docusaurus-plugin-content-docs/current/` — ~30 個舊檔案
-- 這些對應已不存在的 docs 路徑，需清理
-- **Commit:** `[Chore][config] Clean up stale i18n doc translations`
+- `i18n/en/...` — 已在 Phase 2.5.4 清理
+- `i18n/ja/docusaurus-plugin-content-docs/current/` — ~30 個舊檔案，需清理
+- **Commit:** `[Chore][config] Clean up stale ja i18n doc translations`
 
 ---
 
@@ -175,9 +248,10 @@ life:
 
 ## 檔案變更摘要
 
-| 階段    | 新增                                                | 修改                                                                                 | 刪除                       |
-| ------- | --------------------------------------------------- | ------------------------------------------------------------------------------------ | -------------------------- |
-| Phase 1 | ~70 個 i18n 檔（write-translations 產出）           | docusaurus.config.js, blog/authors.yml, package.json, .claude/settings.local.json    | src/pages/markdown-page.md |
-| Phase 2 | —                                                   | docusaurus.config.js, sidebars.js, docs/Knowledge/knowledge.md, 10 個 navbar.json   | —                          |
-| Phase 3 | blog/tags.yml, 1 篇 blog + 9 個翻譯                 | —                                                                                    | —                          |
-| Phase 4 | ~70 個 code.json/footer.json 翻譯, ~40 個 blog 翻譯 | 補完現有 code.json                                                                   | ~70 個過期 docs 翻譯       |
+| 階段      | 新增                                                | 修改                                                                              | 刪除                         |
+| --------- | --------------------------------------------------- | --------------------------------------------------------------------------------- | ---------------------------- |
+| Phase 1   | ~70 個 i18n 檔（write-translations 產出）           | docusaurus.config.js, blog/authors.yml, package.json, .claude/settings.local.json | src/pages/markdown-page.md   |
+| Phase 2   | —                                                   | docusaurus.config.js, sidebars.js, docs/Knowledge/knowledge.md, 10 個 navbar.json | —                            |
+| Phase 2.5 | ~108 個 zh-tw i18n 檔, vercel.json                  | docusaurus.config.js                                                              | ~44 個舊 en docs 翻譯        |
+| Phase 3   | blog/tags.yml, 1 篇 blog + 9 個翻譯                 | —                                                                                 | —                            |
+| Phase 4   | ~70 個 code.json/footer.json 翻譯, ~40 個 blog 翻譯 | 補完現有 code.json                                                                | ~30 個舊 ja docs 翻譯        |

@@ -1,0 +1,6 @@
+{
+  "i18n": {
+    "locales": ["en", "zh-tw", "zh-cn", "ja", "ko", "es", "pt-BR", "de", "fr", "vi"],
+    "defaultLocale": "en"
+  }
+}

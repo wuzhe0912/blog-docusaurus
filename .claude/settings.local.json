@@ -19,7 +19,8 @@
       "Bash(FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch:*)",
       "Bash(git stash:*)",
       "Bash(git filter-branch:*)",
-      "Bash(wc:*)"
+      "Bash(wc:*)",
+      "Bash(rsync:*)"
     ]
   }
 }

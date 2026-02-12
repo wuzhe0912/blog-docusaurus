@@ -1,0 +1,18 @@
+career:
+  label: Career
+  description: Career reflections and transitions
+engineering:
+  label: Engineering
+  description: Technical decisions and architecture
+ai-tools:
+  label: AI & Tools
+  description: AI-augmented development and tooling
+year-review:
+  label: Year Review
+  description: Annual reflections
+side-projects:
+  label: Side Projects
+  description: Personal projects and experiments
+life:
+  label: Life
+  description: Life beyond code

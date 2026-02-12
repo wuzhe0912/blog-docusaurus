@@ -25,7 +25,14 @@
       "Bash(bun outdated:*)",
       "Bash(npx npm-check-updates:*)",
       "Bash(bun audit:*)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(find:*)",
+      "Bash(while read f)",
+      "Bash(do sed -i '' 's/^tags: \\\\[Node\\\\.js\\\\]$/tags: [engineering]/' \"$f\")",
+      "Bash(echo:*)",
+      "Bash(tee:*)",
+      "Bash(do sed -i '' 's/^tags: \\\\[40-Questions, Personal Growth, Year-End Summary\\\\]$/tags: [year-review, life]/' \"$f\")",
+      "Bash(do sed -i '' 's/^tags: \\\\[Personal Growth\\\\]$/tags: [career, life]/' \"$f\")"
     ]
   }
 }

@@ -15,3 +15,6 @@
 
 - .claude/ 目錄要一起 commit，不然 git status 會一直卡著。**每次 commit 前都要 `git status` 檢查 .claude/ 有無未 commit 的變更**
 - dev server 新增檔案後可能需要重啟才能解析 CSS modules
+- 用戶說「建立文件」就是在 repo 裡建檔，不要用 plan mode 或寫到隱藏路徑
+- 先聽完指令再動手，不要自作主張跳步驟
+- Commit 訊息禁止 Co-Authored-By（已寫入 CLAUDE.md）

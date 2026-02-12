@@ -21,7 +21,11 @@
       "Bash(git filter-branch:*)",
       "Bash(wc:*)",
       "Bash(rsync:*)",
-      "Bash(git status:*)"
+      "Bash(git status:*)",
+      "Bash(bun outdated:*)",
+      "Bash(npx npm-check-updates:*)",
+      "Bash(bun audit:*)",
+      "WebSearch"
     ]
   }
 }

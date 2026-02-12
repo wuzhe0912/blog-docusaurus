@@ -41,8 +41,8 @@
     "@docusaurus/remark-plugin-npm2yarn": "^3.9.2",
     "@docusaurus/theme-search-algolia": "^3.9.2",
     "@mdx-js/react": "^3.0.0",
-    "@svgr/webpack": "^5.5.0",
-    "clsx": "^1.1.1",
+    "@svgr/webpack": "^8.1.0",
+    "clsx": "^2.1.1",
     "file-loader": "^6.2.0",
     "prism-react-renderer": "^2.1.0",
     "react": "^18.2.0",
@@ -52,7 +52,7 @@
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^3.9.2",
     "@docusaurus/types": "^3.9.2",
-    "dotenv": "^16.4.5"
+    "dotenv": "^17.2.4"
   },
   "engines": {
     "node": ">=20.0 || >=22.0"

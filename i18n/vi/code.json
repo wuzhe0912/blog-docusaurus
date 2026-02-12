@@ -613,5 +613,74 @@
   "theme.tags.tagsPageTitle": {
     "message": "Thẻ",
     "description": "The title of the tag list page"
+  },
+  "about.expertise.vueNuxt.title": {
+    "message": "Hệ sinh thái Vue / Nuxt"
+  },
+  "about.expertise.vueNuxt.item1": {
+    "message": "Vue 3 Composition API"
+  },
+  "about.expertise.vueNuxt.item2": {
+    "message": "Nuxt SSR / SSG"
+  },
+  "about.expertise.vueNuxt.item3": {
+    "message": "Cơ chế Hydration"
+  },
+  "about.expertise.vueNuxt.item4": {
+    "message": "Quản lý Lifecycle"
+  },
+  "about.expertise.frontend.title": {
+    "message": "Kiến trúc Frontend"
+  },
+  "about.expertise.frontend.item1": {
+    "message": "Thiết kế State Management (Pinia)"
+  },
+  "about.expertise.frontend.item2": {
+    "message": "Mô hình giao tiếp Component"
+  },
+  "about.expertise.frontend.item3": {
+    "message": "Quy hoạch kiến trúc dự án"
+  },
+  "about.expertise.frontend.item4": {
+    "message": "Cấu hình & Tối ưu Bundler"
+  },
+  "about.expertise.performance.title": {
+    "message": "Tối ưu hiệu năng"
+  },
+  "about.expertise.performance.item1": {
+    "message": "Core Web Vitals"
+  },
+  "about.expertise.performance.item2": {
+    "message": "Tối ưu hình ảnh & tài nguyên"
+  },
+  "about.expertise.performance.item3": {
+    "message": "Virtual Scroll"
+  },
+  "about.expertise.performance.item4": {
+    "message": "Web Workers"
+  },
+  "about.expertise.ai.title": {
+    "message": "Quy trình phát triển AI"
+  },
+  "about.expertise.ai.item1": {
+    "message": "Quy trình phát triển tích hợp LLM"
+  },
+  "about.expertise.ai.item2": {
+    "message": "Thực hành kỹ thuật hỗ trợ bởi AI"
+  },
+  "about.expertise.ai.item3": {
+    "message": "Prompt Engineering"
+  },
+  "about.expertise.ai.item4": {
+    "message": "Thiết kế quy trình tự động hóa"
+  },
+  "about.workWithMe.opportunity1": {
+    "message": "Vị trí Software Engineer hoặc Product Engineer làm việc từ xa / hybrid"
+  },
+  "about.workWithMe.opportunity2": {
+    "message": "Hợp tác side project"
+  },
+  "about.workWithMe.opportunity3": {
+    "message": "Chia sẻ và giao lưu trong cộng đồng công nghệ"
   }
 }

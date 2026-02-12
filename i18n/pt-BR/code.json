@@ -613,5 +613,74 @@
   "theme.tags.tagsPageTitle": {
     "message": "Etiquetas",
     "description": "The title of the tag list page"
+  },
+  "about.expertise.vueNuxt.title": {
+    "message": "Ecossistema Vue / Nuxt"
+  },
+  "about.expertise.vueNuxt.item1": {
+    "message": "Vue 3 Composition API"
+  },
+  "about.expertise.vueNuxt.item2": {
+    "message": "Nuxt SSR / SSG"
+  },
+  "about.expertise.vueNuxt.item3": {
+    "message": "Mecanismo de Hydration"
+  },
+  "about.expertise.vueNuxt.item4": {
+    "message": "Gerenciamento de Ciclo de Vida"
+  },
+  "about.expertise.frontend.title": {
+    "message": "Arquitetura Frontend"
+  },
+  "about.expertise.frontend.item1": {
+    "message": "Design de Gerenciamento de Estado (Pinia)"
+  },
+  "about.expertise.frontend.item2": {
+    "message": "Padrões de Comunicação entre Componentes"
+  },
+  "about.expertise.frontend.item3": {
+    "message": "Planejamento de Arquitetura de Projeto"
+  },
+  "about.expertise.frontend.item4": {
+    "message": "Configuração e Otimização de Bundler"
+  },
+  "about.expertise.performance.title": {
+    "message": "Otimização de Performance"
+  },
+  "about.expertise.performance.item1": {
+    "message": "Core Web Vitals"
+  },
+  "about.expertise.performance.item2": {
+    "message": "Otimização de Imagens e Assets"
+  },
+  "about.expertise.performance.item3": {
+    "message": "Virtual Scroll"
+  },
+  "about.expertise.performance.item4": {
+    "message": "Web Workers"
+  },
+  "about.expertise.ai.title": {
+    "message": "Fluxo de Trabalho com IA"
+  },
+  "about.expertise.ai.item1": {
+    "message": "Processo de Desenvolvimento Integrado com LLM"
+  },
+  "about.expertise.ai.item2": {
+    "message": "Práticas de Engenharia Assistida por IA"
+  },
+  "about.expertise.ai.item3": {
+    "message": "Prompt Engineering"
+  },
+  "about.expertise.ai.item4": {
+    "message": "Design de Fluxos de Automação"
+  },
+  "about.workWithMe.opportunity1": {
+    "message": "Vagas remotas / híbridas de Software Engineer ou Product Engineer"
+  },
+  "about.workWithMe.opportunity2": {
+    "message": "Colaborações em side projects"
+  },
+  "about.workWithMe.opportunity3": {
+    "message": "Palestras e networking em comunidades tech"
   }
 }

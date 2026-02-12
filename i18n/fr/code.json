@@ -613,5 +613,74 @@
   "theme.tags.tagsPageTitle": {
     "message": "Tags",
     "description": "The title of the tag list page"
+  },
+  "about.expertise.vueNuxt.title": {
+    "message": "Écosystème Vue / Nuxt"
+  },
+  "about.expertise.vueNuxt.item1": {
+    "message": "Vue 3 Composition API"
+  },
+  "about.expertise.vueNuxt.item2": {
+    "message": "Nuxt SSR / SSG"
+  },
+  "about.expertise.vueNuxt.item3": {
+    "message": "Mécanisme d'Hydration"
+  },
+  "about.expertise.vueNuxt.item4": {
+    "message": "Gestion du Cycle de Vie"
+  },
+  "about.expertise.frontend.title": {
+    "message": "Architecture Frontend"
+  },
+  "about.expertise.frontend.item1": {
+    "message": "Conception de State Management (Pinia)"
+  },
+  "about.expertise.frontend.item2": {
+    "message": "Patterns de Communication entre Composants"
+  },
+  "about.expertise.frontend.item3": {
+    "message": "Planification d'Architecture de Projet"
+  },
+  "about.expertise.frontend.item4": {
+    "message": "Configuration & Optimisation de Bundler"
+  },
+  "about.expertise.performance.title": {
+    "message": "Optimisation des Performances"
+  },
+  "about.expertise.performance.item1": {
+    "message": "Core Web Vitals"
+  },
+  "about.expertise.performance.item2": {
+    "message": "Optimisation d'Images et d'Assets"
+  },
+  "about.expertise.performance.item3": {
+    "message": "Virtual Scroll"
+  },
+  "about.expertise.performance.item4": {
+    "message": "Web Workers"
+  },
+  "about.expertise.ai.title": {
+    "message": "Workflow de Développement IA"
+  },
+  "about.expertise.ai.item1": {
+    "message": "Processus de Développement Intégré LLM"
+  },
+  "about.expertise.ai.item2": {
+    "message": "Pratiques d'Ingénierie Assistée par IA"
+  },
+  "about.expertise.ai.item3": {
+    "message": "Prompt Engineering"
+  },
+  "about.expertise.ai.item4": {
+    "message": "Conception de Workflows d'Automatisation"
+  },
+  "about.workWithMe.opportunity1": {
+    "message": "Postes de Software Engineer ou Product Engineer en remote / hybride"
+  },
+  "about.workWithMe.opportunity2": {
+    "message": "Collaborations sur des side projects"
+  },
+  "about.workWithMe.opportunity3": {
+    "message": "Conférences et échanges dans la communauté tech"
   }
 }

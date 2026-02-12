@@ -613,5 +613,74 @@
   "theme.contentVisibility.draftBanner.message": {
     "message": "This page is a draft. It will only be visible in dev and be excluded from the production build.",
     "description": "The draft content banner message"
+  },
+  "about.expertise.vueNuxt.title": {
+    "message": "Vue / Nuxt Ökosystem"
+  },
+  "about.expertise.vueNuxt.item1": {
+    "message": "Vue 3 Composition API"
+  },
+  "about.expertise.vueNuxt.item2": {
+    "message": "Nuxt SSR / SSG"
+  },
+  "about.expertise.vueNuxt.item3": {
+    "message": "Hydration-Mechanismus"
+  },
+  "about.expertise.vueNuxt.item4": {
+    "message": "Lifecycle-Management"
+  },
+  "about.expertise.frontend.title": {
+    "message": "Frontend-Architektur"
+  },
+  "about.expertise.frontend.item1": {
+    "message": "State Management Design (Pinia)"
+  },
+  "about.expertise.frontend.item2": {
+    "message": "Komponenten-Kommunikationsmuster"
+  },
+  "about.expertise.frontend.item3": {
+    "message": "Projektarchitekturplanung"
+  },
+  "about.expertise.frontend.item4": {
+    "message": "Bundler-Konfiguration & -Optimierung"
+  },
+  "about.expertise.performance.title": {
+    "message": "Performance-Optimierung"
+  },
+  "about.expertise.performance.item1": {
+    "message": "Core Web Vitals"
+  },
+  "about.expertise.performance.item2": {
+    "message": "Bild- & Asset-Optimierung"
+  },
+  "about.expertise.performance.item3": {
+    "message": "Virtual Scroll"
+  },
+  "about.expertise.performance.item4": {
+    "message": "Web Workers"
+  },
+  "about.expertise.ai.title": {
+    "message": "KI-Entwicklungsworkflow"
+  },
+  "about.expertise.ai.item1": {
+    "message": "LLM-integrierter Entwicklungsprozess"
+  },
+  "about.expertise.ai.item2": {
+    "message": "KI-gestützte Engineering-Praktiken"
+  },
+  "about.expertise.ai.item3": {
+    "message": "Prompt Engineering"
+  },
+  "about.expertise.ai.item4": {
+    "message": "Automatisierungs-Workflow-Design"
+  },
+  "about.workWithMe.opportunity1": {
+    "message": "Remote- / Hybrid-Stellen als Software Engineer oder Product Engineer"
+  },
+  "about.workWithMe.opportunity2": {
+    "message": "Zusammenarbeit bei Side Projects"
+  },
+  "about.workWithMe.opportunity3": {
+    "message": "Vorträge und Austausch in Tech-Communities"
   }
 }

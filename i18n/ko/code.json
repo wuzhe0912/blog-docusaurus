@@ -683,6 +683,69 @@
     "message": "태그",
     "description": "The title of the tag list page"
   },
+  "homepage.hero.readBlog": {
+    "message": "블로그 읽기"
+  },
+  "homepage.hero.aboutMe": {
+    "message": "소개"
+  },
+  "homepage.cta.title": {
+    "message": "Open to Opportunities"
+  },
+  "homepage.cta.description": {
+    "message": "현재 원격 근무, 기술 협업, 또는 흥미로운 대화에 열려 있습니다."
+  },
+  "homepage.cta.learnMore": {
+    "message": "더 알아보기"
+  },
+  "homepage.meta.description": {
+    "message": "Software / Product Engineer. Writing about engineering decisions, production lessons, and AI-augmented development."
+  },
+  "homepage.features.fairWorld.title": {
+    "message": "공평한 세상"
+  },
+  "homepage.features.fairWorld.description": {
+    "message": "돈은 돈이 필요 없는 사람에게, 사랑은 사랑이 넘치는 사람에게, 고난은 가장 잘 견디는 사람에게 흘러간다."
+  },
+  "homepage.features.lifeJourney.title": {
+    "message": "인생의 미로"
+  },
+  "homepage.features.lifeJourney.description": {
+    "message": "인생 최고의 즐거움은 머리 없는 파리처럼 마구 돌아다니며, 예상치 못한 전환과 갑작스러운 재난을 축하하는 것이다. 완전히 길을 잃는 것보다 살아있음을 증명하는 더 좋은 방법이 있을까?"
+  },
+  "homepage.features.dreamReality.title": {
+    "message": "꿈과 현실"
+  },
+  "homepage.features.dreamReality.description": {
+    "message": "젊을 때 인생이 이게 전부라고 생각하지 마라. 나이가 들면 지금 상태를 유지하는 것조차 쉽지 않다는 걸 깨닫게 될 테니까."
+  },
+  "homepage.hero.title.1": {
+    "message": "코딩과 스토리텔링"
+  },
+  "homepage.hero.title.2": {
+    "message": "코드로 이야기를 엮다"
+  },
+  "homepage.hero.title.3": {
+    "message": "한 줄의 코드, 한 페이지의 이야기"
+  },
+  "homepage.hero.title.4": {
+    "message": "기술이 이야기를 만드는 곳"
+  },
+  "homepage.hero.title.5": {
+    "message": "키보드로 세상을 만들다"
+  },
+  "homepage.hero.subtitle.1": {
+    "message": "마법으로 마법에 맞서다"
+  },
+  "homepage.hero.subtitle.2": {
+    "message": "코드로 꿈을 현실로"
+  },
+  "homepage.hero.subtitle.3": {
+    "message": "매혹적인 코드, 매력적인 이야기"
+  },
+  "homepage.hero.subtitle.4": {
+    "message": "한 번에 하나씩, 인생을 디버깅"
+  },
   "projects.title": {
     "message": "프로젝트"
   },

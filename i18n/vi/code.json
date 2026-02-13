@@ -683,6 +683,69 @@
   "about.workWithMe.opportunity3": {
     "message": "Chia sẻ và giao lưu trong cộng đồng công nghệ"
   },
+  "homepage.hero.readBlog": {
+    "message": "Đọc Blog"
+  },
+  "homepage.hero.aboutMe": {
+    "message": "Về tôi"
+  },
+  "homepage.cta.title": {
+    "message": "Open to Opportunities"
+  },
+  "homepage.cta.description": {
+    "message": "Tôi hiện đang mở cửa cho công việc từ xa, hợp tác kỹ thuật, hoặc bất kỳ cuộc trò chuyện thú vị nào."
+  },
+  "homepage.cta.learnMore": {
+    "message": "Tìm hiểu thêm"
+  },
+  "homepage.meta.description": {
+    "message": "Software / Product Engineer. Writing about engineering decisions, production lessons, and AI-augmented development."
+  },
+  "homepage.features.fairWorld.title": {
+    "message": "Thế giới công bằng"
+  },
+  "homepage.features.fairWorld.description": {
+    "message": "Tiền chảy về người không thiếu tiền, tình yêu chảy về người không thiếu tình yêu, và khổ đau chảy về người chịu đựng giỏi nhất."
+  },
+  "homepage.features.lifeJourney.title": {
+    "message": "Lạc lối cuộc đời"
+  },
+  "homepage.features.lifeJourney.description": {
+    "message": "Niềm vui lớn nhất trong đời là bay như con ruồi không đầu, ăn mừng những bước ngoặt bất ngờ và tai họa đột ngột. Còn bằng chứng nào tốt hơn cho việc bạn đang sống ngoài việc hoàn toàn lạc lối?"
+  },
+  "homepage.features.dreamReality.title": {
+    "message": "Mơ và Thực"
+  },
+  "homepage.features.dreamReality.description": {
+    "message": "Khi còn trẻ, đừng nghĩ cuộc đời mình chỉ có vậy. Khi lớn tuổi hơn, bạn sẽ nhận ra rằng duy trì được như hiện tại cũng không hề dễ dàng."
+  },
+  "homepage.hero.title.1": {
+    "message": "Lập trình và Kể chuyện"
+  },
+  "homepage.hero.title.2": {
+    "message": "Dệt Code thành Câu chuyện"
+  },
+  "homepage.hero.title.3": {
+    "message": "Mỗi dòng Code, một trang Truyện"
+  },
+  "homepage.hero.title.4": {
+    "message": "Nơi Công nghệ Viết nên Truyền thuyết"
+  },
+  "homepage.hero.title.5": {
+    "message": "Kiến tạo Thế giới qua Phím gõ"
+  },
+  "homepage.hero.subtitle.1": {
+    "message": "Lấy phép thuật trị phép thuật"
+  },
+  "homepage.hero.subtitle.2": {
+    "message": "Biến giấc mơ thành Code"
+  },
+  "homepage.hero.subtitle.3": {
+    "message": "Code mê hoặc, Câu chuyện say đắm"
+  },
+  "homepage.hero.subtitle.4": {
+    "message": "Debug cuộc đời, từng bước một"
+  },
   "projects.title": {
     "message": "Dự án"
   },

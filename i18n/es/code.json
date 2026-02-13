@@ -683,6 +683,69 @@
     "message": "Etiquetas",
     "description": "The title of the tag list page"
   },
+  "homepage.hero.readBlog": {
+    "message": "Leer Blog"
+  },
+  "homepage.hero.aboutMe": {
+    "message": "Sobre Mí"
+  },
+  "homepage.cta.title": {
+    "message": "Open to Opportunities"
+  },
+  "homepage.cta.description": {
+    "message": "Actualmente estoy abierto a trabajo remoto, colaboraciones técnicas o cualquier conversación interesante."
+  },
+  "homepage.cta.learnMore": {
+    "message": "Saber Más"
+  },
+  "homepage.meta.description": {
+    "message": "Software / Product Engineer. Writing about engineering decisions, production lessons, and AI-augmented development."
+  },
+  "homepage.features.fairWorld.title": {
+    "message": "Mundo Justo"
+  },
+  "homepage.features.fairWorld.description": {
+    "message": "El dinero fluye hacia quienes no lo necesitan, el amor hacia quienes ya tienen de sobra, y las dificultades hacia quienes más pueden soportarlas."
+  },
+  "homepage.features.lifeJourney.title": {
+    "message": "Camino de la Vida"
+  },
+  "homepage.features.lifeJourney.description": {
+    "message": "El mayor placer de la vida es ir dando tumbos como una mosca sin cabeza, celebrando los giros inesperados y los desastres repentinos. ¿Qué mejor prueba de estar vivo que estar completamente perdido?"
+  },
+  "homepage.features.dreamReality.title": {
+    "message": "Sueños y Realidad"
+  },
+  "homepage.features.dreamReality.description": {
+    "message": "Cuando eres joven, no pienses que tu vida ya está definida. Cuando seas mayor, descubrirás que incluso mantener este estado se vuelve un desafío."
+  },
+  "homepage.hero.title.1": {
+    "message": "Código y Narrativa"
+  },
+  "homepage.hero.title.2": {
+    "message": "Tejiendo Código en Historias"
+  },
+  "homepage.hero.title.3": {
+    "message": "Líneas de Código, Páginas de Historias"
+  },
+  "homepage.hero.title.4": {
+    "message": "Donde la Tecnología Crea Relatos"
+  },
+  "homepage.hero.title.5": {
+    "message": "Creando Mundos con el Teclado"
+  },
+  "homepage.hero.subtitle.1": {
+    "message": "Combatir la magia con magia"
+  },
+  "homepage.hero.subtitle.2": {
+    "message": "Convirtiendo Sueños en Código"
+  },
+  "homepage.hero.subtitle.3": {
+    "message": "Código Fascinante, Historias Encantadoras"
+  },
+  "homepage.hero.subtitle.4": {
+    "message": "Depurando la Vida, Una Historia a la Vez"
+  },
   "projects.title": {
     "message": "Proyectos"
   },

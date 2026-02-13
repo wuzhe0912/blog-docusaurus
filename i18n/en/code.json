@@ -543,6 +543,33 @@
   "about.meta.description": {
     "message": "About Pitt Wu - Software / Product Engineer."
   },
+  "homepage.hero.title.1": {
+    "message": "Coding and Storytelling"
+  },
+  "homepage.hero.title.2": {
+    "message": "Weaving Code into Stories"
+  },
+  "homepage.hero.title.3": {
+    "message": "Lines of Code, Pages of Stories"
+  },
+  "homepage.hero.title.4": {
+    "message": "Where Technology Crafts Tales"
+  },
+  "homepage.hero.title.5": {
+    "message": "Conjuring Worlds with Keystrokes"
+  },
+  "homepage.hero.subtitle.1": {
+    "message": "Beat magic with magic"
+  },
+  "homepage.hero.subtitle.2": {
+    "message": "Coding Dreams into Reality"
+  },
+  "homepage.hero.subtitle.3": {
+    "message": "Spellbinding Code, Enchanting Stories"
+  },
+  "homepage.hero.subtitle.4": {
+    "message": "Debugging Life, One Story at a Time"
+  },
   "projects.title": {
     "message": "Projects"
   },

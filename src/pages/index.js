@@ -9,18 +9,18 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import Translate, { translate } from '@docusaurus/Translate';
 
 const titles = [
-  'Coding and Storytelling',
-  'Weaving Code into Stories',
-  'Lines of Code, Pages of Stories',
-  'Where Technology Crafts Tales',
-  'Conjuring Worlds with Keystrokes',
+  translate({ id: 'homepage.hero.title.1', message: 'Coding and Storytelling' }),
+  translate({ id: 'homepage.hero.title.2', message: 'Weaving Code into Stories' }),
+  translate({ id: 'homepage.hero.title.3', message: 'Lines of Code, Pages of Stories' }),
+  translate({ id: 'homepage.hero.title.4', message: 'Where Technology Crafts Tales' }),
+  translate({ id: 'homepage.hero.title.5', message: 'Conjuring Worlds with Keystrokes' }),
 ];
 
 const subTitles = [
-  'Beat magic with magic',
-  'Coding Dreams into Reality',
-  'Spellbinding Code, Enchanting Stories',
-  'Debugging Life, One Story at a Time',
+  translate({ id: 'homepage.hero.subtitle.1', message: 'Beat magic with magic' }),
+  translate({ id: 'homepage.hero.subtitle.2', message: 'Coding Dreams into Reality' }),
+  translate({ id: 'homepage.hero.subtitle.3', message: 'Spellbinding Code, Enchanting Stories' }),
+  translate({ id: 'homepage.hero.subtitle.4', message: 'Debugging Life, One Story at a Time' }),
 ];
 
 function getRandomItem(array) {

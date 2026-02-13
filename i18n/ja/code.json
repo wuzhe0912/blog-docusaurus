@@ -543,6 +543,69 @@
   "about.meta.description": {
     "message": "Pitt Wu について - Software / Product Engineer。"
   },
+  "homepage.hero.readBlog": {
+    "message": "ブログを読む"
+  },
+  "homepage.hero.aboutMe": {
+    "message": "私について"
+  },
+  "homepage.cta.title": {
+    "message": "Open to Opportunities"
+  },
+  "homepage.cta.description": {
+    "message": "現在、リモートワーク、技術コラボレーション、あるいは面白い会話に対してオープンです。"
+  },
+  "homepage.cta.learnMore": {
+    "message": "もっと見る"
+  },
+  "homepage.meta.description": {
+    "message": "Software / Product Engineer. Writing about engineering decisions, production lessons, and AI-augmented development."
+  },
+  "homepage.features.fairWorld.title": {
+    "message": "公平な世界"
+  },
+  "homepage.features.fairWorld.description": {
+    "message": "お金はお金に困らない人に、愛は愛に困らない人に、苦労は最も耐えられる人に流れていく。"
+  },
+  "homepage.features.lifeJourney.title": {
+    "message": "人生の迷い道"
+  },
+  "homepage.features.lifeJourney.description": {
+    "message": "人生最大の楽しみは、頭のないハエのように闇雲にぶつかり、予想外の転機と突然の災難を祝うこと。完全に迷子になること以上に、生きている証があるだろうか？"
+  },
+  "homepage.features.dreamReality.title": {
+    "message": "夢と現実"
+  },
+  "homepage.features.dreamReality.description": {
+    "message": "若いうちは、人生がもうこんなものだと思わないでほしい。もっと歳を重ねれば、今の状態を維持するのさえ簡単ではないことに気づくから。"
+  },
+  "homepage.hero.title.1": {
+    "message": "コードとストーリー"
+  },
+  "homepage.hero.title.2": {
+    "message": "コードで物語を紡ぐ"
+  },
+  "homepage.hero.title.3": {
+    "message": "一行のコード、一ページの物語"
+  },
+  "homepage.hero.title.4": {
+    "message": "テクノロジーが物語を紡ぐ場所"
+  },
+  "homepage.hero.title.5": {
+    "message": "キーストロークで世界を創る"
+  },
+  "homepage.hero.subtitle.1": {
+    "message": "魔法には魔法で対抗する"
+  },
+  "homepage.hero.subtitle.2": {
+    "message": "コードで夢を現実に"
+  },
+  "homepage.hero.subtitle.3": {
+    "message": "魅惑のコード、心踊る物語"
+  },
+  "homepage.hero.subtitle.4": {
+    "message": "人生をデバッグ、一つずつ"
+  },
   "projects.title": {
     "message": "プロジェクト"
   },

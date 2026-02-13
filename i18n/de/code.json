@@ -683,6 +683,69 @@
   "about.workWithMe.opportunity3": {
     "message": "Vorträge und Austausch in Tech-Communities"
   },
+  "homepage.hero.readBlog": {
+    "message": "Blog lesen"
+  },
+  "homepage.hero.aboutMe": {
+    "message": "Über mich"
+  },
+  "homepage.cta.title": {
+    "message": "Open to Opportunities"
+  },
+  "homepage.cta.description": {
+    "message": "Ich bin derzeit offen für Remote-Arbeit, technische Zusammenarbeit oder interessante Gespräche."
+  },
+  "homepage.cta.learnMore": {
+    "message": "Mehr erfahren"
+  },
+  "homepage.meta.description": {
+    "message": "Software / Product Engineer. Writing about engineering decisions, production lessons, and AI-augmented development."
+  },
+  "homepage.features.fairWorld.title": {
+    "message": "Gerechte Welt"
+  },
+  "homepage.features.fairWorld.description": {
+    "message": "Geld fließt zu denen, die es nicht brauchen, Liebe zu denen, die genug haben, und Leid zu denen, die am meisten ertragen können."
+  },
+  "homepage.features.lifeJourney.title": {
+    "message": "Lebensreise"
+  },
+  "homepage.features.lifeJourney.description": {
+    "message": "Die größte Freude im Leben ist es, wie eine kopflose Fliege herumzuirren, unerwartete Wendungen und plötzliche Katastrophen zu feiern. Was beweist besser, dass man lebt, als völlig orientierungslos zu sein?"
+  },
+  "homepage.features.dreamReality.title": {
+    "message": "Träume und Realität"
+  },
+  "homepage.features.dreamReality.description": {
+    "message": "Wenn du jung bist, denk nicht, dein Leben sei schon festgelegt. Wenn du älter wirst, wirst du merken, dass es schon schwer genug ist, den jetzigen Zustand zu halten."
+  },
+  "homepage.hero.title.1": {
+    "message": "Code und Geschichten"
+  },
+  "homepage.hero.title.2": {
+    "message": "Code zu Geschichten verweben"
+  },
+  "homepage.hero.title.3": {
+    "message": "Zeilen aus Code, Seiten aus Geschichten"
+  },
+  "homepage.hero.title.4": {
+    "message": "Wo Technologie Geschichten erschafft"
+  },
+  "homepage.hero.title.5": {
+    "message": "Welten erschaffen mit Tastenanschlägen"
+  },
+  "homepage.hero.subtitle.1": {
+    "message": "Magie mit Magie bekämpfen"
+  },
+  "homepage.hero.subtitle.2": {
+    "message": "Träume in Code verwandeln"
+  },
+  "homepage.hero.subtitle.3": {
+    "message": "Fesselnder Code, Bezaubernde Geschichten"
+  },
+  "homepage.hero.subtitle.4": {
+    "message": "Das Leben debuggen, eine Geschichte nach der anderen"
+  },
   "projects.title": {
     "message": "Projekte"
   },

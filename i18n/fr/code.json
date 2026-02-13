@@ -683,6 +683,69 @@
   "about.workWithMe.opportunity3": {
     "message": "Conférences et échanges dans la communauté tech"
   },
+  "homepage.hero.readBlog": {
+    "message": "Lire le Blog"
+  },
+  "homepage.hero.aboutMe": {
+    "message": "À Propos"
+  },
+  "homepage.cta.title": {
+    "message": "Open to Opportunities"
+  },
+  "homepage.cta.description": {
+    "message": "Je suis actuellement ouvert au travail à distance, aux collaborations techniques ou à toute conversation intéressante."
+  },
+  "homepage.cta.learnMore": {
+    "message": "En savoir plus"
+  },
+  "homepage.meta.description": {
+    "message": "Software / Product Engineer. Writing about engineering decisions, production lessons, and AI-augmented development."
+  },
+  "homepage.features.fairWorld.title": {
+    "message": "Monde Juste"
+  },
+  "homepage.features.fairWorld.description": {
+    "message": "L'argent va à ceux qui n'en manquent pas, l'amour à ceux qui en ont déjà, et les épreuves à ceux qui peuvent le plus les endurer."
+  },
+  "homepage.features.lifeJourney.title": {
+    "message": "Voyage de la Vie"
+  },
+  "homepage.features.lifeJourney.description": {
+    "message": "Le plus grand plaisir de la vie est de foncer comme une mouche sans tête, en célébrant les tournants inattendus et les catastrophes soudaines. Quelle meilleure preuve d'être vivant que d'être complètement perdu ?"
+  },
+  "homepage.features.dreamReality.title": {
+    "message": "Rêves et Réalité"
+  },
+  "homepage.features.dreamReality.description": {
+    "message": "Quand tu es jeune, ne pense pas que ta vie est déjà tracée. En vieillissant, tu réaliseras que maintenir cet état est déjà un défi."
+  },
+  "homepage.hero.title.1": {
+    "message": "Code et Récits"
+  },
+  "homepage.hero.title.2": {
+    "message": "Tisser du Code en Histoires"
+  },
+  "homepage.hero.title.3": {
+    "message": "Lignes de Code, Pages d'Histoires"
+  },
+  "homepage.hero.title.4": {
+    "message": "Là où la Technologie Crée des Récits"
+  },
+  "homepage.hero.title.5": {
+    "message": "Créer des Mondes au Clavier"
+  },
+  "homepage.hero.subtitle.1": {
+    "message": "Combattre la magie par la magie"
+  },
+  "homepage.hero.subtitle.2": {
+    "message": "Coder les Rêves en Réalité"
+  },
+  "homepage.hero.subtitle.3": {
+    "message": "Code Envoûtant, Histoires Enchanteresses"
+  },
+  "homepage.hero.subtitle.4": {
+    "message": "Débuguer la Vie, Une Histoire à la Fois"
+  },
   "projects.title": {
     "message": "Projets"
   },

@@ -32,7 +32,18 @@
       "Bash(echo:*)",
       "Bash(tee:*)",
       "Bash(do sed -i '' 's/^tags: \\\\[40-Questions, Personal Growth, Year-End Summary\\\\]$/tags: [year-review, life]/' \"$f\")",
-      "Bash(do sed -i '' 's/^tags: \\\\[Personal Growth\\\\]$/tags: [career, life]/' \"$f\")"
+      "Bash(do sed -i '' 's/^tags: \\\\[Personal Growth\\\\]$/tags: [career, life]/' \"$f\")",
+      "WebFetch(domain:docusaurus.io)",
+      "Bash(gh repo view:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(gh api:*)",
+      "Bash(brew install:*)",
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "mcp__plugin_playwright_playwright__browser_navigate",
+      "mcp__plugin_playwright_playwright__browser_take_screenshot",
+      "mcp__plugin_playwright_playwright__browser_close",
+      "mcp__plugin_playwright_playwright__browser_resize"
     ]
   }
 }

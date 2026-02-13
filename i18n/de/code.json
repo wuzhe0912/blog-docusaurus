@@ -682,5 +682,29 @@
   },
   "about.workWithMe.opportunity3": {
     "message": "Vorträge und Austausch in Tech-Communities"
+  },
+  "projects.title": {
+    "message": "Projekte"
+  },
+  "projects.description": {
+    "message": "Nebenprojekte und Open-Source-Arbeit, die ich gebaut oder beigetragen habe."
+  },
+  "projects.search.placeholder": {
+    "message": "Projekte suchen..."
+  },
+  "projects.filters.count": {
+    "message": "{filtered} von {total} Projekten"
+  },
+  "projects.filters.clearAll": {
+    "message": "Alle löschen"
+  },
+  "projects.card.source": {
+    "message": "Quellcode"
+  },
+  "projects.card.website": {
+    "message": "Webseite"
+  },
+  "projects.noResults": {
+    "message": "Keine Projekte entsprechen Ihren Filtern."
   }
 }

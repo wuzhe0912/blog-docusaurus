@@ -682,5 +682,29 @@
   "theme.tags.tagsPageTitle": {
     "message": "태그",
     "description": "The title of the tag list page"
+  },
+  "projects.title": {
+    "message": "프로젝트"
+  },
+  "projects.description": {
+    "message": "제가 만들거나 기여한 사이드 프로젝트 및 오픈소스 작업물입니다."
+  },
+  "projects.search.placeholder": {
+    "message": "프로젝트 검색..."
+  },
+  "projects.filters.count": {
+    "message": "{filtered} / {total} 프로젝트"
+  },
+  "projects.filters.clearAll": {
+    "message": "모두 지우기"
+  },
+  "projects.card.source": {
+    "message": "소스코드"
+  },
+  "projects.card.website": {
+    "message": "웹사이트"
+  },
+  "projects.noResults": {
+    "message": "필터와 일치하는 프로젝트가 없습니다."
   }
 }

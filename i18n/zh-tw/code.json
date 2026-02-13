@@ -542,5 +542,29 @@
   },
   "about.meta.description": {
     "message": "About Pitt Wu - Software / Product Engineer."
+  },
+  "projects.title": {
+    "message": "作品集"
+  },
+  "projects.description": {
+    "message": "我建造或參與的 Side Project 和開源專案。"
+  },
+  "projects.search.placeholder": {
+    "message": "搜尋專案..."
+  },
+  "projects.filters.count": {
+    "message": "{filtered} / {total} 個專案"
+  },
+  "projects.filters.clearAll": {
+    "message": "清除全部"
+  },
+  "projects.card.source": {
+    "message": "原始碼"
+  },
+  "projects.card.website": {
+    "message": "網站"
+  },
+  "projects.noResults": {
+    "message": "沒有符合篩選條件的專案。"
   }
 }

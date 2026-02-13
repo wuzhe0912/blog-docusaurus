@@ -542,5 +542,29 @@
   },
   "about.meta.description": {
     "message": "Pitt Wu について - Software / Product Engineer。"
+  },
+  "projects.title": {
+    "message": "プロジェクト"
+  },
+  "projects.description": {
+    "message": "私が構築または貢献したサイドプロジェクトやオープンソース作品。"
+  },
+  "projects.search.placeholder": {
+    "message": "プロジェクトを検索..."
+  },
+  "projects.filters.count": {
+    "message": "{filtered} / {total} プロジェクト"
+  },
+  "projects.filters.clearAll": {
+    "message": "すべてクリア"
+  },
+  "projects.card.source": {
+    "message": "ソースコード"
+  },
+  "projects.card.website": {
+    "message": "ウェブサイト"
+  },
+  "projects.noResults": {
+    "message": "フィルターに一致するプロジェクトはありません。"
   }
 }

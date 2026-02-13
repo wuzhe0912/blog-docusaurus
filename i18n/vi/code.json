@@ -682,5 +682,29 @@
   },
   "about.workWithMe.opportunity3": {
     "message": "Chia sẻ và giao lưu trong cộng đồng công nghệ"
+  },
+  "projects.title": {
+    "message": "Dự án"
+  },
+  "projects.description": {
+    "message": "Các dự án cá nhân và mã nguồn mở mà tôi đã xây dựng hoặc đóng góp."
+  },
+  "projects.search.placeholder": {
+    "message": "Tìm kiếm dự án..."
+  },
+  "projects.filters.count": {
+    "message": "{filtered} / {total} dự án"
+  },
+  "projects.filters.clearAll": {
+    "message": "Xóa tất cả"
+  },
+  "projects.card.source": {
+    "message": "Mã nguồn"
+  },
+  "projects.card.website": {
+    "message": "Website"
+  },
+  "projects.noResults": {
+    "message": "Không có dự án nào phù hợp với bộ lọc."
   }
 }

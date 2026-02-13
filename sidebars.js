@@ -18,8 +18,6 @@ const JavaScriptList = require('./sidebar/Coding/javascript.js');
 const LeetCodeEasyList = require('./sidebar/LeetCodeQuestions/leet-code-easy.js');
 // ---AI---
 const AIPromptsList = require('./sidebar/AI/prompts.js');
-// ---ShowCase---
-const ChatifyList = require('./sidebar/ShowCase/chatify.js');
 
 module.exports = {
   Notes: [
@@ -74,9 +72,5 @@ module.exports = {
       label: '🤖 AI',
       items: ['AI/ai-index', AIPromptsList],
     },
-  ],
-  Projects: [
-    'ShowCase/showcase',
-    ChatifyList,
   ],
 };

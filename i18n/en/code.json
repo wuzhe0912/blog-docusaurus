@@ -542,5 +542,29 @@
   },
   "about.meta.description": {
     "message": "About Pitt Wu - Software / Product Engineer."
+  },
+  "projects.title": {
+    "message": "Projects"
+  },
+  "projects.description": {
+    "message": "Side projects and open-source work I've built or contributed to."
+  },
+  "projects.search.placeholder": {
+    "message": "Search projects..."
+  },
+  "projects.filters.count": {
+    "message": "{filtered} of {total} projects"
+  },
+  "projects.filters.clearAll": {
+    "message": "Clear All"
+  },
+  "projects.card.source": {
+    "message": "Source"
+  },
+  "projects.card.website": {
+    "message": "Website"
+  },
+  "projects.noResults": {
+    "message": "No projects match your filters."
   }
 }

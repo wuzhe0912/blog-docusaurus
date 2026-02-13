@@ -682,5 +682,29 @@
   "theme.tags.tagsPageTitle": {
     "message": "Etiquetas",
     "description": "The title of the tag list page"
+  },
+  "projects.title": {
+    "message": "Proyectos"
+  },
+  "projects.description": {
+    "message": "Proyectos personales y trabajo de código abierto que he construido o contribuido."
+  },
+  "projects.search.placeholder": {
+    "message": "Buscar proyectos..."
+  },
+  "projects.filters.count": {
+    "message": "{filtered} de {total} proyectos"
+  },
+  "projects.filters.clearAll": {
+    "message": "Limpiar todo"
+  },
+  "projects.card.source": {
+    "message": "Código fuente"
+  },
+  "projects.card.website": {
+    "message": "Sitio web"
+  },
+  "projects.noResults": {
+    "message": "No hay proyectos que coincidan con los filtros."
   }
 }

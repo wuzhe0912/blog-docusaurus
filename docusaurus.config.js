@@ -28,12 +28,7 @@ module.exports = {
       },
       items: [
         { to: '/blog', label: 'Blog', position: 'left' },
-        {
-          type: 'doc',
-          docId: 'ShowCase/showcase',
-          label: 'Projects',
-          position: 'left',
-        },
+        { to: '/projects', label: 'Projects', position: 'left' },
         {
           type: 'doc',
           docId: 'Knowledge/knowledge',

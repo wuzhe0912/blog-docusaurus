@@ -682,5 +682,29 @@
   "theme.tags.tagsPageTitle": {
     "message": "标签",
     "description": "The title of the tag list page"
+  },
+  "projects.title": {
+    "message": "作品集"
+  },
+  "projects.description": {
+    "message": "我构建或参与的 Side Project 和开源项目。"
+  },
+  "projects.search.placeholder": {
+    "message": "搜索项目..."
+  },
+  "projects.filters.count": {
+    "message": "{filtered} / {total} 个项目"
+  },
+  "projects.filters.clearAll": {
+    "message": "清除全部"
+  },
+  "projects.card.source": {
+    "message": "源代码"
+  },
+  "projects.card.website": {
+    "message": "网站"
+  },
+  "projects.noResults": {
+    "message": "没有符合筛选条件的项目。"
   }
 }

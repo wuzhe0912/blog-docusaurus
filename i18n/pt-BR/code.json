@@ -682,5 +682,29 @@
   },
   "about.workWithMe.opportunity3": {
     "message": "Palestras e networking em comunidades tech"
+  },
+  "projects.title": {
+    "message": "Projetos"
+  },
+  "projects.description": {
+    "message": "Projetos pessoais e trabalhos open-source que construí ou contribuí."
+  },
+  "projects.search.placeholder": {
+    "message": "Buscar projetos..."
+  },
+  "projects.filters.count": {
+    "message": "{filtered} de {total} projetos"
+  },
+  "projects.filters.clearAll": {
+    "message": "Limpar tudo"
+  },
+  "projects.card.source": {
+    "message": "Código fonte"
+  },
+  "projects.card.website": {
+    "message": "Website"
+  },
+  "projects.noResults": {
+    "message": "Nenhum projeto corresponde aos filtros."
   }
 }

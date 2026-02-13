@@ -1,6 +1,6 @@
 # Blog AI 時代轉型 — 執行計劃
 
-> **Last updated:** 2026-02-12
+> **Last updated:** 2026-02-13
 
 ## Context
 
@@ -44,24 +44,6 @@ Blog 成為主角，舊 docs 降級為 Notes。繁中先寫，10 語系同步。
 - [x] **Step 2.5** — Navbar i18n（全 10 語系 navbar.json 更新為 Blog/Projects/Notes/About）
 - [x] **Step 2.6** — 驗證 `bun run build` 全 10 語系通過（0 errors）
 
-### 變更檔案
-
-| 檔案                          | 變更內容                                            |
-| ----------------------------- | --------------------------------------------------- |
-| `docusaurus.config.js`        | navbar.items 8→5, blog 加 sidebar/pagination 設定   |
-| `sidebars.js`                 | 6 sidebar → Notes + Projects                        |
-| `docs/Knowledge/knowledge.md` | 標題→技術筆記，新增 Blog 引導 + 4 個新 section 描述 |
-| `i18n/*/navbar.json` (x10)    | 移除舊 key，新增 Blog/Projects/Notes/About 翻譯     |
-
-### Navbar i18n 對照表
-
-| Key      | zh-tw  | en       | ja           | zh-cn  | ko       | es        | pt-BR    | de        | fr       | vi         |
-| -------- | ------ | -------- | ------------ | ------ | -------- | --------- | -------- | --------- | -------- | ---------- |
-| Blog     | 部落格 | Blog     | ブログ       | 博客   | 블로그   | Blog      | Blog     | Blog      | Blog     | Blog       |
-| Projects | 作品集 | Projects | プロジェクト | 作品集 | 프로젝트 | Proyectos | Projetos | Projekte  | Projets  | Dự án      |
-| Notes    | 筆記   | Notes    | ノート       | 笔记   | 노트     | Notas     | Notas    | Notizen   | Notes    | Ghi chú    |
-| About    | 關於我 | About    | 紹介         | 关于我 | 소개     | Acerca de | Sobre    | Über mich | À propos | Giới thiệu |
-
 ### Commit
 
 `[Feature][config] Redesign navbar and sidebar for personal brand positioning`
@@ -70,7 +52,7 @@ Blog 成為主角，舊 docs 降級為 Notes。繁中先寫，10 語系同步。
 
 ## Phase 2.5: 預設語系切換 en + Vercel 語系偵測（2 commits）
 
-> **Status:** DONE  |  **Completed:** 2026-02-12
+> **Status:** DONE | **Completed:** 2026-02-12
 
 - [x] **Step 2.5.1** — 複製 docs/ 和 blog/ 到 zh-tw i18n 目錄（103 docs + 5 blog）
 - [x] **Step 2.5.2** — 修改 defaultLocale → `en`，locales 順序 en 排首位
@@ -78,106 +60,36 @@ Blog 成為主角，舊 docs 降級為 Notes。繁中先寫，10 語系同步。
 - [x] **Step 2.5.4** — 清理 `i18n/en/.../docs/current/` 舊結構檔案（5 個目錄全刪）
 - [x] **Step 2.5.5** — 驗證 `bun run build` 全 10 語系通過（0 errors）
 
-### 背景
-
-改 `defaultLocale` 為 `en`，讓根路徑 `/` 服務英文內容，提升國際 SEO。
-搭配 Vercel i18n routing 自動偵測 `Accept-Language`，將使用者導向對應語系。
-
-### Step 2.5.1 — 複製 zh-tw 內容
-
-Docusaurus fallback 機制：非預設語系沒有翻譯檔時 fallback 到 `docs/`。
-但未來 `docs/` 會逐步翻成英文，所以 zh-tw 需要 explicit copies 避免跟著變。
-
-```
-docs/* → i18n/zh-tw/docusaurus-plugin-content-docs/current/
-blog/* → i18n/zh-tw/docusaurus-plugin-content-blog/
-```
-
-- 約 103 個 docs + 5 個 blog 檔案
-- 保持完整目錄結構
-
-### Step 2.5.2 — 修改 defaultLocale
-
-`docusaurus.config.js`:
-
-```js
-i18n: {
-  defaultLocale: 'en',
-  locales: ['en', 'zh-tw', 'zh-cn', 'ja', 'ko', 'es', 'pt-BR', 'de', 'fr', 'vi'],
-},
-```
-
-### Step 2.5.3 — 建立 vercel.json
-
-```json
-{
-  "i18n": {
-    "locales": ["en", "zh-tw", "zh-cn", "ja", "ko", "es", "pt-BR", "de", "fr", "vi"],
-    "defaultLocale": "en"
-  }
-}
-```
-
-Vercel 自動讀取 `Accept-Language` header：
-- 繁中瀏覽器 → `/zh-tw/`
-- 日文瀏覽器 → `/ja/`
-- 英文瀏覽器 → `/`（根路徑）
-
-### Step 2.5.4 — 清理舊 en docs 翻譯
-
-`i18n/en/docusaurus-plugin-content-docs/current/` 有 44 個檔案使用舊目錄結構（InterviewQuestions/, Quiz/），不對應現在的 docs 路徑。全部刪除。
-
-### 注意事項
-
-- 切換後，根路徑 `/` 暫時顯示繁中內容（因為 `docs/` source 仍是繁中）
-- 英文內容需後續逐步翻譯替換 `docs/` 中的檔案
-- zh-tw 用戶透過 Vercel 自動導向 `/zh-tw/`，看到 explicit copies，不受影響
-
 ### Commits
 
-| Scope | Commit Message |
-|-------|---------------|
-| 2.5.1-2.5.2 | `[Feature][config] Switch defaultLocale to en and copy zh-tw content` |
-| 2.5.3-2.5.5 | `[Feature][config] Add Vercel i18n routing and clean up stale en translations` |
+| Scope       | Commit Message                                                                    |
+| ----------- | --------------------------------------------------------------------------------- |
+| 2.5.1-2.5.2 | `[Feature][config] Switch defaultLocale to en and copy zh-tw content`             |
+| 2.5.3-2.5.5 | `[Feature][config] Add Vercel i18n routing and clean up stale en translations`    |
+
+### 後續修正
+
+- `vercel.json` 的 `i18n` 屬性不被 Vercel schema 支援，已移除（`[Fix][config] Remove invalid i18n property from vercel.json`）
+- 新增 `.nvmrc` 指定 Node 22，解決 Vercel Node 18 過期問題（`[Chore][config] Add .nvmrc to set Vercel Node.js version to 22`）
 
 ---
 
 ## Phase 3: 內容策略 & 第一篇文章（2-3 commits）
 
-> **Status:** PENDING
+> **Status:** IN PROGRESS | **Completed:** 3.1 done, 3.2-3.3 pending
 
-- [ ] **Step 3.1** — 建立 `blog/tags.yml`（career, engineering, ai-tools, year-review, side-projects, life）
+- [x] **Step 3.1** — 建立 `blog/tags.yml` + 更新現有文章 tags
 - [ ] **Step 3.2** — 第一篇文章 `blog/2026/02-10-why-i-rebuilt-my-blog.md`（**需本人撰寫正文**）
 - [ ] **Step 3.3** — 文章 i18n（翻譯到 9 語系）
 
-### Step 3.1 — Blog tags
+### Step 3.1 — Blog tags（DONE）
 
-建立 `blog/tags.yml`：
+建立 `blog/tags.yml`，定義 6 個結構化 tag：career, engineering, ai-tools, year-review, side-projects, life。
+同步更新 4 篇現有文章 × 10 語系 = 40 個檔案的 tags frontmatter。
 
-```yaml
-career:
-  label: Career
-  description: Career reflections and transitions
-engineering:
-  label: Engineering
-  description: Technical decisions and architecture
-ai-tools:
-  label: AI & Tools
-  description: AI-augmented development and tooling
-year-review:
-  label: Year Review
-  description: Annual reflections
-side-projects:
-  label: Side Projects
-  description: Personal projects and experiments
-life:
-  label: Life
-  description: Life beyond code
-```
+- **Commit:** `[Feature][blog] Add structured blog tags and clean up stale ja docs translations`
 
-- **Commit:** `[Feature][blog] Add structured blog tags`
-
-### Step 3.2 — 第一篇文章（你自己寫）
+### Step 3.2 — 第一篇文章（等你自己寫）
 
 - 我提供 `blog/2026/02-10-why-i-rebuilt-my-blog.md` 的 frontmatter 模板和大綱框架
 - 你填入正文內容
@@ -192,43 +104,30 @@ life:
 
 ## Phase 4: i18n 完善（3 commits）
 
-> **Status:** PENDING
+> **Status:** DONE | **Completed:** 2026-02-13
 
-- [ ] **Step 4.1** — Theme 翻譯（code.json + footer.json 全語系補完）
-- [ ] **Step 4.2** — 補翻現有 blog（5 篇 × 缺少的語系）
-- [ ] **Step 4.3** — 清理 i18n 殘留（ja 下的舊 docs 翻譯；en 舊翻譯已在 Phase 2.5 清理）
+- [x] **Step 4.1** — Theme 翻譯（code.json + footer.json 全語系補完）
+- [x] **Step 4.2** — 補翻現有 blog（4 篇 × 全 10 語系）
+- [x] **Step 4.3** — 清理 i18n 殘留（ja 下 32 個舊 docs 翻譯）
 
-### Step 4.1 — Theme 翻譯
+### Step 4.1 — Theme 翻譯（DONE）
 
-需翻譯的檔案（每個 locale）：
-
-- `code.json`（~90 個自訂 key：首頁 hero/features/CTA + About 頁全部）
-- `docusaurus-theme-classic/navbar.json`（Step 2.5 已處理）
-- `docusaurus-theme-classic/footer.json`
-
-翻譯策略：
-
-- zh-cn：從 zh-tw 繁轉簡
-- ko, es, pt-BR, de, fr, vi：從 en 翻譯
-- en, ja：已有 ~90%，補缺即可
-
+- pt-BR, de, fr, vi 的 `code.json` 各補 23 個 about.expertise.* 和 about.workWithMe.* 翻譯 key
+- ja, zh-cn, ko, es, pt-BR, de, fr, vi 的 `footer.json` 翻譯 "Community" 為各語系
+- zh-cn, ko, es, pt-BR, de, fr, vi 的 `footer.json` 移除不需要的 `copyright` key
 - **Commit:** `[Feature][config] Complete theme translations for all locales`
 
-### Step 4.2 — 補翻現有 blog
+### Step 4.2 — 補翻現有 blog（DONE）
 
-現有 blog（5 篇）：
+- 4 篇 blog × 9 語系 = 36 個翻譯檔案新增/更新
+- 刪除 2 個冗餘的 `i18n/en/` blog 複本
+- 修正 ja 既有翻譯的 frontmatter（old author format → `authors: wuzhe0912`）
+- **Commit:** `[Docs][blog] Add full i18n translations for all blog posts`
 
-- `blog/2024/08-11.md` — 翻譯到 9 語系（全缺）
-- `blog/2023/*.md`（4 篇） — en/ja 已有，補 zh-cn, ko, es, pt-BR, de, fr, vi
-- **Commit:** `[Docs][blog] Add translations for existing blog posts to all locales`
+### Step 4.3 — 清理 i18n 殘留（DONE）
 
-### Step 4.3 — 清理 i18n 殘留
-
-現有過期 docs 翻譯（使用舊目錄結構 InterviewQuestions/, Quiz/ 等）：
-
-- `i18n/en/...` — 已在 Phase 2.5.4 清理
-- `i18n/ja/docusaurus-plugin-content-docs/current/` — ~30 個舊檔案，需清理
-- **Commit:** `[Chore][config] Clean up stale ja i18n doc translations`
+- 刪除 `i18n/ja/docusaurus-plugin-content-docs/current/` 下 32 個過期檔案（Coding/, InterviewQuestions/, LeetCode/, Quiz/）
+- 與 Step 3.1 合併為同一 commit
 
 ---
 
@@ -248,10 +147,10 @@ life:
 
 ## 檔案變更摘要
 
-| 階段      | 新增                                                | 修改                                                                              | 刪除                         |
-| --------- | --------------------------------------------------- | --------------------------------------------------------------------------------- | ---------------------------- |
-| Phase 1   | ~70 個 i18n 檔（write-translations 產出）           | docusaurus.config.js, blog/authors.yml, package.json, .claude/settings.local.json | src/pages/markdown-page.md   |
-| Phase 2   | —                                                   | docusaurus.config.js, sidebars.js, docs/Knowledge/knowledge.md, 10 個 navbar.json | —                            |
-| Phase 2.5 | ~108 個 zh-tw i18n 檔, vercel.json                  | docusaurus.config.js                                                              | ~44 個舊 en docs 翻譯        |
-| Phase 3   | blog/tags.yml, 1 篇 blog + 9 個翻譯                 | —                                                                                 | —                            |
-| Phase 4   | ~70 個 code.json/footer.json 翻譯, ~40 個 blog 翻譯 | 補完現有 code.json                                                                | ~30 個舊 ja docs 翻譯        |
+| 階段      | 新增                                                 | 修改                                                                              | 刪除                          |
+| --------- | ---------------------------------------------------- | --------------------------------------------------------------------------------- | ----------------------------- |
+| Phase 1   | ~70 個 i18n 檔（write-translations 產出）            | docusaurus.config.js, blog/authors.yml, package.json, .claude/settings.local.json | src/pages/markdown-page.md    |
+| Phase 2   | —                                                    | docusaurus.config.js, sidebars.js, docs/Knowledge/knowledge.md, 10 個 navbar.json | —                             |
+| Phase 2.5 | ~108 個 zh-tw i18n 檔, vercel.json, .nvmrc           | docusaurus.config.js, vercel.json                                                 | ~44 個舊 en docs 翻譯         |
+| Phase 3   | blog/tags.yml                                        | 40 個 blog 檔案 tags 更新                                                         | —                             |
+| Phase 4   | 36 個 blog 翻譯檔                                    | 12 個 code.json/footer.json                                                       | 32 個舊 ja docs + 2 個舊 en blog |

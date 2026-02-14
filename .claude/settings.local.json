@@ -46,7 +46,8 @@
       "mcp__plugin_playwright_playwright__browser_resize",
       "Bash(bun update:*)",
       "Bash(node -e:*)",
-      "mcp__plugin_playwright_playwright__browser_evaluate"
+      "mcp__plugin_playwright_playwright__browser_evaluate",
+      "Bash(bun run dev:*)"
     ]
   }
 }

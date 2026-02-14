@@ -16,8 +16,9 @@ const LodashFunctionsList = require('./sidebar/Coding/lodash-functions.js');
 const JavaScriptList = require('./sidebar/Coding/javascript.js');
 // ---LeetCode (演算法題)---
 const LeetCodeEasyList = require('./sidebar/LeetCodeQuestions/leet-code-easy.js');
+
 module.exports = {
-  Notes: [
+  knowledge: [
     'Knowledge/knowledge',
     {
       type: 'category',
@@ -49,16 +50,14 @@ module.exports = {
       label: '🛠️ Engineering & Tools',
       items: [ToolsKnowledgeList],
     },
-    {
-      type: 'category',
-      label: '💼 Experience',
-      items: ['Experience/2025-11-interview-prep', ExperienceList],
-    },
-    {
-      type: 'category',
-      label: '⌨️ Coding',
-      items: ['Coding/coding', LodashFunctionsList, JavaScriptList],
-    },
+  ],
+  experience: [
+    ...ExperienceList.items,
+  ],
+  coding: [
+    'Coding/coding',
+    LodashFunctionsList,
+    JavaScriptList,
     {
       type: 'category',
       label: '📊 LeetCode',

@@ -22,5 +22,17 @@
   "item.label.About": {
     "message": "关于我",
     "description": "Navbar item with label About"
+  },
+  "item.label.Knowledge": {
+    "message": "知识库",
+    "description": "Navbar item with label Knowledge"
+  },
+  "item.label.Experience": {
+    "message": "实战经验",
+    "description": "Navbar item with label Experience"
+  },
+  "item.label.Coding": {
+    "message": "代码实现",
+    "description": "Navbar item with label Coding"
   }
 }

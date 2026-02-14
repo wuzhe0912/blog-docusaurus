@@ -22,5 +22,17 @@
   "item.label.About": {
     "message": "紹介",
     "description": "Navbar item with label About"
+  },
+  "item.label.Knowledge": {
+    "message": "ナレッジ",
+    "description": "Navbar item with label Knowledge"
+  },
+  "item.label.Experience": {
+    "message": "経験",
+    "description": "Navbar item with label Experience"
+  },
+  "item.label.Coding": {
+    "message": "コーディング",
+    "description": "Navbar item with label Coding"
   }
 }

@@ -22,5 +22,17 @@
   "item.label.About": {
     "message": "Giới thiệu",
     "description": "Navbar item with label About"
+  },
+  "item.label.Knowledge": {
+    "message": "Kiến thức",
+    "description": "Navbar item with label Knowledge"
+  },
+  "item.label.Experience": {
+    "message": "Kinh nghiệm",
+    "description": "Navbar item with label Experience"
+  },
+  "item.label.Coding": {
+    "message": "Lập trình",
+    "description": "Navbar item with label Coding"
   }
 }

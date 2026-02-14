@@ -22,5 +22,17 @@
   "item.label.About": {
     "message": "About",
     "description": "Navbar item with label About"
+  },
+  "item.label.Knowledge": {
+    "message": "Knowledge",
+    "description": "Navbar item with label Knowledge"
+  },
+  "item.label.Experience": {
+    "message": "Experience",
+    "description": "Navbar item with label Experience"
+  },
+  "item.label.Coding": {
+    "message": "Coding",
+    "description": "Navbar item with label Coding"
   }
 }

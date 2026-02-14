@@ -30,10 +30,14 @@ module.exports = {
         { to: '/blog', label: 'Blog', position: 'left' },
         { to: '/projects', label: 'Projects', position: 'left' },
         {
-          type: 'doc',
-          docId: 'Knowledge/knowledge',
+          type: 'dropdown',
           label: 'Notes',
           position: 'left',
+          items: [
+            { type: 'doc', docId: 'Knowledge/knowledge', label: 'Knowledge' },
+            { type: 'doc', docId: 'Experience/2025-11-interview-prep', label: 'Experience' },
+            { type: 'doc', docId: 'Coding/coding', label: 'Coding' },
+          ],
         },
         { to: '/about', label: 'About', position: 'right' },
         { type: 'localeDropdown', position: 'right' },

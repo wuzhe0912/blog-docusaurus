@@ -22,5 +22,17 @@
   "item.label.About": {
     "message": "소개",
     "description": "Navbar item with label About"
+  },
+  "item.label.Knowledge": {
+    "message": "지식",
+    "description": "Navbar item with label Knowledge"
+  },
+  "item.label.Experience": {
+    "message": "경험",
+    "description": "Navbar item with label Experience"
+  },
+  "item.label.Coding": {
+    "message": "코딩",
+    "description": "Navbar item with label Coding"
   }
 }

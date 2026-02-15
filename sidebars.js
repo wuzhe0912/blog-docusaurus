@@ -61,7 +61,7 @@ module.exports = {
     {
       type: 'category',
       label: '📊 LeetCode',
-      items: ['LeetCode/leet-code', LeetCodeEasyList],
+      items: [LeetCodeEasyList],
     },
   ],
 };

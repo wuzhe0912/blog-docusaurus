@@ -46,7 +46,7 @@ Ex.
 - `src/pages/` — 自訂頁面（首頁、About）
 - `src/components/` — React 元件
 - `src/css/custom.css` — 全域樣式
-- `docs/` — 技術文件（Knowledge、Experience、Coding、LeetCode、AI、ShowCase）
+- `docs/` — 技術文件（Knowledge、Experience、Coding（含 LeetCode）、AI、ShowCase）
 - `blog/` — 個人部落格文章
 - `sidebar/` — 模組化側邊欄設定
 - `static/img/` — 靜態資源
@@ -73,7 +73,7 @@ Ex.
 - **UI 文字**：所有 UI 介面文字必須使用 `<Translate>` 元件或 `translate()` 函式，並在 `i18n/{locale}/` 下提供對應翻譯
 - **文件/文章**：新增 docs 或 blog 時，必須在 `i18n/{locale}/docusaurus-plugin-content-docs/` 和 `i18n/{locale}/docusaurus-plugin-content-blog/` 下提供翻譯版本
 - **頁面**：自訂頁面（src/pages）中的靜態文字使用 `<Translate>` 包裹
-- **預設語言**：zh-tw 為預設，內容先以繁體中文撰寫，再產出其他語系翻譯
+- **預設語言**：`en` 為 Docusaurus defaultLocale，但內容先以繁體中文撰寫，再產出其他語系翻譯
 - **技術名詞**：技術專有名詞各語系均保持英文原文（如 SSR、Hydration、Bundle）
 
 ## Conventions
@@ -100,4 +100,6 @@ Ex.
 - About 敘事段落暫時移除，履歷內已夠多
 - Navbar 重組：已完成，Notes 改為 dropdown（Knowledge / Experience / Coding 三個入口）
 - Sidebar 重組：已完成，拆成 3 個獨立 sidebar，LeetCode 併入 Coding
+- Sidebar 翻譯：已完成，category label 全 10 語系翻譯 + 清除 206 個歷史殘留 key
 - Theme 翻譯：已補齊全 10 語系的 `code.json`、`current.json`、`footer.json`
+- Blog：layoff-negotiation-playbook 已完成全 10 語系（2025/12/25）

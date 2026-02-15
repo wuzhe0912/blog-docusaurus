@@ -76,7 +76,7 @@
     "description": "The label for category '實作紀錄' in sidebar 'Experience'"
   },
   "sidebar.Experience.category.🏗️ 專案架構": {
-    "message": "🏗️ 專案架構",
+    "message": "🏗️ Arquitetura de Projeto",
     "description": "The label for category '🏗️ 專案架構' in sidebar 'Experience'"
   },
   "sidebar.Experience.category.🌐 SSR & SEO": {
@@ -92,7 +92,7 @@
     "description": "The label for category 'SSR' in sidebar 'Experience'"
   },
   "sidebar.Experience.category.📦 狀態管理": {
-    "message": "📦 狀態管理",
+    "message": "📦 Gerenciamento de Estado",
     "description": "The label for category '📦 狀態管理' in sidebar 'Experience'"
   },
   "sidebar.Experience.category.state-management-vue": {
@@ -216,7 +216,7 @@
     "description": "The label for category 'Performance Optimization' in sidebar 'knowledge'"
   },
   "sidebar.experience.category.🏗️ 專案架構": {
-    "message": "🏗️ 專案架構",
+    "message": "🏗️ Arquitetura de Projeto",
     "description": "The label for category '🏗️ 專案架構' in sidebar 'experience'"
   },
   "sidebar.experience.category.🌐 SSR & SEO": {
@@ -232,7 +232,7 @@
     "description": "The label for category 'SSR' in sidebar 'experience'"
   },
   "sidebar.experience.category.📦 狀態管理": {
-    "message": "📦 狀態管理",
+    "message": "📦 Gerenciamento de Estado",
     "description": "The label for category '📦 狀態管理' in sidebar 'experience'"
   },
   "sidebar.experience.category.state-management-vue": {

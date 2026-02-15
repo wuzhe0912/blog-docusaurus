@@ -168,7 +168,7 @@
     "description": "The label for category 'Performance Optimization' in sidebar 'knowledge'"
   },
   "sidebar.experience.category.🏗️ 專案架構": {
-    "message": "🏗️ 專案架構",
+    "message": "🏗️ プロジェクト設計",
     "description": "The label for category '🏗️ 專案架構' in sidebar 'experience'"
   },
   "sidebar.experience.category.🌐 SSR & SEO": {
@@ -184,7 +184,7 @@
     "description": "The label for category 'SSR' in sidebar 'experience'"
   },
   "sidebar.experience.category.📦 狀態管理": {
-    "message": "📦 狀態管理",
+    "message": "📦 状態管理",
     "description": "The label for category '📦 狀態管理' in sidebar 'experience'"
   },
   "sidebar.experience.category.state-management-vue": {

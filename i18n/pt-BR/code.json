@@ -1,21 +1,21 @@
 {
   "homepage.features.fairWorld.title": {
-    "message": "公平世界"
+    "message": "Mundo Justo"
   },
   "homepage.features.fairWorld.description": {
-    "message": "錢流向了不缺錢的人，愛流向了不缺愛的人，苦流向了最能吃苦的人。"
+    "message": "O dinheiro flui para quem não precisa, o amor para quem já tem de sobra, e as dificuldades para quem mais aguenta."
   },
   "homepage.features.lifeJourney.title": {
-    "message": "人生迷途"
+    "message": "Jornada da Vida"
   },
   "homepage.features.lifeJourney.description": {
-    "message": "人生最大的樂趣就是像無頭蒼蠅一樣亂撞，並慶祝那些意外地轉折與突如其來的災難，還有什麼比徹底迷失方向更能證明你活著呢？"
+    "message": "O maior prazer da vida é andar como uma mosca sem cabeça, celebrando as reviravoltas inesperadas e os desastres repentinos. Que prova melhor de estar vivo do que estar completamente perdido?"
   },
   "homepage.features.dreamReality.title": {
-    "message": "夢想現實"
+    "message": "Sonhos e Realidade"
   },
   "homepage.features.dreamReality.description": {
-    "message": "當你還年輕時，不要覺得自己人生就這樣了，等到你年紀更大一些，就會發現要保持這樣都沒這麼容易。"
+    "message": "Quando você é jovem, não pense que sua vida já está definida. Quando ficar mais velho, vai perceber que até manter esse estado já é um desafio."
   },
   "about.role": {
     "message": "Software / Product Engineer"
@@ -39,19 +39,19 @@
     "message": "About Pitt Wu - Software / Product Engineer."
   },
   "homepage.hero.readBlog": {
-    "message": "閱讀文章"
+    "message": "Ler Blog"
   },
   "homepage.hero.aboutMe": {
-    "message": "關於我"
+    "message": "Sobre Mim"
   },
   "homepage.cta.title": {
     "message": "Open to Opportunities"
   },
   "homepage.cta.description": {
-    "message": "我目前對遠端工作、技術合作、或任何有趣的對話保持開放。"
+    "message": "Atualmente estou aberto a trabalho remoto, colaborações técnicas ou qualquer conversa interessante."
   },
   "homepage.cta.learnMore": {
-    "message": "了解更多"
+    "message": "Saiba Mais"
   },
   "homepage.meta.description": {
     "message": "Software / Product Engineer. Writing about engineering decisions, production lessons, and AI-augmented development."
@@ -682,42 +682,6 @@
   },
   "about.workWithMe.opportunity3": {
     "message": "Palestras e networking em comunidades tech"
-  },
-  "homepage.hero.readBlog": {
-    "message": "Ler Blog"
-  },
-  "homepage.hero.aboutMe": {
-    "message": "Sobre Mim"
-  },
-  "homepage.cta.title": {
-    "message": "Open to Opportunities"
-  },
-  "homepage.cta.description": {
-    "message": "Atualmente estou aberto a trabalho remoto, colaborações técnicas ou qualquer conversa interessante."
-  },
-  "homepage.cta.learnMore": {
-    "message": "Saiba Mais"
-  },
-  "homepage.meta.description": {
-    "message": "Software / Product Engineer. Writing about engineering decisions, production lessons, and AI-augmented development."
-  },
-  "homepage.features.fairWorld.title": {
-    "message": "Mundo Justo"
-  },
-  "homepage.features.fairWorld.description": {
-    "message": "O dinheiro flui para quem não precisa, o amor para quem já tem de sobra, e as dificuldades para quem mais aguenta."
-  },
-  "homepage.features.lifeJourney.title": {
-    "message": "Jornada da Vida"
-  },
-  "homepage.features.lifeJourney.description": {
-    "message": "O maior prazer da vida é andar como uma mosca sem cabeça, celebrando as reviravoltas inesperadas e os desastres repentinos. Que prova melhor de estar vivo do que estar completamente perdido?"
-  },
-  "homepage.features.dreamReality.title": {
-    "message": "Sonhos e Realidade"
-  },
-  "homepage.features.dreamReality.description": {
-    "message": "Quando você é jovem, não pense que sua vida já está definida. Quando ficar mais velho, vai perceber que até manter esse estado já é um desafio."
   },
   "homepage.hero.title.1": {
     "message": "Código e Histórias"

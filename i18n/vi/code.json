@@ -1,21 +1,21 @@
 {
   "homepage.features.fairWorld.title": {
-    "message": "公平世界"
+    "message": "Thế giới công bằng"
   },
   "homepage.features.fairWorld.description": {
-    "message": "錢流向了不缺錢的人，愛流向了不缺愛的人，苦流向了最能吃苦的人。"
+    "message": "Tiền chảy về người không thiếu tiền, tình yêu chảy về người không thiếu tình yêu, và khổ đau chảy về người chịu đựng giỏi nhất."
   },
   "homepage.features.lifeJourney.title": {
-    "message": "人生迷途"
+    "message": "Lạc lối cuộc đời"
   },
   "homepage.features.lifeJourney.description": {
-    "message": "人生最大的樂趣就是像無頭蒼蠅一樣亂撞，並慶祝那些意外地轉折與突如其來的災難，還有什麼比徹底迷失方向更能證明你活著呢？"
+    "message": "Niềm vui lớn nhất trong đời là bay như con ruồi không đầu, ăn mừng những bước ngoặt bất ngờ và tai họa đột ngột. Còn bằng chứng nào tốt hơn cho việc bạn đang sống ngoài việc hoàn toàn lạc lối?"
   },
   "homepage.features.dreamReality.title": {
-    "message": "夢想現實"
+    "message": "Mơ và Thực"
   },
   "homepage.features.dreamReality.description": {
-    "message": "當你還年輕時，不要覺得自己人生就這樣了，等到你年紀更大一些，就會發現要保持這樣都沒這麼容易。"
+    "message": "Khi còn trẻ, đừng nghĩ cuộc đời mình chỉ có vậy. Khi lớn tuổi hơn, bạn sẽ nhận ra rằng duy trì được như hiện tại cũng không hề dễ dàng."
   },
   "about.role": {
     "message": "Software / Product Engineer"
@@ -39,19 +39,19 @@
     "message": "About Pitt Wu - Software / Product Engineer."
   },
   "homepage.hero.readBlog": {
-    "message": "閱讀文章"
+    "message": "Đọc Blog"
   },
   "homepage.hero.aboutMe": {
-    "message": "關於我"
+    "message": "Về tôi"
   },
   "homepage.cta.title": {
     "message": "Open to Opportunities"
   },
   "homepage.cta.description": {
-    "message": "我目前對遠端工作、技術合作、或任何有趣的對話保持開放。"
+    "message": "Tôi hiện đang mở cửa cho công việc từ xa, hợp tác kỹ thuật, hoặc bất kỳ cuộc trò chuyện thú vị nào."
   },
   "homepage.cta.learnMore": {
-    "message": "了解更多"
+    "message": "Tìm hiểu thêm"
   },
   "homepage.meta.description": {
     "message": "Software / Product Engineer. Writing about engineering decisions, production lessons, and AI-augmented development."
@@ -682,42 +682,6 @@
   },
   "about.workWithMe.opportunity3": {
     "message": "Chia sẻ và giao lưu trong cộng đồng công nghệ"
-  },
-  "homepage.hero.readBlog": {
-    "message": "Đọc Blog"
-  },
-  "homepage.hero.aboutMe": {
-    "message": "Về tôi"
-  },
-  "homepage.cta.title": {
-    "message": "Open to Opportunities"
-  },
-  "homepage.cta.description": {
-    "message": "Tôi hiện đang mở cửa cho công việc từ xa, hợp tác kỹ thuật, hoặc bất kỳ cuộc trò chuyện thú vị nào."
-  },
-  "homepage.cta.learnMore": {
-    "message": "Tìm hiểu thêm"
-  },
-  "homepage.meta.description": {
-    "message": "Software / Product Engineer. Writing about engineering decisions, production lessons, and AI-augmented development."
-  },
-  "homepage.features.fairWorld.title": {
-    "message": "Thế giới công bằng"
-  },
-  "homepage.features.fairWorld.description": {
-    "message": "Tiền chảy về người không thiếu tiền, tình yêu chảy về người không thiếu tình yêu, và khổ đau chảy về người chịu đựng giỏi nhất."
-  },
-  "homepage.features.lifeJourney.title": {
-    "message": "Lạc lối cuộc đời"
-  },
-  "homepage.features.lifeJourney.description": {
-    "message": "Niềm vui lớn nhất trong đời là bay như con ruồi không đầu, ăn mừng những bước ngoặt bất ngờ và tai họa đột ngột. Còn bằng chứng nào tốt hơn cho việc bạn đang sống ngoài việc hoàn toàn lạc lối?"
-  },
-  "homepage.features.dreamReality.title": {
-    "message": "Mơ và Thực"
-  },
-  "homepage.features.dreamReality.description": {
-    "message": "Khi còn trẻ, đừng nghĩ cuộc đời mình chỉ có vậy. Khi lớn tuổi hơn, bạn sẽ nhận ra rằng duy trì được như hiện tại cũng không hề dễ dàng."
   },
   "homepage.hero.title.1": {
     "message": "Lập trình và Kể chuyện"

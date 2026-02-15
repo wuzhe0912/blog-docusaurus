@@ -683,42 +683,6 @@
     "message": "标签",
     "description": "The title of the tag list page"
   },
-  "homepage.hero.readBlog": {
-    "message": "阅读文章"
-  },
-  "homepage.hero.aboutMe": {
-    "message": "关于我"
-  },
-  "homepage.cta.title": {
-    "message": "Open to Opportunities"
-  },
-  "homepage.cta.description": {
-    "message": "我目前对远程工作、技术合作、或任何有趣的对话保持开放。"
-  },
-  "homepage.cta.learnMore": {
-    "message": "了解更多"
-  },
-  "homepage.meta.description": {
-    "message": "Software / Product Engineer. Writing about engineering decisions, production lessons, and AI-augmented development."
-  },
-  "homepage.features.fairWorld.title": {
-    "message": "公平世界"
-  },
-  "homepage.features.fairWorld.description": {
-    "message": "钱流向了不缺钱的人，爱流向了不缺爱的人，苦流向了最能吃苦的人。"
-  },
-  "homepage.features.lifeJourney.title": {
-    "message": "人生迷途"
-  },
-  "homepage.features.lifeJourney.description": {
-    "message": "人生最大的乐趣就是像无头苍蝇一样乱撞，并庆祝那些意外的转折与突如其来的灾难，还有什么比彻底迷失方向更能证明你活着呢？"
-  },
-  "homepage.features.dreamReality.title": {
-    "message": "梦想现实"
-  },
-  "homepage.features.dreamReality.description": {
-    "message": "当你还年轻时，不要觉得自己人生就这样了，等到你年纪更大一些，就会发现要保持这样都没这么容易。"
-  },
   "homepage.hero.title.1": {
     "message": "代码与故事"
   },

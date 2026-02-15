@@ -51,7 +51,11 @@
       "Bash(gh auth status:*)",
       "Bash(head:*)",
       "Bash(git check-ignore:*)",
-      "Bash(git config:*)"
+      "Bash(git config:*)",
+      "Bash(lsof:*)",
+      "Bash(git diff:*)",
+      "Bash(do)",
+      "Bash(f=\"/Users/pitt.wu/Documents/personal/blog-docusaurus/i18n/$locale/docusaurus-theme-classic/footer.json\")"
     ]
   }
 }

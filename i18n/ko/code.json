@@ -15,25 +15,25 @@
     "message": "더 알아보기"
   },
   "homepage.meta.description": {
-    "message": "Software / Product Engineer. 엔지니어링 의사결정, 프로덕션 교훈, AI 활용 개발에 대해 글을 씁니다."
+    "message": "Software / Product Engineer. Writing about engineering decisions, production lessons, and AI-augmented development."
   },
   "homepage.features.fairWorld.title": {
     "message": "공평한 세상"
   },
   "homepage.features.fairWorld.description": {
-    "message": "돈은 돈이 필요 없는 사람에게 흘러가고, 사랑은 사랑이 넘치는 사람에게 흘러가고, 고생은 가장 잘 견디는 사람에게 흘러간다."
+    "message": "돈은 돈이 필요 없는 사람에게, 사랑은 사랑이 넘치는 사람에게, 고난은 가장 잘 견디는 사람에게 흘러간다."
   },
   "homepage.features.lifeJourney.title": {
     "message": "인생의 미로"
   },
   "homepage.features.lifeJourney.description": {
-    "message": "인생 최고의 즐거움은 머리 없는 파리처럼 이리저리 부딪히며, 예상치 못한 전환과 갑작스러운 재난을 축하하는 것이다. 완전히 길을 잃는 것보다 더 확실하게 살아있음을 증명하는 것이 있을까?"
+    "message": "인생 최고의 즐거움은 머리 없는 파리처럼 마구 돌아다니며, 예상치 못한 전환과 갑작스러운 재난을 축하하는 것이다. 완전히 길을 잃는 것보다 살아있음을 증명하는 더 좋은 방법이 있을까?"
   },
   "homepage.features.dreamReality.title": {
     "message": "꿈과 현실"
   },
   "homepage.features.dreamReality.description": {
-    "message": "젊을 때는 인생이 이게 다라고 생각하지 마라. 나이가 더 들면, 이 상태를 유지하는 것조차 쉽지 않다는 걸 알게 될 테니까."
+    "message": "젊을 때 인생이 이게 전부라고 생각하지 마라. 나이가 들면 지금 상태를 유지하는 것조차 쉽지 않다는 걸 깨닫게 될 테니까."
   },
   "about.role": {
     "message": "Software / Product Engineer"
@@ -682,42 +682,6 @@
   "theme.tags.tagsPageTitle": {
     "message": "태그",
     "description": "The title of the tag list page"
-  },
-  "homepage.hero.readBlog": {
-    "message": "블로그 읽기"
-  },
-  "homepage.hero.aboutMe": {
-    "message": "소개"
-  },
-  "homepage.cta.title": {
-    "message": "Open to Opportunities"
-  },
-  "homepage.cta.description": {
-    "message": "현재 원격 근무, 기술 협업, 또는 흥미로운 대화에 열려 있습니다."
-  },
-  "homepage.cta.learnMore": {
-    "message": "더 알아보기"
-  },
-  "homepage.meta.description": {
-    "message": "Software / Product Engineer. Writing about engineering decisions, production lessons, and AI-augmented development."
-  },
-  "homepage.features.fairWorld.title": {
-    "message": "공평한 세상"
-  },
-  "homepage.features.fairWorld.description": {
-    "message": "돈은 돈이 필요 없는 사람에게, 사랑은 사랑이 넘치는 사람에게, 고난은 가장 잘 견디는 사람에게 흘러간다."
-  },
-  "homepage.features.lifeJourney.title": {
-    "message": "인생의 미로"
-  },
-  "homepage.features.lifeJourney.description": {
-    "message": "인생 최고의 즐거움은 머리 없는 파리처럼 마구 돌아다니며, 예상치 못한 전환과 갑작스러운 재난을 축하하는 것이다. 완전히 길을 잃는 것보다 살아있음을 증명하는 더 좋은 방법이 있을까?"
-  },
-  "homepage.features.dreamReality.title": {
-    "message": "꿈과 현실"
-  },
-  "homepage.features.dreamReality.description": {
-    "message": "젊을 때 인생이 이게 전부라고 생각하지 마라. 나이가 들면 지금 상태를 유지하는 것조차 쉽지 않다는 걸 깨닫게 될 테니까."
   },
   "homepage.hero.title.1": {
     "message": "코딩과 스토리텔링"

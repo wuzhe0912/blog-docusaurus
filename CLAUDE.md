@@ -36,7 +36,7 @@ Ex.
 ## Tech Stack
 
 - Docusaurus 3.9.2 + React 18 + MDX
-- 預設語言：繁體中文（zh-tw）
+- 預設語言：English（en），內容先以繁體中文撰寫
 - 預設主題：Dark mode
 - 部署：Vercel
 - 搜尋：Algolia
@@ -53,16 +53,20 @@ Ex.
 
 ## i18n（國際化）
 
-支援 6 個語系，所有新增內容和 UI 都必須完整支援全語系：
+支援 10 個語系，所有新增內容和 UI 都必須完整支援全語系：
 
 | Locale  | 語言             |
 | ------- | ---------------- |
-| `zh-tw` | 繁體中文（預設） |
+| `en`    | English（預設）  |
+| `zh-tw` | 繁體中文         |
 | `zh-cn` | 簡體中文         |
-| `en`    | English          |
 | `ja`    | 日本語           |
 | `ko`    | 한국어           |
 | `es`    | Español          |
+| `pt-BR` | Português        |
+| `de`    | Deutsch          |
+| `fr`    | Français         |
+| `vi`    | Tiếng Việt       |
 
 ### 規則
 
@@ -94,5 +98,6 @@ Ex.
 - About：ProfileHeader + Expertise + WorkWithMe，已完成 i18n
 - Pillars 區塊暫時移除，等內容方向確定後加回
 - About 敘事段落暫時移除，履歷內已夠多
-- 新語系（zh-cn, ko, es）缺 theme 翻譯，需跑 `docusaurus write-translations`
-- Navbar 重組、docs 內容重組尚未開始
+- Navbar 重組：已完成，Notes 改為 dropdown（Knowledge / Experience / Coding 三個入口）
+- Sidebar 重組：已完成，拆成 3 個獨立 sidebar，LeetCode 併入 Coding
+- Theme 翻譯：已補齊全 10 語系的 `code.json`、`current.json`、`footer.json`

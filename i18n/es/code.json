@@ -1,9 +1,9 @@
 {
   "homepage.hero.readBlog": {
-    "message": "Leer el blog"
+    "message": "Leer Blog"
   },
   "homepage.hero.aboutMe": {
-    "message": "Sobre mí"
+    "message": "Sobre Mí"
   },
   "homepage.cta.title": {
     "message": "Open to Opportunities"
@@ -12,28 +12,28 @@
     "message": "Actualmente estoy abierto a trabajo remoto, colaboraciones técnicas o cualquier conversación interesante."
   },
   "homepage.cta.learnMore": {
-    "message": "Saber más"
+    "message": "Saber Más"
   },
   "homepage.meta.description": {
-    "message": "Software / Product Engineer. Escribo sobre decisiones de ingeniería, lecciones en producción y desarrollo potenciado por IA."
+    "message": "Software / Product Engineer. Writing about engineering decisions, production lessons, and AI-augmented development."
   },
   "homepage.features.fairWorld.title": {
-    "message": "Mundo justo"
+    "message": "Mundo Justo"
   },
   "homepage.features.fairWorld.description": {
-    "message": "El dinero fluye hacia quienes no lo necesitan, el amor hacia quienes les sobra, y el sufrimiento hacia quienes más lo aguantan."
+    "message": "El dinero fluye hacia quienes no lo necesitan, el amor hacia quienes ya tienen de sobra, y las dificultades hacia quienes más pueden soportarlas."
   },
   "homepage.features.lifeJourney.title": {
-    "message": "Perdidos en la vida"
+    "message": "Camino de la Vida"
   },
   "homepage.features.lifeJourney.description": {
-    "message": "El mayor placer de la vida es ir dando tumbos como una mosca sin cabeza, celebrando los giros inesperados y las catástrofes repentinas. Al fin y al cabo, ¿qué mejor prueba de estar vivo que estar completamente perdido?"
+    "message": "El mayor placer de la vida es ir dando tumbos como una mosca sin cabeza, celebrando los giros inesperados y los desastres repentinos. ¿Qué mejor prueba de estar vivo que estar completamente perdido?"
   },
   "homepage.features.dreamReality.title": {
-    "message": "Sueños y realidad"
+    "message": "Sueños y Realidad"
   },
   "homepage.features.dreamReality.description": {
-    "message": "Cuando eres joven, no pienses que tu vida ya está decidida. Cuando seas mayor, descubrirás que ni siquiera mantener lo que tienes es tan fácil."
+    "message": "Cuando eres joven, no pienses que tu vida ya está definida. Cuando seas mayor, descubrirás que incluso mantener este estado se vuelve un desafío."
   },
   "about.role": {
     "message": "Software / Product Engineer"
@@ -682,42 +682,6 @@
   "theme.tags.tagsPageTitle": {
     "message": "Etiquetas",
     "description": "The title of the tag list page"
-  },
-  "homepage.hero.readBlog": {
-    "message": "Leer Blog"
-  },
-  "homepage.hero.aboutMe": {
-    "message": "Sobre Mí"
-  },
-  "homepage.cta.title": {
-    "message": "Open to Opportunities"
-  },
-  "homepage.cta.description": {
-    "message": "Actualmente estoy abierto a trabajo remoto, colaboraciones técnicas o cualquier conversación interesante."
-  },
-  "homepage.cta.learnMore": {
-    "message": "Saber Más"
-  },
-  "homepage.meta.description": {
-    "message": "Software / Product Engineer. Writing about engineering decisions, production lessons, and AI-augmented development."
-  },
-  "homepage.features.fairWorld.title": {
-    "message": "Mundo Justo"
-  },
-  "homepage.features.fairWorld.description": {
-    "message": "El dinero fluye hacia quienes no lo necesitan, el amor hacia quienes ya tienen de sobra, y las dificultades hacia quienes más pueden soportarlas."
-  },
-  "homepage.features.lifeJourney.title": {
-    "message": "Camino de la Vida"
-  },
-  "homepage.features.lifeJourney.description": {
-    "message": "El mayor placer de la vida es ir dando tumbos como una mosca sin cabeza, celebrando los giros inesperados y los desastres repentinos. ¿Qué mejor prueba de estar vivo que estar completamente perdido?"
-  },
-  "homepage.features.dreamReality.title": {
-    "message": "Sueños y Realidad"
-  },
-  "homepage.features.dreamReality.description": {
-    "message": "Cuando eres joven, no pienses que tu vida ya está definida. Cuando seas mayor, descubrirás que incluso mantener este estado se vuelve un desafío."
   },
   "homepage.hero.title.1": {
     "message": "Código y Narrativa"

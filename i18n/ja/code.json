@@ -53,7 +53,7 @@
   },
   "theme.colorToggle.ariaLabel": {
     "message": "ダークモードを切り替える(現在は{mode})",
-    "description": "The ARIA label for the navbar color mode toggle"
+    "description": "The ARIA label for the color mode toggle"
   },
   "theme.colorToggle.ariaLabel.mode.dark": {
     "message": "ダークモード",
@@ -291,7 +291,7 @@
   },
   "theme.SearchPage.algoliaLabel": {
     "message": "Algoliaで検索",
-    "description": "The ARIA label for Algolia mention"
+    "description": "The description label for Algolia mention"
   },
   "theme.SearchPage.noResultsText": {
     "message": "検索結果が見つかりませんでした",
@@ -319,15 +319,15 @@
   },
   "theme.SearchModal.startScreen.noRecentSearchesText": {
     "message": "最近の検索履歴はありません",
-    "description": "The text when no recent searches"
+    "description": "The text when there are no recent searches"
   },
   "theme.SearchModal.startScreen.saveRecentSearchButtonTitle": {
     "message": "この検索をお気に入りに追加",
-    "description": "The label for save recent search button"
+    "description": "The title for save recent search button"
   },
   "theme.SearchModal.startScreen.removeRecentSearchButtonTitle": {
     "message": "この検索を履歴から削除",
-    "description": "The label for remove recent search button"
+    "description": "The title for remove recent search button"
   },
   "theme.SearchModal.startScreen.favoriteSearchesTitle": {
     "message": "お気に入り",
@@ -335,63 +335,63 @@
   },
   "theme.SearchModal.startScreen.removeFavoriteSearchButtonTitle": {
     "message": "この検索をお気に入りから削除",
-    "description": "The label for remove favorite search button"
+    "description": "The title for remove favorite search button"
   },
   "theme.SearchModal.errorScreen.titleText": {
     "message": "検索結果の取得に失敗しました",
-    "description": "The title for error screen of search modal"
+    "description": "The title for error screen"
   },
   "theme.SearchModal.errorScreen.helpText": {
     "message": "ネットワーク接続を確認してください",
-    "description": "The help text for error screen of search modal"
+    "description": "The help text for error screen"
   },
   "theme.SearchModal.footer.selectText": {
     "message": "選ぶ",
-    "description": "The explanatory text of the action for the enter key"
+    "description": "The select text for footer"
   },
   "theme.SearchModal.footer.selectKeyAriaLabel": {
     "message": "エンターキー",
-    "description": "The ARIA label for the Enter key button that makes the selection"
+    "description": "The ARIA label for select key in footer"
   },
   "theme.SearchModal.footer.navigateText": {
     "message": "移動",
-    "description": "The explanatory text of the action for the Arrow up and Arrow down key"
+    "description": "The navigate text for footer"
   },
   "theme.SearchModal.footer.navigateUpKeyAriaLabel": {
     "message": "上矢印キー",
-    "description": "The ARIA label for the Arrow up key button that makes the navigation"
+    "description": "The ARIA label for navigate up key in footer"
   },
   "theme.SearchModal.footer.navigateDownKeyAriaLabel": {
     "message": "下矢印キー",
-    "description": "The ARIA label for the Arrow down key button that makes the navigation"
+    "description": "The ARIA label for navigate down key in footer"
   },
   "theme.SearchModal.footer.closeText": {
     "message": "閉じる",
-    "description": "The explanatory text of the action for Escape key"
+    "description": "The close text for footer"
   },
   "theme.SearchModal.footer.closeKeyAriaLabel": {
     "message": "エスケープキー",
-    "description": "The ARIA label for the Escape key button that close the modal"
+    "description": "The ARIA label for close key in footer"
   },
   "theme.SearchModal.footer.searchByText": {
     "message": "検索",
-    "description": "The text explain that the search is making by Algolia"
+    "description": "The 'Powered by' text for footer"
   },
   "theme.SearchModal.noResultsScreen.noResultsText": {
     "message": "見つかりませんでした",
-    "description": "The text explains that there are no results for the following search"
+    "description": "The text when there are no results"
   },
   "theme.SearchModal.noResultsScreen.suggestedQueryText": {
     "message": "次の検索を試す:",
-    "description": "The text for the suggested query when no results are found for the following search"
+    "description": "The text for suggested query"
   },
   "theme.SearchModal.noResultsScreen.reportMissingResultsText": {
     "message": "よりよい検索結果がありますか?",
-    "description": "The text for the question where the user thinks there are missing results"
+    "description": "The text for reporting missing results"
   },
   "theme.SearchModal.noResultsScreen.reportMissingResultsLinkText": {
     "message": "報告する",
-    "description": "The text for the link to report missing results"
+    "description": "The link text for reporting missing results"
   },
   "theme.SearchModal.placeholder": {
     "message": "ドキュメントを検索",
@@ -421,37 +421,37 @@
     "message": "ブログを読む"
   },
   "homepage.hero.aboutMe": {
-    "message": "自己紹介"
+    "message": "私について"
   },
   "homepage.cta.title": {
     "message": "Open to Opportunities"
   },
   "homepage.cta.description": {
-    "message": "現在、リモートワーク、技術的なコラボレーション、またはあらゆる面白い会話に対してオープンです。"
+    "message": "現在、リモートワーク、技術コラボレーション、あるいは面白い会話に対してオープンです。"
   },
   "homepage.cta.learnMore": {
-    "message": "詳しく見る"
+    "message": "もっと見る"
   },
   "homepage.meta.description": {
-    "message": "Software / Product Engineer。エンジニアリングの意思決定、本番環境での教訓、AI活用開発について発信しています。"
+    "message": "Software / Product Engineer. Writing about engineering decisions, production lessons, and AI-augmented development."
   },
   "homepage.features.fairWorld.title": {
     "message": "公平な世界"
   },
   "homepage.features.fairWorld.description": {
-    "message": "お金は金持ちに、愛は愛に恵まれた人に、苦労は最も耐えられる人に流れていく。"
+    "message": "お金はお金に困らない人に、愛は愛に困らない人に、苦労は最も耐えられる人に流れていく。"
   },
   "homepage.features.lifeJourney.title": {
-    "message": "人生の迷い"
+    "message": "人生の迷い道"
   },
   "homepage.features.lifeJourney.description": {
-    "message": "人生最大の楽しみは、頭のない蠅のようにぶつかり回り、予期せぬ転機や突然の災難を祝福すること。完全に方向を見失うこと以上に、あなたが生きていることを証明できるものがあるでしょうか？"
+    "message": "人生最大の楽しみは、頭のないハエのように闇雲にぶつかり、予想外の転機と突然の災難を祝うこと。完全に迷子になること以上に、生きている証があるだろうか？"
   },
   "homepage.features.dreamReality.title": {
     "message": "夢と現実"
   },
   "homepage.features.dreamReality.description": {
-    "message": "若いときは、自分の人生はこれだと思わないでください。年を重ねるにつれ、それを維持することさえ難しいことに気づくでしょう。"
+    "message": "若いうちは、人生がもうこんなものだと思わないでほしい。もっと歳を重ねれば、今の状態を維持するのさえ簡単ではないことに気づくから。"
   },
   "about.role": {
     "message": "Software / Product Engineer"
@@ -543,42 +543,6 @@
   "about.meta.description": {
     "message": "Pitt Wu について - Software / Product Engineer。"
   },
-  "homepage.hero.readBlog": {
-    "message": "ブログを読む"
-  },
-  "homepage.hero.aboutMe": {
-    "message": "私について"
-  },
-  "homepage.cta.title": {
-    "message": "Open to Opportunities"
-  },
-  "homepage.cta.description": {
-    "message": "現在、リモートワーク、技術コラボレーション、あるいは面白い会話に対してオープンです。"
-  },
-  "homepage.cta.learnMore": {
-    "message": "もっと見る"
-  },
-  "homepage.meta.description": {
-    "message": "Software / Product Engineer. Writing about engineering decisions, production lessons, and AI-augmented development."
-  },
-  "homepage.features.fairWorld.title": {
-    "message": "公平な世界"
-  },
-  "homepage.features.fairWorld.description": {
-    "message": "お金はお金に困らない人に、愛は愛に困らない人に、苦労は最も耐えられる人に流れていく。"
-  },
-  "homepage.features.lifeJourney.title": {
-    "message": "人生の迷い道"
-  },
-  "homepage.features.lifeJourney.description": {
-    "message": "人生最大の楽しみは、頭のないハエのように闇雲にぶつかり、予想外の転機と突然の災難を祝うこと。完全に迷子になること以上に、生きている証があるだろうか？"
-  },
-  "homepage.features.dreamReality.title": {
-    "message": "夢と現実"
-  },
-  "homepage.features.dreamReality.description": {
-    "message": "若いうちは、人生がもうこんなものだと思わないでほしい。もっと歳を重ねれば、今の状態を維持するのさえ簡単ではないことに気づくから。"
-  },
   "homepage.hero.title.1": {
     "message": "コードとストーリー"
   },
@@ -629,5 +593,153 @@
   },
   "projects.noResults": {
     "message": "フィルターに一致するプロジェクトはありません。"
+  },
+  "theme.colorToggle.ariaLabel.mode.system": {
+    "message": "システムモード",
+    "description": "The name for the system color mode"
+  },
+  "theme.IconExternalLink.ariaLabel": {
+    "message": "(opens in new tab)",
+    "description": "The ARIA label for the external link icon"
+  },
+  "theme.navbar.mobileDropdown.collapseButton.expandAriaLabel": {
+    "message": "Expand the dropdown",
+    "description": "The ARIA label of the button to expand the mobile dropdown navbar item"
+  },
+  "theme.navbar.mobileDropdown.collapseButton.collapseAriaLabel": {
+    "message": "Collapse the dropdown",
+    "description": "The ARIA label of the button to collapse the mobile dropdown navbar item"
+  },
+  "theme.SearchModal.searchBox.placeholderText": {
+    "message": "ドキュメントを検索",
+    "description": "The placeholder text for the main search input field"
+  },
+  "theme.SearchModal.searchBox.placeholderTextAskAi": {
+    "message": "別の質問をする...",
+    "description": "The placeholder text when in AI question mode"
+  },
+  "theme.SearchModal.searchBox.placeholderTextAskAiStreaming": {
+    "message": "回答中...",
+    "description": "The placeholder text for search box when AI is streaming an answer"
+  },
+  "theme.SearchModal.searchBox.enterKeyHint": {
+    "message": "検索",
+    "description": "The hint for the search box enter key text"
+  },
+  "theme.SearchModal.searchBox.enterKeyHintAskAi": {
+    "message": "確定",
+    "description": "The hint for the Ask AI search box enter key text"
+  },
+  "theme.SearchModal.searchBox.searchInputLabel": {
+    "message": "検索",
+    "description": "The ARIA label for search input"
+  },
+  "theme.SearchModal.searchBox.backToKeywordSearchButtonText": {
+    "message": "キーワード検索に戻る",
+    "description": "The text for back to keyword search button"
+  },
+  "theme.SearchModal.searchBox.backToKeywordSearchButtonAriaLabel": {
+    "message": "キーワード検索に戻る",
+    "description": "The ARIA label for back to keyword search button"
+  },
+  "theme.SearchModal.startScreen.recentConversationsTitle": {
+    "message": "最近の会話",
+    "description": "The title for recent conversations"
+  },
+  "theme.SearchModal.startScreen.removeRecentConversationButtonTitle": {
+    "message": "この会話を履歴から削除",
+    "description": "The title for remove recent conversation button"
+  },
+  "theme.SearchModal.resultsScreen.askAiPlaceholder": {
+    "message": "AIに質問：",
+    "description": "The placeholder text for Ask AI input"
+  },
+  "theme.SearchModal.askAiScreen.disclaimerText": {
+    "message": "回答はAIによって生成されており、誤りがある可能性があります。必ず内容を確認してください。",
+    "description": "The disclaimer text for AI answers"
+  },
+  "theme.SearchModal.askAiScreen.relatedSourcesText": {
+    "message": "関連ソース",
+    "description": "The text for related sources"
+  },
+  "theme.SearchModal.askAiScreen.thinkingText": {
+    "message": "考え中...",
+    "description": "The text when AI is thinking"
+  },
+  "theme.SearchModal.askAiScreen.copyButtonText": {
+    "message": "コピー",
+    "description": "The text for copy button"
+  },
+  "theme.SearchModal.askAiScreen.copyButtonCopiedText": {
+    "message": "コピーしました！",
+    "description": "The text for copy button when copied"
+  },
+  "theme.SearchModal.askAiScreen.copyButtonTitle": {
+    "message": "コピー",
+    "description": "The title for copy button"
+  },
+  "theme.SearchModal.askAiScreen.likeButtonTitle": {
+    "message": "いいね",
+    "description": "The title for like button"
+  },
+  "theme.SearchModal.askAiScreen.dislikeButtonTitle": {
+    "message": "よくない",
+    "description": "The title for dislike button"
+  },
+  "theme.SearchModal.askAiScreen.thanksForFeedbackText": {
+    "message": "フィードバックありがとうございます！",
+    "description": "The text for thanks for feedback"
+  },
+  "theme.SearchModal.askAiScreen.preToolCallText": {
+    "message": "検索中...",
+    "description": "The text before tool call"
+  },
+  "theme.SearchModal.askAiScreen.duringToolCallText": {
+    "message": "検索中：",
+    "description": "The text during tool call"
+  },
+  "theme.SearchModal.askAiScreen.afterToolCallText": {
+    "message": "検索完了：",
+    "description": "The text after tool call"
+  },
+  "theme.SearchModal.footer.submitQuestionText": {
+    "message": "質問を送信",
+    "description": "The submit question text for footer"
+  },
+  "theme.SearchModal.footer.backToSearchText": {
+    "message": "検索に戻る",
+    "description": "The back to search text for footer"
+  },
+  "theme.blog.author.pageTitle": {
+    "message": "{authorName} - {nPosts}",
+    "description": "The title of the page for a blog author"
+  },
+  "theme.blog.authorsList.pageTitle": {
+    "message": "著者一覧",
+    "description": "The title of the authors page"
+  },
+  "theme.blog.authorsList.viewAll": {
+    "message": "すべての著者を見る",
+    "description": "The label of the link targeting the blog authors page"
+  },
+  "theme.blog.author.noPosts": {
+    "message": "この著者による投稿はまだありません。",
+    "description": "The text for authors with 0 blog post"
+  },
+  "theme.contentVisibility.unlistedBanner.title": {
+    "message": "非公開のページ",
+    "description": "The unlisted content banner title"
+  },
+  "theme.contentVisibility.unlistedBanner.message": {
+    "message": "このページは非公開です。 検索対象外となり、このページのリンクに直接アクセスできるユーザーのみに公開されます。",
+    "description": "The unlisted content banner message"
+  },
+  "theme.contentVisibility.draftBanner.title": {
+    "message": "下書きのページ",
+    "description": "The draft content banner title"
+  },
+  "theme.contentVisibility.draftBanner.message": {
+    "message": "このページは下書きです。開発環境でのみ表示され、本番環境のビルドには含まれません。",
+    "description": "The draft content banner message"
   }
 }

@@ -1,18 +1,18 @@
 {
   "link.title.Community": {
     "message": "社群",
-    "description": "The title of the footer links column with title Community"
+    "description": "The title of the footer links column with title=Community in the footer"
   },
   "link.item.label.GitHub": {
     "message": "GitHub",
-    "description": "Footer link with label GitHub"
+    "description": "The label of footer link with label=GitHub linking to https://github.com/wuzhe0912"
   },
   "link.item.label.Linkedin": {
     "message": "LinkedIn",
-    "description": "Footer link with label Linkedin"
+    "description": "The label of footer link with label=Linkedin linking to https://linkedin.com/in/pitt-wu"
   },
   "link.item.label.CakeResume": {
     "message": "CakeResume",
-    "description": "Footer link with label CakeResume"
+    "description": "The label of footer link with label=CakeResume linking to https://www.cakeresume.com/me/pittwu"
   }
 }

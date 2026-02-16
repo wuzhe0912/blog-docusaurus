@@ -1,0 +1,37 @@
+#!/bin/sh
+set -eu
+
+unstaged="$(git diff --name-only -- .claude || true)"
+untracked="$(git ls-files --others --exclude-standard -- .claude || true)"
+ignored="$(git ls-files --others -i --exclude-standard -- .claude || true)"
+
+if [ -z "${unstaged}${untracked}${ignored}" ]; then
+  exit 0
+fi
+
+echo "ERROR: .claude/ has unstaged or untracked changes."
+echo "This repository requires .claude/ changes to be committed together."
+echo
+
+if [ -n "$unstaged" ]; then
+  echo "Unstaged .claude files:"
+  echo "$unstaged"
+  echo
+fi
+
+if [ -n "$untracked" ]; then
+  echo "Untracked .claude files:"
+  echo "$untracked"
+  echo
+fi
+
+if [ -n "$ignored" ]; then
+  echo "Ignored .claude files (likely from global ignore):"
+  echo "$ignored"
+  echo
+fi
+
+echo "Fix before commit:"
+echo "  git add .claude"
+echo "  git add -f <ignored-file>   # if blocked by global ignore"
+exit 1

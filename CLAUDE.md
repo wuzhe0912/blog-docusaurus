@@ -79,6 +79,7 @@ Ex.
 ## Conventions
 
 - **Commit 訊息禁止加 `Co-Authored-By` 或任何自動署名行**，只留標題訊息
+- **此專案的 `.claude/` 檔案屬於版本控管範圍**：只要 `.claude/` 有變更，commit 時必須一併 stage；若新檔受 global gitignore 影響，請使用 `git add -f`
 - CSS 使用 CSS Modules（`.module.css`），善用 Infima CSS 變數（`var(--ifm-*)`）
 - 元件樣式需支援 dark/light mode 和 RWD
 - 內容以繁體中文為預設語言撰寫，技術專有名詞保持英文

@@ -55,7 +55,15 @@
       "Bash(lsof:*)",
       "Bash(git diff:*)",
       "Bash(do)",
-      "Bash(f=\"/Users/pitt.wu/Documents/personal/blog-docusaurus/i18n/$locale/docusaurus-theme-classic/footer.json\")"
+      "Bash(f=\"/Users/pitt.wu/Documents/personal/blog-docusaurus/i18n/$locale/docusaurus-theme-classic/footer.json\")",
+      "Bash(xargs:*)",
+      "Bash(grep:*)",
+      "Bash(comm:*)",
+      "Bash(bun add:*)",
+      "Bash(do stat -f%z \"$f\")",
+      "Bash(do echo \"=== $locale ===\" ls -la /Users/pitt.wu/Documents/personal/blog-docusaurus/i18n/$locale/)",
+      "Bash(do echo \"=== $locale docusaurus-theme-classic ===\" ls /Users/pitt.wu/Documents/personal/blog-docusaurus/i18n/$locale/docusaurus-theme-classic/)",
+      "Bash(git mv:*)"
     ]
   }
 }

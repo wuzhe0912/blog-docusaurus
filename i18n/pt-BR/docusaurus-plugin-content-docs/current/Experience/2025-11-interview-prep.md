@@ -64,9 +64,9 @@ slug: /2025-11-interview-prep
 
 - [**O que e a Server Engine do Nuxt 3?**](/docs/experience/ssr-seo/lv2-nuxt-server-features)
 - [**Como escolher entre CSR, SSR e SSG?**](/docs/experience/ssr-seo/lv2-nuxt-rendering-modes)
-- [**Causas comuns e solucoes de Memory Leak em SSR?**](/docs/experience/ssr-seo/lv3-ssr-challenges#難題-9server-side-memory-leak)
-- [**Como lidar com Hydration Mismatch em SSR?**](/docs/experience/ssr-seo/lv3-ssr-challenges#難題-1hydration-mismatch-錯誤)
-- [**Qual a diferenca entre deploy de uma aplicacao SSR e uma SPA?**](/docs/experience/ssr-seo/lv3-ssr-challenges#難題-11部署架構-ssr-vs-spa)
+- [**Causas comuns e solucoes de Memory Leak em SSR?**](/docs/experience/ssr-seo/lv3-ssr-challenges#desafio-9-memory-leak-no-servidor)
+- [**Como lidar com Hydration Mismatch em SSR?**](/docs/experience/ssr-seo/lv3-ssr-challenges#desafio-1-hydration-mismatch)
+- [**Qual a diferenca entre deploy de uma aplicacao SSR e uma SPA?**](/docs/experience/ssr-seo/lv3-ssr-challenges#desafio-11-arquitetura-de-deploy-ssr-vs-spa)
 - [**Como lidar com SEO de sites multilingues?**](/docs/experience/ssr-seo/lv3-i18n-seo)
 
 ## Implementacao manual

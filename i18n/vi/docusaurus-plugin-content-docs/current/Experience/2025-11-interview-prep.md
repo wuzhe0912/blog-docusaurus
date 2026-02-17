@@ -64,9 +64,9 @@ slug: /2025-11-interview-prep
 
 - [**Server Engine cua Nuxt 3 la gi?**](/docs/experience/ssr-seo/lv2-nuxt-server-features)
 - [**Lam the nao de chon giua CSR, SSR va SSG?**](/docs/experience/ssr-seo/lv2-nuxt-rendering-modes)
-- [**Nguyen nhan va cach khac phuc Memory Leak pho bien trong SSR?**](/docs/experience/ssr-seo/lv3-ssr-challenges#難題-9server-side-memory-leak)
-- [**Lam the nao de xu ly Hydration Mismatch trong SSR?**](/docs/experience/ssr-seo/lv3-ssr-challenges#難題-1hydration-mismatch-錯誤)
-- [**Trien khai ung dung SSR khac gi so voi SPA?**](/docs/experience/ssr-seo/lv3-ssr-challenges#難題-11部署架構-ssr-vs-spa)
+- [**Nguyen nhan va cach khac phuc Memory Leak pho bien trong SSR?**](/docs/experience/ssr-seo/lv3-ssr-challenges#thach-thuc-9-memory-leak-tren-server)
+- [**Lam the nao de xu ly Hydration Mismatch trong SSR?**](/docs/experience/ssr-seo/lv3-ssr-challenges#thach-thuc-1-hydration-mismatch)
+- [**Trien khai ung dung SSR khac gi so voi SPA?**](/docs/experience/ssr-seo/lv3-ssr-challenges#thach-thuc-11-kien-truc-deploy-ssr-vs-spa)
 - [**Lam the nao de xu ly SEO cho website da ngon ngu?**](/docs/experience/ssr-seo/lv3-i18n-seo)
 
 ## Trien khai thu cong

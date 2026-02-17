@@ -1,781 +1,347 @@
 ---
-title: '[Lv3] SSR 實作難題與解決方案'
+title: '[Lv3] Thach thuc trien khai SSR va giai phap'
 slug: /experience/ssr-seo/lv3-ssr-challenges
 tags: [Experience, Interview, SSR-SEO, Lv3]
 ---
 
-> 在 SSR 實作過程中，常見的難題與解決方案：Hydration Mismatch、環境變數處理、第三方套件相容性、效能優化等。
+> Cac van de pho bien khi lam SSR va cach giai quyet: Hydration Mismatch, bien moi truong, tuong thich thu vien ben thu ba, hieu nang va kien truc deploy.
 
 ---
 
-## 📋 面試情境題
+## Tinh huong phong van
 
-**Q: 在實作 SSR 時，有遇到哪些難題？如何解決？**
+**Cau hoi: Khi trien khai SSR, ban gap kho khan gi va giai quyet nhu the nao?**
 
-這是面試中經常會被問到的問題，面試官想了解：
+Nha tuyen dung thuong danh gia:
 
-1. **實際經驗**：是否真的實作過 SSR
-2. **問題解決能力**：遇到問題時的思考過程
-3. **技術深度**：對 SSR 原理的理解程度
-4. **最佳實踐**：是否有採用業界標準做法
+1. **Kinh nghiem thuc te**: da tung lam SSR trong du an that hay chua.
+2. **Tu duy giai quyet van de**: tim nguyen nhan goc va uu tien xu ly.
+3. **Do sau ky thuat**: rendering, hydration, cache, deploy.
+4. **Best practices**: giai phap ben vung, de bao tri, do luong duoc.
 
 ---
 
-## 難題 1：Hydration Mismatch 錯誤
+## Thach thuc 1: Hydration Mismatch
 
-### 問題描述
+### Mo ta van de
 
-**錯誤訊息：**
+Canh bao pho bien:
 
-```
+```text
 [Vue warn]: The client-side rendered virtual DOM tree is not matching server-rendered content.
 ```
 
-**發生原因：**
+Nguyen nhan thuong gap:
 
-- Server Side 渲染的 HTML 與 Client Side 渲染的 HTML 不一致
-- 常見於使用瀏覽器專用 API（`window`、`document`、`localStorage` 等）
-- 時間相關的內容（如：`new Date()`）在 Server 和 Client 執行時間不同
+- Output khac nhau giua server render va client render
+- Dung API chi co tren browser trong duong SSR (`window`, `document`, `localStorage`)
+- Gia tri khong xac dinh (`Date.now()`, `Math.random()`)
 
-### 解決方案
+### Giai phap
 
-#### 方案 1: 使用 `ClientOnly` 組件
-
-**適用場景：** 組件只在客戶端渲染
+#### Cach A: dung `ClientOnly`
 
 ```vue
 <template>
   <div>
-    <h1>主要內容（SSR）</h1>
+    <h1>Noi dung SSR</h1>
     <ClientOnly>
       <BrowserOnlyComponent />
       <template #fallback>
-        <div>載入中...</div>
+        <div>Dang tai...</div>
       </template>
     </ClientOnly>
   </div>
 </template>
 ```
 
-**優點：**
-
-- ✅ 簡單直接
-- ✅ Nuxt 內建支援
-
-**缺點：**
-
-- ⚠️ 該部分內容不會在 SSR 中渲染
-- ⚠️ 可能影響 SEO
-
-#### 方案 2: 使用 `process.client` 檢查
-
-**適用場景：** 條件式渲染客戶端專用內容
+#### Cach B: dat guard phia client
 
 ```vue
 <script setup lang="ts">
-const userAgent = ref('');
+const ua = ref('');
 
 onMounted(() => {
-  // 只在客戶端執行
   if (process.client) {
-    userAgent.value = navigator.userAgent;
+    ua.value = window.navigator.userAgent;
   }
 });
 </script>
-
-<template>
-  <div>
-    <p v-if="userAgent">User Agent: {{ userAgent }}</p>
-  </div>
-</template>
 ```
 
-**關鍵點：**
-
-- ✅ 使用 `process.client` 檢查執行環境
-- ✅ 避免在 Server Side 存取瀏覽器 API
-
-#### 方案 3: 使用 `onMounted` Hook
-
-**適用場景：** 需要在客戶端執行的初始化邏輯
-
-```vue
-<script setup lang="ts">
-const isClient = ref(false);
-
-onMounted(() => {
-  isClient.value = true;
-  // 客戶端專用的初始化邏輯
-  initializeClientOnlyFeature();
-});
-</script>
-
-<template>
-  <div>
-    <div v-if="isClient">客戶端內容</div>
-    <div v-else>伺服器端內容（或載入中）</div>
-  </div>
-</template>
-```
-
-#### 方案 4: 統一 Server 和 Client 的資料來源
-
-**適用場景：** 時間、隨機數等會導致不一致的內容
-
-```vue
-<script setup lang="ts">
-// ❌ 錯誤：Server 和 Client 時間不同
-const currentTime = new Date().toISOString();
-
-// ✅ 正確：從 API 取得統一時間
-const { data: serverTime } = await useFetch('/api/time');
-const currentTime = serverTime.value;
-</script>
-```
-
-### 面試回答範例
-
-> 在實作 SSR 時，最常遇到的是 Hydration Mismatch 錯誤。這通常發生在使用瀏覽器專用 API 時，例如 `window`、`localStorage` 等。我的解決方式是：首先，使用 `ClientOnly` 組件包裹只在客戶端渲染的內容；其次，使用 `process.client` 檢查執行環境，避免在 Server Side 存取瀏覽器 API；最後，對於時間、隨機數等會導致不一致的內容，統一從 Server Side API 取得，確保 Server 和 Client 的資料一致。
+**Thong diep chinh:** output SSR phai deterministc; logic chi-tren-browser phai tach ro sang client.
 
 ---
 
-## 難題 2：環境變數處理
+## Thach thuc 2: Bien moi truong
 
-### 問題描述
+### Mo ta van de
 
-**問題情境：**
+- Secret phia server co the bi lo ra client.
+- Dung `process.env` lung tung lam cau hinh kho theo doi.
 
-- Server Side 和 Client Side 需要不同的環境變數
-- 敏感資訊（如：API Key）不應該暴露到客戶端
-- 需要區分開發、測試、生產環境
+### Giai phap
 
-### 解決方案
+Tach bang runtime config:
 
-#### 方案 1: 使用 Nuxt 的環境變數
-
-**Server Side 環境變數：**
-
-```typescript
-// .env
-NUXT_API_SECRET_KEY=secret_key_123
-NUXT_DATABASE_URL=postgresql://...
-
-// server/api/example.ts
-export default defineEventHandler(async (event) => {
-  // 只在 Server Side 可用
-  const secretKey = process.env.NUXT_API_SECRET_KEY;
-  // ...
-});
-```
-
-**Client Side 環境變數：**
-
-```typescript
-// .env
-NUXT_PUBLIC_API_URL=https://api.example.com
-
-// 客戶端可以使用
-const apiUrl = useRuntimeConfig().public.apiUrl;
-```
-
-**關鍵點：**
-
-- ✅ `NUXT_` 開頭的變數在 Server Side 可用
-- ✅ `NUXT_PUBLIC_` 開頭的變數在 Client Side 也可用
-- ✅ 敏感資訊使用 `NUXT_`（不帶 `PUBLIC`）
-
-#### 方案 2: 使用 `useRuntimeConfig`
-
-```typescript
+```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
   runtimeConfig: {
-    // 私有變數（只在 Server Side 可用）
     apiSecret: process.env.API_SECRET,
-
-    // 公開變數（Client Side 也可用）
     public: {
-      apiUrl: process.env.PUBLIC_API_URL || 'https://api.example.com',
+      apiBase: process.env.NUXT_PUBLIC_API_BASE,
     },
   },
 });
+```
 
-// 使用方式
+```ts
+// su dung
 const config = useRuntimeConfig();
-// Server Side: config.apiSecret 可用
-// Client Side: config.public.apiUrl 可用
+const apiBase = config.public.apiBase; // client + server
+const secret = config.apiSecret; // chi server
 ```
 
-### 面試回答範例
-
-> 在 SSR 專案中，環境變數的處理很重要。我使用 Nuxt 的環境變數機制：`NUXT_` 開頭的變數只在 Server Side 可用，用於存放敏感資訊如 API Key、資料庫連線等；`NUXT_PUBLIC_` 開頭的變數在 Client Side 也可用，用於存放公開資訊如 API URL。同時使用 `useRuntimeConfig` 統一管理，確保環境變數的正確使用。
+**Thong diep chinh:** secret chi de o server; config public dat ro trong block `public`.
 
 ---
 
-## 難題 3：第三方套件不支援 SSR
+## Thach thuc 3: Thu vien ben thu ba khong ho tro SSR
 
-### 問題描述
+### Mo ta van de
 
-**問題情境：**
+- Mot so package cham vao DOM trong qua trinh SSR.
+- Hau qua: loi build/runtime hoac hydration mismatch.
 
-- 某些第三方套件（如：圖表庫、動畫庫）不支援 SSR
-- 直接使用會導致 Hydration Mismatch
-- 需要找到 SSR 相容的替代方案
+### Giai phap
 
-### 解決方案
+1. Chi load thu vien o client (plugin `.client.ts`)
+2. Import dong trong context client
+3. Can nhac thu vien thay the co SSR support
 
-#### 方案 1: 使用 `ClientOnly` 包裹
-
-```vue
-<template>
-  <ClientOnly>
-    <ChartComponent :data="chartData" />
-    <template #fallback>
-      <div class="chart-skeleton">載入中...</div>
-    </template>
-  </ClientOnly>
-</template>
-```
-
-#### 方案 2: 動態導入（Dynamic Import）
-
-```vue
-<script setup lang="ts">
-const ChartComponent = ref(null);
-
-onMounted(async () => {
-  // 只在客戶端動態導入
-  if (process.client) {
-    const module = await import('chart-library');
-    ChartComponent.value = module.default;
-  }
-});
-</script>
-
-<template>
-  <component v-if="ChartComponent" :is="ChartComponent" :data="chartData" />
-</template>
-```
-
-#### 方案 3: 使用 SSR 相容的替代方案
-
-**範例：圖表庫選擇**
-
-```typescript
-// ❌ 不支援 SSR
-import Chart from 'chart.js';
-
-// ✅ 支援 SSR
-import { Chart } from 'vue-chartjs';
-// 或使用其他 SSR 相容的圖表庫
-```
-
-### 面試回答範例
-
-> 在實作 SSR 時，遇到某些第三方套件不支援 SSR 的問題。我的解決方式是：首先，使用 `ClientOnly` 組件包裹不支援 SSR 的組件，並提供 fallback 內容；其次，對於複雜的套件，使用動態導入（Dynamic Import）在客戶端載入；最後，優先選擇 SSR 相容的替代方案，例如使用 `vue-chartjs` 而非直接使用 `chart.js`。
-
----
-
-## 難題 4：Cookie 和 Header 處理
-
-### 問題描述
-
-**問題情境：**
-
-- Server Side 需要讀取 Cookie 進行身份驗證
-- 需要將 Cookie 傳遞給 API 請求
-- Client Side 和 Server Side 的 Cookie 處理方式不同
-
-### 解決方案
-
-#### 方案 1: 使用 `useCookie`
-
-```typescript
-// 讀取 Cookie
-const token = useCookie('auth-token');
-
-// 設定 Cookie
-token.value = 'new-token-value';
-
-// 設定 Cookie 選項
-const token = useCookie('auth-token', {
-  httpOnly: true,
-  secure: true,
-  sameSite: 'strict',
-  maxAge: 60 * 60 * 24 * 7, // 7 天
-});
-```
-
-**關鍵點：**
-
-- ✅ `useCookie` 在 Server Side 和 Client Side 都可使用
-- ✅ 自動處理 Cookie 的讀寫
-- ✅ 支援 Cookie 選項設定
-
-#### 方案 2: 在 Server API 中讀取 Cookie
-
-```typescript
-// server/api/user.ts
-export default defineEventHandler(async (event) => {
-  // 讀取 Cookie
-  const token = getCookie(event, 'auth-token');
-
-  if (!token) {
-    throw createError({
-      statusCode: 401,
-      statusMessage: 'Unauthorized',
-    });
-  }
-
-  // 使用 token 驗證使用者
-  const user = await verifyToken(token);
-  return user;
-});
-```
-
-#### 方案 3: 在 useFetch 中傳遞 Cookie
-
-```typescript
-// 自動傳遞 Cookie
-const { data } = await useFetch('/api/user', {
-  credentials: 'include', // 自動包含 Cookie
-});
-```
-
-### 面試回答範例
-
-> 在 SSR 專案中，Cookie 和 Header 的處理很重要。我使用 Nuxt 的 `useCookie` 統一處理 Cookie，它在 Server Side 和 Client Side 都可使用，自動處理 Cookie 的讀寫。在 Server API 中，使用 `getCookie` 讀取 Cookie 進行身份驗證。同時，在 `useFetch` 中設定 `credentials: 'include'` 確保 Cookie 自動傳遞給 API 請求。
-
----
-
-## 難題 5：非同步資料載入時機
-
-### 問題描述
-
-**問題情境：**
-
-- 多個組件需要相同的資料
-- 避免重複請求
-- 確保資料在 SSR 時正確載入
-
-### 解決方案
-
-#### 方案 1: 使用 `key` 參數做 Request Deduplication
-
-```typescript
-// 多個組件使用相同的 key，只會發送一次請求
-const { data: product } = await useFetch(`/api/products/${id}`, {
-  key: `product-${id}`, // 關鍵：使用相同的 key
-});
-```
-
-#### 方案 2: 使用 Composables 統一管理資料
-
-```typescript
-// composables/useProduct.ts
-export const useProduct = (id: string) => {
-  return useFetch(`/api/products/${id}`, {
-    key: `product-${id}`,
-    lazy: false,
-    server: true,
-  });
-};
-
-// 在多個組件中使用
-const { data: product } = useProduct('123');
-```
-
-#### 方案 3: 使用 `useAsyncData` 的 `getCachedData`
-
-```typescript
-// 檢查是否有快取的資料
-const cachedData = useNuxtApp().payload.data[`product-${id}`];
-
-if (cachedData) {
-  // 使用快取的資料
-  product.value = cachedData;
-} else {
-  // 載入新資料
-  const { data } = await useFetch(`/api/products/${id}`, {
-    key: `product-${id}`,
-  });
-  product.value = data.value;
-}
-```
-
-### 面試回答範例
-
-> 在 SSR 專案中，非同步資料載入的時機很重要。我使用 `useFetch` 的 `key` 參數做 request deduplication，確保多個組件請求相同資料時只會發送一次請求。同時，將資料載入邏輯封裝成 Composables，統一管理資料載入邏輯。這樣可以避免重複請求，提升效能，並確保資料在 SSR 時正確載入。
-
----
-
-## 難題 6：效能優化（Server Loading）
-
-### 問題描述
-
-**問題情境：**
-
-- SSR 會增加 Server 負載
-- 需要處理大量併發請求
-- 需要優化回應時間
-
-### 解決方案
-
-#### 方案 1: Server-Side Caching
-
-```typescript
-// nuxt.config.ts
-export default defineNuxtConfig({
-  nitro: {
-    routeRules: {
-      '/api/products/**': {
-        cache: {
-          maxAge: 60 * 60, // 快取 1 小時
-        },
-      },
-    },
-  },
-});
-```
-
-#### 方案 2: 區分 SSR / CSR 頁面
-
-```typescript
-// nuxt.config.ts
-export default defineNuxtConfig({
-  routeRules: {
-    // 需要 SEO 的頁面：SSR
-    '/products/**': { ssr: true },
-
-    // 不需要 SEO 的頁面：CSR
-    '/dashboard/**': { ssr: false },
-  },
-});
-```
-
-#### 方案 3: 使用 CDN 快取
-
-```typescript
-// nuxt.config.ts
-export default defineNuxtConfig({
-  nitro: {
-    routeRules: {
-      '/products/**': {
-        headers: {
-          'Cache-Control': 'public, max-age=3600',
-        },
-      },
-    },
-  },
-});
-```
-
-#### 方案 4: 資料庫查詢優化
-
-```typescript
-// server/api/products/[id].ts
-export default defineEventHandler(async (event) => {
-  const id = getRouterParam(event, 'id');
-
-  // 使用資料庫索引優化查詢
-  const product = await db.products.findUnique({
-    where: { id },
-    select: {
-      id: true,
-      name: true,
-      description: true,
-      // 只選擇需要的欄位
-    },
-  });
-
-  return product;
-});
-```
-
-### 面試回答範例
-
-> 在 SSR 專案中，效能優化很重要。我實作了幾個策略：首先，使用 Nitro Cache 做 server-side caching，減少資料庫查詢；其次，區分需要 SEO 的頁面和不需要 SEO 的頁面，不需要 SEO 的頁面使用 CSR，減少不必要的 SSR 處理；最後，使用 CDN 快取靜態內容，並優化資料庫查詢，只選擇需要的欄位。這些優化可以大幅降低 Server Loading，提升回應速度。
-
----
-
-## 難題 7：錯誤處理與 404 頁面
-
-### 問題描述
-
-**問題情境：**
-
-- 動態路由可能不存在（如：`/products/99999`）
-- 需要正確返回 404 status code
-- 需要處理 API 錯誤
-
-### 解決方案
-
-#### 方案 1: 使用 `createError`
-
-```typescript
-// pages/products/[id].vue
-const { data: product, error } = await useFetch(
-  `/api/products/${route.params.id}`
-);
-
-if (error.value || !product.value) {
-  throw createError({
-    statusCode: 404,
-    statusMessage: 'Product not found',
-  });
-}
-```
-
-#### 方案 2: 在 Server API 中處理錯誤
-
-```typescript
-// server/api/products/[id].ts
-export default defineEventHandler(async (event) => {
-  const id = getRouterParam(event, 'id');
-  const product = await db.products.findUnique({ where: { id } });
-
-  if (!product) {
-    throw createError({
-      statusCode: 404,
-      statusMessage: 'Product not found',
-    });
-  }
-
-  return product;
-});
-```
-
-#### 方案 3: 自訂錯誤頁面
-
-```vue
-<!-- error.vue -->
-<script setup lang="ts">
-const props = defineProps<{
-  error: {
-    statusCode: number;
-    statusMessage: string;
-  };
-}>();
-
-// 設定錯誤頁面的 SEO
-useHead({
-  title: `${props.error.statusCode} - 錯誤`,
-  meta: [
-    {
-      name: 'robots',
-      content: 'noindex, nofollow', // 404 頁面不要被索引
-    },
-  ],
-});
-</script>
-
-<template>
-  <div class="error-page">
-    <h1>{{ error.statusCode }}</h1>
-    <p>{{ error.statusMessage }}</p>
-    <NuxtLink to="/">返回首頁</NuxtLink>
-  </div>
-</template>
-```
-
-### 面試回答範例
-
-> 在 SSR 專案中，錯誤處理很重要。我使用 `createError` 統一處理錯誤，確保正確返回 HTTP status code（如：404）。在 Server API 中，當資料不存在時拋出 404 錯誤。同時，建立自訂錯誤頁面（`error.vue`），設定 `noindex, nofollow` 避免搜尋引擎索引錯誤頁面，並提供友善的錯誤訊息和返回連結。
-
----
-
-## 難題 8：瀏覽器專用 API 的使用
-
-### 問題描述
-
-**問題情境：**
-
-- `window`、`document`、`localStorage` 等 API 在 Server Side 不存在
-- 直接使用會導致錯誤
-- 需要安全地使用這些 API
-
-### 解決方案
-
-#### 方案 1: 使用 `process.client` 檢查
-
-```typescript
+```ts
+let chartLib: any;
 if (process.client) {
-  // 安全使用瀏覽器 API
-  const userAgent = navigator.userAgent;
-  localStorage.setItem('key', 'value');
+  chartLib = await import('chart.js/auto');
 }
 ```
 
-#### 方案 2: 使用 `onMounted` Hook
+**Thong diep chinh:** co lap nguyen nhan truoc, sau do moi chon client-isolation hay doi thu vien.
 
-```vue
-<script setup lang="ts">
-const windowWidth = ref(0);
+---
+
+## Thach thuc 4: Xu ly cookie va header
+
+### Mo ta van de
+
+- Auth trong SSR can doc cookie o server.
+- Header can dong nhat giua client, SSR, va API.
+
+### Giai phap
+
+```ts
+const token = useCookie('access_token');
+
+const { data } = await useFetch('/api/me', {
+  headers: process.server
+    ? useRequestHeaders(['cookie'])
+    : undefined,
+  credentials: 'include',
+});
+```
+
+**Thong diep chinh:** request SSR khong duoc mat auth context.
+
+---
+
+## Thach thuc 5: Timing khi tai bat dong bo
+
+### Mo ta van de
+
+- Nhieu component cung tai mot du lieu.
+- Request trung lap va loading state khong nhat quan.
+
+### Giai phap
+
+- Dung key thong nhat cho deduplication
+- Dung shared composable de trung tam hoa truy cap data
+- Tach ro initial load va user action
+
+```ts
+const { data, refresh } = await useFetch('/api/products', {
+  key: 'products-list',
+  lazy: false,
+  server: true,
+});
+```
+
+**Thong diep chinh:** trung tam hoa data flow, khong fetch lap lai o tung component.
+
+---
+
+## Thach thuc 6: Hieu nang va tai server
+
+### Mo ta van de
+
+- SSR tang CPU va I/O.
+- Khi tai cao, TTFB tang.
+
+### Giai phap
+
+1. Cache voi Nitro
+2. Toi uu query DB
+3. Tach SSR/CSR theo muc tieu SEO
+4. Dat CDN dung cach
+
+```ts
+export default defineCachedEventHandler(
+  async () => await getProductsFromDB(),
+  { maxAge: 60 * 10, swr: true },
+);
+```
+
+**Thong diep chinh:** performance la bai toan kien truc, khong chi la frontend detail.
+
+---
+
+## Thach thuc 7: Xu ly loi va 404
+
+### Mo ta van de
+
+- ID dong co the khong hop le.
+- Neu 404 sematic sai, SEO co the index trang loi.
+
+### Giai phap
+
+```ts
+if (!product.value) {
+  throw createError({ statusCode: 404, statusMessage: 'Product not found' });
+}
+```
+
+Bo sung:
+
+- `error.vue` de hien thi loi ro rang
+- Trang loi dat `noindex, nofollow`
+
+**Thong diep chinh:** HTTP status, UX va SEO phai nhat quan.
+
+---
+
+## Thach thuc 8: Browser-only APIs
+
+### Mo ta van de
+
+- SSR context khong co `window`/`document`.
+- Truy cap truc tiep se gay runtime error.
+
+### Giai phap
+
+```ts
+const width = ref<number | null>(null);
 
 onMounted(() => {
-  // 只在客戶端執行
-  windowWidth.value = window.innerWidth;
-
-  window.addEventListener('resize', () => {
-    windowWidth.value = window.innerWidth;
-  });
+  width.value = window.innerWidth;
 });
-</script>
 ```
 
-#### 方案 3: 使用 Composables 封裝
+Hoac guard:
 
-```typescript
-// composables/useLocalStorage.ts
-export const useLocalStorage = (key: string) => {
-  const value = ref<string | null>(null);
-
-  if (process.client) {
-    value.value = localStorage.getItem(key);
-
-    const setValue = (newValue: string) => {
-      localStorage.setItem(key, newValue);
-      value.value = newValue;
-    };
-
-    return { value, setValue };
-  }
-
-  return { value, setValue: () => {} };
-};
+```ts
+if (process.client) {
+  localStorage.setItem('theme', 'dark');
+}
 ```
 
-### 面試回答範例
-
-> 在 SSR 專案中，瀏覽器專用 API 的使用需要特別注意。我使用 `process.client` 檢查執行環境，確保只在客戶端使用這些 API。對於需要在客戶端執行的初始化邏輯，使用 `onMounted` Hook。同時，將瀏覽器 API 的使用封裝成 Composables，統一管理，確保程式碼的可維護性和安全性。
+**Thong diep chinh:** API cua browser chi dung trong pha client da duoc bao bo.
 
 ---
 
----
+## Thach thuc 9: Memory leak tren server
 
-## 難題 9：Server-side Memory Leak
+### Mo ta van de
 
-### 問題描述
+- Node process chay lau bi tang memory lien tuc.
+- Thuong do global mutable state, timer/listener khong cleanup.
 
-**問題情境：**
+### Giai phap
 
-- Node.js Server 的記憶體使用量隨時間持續增加，最終導致 Crash (OOM)。
-- 常見原因：全域變數 (Global State)、未清除的 Timer、未釋放的 Event Listener。
-- 在 SPA 中，頁面重新整理記憶體就會釋放；但在 SSR 中，Server Process 是長期運行的，Memory Leak 累積起來很致命。
+1. Khong giu state theo request trong bien global
+2. Cleanup listener/interval day du
+3. Theo doi bang heap snapshot va `process.memoryUsage()`
 
-### 解決方案
-
-#### 方案 1: 避免全域變數 (Singletons)
-
-在 SSR 環境下，模組層級的變數是「跨請求共享」的。如果把使用者特定的資料存在模組變數中，不僅會造成 Memory Leak，還會導致資料汙染（A 使用者看到 B 使用者的資料）。
-
-```typescript
-// ❌ 錯誤：全域變數會一直留在記憶體中
-const globalCache = new Map();
-
-export default defineEventHandler((event) => {
-  // ...
-});
-
-// ✅ 正確：使用 Nuxt 的 useRuntimeConfig 或每個請求獨立的變數
+```ts
+setInterval(() => {
+  const mem = process.memoryUsage();
+  console.log('rss', mem.rss);
+}, 60_000);
 ```
 
-#### 方案 2: 正確清除副作用
-
-雖然 Server 端通常不執行 `onMounted`，但若在 plugin 或 middleware 中使用了 `setInterval` 或 `EventBus`，必須確保能正確清除。
-
-#### 3. 定位工具
-
-- **Node.js `--inspect`**：結合 Chrome DevTools 的 Memory Tab 進行 Heap Snapshot 比對。
-- **`process.memoryUsage()`**：簡易監控 RSS (Resident Set Size) 變化。
-- **Stress Test**：使用 k6 或 Apache Benchmark 進行壓力測試，觀察記憶體變化曲線。
+**Thong diep chinh:** leak trong SSR la rui ro van hanh va ca bao mat.
 
 ---
 
-## 難題 10：第三方廣告與追蹤碼
+## Thach thuc 10: Script quang cao va tracking
 
-### 問題描述
+### Mo ta van de
 
-**問題情境：**
+- Script ben thu ba co the block main thread hoac pha hydration.
+- CLS/FID/INP xau di.
 
-- 廣告代碼（如 Google AdSense）或追蹤碼（GTM）通常包含大量的 DOM 操作或 `document.write`。
-- 這些腳本如果在 Hydration 過程中執行，容易阻塞 Main Thread 或導致 Mismatch。
-- 影響 Core Web Vitals (FID/INP, CLS)。
+### Giai phap
 
-### 解決方案
+- Load script bat dong bo va tiem can cuoi trang
+- Dat san khung cho ad de tranh layout shift
+- UI quan trong khong phu thuoc tracking
 
-#### 方案 1: 使用 `useHead` 注入 Script
-
-```typescript
+```ts
 useHead({
   script: [
-    {
-      src: 'https://www.googletagmanager.com/gtag/js?id=UA-XXXX',
-      async: true, // 非同步載入
-      tagPosition: 'bodyClose', // 放在 body 底部
-    },
+    { src: 'https://example.com/tracker.js', async: true, tagPosition: 'bodyClose' },
   ],
 });
 ```
 
-#### 方案 2: 使用 `<ClientOnly>` 與 Placeholder
-
-對於廣告區塊，Server 端只渲染一個佔位區塊（設定好固定高度，避免 CLS），Client 端再載入廣告。
-
-```vue
-<template>
-  <div class="ad-container">
-    <ClientOnly>
-      <GoogleAdSense />
-      <template #fallback>
-        <!-- 佔位區塊，避免 Layout Shift -->
-        <div style="height: 250px; background: #f0f0f0;"></div>
-      </template>
-    </ClientOnly>
-  </div>
-</template>
-```
+**Thong diep chinh:** monetization khong duoc danh doi rendering stability.
 
 ---
 
-## 難題 11：部署架構 (SSR vs SPA)
+## Thach thuc 11: Kien truc deploy (SSR vs SPA)
 
-### 問題描述
+### Mo ta van de
 
-**問題情境：**
+- SPA deploy static, don gian.
+- SSR can compute layer, observability, va quan ly process.
 
-- 過去習慣部署 SPA 到 S3/CDN，現在 Nuxt 3 SSR 需要 Node.js 環境。
-- 需要考量 Cold Start (Serverless) 或 Process Management (VPS)。
+### So sanh
 
-### 比較與策略
+| Khia canh      | SPA (Static)         | SSR (Node/Edge)                  |
+| -------------- | -------------------- | -------------------------------- |
+| Ha tang        | Storage + CDN        | Compute + CDN                    |
+| Van hanh       | Rat don gian         | Do phuc tap trung binh           |
+| Chi phi        | Thap                 | Cao hon do chi phi compute       |
+| Giam sat       | It                   | Logs, metrics, memory, cold start|
 
-| 特性         | SPA (Static)       | SSR (Node.js/Edge)                       |
-| ------------ | ------------------ | ---------------------------------------- |
-| **基礎設施** | Storage (S3) + CDN | Compute (EC2, Lambda) + CDN              |
-| **部署難度** | 低 (只需上傳檔案)  | 中 (需管理 Server Process / Environment) |
-| **成本**     | 極低               | 較高 (運算資源)                          |
-| **維護**     | 無需維護 Server    | 需監控 Error Logs, Memory, CPU           |
+### Khuyen nghi
 
-### 部署注意事項
+1. Dung PM2 hoac container de tang do on dinh
+2. Cau hinh CDN va Cache-Control dung
+3. Co staging va load test truoc production
+4. Dinh nghia error budget va alerting
 
-1.  **Process Management**：在 VPS 上使用 **PM2** 來管理 Node.js process（自動重啟、Cluster mode）。
-    ```bash
-    pm2 start .output/server/index.mjs --name "nuxt-app"
-    ```
-2.  **Environment Variables**：確保 CI/CD 流程中正確注入 `NUXT_` 開頭的環境變數。
-3.  **CDN 快取**：SSR Server 前面一定要掛一層 CDN (Cloudflare/CloudFront)，設定適當的 Cache-Control，減輕 Server 負擔。
+**Thong diep chinh:** SSR khong chi la render, ma la kien truc van hanh.
 
 ---
 
-## 面試總結
+## Tong ket cho phong van
 
-**可以這樣回答：**
+**Cau tra loi mau (30-45 giay):**
 
-> 在實作 SSR 時，我遇到了幾個主要難題。首先是 Hydration Mismatch，透過 `ClientOnly` 和 `useState` 解決。其次是 Server-side Memory Leak，這需要避免全域變數並使用工具監控 Heap。第三是第三方腳本處理，我會將廣告放在 `ClientOnly` 中並預留空間避免 CLS。最後是部署架構，SSR 需要 Node.js 環境（或 Edge），我會使用 PM2 管理 process，並配置 CDN 來分擔流量。
+> Khi lam SSR, toi chia van de thanh bon nhom: render deterministc de tranh hydration mismatch, tach biet ro config server/client, toi uu performance bang deduplication-cache-splitting, va dam bao van hanh on dinh voi xu ly loi, memory monitoring, va kien truc deploy phu hop.
 
-**關鍵點：**
-
-- ✅ Hydration Mismatch 的解法
-- ✅ Memory Leak 的定位 (Global State, Heap Snapshot)
-- ✅ 第三方腳本優化 (ClientOnly, Async)
-- ✅ SSR 部署架構 (Process Management, CDN)
+**Checklist:**
+- ✅ Neu it nhat mot van de cu the va nguyen nhan
+- ✅ Trinh bay giai phap ky thuat ro rang
+- ✅ Ket noi tac dong den SEO/performance/van hanh
+- ✅ Chot bang boi canh du an thuc te

@@ -9,7 +9,7 @@ tags: [JavaScript, Coding, Easy]
 
 > Problembeschreibung
 
-Implementieren Sie eine Funktion, die einen String entgegennimmt und das am haeufigsten vorkommende Zeichen in diesem String zurueckgibt.
+Implementieren Sie eine Funktion, die einen String entgegennimmt und das am häufigsten vorkommende Zeichen in diesem String zurückgibt.
 
 ### Beispiele
 
@@ -23,38 +23,38 @@ findMostFrequentChar('javascript'); // 'a'
 
 > Implementierungsmethoden
 
-### Methode 1: Zaehlung mit Objekt (Basisversion)
+### Methode 1: Zählung mit Objekt (Basisversion)
 
-**Ansatz**: Den String durchlaufen, mit einem Objekt die Haeufigkeit jedes Zeichens erfassen und dann das haeufigste Zeichen finden.
+**Ansatz**: Den String durchlaufen, mit einem Objekt die Häufigkeit jedes Zeichens erfassen und dann das häufigste Zeichen finden.
 
 ```javascript
 function findMostFrequentChar(str) {
-  // Objekt zur Speicherung von Zeichen und Zaehlung initialisieren
+  // Objekt zur Speicherung von Zeichen und Zählung initialisieren
   const charCount = {};
 
-  // Variablen fuer maximale Zaehlung und Zeichen initialisieren
+  // Variablen für maximale Zählung und Zeichen initialisieren
   let maxCount = 0;
   let maxChar = '';
 
   // String durchlaufen
   for (let char of str) {
-    // Wenn das Zeichen nicht im Objekt ist, Zaehlung auf 0 setzen
+    // Wenn das Zeichen nicht im Objekt ist, Zählung auf 0 setzen
     if (!charCount[char]) {
       charCount[char] = 0;
     }
 
-    // Zaehlung dieses Zeichens erhoehen
+    // Zählung dieses Zeichens erhöhen
     charCount[char]++;
 
-    // Wenn die Zaehlung dieses Zeichens groesser als die maximale Zaehlung ist
-    // Maximale Zaehlung und maximales Zeichen aktualisieren
+    // Wenn die Zählung dieses Zeichens größer als die maximale Zählung ist
+    // Maximale Zählung und maximales Zeichen aktualisieren
     if (charCount[char] > maxCount) {
       maxCount = charCount[char];
       maxChar = char;
     }
   }
 
-  // Maximales Zeichen zurueckgeben
+  // Maximales Zeichen zurückgeben
   return maxChar;
 }
 
@@ -63,22 +63,22 @@ console.log(findMostFrequentChar('abcccccccd')); // 'c'
 console.log(findMostFrequentChar('hello world')); // 'l'
 ```
 
-**Zeitkomplexitaet**: O(n), wobei n die Laenge des Strings ist
-**Platzkomplexitaet**: O(k), wobei k die Anzahl verschiedener Zeichen ist
+**Zeitkomplexität**: O(n), wobei n die Länge des Strings ist
+**Platzkomplexität**: O(k), wobei k die Anzahl verschiedener Zeichen ist
 
-### Methode 2: Erst zaehlen, dann Maximum finden (Zwei Phasen)
+### Methode 2: Erst zählen, dann Maximum finden (Zwei Phasen)
 
-**Ansatz**: Erst einmal durchlaufen, um die Haeufigkeit aller Zeichen zu berechnen, dann ein zweites Mal, um den Maximalwert zu finden.
+**Ansatz**: Erst einmal durchlaufen, um die Häufigkeit aller Zeichen zu berechnen, dann ein zweites Mal, um den Maximalwert zu finden.
 
 ```javascript
 function findMostFrequentChar(str) {
-  // Phase 1: Haeufigkeit jedes Zeichens berechnen
+  // Phase 1: Häufigkeit jedes Zeichens berechnen
   const charCount = {};
   for (let char of str) {
     charCount[char] = (charCount[char] || 0) + 1;
   }
 
-  // Phase 2: Das haeufigste Zeichen finden
+  // Phase 2: Das häufigste Zeichen finden
   let maxCount = 0;
   let maxChar = '';
 
@@ -97,11 +97,11 @@ console.log(findMostFrequentChar('abcccccccd')); // 'c'
 ```
 
 **Vorteile**: Klarere Logik, phasenweise Verarbeitung
-**Nachteile**: Zwei Durchlaeufe erforderlich
+**Nachteile**: Zwei Durchläufe erforderlich
 
 ### Methode 3: Verwendung von Map (ES6)
 
-**Ansatz**: Map verwenden, um die Zuordnung von Zeichen und Zaehlung zu speichern.
+**Ansatz**: Map verwenden, um die Zuordnung von Zeichen und Zählung zu speichern.
 
 ```javascript
 function findMostFrequentChar(str) {
@@ -127,7 +127,7 @@ console.log(findMostFrequentChar('abcccccccd')); // 'c'
 ```
 
 **Vorteile**: Verwendung von Map entspricht dem modernen JavaScript-Stil
-**Nachteile**: Fuer einfache Szenarien kann ein Objekt intuitiver sein
+**Nachteile**: Für einfache Szenarien kann ein Objekt intuitiver sein
 
 ### Methode 4: Verwendung von reduce (funktionaler Stil)
 
@@ -135,13 +135,13 @@ console.log(findMostFrequentChar('abcccccccd')); // 'c'
 
 ```javascript
 function findMostFrequentChar(str) {
-  // Haeufigkeit jedes Zeichens berechnen
+  // Häufigkeit jedes Zeichens berechnen
   const charCount = str.split('').reduce((acc, char) => {
     acc[char] = (acc[char] || 0) + 1;
     return acc;
   }, {});
 
-  // Das haeufigste Zeichen finden
+  // Das häufigste Zeichen finden
   return Object.entries(charCount).reduce((max, [char, count]) => {
     return count > max[1] ? [char, count] : max;
   }, ['', 0])[0];
@@ -156,20 +156,20 @@ console.log(findMostFrequentChar('abcccccccd')); // 'c'
 
 ### Methode 5: Behandlung mehrerer gleicher Maximalwerte
 
-**Ansatz**: Wenn mehrere Zeichen die gleiche hoechste Haeufigkeit haben, ein Array oder das erste gefundene zurueckgeben.
+**Ansatz**: Wenn mehrere Zeichen die gleiche höchste Häufigkeit haben, ein Array oder das erste gefundene zurückgeben.
 
 ```javascript
 function findMostFrequentChar(str) {
   const charCount = {};
   let maxCount = 0;
 
-  // Haeufigkeit jedes Zeichens berechnen
+  // Häufigkeit jedes Zeichens berechnen
   for (let char of str) {
     charCount[char] = (charCount[char] || 0) + 1;
     maxCount = Math.max(maxCount, charCount[char]);
   }
 
-  // Alle Zeichen mit maximaler Haeufigkeit finden
+  // Alle Zeichen mit maximaler Häufigkeit finden
   const mostFrequentChars = [];
   for (let char in charCount) {
     if (charCount[char] === maxCount) {
@@ -177,9 +177,9 @@ function findMostFrequentChar(str) {
     }
   }
 
-  // Das erste gefundene zurueckgeben (oder das gesamte Array)
+  // Das erste gefundene zurückgeben (oder das gesamte Array)
   return mostFrequentChars[0];
-  // Oder alle zurueckgeben: return mostFrequentChars;
+  // Oder alle zurückgeben: return mostFrequentChars;
 }
 
 // Test
@@ -188,7 +188,7 @@ console.log(findMostFrequentChar('aabbcc')); // 'a' (das erste gefundene)
 
 ## 3. Edge Cases
 
-> Behandlung von Grenzfaellen
+> Behandlung von Grenzfällen
 
 ### Leerer String
 
@@ -214,7 +214,7 @@ function findMostFrequentChar(str) {
 }
 ```
 
-### Gross-/Kleinschreibung
+### Groß-/Kleinschreibung
 
 ```javascript
 function findMostFrequentChar(str, caseSensitive = true) {
@@ -235,8 +235,8 @@ function findMostFrequentChar(str, caseSensitive = true) {
 }
 
 // Test
-console.log(findMostFrequentChar('Hello', false)); // 'l' (Gross-/Kleinschreibung ignoriert)
-console.log(findMostFrequentChar('Hello', true)); // 'l' (Gross-/Kleinschreibung beachtet)
+console.log(findMostFrequentChar('Hello', false)); // 'l' (Groß-/Kleinschreibung ignoriert)
+console.log(findMostFrequentChar('Hello', true)); // 'l' (Groß-/Kleinschreibung beachtet)
 ```
 
 ### Leerzeichen und Sonderzeichen
@@ -266,11 +266,11 @@ console.log(findMostFrequentChar('hello world', false)); // ' ' (Leerzeichen)
 
 ## 4. Common Interview Questions
 
-> Haeufige Interviewfragen
+> Häufige Interviewfragen
 
 ### Aufgabe 1: Grundlegende Implementierung
 
-Implementieren Sie eine Funktion, die das am haeufigsten vorkommende Zeichen in einem String findet.
+Implementieren Sie eine Funktion, die das am häufigsten vorkommende Zeichen in einem String findet.
 
 <details>
 <summary>Klicken Sie hier, um die Antwort anzuzeigen</summary>
@@ -299,15 +299,15 @@ console.log(findMostFrequentChar('hello world')); // 'l'
 
 **Kernpunkte**:
 
-- Objekt oder Map verwenden, um die Haeufigkeit jedes Zeichens zu erfassen
-- Waehrend des Durchlaufs gleichzeitig den Maximalwert aktualisieren
-- Zeitkomplexitaet O(n), Platzkomplexitaet O(k)
+- Objekt oder Map verwenden, um die Häufigkeit jedes Zeichens zu erfassen
+- Während des Durchlaufs gleichzeitig den Maximalwert aktualisieren
+- Zeitkomplexität O(n), Platzkomplexität O(k)
 
 </details>
 
 ### Aufgabe 2: Optimierte Version
 
-Optimieren Sie die obige Funktion, um mehrere gleiche Maximalwerte behandeln zu koennen.
+Optimieren Sie die obige Funktion, um mehrere gleiche Maximalwerte behandeln zu können.
 
 <details>
 <summary>Klicken Sie hier, um die Antwort anzuzeigen</summary>
@@ -317,13 +317,13 @@ function findMostFrequentChar(str) {
   const charCount = {};
   let maxCount = 0;
 
-  // Phase 1: Haeufigkeit jedes Zeichens berechnen
+  // Phase 1: Häufigkeit jedes Zeichens berechnen
   for (let char of str) {
     charCount[char] = (charCount[char] || 0) + 1;
     maxCount = Math.max(maxCount, charCount[char]);
   }
 
-  // Phase 2: Alle Zeichen mit maximaler Haeufigkeit finden
+  // Phase 2: Alle Zeichen mit maximaler Häufigkeit finden
   const mostFrequentChars = [];
   for (let char in charCount) {
     if (charCount[char] === maxCount) {
@@ -331,8 +331,8 @@ function findMostFrequentChar(str) {
     }
   }
 
-  // Je nach Anforderung das erste oder alle zurueckgeben
-  return mostFrequentChars[0]; // Oder mostFrequentChars zurueckgeben
+  // Je nach Anforderung das erste oder alle zurückgeben
+  return mostFrequentChars[0]; // Oder mostFrequentChars zurückgeben
 }
 
 // Test
@@ -373,27 +373,27 @@ console.log(findMostFrequentChar('abcccccccd')); // 'c'
 
 **Map vs Object**:
 
-- **Map**: Besser geeignet fuer dynamische Schluessel-Wert-Paare, Schluessel koennen jeden Typ haben
-- **Object**: Einfacher und intuitiver, geeignet fuer String-Schluessel
+- **Map**: Besser geeignet für dynamische Schlüssel-Wert-Paare, Schlüssel können jeden Typ haben
+- **Object**: Einfacher und intuitiver, geeignet für String-Schlüssel
 
 </details>
 
 ## 5. Best Practices
 
-> Bewaehrte Methoden
+> Bewährte Methoden
 
 ### Empfohlene Vorgehensweisen
 
 ```javascript
 // 1. Klare Variablennamen verwenden
 function findMostFrequentChar(str) {
-  const charCount = {}; // Zweck klar ausdruecken
+  const charCount = {}; // Zweck klar ausdrücken
   let maxCount = 0;
   let maxChar = '';
   // ...
 }
 
-// 2. Grenzfaelle behandeln
+// 2. Grenzfälle behandeln
 function findMostFrequentChar(str) {
   if (!str || str.length === 0) {
     return '';
@@ -401,7 +401,7 @@ function findMostFrequentChar(str) {
   // ...
 }
 
-// 3. Waehrend des Durchlaufs gleichzeitig den Maximalwert aktualisieren (ein Durchlauf)
+// 3. Während des Durchlaufs gleichzeitig den Maximalwert aktualisieren (ein Durchlauf)
 function findMostFrequentChar(str) {
   const charCount = {};
   let maxCount = 0;
@@ -422,7 +422,7 @@ function findMostFrequentChar(str) {
 ### Zu vermeidende Vorgehensweisen
 
 ```javascript
-// 1. Keine zwei Durchlaeufe verwenden (es sei denn, es ist notwendig)
+// 1. Keine zwei Durchläufe verwenden (es sei denn, es ist notwendig)
 // ❌ Schlechtere Leistung
 function findMostFrequentChar(str) {
   const charCount = {};
@@ -434,14 +434,14 @@ function findMostFrequentChar(str) {
 }
 
 // 2. Die Behandlung leerer Strings nicht vergessen
-// ❌ Koennte undefined zurueckgeben
+// ❌ Könnte undefined zurückgeben
 function findMostFrequentChar(str) {
   const charCount = {};
   // ...
   return maxChar; // Bei leerem String ist maxChar ''
 }
 
-// 3. Keine uebermaeig komplexe funktionale Schreibweise verwenden (es sei denn, es ist Teamkonvention)
+// 3. Keine übermäßig komplexe funktionale Schreibweise verwenden (es sei denn, es ist Teamkonvention)
 // ❌ Geringere Lesbarkeit
 const findMostFrequentChar = (str) =>
   Object.entries(
@@ -454,29 +454,29 @@ const findMostFrequentChar = (str) =>
 
 ## 6. Interview Summary
 
-> Zusammenfassung fuer Interviews
+> Zusammenfassung für Interviews
 
 ### Schnellreferenz
 
 **Implementierungspunkte**:
 
-1. Objekt oder Map verwenden, um die Haeufigkeit jedes Zeichens zu erfassen
-2. Waehrend des Durchlaufs gleichzeitig den Maximalwert aktualisieren
-3. Zeitkomplexitaet O(n), Platzkomplexitaet O(k)
-4. Grenzfaelle behandeln (leerer String, Gross-/Kleinschreibung usw.)
+1. Objekt oder Map verwenden, um die Häufigkeit jedes Zeichens zu erfassen
+2. Während des Durchlaufs gleichzeitig den Maximalwert aktualisieren
+3. Zeitkomplexität O(n), Platzkomplexität O(k)
+4. Grenzfälle behandeln (leerer String, Groß-/Kleinschreibung usw.)
 
 **Optimierungsrichtungen**:
 
-- In einem Durchlauf abschliessen (gleichzeitiges Zaehlen und Maximum finden)
-- Map fuer komplexe Szenarien verwenden
+- In einem Durchlauf abschließen (gleichzeitiges Zählen und Maximum finden)
+- Map für komplexe Szenarien verwenden
 - Mehrere gleiche Maximalwerte behandeln
-- Gross-/Kleinschreibung, Leerzeichen und andere Sonderfaelle beruecksichtigen
+- Groß-/Kleinschreibung, Leerzeichen und andere Sonderfälle berücksichtigen
 
-### Beispiel fuer Interviewantworten
+### Beispiel für Interviewantworten
 
-**Q: Implementieren Sie eine Funktion, die das am haeufigsten vorkommende Zeichen in einem String findet.**
+**Q: Implementieren Sie eine Funktion, die das am häufigsten vorkommende Zeichen in einem String findet.**
 
-> "Ich wuerde ein Objekt verwenden, um die Haeufigkeit jedes Zeichens zu erfassen, und waehrend des Durchlaufens des Strings gleichzeitig den Maximalwert aktualisieren. Die konkrete Implementierung ist: Ein leeres Objekt charCount zur Speicherung von Zeichen und Zaehlung initialisieren, Variablen maxCount und maxChar initialisieren. Dann den String durchlaufen, fuer jedes Zeichen, wenn es nicht im Objekt ist, auf 0 initialisieren, dann die Zaehlung erhoehen. Wenn die Zaehlung des aktuellen Zeichens groesser als maxCount ist, maxCount und maxChar aktualisieren. Zum Schluss maxChar zurueckgeben. Die Zeitkomplexitaet dieser Methode ist O(n), die Platzkomplexitaet ist O(k), wobei n die Laenge des Strings und k die Anzahl verschiedener Zeichen ist."
+> "Ich würde ein Objekt verwenden, um die Häufigkeit jedes Zeichens zu erfassen, und während des Durchlaufens des Strings gleichzeitig den Maximalwert aktualisieren. Die konkrete Implementierung ist: Ein leeres Objekt charCount zur Speicherung von Zeichen und Zählung initialisieren, Variablen maxCount und maxChar initialisieren. Dann den String durchlaufen, für jedes Zeichen, wenn es nicht im Objekt ist, auf 0 initialisieren, dann die Zählung erhöhen. Wenn die Zählung des aktuellen Zeichens größer als maxCount ist, maxCount und maxChar aktualisieren. Zum Schluss maxChar zurückgeben. Die Zeitkomplexität dieser Methode ist O(n), die Platzkomplexität ist O(k), wobei n die Länge des Strings und k die Anzahl verschiedener Zeichen ist."
 
 ## Reference
 

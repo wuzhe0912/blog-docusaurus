@@ -4,21 +4,21 @@ slug: /experience/ssr-seo/lv1-seo-basic
 tags: [Experience, Interview, SSR-SEO, Lv1]
 ---
 
-> In einem Multi-Brand-Plattformprojekt, Implementierung der grundlegenden SEO-Konfiguration: Router History Mode, Meta Tags Struktur und SEO fuer statische Seiten.
+> In einem Multi-Brand-Plattformprojekt, Implementierung der grundlegenden SEO-Konfiguration: Router History Mode, Meta Tags Struktur und SEO für statische Seiten.
 
 ---
 
-## 1. Kernpunkte fuer die Interviewantwort
+## 1. Kernpunkte für die Interviewantwort
 
 1. **Router-Modus-Auswahl**: History Mode statt Hash Mode verwenden, um eine saubere URL-Struktur bereitzustellen.
-2. **Meta Tags Grundlagen**: Vollstaendige SEO Meta Tags implementieren, einschliesslich Open Graph und Twitter Card.
-3. **SEO fuer statische Seiten**: Vollstaendige SEO-Elemente fuer die Landing Page konfigurieren.
+2. **Meta Tags Grundlagen**: Vollständige SEO Meta Tags implementieren, einschließlich Open Graph und Twitter Card.
+3. **SEO für statische Seiten**: Vollständige SEO-Elemente für die Landing Page konfigurieren.
 
 ---
 
 ## 2. Router History Mode Konfiguration
 
-### 2.1 Warum History Mode waehlen?
+### 2.1 Warum History Mode wählen?
 
 **Dateipfad:** `quasar.config.js`
 
@@ -31,19 +31,19 @@ vueRouterMode: "history", // History Mode statt Hash Mode verwenden
 
 | Modus            | URL-Beispiel | SEO-Auswirkung                          |
 | ---------------- | ------------ | ---------------------------------------- |
-| **Hash Mode**    | `/#/home`    | ❌ Schwerer fuer Suchmaschinen zu indexieren |
+| **Hash Mode**    | `/#/home`    | ❌ Schwerer für Suchmaschinen zu indexieren |
 | **History Mode** | `/home`      | ✅ Saubere URL, leicht zu indexieren       |
 
 **Wesentliche Unterschiede:**
 
 - History Mode erzeugt saubere URLs (z.B.: `/home` statt `/#/home`)
-- Suchmaschinen koennen einfacher indexieren und crawlen
+- Suchmaschinen können einfacher indexieren und crawlen
 - Bessere Benutzererfahrung und Teilerfahrung
 - Erfordert Backend-Konfiguration (um 404-Fehler zu vermeiden)
 
 ### 2.2 Backend-Konfigurationsanforderungen
 
-Bei Verwendung des History Mode wird eine Backend-Konfiguration benoetigt:
+Bei Verwendung des History Mode wird eine Backend-Konfiguration benötigt:
 
 ```nginx
 # Nginx Beispiel
@@ -52,7 +52,7 @@ location / {
 }
 ```
 
-Dies stellt sicher, dass alle Routen `index.html` zurueckgeben und der Frontend-Router die Verarbeitung uebernimmt.
+Dies stellt sicher, dass alle Routen `index.html` zurückgeben und der Frontend-Router die Verarbeitung übernimmt.
 
 ---
 
@@ -69,14 +69,14 @@ Dies stellt sicher, dass alle Routen `index.html` zurueckgeben und der Frontend-
 <meta name="keywords" content="カジノ,Jackpot,オンカジ,VIP" />
 <meta
   name="description"
-  content="Sofortige Aktualisierung jederzeit und ueberall. VIP-Testprogramm nur fuer die ersten 100 Mitglieder."
+  content="Sofortige Aktualisierung jederzeit und überall. VIP-Testprogramm nur für die ersten 100 Mitglieder."
 />
 ```
 
-**Erklaerung:**
+**Erklärung:**
 
 - `title`: Seitentitel, beeinflusst die Anzeige in Suchergebnissen
-- `keywords`: Schluesselwoerter (geringere Bedeutung in modernem SEO, aber Konfiguration wird empfohlen)
+- `keywords`: Schlüsselwörter (geringere Bedeutung in modernem SEO, aber Konfiguration wird empfohlen)
 - `description`: Seitenbeschreibung, wird in Suchergebnissen angezeigt
 
 ### 3.2 Open Graph Tags (Social Media Sharing)
@@ -96,7 +96,7 @@ Dies stellt sicher, dass alle Routen `index.html` zurueckgeben und der Frontend-
 **Verwendung:**
 
 - Vorschau, die beim Teilen auf sozialen Medien wie Facebook, LinkedIn angezeigt wird
-- Empfohlene Groesse fuer `og:image`: 1200x630px
+- Empfohlene Größe für `og:image`: 1200x630px
 - `og:type` kann auf `website`, `article` usw. gesetzt werden
 
 ### 3.3 Twitter Card Tags
@@ -112,13 +112,13 @@ Dies stellt sicher, dass alle Routen `index.html` zurueckgeben und der Frontend-
 **Twitter Card Typen:**
 
 - `summary`: Kleine Karte
-- `summary_large_image`: Grosse Bildkarte (empfohlen)
+- `summary_large_image`: Große Bildkarte (empfohlen)
 
 ---
 
-## 4. SEO-Implementierung fuer statische Landing Page
+## 4. SEO-Implementierung für statische Landing Page
 
-### 4.1 Vollstaendige SEO-Element-Checkliste
+### 4.1 Vollständige SEO-Element-Checkliste
 
 In der Landing Page des Projekts wurden folgende SEO-Elemente implementiert:
 
@@ -142,7 +142,7 @@ Konfiguration
     <meta name="keywords" content="カジノ,Jackpot,オンカジ,VIP" />
     <meta
       name="description"
-      content="Sofortige Aktualisierung jederzeit und ueberall. VIP-Testprogramm nur fuer die ersten 100 Mitglieder."
+      content="Sofortige Aktualisierung jederzeit und überall. VIP-Testprogramm nur für die ersten 100 Mitglieder."
     />
 
     <!-- Open Graph -->
@@ -179,15 +179,15 @@ Konfiguration
 
 ### 5.1 Router-Modus-Auswahl
 
-**Warum History Mode waehlen?**
+**Warum History Mode wählen?**
 
 - Bietet saubere URLs, verbessert den SEO-Effekt
-- Suchmaschinen koennen einfacher indexieren
+- Suchmaschinen können einfacher indexieren
 - Bessere Benutzererfahrung
 
 **Worauf muss man achten?**
 
-- Backend-Konfigurationsunterstuetzung erforderlich (404 bei direktem Routenzugriff vermeiden)
+- Backend-Konfigurationsunterstützung erforderlich (404 bei direktem Routenzugriff vermeiden)
 - Fallback-Mechanismus muss konfiguriert werden
 
 ### 5.2 Bedeutung der Meta Tags
@@ -202,7 +202,7 @@ Konfiguration
 
 - Open Graph: Vorschau beim Teilen auf Plattformen wie Facebook, LinkedIn
 - Twitter Card: Vorschau beim Teilen auf Twitter
-- Empfohlene Bildgroesse: 1200x630px
+- Empfohlene Bildgröße: 1200x630px
 
 ---
 
@@ -210,20 +210,20 @@ Konfiguration
 
 1. **Title Tag**
 
-   - Laenge auf 50-60 Zeichen begrenzen
-   - Hauptschluesselwoerter einbeziehen
+   - Länge auf 50-60 Zeichen begrenzen
+   - Hauptschlüsselwörter einbeziehen
    - Jede Seite sollte einen einzigartigen Titel haben
 
 2. **Description**
 
-   - Laenge auf 150-160 Zeichen begrenzen
-   - Seiteninhalt praegnant beschreiben
+   - Länge auf 150-160 Zeichen begrenzen
+   - Seiteninhalt prägnant beschreiben
    - Call-to-Action (CTA) einbeziehen
 
 3. **Open Graph Bild**
 
-   - Groesse: 1200x630px
-   - Dateigroesse: < 1MB
+   - Größe: 1200x630px
+   - Dateigröße: < 1MB
    - Hochwertige Bilder verwenden
 
 4. **Canonical URL**
@@ -234,13 +234,13 @@ Konfiguration
 
 ## 7. Interview-Zusammenfassung
 
-**So koennen Sie antworten:**
+**So können Sie antworten:**
 
-> Im Projekt habe ich mich fuer Vue Routers History Mode anstelle des Hash Mode entschieden, da der History Mode eine saubere URL-Struktur bietet, die SEO-freundlicher ist. Gleichzeitig habe ich vollstaendige SEO Meta Tags fuer die Landing Page implementiert, einschliesslich grundlegender title, description, keywords sowie Open Graph und Twitter Card Tags, um sicherzustellen, dass die Vorschau beim Teilen in sozialen Medien korrekt angezeigt wird.
+> Im Projekt habe ich mich für Vue Routers History Mode anstelle des Hash Mode entschieden, da der History Mode eine saubere URL-Struktur bietet, die SEO-freundlicher ist. Gleichzeitig habe ich vollständige SEO Meta Tags für die Landing Page implementiert, einschließlich grundlegender title, description, keywords sowie Open Graph und Twitter Card Tags, um sicherzustellen, dass die Vorschau beim Teilen in sozialen Medien korrekt angezeigt wird.
 
 **Kernpunkte:**
 
-- ✅ Auswahl und Gruende fuer Router History Mode
-- ✅ Vollstaendige Meta Tags Struktur
-- ✅ Optimierung fuer Social Media Sharing
+- ✅ Auswahl und Gründe für Router History Mode
+- ✅ Vollständige Meta Tags Struktur
+- ✅ Optimierung für Social Media Sharing
 - ✅ Praktische Projekterfahrung

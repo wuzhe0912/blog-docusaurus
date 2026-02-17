@@ -1,15 +1,15 @@
 ---
 id: project-architecture-vite-setting
-title: 'Configuration Vite et systeme multi-tenant'
+title: 'Configuration Vite et système multi-tenant'
 slug: /experience/project-architecture/vite-setting
 tags: [Experience, Interview, Project-Architecture]
 ---
 
-> Comment gerer un systeme multi-tenant de 27 modeles de marque avec Vite, en implementant la compilation dynamique et l'isolation des environnements.
+> Comment gérer un système multi-tenant de 27 modèles de marque avec Vite, en implémentant la compilation dynamique et l'isolation des environnements.
 
 ---
 
-## 1. Chargement dynamique des routes de modele correspondantes via SiteKey
+## 1. Chargement dynamique des routes de modèle correspondantes via SiteKey
 
 ```typescript
 function writeBuildRouter() {
@@ -39,19 +39,19 @@ function writeBuildRouter() {
 }
 ```
 
-- Lors du build, les routes de modele correspondantes sont chargees dynamiquement via SiteKey
-- La variable d'environnement `SITE_KEY` est utilisee pour selectionner le modele a compiler
-- Un seul depot gere plusieurs modeles, evitant la duplication de code
+- Lors du build, les routes de modèle correspondantes sont chargées dynamiquement via SiteKey
+- La variable d'environnement `SITE_KEY` est utilisée pour sélectionner le modèle à compiler
+- Un seul dépôt gère plusieurs modèles, évitant la duplication de code
 
-## 2. Systeme d'injection de variables d'environnement personnalisees
+## 2. Système d'injection de variables d'environnement personnalisées
 
-## 3. Integration de TailwindCSS et conception de breakpoints RWD
+## 3. Intégration de TailwindCSS et conception de breakpoints RWD
 
-## 4. Configuration du Proxy de l'environnement de developpement
+## 4. Configuration du Proxy de l'environnement de développement
 
-## 5. Integration du plugin Vite Vue i18n
+## 5. Intégration du plugin Vite Vue i18n
 
-## 6. Configuration de compatibilite
+## 6. Configuration de compatibilité
 
 ```js
       target: {
@@ -60,5 +60,5 @@ function writeBuildRouter() {
       },
 ```
 
-- Controle precis de la compatibilite navigateur
-- Equilibre entre fonctionnalites modernes et compatibilite
+- Contrôle précis de la compatibilité navigateur
+- Équilibre entre fonctionnalités modernes et compatibilité

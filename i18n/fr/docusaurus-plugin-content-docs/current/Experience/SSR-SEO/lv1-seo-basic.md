@@ -1,18 +1,18 @@
 ---
-title: '[Lv1] Implementation basique du SEO : Modes de Router et Meta Tags'
+title: '[Lv1] Implémentation basique du SEO : Modes de Router et Meta Tags'
 slug: /experience/ssr-seo/lv1-seo-basic
 tags: [Experience, Interview, SSR-SEO, Lv1]
 ---
 
-> Dans un projet de plateforme multi-marques, implementation de la configuration SEO de base : Router History Mode, structure des Meta Tags et SEO des pages statiques.
+> Dans un projet de plateforme multi-marques, implémentation de la configuration SEO de base : Router History Mode, structure des Meta Tags et SEO des pages statiques.
 
 ---
 
-## 1. Points cles de reponse en entretien
+## 1. Points clés de réponse en entretien
 
-1. **Selection du mode Router** : Utiliser le History Mode plutot que le Hash Mode pour fournir une structure d'URL propre.
-2. **Fondamentaux des Meta Tags** : Implementer des meta tags SEO complets, incluant Open Graph et Twitter Card.
-3. **SEO des pages statiques** : Configurer des elements SEO complets pour la Landing Page.
+1. **Sélection du mode Router** : Utiliser le History Mode plutôt que le Hash Mode pour fournir une structure d'URL propre.
+2. **Fondamentaux des Meta Tags** : Implémenter des meta tags SEO complets, incluant Open Graph et Twitter Card.
+3. **SEO des pages statiques** : Configurer des éléments SEO complets pour la Landing Page.
 
 ---
 
@@ -24,26 +24,26 @@ tags: [Experience, Interview, SSR-SEO, Lv1]
 
 ```javascript
 // Ligne 82
-vueRouterMode: "history", // Utiliser le mode history plutot que le mode hash
+vueRouterMode: "history", // Utiliser le mode history plutôt que le mode hash
 ```
 
 **Avantages SEO :**
 
 | Mode             | Exemple d'URL | Impact SEO                                |
 | ---------------- | ------------- | ----------------------------------------- |
-| **Hash Mode**    | `/#/home`     | ❌ Difficile a indexer par les moteurs     |
-| **History Mode** | `/home`       | ✅ URL propre, facile a indexer            |
+| **Hash Mode**    | `/#/home`     | ❌ Difficile à indexer par les moteurs     |
+| **History Mode** | `/home`       | ✅ URL propre, facile à indexer            |
 
-**Differences cles :**
+**Différences clés :**
 
-- Le History Mode genere des URLs propres (ex : `/home` au lieu de `/#/home`)
+- Le History Mode génère des URLs propres (ex : `/home` au lieu de `/#/home`)
 - Les moteurs de recherche peuvent indexer et crawler plus facilement
-- Meilleure experience utilisateur et de partage
-- Necessite une configuration backend (pour eviter les erreurs 404)
+- Meilleure expérience utilisateur et de partage
+- Nécessite une configuration backend (pour éviter les erreurs 404)
 
 ### 2.2 Exigences de configuration backend
 
-Lors de l'utilisation du History Mode, une configuration backend est necessaire :
+Lors de l'utilisation du History Mode, une configuration backend est nécessaire :
 
 ```nginx
 # Exemple Nginx
@@ -52,7 +52,7 @@ location / {
 }
 ```
 
-Cela garantit que toutes les routes renvoient `index.html`, et le Router frontend gere le routage.
+Cela garantit que toutes les routes renvoient `index.html`, et le Router frontend gère le routage.
 
 ---
 
@@ -69,17 +69,17 @@ Cela garantit que toutes les routes renvoient `index.html`, et le Router fronten
 <meta name="keywords" content="カジノ,Jackpot,オンカジ,VIP" />
 <meta
   name="description"
-  content="Mise a jour immediate partout et a tout moment. Programme test VIP reserve aux 100 premiers membres."
+  content="Mise à jour immédiate partout et à tout moment. Programme test VIP réservé aux 100 premiers membres."
 />
 ```
 
 **Explication :**
 
-- `title` : Titre de la page, affecte l'affichage dans les resultats de recherche
-- `keywords` : Mots-cles (importance moindre dans le SEO moderne, mais configuration recommandee)
-- `description` : Description de la page, s'affiche dans les resultats de recherche
+- `title` : Titre de la page, affecte l'affichage dans les résultats de recherche
+- `keywords` : Mots-clés (importance moindre dans le SEO moderne, mais configuration recommandée)
+- `description` : Description de la page, s'affiche dans les résultats de recherche
 
-### 3.2 Open Graph Tags (partage sur les reseaux sociaux)
+### 3.2 Open Graph Tags (partage sur les réseaux sociaux)
 
 ```html
 <!-- Open Graph Tags -->
@@ -95,9 +95,9 @@ Cela garantit que toutes les routes renvoient `index.html`, et le Router fronten
 
 **Utilisation :**
 
-- Apercu affiche lors du partage sur les reseaux sociaux comme Facebook, LinkedIn
-- Taille recommandee pour `og:image` : 1200x630px
-- `og:type` peut etre defini comme `website`, `article`, etc.
+- Aperçu affiché lors du partage sur les réseaux sociaux comme Facebook, LinkedIn
+- Taille recommandée pour `og:image` : 1200x630px
+- `og:type` peut être défini comme `website`, `article`, etc.
 
 ### 3.3 Twitter Card Tags
 
@@ -112,15 +112,15 @@ Cela garantit que toutes les routes renvoient `index.html`, et le Router fronten
 **Types de Twitter Card :**
 
 - `summary` : Petite carte
-- `summary_large_image` : Carte avec grande image (recommande)
+- `summary_large_image` : Carte avec grande image (recommandé)
 
 ---
 
-## 4. Implementation SEO pour Landing Page statique
+## 4. Implémentation SEO pour Landing Page statique
 
-### 4.1 Liste complete des elements SEO
+### 4.1 Liste complète des éléments SEO
 
-Dans la Landing Page du projet, les elements SEO suivants ont ete implementes :
+Dans la Landing Page du projet, les éléments SEO suivants ont été implémentés :
 
 ```html
 ✅ Balise Title ✅ Keywords meta tag ✅ Description meta tag ✅ Open Graph
@@ -128,7 +128,7 @@ tags (Facebook, LinkedIn, etc.) ✅ Twitter Card tags ✅ Canonical URL ✅ Conf
 Favicon
 ```
 
-### 4.2 Exemple d'implementation
+### 4.2 Exemple d'implémentation
 
 ```html
 <!DOCTYPE html>
@@ -142,7 +142,7 @@ Favicon
     <meta name="keywords" content="カジノ,Jackpot,オンカジ,VIP" />
     <meta
       name="description"
-      content="Mise a jour immediate partout et a tout moment. Programme test VIP reserve aux 100 premiers membres."
+      content="Mise à jour immédiate partout et à tout moment. Programme test VIP réservé aux 100 premiers membres."
     />
 
     <!-- Open Graph -->
@@ -175,34 +175,34 @@ Favicon
 
 ---
 
-## 5. Points cles pour l'entretien
+## 5. Points clés pour l'entretien
 
-### 5.1 Selection du mode Router
+### 5.1 Sélection du mode Router
 
 **Pourquoi choisir le History Mode ?**
 
-- Fournit des URLs propres, ameliore l'effet SEO
+- Fournit des URLs propres, améliore l'effet SEO
 - Les moteurs de recherche peuvent indexer plus facilement
-- Meilleure experience utilisateur
+- Meilleure expérience utilisateur
 
 **Points d'attention ?**
 
-- Necessite un support de configuration backend (eviter les 404 lors de l'acces direct aux routes)
-- Necessite la configuration d'un mecanisme de fallback
+- Nécessite un support de configuration backend (éviter les 404 lors de l'accès direct aux routes)
+- Nécessite la configuration d'un mécanisme de fallback
 
 ### 5.2 Importance des Meta Tags
 
 **Meta Tags basiques :**
 
-- `title` : Affecte l'affichage dans les resultats de recherche
+- `title` : Affecte l'affichage dans les résultats de recherche
 - `description` : Affecte le taux de clics
-- `keywords` : Importance moindre dans le SEO moderne, mais configuration recommandee
+- `keywords` : Importance moindre dans le SEO moderne, mais configuration recommandée
 
-**Meta Tags pour reseaux sociaux :**
+**Meta Tags pour réseaux sociaux :**
 
-- Open Graph : Apercu de partage sur Facebook, LinkedIn et autres plateformes
-- Twitter Card : Apercu de partage sur Twitter
-- Taille d'image recommandee : 1200x630px
+- Open Graph : Aperçu de partage sur Facebook, LinkedIn et autres plateformes
+- Twitter Card : Aperçu de partage sur Twitter
+- Taille d'image recommandée : 1200x630px
 
 ---
 
@@ -210,37 +210,37 @@ Favicon
 
 1. **Balise Title**
 
-   - Controler la longueur entre 50-60 caracteres
-   - Inclure les mots-cles principaux
+   - Contrôler la longueur entre 50-60 caractères
+   - Inclure les mots-clés principaux
    - Chaque page doit avoir un title unique
 
 2. **Description**
 
-   - Controler la longueur entre 150-160 caracteres
-   - Decrire le contenu de la page de facon concise
-   - Inclure un appel a l'action (CTA)
+   - Contrôler la longueur entre 150-160 caractères
+   - Décrire le contenu de la page de façon concise
+   - Inclure un appel à l'action (CTA)
 
 3. **Image Open Graph**
 
    - Taille : 1200x630px
    - Taille de fichier : < 1MB
-   - Utiliser des images de haute qualite
+   - Utiliser des images de haute qualité
 
 4. **Canonical URL**
-   - Eviter les problemes de contenu duplique
+   - Éviter les problèmes de contenu dupliqué
    - Pointer vers l'URL de la version principale
 
 ---
 
-## 7. Resume d'entretien
+## 7. Résumé d'entretien
 
-**Vous pouvez repondre ainsi :**
+**Vous pouvez répondre ainsi :**
 
-> Dans le projet, j'ai choisi d'utiliser le History Mode de Vue Router plutot que le Hash Mode, car le History Mode fournit une structure d'URL propre plus favorable au SEO. En meme temps, j'ai implemente des meta tags SEO complets pour la Landing Page, incluant les title, description, keywords basiques, ainsi que les Open Graph et Twitter Card tags, garantissant un affichage correct de l'apercu lors du partage sur les reseaux sociaux.
+> Dans le projet, j'ai choisi d'utiliser le History Mode de Vue Router plutôt que le Hash Mode, car le History Mode fournit une structure d'URL propre plus favorable au SEO. En même temps, j'ai implémenté des meta tags SEO complets pour la Landing Page, incluant les title, description, keywords basiques, ainsi que les Open Graph et Twitter Card tags, garantissant un affichage correct de l'aperçu lors du partage sur les réseaux sociaux.
 
-**Points cles :**
+**Points clés :**
 
-- ✅ Selection et raisons du Router History Mode
-- ✅ Structure complete des Meta Tags
-- ✅ Optimisation du partage sur les reseaux sociaux
-- ✅ Experience de projet reelle
+- ✅ Sélection et raisons du Router History Mode
+- ✅ Structure complète des Meta Tags
+- ✅ Optimisation du partage sur les réseaux sociaux
+- ✅ Expérience de projet réelle

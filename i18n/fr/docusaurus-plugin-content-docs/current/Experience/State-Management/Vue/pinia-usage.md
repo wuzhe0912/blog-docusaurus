@@ -11,9 +11,9 @@ tags: [Experience, Interview, State-Management, Vue]
 
 ## 1. Points clefs pour l'entretien
 
-1. **Usage dans les composants**: utiliser `storeToRefs` pour conserver la reactivite; les actions peuvent etre destructurees directement.
-2. **Composition via composables**: combiner plusieurs stores dans des composables pour encapsuler la logique metier.
-3. **Communication entre stores**: privilegier l'orchestration dans les composables pour eviter les dependances circulaires.
+1. **Usage dans les composants**: utiliser `storeToRefs` pour conserver la réactivité; les actions peuvent être destructurées directement.
+2. **Composition via composables**: combiner plusieurs stores dans des composables pour encapsuler la logique métier.
+3. **Communication entre stores**: privilégier l'orchestration dans les composables pour éviter les dépendances circulaires.
 
 ---
 
@@ -48,23 +48,23 @@ import { storeToRefs } from 'pinia';
 
 const authStore = useAuthStore();
 
-// ❌ Incorrect: perte de reactivite
+// ❌ Incorrect: perte de réactivité
 const { access_token, isLogin } = authStore;
 
-// ✅ Correct: reactivite preservee
+// ✅ Correct: réactivité préservée
 const { access_token, isLogin } = storeToRefs(authStore);
 
-// ✅ Les actions peuvent etre destructurees directement
+// ✅ Les actions peuvent être destructurées directement
 const { setToptVerified } = authStore;
 </script>
 ```
 
-**Pourquoi la destructuration directe casse la reactivite?**
+**Pourquoi la destructuration directe casse la réactivité?**
 
-- Le state et les getters Pinia sont reactifs
-- La destructuration directe coupe le lien reactif
-- `storeToRefs` convertit les proprietes en `ref` et preserve la reactivite
-- Les actions ne sont pas reactives, donc destructuration directe possible
+- Le state et les getters Pinia sont réactifs
+- La destructuration directe coupe le lien réactif
+- `storeToRefs` convertit les propriétés en `ref` et préserve la réactivité
+- Les actions ne sont pas réactives, donc destructuration directe possible
 
 ---
 
@@ -91,7 +91,7 @@ export function useGame() {
   // 3) Destructurer les actions directement
   const { initAllGameList, updateAllGameList } = gameStore;
 
-  // 4) Composer la logique metier
+  // 4) Composer la logique métier
   async function initGameTypeList() {
     const { status, data } = await useApi(getGameTypes);
     if (status) {
@@ -112,15 +112,15 @@ export function useGame() {
 
 **Points d'entretien**:
 - Les composables orchestrent la logique de plusieurs stores
-- `storeToRefs` pour les valeurs reactives
-- Les actions peuvent etre destructurees directement
-- La logique metier complexe doit sortir des composants
+- `storeToRefs` pour les valeurs réactives
+- Les actions peuvent être destructurées directement
+- La logique métier complexe doit sortir des composants
 
 ---
 
 ## 4. Communication entre stores
 
-### 4.1 Methode 1: appeler un autre store depuis un store
+### 4.1 Méthode 1: appeler un autre store depuis un store
 
 ```typescript
 import { defineStore } from 'pinia';
@@ -133,7 +133,7 @@ export const useAuthStore = defineStore('authStore', {
       if (status) {
         this.access_token = data.access_token;
 
-        // Appeler une methode d'un autre store
+        // Appeler une méthode d'un autre store
         const userInfoStore = useUserInfoStore();
         userInfoStore.setStoreUserInfo(data.user);
       }
@@ -142,7 +142,7 @@ export const useAuthStore = defineStore('authStore', {
 });
 ```
 
-### 4.2 Methode 2: combiner plusieurs stores dans un composable (recommande)
+### 4.2 Méthode 2: combiner plusieurs stores dans un composable (recommandé)
 
 ```typescript
 export function useInit() {
@@ -165,8 +165,8 @@ export function useInit() {
 
 **Points d'entretien**:
 - ✅ Combiner les stores dans les composables
-- ❌ Eviter les dependances circulaires entre stores
-- 🎯 Respecter la responsabilite unique de chaque store
+- ❌ Éviter les dépendances circulaires entre stores
+- 🎯 Respecter la responsabilité unique de chaque store
 
 ---
 
@@ -174,16 +174,16 @@ export function useInit() {
 
 Exemple complet de collaboration entre plusieurs stores.
 
-### 5.1 Schema de flux
+### 5.1 Schéma de flux
 
 ```
 L'utilisateur clique sur Connexion
      ↓
 Appel de useAuth().handleLogin()
      ↓
-Requete API de connexion
+Requête API de connexion
      ↓
-Succes -> authStore stocke le token
+Succès -> authStore stocke le token
      ↓
 useUserInfo().getUserInfo()
      ↓
@@ -199,7 +199,7 @@ Redirection vers la page d'accueil
 ### 5.2 Exemple de code
 
 ```typescript
-// 1) authStore.ts - Gestion de l'etat d'authentification
+// 1) authStore.ts - Gestion de l'état d'authentification
 export const useAuthStore = defineStore('authStore', {
   state: () => ({
     access_token: undefined as string | undefined,
@@ -221,7 +221,7 @@ export const useUserInfoStore = defineStore('useInfoStore', {
       this.info = userInfo;
     },
   },
-  persist: false, // Pas de persistance pour les donnees sensibles
+  persist: false, // Pas de persistance pour les données sensibles
 });
 
 // 3) useAuth.ts - Composition de la logique d'auth
@@ -233,7 +233,7 @@ export function useAuth() {
   async function handleLogin(credentials: LoginCredentials) {
     const { status, data } = await api.login(credentials);
     if (status) {
-      // Mettre a jour authStore
+      // Mettre à jour authStore
       authStore.$patch({
         access_token: data.access_token,
         user_id: data.user_id,
@@ -263,14 +263,14 @@ const { initGameList } = useGame();
 const router = useRouter();
 
 const onSubmit = async (formData: LoginForm) => {
-  // Etape 1: connexion
+  // Étape 1: connexion
   const success = await handleLogin(formData);
   if (success) {
-    // Etape 2: recuperer les infos utilisateur
+    // Étape 2: récupérer les infos utilisateur
     await getUserInfo();
-    // Etape 3: initialiser la liste de jeux
+    // Étape 3: initialiser la liste de jeux
     await initGameList();
-    // Etape 4: rediriger vers l'accueil
+    // Étape 4: rediriger vers l'accueil
     router.push('/');
   }
 };
@@ -279,56 +279,56 @@ const onSubmit = async (formData: LoginForm) => {
 
 **Points d'entretien**:
 
-1. **Separation des responsabilites**
-   - `authStore`: uniquement l'etat d'authentification
+1. **Séparation des responsabilités**
+   - `authStore`: uniquement l'état d'authentification
    - `userInfoStore`: uniquement les informations utilisateur
-   - `useAuth`: logique metier liee a l'auth
-   - `useUserInfo`: logique metier liee aux informations utilisateur
+   - `useAuth`: logique métier liée à l'auth
+   - `useUserInfo`: logique métier liée aux informations utilisateur
 
-2. **Flux de donnees reactif**
-   - `storeToRefs` preserve la reactivite
-   - Les mises a jour store re-rendent automatiquement les composants
+2. **Flux de données réactif**
+   - `storeToRefs` préserve la réactivité
+   - Les mises à jour store re-rendent automatiquement les composants
 
-3. **Strategie de persistance**
-   - `authStore` persiste (session maintenue apres refresh)
-   - `userInfoStore` ne persiste pas (securite)
+3. **Stratégie de persistance**
+   - `authStore` persiste (session maintenue après refresh)
+   - `userInfoStore` ne persiste pas (sécurité)
 
 ---
 
-## 6. Reponse d'entretien (version courte)
+## 6. Réponse d'entretien (version courte)
 
 ### 6.1 Usage de `storeToRefs`
 
-**Reponse possible:**
+**Réponse possible:**
 
-> Dans un composant, si je destructure state/getters d'un store Pinia, j'utilise `storeToRefs` pour conserver la reactivite. La destructuration directe casse la liaison reactive. En revanche, les actions peuvent etre destructurees directement car elles ne sont pas reactives.
+> Dans un composant, si je destructure state/getters d'un store Pinia, j'utilise `storeToRefs` pour conserver la réactivité. La destructuration directe casse la liaison réactive. En revanche, les actions peuvent être destructurées directement car elles ne sont pas réactives.
 
 **Points clefs:**
-- ✅ Role de `storeToRefs`
-- ✅ Pourquoi il est necessaire
-- ✅ Difference avec les actions
+- ✅ Rôle de `storeToRefs`
+- ✅ Pourquoi il est nécessaire
+- ✅ Différence avec les actions
 
 ### 6.2 Communication entre stores
 
-**Reponse possible:**
+**Réponse possible:**
 
-> Il existe deux approches: appeler un store depuis un autre store, ou orchestrer plusieurs stores dans un composable. En pratique, je privilegie les composables pour limiter les dependances circulaires et garder des responsabilites claires.
+> Il existe deux approches: appeler un store depuis un autre store, ou orchestrer plusieurs stores dans un composable. En pratique, je privilégie les composables pour limiter les dépendances circulaires et garder des responsabilités claires.
 
 **Points clefs:**
-- ✅ Deux modeles de communication
-- ✅ Approche composable recommandee
-- ✅ Eviter les dependances circulaires
+- ✅ Deux modèles de communication
+- ✅ Approche composable recommandée
+- ✅ Éviter les dépendances circulaires
 
 ---
 
-## 7. Resume final
+## 7. Résumé final
 
-**Reponse possible:**
+**Réponse possible:**
 
-> Pour bien utiliser Pinia, je m'appuie sur quatre principes: utiliser `storeToRefs` pour les donnees reactives dans les composants, combiner les stores dans des composables, clarifier les frontieres de communication entre stores, et separer clairement etat technique et logique metier.
+> Pour bien utiliser Pinia, je m'appuie sur quatre principes: utiliser `storeToRefs` pour les données réactives dans les composants, combiner les stores dans des composables, clarifier les frontières de communication entre stores, et séparer clairement état technique et logique métier.
 
 **Points clefs:**
 - ✅ Utilisation correcte de `storeToRefs`
 - ✅ Composition des stores via composables
-- ✅ Communication inter-stores maitrisee
-- ✅ Separation claire des responsabilites
+- ✅ Communication inter-stores maîtrisée
+- ✅ Séparation claire des responsabilités

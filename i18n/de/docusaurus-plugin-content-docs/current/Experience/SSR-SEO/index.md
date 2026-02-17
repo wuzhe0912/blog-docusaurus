@@ -1,5 +1,5 @@
 ---
-title: 'Implementierungsuebersicht'
+title: 'Implementierungsübersicht'
 slug: /experience/ssr-seo
 tags: [Experience, Interview, SSR-SEO]
 ---
@@ -20,11 +20,11 @@ tags: [Experience, Interview, SSR-SEO]
 
 ### 3. SSR Implementierung (Nuxt 3)
 
-- [Nuxt 3 Rendering Modes: Auswahlstrategien fuer SSR, SSG und CSR](/docs/experience/ssr-seo/lv2-nuxt-rendering-modes)
+- [Nuxt 3 Rendering Modes: Auswahlstrategien für SSR, SSG und CSR](/docs/experience/ssr-seo/lv2-nuxt-rendering-modes)
 - [Nuxt 3 Lifecycle und Hydration Prinzipien](/docs/experience/ssr-seo/lv2-nuxt-lifecycle-hydration)
 - [SSR Implementierung: Data Fetching und SEO Meta Verwaltung](/docs/experience/ssr-seo/lv2-ssr-implementation)
 - [Nuxt 3 Server-Funktionen: Server Routes und dynamische Sitemap](/docs/experience/ssr-seo/lv2-nuxt-server-features)
 
 ### 4. Fortgeschrittene SSR Themen
 
-- [SSR Implementierungsherausforderungen und Loesungen](/docs/experience/ssr-seo/lv3-ssr-challenges)
+- [SSR Implementierungsherausforderungen und Lösungen](/docs/experience/ssr-seo/lv3-ssr-challenges)

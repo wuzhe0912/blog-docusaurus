@@ -4,13 +4,13 @@ slug: /experience/ssr-seo/lv2-ssr-implementation
 tags: [Experience, Interview, SSR-SEO, Lv2]
 ---
 
-> In einem Nuxt-3-Projekt: SSR-Datenladen und dynamisches SEO-Meta-Management so umsetzen, dass Suchmaschinen dynamische Routen korrekt indexieren koennen.
+> In einem Nuxt-3-Projekt: SSR-Datenladen und dynamisches SEO-Meta-Management so umsetzen, dass Suchmaschinen dynamische Routen korrekt indexieren können.
 
 ---
 
 ## 1. Interview-Kernpunkte
 
-1. **Data-Fetching-Strategie**: `useFetch`/`useAsyncData` fuer Server-Side-Vorladen nutzen, damit SEO-relevanter Content bereits im HTML vorhanden ist.
+1. **Data-Fetching-Strategie**: `useFetch`/`useAsyncData` für Server-Side-Vorladen nutzen, damit SEO-relevanter Content bereits im HTML vorhanden ist.
 2. **Dynamische Meta Tags**: Mit `useHead` oder `useSeoMeta` pro Datensatz passende Meta-Tags erzeugen.
 3. **Performance**: Request-Deduplication, Server-Side-Caching und klare Trennung zwischen SSR- und CSR-Seiten.
 
@@ -22,11 +22,11 @@ tags: [Experience, Interview, SSR-SEO, Lv2]
 
 **Typische Situation:**
 
-- Dynamische Routen (z. B. `/products/[id]`) muessen Daten aus einer API laden.
-- Reines Client-Side-Laden fuehrt dazu, dass Crawler unvollstaendigen Inhalt sehen.
-- Ziel ist vollstaendig gerenderter HTML-Output auf dem Server.
+- Dynamische Routen (z. B. `/products/[id]`) müssen Daten aus einer API laden.
+- Reines Client-Side-Laden führt dazu, dass Crawler unvollständigen Inhalt sehen.
+- Ziel ist vollständig gerenderter HTML-Output auf dem Server.
 
-**Loesung:** `useFetch` oder `useAsyncData` in Nuxt 3 verwenden.
+**Lösung:** `useFetch` oder `useAsyncData` in Nuxt 3 verwenden.
 
 ### 2.2 useFetch Basisbeispiel
 
@@ -41,20 +41,20 @@ const { data: product } = await useFetch(`/api/products/${route.params.id}`);
 
 | Option      | Zweck                                        | Default    |
 | ----------- | -------------------------------------------- | ---------- |
-| `key`       | Eindeutiger Schluessel fuer Request-Deduping | auto       |
-| `lazy`      | Verzoegertes Laden (blockiert SSR nicht)     | `false`    |
-| `server`    | Auf Server ausfuehren                        | `true`     |
+| `key`       | Eindeutiger Schlüssel für Request-Deduping   | auto       |
+| `lazy`      | Verzögertes Laden (blockiert SSR nicht)      | `false`    |
+| `server`    | Auf Server ausführen                         | `true`     |
 | `default`   | Fallback-Wert                                | `null`     |
 | `transform` | Antwort vor der Nutzung transformieren       | -          |
 
-### 2.3 Vollstaendiges Beispiel
+### 2.3 Vollständiges Beispiel
 
 ```typescript
 // pages/products/[id].vue
 const { data: product } = await useFetch(`/api/products/${route.params.id}`, {
   key: `product-${route.params.id}`, // vermeidet doppelte Requests
   lazy: false, // SSR wartet auf Daten
-  server: true, // garantiert Server-Ausfuehrung
+  server: true, // garantiert Server-Ausführung
   default: () => ({
     id: null,
     name: '',
@@ -74,14 +74,14 @@ const { data: product } = await useFetch(`/api/products/${route.params.id}`, {
 **Warum diese Optionen wichtig sind:**
 
 1. **`key`**
-   - Ermoeglicht Request-Deduplication
+   - Ermöglicht Request-Deduplication
    - Gleicher key -> nur ein effektiver Request
 2. **`lazy: false`**
-   - Server rendert erst nach Datenverfuegbarkeit
-   - Suchmaschine sieht sofort vollstaendigen Inhalt
+   - Server rendert erst nach Datenverfügbarkeit
+   - Suchmaschine sieht sofort vollständigen Inhalt
 3. **`server: true`**
    - Daten kommen aus dem SSR-Pfad
-   - Keine reine Client-Ausfuehrung
+   - Keine reine Client-Ausführung
 
 ### 2.4 useAsyncData vs useFetch
 
@@ -104,10 +104,10 @@ const { data } = await useAsyncData('products', async () => {
 
 ### 2.5 $fetch vs useFetch
 
-**Kurzregel fuer Interviews:**
+**Kurzregel für Interviews:**
 
-- **`$fetch`** fuer user-getriebene Actions (Button-Click, Form-Submit, Refresh).
-- **`useFetch`** fuer initiales Seitenladen mit SSR/Hydration-Sync.
+- **`$fetch`** für user-getriebene Actions (Button-Click, Form-Submit, Refresh).
+- **`useFetch`** für initiales Seitenladen mit SSR/Hydration-Sync.
 
 **`$fetch` Eigenschaften:**
 
@@ -126,7 +126,7 @@ const { data } = await useAsyncData('products', async () => {
 | Merkmal            | useFetch                          | $fetch                           |
 | ------------------ | --------------------------------- | -------------------------------- |
 | SSR-Status-Transfer| Ja                                | Nein                             |
-| Rueckgabe          | Reaktive refs                     | Promise mit Rohdaten             |
+| Rückgabe           | Reaktive refs                     | Promise mit Rohdaten             |
 | Hauptfall          | Initiales Page Data Fetching      | Event-getriebene Operationen     |
 
 ```typescript
@@ -146,7 +146,7 @@ const data = await $fetch('/api/user');
 
 ## 3. SEO Meta Management mit useHead
 
-### 3.1 Warum dynamische Meta Tags noetig sind
+### 3.1 Warum dynamische Meta Tags nötig sind
 
 **Typische Situation:**
 
@@ -154,7 +154,7 @@ const data = await $fetch('/api/user');
 - Jede URL braucht eigene `title`, `description`, `og:image`, canonical.
 - Social Sharing (Open Graph/Twitter) muss konsistent sein.
 
-**Loesung:** `useHead` oder `useSeoMeta`.
+**Lösung:** `useHead` oder `useSeoMeta`.
 
 ### 3.2 useHead Beispiel
 
@@ -177,8 +177,8 @@ useHead({
 
 **Best Practices:**
 
-1. Werte als Funktionen (`() => ...`) uebergeben, damit Meta bei Datenupdates nachzieht.
-2. Vollstaendige SEO-Struktur setzen: title, description, OG, canonical.
+1. Werte als Funktionen (`() => ...`) übergeben, damit Meta bei Datenupdates nachzieht.
+2. Vollständige SEO-Struktur setzen: title, description, OG, canonical.
 3. Bei 404 bewusst `noindex, nofollow` setzen.
 
 ### 3.3 useSeoMeta kompakte Variante
@@ -195,7 +195,7 @@ useSeoMeta({
 
 ---
 
-## 4. Praxisfall 1: SEO fuer dynamische Routen
+## 4. Praxisfall 1: SEO für dynamische Routen
 
 ### 4.1 Ausgangslage
 
@@ -237,12 +237,12 @@ useSeoMeta({
 ### 4.3 Ergebnis
 
 **Vorher:**
-- Crawler sehen unvollstaendige Seiten
-- Gleiche Meta-Daten fuer viele Seiten
+- Crawler sehen unvollständige Seiten
+- Gleiche Meta-Daten für viele Seiten
 - 404 inkonsistent
 
 **Nachher:**
-- Vollstaendige SSR-Seiten fuer Crawler
+- Vollständige SSR-Seiten für Crawler
 - Eindeutige Meta-Daten je Route
 - Saubere Fehlerbehandlung inkl. SEO-Schutz
 
@@ -252,7 +252,7 @@ useSeoMeta({
 
 ### 5.1 Problem
 
-SSR erhoeht Server-Last. Ohne Optimierung steigen Antwortzeiten und Kosten.
+SSR erhöht Server-Last. Ohne Optimierung steigen Antwortzeiten und Kosten.
 
 ### 5.2 Strategien
 
@@ -284,7 +284,7 @@ export default defineCachedEventHandler(
 
 4. **Critical CSS und Asset-Strategie**
 - Above-the-fold CSS priorisieren
-- Nicht-kritische Ressourcen spaeter laden
+- Nicht-kritische Ressourcen später laden
 
 ### 5.3 Wirkung
 
@@ -304,15 +304,15 @@ export default defineCachedEventHandler(
 
 ### 6.1 useFetch / useAsyncData
 
-> Ich nutze fuer initiales Seitenladen `useFetch` mit `key`, `lazy: false` und `server: true`, damit SSR vollstaendige Inhalte liefert und Crawler den finalen Content sehen.
+> Ich nutze für initiales Seitenladen `useFetch` mit `key`, `lazy: false` und `server: true`, damit SSR vollständige Inhalte liefert und Crawler den finalen Content sehen.
 
 ### 6.2 Dynamische Meta Tags
 
-> Ich setze `useHead`/`useSeoMeta` mit funktionsbasierten Werten, damit Meta Tags bei Datenaenderungen korrekt aktualisiert werden, inkl. OG und canonical URL.
+> Ich setze `useHead`/`useSeoMeta` mit funktionsbasierten Werten, damit Meta Tags bei Datenänderungen korrekt aktualisiert werden, inkl. OG und canonical URL.
 
 ### 6.3 Performance
 
-> Ich kombiniere Request-Deduplication, Server-Caching und SSR/CSR-Splitting. So sinken Last und TTFB, waehrend SEO-Qualitaet erhalten bleibt.
+> Ich kombiniere Request-Deduplication, Server-Caching und SSR/CSR-Splitting. So sinken Last und TTFB, während SEO-Qualität erhalten bleibt.
 
 ---
 
@@ -321,13 +321,13 @@ export default defineCachedEventHandler(
 ### 7.1 Data Fetching
 
 1. Immer `key` setzen.
-2. `lazy` passend zum SEO-Bedarf waehlen.
-3. Fehlerfaelle (404/5xx) sauber behandeln.
+2. `lazy` passend zum SEO-Bedarf wählen.
+3. Fehlerfälle (404/5xx) sauber behandeln.
 
 ### 7.2 SEO Meta
 
-1. Funktionale Werte fuer reaktive Updates.
-2. Vollstaendige Meta-Struktur (title/description/OG/canonical).
+1. Funktionale Werte für reaktive Updates.
+2. Vollständige Meta-Struktur (title/description/OG/canonical).
 3. Fehlerseiten mit `noindex, nofollow` absichern.
 
 ### 7.3 Performance
@@ -342,8 +342,8 @@ export default defineCachedEventHandler(
 
 > In Nuxt 3 habe ich SSR Data Fetching und dynamische SEO Meta Verwaltung so umgesetzt, dass sowohl Crawler als auch Nutzer profitieren: serverseitig vorgerenderte Inhalte, konsistente Meta-Daten pro Route und eine stabile Performance durch Deduplication, Caching und SSR/CSR-Trennung.
 
-**Schluesselpunkte:**
+**Schlüsselpunkte:**
 - ✅ Korrekte Nutzung von `useFetch`/`useAsyncData`
 - ✅ Dynamische Meta-Verwaltung mit `useHead`/`useSeoMeta`
-- ✅ SEO fuer dynamische Routen
+- ✅ SEO für dynamische Routen
 - ✅ Performance-Optimierung in realen Projekten

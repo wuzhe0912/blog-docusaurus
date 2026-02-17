@@ -9,14 +9,14 @@ tags: [JavaScript, Coding, Medium]
 
 > Was ist Deep Clone?
 
-**Deep Clone (Tiefe Kopie)** bedeutet, ein neues Objekt zu erstellen und rekursiv alle Eigenschaften des Originalobjekts sowie aller verschachtelten Objekte und Arrays zu kopieren. Das nach dem Deep Clone erstellte Objekt ist vollstaendig unabhaengig vom Original -- eine Aenderung an einem beeinflusst das andere nicht.
+**Deep Clone (Tiefe Kopie)** bedeutet, ein neues Objekt zu erstellen und rekursiv alle Eigenschaften des Originalobjekts sowie aller verschachtelten Objekte und Arrays zu kopieren. Das nach dem Deep Clone erstellte Objekt ist vollständig unabhängig vom Original -- eine Änderung an einem beeinflusst das andere nicht.
 
 ### Shallow Copy vs Deep Copy
 
 **Shallow Clone (Flache Kopie)**: Kopiert nur die Eigenschaften der ersten Ebene des Objekts; verschachtelte Objekte teilen sich weiterhin dieselbe Referenz.
 
 ```javascript
-// Beispiel fuer flache Kopie
+// Beispiel für flache Kopie
 const original = {
   name: 'John',
   address: {
@@ -28,13 +28,13 @@ const original = {
 const shallowCopy = { ...original };
 shallowCopy.address.city = 'Kaohsiung';
 
-console.log(original.address.city); // 'Kaohsiung' ❌ Das Originalobjekt wurde ebenfalls geaendert
+console.log(original.address.city); // 'Kaohsiung' ❌ Das Originalobjekt wurde ebenfalls geändert
 ```
 
-**Deep Clone (Tiefe Kopie)**: Kopiert rekursiv alle Ebenen der Eigenschaften und macht sie vollstaendig unabhaengig.
+**Deep Clone (Tiefe Kopie)**: Kopiert rekursiv alle Ebenen der Eigenschaften und macht sie vollständig unabhängig.
 
 ```javascript
-// Beispiel fuer tiefe Kopie
+// Beispiel für tiefe Kopie
 const original = {
   name: 'John',
   address: {
@@ -82,7 +82,7 @@ console.log(original.address.city); // 'Taipei' ✅
 console.log(original.hobbies); // ['reading', 'coding'] ✅
 ```
 
-**Einschraenkungen**:
+**Einschränkungen**:
 
 ```javascript
 const obj = {
@@ -155,7 +155,7 @@ console.log(original.date.getFullYear()); // 2024 ✅ Nicht betroffen
 console.log(original.hobbies); // ['reading', 'coding'] ✅
 ```
 
-### Methode 3: Vollstaendige Implementierung (Verarbeitung von Map, Set, Symbol usw.)
+### Methode 3: Vollständige Implementierung (Verarbeitung von Map, Set, Symbol usw.)
 
 ```javascript
 function deepClone(obj, map = new WeakMap()) {
@@ -307,7 +307,7 @@ console.log(cloned !== original); // true ✅ Verschiedene Objekte
 
 ## 3. Common Interview Questions
 
-> Haeufige Interviewfragen
+> Häufige Interviewfragen
 
 ### Aufgabe 1: Grundlegende Deep-Clone-Implementierung
 
@@ -436,19 +436,19 @@ console.log(cloned !== original); // true ✅
 **Kernpunkte**:
 
 - Verwendung einer `WeakMap`, um bereits verarbeitete Objekte zu verfolgen
-- Vor dem Erstellen eines neuen Objekts pruefen, ob es bereits in der Map existiert
-- Falls vorhanden, die Referenz aus der Map direkt zurueckgeben, um unendliche Rekursion zu vermeiden
+- Vor dem Erstellen eines neuen Objekts prüfen, ob es bereits in der Map existiert
+- Falls vorhanden, die Referenz aus der Map direkt zurückgeben, um unendliche Rekursion zu vermeiden
 
 </details>
 
-### Aufgabe 3: Einschraenkungen von JSON.parse und JSON.stringify
+### Aufgabe 3: Einschränkungen von JSON.parse und JSON.stringify
 
-Erklaeren Sie die Einschraenkungen bei der Verwendung von `JSON.parse(JSON.stringify())` fuer Deep Clone und bieten Sie Loesungen an.
+Erklären Sie die Einschränkungen bei der Verwendung von `JSON.parse(JSON.stringify())` für Deep Clone und bieten Sie Lösungen an.
 
 <details>
 <summary>Klicken Sie hier, um die Antwort anzuzeigen</summary>
 
-**Einschraenkungen**:
+**Einschränkungen**:
 
 1. **Kann Funktionen nicht verarbeiten**
    ```javascript
@@ -499,19 +499,19 @@ Erklaeren Sie die Einschraenkungen bei der Verwendung von `JSON.parse(JSON.strin
    JSON.parse(JSON.stringify(obj)); // ❌ Fehler: Converting circular structure to JSON
    ```
 
-**Loesung**: Verwenden Sie eine rekursive Implementierung mit spezieller Behandlung fuer verschiedene Typen.
+**Lösung**: Verwenden Sie eine rekursive Implementierung mit spezieller Behandlung für verschiedene Typen.
 
 </details>
 
 ## 4. Best Practices
 
-> Bewhrte Methoden
+> Bewährte Methoden
 
 ### Empfohlene Vorgehensweisen
 
 ```javascript
-// 1. Waehlen Sie die geeignete Methode basierend auf den Anforderungen
-// Wenn nur einfache Objekte und Arrays verarbeitet werden muessen, verwenden Sie eine einfache rekursive Implementierung
+// 1. Wählen Sie die geeignete Methode basierend auf den Anforderungen
+// Wenn nur einfache Objekte und Arrays verarbeitet werden müssen, verwenden Sie eine einfache rekursive Implementierung
 function simpleDeepClone(obj) {
   if (obj === null || typeof obj !== 'object') return obj;
   if (obj instanceof Date) return new Date(obj.getTime());
@@ -526,9 +526,9 @@ function simpleDeepClone(obj) {
   return cloned;
 }
 
-// 2. Wenn komplexe Typen verarbeitet werden muessen, verwenden Sie die vollstaendige Implementierung
+// 2. Wenn komplexe Typen verarbeitet werden müssen, verwenden Sie die vollständige Implementierung
 function completeDeepClone(obj, map = new WeakMap()) {
-  // ... Vollstaendige Implementierung
+  // ... Vollständige Implementierung
 }
 
 // 3. Verwenden Sie WeakMap zur Verarbeitung von Zirkularreferenzen
@@ -538,12 +538,12 @@ function completeDeepClone(obj, map = new WeakMap()) {
 ### Zu vermeidende Vorgehensweisen
 
 ```javascript
-// 1. Verwenden Sie JSON.parse(JSON.stringify()) nicht uebermaeig
+// 1. Verwenden Sie JSON.parse(JSON.stringify()) nicht übermäßig
 // ❌ Funktionen, Symbol, Date und andere Spezialtypen gehen verloren
 const cloned = JSON.parse(JSON.stringify(obj));
 
 // 2. Vergessen Sie nicht, Zirkularreferenzen zu behandeln
-// ❌ Fuehrt zu Stack Overflow
+// ❌ Führt zu Stack Overflow
 function deepClone(obj) {
   const cloned = {};
   for (let key in obj) {
@@ -558,13 +558,13 @@ function deepClone(obj) {
 
 ## 5. Interview Summary
 
-> Zusammenfassung fuer Interviews
+> Zusammenfassung für Interviews
 
 ### Schnellreferenz
 
 **Deep Clone**:
 
-- **Definition**: Rekursives Kopieren eines Objekts und aller verschachtelten Eigenschaften, vollstaendig unabhaengig
+- **Definition**: Rekursives Kopieren eines Objekts und aller verschachtelten Eigenschaften, vollständig unabhängig
 - **Methoden**: Rekursive Implementierung, JSON.parse(JSON.stringify()), structuredClone()
 - **Kernpunkte**: Verarbeitung spezieller Typen, Zirkularreferenzen, Symbol-Eigenschaften
 
@@ -576,15 +576,15 @@ function deepClone(obj) {
 4. Verarbeitung von Zirkularreferenzen (mit WeakMap)
 5. Verarbeitung von Symbol-Eigenschaften
 
-### Beispiel fuer Interviewantworten
+### Beispiel für Interviewantworten
 
 **Q: Bitte implementieren Sie eine Deep Clone Funktion.**
 
-> "Deep Clone bedeutet, ein vollstaendig unabhaengiges neues Objekt zu erstellen und alle verschachtelten Eigenschaften rekursiv zu kopieren. Meine Implementierung verarbeitet zuerst Basistypen und null, dann fuehrt sie eine spezielle Behandlung fuer verschiedene Typen wie Date, RegExp, Arrays und Objekte durch. Um Zirkularreferenzen zu behandeln, verwende ich eine WeakMap zur Verfolgung bereits verarbeiteter Objekte. Fuer Symbol-Eigenschaften verwende ich Object.getOwnPropertySymbols zum Abrufen und Kopieren. Dies stellt sicher, dass das tief kopierte Objekt vollstaendig unabhaengig vom Originalobjekt ist und eine Aenderung an einem das andere nicht beeinflusst."
+> "Deep Clone bedeutet, ein vollständig unabhängiges neues Objekt zu erstellen und alle verschachtelten Eigenschaften rekursiv zu kopieren. Meine Implementierung verarbeitet zuerst Basistypen und null, dann führt sie eine spezielle Behandlung für verschiedene Typen wie Date, RegExp, Arrays und Objekte durch. Um Zirkularreferenzen zu behandeln, verwende ich eine WeakMap zur Verfolgung bereits verarbeiteter Objekte. Für Symbol-Eigenschaften verwende ich Object.getOwnPropertySymbols zum Abrufen und Kopieren. Dies stellt sicher, dass das tief kopierte Objekt vollständig unabhängig vom Originalobjekt ist und eine Änderung an einem das andere nicht beeinflusst."
 
-**Q: Welche Einschraenkungen hat JSON.parse(JSON.stringify())?**
+**Q: Welche Einschränkungen hat JSON.parse(JSON.stringify())?**
 
-> "Die Haupteinschraenkungen dieser Methode sind: 1) Funktionen koennen nicht verarbeitet werden und gehen verloren; 2) undefined und Symbol koennen nicht verarbeitet werden, diese Eigenschaften werden ignoriert; 3) Date-Objekte werden zu Strings; 4) RegExp wird zu leerem Objekt; 5) Map, Set und andere spezielle Datenstrukturen koennen nicht verarbeitet werden; 6) Zirkularreferenzen koennen nicht verarbeitet werden und verursachen einen Fehler. Wenn diese Sonderfaelle behandelt werden muessen, sollte eine rekursive Implementierung verwendet werden."
+> "Die Haupteinschränkungen dieser Methode sind: 1) Funktionen können nicht verarbeitet werden und gehen verloren; 2) undefined und Symbol können nicht verarbeitet werden, diese Eigenschaften werden ignoriert; 3) Date-Objekte werden zu Strings; 4) RegExp wird zu leerem Objekt; 5) Map, Set und andere spezielle Datenstrukturen können nicht verarbeitet werden; 6) Zirkularreferenzen können nicht verarbeitet werden und verursachen einen Fehler. Wenn diese Sonderfälle behandelt werden müssen, sollte eine rekursive Implementierung verwendet werden."
 
 ## Reference
 

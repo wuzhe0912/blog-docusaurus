@@ -9,11 +9,11 @@ tags: [Experience, Interview, State-Management, Vue]
 
 ---
 
-## 1. Kernpunkte fuer das Interview
+## 1. Kernpunkte für das Interview
 
-1. **Nutzung in Komponenten**: Fuer reaktive Werte `storeToRefs` verwenden, Actions koennen direkt destrukturiert werden.
-2. **Kombination in Composables**: Mehrere Stores in Composables zusammenfuehren und Business-Logik kapseln.
-3. **Store-Kommunikation**: Bevorzugt in Composables orchestrieren, um zyklische Abhaengigkeiten zu vermeiden.
+1. **Nutzung in Komponenten**: Für reaktive Werte `storeToRefs` verwenden, Actions können direkt destrukturiert werden.
+2. **Kombination in Composables**: Mehrere Stores in Composables zusammenführen und Business-Logik kapseln.
+3. **Store-Kommunikation**: Bevorzugt in Composables orchestrieren, um zyklische Abhängigkeiten zu vermeiden.
 
 ---
 
@@ -48,23 +48,23 @@ import { storeToRefs } from 'pinia';
 
 const authStore = useAuthStore();
 
-// ❌ Falsch: Reaktivitaet geht verloren
+// ❌ Falsch: Reaktivität geht verloren
 const { access_token, isLogin } = authStore;
 
-// ✅ Richtig: Reaktivitaet bleibt erhalten
+// ✅ Richtig: Reaktivität bleibt erhalten
 const { access_token, isLogin } = storeToRefs(authStore);
 
-// ✅ Actions koennen direkt destrukturiert werden
+// ✅ Actions können direkt destrukturiert werden
 const { setToptVerified } = authStore;
 </script>
 ```
 
-**Warum geht Reaktivitaet bei direkter Destrukturierung verloren?**
+**Warum geht Reaktivität bei direkter Destrukturierung verloren?**
 
 - Pinia state und getters sind reaktiv
 - Direkte Destrukturierung trennt die reaktive Verbindung
-- `storeToRefs` konvertiert Eigenschaften in `ref`s und erhaelt Reaktivitaet
-- Actions selbst sind nicht reaktiv und koennen direkt destrukturiert werden
+- `storeToRefs` konvertiert Eigenschaften in `ref`s und erhält Reaktivität
+- Actions selbst sind nicht reaktiv und können direkt destrukturiert werden
 
 ---
 
@@ -84,7 +84,7 @@ export function useGame() {
   const gameStore = useGameStore();
   const productStore = useProductStore();
 
-  // 2) State und getters ueber storeToRefs destrukturieren
+  // 2) State und getters über storeToRefs destrukturieren
   const { gameState } = storeToRefs(gameStore);
   const { productState } = storeToRefs(productStore);
 
@@ -100,7 +100,7 @@ export function useGame() {
     }
   }
 
-  // 5) Fuer Komponenten exportieren
+  // 5) Für Komponenten exportieren
   return {
     gameState,
     productState,
@@ -111,8 +111,8 @@ export function useGame() {
 ```
 
 **Interview-Fokus**:
-- Composables als Orchestrierungsschicht fuer mehrere Stores
-- `storeToRefs` fuer reaktive Werte
+- Composables als Orchestrierungsschicht für mehrere Stores
+- `storeToRefs` für reaktive Werte
 - Actions direkt destrukturieren
 - Komplexe Business-Logik aus Komponenten herausziehen
 
@@ -151,7 +151,7 @@ export function useInit() {
   const gameStore = useGameStore();
 
   async function initialize() {
-    // Initialisierung geordnet ausfuehren
+    // Initialisierung geordnet ausführen
     await authStore.checkAuth();
     if (authStore.isLogin) {
       await userInfoStore.getUserInfo();
@@ -165,7 +165,7 @@ export function useInit() {
 
 **Interview-Fokus**:
 - ✅ Mehrere Stores bevorzugt in Composables kombinieren
-- ❌ Zyklische Abhaengigkeiten zwischen Stores vermeiden
+- ❌ Zyklische Abhängigkeiten zwischen Stores vermeiden
 - 🎯 Single-Responsibility pro Store beibehalten
 
 ---
@@ -221,7 +221,7 @@ export const useUserInfoStore = defineStore('useInfoStore', {
       this.info = userInfo;
     },
   },
-  persist: false, // Keine Persistenz fuer sensible Daten
+  persist: false, // Keine Persistenz für sensible Daten
 });
 
 // 3) useAuth.ts - Auth-Logik kapseln
@@ -283,10 +283,10 @@ const onSubmit = async (formData: LoginForm) => {
    - `authStore`: Nur Auth-Status
    - `userInfoStore`: Nur Benutzerdaten
    - `useAuth`: Auth-bezogene Business-Logik
-   - `useUserInfo`: Business-Logik fuer Benutzerdaten
+   - `useUserInfo`: Business-Logik für Benutzerdaten
 
 2. **Reaktiver Datenfluss**
-   - `storeToRefs` fuer reaktive Bindung
+   - `storeToRefs` für reaktive Bindung
    - Store-Updates aktualisieren Komponenten automatisch
 
 3. **Persistenzstrategie**
@@ -299,36 +299,36 @@ const onSubmit = async (formData: LoginForm) => {
 
 ### 6.1 Einsatz von `storeToRefs`
 
-**Moegliche Antwort:**
+**Mögliche Antwort:**
 
-> Wenn ich in Komponenten state und getters aus einem Pinia Store destrukturiere, nutze ich `storeToRefs`, damit Reaktivitaet erhalten bleibt. Direkte Destrukturierung trennt die reaktive Verbindung. Actions kann ich direkt destrukturieren, weil sie selbst nicht reaktiv sind.
+> Wenn ich in Komponenten state und getters aus einem Pinia Store destrukturiere, nutze ich `storeToRefs`, damit Reaktivität erhalten bleibt. Direkte Destrukturierung trennt die reaktive Verbindung. Actions kann ich direkt destrukturieren, weil sie selbst nicht reaktiv sind.
 
 **Wichtige Punkte:**
 - ✅ Zweck von `storeToRefs`
-- ✅ Grund fuer den Einsatz
+- ✅ Grund für den Einsatz
 - ✅ Unterschied zu Actions
 
 ### 6.2 Kommunikation zwischen Stores
 
-**Moegliche Antwort:**
+**Mögliche Antwort:**
 
-> Fuer Store-Kommunikation gibt es zwei Wege: direkter Aufruf eines anderen Stores innerhalb eines Stores oder Orchestrierung in einem Composable. In der Praxis bevorzuge ich Composables, weil so zyklische Abhaengigkeiten reduziert und Verantwortlichkeiten klar bleiben.
+> Für Store-Kommunikation gibt es zwei Wege: direkter Aufruf eines anderen Stores innerhalb eines Stores oder Orchestrierung in einem Composable. In der Praxis bevorzuge ich Composables, weil so zyklische Abhängigkeiten reduziert und Verantwortlichkeiten klar bleiben.
 
 **Wichtige Punkte:**
 - ✅ Zwei Kommunikationsmuster
 - ✅ Composable-Ansatz als Best Practice
-- ✅ Zyklische Abhaengigkeiten vermeiden
+- ✅ Zyklische Abhängigkeiten vermeiden
 
 ---
 
 ## 7. Interview-Zusammenfassung
 
-**Moegliche Antwort:**
+**Mögliche Antwort:**
 
-> Beim Einsatz von Pinia achte ich auf vier Dinge: erstens `storeToRefs` fuer reaktive Werte in Komponenten, zweitens Orchestrierung mehrerer Stores in Composables, drittens klare Kommunikationsgrenzen zwischen Stores und viertens saubere Verantwortungsaufteilung zwischen Store und Business-Logik.
+> Beim Einsatz von Pinia achte ich auf vier Dinge: erstens `storeToRefs` für reaktive Werte in Komponenten, zweitens Orchestrierung mehrerer Stores in Composables, drittens klare Kommunikationsgrenzen zwischen Stores und viertens saubere Verantwortungsaufteilung zwischen Store und Business-Logik.
 
 **Wichtige Punkte:**
 - ✅ `storeToRefs` korrekt einsetzen
-- ✅ Stores ueber Composables kombinieren
+- ✅ Stores über Composables kombinieren
 - ✅ Kommunikation sauber gestalten
 - ✅ Verantwortungen klar trennen

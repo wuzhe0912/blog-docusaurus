@@ -1,23 +1,23 @@
 ---
-title: '[Lv3] SSR-Implementierungsprobleme und Loesungen'
+title: '[Lv3] SSR-Implementierungsprobleme und Lösungen'
 slug: /experience/ssr-seo/lv3-ssr-challenges
 tags: [Experience, Interview, SSR-SEO, Lv3]
 ---
 
-> Haeufige Probleme bei SSR-Implementierungen und bewaehrte Loesungen: Hydration Mismatch, Umgebungsvariablen, Drittanbieter-Kompatibilitaet, Performance und Deployment.
+> Häufige Probleme bei SSR-Implementierungen und bewährte Lösungen: Hydration Mismatch, Umgebungsvariablen, Drittanbieter-Kompatibilität, Performance und Deployment.
 
 ---
 
 ## Interview-Szenario
 
-**Frage: Welche Schwierigkeiten sind bei SSR aufgetreten und wie wurden sie geloest?**
+**Frage: Welche Schwierigkeiten sind bei SSR aufgetreten und wie wurden sie gelöst?**
 
-Was Interviewer dabei pruefen:
+Was Interviewer dabei prüfen:
 
 1. **Praxis**: Wurde SSR wirklich im Projekt umgesetzt?
 2. **Problemlogik**: Wie wird analysiert und priorisiert?
-3. **Tiefe**: Verstaendnis fuer Rendering, Hydration, Caching, Deployments.
-4. **Best Practices**: Robuste, wartbare und messbare Loesungen.
+3. **Tiefe**: Verständnis für Rendering, Hydration, Caching, Deployments.
+4. **Best Practices**: Robuste, wartbare und messbare Lösungen.
 
 ---
 
@@ -31,13 +31,13 @@ Typische Warnung:
 [Vue warn]: The client-side rendered virtual DOM tree is not matching server-rendered content.
 ```
 
-Haeufige Ursachen:
+Häufige Ursachen:
 
 - Unterschiedliche Ausgabe zwischen Server- und Client-Render
 - Nutzung browser-exklusiver APIs im SSR-Pfad (`window`, `document`, `localStorage`)
 - Nicht-deterministische Werte (`Date.now()`, `Math.random()`)
 
-### Loesungen
+### Lösungen
 
 #### Variante A: `ClientOnly` einsetzen
 
@@ -77,10 +77,10 @@ onMounted(() => {
 
 ### Problembeschreibung
 
-- Serverseitige Secrets duerfen nicht im Client landen.
+- Serverseitige Secrets dürfen nicht im Client landen.
 - `process.env` ungeordnet genutzt -> schwer nachvollziehbare Konfiguration.
 
-### Loesung
+### Lösung
 
 Mit Runtime Config trennen:
 
@@ -103,7 +103,7 @@ const apiBase = config.public.apiBase; // Client + Server
 const secret = config.apiSecret; // Nur Server
 ```
 
-**Interview-Kernaussage:** Sensitive Variablen nur serverseitig, oeffentliche Konfiguration explizit im `public`-Block.
+**Interview-Kernaussage:** Sensitive Variablen nur serverseitig, öffentliche Konfiguration explizit im `public`-Block.
 
 ---
 
@@ -111,14 +111,14 @@ const secret = config.apiSecret; // Nur Server
 
 ### Problembeschreibung
 
-- Manche Pakete greifen waehrend SSR auf DOM-APIs zu.
+- Manche Pakete greifen während SSR auf DOM-APIs zu.
 - Folgen: Build-/Runtime-Fehler oder Hydration-Probleme.
 
-### Loesungen
+### Lösungen
 
 1. Bibliothek nur clientseitig laden (Plugin `.client.ts`)
 2. Dynamischer Import im Client-Kontext
-3. SSR-kompatible Alternative pruefen
+3. SSR-kompatible Alternative prüfen
 
 ```ts
 let chartLib: any;
@@ -136,9 +136,9 @@ if (process.client) {
 ### Problembeschreibung
 
 - Auth in SSR braucht Cookie-Lesen auf dem Server.
-- Header muessen zwischen Client, SSR und API konsistent sein.
+- Header müssen zwischen Client, SSR und API konsistent sein.
 
-### Loesung
+### Lösung
 
 ```ts
 const token = useCookie('access_token');
@@ -151,7 +151,7 @@ const { data } = await useFetch('/api/me', {
 });
 ```
 
-**Interview-Kernaussage:** SSR-Requests duerfen Auth-Kontext nicht verlieren.
+**Interview-Kernaussage:** SSR-Requests dürfen Auth-Kontext nicht verlieren.
 
 ---
 
@@ -160,12 +160,12 @@ const { data } = await useFetch('/api/me', {
 ### Problembeschreibung
 
 - Mehrere Komponenten laden dieselben Daten.
-- Duplicate Requests und inkonsistente Ladezustaende.
+- Duplicate Requests und inkonsistente Ladezustände.
 
-### Loesung
+### Lösung
 
-- Einheitliche keys fuer deduplication
-- Shared Composables fuer Datenzugriff
+- Einheitliche keys für deduplication
+- Shared Composables für Datenzugriff
 - Klare Trennung: Initial Load vs User Action
 
 ```ts
@@ -184,10 +184,10 @@ const { data, refresh } = await useFetch('/api/products', {
 
 ### Problembeschreibung
 
-- SSR erhoeht CPU- und I/O-Last.
-- Hohe Lastzeiten vergroessern TTFB.
+- SSR erhöht CPU- und I/O-Last.
+- Hohe Lastzeiten vergrößern TTFB.
 
-### Loesungen
+### Lösungen
 
 1. Nitro Caching
 2. DB-Abfragen optimieren
@@ -209,10 +209,10 @@ export default defineCachedEventHandler(
 
 ### Problembeschreibung
 
-- Dynamische IDs koennen ungueltig sein.
-- Fehlende 404-Semantik fuehrt zu SEO-Fehlindexierung.
+- Dynamische IDs können ungültig sein.
+- Fehlende 404-Semantik führt zu SEO-Fehlindexierung.
 
-### Loesung
+### Lösung
 
 ```ts
 if (!product.value) {
@@ -222,10 +222,10 @@ if (!product.value) {
 
 Zusatz:
 
-- `error.vue` fuer klare Fehlkommunikation
+- `error.vue` für klare Fehlkommunikation
 - Fehlerseiten auf `noindex, nofollow`
 
-**Interview-Kernaussage:** HTTP-Status, UX und SEO muessen konsistent sein.
+**Interview-Kernaussage:** HTTP-Status, UX und SEO müssen konsistent sein.
 
 ---
 
@@ -236,7 +236,7 @@ Zusatz:
 - SSR-Kontext hat kein `window`/`document`.
 - Direkter Zugriff verursacht Runtime-Fehler.
 
-### Loesung
+### Lösung
 
 ```ts
 const width = ref<number | null>(null);
@@ -262,13 +262,13 @@ if (process.client) {
 
 ### Problembeschreibung
 
-- Langlaufender Node-Prozess waechst kontinuierlich im Speicher.
+- Langlaufender Node-Prozess wächst kontinuierlich im Speicher.
 - Ursachen oft globale Mutable States, nicht bereinigte Timer/Listener.
 
-### Loesungen
+### Lösungen
 
 1. Request-spezifischen Zustand nicht global halten
-2. Listener/Interval sauber aufraeumen
+2. Listener/Interval sauber aufräumen
 3. Mit Heap Snapshots und `process.memoryUsage()` beobachten
 
 ```ts
@@ -286,13 +286,13 @@ setInterval(() => {
 
 ### Problembeschreibung
 
-- Drittanbieter-Skripte blockieren Main Thread oder stoeren Hydration.
+- Drittanbieter-Skripte blockieren Main Thread oder stören Hydration.
 - CLS/FID/INP leiden.
 
-### Loesung
+### Lösung
 
-- Skripte asynchron laden, spaet injizieren
-- Platzhalterflaechen fuer Ads reservieren
+- Skripte asynchron laden, spät injizieren
+- Platzhalterflächen für Ads reservieren
 - Kritische UI nicht von Tracking abh. machen
 
 ```ts
@@ -303,7 +303,7 @@ useHead({
 });
 ```
 
-**Interview-Kernaussage:** Monetarisierung darf Rendering-Stabilitaet nicht zerstoeren.
+**Interview-Kernaussage:** Monetarisierung darf Rendering-Stabilität nicht zerstören.
 
 ---
 
@@ -319,13 +319,13 @@ useHead({
 | Aspekt          | SPA (Static)            | SSR (Node/Edge)                        |
 | --------------- | ----------------------- | -------------------------------------- |
 | Infrastruktur   | Storage + CDN           | Compute + CDN                          |
-| Betrieb         | Sehr einfach            | Mittlere Komplexitaet                  |
-| Kosten          | Niedrig                 | Hoeher (Rechenzeit)                    |
+| Betrieb         | Sehr einfach            | Mittlere Komplexität                   |
+| Kosten          | Niedrig                 | Höher (Rechenzeit)                     |
 | Monitoring      | Minimal                 | Logs, Metrics, Memory, Cold Start      |
 
 ### Praxisempfehlungen
 
-1. PM2/Container fuer Prozessstabilitaet
+1. PM2/Container für Prozessstabilität
 2. CDN + Cache-Control korrekt setzen
 3. Staging mit Lasttests vor Produktion
 4. Error Budget und Alerting definieren
@@ -336,12 +336,12 @@ useHead({
 
 ## Interview-Zusammenfassung
 
-**Moegliche Antwort in 30-45 Sekunden:**
+**Mögliche Antwort in 30-45 Sekunden:**
 
-> In SSR-Projekten sind fuer mich vier Problemgruppen entscheidend: erstens deterministisches Rendering zur Vermeidung von Hydration-Mismatch, zweitens saubere Trennung von Server- und Client-Konfiguration inklusive Cookie/Header-Flow, drittens Performance ueber Deduplication, Caching und SSR/CSR-Splitting, und viertens verlässliche Betriebsfaehigkeit mit klarer Fehlerbehandlung, Leak-Monitoring und geeigneter Deployment-Architektur.
+> In SSR-Projekten sind für mich vier Problemgruppen entscheidend: erstens deterministisches Rendering zur Vermeidung von Hydration-Mismatch, zweitens saubere Trennung von Server- und Client-Konfiguration inklusive Cookie/Header-Flow, drittens Performance über Deduplication, Caching und SSR/CSR-Splitting, und viertens verlässliche Betriebsfähigkeit mit klarer Fehlerbehandlung, Leak-Monitoring und geeigneter Deployment-Architektur.
 
-**Checkliste fuer die Antwort:**
+**Checkliste für die Antwort:**
 - ✅ Mindestens ein konkretes Problem mit Ursache nennen
-- ✅ Technische Gegenmassnahmen zeigen
+- ✅ Technische Gegenmaßnahmen zeigen
 - ✅ Auswirkungen auf SEO/Performance/Betrieb benennen
-- ✅ Mit einem realistischen Projektkontext abschliessen
+- ✅ Mit einem realistischen Projektkontext abschließen

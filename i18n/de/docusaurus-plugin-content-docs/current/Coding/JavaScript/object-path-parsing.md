@@ -9,7 +9,7 @@ tags: [JavaScript, Coding, Medium]
 
 > Problembeschreibung
 
-Implementieren Sie Funktionen zur Objektpfadanalyse, die Werte verschachtelter Objekte anhand von Pfadstrings abrufen und setzen koennen.
+Implementieren Sie Funktionen zur Objektpfadanalyse, die Werte verschachtelter Objekte anhand von Pfadstrings abrufen und setzen können.
 
 ### Anforderungen
 
@@ -35,7 +35,7 @@ set(obj, 'a.b.c', 1);
 
 ### Methode 1: Verwendung von split und reduce
 
-**Ansatz**: Den Pfadstring in ein Array aufteilen und dann mit `reduce` das Objekt Ebene fuer Ebene durchlaufen.
+**Ansatz**: Den Pfadstring in ein Array aufteilen und dann mit `reduce` das Objekt Ebene für Ebene durchlaufen.
 
 ```javascript
 function get(obj, path, defaultValue) {
@@ -72,7 +72,7 @@ console.log(get(obj, 'a.b.f', 'default')); // 'default'
 console.log(get(obj, 'x.y', 'default')); // 'default'
 ```
 
-### Methode 2: Unterstuetzung von Array-Indizes
+### Methode 2: Unterstützung von Array-Indizes
 
 **Ansatz**: Array-Indizes im Pfad behandeln, z.B. `'a.b[0].c'`.
 
@@ -115,7 +115,7 @@ console.log(get(obj, 'a.b.d[0]')); // 2
 console.log(get(obj, 'a.b.d[5]', 'not found')); // 'not found'
 ```
 
-### Methode 3: Vollstaendige Implementierung (Behandlung von Grenzfaellen)
+### Methode 3: Vollständige Implementierung (Behandlung von Grenzfällen)
 
 ```javascript
 function get(obj, path, defaultValue) {
@@ -161,7 +161,7 @@ console.log(get(obj, 'a.b.f', 'default')); // 'default'
 console.log(get(obj, 'x.y', 'default')); // 'default'
 console.log(get(obj, 'y.z', 'default')); // 'default'
 console.log(get(null, 'a.b', 'default')); // 'default'
-console.log(get(obj, '', obj)); // obj (leerer Pfad gibt Originalobjekt zurueck)
+console.log(get(obj, '', obj)); // obj (leerer Pfad gibt Originalobjekt zurück)
 ```
 
 ## 3. Implementation: set Function
@@ -223,7 +223,7 @@ set(obj, 'a.b.d[0]', 2);
 console.log(obj); // { a: { b: { c: 1, d: [2] } } }
 ```
 
-### Methode 2: Vollstaendige Implementierung (Behandlung von Arrays und Objekten)
+### Methode 2: Vollständige Implementierung (Behandlung von Arrays und Objekten)
 
 ```javascript
 function set(obj, path, value) {
@@ -321,7 +321,7 @@ console.log(obj); // { a: { b: { c: 1, d: 2 } } }
 
 ## 4. Common Interview Questions
 
-> Haeufige Interviewfragen
+> Häufige Interviewfragen
 
 ### Aufgabe 1: Grundlegende get-Funktion
 
@@ -347,13 +347,13 @@ console.log(get(obj, 'a.b.c')); // 1
 console.log(get(obj, 'a.b.d', 'default')); // 'default'
 ```
 
-**Kernpunkte**: null/undefined behandeln, Pfad mit split aufteilen, Ebene fuer Ebene auf Eigenschaften zugreifen, Standardwert zurueckgeben wenn Pfad nicht existiert.
+**Kernpunkte**: null/undefined behandeln, Pfad mit split aufteilen, Ebene für Ebene auf Eigenschaften zugreifen, Standardwert zurückgeben wenn Pfad nicht existiert.
 
 </details>
 
-### Aufgabe 2: get-Funktion mit Array-Index-Unterstuetzung
+### Aufgabe 2: get-Funktion mit Array-Index-Unterstützung
 
-Erweitern Sie die `get`-Funktion um Unterstuetzung fuer Array-Indizes wie `'a.b[0].c'`.
+Erweitern Sie die `get`-Funktion um Unterstützung für Array-Indizes wie `'a.b[0].c'`.
 
 <details>
 <summary>Klicken Sie hier, um die Antwort anzuzeigen</summary>
@@ -381,7 +381,7 @@ console.log(get(obj, 'a.b[2].c')); // 4
 console.log(get(obj, 'a.b[5]', 'not found')); // 'not found'
 ```
 
-**Kernpunkte**: Regulaeren Ausdruck `/[^.[\]]+|\[(\d+)\]/g` zur Pfadanalyse verwenden, `[0]`-Format fuer Array-Indizes behandeln, String-Index in Zahl umwandeln.
+**Kernpunkte**: Regulären Ausdruck `/[^.[\]]+|\[(\d+)\]/g` zur Pfadanalyse verwenden, `[0]`-Format für Array-Indizes behandeln, String-Index in Zahl umwandeln.
 
 </details>
 
@@ -414,13 +414,13 @@ set(obj, 'a.b.d', 2);
 console.log(obj); // { a: { b: { c: 1, d: 2 } } }
 ```
 
-**Kernpunkte**: Verschachtelte Objektstruktur Ebene fuer Ebene erstellen, sicherstellen dass Zwischenobjekte existieren, Zielwert am Ende setzen.
+**Kernpunkte**: Verschachtelte Objektstruktur Ebene für Ebene erstellen, sicherstellen dass Zwischenobjekte existieren, Zielwert am Ende setzen.
 
 </details>
 
-### Aufgabe 4: Vollstaendige Implementierung von get und set
+### Aufgabe 4: Vollständige Implementierung von get und set
 
-Implementieren Sie vollstaendige `get`- und `set`-Funktionen mit Array-Index-Unterstuetzung und Behandlung verschiedener Grenzfaelle.
+Implementieren Sie vollständige `get`- und `set`-Funktionen mit Array-Index-Unterstützung und Behandlung verschiedener Grenzfälle.
 
 <details>
 <summary>Klicken Sie hier, um die Antwort anzuzeigen</summary>
@@ -488,25 +488,25 @@ console.log(get(obj, 'a.b.d[0]')); // 2
 
 ## 5. Best Practices
 
-> Bewaehrte Methoden
+> Bewährte Methoden
 
 ### Empfohlene Vorgehensweisen
 
 ```javascript
-// 1. Grenzfaelle behandeln
+// 1. Grenzfälle behandeln
 function get(obj, path, defaultValue) {
   if (obj == null || typeof path !== 'string') return defaultValue;
   // ...
 }
 
-// 2. Regulaere Ausdruecke fuer komplexe Pfade verwenden
+// 2. Reguläre Ausdrücke für komplexe Pfade verwenden
 const keys = path.match(/[^.[\]]+|\[(\d+)\]/g) || [];
 
-// 3. In set den Typ des naechsten Schluessels bestimmen
+// 3. In set den Typ des nächsten Schlüssels bestimmen
 const nextKey = keys[i + 1];
 current[key] = nextKey.startsWith('[') ? [] : {};
 
-// 4. Nullish Coalescing fuer Standardwerte verwenden
+// 4. Nullish Coalescing für Standardwerte verwenden
 return result ?? defaultValue;
 ```
 
@@ -519,40 +519,40 @@ function get(obj, path) {
   return keys.reduce((acc, key) => acc[key], obj); // Kann Fehler verursachen
 }
 
-// 2. ❌ Originalobjekt nicht direkt aendern (es sei denn, ausdruecklich gefordert)
+// 2. ❌ Originalobjekt nicht direkt ändern (es sei denn, ausdrücklich gefordert)
 
 // 3. ❌ Unterschied zwischen Arrays und Objekten nicht ignorieren
 ```
 
 ## 6. Interview Summary
 
-> Zusammenfassung fuer Interviews
+> Zusammenfassung für Interviews
 
 ### Schnellreferenz
 
 **Objektpfadanalyse**:
 
-- **get-Funktion**: Wert anhand des Pfads abrufen, null/undefined behandeln, Standardwert unterstuetzen
+- **get-Funktion**: Wert anhand des Pfads abrufen, null/undefined behandeln, Standardwert unterstützen
 - **set-Funktion**: Wert anhand des Pfads setzen, verschachtelte Struktur automatisch erstellen
-- **Pfadanalyse**: Regulaere Ausdruecke fuer `'a.b.c'`- und `'a.b[0].c'`-Formate verwenden
+- **Pfadanalyse**: Reguläre Ausdrücke für `'a.b.c'`- und `'a.b[0].c'`-Formate verwenden
 - **Grenzfallbehandlung**: null, undefined, leere Strings usw. behandeln
 
 **Implementierungspunkte**:
 
-1. Pfadanalyse: `split('.')` oder regulaerer Ausdruck
+1. Pfadanalyse: `split('.')` oder regulärer Ausdruck
 2. Ebenenzugriff: Schleife oder `reduce` verwenden
-3. Grenzfallbehandlung: null/undefined pruefen
-4. Array-Unterstuetzung: `[0]`-Format-Indizes behandeln
+3. Grenzfallbehandlung: null/undefined prüfen
+4. Array-Unterstützung: `[0]`-Format-Indizes behandeln
 
-### Beispiel fuer Interviewantworten
+### Beispiel für Interviewantworten
 
 **Q: Implementieren Sie eine Funktion, die den Wert eines Objekts anhand eines Pfads abruft.**
 
-> "Ich implementiere eine `get`-Funktion, die ein Objekt, einen Pfadstring und einen Standardwert entgegennimmt. Zuerst behandle ich Grenzfaelle -- wenn das Objekt null oder der Pfad kein String ist, gebe ich den Standardwert zurueck. Dann teile ich den Pfad mit `split('.')` in ein Array von Schluesseln auf und greife mit einer Schleife Ebene fuer Ebene auf die Objekteigenschaften zu. Bei jedem Zugriff pruefe ich, ob der aktuelle Wert null oder undefined ist, und gebe in diesem Fall den Standardwert zurueck. Am Ende gebe ich den Standardwert zurueck, wenn das Ergebnis undefined ist, andernfalls das Ergebnis. Fuer Array-Index-Unterstuetzung kann ich den regulaeren Ausdruck `/[^.[\]]+|\[(\d+)\]/g` zur Pfadanalyse verwenden."
+> "Ich implementiere eine `get`-Funktion, die ein Objekt, einen Pfadstring und einen Standardwert entgegennimmt. Zuerst behandle ich Grenzfälle -- wenn das Objekt null oder der Pfad kein String ist, gebe ich den Standardwert zurück. Dann teile ich den Pfad mit `split('.')` in ein Array von Schlüsseln auf und greife mit einer Schleife Ebene für Ebene auf die Objekteigenschaften zu. Bei jedem Zugriff prüfe ich, ob der aktuelle Wert null oder undefined ist, und gebe in diesem Fall den Standardwert zurück. Am Ende gebe ich den Standardwert zurück, wenn das Ergebnis undefined ist, andernfalls das Ergebnis. Für Array-Index-Unterstützung kann ich den regulären Ausdruck `/[^.[\]]+|\[(\d+)\]/g` zur Pfadanalyse verwenden."
 
 **Q: Wie implementiert man eine Funktion, die den Wert eines Objekts anhand eines Pfads setzt?**
 
-> "Ich implementiere eine `set`-Funktion, die ein Objekt, einen Pfadstring und einen Wert entgegennimmt. Zuerst analysiere ich den Pfad in ein Array von Schluesseln, dann durchlaufe ich bis zum vorletzten Schluessel und erstelle Ebene fuer Ebene die verschachtelte Objektstruktur. Fuer jeden Zwischenschluessel, der nicht existiert oder kein Objekt ist, erstelle ich ein neues Objekt. Wenn der naechste Schluessel ein Array-Index-Format hat, erstelle ich ein Array. Am Ende setze ich den Wert des letzten Schluessels."
+> "Ich implementiere eine `set`-Funktion, die ein Objekt, einen Pfadstring und einen Wert entgegennimmt. Zuerst analysiere ich den Pfad in ein Array von Schlüsseln, dann durchlaufe ich bis zum vorletzten Schlüssel und erstelle Ebene für Ebene die verschachtelte Objektstruktur. Für jeden Zwischenschlüssel, der nicht existiert oder kein Objekt ist, erstelle ich ein neues Objekt. Wenn der nächste Schlüssel ein Array-Index-Format hat, erstelle ich ein Array. Am Ende setze ich den Wert des letzten Schlüssels."
 
 ## Reference
 

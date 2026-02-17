@@ -9,7 +9,7 @@ tags: [Experience, Interview, Project-Architecture]
 
 ---
 
-## 1. Dynamisches Laden der entsprechenden Vorlagenrouten ueber SiteKey
+## 1. Dynamisches Laden der entsprechenden Vorlagenrouten über SiteKey
 
 ```typescript
 function writeBuildRouter() {
@@ -39,19 +39,19 @@ function writeBuildRouter() {
 }
 ```
 
-- Beim Build werden die entsprechenden Vorlagenrouten ueber SiteKey dynamisch geladen
-- Die Umgebungsvariable `SITE_KEY` wird verwendet, um die zu kompilierende Vorlage auszuwaehlen
+- Beim Build werden die entsprechenden Vorlagenrouten über SiteKey dynamisch geladen
+- Die Umgebungsvariable `SITE_KEY` wird verwendet, um die zu kompilierende Vorlage auszuwählen
 - Ein einzelnes Repo verwaltet mehrere Vorlagen und vermeidet doppelten Code
 
 ## 2. Benutzerdefiniertes Umgebungsvariablen-Injektionssystem
 
 ## 3. Integration von TailwindCSS & RWD-Breakpoint-Design
 
-## 4. Proxy-Einstellungen fuer die Entwicklungsumgebung
+## 4. Proxy-Einstellungen für die Entwicklungsumgebung
 
 ## 5. Integration des Vue i18n Vite-Plugins
 
-## 6. Kompatibilitaetseinstellungen
+## 6. Kompatibilitätseinstellungen
 
 ```js
       target: {
@@ -60,5 +60,5 @@ function writeBuildRouter() {
       },
 ```
 
-- Praezise Browser-Kompatibilitaetssteuerung
-- Ausgewogenes Verhaeltnis zwischen modernen Funktionen und Kompatibilitaet
+- Präzise Browser-Kompatibilitätssteuerung
+- Ausgewogenes Verhältnis zwischen modernen Funktionen und Kompatibilität

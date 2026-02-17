@@ -4,27 +4,27 @@ slug: /experience/ssr-seo/lv3-i18n-seo
 tags: [Experience, Interview, SSR-SEO, Nuxt, Lv3, i18n]
 ---
 
-> Die Implementierung von Mehrsprachigkeit (Internationalization) unter einer SSR-Architektur umfasst nicht nur die Uebersetzung von Texten, sondern auch Routing-Strategien, SEO-Tags (hreflang), Zustandsverwaltung und Hydration-Konsistenz.
+> Die Implementierung von Mehrsprachigkeit (Internationalization) unter einer SSR-Architektur umfasst nicht nur die Übersetzung von Texten, sondern auch Routing-Strategien, SEO-Tags (hreflang), Zustandsverwaltung und Hydration-Konsistenz.
 
 ---
 
-## 1. Kernpunkte fuer die Interviewantwort
+## 1. Kernpunkte für die Interviewantwort
 
-1.  **Routing-Strategie**: Die URL-Praefix-Strategie von `@nuxtjs/i18n` (z.B. `/en/about`, `/jp/about`) zur Unterscheidung der Sprachen verwenden. Dies ist am SEO-freundlichsten.
-2.  **SEO-Tags**: Sicherstellen, dass korrekte `<link rel="alternate" hreflang="..." />` und Canonical URL automatisch generiert werden, um Strafen fuer doppelten Inhalt zu vermeiden.
+1.  **Routing-Strategie**: Die URL-Präfix-Strategie von `@nuxtjs/i18n` (z.B. `/en/about`, `/jp/about`) zur Unterscheidung der Sprachen verwenden. Dies ist am SEO-freundlichsten.
+2.  **SEO-Tags**: Sicherstellen, dass korrekte `<link rel="alternate" hreflang="..." />` und Canonical URL automatisch generiert werden, um Strafen für doppelten Inhalt zu vermeiden.
 3.  **Zustandsverwaltung**: In der SSR-Phase die Benutzersprache korrekt erkennen (Cookie/Header) und sicherstellen, dass die Sprache bei der Client-seitigen Hydration konsistent ist.
 
 ---
 
 ## 2. Nuxt 3 i18n Implementierungsstrategie
 
-### 2.1 Warum `@nuxtjs/i18n` waehlen?
+### 2.1 Warum `@nuxtjs/i18n` wählen?
 
-Das offizielle Modul `@nuxtjs/i18n` basiert auf `vue-i18n` und ist speziell fuer Nuxt optimiert. Es loest die haeufigen Probleme bei der manuellen i18n-Implementierung:
+Das offizielle Modul `@nuxtjs/i18n` basiert auf `vue-i18n` und ist speziell für Nuxt optimiert. Es löst die häufigen Probleme bei der manuellen i18n-Implementierung:
 
-- Automatische Generierung von Routen mit Sprachpraefix (Auto-generated routes).
+- Automatische Generierung von Routen mit Sprachpräfix (Auto-generated routes).
 - Automatische Verarbeitung von SEO Meta Tags (hreflang, og:locale).
-- Unterstuetzung fuer Lazy Loading von Sprachpaketen (Optimierung der Bundle-Groesse).
+- Unterstützung für Lazy Loading von Sprachpaketen (Optimierung der Bundle-Größe).
 
 ### 2.2 Installation und Konfiguration
 
@@ -43,7 +43,7 @@ export default defineNuxtConfig({
     ],
     defaultLocale: 'tw',
     lazy: true, // Lazy Loading aktivieren
-    langDir: 'locales', // Verzeichnis fuer Sprachdateien
+    langDir: 'locales', // Verzeichnis für Sprachdateien
     strategy: 'prefix_and_default', // Wichtige Routing-Strategie
     detectBrowserLanguage: {
       useCookie: true,
@@ -56,22 +56,22 @@ export default defineNuxtConfig({
 
 ### 2.3 Routing-Strategie (Routing Strategy)
 
-Dies ist der Schluessel fuer SEO. `@nuxtjs/i18n` bietet mehrere Strategien:
+Dies ist der Schlüssel für SEO. `@nuxtjs/i18n` bietet mehrere Strategien:
 
 1.  **prefix_except_default** (empfohlen):
 
-    - Standardsprache (tw) ohne Praefix: `example.com/about`
-    - Andere Sprachen (en) mit Praefix: `example.com/en/about`
+    - Standardsprache (tw) ohne Präfix: `example.com/about`
+    - Andere Sprachen (en) mit Präfix: `example.com/en/about`
     - Vorteil: Saubere URL, konzentriertes SEO-Gewicht.
 
 2.  **prefix_and_default**:
 
-    - Alle Sprachen mit Praefix: `example.com/tw/about`, `example.com/en/about`
+    - Alle Sprachen mit Präfix: `example.com/tw/about`, `example.com/en/about`
     - Vorteil: Einheitliche Struktur, einfache Handhabung von Weiterleitungen.
 
-3.  **no_prefix** (nicht fuer SEO empfohlen):
+3.  **no_prefix** (nicht für SEO empfohlen):
     - Alle Sprachen mit der gleichen URL, Umschaltung per Cookie.
-    - Nachteil: Suchmaschinen koennen verschiedene Sprachversionen nicht indexieren.
+    - Nachteil: Suchmaschinen können verschiedene Sprachversionen nicht indexieren.
 
 ---
 
@@ -79,7 +79,7 @@ Dies ist der Schluessel fuer SEO. `@nuxtjs/i18n` bietet mehrere Strategien:
 
 ### 3.1 hreflang Tag
 
-Suchmaschinen muessen wissen, "welche Sprachversionen hat diese Seite". `@nuxtjs/i18n` generiert automatisch im `<head>`:
+Suchmaschinen müssen wissen, "welche Sprachversionen hat diese Seite". `@nuxtjs/i18n` generiert automatisch im `<head>`:
 
 ```html
 <link rel="alternate" href="https://example.com/about" hreflang="zh-TW" />
@@ -87,7 +87,7 @@ Suchmaschinen muessen wissen, "welche Sprachversionen hat diese Seite". `@nuxtjs
 <link rel="alternate" href="https://example.com/about" hreflang="x-default" />
 ```
 
-**Hinweis:** `baseUrl` muss in `nuxt.config.ts` gesetzt werden, sonst generiert hreflang relative Pfade (ungueltig).
+**Hinweis:** `baseUrl` muss in `nuxt.config.ts` gesetzt werden, sonst generiert hreflang relative Pfade (ungültig).
 
 ```typescript
 export default defineNuxtConfig({
@@ -101,9 +101,9 @@ export default defineNuxtConfig({
 
 Sicherstellen, dass jede Sprachversion der Seite eine auf sich selbst verweisende Canonical URL hat, um nicht als doppelter Inhalt betrachtet zu werden.
 
-### 3.3 Dynamische Inhaltsuebersetzung (API)
+### 3.3 Dynamische Inhaltsübersetzung (API)
 
-Die Backend-API muss ebenfalls Mehrsprachigkeit unterstuetzen. Normalerweise wird der `Accept-Language` Header bei Anfragen mitgeschickt.
+Die Backend-API muss ebenfalls Mehrsprachigkeit unterstützen. Normalerweise wird der `Accept-Language` Header bei Anfragen mitgeschickt.
 
 ```typescript
 // composables/useApi.ts
@@ -119,13 +119,13 @@ export const useApi = (url: string) => {
 
 ---
 
-## 4. Haeufige Herausforderungen und Loesungen
+## 4. Häufige Herausforderungen und Lösungen
 
 ### 4.1 Hydration Mismatch
 
-**Problem:** Server erkennt Englisch und rendert englisches HTML; der Client-Browser hat Chinesisch als Standard, Vue i18n initialisiert auf Chinesisch, was zu Bildschirmflackern oder Hydration Error fuehrt.
+**Problem:** Server erkennt Englisch und rendert englisches HTML; der Client-Browser hat Chinesisch als Standard, Vue i18n initialisiert auf Chinesisch, was zu Bildschirmflackern oder Hydration Error führt.
 
-**Loesung:**
+**Lösung:**
 
 - `detectBrowserLanguage` Einstellung verwenden, damit der Client bei der Initialisierung die URL- oder Cookie-Einstellung respektiert, nicht die Browser-Einstellung.
 - Sicherstellen, dass die `defaultLocale` Einstellung von Server und Client konsistent ist.
@@ -158,13 +158,13 @@ const switchLocalePath = useSwitchLocalePath();
 > **Beispielantwort:**
 > Bei i18n in einer SSR-Umgebung sind **SEO** und **Hydration-Konsistenz** am wichtigsten.
 >
-> Bezueglich **SEO**:
+> Bezüglich **SEO**:
 >
-> 1.  **URL-Struktur**: Ich verwende die "Unterpfad"-Strategie (z.B. `/en/`, `/tw/`), um verschiedenen Sprachen unabhaengige URLs zu geben, damit Suchmaschinen indexieren koennen.
-> 2.  **hreflang**: `<link rel="alternate" hreflang="..." />` muss korrekt gesetzt werden, um Google mitzuteilen, dass diese Seiten verschiedene Sprachversionen desselben Inhalts sind, und Strafen fuer doppelten Inhalt zu vermeiden. Normalerweise verwende ich das `@nuxtjs/i18n` Modul, um diese Tags automatisch zu generieren.
+> 1.  **URL-Struktur**: Ich verwende die "Unterpfad"-Strategie (z.B. `/en/`, `/tw/`), um verschiedenen Sprachen unabhängige URLs zu geben, damit Suchmaschinen indexieren können.
+> 2.  **hreflang**: `<link rel="alternate" hreflang="..." />` muss korrekt gesetzt werden, um Google mitzuteilen, dass diese Seiten verschiedene Sprachversionen desselben Inhalts sind, und Strafen für doppelten Inhalt zu vermeiden. Normalerweise verwende ich das `@nuxtjs/i18n` Modul, um diese Tags automatisch zu generieren.
 >
-> Bezueglich **Hydration**:
-> Sicherstellen, dass die vom Server gerenderte Sprache und die vom Client initialisierte Sprache konsistent sind. Ich konfiguriere die Sprachbestimmung ueber URL-Praefix oder Cookie und fuege die entsprechende Locale im API-Anfrage-Header hinzu.
+> Bezüglich **Hydration**:
+> Sicherstellen, dass die vom Server gerenderte Sprache und die vom Client initialisierte Sprache konsistent sind. Ich konfiguriere die Sprachbestimmung über URL-Präfix oder Cookie und füge die entsprechende Locale im API-Anfrage-Header hinzu.
 
 ### 5.2 Routing und Zustand
 
@@ -172,7 +172,7 @@ const switchLocalePath = useSwitchLocalePath();
 
 > **Beispielantwort:**
 > Ich verwende das von `@nuxtjs/i18n` bereitgestellte `useSwitchLocalePath` Composable.
-> Es generiert automatisch die URL der entsprechenden Sprache basierend auf der aktuellen Route (unter Beibehaltung der Query-Parameter) und behandelt die Umwandlung der Routenpraefixe. Dies vermeidet Fehler bei der manuellen Zeichenkettenverkettung und stellt sicher, dass der Benutzer beim Sprachwechsel auf dem urspruenglichen Seiteninhalt bleibt.
+> Es generiert automatisch die URL der entsprechenden Sprache basierend auf der aktuellen Route (unter Beibehaltung der Query-Parameter) und behandelt die Umwandlung der Routenpräfixe. Dies vermeidet Fehler bei der manuellen Zeichenkettenverkettung und stellt sicher, dass der Benutzer beim Sprachwechsel auf dem ursprünglichen Seiteninhalt bleibt.
 
 ---
 

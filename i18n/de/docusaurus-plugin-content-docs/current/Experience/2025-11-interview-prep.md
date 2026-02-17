@@ -8,31 +8,31 @@ slug: /2025-11-interview-prep
 
 ## CSS
 
-- [**Erklaeren Sie die Unterschiede des CSS Box-Modells**](/docs/css-box-model)
-- [**Erklaeren Sie die Unterschiede zwischen `px`, `em`, `rem`, `vw`, `vh`**](/docs/css-units)
-- [**Beschreiben Sie die Pseudo-Elemente, die Sie haeufig verwenden**](/docs/css-pseudo-elements)
-- [**Wie sollte man Styles fuer Dark Mode organisieren?**](/docs/theme-switching)
+- [**Erklären Sie die Unterschiede des CSS Box-Modells**](/docs/css-box-model)
+- [**Erklären Sie die Unterschiede zwischen `px`, `em`, `rem`, `vw`, `vh`**](/docs/css-units)
+- [**Beschreiben Sie die Pseudo-Elemente, die Sie häufig verwenden**](/docs/css-pseudo-elements)
+- [**Wie sollte man Styles für Dark Mode organisieren?**](/docs/theme-switching)
 
 ## JavaScript(ES6+)
 
-- [**Erklaeren Sie die Unterschiede zwischen var, let und const**](/docs/let-var-const-differences)
-- [**Erlaeutern Sie das Hoisting**](/docs/hoisting)
+- [**Erklären Sie die Unterschiede zwischen var, let und const**](/docs/let-var-const-differences)
+- [**Erläutern Sie das Hoisting**](/docs/hoisting)
 - [**Beschreiben Sie die Unterschiede der `<script>`-Einstellungen**](/docs/script-loading-strategies)
-- [**Erklaeren Sie cookie, sessionStorage und localStorage**](/docs/web-storage)
-- [**Erklaeren Sie den Unterschied zwischen `==` und `===`**](/docs/operators)
-- [**Erklaeren Sie den Unterschied zwischen `undefined` und `null`**](/docs/js-null-undefined)
-- [**Erklaeren Sie das Prinzip von Promise**](/docs/promise)
-- [**Erklaeren Sie, was async/await ist und wie man es verwendet**](/docs/async-await)
-- [**Erklaeren Sie das Prinzip des Hoisting**](/docs/hoisting)
-- [**Erklaeren Sie die Anwendungsszenarien von `this`**](/docs/this-binding)
-- [**Erklaeren Sie die Anwendungsszenarien und Unterschiede von Set und Map**](/docs/set-map)
+- [**Erklären Sie cookie, sessionStorage und localStorage**](/docs/web-storage)
+- [**Erklären Sie den Unterschied zwischen `==` und `===`**](/docs/operators)
+- [**Erklären Sie den Unterschied zwischen `undefined` und `null`**](/docs/js-null-undefined)
+- [**Erklären Sie das Prinzip von Promise**](/docs/promise)
+- [**Erklären Sie, was async/await ist und wie man es verwendet**](/docs/async-await)
+- [**Erklären Sie das Prinzip des Hoisting**](/docs/hoisting)
+- [**Erklären Sie die Anwendungsszenarien von `this`**](/docs/this-binding)
+- [**Erklären Sie die Anwendungsszenarien und Unterschiede von Set und Map**](/docs/set-map)
 
 ## TypeScript
 
 - [**Was sind die Unterschiede zwischen TypeScript und JavaScript?**](/docs/typescript-vs-javascript)
-- [**Erklaeren Sie die grundlegenden Typen und Typannotationen in TypeScript**](/docs/basic-types)
+- [**Erklären Sie die grundlegenden Typen und Typannotationen in TypeScript**](/docs/basic-types)
 - [**Was sind die Unterschiede zwischen Interface und Type Alias?**](/docs/interface-vs-type)
-- [**Erklaeren Sie das Konzept und die Verwendung von Generics**](/docs/generics)
+- [**Erklären Sie das Konzept und die Verwendung von Generics**](/docs/generics)
 
 ## Vue
 
@@ -40,12 +40,12 @@ slug: /2025-11-interview-prep
 - [**Was sind die Unterschiede zwischen Composition API und Options API?**](/docs/composition-vs-options-api)
 - [**Was sind die Unterschiede zwischen ref und reactive?**](/docs/ref-vs-reactive)
 - [**Was sind die Unterschiede zwischen watch und watchEffect?**](/docs/watch-vs-watcheffect)
-- [**Erklaeren Sie die Lifecycle Hooks von Vue**](/docs/vue-lifecycle)
+- [**Erklären Sie die Lifecycle Hooks von Vue**](/docs/vue-lifecycle)
 - [**Welche Kommunikationsmethoden gibt es zwischen Vue-Komponenten?**](/docs/vue-component-communication)
-- [**Erklaeren Sie das Prinzip der bidirektionalen Datenbindung in Vue2 und Vue3**](/docs/vue-two-way-data-binding)
-- [**Erklaeren Sie, was Static Hoisting in Vue3 ist**](/docs/static-hoisting)
+- [**Erklären Sie das Prinzip der bidirektionalen Datenbindung in Vue2 und Vue3**](/docs/vue-two-way-data-binding)
+- [**Erklären Sie, was Static Hoisting in Vue3 ist**](/docs/static-hoisting)
 - [**Vergleichen Sie die Unterschiede zwischen Pinia und Vuex**](/docs/experience/state-management/vue/vuex-vs-pinia)
-- [**Erklaeren Sie, was Fragment in Vue3 ist**](/docs/vue3-new-features)
+- [**Erklären Sie, was Fragment in Vue3 ist**](/docs/vue3-new-features)
 
 ## Framework
 
@@ -53,24 +53,24 @@ slug: /2025-11-interview-prep
 
 ## Experience
 
-- [**Erklaeren Sie, wie die Anmeldung im aktuellen Projekt implementiert wurde**](/docs/experience/login/lv1-project-implementation)
+- [**Erklären Sie, wie die Anmeldung im aktuellen Projekt implementiert wurde**](/docs/experience/login/lv1-project-implementation)
 
 ## Leistungsoptimierung
 
-- [**Wie optimiert man die Darstellung bei zehntausenden Datensaetzen auf dem Bildschirm?**](/docs/experience/performance/lv3-large-data-optimization)
-- [**Wie ueberwacht man die Leistung von SSR?**](/docs/experience/performance/lv3-nuxt-performance)
+- [**Wie optimiert man die Darstellung bei zehntausenden Datensätzen auf dem Bildschirm?**](/docs/experience/performance/lv3-large-data-optimization)
+- [**Wie überwacht man die Leistung von SSR?**](/docs/experience/performance/lv3-nuxt-performance)
 
 ## SSR & SEO
 
 - [**Was ist die Server Engine von Nuxt 3?**](/docs/experience/ssr-seo/lv2-nuxt-server-features)
-- [**Wie waehlt man zwischen CSR, SSR und SSG?**](/docs/experience/ssr-seo/lv2-nuxt-rendering-modes)
-- [**Haeufige Ursachen und Loesungen fuer Memory Leaks in SSR?**](/docs/experience/ssr-seo/lv3-ssr-challenges)
+- [**Wie wählt man zwischen CSR, SSR und SSG?**](/docs/experience/ssr-seo/lv2-nuxt-rendering-modes)
+- [**Häufige Ursachen und Lösungen für Memory Leaks in SSR?**](/docs/experience/ssr-seo/lv3-ssr-challenges)
 - [**Wie geht man mit Hydration Mismatch in SSR um?**](/docs/experience/ssr-seo/lv3-ssr-challenges)
 - [**Worin unterscheidet sich die Bereitstellung einer SSR-Anwendung von einer SPA?**](/docs/experience/ssr-seo/lv3-ssr-challenges)
-- [**Wie handhabt man SEO fuer mehrsprachige Websites?**](/docs/experience/ssr-seo/lv3-i18n-seo)
+- [**Wie handhabt man SEO für mehrsprachige Websites?**](/docs/experience/ssr-seo/lv3-i18n-seo)
 
 ## Handschriftliche Implementierung
 
 - [**JS: Implementiere einen Deep Clone**](/docs/deep-clone)
-- [**JS: Implementiere eine Funktion, die den haeufigsten Buchstaben in einem String zurueckgibt**](/docs/find-most-frequent-char-js)
+- [**JS: Implementiere eine Funktion, die den häufigsten Buchstaben in einem String zurückgibt**](/docs/find-most-frequent-char-js)
 - [**JS: Implementiere Objektpfad-Parsing (get/set)**](/docs/object-path-parsing)

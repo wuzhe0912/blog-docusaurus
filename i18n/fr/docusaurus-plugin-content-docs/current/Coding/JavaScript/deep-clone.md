@@ -9,11 +9,11 @@ tags: [JavaScript, Coding, Medium]
 
 > Qu'est-ce que le Deep Clone ?
 
-**Le Deep Clone (copie profonde)** consiste a creer un nouvel objet et a copier recursivement toutes les proprietes de l'objet original ainsi que tous ses objets et tableaux imbriques. L'objet issu du Deep Clone est completement independant de l'original : modifier l'un n'affecte pas l'autre.
+**Le Deep Clone (copie profonde)** consiste à créer un nouvel objet et à copier récursivement toutes les propriétés de l'objet original ainsi que tous ses objets et tableaux imbriqués. L'objet issu du Deep Clone est complètement indépendant de l'original : modifier l'un n'affecte pas l'autre.
 
 ### Copie superficielle vs Copie profonde
 
-**Shallow Clone (Copie superficielle)** : Copie uniquement les proprietes du premier niveau de l'objet ; les objets imbriques partagent toujours la meme reference.
+**Shallow Clone (Copie superficielle)** : Copie uniquement les propriétés du premier niveau de l'objet ; les objets imbriqués partagent toujours la même référence.
 
 ```javascript
 // Exemple de copie superficielle
@@ -28,10 +28,10 @@ const original = {
 const shallowCopy = { ...original };
 shallowCopy.address.city = 'Kaohsiung';
 
-console.log(original.address.city); // 'Kaohsiung' ❌ L'objet original a aussi ete modifie
+console.log(original.address.city); // 'Kaohsiung' ❌ L'objet original a aussi été modifié
 ```
 
-**Deep Clone (Copie profonde)** : Copie recursivement toutes les couches de proprietes, completement independant.
+**Deep Clone (Copie profonde)** : Copie récursivement toutes les couches de propriétés, complètement indépendant.
 
 ```javascript
 // Exemple de copie profonde
@@ -46,17 +46,17 @@ const original = {
 const deepCopy = deepClone(original);
 deepCopy.address.city = 'Kaohsiung';
 
-console.log(original.address.city); // 'Taipei' ✅ L'objet original n'est pas affecte
+console.log(original.address.city); // 'Taipei' ✅ L'objet original n'est pas affecté
 ```
 
 ## 2. Implementation Methods
 
-> Methodes d'implementation
+> Méthodes d'implémentation
 
-### Methode 1 : Utilisation de JSON.parse et JSON.stringify
+### Méthode 1 : Utilisation de JSON.parse et JSON.stringify
 
 **Avantages** : Simple et rapide
-**Inconvenients** : Ne peut pas gerer les fonctions, undefined, Symbol, Date, RegExp, Map, Set et autres types speciaux
+**Inconvénients** : Ne peut pas gérer les fonctions, undefined, Symbol, Date, RegExp, Map, Set et autres types spéciaux
 
 ```javascript
 function deepClone(obj) {
@@ -101,7 +101,7 @@ console.log(cloned.symbol); // undefined ❌ Symbol est perdu
 console.log(cloned.regex); // {} ❌ RegExp devient un objet vide
 ```
 
-### Methode 2 : Implementation recursive (gestion des types de base et objets)
+### Méthode 2 : Implémentation récursive (gestion des types de base et objets)
 
 ```javascript
 function deepClone(obj) {
@@ -151,11 +151,11 @@ const cloned = deepClone(original);
 cloned.date.setFullYear(2025);
 cloned.hobbies.push('swimming');
 
-console.log(original.date.getFullYear()); // 2024 ✅ Non affecte
+console.log(original.date.getFullYear()); // 2024 ✅ Non affecté
 console.log(original.hobbies); // ['reading', 'coding'] ✅
 ```
 
-### Methode 3 : Implementation complete (gestion de Map, Set, Symbol, etc.)
+### Méthode 3 : Implémentation complète (gestion de Map, Set, Symbol, etc.)
 
 ```javascript
 function deepClone(obj, map = new WeakMap()) {
@@ -164,7 +164,7 @@ function deepClone(obj, map = new WeakMap()) {
     return obj;
   }
 
-  // Gestion des references circulaires
+  // Gestion des références circulaires
   if (map.has(obj)) {
     return map.get(obj);
   }
@@ -213,16 +213,16 @@ function deepClone(obj, map = new WeakMap()) {
   const cloned = {};
   map.set(obj, cloned);
 
-  // Gestion des proprietes Symbol
+  // Gestion des propriétés Symbol
   const symbolKeys = Object.getOwnPropertySymbols(obj);
   const stringKeys = Object.keys(obj);
 
-  // Copier les proprietes normales
+  // Copier les propriétés normales
   stringKeys.forEach((key) => {
     cloned[key] = deepClone(obj[key], map);
   });
 
-  // Copier les proprietes Symbol
+  // Copier les propriétés Symbol
   symbolKeys.forEach((symbolKey) => {
     cloned[symbolKey] = deepClone(obj[symbolKey], map);
   });
@@ -247,7 +247,7 @@ console.log(cloned.map.get('key')); // 'value' ✅
 console.log(cloned.set.has(1)); // true ✅
 ```
 
-### Methode 4 : Gestion des references circulaires
+### Méthode 4 : Gestion des références circulaires
 
 ```javascript
 function deepClone(obj, map = new WeakMap()) {
@@ -256,7 +256,7 @@ function deepClone(obj, map = new WeakMap()) {
     return obj;
   }
 
-  // Gestion des references circulaires
+  // Gestion des références circulaires
   if (map.has(obj)) {
     return map.get(obj);
   }
@@ -294,27 +294,27 @@ function deepClone(obj, map = new WeakMap()) {
   return cloned;
 }
 
-// Test des references circulaires
+// Test des références circulaires
 const original = {
   name: 'John',
 };
-original.self = original; // Reference circulaire
+original.self = original; // Référence circulaire
 
 const cloned = deepClone(original);
-console.log(cloned.self === cloned); // true ✅ Reference circulaire correctement geree
-console.log(cloned !== original); // true ✅ Objets differents
+console.log(cloned.self === cloned); // true ✅ Référence circulaire correctement gérée
+console.log(cloned !== original); // true ✅ Objets différents
 ```
 
 ## 3. Common Interview Questions
 
-> Questions d'entretien frequentes
+> Questions d'entretien fréquentes
 
-### Question 1 : Implementation basique du Deep Clone
+### Question 1 : Implémentation basique du Deep Clone
 
-Implementez une fonction `deepClone` capable de copier profondement des objets et des tableaux.
+Implémentez une fonction `deepClone` capable de copier profondément des objets et des tableaux.
 
 <details>
-<summary>Cliquez pour voir la reponse</summary>
+<summary>Cliquez pour voir la réponse</summary>
 
 ```javascript
 function deepClone(obj) {
@@ -370,12 +370,12 @@ console.log(original.hobbies); // ['reading', 'coding'] ✅
 
 </details>
 
-### Question 2 : Gestion des references circulaires
+### Question 2 : Gestion des références circulaires
 
-Implementez une fonction `deepClone` capable de gerer les references circulaires.
+Implémentez une fonction `deepClone` capable de gérer les références circulaires.
 
 <details>
-<summary>Cliquez pour voir la reponse</summary>
+<summary>Cliquez pour voir la réponse</summary>
 
 ```javascript
 function deepClone(obj, map = new WeakMap()) {
@@ -384,7 +384,7 @@ function deepClone(obj, map = new WeakMap()) {
     return obj;
   }
 
-  // Gestion des references circulaires
+  // Gestion des références circulaires
   if (map.has(obj)) {
     return map.get(obj);
   }
@@ -422,22 +422,22 @@ function deepClone(obj, map = new WeakMap()) {
   return cloned;
 }
 
-// Test des references circulaires
+// Test des références circulaires
 const original = {
   name: 'John',
 };
-original.self = original; // Reference circulaire
+original.self = original; // Référence circulaire
 
 const cloned = deepClone(original);
 console.log(cloned.self === cloned); // true ✅
 console.log(cloned !== original); // true ✅
 ```
 
-**Points cles** :
+**Points clés** :
 
-- Utiliser `WeakMap` pour suivre les objets deja traites
-- Avant de creer un nouvel objet, verifier s'il existe deja dans le map
-- S'il existe, retourner directement la reference du map pour eviter la recursion infinie
+- Utiliser `WeakMap` pour suivre les objets déjà traités
+- Avant de créer un nouvel objet, vérifier s'il existe déjà dans le map
+- S'il existe, retourner directement la référence du map pour éviter la récursion infinie
 
 </details>
 
@@ -446,36 +446,36 @@ console.log(cloned !== original); // true ✅
 Expliquez les limitations de l'utilisation de `JSON.parse(JSON.stringify())` pour le Deep Clone et proposez des solutions.
 
 <details>
-<summary>Cliquez pour voir la reponse</summary>
+<summary>Cliquez pour voir la réponse</summary>
 
 **Limitations** :
 
-1. **Ne peut pas gerer les fonctions**
+1. **Ne peut pas gérer les fonctions**
    ```javascript
    const obj = { func: function () {} };
    const cloned = JSON.parse(JSON.stringify(obj));
    console.log(cloned.func); // undefined ❌
    ```
 
-2. **Ne peut pas gerer undefined**
+2. **Ne peut pas gérer undefined**
    ```javascript
    const obj = { value: undefined };
    const cloned = JSON.parse(JSON.stringify(obj));
-   console.log(cloned.value); // undefined (mais la propriete est supprimee) ❌
+   console.log(cloned.value); // undefined (mais la propriété est supprimée) ❌
    ```
 
-3. **Ne peut pas gerer Symbol**
+3. **Ne peut pas gérer Symbol**
    ```javascript
    const obj = { [Symbol('key')]: 'value' };
    const cloned = JSON.parse(JSON.stringify(obj));
-   console.log(cloned); // {} ❌ La propriete Symbol est perdue
+   console.log(cloned); // {} ❌ La propriété Symbol est perdue
    ```
 
-4. **Date devient une chaine de caracteres**
+4. **Date devient une chaîne de caractères**
    ```javascript
    const obj = { date: new Date() };
    const cloned = JSON.parse(JSON.stringify(obj));
-   console.log(cloned.date); // "2024-01-01T00:00:00.000Z" ❌ Devient une chaine
+   console.log(cloned.date); // "2024-01-01T00:00:00.000Z" ❌ Devient une chaîne
    ```
 
 5. **RegExp devient un objet vide**
@@ -485,21 +485,21 @@ Expliquez les limitations de l'utilisation de `JSON.parse(JSON.stringify())` pou
    console.log(cloned.regex); // {} ❌ Devient un objet vide
    ```
 
-6. **Ne peut pas gerer Map, Set**
+6. **Ne peut pas gérer Map, Set**
    ```javascript
    const obj = { map: new Map([['key', 'value']]) };
    const cloned = JSON.parse(JSON.stringify(obj));
    console.log(cloned.map); // {} ❌ Devient un objet vide
    ```
 
-7. **Ne peut pas gerer les references circulaires**
+7. **Ne peut pas gérer les références circulaires**
    ```javascript
    const obj = { name: 'John' };
    obj.self = obj;
    JSON.parse(JSON.stringify(obj)); // ❌ Erreur : Converting circular structure to JSON
    ```
 
-**Solution** : Utiliser une implementation recursive avec un traitement special pour les differents types.
+**Solution** : Utiliser une implémentation récursive avec un traitement spécial pour les différents types.
 
 </details>
 
@@ -507,11 +507,11 @@ Expliquez les limitations de l'utilisation de `JSON.parse(JSON.stringify())` pou
 
 > Bonnes pratiques
 
-### Pratiques recommandees
+### Pratiques recommandées
 
 ```javascript
-// 1. Choisir la methode appropriee en fonction des besoins
-// Si seuls des objets basiques et des tableaux doivent etre traites, utiliser une implementation recursive simple
+// 1. Choisir la méthode appropriée en fonction des besoins
+// Si seuls des objets basiques et des tableaux doivent être traités, utiliser une implémentation récursive simple
 function simpleDeepClone(obj) {
   if (obj === null || typeof obj !== 'object') return obj;
   if (obj instanceof Date) return new Date(obj.getTime());
@@ -526,67 +526,67 @@ function simpleDeepClone(obj) {
   return cloned;
 }
 
-// 2. Si des types complexes doivent etre geres, utiliser l'implementation complete
+// 2. Si des types complexes doivent être gérés, utiliser l'implémentation complète
 function completeDeepClone(obj, map = new WeakMap()) {
-  // ... Implementation complete
+  // ... Implémentation complète
 }
 
-// 3. Utiliser WeakMap pour gerer les references circulaires
-// WeakMap n'empeche pas la collecte des dechets, adapte au suivi des references d'objets
+// 3. Utiliser WeakMap pour gérer les références circulaires
+// WeakMap n'empêche pas la collecte des déchets, adapté au suivi des références d'objets
 ```
 
-### Pratiques a eviter
+### Pratiques à éviter
 
 ```javascript
 // 1. Ne pas abuser de JSON.parse(JSON.stringify())
-// ❌ Les fonctions, Symbol, Date et autres types speciaux sont perdus
+// ❌ Les fonctions, Symbol, Date et autres types spéciaux sont perdus
 const cloned = JSON.parse(JSON.stringify(obj));
 
-// 2. Ne pas oublier de gerer les references circulaires
-// ❌ Provoque un debordement de pile
+// 2. Ne pas oublier de gérer les références circulaires
+// ❌ Provoque un débordement de pile
 function deepClone(obj) {
   const cloned = {};
   for (let key in obj) {
-    cloned[key] = deepClone(obj[key]); // Recursion infinie
+    cloned[key] = deepClone(obj[key]); // Récursion infinie
   }
   return cloned;
 }
 
-// 3. Ne pas oublier de gerer Date, RegExp et autres types speciaux
-// ❌ Ces types necessitent un traitement special
+// 3. Ne pas oublier de gérer Date, RegExp et autres types spéciaux
+// ❌ Ces types nécessitent un traitement spécial
 ```
 
 ## 5. Interview Summary
 
-> Resume pour les entretiens
+> Résumé pour les entretiens
 
-### Aide-memoire
+### Aide-mémoire
 
 **Deep Clone** :
 
-- **Definition** : Copier recursivement un objet et toutes ses proprietes imbriquees, completement independant
-- **Methodes** : Implementation recursive, JSON.parse(JSON.stringify()), structuredClone()
-- **Points cles** : Gestion des types speciaux, references circulaires, proprietes Symbol
+- **Définition** : Copier récursivement un objet et toutes ses propriétés imbriquées, complètement indépendant
+- **Méthodes** : Implémentation récursive, JSON.parse(JSON.stringify()), structuredClone()
+- **Points clés** : Gestion des types spéciaux, références circulaires, propriétés Symbol
 
-**Points d'implementation** :
+**Points d'implémentation** :
 
-1. Gerer les types de base et null
-2. Gerer Date, RegExp et autres objets speciaux
-3. Gerer les tableaux et les objets
-4. Gerer les references circulaires (avec WeakMap)
-5. Gerer les proprietes Symbol
+1. Gérer les types de base et null
+2. Gérer Date, RegExp et autres objets spéciaux
+3. Gérer les tableaux et les objets
+4. Gérer les références circulaires (avec WeakMap)
+5. Gérer les propriétés Symbol
 
-### Exemple de reponse en entretien
+### Exemple de réponse en entretien
 
-**Q : Veuillez implementer une fonction Deep Clone.**
+**Q : Veuillez implémenter une fonction Deep Clone.**
 
-> "Le Deep Clone consiste a creer un nouvel objet completement independant en copiant recursivement toutes les proprietes imbriquees. Mon implementation gere d'abord les types de base et null, puis effectue un traitement special pour differents types comme Date, RegExp, tableaux et objets. Pour gerer les references circulaires, j'utilise un WeakMap pour suivre les objets deja traites. Pour les proprietes Symbol, j'utilise Object.getOwnPropertySymbols pour les obtenir et les copier. Cela garantit que l'objet copie en profondeur est completement independant de l'objet original, et que modifier l'un n'affecte pas l'autre."
+> "Le Deep Clone consiste à créer un nouvel objet complètement indépendant en copiant récursivement toutes les propriétés imbriquées. Mon implémentation gère d'abord les types de base et null, puis effectue un traitement spécial pour différents types comme Date, RegExp, tableaux et objets. Pour gérer les références circulaires, j'utilise un WeakMap pour suivre les objets déjà traités. Pour les propriétés Symbol, j'utilise Object.getOwnPropertySymbols pour les obtenir et les copier. Cela garantit que l'objet copié en profondeur est complètement indépendant de l'objet original, et que modifier l'un n'affecte pas l'autre."
 
 **Q : Quelles sont les limitations de JSON.parse(JSON.stringify()) ?**
 
-> "Les principales limitations de cette methode sont : 1) Ne peut pas gerer les fonctions, qui sont supprimees ; 2) Ne peut pas gerer undefined et Symbol, ces proprietes sont ignorees ; 3) Les objets Date deviennent des chaines de caracteres ; 4) RegExp devient un objet vide ; 5) Ne peut pas gerer Map, Set et autres structures de donnees speciales ; 6) Ne peut pas gerer les references circulaires, ce qui provoque une erreur. Si ces cas speciaux doivent etre geres, il faut utiliser une implementation recursive."
+> "Les principales limitations de cette méthode sont : 1) Ne peut pas gérer les fonctions, qui sont supprimées ; 2) Ne peut pas gérer undefined et Symbol, ces propriétés sont ignorées ; 3) Les objets Date deviennent des chaînes de caractères ; 4) RegExp devient un objet vide ; 5) Ne peut pas gérer Map, Set et autres structures de données spéciales ; 6) Ne peut pas gérer les références circulaires, ce qui provoque une erreur. Si ces cas spéciaux doivent être gérés, il faut utiliser une implémentation récursive."
 
-## Reference
+## Référence
 
 - [MDN - structuredClone()](https://developer.mozilla.org/fr/docs/Web/API/structuredClone)
 - [MDN - WeakMap](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/WeakMap)

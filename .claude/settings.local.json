@@ -63,7 +63,11 @@
       "Bash(do stat -f%z \"$f\")",
       "Bash(do echo \"=== $locale ===\" ls -la /Users/pitt.wu/Documents/personal/blog-docusaurus/i18n/$locale/)",
       "Bash(do echo \"=== $locale docusaurus-theme-classic ===\" ls /Users/pitt.wu/Documents/personal/blog-docusaurus/i18n/$locale/docusaurus-theme-classic/)",
-      "Bash(git mv:*)"
+      "Bash(git mv:*)",
+      "Bash(git -C /Users/pitt.wu/Documents/personal/blog-docusaurus status --short)",
+      "Bash(git -C /Users/pitt.wu/Documents/personal/blog-docusaurus log --oneline -5)",
+      "Bash(do git add \"i18n/$locale/docusaurus-plugin-content-docs/current/Knowledge/JavaScript-Ecosystem/\" \"i18n/$locale/docusaurus-plugin-content-docs/current/Knowledge/knowledge.md\")",
+      "Bash(git -C /Users/pitt.wu/Documents/personal/blog-docusaurus diff --cached --stat)"
     ]
   }
 }

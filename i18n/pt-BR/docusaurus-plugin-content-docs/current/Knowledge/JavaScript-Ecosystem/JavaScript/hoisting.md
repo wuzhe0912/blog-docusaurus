@@ -155,19 +155,19 @@ Esta questão examina as **regras de prioridade** do Hoisting:
 **Prioridade do Hoisting: Declaração de função > Declaração de variável**
 
 ```js
-// 原始程式碼
+// Codigo original
 console.log(foo);
 var foo = '1';
 function foo() {}
 
-// 等價於（經過 Hoisting）
-// 階段 1：創造階段（Hoisting）
-function foo() {} // 1. 函式聲明先提升
-var foo; // 2. 變數聲明提升（但不覆蓋已存在的函式）
+// Equivalente a (apos Hoisting)
+// Fase 1: Fase de criacao (Hoisting)
+function foo() {} // 1. Declaracao de funcao elevada primeiro
+var foo; // 2. Declaracao de variavel elevada (mas nao sobrescreve a funcao existente)
 
-// 階段 2：執行階段
-console.log(foo); // 此時 foo 是函式，輸出 [Function: foo]
-foo = '1'; // 3. 變數賦值（會覆蓋函式）
+// Fase 2: Fase de execucao
+console.log(foo); // Neste momento foo e uma funcao, saida [Function: foo]
+foo = '1'; // 3. Atribuicao de variavel (sobrescreve a funcao)
 ```
 
 ### Conceitos-chave
@@ -193,33 +193,33 @@ var myVar = 'Hello';
 **3. Quando declaração de função e declaração de variável têm o mesmo nome**
 
 ```js
-// 提升後的順序
-function foo() {} // 函式先提升並賦值
-var foo; // 變數聲明提升，但不會覆蓋已存在的函式
+// Ordem apos a elevacao
+function foo() {} // Funcao elevada primeiro e atribuida
+var foo; // Declaracao de variavel elevada, mas nao sobrescreve a funcao existente
 
-// 因此 foo 是函式
+// Portanto foo e uma funcao
 console.log(foo); // [Function: foo]
 ```
 
 ### Fluxo de execução completo
 
 ```js
-// 原始程式碼
+// Codigo original
 console.log(foo); // ?
 var foo = '1';
 function foo() {}
 console.log(foo); // ?
 
-// ======== 等價於 ========
+// ======== Equivalente a ========
 
-// 創造階段（Hoisting）
-function foo() {} // 1️⃣ 函式聲明提升（完整提升，包含函式體）
-var foo; // 2️⃣ 變數聲明提升（但不覆蓋 foo，因為已經是函式了）
+// Fase de criacao (Hoisting)
+function foo() {} // 1. Declaracao de funcao elevada (elevacao completa, incluindo o corpo da funcao)
+var foo; // 2. Declaracao de variavel elevada (mas nao sobrescreve foo, pois ja e uma funcao)
 
-// 執行階段
-console.log(foo); // [Function: foo] - foo 是函式
-foo = '1'; // 3️⃣ 變數賦值（此時才覆蓋函式）
-console.log(foo); // '1' - foo 變成字串
+// Fase de execucao
+console.log(foo); // [Function: foo] - foo e uma funcao
+foo = '1'; // 3. Atribuicao de variavel (somente agora sobrescreve a funcao)
+console.log(foo); // '1' - foo se torna uma string
 ```
 
 ### Exercícios avançados
@@ -236,8 +236,8 @@ console.log(foo); // ?
 **Resposta:**
 
 ```js
-[Function: foo] // 第一次輸出
-'1' // 第二次輸出
+[Function: foo] // Primeira saida
+'1' // Segunda saida
 ```
 
 **Razão:** A ordem do código não afeta o resultado do Hoisting. A prioridade de elevação continua sendo: função > variável.
@@ -263,26 +263,26 @@ console.log(foo); // ?
 **Resposta:**
 
 ```js
-[Function: foo] { return 2; } // 第一次輸出（後面的函式覆蓋前面的）
-'1' // 第二次輸出（變數賦值覆蓋函式）
+[Function: foo] { return 2; } // Primeira saida (a funcao posterior sobrescreve a anterior)
+'1' // Segunda saida (atribuicao de variavel sobrescreve a funcao)
 ```
 
 **Razão:**
 
 ```js
-// 提升後
+// Apos a elevacao
 function foo() {
   return 1;
-} // 第一個函式
+} // Primeira funcao
 
 function foo() {
   return 2;
-} // 第二個函式覆蓋第一個
+} // Segunda funcao sobrescreve a primeira
 
-var foo; // 變數聲明（不覆蓋函式）
+var foo; // Declaracao de variavel (nao sobrescreve a funcao)
 
 console.log(foo); // [Function: foo] { return 2; }
-foo = '1'; // 變數賦值（覆蓋函式）
+foo = '1'; // Atribuicao de variavel (sobrescreve a funcao)
 console.log(foo); // '1'
 ```
 
@@ -304,25 +304,25 @@ function bar() {
 **Resposta:**
 
 ```js
-undefined; // foo 是 undefined
-[Function: bar] // bar 是函式
+undefined; // foo e undefined
+[Function: bar] // bar e uma funcao
 ```
 
 **Razão:**
 
 ```js
-// 提升後
-var foo; // 變數聲明提升（函式表達式只提升變數名）
+// Apos a elevacao
+var foo; // Declaracao de variavel elevada (expressao de funcao so eleva o nome da variavel)
 function bar() {
   return 2;
-} // 函式聲明完整提升
+} // Declaracao de funcao elevada completamente
 
 console.log(foo); // undefined
 console.log(bar); // [Function: bar]
 
 foo = function () {
   return 1;
-}; // 函式表達式賦值
+}; // Atribuicao da expressao de funcao
 ```
 
 **Diferença fundamental:**
@@ -333,15 +333,15 @@ foo = function () {
 ### let/const não têm esse problema
 
 ```js
-// ❌ var 會有提升問題
+// var tem problemas de elevacao
 console.log(foo); // undefined
 var foo = '1';
 
-// ✅ let/const 有暫時性死區（TDZ）
+// let/const tem Zona Morta Temporal (TDZ)
 console.log(bar); // ReferenceError: Cannot access 'bar' before initialization
 let bar = '1';
 
-// ✅ let/const 與函式同名會報錯
+// let/const com mesmo nome de funcao causa erro
 function baz() {} // SyntaxError: Identifier 'baz' has already been declared
 let baz = '1';
 ```

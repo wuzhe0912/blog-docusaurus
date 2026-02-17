@@ -35,7 +35,7 @@ En display existe una propiedad llamada `inline-block`, que puede convertir un e
 
 - [Inline elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Inline_elements)
 - [Block-level elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Block-level_elements)
-- [CSS 教學-關於 display:inline、block、inline-block 的差別](https://ytclion.medium.com/css%E6%95%99%E5%AD%B8-%E9%97%9C%E6%96%BCdisplay-inline-inline-block-block%E7%9A%84%E5%B7%AE%E5%88%A5-1034f38eda82)
+- [Tutorial CSS - Diferencias entre display: inline, block e inline-block](https://ytclion.medium.com/css%E6%95%99%E5%AD%B8-%E9%97%9C%E6%96%BCdisplay-inline-inline-block-block%E7%9A%84%E5%B7%AE%E5%88%A5-1034f38eda82)
 
 ## 2. Que hace `* { box-sizing: border-box; }`?
 

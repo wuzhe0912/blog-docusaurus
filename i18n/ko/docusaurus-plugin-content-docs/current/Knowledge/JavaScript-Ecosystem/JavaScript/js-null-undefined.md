@@ -20,25 +20,25 @@ tags: [JavaScript, Quiz, Easy]
 
 ```js
 let x;
-console.log(x); // 輸出：undefined
+console.log(x); // 출력: undefined
 
 function foo() {}
-console.log(foo()); // 輸出：undefined
+console.log(foo()); // 출력: undefined
 
 let y = null;
-console.log(y); // 輸出：null
+console.log(y); // 출력: null
 
 let obj = { x: 5 };
 obj.x = null;
-console.log(obj.x); // 輸出：null
+console.log(obj.x); // 출력: null
 ```
 
 ## typeof를 이용한 검증
 
 ```js
-console.log(typeof undefined); // 輸出："undefined"
-console.log(typeof null); // 輸出："object"
+console.log(typeof undefined); // 출력: "undefined"
+console.log(typeof null); // 출력: "object"
 
-console.log(null == undefined); // 輸出：true
-console.log(null === undefined); // 輸出：false
+console.log(null == undefined); // 출력: true
+console.log(null === undefined); // 출력: false
 ```

@@ -155,19 +155,19 @@ Esta pregunta examina las **reglas de prioridad** del Hoisting:
 **Prioridad de Hoisting: Declaración de función > Declaración de variable**
 
 ```js
-// 原始程式碼
+// Codigo original
 console.log(foo);
 var foo = '1';
 function foo() {}
 
-// 等價於（經過 Hoisting）
-// 階段 1：創造階段（Hoisting）
-function foo() {} // 1. 函式聲明先提升
-var foo; // 2. 變數聲明提升（但不覆蓋已存在的函式）
+// Equivalente a (despues del Hoisting)
+// Fase 1: Fase de creacion (Hoisting)
+function foo() {} // 1. La declaracion de funcion se eleva primero
+var foo; // 2. La declaracion de variable se eleva (pero no sobrescribe la funcion existente)
 
-// 階段 2：執行階段
-console.log(foo); // 此時 foo 是函式，輸出 [Function: foo]
-foo = '1'; // 3. 變數賦值（會覆蓋函式）
+// Fase 2: Fase de ejecucion
+console.log(foo); // En este momento foo es una funcion, salida [Function: foo]
+foo = '1'; // 3. Asignacion de variable (sobrescribe la funcion)
 ```
 
 ### Conceptos clave
@@ -193,33 +193,33 @@ var myVar = 'Hello';
 **3. Cuando la declaración de función y la declaración de variable tienen el mismo nombre**
 
 ```js
-// 提升後的順序
-function foo() {} // 函式先提升並賦值
-var foo; // 變數聲明提升，但不會覆蓋已存在的函式
+// Orden despues del hoisting
+function foo() {} // La funcion se eleva y se asigna primero
+var foo; // La declaracion de variable se eleva, pero no sobrescribe la funcion existente
 
-// 因此 foo 是函式
+// Por lo tanto foo es una funcion
 console.log(foo); // [Function: foo]
 ```
 
 ### Flujo de ejecución completo
 
 ```js
-// 原始程式碼
+// Codigo original
 console.log(foo); // ?
 var foo = '1';
 function foo() {}
 console.log(foo); // ?
 
-// ======== 等價於 ========
+// ======== Equivalente a ========
 
-// 創造階段（Hoisting）
-function foo() {} // 1️⃣ 函式聲明提升（完整提升，包含函式體）
-var foo; // 2️⃣ 變數聲明提升（但不覆蓋 foo，因為已經是函式了）
+// Fase de creacion (Hoisting)
+function foo() {} // 1. Elevacion de declaracion de funcion (elevacion completa, incluyendo el cuerpo)
+var foo; // 2. Elevacion de declaracion de variable (pero no sobrescribe foo, porque ya es una funcion)
 
-// 執行階段
-console.log(foo); // [Function: foo] - foo 是函式
-foo = '1'; // 3️⃣ 變數賦值（此時才覆蓋函式）
-console.log(foo); // '1' - foo 變成字串
+// Fase de ejecucion
+console.log(foo); // [Function: foo] - foo es una funcion
+foo = '1'; // 3. Asignacion de variable (ahora si sobrescribe la funcion)
+console.log(foo); // '1' - foo se convierte en string
 ```
 
 ### Ejercicios avanzados
@@ -236,8 +236,8 @@ console.log(foo); // ?
 **Respuesta:**
 
 ```js
-[Function: foo] // 第一次輸出
-'1' // 第二次輸出
+[Function: foo] // Primera salida
+'1' // Segunda salida
 ```
 
 **Razón:** El orden del código no afecta el resultado del Hoisting. La prioridad de elevación sigue siendo: función > variable.
@@ -263,26 +263,26 @@ console.log(foo); // ?
 **Respuesta:**
 
 ```js
-[Function: foo] { return 2; } // 第一次輸出（後面的函式覆蓋前面的）
-'1' // 第二次輸出（變數賦值覆蓋函式）
+[Function: foo] { return 2; } // Primera salida (la funcion posterior sobrescribe la anterior)
+'1' // Segunda salida (la asignacion de variable sobrescribe la funcion)
 ```
 
 **Razón:**
 
 ```js
-// 提升後
+// Despues del hoisting
 function foo() {
   return 1;
-} // 第一個函式
+} // Primera funcion
 
 function foo() {
   return 2;
-} // 第二個函式覆蓋第一個
+} // La segunda funcion sobrescribe la primera
 
-var foo; // 變數聲明（不覆蓋函式）
+var foo; // Declaracion de variable (no sobrescribe la funcion)
 
 console.log(foo); // [Function: foo] { return 2; }
-foo = '1'; // 變數賦值（覆蓋函式）
+foo = '1'; // Asignacion de variable (sobrescribe la funcion)
 console.log(foo); // '1'
 ```
 
@@ -304,25 +304,25 @@ function bar() {
 **Respuesta:**
 
 ```js
-undefined; // foo 是 undefined
-[Function: bar] // bar 是函式
+undefined; // foo es undefined
+[Function: bar] // bar es una funcion
 ```
 
 **Razón:**
 
 ```js
-// 提升後
-var foo; // 變數聲明提升（函式表達式只提升變數名）
+// Despues del hoisting
+var foo; // Elevacion de declaracion de variable (la expresion de funcion solo eleva el nombre de variable)
 function bar() {
   return 2;
-} // 函式聲明完整提升
+} // Elevacion completa de declaracion de funcion
 
 console.log(foo); // undefined
 console.log(bar); // [Function: bar]
 
 foo = function () {
   return 1;
-}; // 函式表達式賦值
+}; // Asignacion de expresion de funcion
 ```
 
 **Diferencia clave:**
@@ -333,15 +333,15 @@ foo = function () {
 ### let/const no tienen este problema
 
 ```js
-// ❌ var 會有提升問題
+// var tiene problemas de hoisting
 console.log(foo); // undefined
 var foo = '1';
 
-// ✅ let/const 有暫時性死區（TDZ）
+// let/const tienen zona muerta temporal (TDZ)
 console.log(bar); // ReferenceError: Cannot access 'bar' before initialization
 let bar = '1';
 
-// ✅ let/const 與函式同名會報錯
+// let/const con el mismo nombre que una funcion genera error
 function baz() {} // SyntaxError: Identifier 'baz' has already been declared
 let baz = '1';
 ```

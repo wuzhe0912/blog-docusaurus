@@ -100,8 +100,8 @@ element.classList.add('update');
 ### Reference
 
 - [Render-tree Construction, Layout, and Paint](https://web.dev/articles/critical-rendering-path/render-tree-construction)
-- [浏览器的回流与重绘 (Reflow & Repaint)](https://juejin.cn/post/6844903569087266823)
-- [介绍回流与重绘（Reflow & Repaint），以及如何进行优化?](https://juejin.cn/post/7064077572132323365)
+- [Reflow e Repaint do navegador](https://juejin.cn/post/6844903569087266823)
+- [Introducao ao Reflow e Repaint, e como otimiza-los](https://juejin.cn/post/7064077572132323365)
 
 ## 3. Descreva quando o navegador envia uma requisição OPTIONS ao servidor
 

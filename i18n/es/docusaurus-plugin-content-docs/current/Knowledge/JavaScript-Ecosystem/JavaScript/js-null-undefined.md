@@ -20,25 +20,25 @@ tags: [JavaScript, Quiz, Easy]
 
 ```js
 let x;
-console.log(x); // 輸出：undefined
+console.log(x); // Salida: undefined
 
 function foo() {}
-console.log(foo()); // 輸出：undefined
+console.log(foo()); // Salida: undefined
 
 let y = null;
-console.log(y); // 輸出：null
+console.log(y); // Salida: null
 
 let obj = { x: 5 };
 obj.x = null;
-console.log(obj.x); // 輸出：null
+console.log(obj.x); // Salida: null
 ```
 
 ## Verificacion con typeof
 
 ```js
-console.log(typeof undefined); // 輸出："undefined"
-console.log(typeof null); // 輸出："object"
+console.log(typeof undefined); // Salida: "undefined"
+console.log(typeof null); // Salida: "object"
 
-console.log(null == undefined); // 輸出：true
-console.log(null === undefined); // 輸出：false
+console.log(null == undefined); // Salida: true
+console.log(null === undefined); // Salida: false
 ```

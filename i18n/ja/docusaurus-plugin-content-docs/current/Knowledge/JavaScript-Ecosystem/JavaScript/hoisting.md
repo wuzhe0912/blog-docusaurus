@@ -155,19 +155,19 @@ function foo() {}
 **Hoisting の優先順位：関数宣言 > 変数宣言**
 
 ```js
-// 原始程式碼
+// 元のコード
 console.log(foo);
 var foo = '1';
 function foo() {}
 
-// 等價於（經過 Hoisting）
-// 階段 1：創造階段（Hoisting）
-function foo() {} // 1. 函式聲明先提升
-var foo; // 2. 變數聲明提升（但不覆蓋已存在的函式）
+// 等価（Hoisting後）
+// フェーズ1：生成フェーズ（Hoisting）
+function foo() {} // 1. 関数宣言が先に巻き上げ
+var foo; // 2. 変数宣言が巻き上げ（既存の関数を上書きしない）
 
-// 階段 2：執行階段
-console.log(foo); // 此時 foo 是函式，輸出 [Function: foo]
-foo = '1'; // 3. 變數賦值（會覆蓋函式）
+// フェーズ2：実行フェーズ
+console.log(foo); // この時点でfooは関数、出力 [Function: foo]
+foo = '1'; // 3. 変数代入（関数を上書き）
 ```
 
 ### 重要な概念
@@ -193,33 +193,33 @@ var myVar = 'Hello';
 **3. 関数宣言と変数宣言が同名の場合**
 
 ```js
-// 提升後的順序
-function foo() {} // 函式先提升並賦值
-var foo; // 變數聲明提升，但不會覆蓋已存在的函式
+// 巻き上げ後の順序
+function foo() {} // 関数が先に巻き上げられ値が設定される
+var foo; // 変数宣言が巻き上げられるが、既存の関数を上書きしない
 
-// 因此 foo 是函式
+// したがってfooは関数
 console.log(foo); // [Function: foo]
 ```
 
 ### 完全な実行フロー
 
 ```js
-// 原始程式碼
+// 元のコード
 console.log(foo); // ?
 var foo = '1';
 function foo() {}
 console.log(foo); // ?
 
-// ======== 等價於 ========
+// ======== 等価 ========
 
-// 創造階段（Hoisting）
-function foo() {} // 1️⃣ 函式聲明提升（完整提升，包含函式體）
-var foo; // 2️⃣ 變數聲明提升（但不覆蓋 foo，因為已經是函式了）
+// 生成フェーズ（Hoisting）
+function foo() {} // 1️⃣ 関数宣言が巻き上げ（完全に巻き上げ、関数本体を含む）
+var foo; // 2️⃣ 変数宣言が巻き上げ（fooを上書きしない、既に関数であるため）
 
-// 執行階段
-console.log(foo); // [Function: foo] - foo 是函式
-foo = '1'; // 3️⃣ 變數賦值（此時才覆蓋函式）
-console.log(foo); // '1' - foo 變成字串
+// 実行フェーズ
+console.log(foo); // [Function: foo] - fooは関数
+foo = '1'; // 3️⃣ 変数代入（この時点で関数を上書き）
+console.log(foo); // '1' - fooは文字列になる
 ```
 
 ### 発展問題
@@ -236,8 +236,8 @@ console.log(foo); // ?
 **答え：**
 
 ```js
-[Function: foo] // 第一次輸出
-'1' // 第二次輸出
+[Function: foo] // 1回目の出力
+'1' // 2回目の出力
 ```
 
 **理由：** コードの順序は Hoisting の結果に影響しません。引き上げの優先順位は依然として関数 > 変数です。
@@ -263,26 +263,26 @@ console.log(foo); // ?
 **答え：**
 
 ```js
-[Function: foo] { return 2; } // 第一次輸出（後面的函式覆蓋前面的）
-'1' // 第二次輸出（變數賦值覆蓋函式）
+[Function: foo] { return 2; } // 1回目の出力（後の関数が前の関数を上書き）
+'1' // 2回目の出力（変数代入が関数を上書き）
 ```
 
 **理由：**
 
 ```js
-// 提升後
+// 巻き上げ後
 function foo() {
   return 1;
-} // 第一個函式
+} // 1番目の関数
 
 function foo() {
   return 2;
-} // 第二個函式覆蓋第一個
+} // 2番目の関数が1番目を上書き
 
-var foo; // 變數聲明（不覆蓋函式）
+var foo; // 変数宣言（関数を上書きしない）
 
 console.log(foo); // [Function: foo] { return 2; }
-foo = '1'; // 變數賦值（覆蓋函式）
+foo = '1'; // 変数代入（関数を上書き）
 console.log(foo); // '1'
 ```
 
@@ -304,25 +304,25 @@ function bar() {
 **答え：**
 
 ```js
-undefined; // foo 是 undefined
-[Function: bar] // bar 是函式
+undefined; // fooはundefined
+[Function: bar] // barは関数
 ```
 
 **理由：**
 
 ```js
-// 提升後
-var foo; // 變數聲明提升（函式表達式只提升變數名）
+// 巻き上げ後
+var foo; // 変数宣言が巻き上げ（関数式は変数名のみ巻き上げ）
 function bar() {
   return 2;
-} // 函式聲明完整提升
+} // 関数宣言が完全に巻き上げ
 
 console.log(foo); // undefined
 console.log(bar); // [Function: bar]
 
 foo = function () {
   return 1;
-}; // 函式表達式賦值
+}; // 関数式の代入
 ```
 
 **重要な違い：**
@@ -333,15 +333,15 @@ foo = function () {
 ### let/const ではこの問題は発生しない
 
 ```js
-// ❌ var 會有提升問題
+// ❌ varには巻き上げ問題がある
 console.log(foo); // undefined
 var foo = '1';
 
-// ✅ let/const 有暫時性死區（TDZ）
+// ✅ let/constにはTDZ（一時的デッドゾーン）がある
 console.log(bar); // ReferenceError: Cannot access 'bar' before initialization
 let bar = '1';
 
-// ✅ let/const 與函式同名會報錯
+// ✅ let/constと関数が同名の場合エラーになる
 function baz() {} // SyntaxError: Identifier 'baz' has already been declared
 let baz = '1';
 ```

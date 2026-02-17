@@ -78,7 +78,7 @@ ISN은 Initial Sequence Number의 약자로, 수신 측에 발신 측이 데이�
 ### Reference
 
 - [TCP 3-Way Handshake (SYN, SYN-ACK,ACK)](https://www.guru99.com/tcp-3-way-handshake.html)
-- [淘宝二面，面试官居然把 TCP 三次握手问的这么详细](https://www.eet-china.com/mp/a44399.html)
+- [TCP 3-way 핸드셰이크 상세 분석](https://www.eet-china.com/mp/a44399.html)
 
 ## 3. HTTP 캐싱 메커니즘을 설명해주세요
 

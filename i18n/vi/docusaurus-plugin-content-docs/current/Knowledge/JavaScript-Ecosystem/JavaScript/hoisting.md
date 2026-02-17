@@ -155,19 +155,19 @@ Câu hỏi này kiểm tra **quy tắc ưu tiên** của Hoisting:
 **Thứ tự ưu tiên Hoisting: Khai báo hàm > Khai báo biến**
 
 ```js
-// 原始程式碼
+// Mã nguồn gốc
 console.log(foo);
 var foo = '1';
 function foo() {}
 
-// 等價於（經過 Hoisting）
-// 階段 1：創造階段（Hoisting）
-function foo() {} // 1. 函式聲明先提升
-var foo; // 2. 變數聲明提升（但不覆蓋已存在的函式）
+// Tương đương với (sau khi Hoisting)
+// Giai đoạn 1: Giai đoạn tạo (Hoisting)
+function foo() {} // 1. Khai báo hàm được hoisting trước
+var foo; // 2. Khai báo biến được hoisting (nhưng không ghi đè hàm đã tồn tại)
 
-// 階段 2：執行階段
-console.log(foo); // 此時 foo 是函式，輸出 [Function: foo]
-foo = '1'; // 3. 變數賦值（會覆蓋函式）
+// Giai đoạn 2: Giai đoạn thực thi
+console.log(foo); // Lúc này foo là hàm, xuất ra [Function: foo]
+foo = '1'; // 3. Gán biến (ghi đè hàm)
 ```
 
 ### Khái niệm then chốt
@@ -193,33 +193,33 @@ var myVar = 'Hello';
 **3. Khi khai báo hàm và khai báo biến cùng tên**
 
 ```js
-// 提升後的順序
-function foo() {} // 函式先提升並賦值
-var foo; // 變數聲明提升，但不會覆蓋已存在的函式
+// Thứ tự sau khi hoisting
+function foo() {} // Hàm được hoisting và gán giá trị trước
+var foo; // Khai báo biến được hoisting, nhưng không ghi đè hàm đã tồn tại
 
-// 因此 foo 是函式
+// Do đó foo là hàm
 console.log(foo); // [Function: foo]
 ```
 
 ### Luồng thực thi đầy đủ
 
 ```js
-// 原始程式碼
+// Mã nguồn gốc
 console.log(foo); // ?
 var foo = '1';
 function foo() {}
 console.log(foo); // ?
 
-// ======== 等價於 ========
+// ======== Tương đương với ========
 
-// 創造階段（Hoisting）
-function foo() {} // 1️⃣ 函式聲明提升（完整提升，包含函式體）
-var foo; // 2️⃣ 變數聲明提升（但不覆蓋 foo，因為已經是函式了）
+// Giai đoạn tạo (Hoisting)
+function foo() {} // 1️⃣ Khai báo hàm được hoisting (hoisting toàn bộ, bao gồm thân hàm)
+var foo; // 2️⃣ Khai báo biến được hoisting (nhưng không ghi đè foo, vì đã là hàm rồi)
 
-// 執行階段
-console.log(foo); // [Function: foo] - foo 是函式
-foo = '1'; // 3️⃣ 變數賦值（此時才覆蓋函式）
-console.log(foo); // '1' - foo 變成字串
+// Giai đoạn thực thi
+console.log(foo); // [Function: foo] - foo là hàm
+foo = '1'; // 3️⃣ Gán biến (lúc này mới ghi đè hàm)
+console.log(foo); // '1' - foo trở thành chuỗi
 ```
 
 ### Bài tập nâng cao
@@ -236,8 +236,8 @@ console.log(foo); // ?
 **Đáp án:**
 
 ```js
-[Function: foo] // 第一次輸出
-'1' // 第二次輸出
+[Function: foo] // Lần xuất đầu tiên
+'1' // Lần xuất thứ hai
 ```
 
 **Lý do:** Thứ tự code không ảnh hưởng đến kết quả Hoisting. Thứ tự ưu tiên đưa lên vẫn là: hàm > biến.
@@ -263,26 +263,26 @@ console.log(foo); // ?
 **Đáp án:**
 
 ```js
-[Function: foo] { return 2; } // 第一次輸出（後面的函式覆蓋前面的）
-'1' // 第二次輸出（變數賦值覆蓋函式）
+[Function: foo] { return 2; } // Lần xuất đầu tiên (hàm sau ghi đè hàm trước)
+'1' // Lần xuất thứ hai (gán biến ghi đè hàm)
 ```
 
 **Lý do:**
 
 ```js
-// 提升後
+// Sau khi hoisting
 function foo() {
   return 1;
-} // 第一個函式
+} // Hàm thứ nhất
 
 function foo() {
   return 2;
-} // 第二個函式覆蓋第一個
+} // Hàm thứ hai ghi đè hàm thứ nhất
 
-var foo; // 變數聲明（不覆蓋函式）
+var foo; // Khai báo biến (không ghi đè hàm)
 
 console.log(foo); // [Function: foo] { return 2; }
-foo = '1'; // 變數賦值（覆蓋函式）
+foo = '1'; // Gán biến (ghi đè hàm)
 console.log(foo); // '1'
 ```
 
@@ -304,25 +304,25 @@ function bar() {
 **Đáp án:**
 
 ```js
-undefined; // foo 是 undefined
-[Function: bar] // bar 是函式
+undefined; // foo là undefined
+[Function: bar] // bar là hàm
 ```
 
 **Lý do:**
 
 ```js
-// 提升後
-var foo; // 變數聲明提升（函式表達式只提升變數名）
+// Sau khi hoisting
+var foo; // Khai báo biến được hoisting (biểu thức hàm chỉ hoisting tên biến)
 function bar() {
   return 2;
-} // 函式聲明完整提升
+} // Khai báo hàm được hoisting toàn bộ
 
 console.log(foo); // undefined
 console.log(bar); // [Function: bar]
 
 foo = function () {
   return 1;
-}; // 函式表達式賦值
+}; // Gán biểu thức hàm
 ```
 
 **Điểm khác biệt then chốt:**
@@ -333,15 +333,15 @@ foo = function () {
 ### let/const không gặp vấn đề này
 
 ```js
-// ❌ var 會有提升問題
+// ❌ var có vấn đề hoisting
 console.log(foo); // undefined
 var foo = '1';
 
-// ✅ let/const 有暫時性死區（TDZ）
+// ✅ let/const có TDZ (Vùng chết tạm thời)
 console.log(bar); // ReferenceError: Cannot access 'bar' before initialization
 let bar = '1';
 
-// ✅ let/const 與函式同名會報錯
+// ✅ let/const trùng tên với hàm sẽ báo lỗi
 function baz() {} // SyntaxError: Identifier 'baz' has already been declared
 let baz = '1';
 ```

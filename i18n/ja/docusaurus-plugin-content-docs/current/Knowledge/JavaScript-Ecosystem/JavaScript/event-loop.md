@@ -23,14 +23,14 @@ JavaScript は本質的にシングルスレッドの言語です。その役割
 ```js
 console.log(1);
 
-// 這個非同步的函式就是 callback
+// この非同期関数がcallbackです
 setTimeout(function () {
   console.log(2);
 }, 0);
 
 console.log(3);
 
-// 依序印出 1 3 2
+// 順番に 1 3 2 が出力される
 ```
 
 ## 2. Why is setInterval not accurate in terms of timing ?
@@ -68,7 +68,7 @@ function moveElement(timestamp) {
     'myElement'
   ).style.transform = `translateX(${startPos}px)`;
 
-  // 如果元素還沒有到達目的地，繼續動畫
+  // 要素がまだ目的地に到達していない場合、アニメーションを続ける
   if (startPos < 500) {
     requestAnimationFrame(moveElement);
   }

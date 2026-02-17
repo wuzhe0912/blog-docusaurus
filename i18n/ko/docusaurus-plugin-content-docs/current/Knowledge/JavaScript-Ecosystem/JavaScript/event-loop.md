@@ -23,14 +23,14 @@ JavaScript는 본질적으로 싱글 스레드 언어입니다. 브라우저의 
 ```js
 console.log(1);
 
-// 這個非同步的函式就是 callback
+// 이 비동기 함수가 callback입니다
 setTimeout(function () {
   console.log(2);
 }, 0);
 
 console.log(3);
 
-// 依序印出 1 3 2
+// 순서대로 1 3 2가 출력됨
 ```
 
 ## 2. Why is setInterval not accurate in terms of timing ?
@@ -68,7 +68,7 @@ function moveElement(timestamp) {
     'myElement'
   ).style.transform = `translateX(${startPos}px)`;
 
-  // 如果元素還沒有到達目的地，繼續動畫
+  // 요소가 아직 목적지에 도달하지 않았으면, 애니메이션 계속
   if (startPos < 500) {
     requestAnimationFrame(moveElement);
   }

@@ -155,19 +155,19 @@ function foo() {}
 **Hoisting 우선순위: 함수 선언 > 변수 선언**
 
 ```js
-// 原始程式碼
+// 원본 코드
 console.log(foo);
 var foo = '1';
 function foo() {}
 
-// 等價於（經過 Hoisting）
-// 階段 1：創造階段（Hoisting）
-function foo() {} // 1. 函式聲明先提升
-var foo; // 2. 變數聲明提升（但不覆蓋已存在的函式）
+// 동일함 (Hoisting 후)
+// 단계 1: 생성 단계 (Hoisting)
+function foo() {} // 1. 함수 선언이 먼저 호이스팅됨
+var foo; // 2. 변수 선언 호이스팅 (기존 함수를 덮어쓰지 않음)
 
-// 階段 2：執行階段
-console.log(foo); // 此時 foo 是函式，輸出 [Function: foo]
-foo = '1'; // 3. 變數賦值（會覆蓋函式）
+// 단계 2: 실행 단계
+console.log(foo); // 이 시점에서 foo는 함수, 출력 [Function: foo]
+foo = '1'; // 3. 변수 할당 (함수를 덮어씀)
 ```
 
 ### 핵심 개념
@@ -193,33 +193,33 @@ var myVar = 'Hello';
 **3. 함수 선언과 변수 선언이 같은 이름일 때**
 
 ```js
-// 提升後的順序
-function foo() {} // 函式先提升並賦值
-var foo; // 變數聲明提升，但不會覆蓋已存在的函式
+// 호이스팅 후 순서
+function foo() {} // 함수가 먼저 호이스팅되어 할당됨
+var foo; // 변수 선언 호이스팅, 기존 함수를 덮어쓰지 않음
 
-// 因此 foo 是函式
+// 따라서 foo는 함수
 console.log(foo); // [Function: foo]
 ```
 
 ### 전체 실행 흐름
 
 ```js
-// 原始程式碼
+// 원본 코드
 console.log(foo); // ?
 var foo = '1';
 function foo() {}
 console.log(foo); // ?
 
-// ======== 等價於 ========
+// ======== 동일함 ========
 
-// 創造階段（Hoisting）
-function foo() {} // 1️⃣ 函式聲明提升（完整提升，包含函式體）
-var foo; // 2️⃣ 變數聲明提升（但不覆蓋 foo，因為已經是函式了）
+// 생성 단계 (Hoisting)
+function foo() {} // 1️⃣ 함수 선언 호이스팅 (완전히 호이스팅됨, 함수 본문 포함)
+var foo; // 2️⃣ 변수 선언 호이스팅 (foo를 덮어쓰지 않음, 이미 함수이므로)
 
-// 執行階段
-console.log(foo); // [Function: foo] - foo 是函式
-foo = '1'; // 3️⃣ 變數賦值（此時才覆蓋函式）
-console.log(foo); // '1' - foo 變成字串
+// 실행 단계
+console.log(foo); // [Function: foo] - foo는 함수
+foo = '1'; // 3️⃣ 변수 할당 (이 시점에서 함수를 덮어씀)
+console.log(foo); // '1' - foo가 문자열이 됨
 ```
 
 ### 심화 문제
@@ -236,8 +236,8 @@ console.log(foo); // ?
 **답:**
 
 ```js
-[Function: foo] // 第一次輸出
-'1' // 第二次輸出
+[Function: foo] // 첫 번째 출력
+'1' // 두 번째 출력
 ```
 
 **이유:** 코드 순서는 Hoisting 결과에 영향을 미치지 않습니다. 끌어올림 우선순위는 여전히 함수 > 변수입니다.
@@ -263,26 +263,26 @@ console.log(foo); // ?
 **답:**
 
 ```js
-[Function: foo] { return 2; } // 第一次輸出（後面的函式覆蓋前面的）
-'1' // 第二次輸出（變數賦值覆蓋函式）
+[Function: foo] { return 2; } // 첫 번째 출력 (뒤의 함수가 앞의 함수를 덮어씀)
+'1' // 두 번째 출력 (변수 할당이 함수를 덮어씀)
 ```
 
 **이유:**
 
 ```js
-// 提升後
+// 호이스팅 후
 function foo() {
   return 1;
-} // 第一個函式
+} // 첫 번째 함수
 
 function foo() {
   return 2;
-} // 第二個函式覆蓋第一個
+} // 두 번째 함수가 첫 번째를 덮어씀
 
-var foo; // 變數聲明（不覆蓋函式）
+var foo; // 변수 선언 (함수를 덮어쓰지 않음)
 
 console.log(foo); // [Function: foo] { return 2; }
-foo = '1'; // 變數賦值（覆蓋函式）
+foo = '1'; // 변수 할당 (함수를 덮어씀)
 console.log(foo); // '1'
 ```
 
@@ -304,25 +304,25 @@ function bar() {
 **답:**
 
 ```js
-undefined; // foo 是 undefined
-[Function: bar] // bar 是函式
+undefined; // foo는 undefined
+[Function: bar] // bar는 함수
 ```
 
 **이유:**
 
 ```js
-// 提升後
-var foo; // 變數聲明提升（函式表達式只提升變數名）
+// 호이스팅 후
+var foo; // 변수 선언 호이스팅 (함수 표현식은 변수 이름만 호이스팅됨)
 function bar() {
   return 2;
-} // 函式聲明完整提升
+} // 함수 선언 완전히 호이스팅됨
 
 console.log(foo); // undefined
 console.log(bar); // [Function: bar]
 
 foo = function () {
   return 1;
-}; // 函式表達式賦值
+}; // 함수 표현식 할당
 ```
 
 **핵심 차이점:**
@@ -333,15 +333,15 @@ foo = function () {
 ### let/const에서는 이 문제가 발생하지 않는다
 
 ```js
-// ❌ var 會有提升問題
+// ❌ var는 호이스팅 문제가 있음
 console.log(foo); // undefined
 var foo = '1';
 
-// ✅ let/const 有暫時性死區（TDZ）
+// ✅ let/const는 TDZ(일시적 사각지대)가 있음
 console.log(bar); // ReferenceError: Cannot access 'bar' before initialization
 let bar = '1';
 
-// ✅ let/const 與函式同名會報錯
+// ✅ let/const는 함수와 같은 이름이면 에러 발생
 function baz() {} // SyntaxError: Identifier 'baz' has already been declared
 let baz = '1';
 ```

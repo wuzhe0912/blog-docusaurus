@@ -1,40 +1,40 @@
 ---
 id: state-management-vue-vuex-vs-pinia
-title: 'Vuex vs Pinia 差異比較'
+title: 'Comparacao entre Vuex e Pinia'
 slug: /experience/state-management/vue/vuex-vs-pinia
 tags: [Experience, Interview, State-Management, Vue]
 ---
 
-> 比較 Vuex 和 Pinia 的核心差異，包含 API 設計、TypeScript 支援、模組化方式等，並提供遷移指南。
+> Comparacao das diferencas fundamentais entre Vuex e Pinia, incluindo design de API, suporte a TypeScript, modularizacao, e guia de migracao.
 
 ---
 
-## 1. 面試回答主軸
+## 1. Eixo principal da resposta em entrevista
 
-1. **核心差異**：Vuex 需要 mutations，Pinia 不需要；Pinia 有更好的 TypeScript 支援；模組化方式不同。
-2. **選擇建議**：Vue 3 新專案推薦 Pinia，Vue 2 專案使用 Vuex。
-3. **遷移考量**：從 Vuex 遷移到 Pinia 的步驟與注意事項。
+1. **Diferencas fundamentais**: Vuex requer mutations, Pinia nao; Pinia tem melhor suporte a TypeScript; a forma de modularizacao e diferente.
+2. **Recomendacao de escolha**: Para novos projetos Vue 3, recomenda-se Pinia; para projetos Vue 2, use Vuex.
+3. **Consideracoes de migracao**: Passos e pontos de atencao para migrar de Vuex para Pinia.
 
 ---
 
-## 2. 核心差異總覽
+## 2. Visao geral das diferencas fundamentais
 
-| 特性                | Vuex                     | Pinia                      |
+| Caracteristica      | Vuex                     | Pinia                      |
 | ------------------- | ------------------------ | -------------------------- |
-| **Vue 版本**        | Vue 2                    | Vue 3                      |
-| **API 複雜度**      | 較複雜（需要 mutations） | 更簡潔（不需要 mutations） |
-| **TypeScript 支援** | 需要額外配置             | 原生完整支援               |
-| **模組化**          | 嵌套模組                 | 扁平化，每個 store 獨立    |
-| **體積**            | 較大                     | 更小（約 1KB）             |
-| **開發體驗**        | 良好                     | 更好（HMR、Devtools）      |
+| **Versao do Vue**   | Vue 2                    | Vue 3                      |
+| **Complexidade da API** | Mais complexa (requer mutations) | Mais simples (sem mutations) |
+| **Suporte TypeScript** | Requer configuracao adicional | Suporte nativo completo    |
+| **Modularizacao**   | Modulos aninhados        | Flat, cada store e independente |
+| **Tamanho**         | Maior                    | Menor (aprox. 1KB)         |
+| **Experiencia de desenvolvimento** | Boa          | Melhor (HMR, Devtools)     |
 
 ---
 
-## 3. API 差異比較
+## 3. Comparacao de diferencas de API
 
 ### 3.1 Mutations vs Actions
 
-**Vuex**：需要 `mutations` 來同步修改 state
+**Vuex**: Requer `mutations` para modificar o state de forma sincrona
 
 ```javascript
 // Vuex
@@ -53,7 +53,7 @@ export default createStore({
 });
 ```
 
-**Pinia**：不需要 `mutations`，直接在 `actions` 中修改 state
+**Pinia**: Nao requer `mutations`, modifica o state diretamente nas `actions`
 
 ```typescript
 // Pinia
@@ -61,19 +61,19 @@ export const useCounterStore = defineStore('counter', {
   state: () => ({ count: 0 }),
   actions: {
     increment() {
-      this.count++; // 直接修改
+      this.count++; // Modificar diretamente
     },
   },
 });
 ```
 
-**關鍵差異**：
-- **Vuex**：必須透過 `mutations` 同步修改 state，`actions` 透過 `commit` 調用 `mutations`
-- **Pinia**：不需要 `mutations`，`actions` 可以直接修改 state（同步或非同步都可以）
+**Diferencas-chave**:
+- **Vuex**: Deve modificar o state de forma sincrona atraves de `mutations`, `actions` chamam `mutations` via `commit`
+- **Pinia**: Nao requer `mutations`, `actions` podem modificar o state diretamente (sincrona ou assincronamente)
 
-### 3.2 State 定義
+### 3.2 Definicao do State
 
-**Vuex**：`state` 可以是物件或函數
+**Vuex**: `state` pode ser um objeto ou uma funcao
 
 ```javascript
 state: {
@@ -81,7 +81,7 @@ state: {
 }
 ```
 
-**Pinia**：`state` **必須是函數**，避免多實例共享狀態
+**Pinia**: `state` **deve ser uma funcao**, para evitar compartilhamento de estado entre multiplas instancias
 
 ```typescript
 state: () => ({
@@ -91,7 +91,7 @@ state: () => ({
 
 ### 3.3 Getters
 
-**Vuex**：getters 接收 `(state, getters)` 作為參數
+**Vuex**: getters recebem `(state, getters)` como parametros
 
 ```javascript
 getters: {
@@ -100,7 +100,7 @@ getters: {
 }
 ```
 
-**Pinia**：getters 可以使用 `this` 訪問其他 getters
+**Pinia**: getters podem usar `this` para acessar outros getters
 
 ```typescript
 getters: {
@@ -111,9 +111,9 @@ getters: {
 }
 ```
 
-### 3.4 在組件中使用
+### 3.4 Uso em componentes
 
-**Vuex**：使用 `mapState`、`mapGetters`、`mapActions` 輔助函數
+**Vuex**: Usa funcoes auxiliares `mapState`, `mapGetters`, `mapActions`
 
 ```javascript
 computed: {
@@ -125,7 +125,7 @@ methods: {
 }
 ```
 
-**Pinia**：直接使用 store 實例，使用 `storeToRefs` 保持響應性
+**Pinia**: Usa a instancia da store diretamente, com `storeToRefs` para manter a reatividade
 
 ```typescript
 const store = useCounterStore();
@@ -135,11 +135,11 @@ const { increment } = store;
 
 ---
 
-## 4. 模組化差異
+## 4. Diferencas na modularizacao
 
-### 4.1 Vuex Modules（嵌套模組）
+### 4.1 Vuex Modules (modulos aninhados)
 
-**Vuex**：使用嵌套模組，需要 `namespaced: true`
+**Vuex**: Usa modulos aninhados, requer `namespaced: true`
 
 ```javascript
 // stores/user.js
@@ -153,13 +153,13 @@ export default {
   },
 };
 
-// 在組件中使用
-this.$store.dispatch('user/SET_NAME', 'Jane'); // 需要命名空間前綴
+// Uso em componentes
+this.$store.dispatch('user/SET_NAME', 'Jane'); // Requer prefixo de namespace
 ```
 
-### 4.2 Pinia Stores（扁平化）
+### 4.2 Pinia Stores (flat)
 
-**Pinia**：每個 store 都是獨立的，無需嵌套
+**Pinia**: Cada store e independente, sem necessidade de aninhamento
 
 ```typescript
 // stores/user.ts
@@ -172,22 +172,22 @@ export const useUserStore = defineStore('user', {
   },
 });
 
-// 在組件中使用
+// Uso em componentes
 const userStore = useUserStore();
-userStore.setName('Jane'); // 直接調用，無需命名空間
+userStore.setName('Jane'); // Chamada direta, sem namespace
 ```
 
-**關鍵差異**：
-- **Vuex**：需要嵌套模組，使用 `namespaced: true`，調用時需要命名空間前綴
-- **Pinia**：每個 store 獨立，無需命名空間，直接調用
+**Diferencas-chave**:
+- **Vuex**: Requer modulos aninhados, usa `namespaced: true`, chamadas necessitam de prefixo de namespace
+- **Pinia**: Cada store e independente, sem namespace, chamada direta
 
 ---
 
-## 5. TypeScript 支援差異
+## 5. Diferencas no suporte a TypeScript
 
-### 5.1 Vuex TypeScript 支援
+### 5.1 Suporte TypeScript do Vuex
 
-**Vuex**：需要額外配置型別
+**Vuex**: Requer configuracao adicional de tipos
 
 ```typescript
 // stores/types.ts
@@ -204,14 +204,14 @@ export default createStore<State>({
   state: { count: 0, user: { name: 'John', age: 30 } },
 });
 
-// 在組件中使用
+// Uso em componentes
 const store = useStore<State>();
-// 需要手動定義型別，沒有完整的型別推斷
+// Requer definicao manual de tipos, sem inferencia de tipos completa
 ```
 
-### 5.2 Pinia TypeScript 支援
+### 5.2 Suporte TypeScript do Pinia
 
-**Pinia**：原生完整支援，自動型別推斷
+**Pinia**: Suporte nativo completo, inferencia automatica de tipos
 
 ```typescript
 // stores/counter.ts
@@ -221,52 +221,52 @@ export const useCounterStore = defineStore('counter', {
     user: { name: 'John', age: 30 },
   }),
   getters: {
-    doubleCount: (state) => state.count * 2, // 自動推斷型別
+    doubleCount: (state) => state.count * 2, // Inferencia automatica de tipos
   },
   actions: {
     increment() {
-      this.count++; // 完整的型別推斷和自動完成
+      this.count++; // Inferencia de tipos completa e autocompletar
     },
   },
 });
 
-// 在組件中使用
+// Uso em componentes
 const store = useCounterStore();
-store.count; // 完整的型別推斷
-store.doubleCount; // 完整的型別推斷
-store.increment(); // 完整的型別推斷
+store.count; // Inferencia de tipos completa
+store.doubleCount; // Inferencia de tipos completa
+store.increment(); // Inferencia de tipos completa
 ```
 
-**關鍵差異**：
-- **Vuex**：需要手動定義型別，型別推斷不完整
-- **Pinia**：原生完整支援，自動型別推斷，開發體驗更好
+**Diferencas-chave**:
+- **Vuex**: Requer definicao manual de tipos, inferencia de tipos incompleta
+- **Pinia**: Suporte nativo completo, inferencia automatica de tipos, melhor experiencia de desenvolvimento
 
 ---
 
-## 6. 遷移指南
+## 6. Guia de migracao
 
-### 6.1 基本遷移步驟
+### 6.1 Passos basicos de migracao
 
-1. **安裝 Pinia**
+1. **Instalar Pinia**
 
 ```bash
 npm install pinia
 ```
 
-2. **替換 Vuex Store**
+2. **Substituir Vuex Store**
 
 ```javascript
-// 舊的 Vuex
+// Vuex antigo
 import { createStore } from 'vuex';
 export default createStore({ ... });
 
-// 新的 Pinia
+// Pinia novo
 import { createPinia } from 'pinia';
 const pinia = createPinia();
 app.use(pinia);
 ```
 
-3. **轉換 Store 定義**
+3. **Converter definicao da Store**
 
 ```javascript
 // Vuex
@@ -295,7 +295,7 @@ export const useCounterStore = defineStore('counter', {
 });
 ```
 
-4. **更新組件使用方式**
+4. **Atualizar uso em componentes**
 
 ```javascript
 // Vuex
@@ -310,9 +310,9 @@ const { count } = storeToRefs(store);
 const { increment } = store;
 ```
 
-### 6.2 常見遷移問題
+### 6.2 Problemas comuns de migracao
 
-**問題 1：如何處理 Vuex modules？**
+**Problema 1: Como lidar com Vuex modules?**
 
 ```javascript
 // Vuex modules
@@ -321,7 +321,7 @@ modules: {
   product: productModule,
 }
 
-// Pinia：每個模組變成獨立的 store
+// Pinia: Cada modulo se torna uma store independente
 // stores/user.ts
 export const useUserStore = defineStore('user', { ... });
 
@@ -329,114 +329,113 @@ export const useUserStore = defineStore('user', { ... });
 export const useProductStore = defineStore('product', { ... });
 ```
 
-**問題 2：如何處理命名空間？**
+**Problema 2: Como lidar com namespaces?**
 
 ```javascript
-// Vuex：需要命名空間前綴
+// Vuex: Requer prefixo de namespace
 this.$store.dispatch('user/SET_NAME', 'John');
 
-// Pinia：直接調用，無需命名空間
+// Pinia: Chamada direta, sem namespace
 const userStore = useUserStore();
 userStore.setName('John');
 ```
 
 ---
 
-## 7. 為什麼 Pinia 不需要 mutations？
+## 7. Por que Pinia nao precisa de mutations?
 
-**原因**：
+**Razoes**:
 
-1. **Vue 3 的響應式系統**
-   - Vue 3 使用 Proxy，可以直接追蹤物件的修改
-   - 不需要像 Vue 2 那樣透過 mutations 來追蹤狀態變化
+1. **Sistema reativo do Vue 3**
+   - Vue 3 usa Proxy, podendo rastrear diretamente as modificacoes de objetos
+   - Nao precisa rastrear mudancas de estado atraves de mutations como no Vue 2
 
-2. **簡化 API**
-   - 移除 mutations 可以簡化 API，減少樣板程式碼
-   - Actions 可以直接修改 state，無論是同步還是非同步操作
+2. **Simplificacao da API**
+   - Remover mutations simplifica a API e reduz o codigo boilerplate
+   - Actions podem modificar o state diretamente, seja sincrona ou assincronamente
 
-3. **開發體驗**
-   - 減少一層抽象，開發者更容易理解和使用
-   - 不需要記住 `commit` 和 `dispatch` 的區別
+3. **Experiencia de desenvolvimento**
+   - Reduz uma camada de abstracao, facilitando a compreensao e uso pelos desenvolvedores
+   - Nao e necessario lembrar a diferenca entre `commit` e `dispatch`
 
-**範例**：
+**Exemplo**:
 
 ```typescript
-// Vuex：需要 mutations
+// Vuex: Requer mutations
 mutations: { SET_COUNT(state, count) { state.count = count; } },
 actions: { setCount({ commit }, count) { commit('SET_COUNT', count); } },
 
-// Pinia：直接修改
+// Pinia: Modificacao direta
 actions: { setCount(count) { this.count = count; } },
 ```
 
 ---
 
-## 8. 如何選擇使用 Vuex 還是 Pinia？
+## 8. Como escolher entre Vuex e Pinia?
 
-**選擇建議**：
+**Recomendacoes de escolha**:
 
-1. **新專案**
-   - Vue 3 專案：**推薦使用 Pinia**
-   - Vue 2 專案：使用 Vuex
+1. **Novos projetos**
+   - Projetos Vue 3: **Recomenda-se usar Pinia**
+   - Projetos Vue 2: Use Vuex
 
-2. **現有專案**
-   - Vue 2 + Vuex：可以繼續使用 Vuex，或考慮升級到 Vue 3 + Pinia
-   - Vue 3 + Vuex：可以考慮遷移到 Pinia（但非必須）
+2. **Projetos existentes**
+   - Vue 2 + Vuex: Pode continuar usando Vuex, ou considerar upgrade para Vue 3 + Pinia
+   - Vue 3 + Vuex: Pode considerar migrar para Pinia (mas nao e obrigatorio)
 
-3. **專案需求**
-   - 需要完整 TypeScript 支援：**選擇 Pinia**
-   - 需要更簡潔的 API：**選擇 Pinia**
-   - 團隊熟悉 Vuex：可以繼續使用 Vuex
+3. **Requisitos do projeto**
+   - Precisa de suporte completo a TypeScript: **Escolha Pinia**
+   - Precisa de API mais simples: **Escolha Pinia**
+   - Equipe familiarizada com Vuex: Pode continuar usando Vuex
 
-**總結**：
-- Vue 3 新專案：**強烈推薦 Pinia**
-- Vue 2 專案：使用 Vuex
-- 現有 Vue 3 + Vuex 專案：可以考慮遷移，但非必須
-
----
-
-## 9. 面試重點整理
-
-### 9.1 核心差異
-
-**可以這樣回答：**
-
-> Vuex 和 Pinia 都是 Vue 的狀態管理工具，主要差異包括：1) API 複雜度：Vuex 需要 mutations 來同步修改 state，Pinia 不需要 mutations，actions 可以直接修改 state；2) TypeScript 支援：Vuex 需要額外配置，型別推斷不完整，Pinia 原生完整支援，自動型別推斷；3) 模組化：Vuex 使用嵌套模組，需要 namespaced，Pinia 每個 store 獨立，無需命名空間；4) 開發體驗：Pinia 體積更小、支援 HMR、更好的 Devtools 支援；5) Vue 版本：Vuex 主要用於 Vue 2，Pinia 是 Vue 3 的官方推薦。對於 Vue 3 新專案，我推薦使用 Pinia。
-
-**關鍵點：**
-- ✅ API 複雜度差異
-- ✅ TypeScript 支援差異
-- ✅ 模組化方式差異
-- ✅ 選擇建議
-
-### 9.2 為什麼 Pinia 不需要 mutations？
-
-**可以這樣回答：**
-
-> Pinia 不需要 mutations 主要有三個原因：1) Vue 3 使用 Proxy 作為響應式系統，可以直接追蹤物件的修改，不需要像 Vue 2 那樣透過 mutations 來追蹤狀態變化；2) 簡化 API，移除 mutations 可以減少樣板程式碼，actions 可以直接修改 state，無論是同步還是非同步操作；3) 提升開發體驗，減少一層抽象，開發者更容易理解和使用，不需要記住 commit 和 dispatch 的區別。
-
-**關鍵點：**
-- ✅ Vue 3 響應式系統
-- ✅ API 簡化
-- ✅ 開發體驗提升
+**Resumo**:
+- Novos projetos Vue 3: **Fortemente recomendado Pinia**
+- Projetos Vue 2: Use Vuex
+- Projetos existentes Vue 3 + Vuex: Pode considerar migracao, mas nao e obrigatorio
 
 ---
 
-## 10. 面試總結
+## 9. Resumo dos pontos-chave para entrevista
 
-**可以這樣回答：**
+### 9.1 Diferencas fundamentais
 
-> Vuex 和 Pinia 的主要差異在於 API 設計、TypeScript 支援和模組化方式。Vuex 需要 mutations，Pinia 不需要；Pinia 有更好的 TypeScript 支援；Vuex 使用嵌套模組，Pinia 使用扁平化設計。對於 Vue 3 新專案，我推薦使用 Pinia，因為它提供更好的開發體驗和更簡潔的 API。如果專案需要從 Vuex 遷移到 Pinia，主要步驟是移除 mutations，將 modules 轉換為獨立的 stores，並更新組件使用方式。
+**Voce pode responder assim:**
 
-**關鍵點：**
-- ✅ 核心差異總結
-- ✅ 選擇建議
-- ✅ 遷移指南
-- ✅ 實際專案經驗
+> Vuex e Pinia sao ambas ferramentas de gerenciamento de estado do Vue, as principais diferencas incluem: 1) Complexidade da API: Vuex requer mutations para modificar o state de forma sincrona, Pinia nao requer mutations, actions podem modificar o state diretamente; 2) Suporte TypeScript: Vuex requer configuracao adicional, inferencia de tipos incompleta, Pinia tem suporte nativo completo, inferencia automatica de tipos; 3) Modularizacao: Vuex usa modulos aninhados, requer namespaced, Pinia cada store e independente, sem namespace; 4) Experiencia de desenvolvimento: Pinia e menor, suporta HMR, melhor suporte a Devtools; 5) Versao do Vue: Vuex e principalmente para Vue 2, Pinia e a recomendacao oficial do Vue 3. Para novos projetos Vue 3, eu recomendo usar Pinia.
+
+**Pontos-chave:**
+- Diferencas de complexidade de API
+- Diferencas de suporte TypeScript
+- Diferencas na forma de modularizacao
+- Recomendacao de escolha
+
+### 9.2 Por que Pinia nao precisa de mutations?
+
+**Voce pode responder assim:**
+
+> Pinia nao precisa de mutations por tres razoes principais: 1) Vue 3 usa Proxy como sistema reativo, podendo rastrear diretamente as modificacoes de objetos, sem necessidade de rastrear mudancas de estado atraves de mutations como no Vue 2; 2) Simplificacao da API, remover mutations reduz o codigo boilerplate, actions podem modificar o state diretamente, seja sincrona ou assincronamente; 3) Melhoria da experiencia de desenvolvimento, reduzindo uma camada de abstracao, facilitando a compreensao e uso pelos desenvolvedores, sem necessidade de lembrar a diferenca entre commit e dispatch.
+
+**Pontos-chave:**
+- Sistema reativo do Vue 3
+- Simplificacao da API
+- Melhoria da experiencia de desenvolvimento
+
+---
+
+## 10. Resumo da entrevista
+
+**Voce pode responder assim:**
+
+> As principais diferencas entre Vuex e Pinia estao no design da API, suporte a TypeScript e forma de modularizacao. Vuex requer mutations, Pinia nao; Pinia tem melhor suporte a TypeScript; Vuex usa modulos aninhados, Pinia usa design flat. Para novos projetos Vue 3, eu recomendo usar Pinia, pois oferece melhor experiencia de desenvolvimento e API mais simples. Se o projeto precisa migrar de Vuex para Pinia, os passos principais sao remover mutations, converter modules em stores independentes e atualizar o modo de uso nos componentes.
+
+**Pontos-chave:**
+- Resumo das diferencas fundamentais
+- Recomendacao de escolha
+- Guia de migracao
+- Experiencia em projetos reais
 
 ## Reference
 
-- [Vuex 官方文檔](https://vuex.vuejs.org/)
-- [Pinia 官方文檔](https://pinia.vuejs.org/)
-- [從 Vuex 遷移到 Pinia](https://pinia.vuejs.org/cookbook/migration-vuex.html)
-
+- [Documentacao oficial do Vuex](https://vuex.vuejs.org/)
+- [Documentacao oficial do Pinia](https://pinia.vuejs.org/)
+- [Migrar de Vuex para Pinia](https://pinia.vuejs.org/cookbook/migration-vuex.html)

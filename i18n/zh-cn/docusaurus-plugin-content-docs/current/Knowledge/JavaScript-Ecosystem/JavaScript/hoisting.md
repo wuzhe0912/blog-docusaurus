@@ -155,19 +155,19 @@ function foo() {}
 **提升优先级：函数声明 > 变量声明**
 
 ```js
-// 原始程式碼
+// 原始程式码
 console.log(foo);
 var foo = '1';
 function foo() {}
 
-// 等價於（經過 Hoisting）
-// 階段 1：創造階段（Hoisting）
-function foo() {} // 1. 函式聲明先提升
-var foo; // 2. 變數聲明提升（但不覆蓋已存在的函式）
+// 等价于（经过 Hoisting）
+// 阶段 1：创造阶段（Hoisting）
+function foo() {} // 1. 函式声明先提升
+var foo; // 2. 变数声明提升（但不覆盖已存在的函式）
 
-// 階段 2：執行階段
-console.log(foo); // 此時 foo 是函式，輸出 [Function: foo]
-foo = '1'; // 3. 變數賦值（會覆蓋函式）
+// 阶段 2：执行阶段
+console.log(foo); // 此时 foo 是函式，输出 [Function: foo]
+foo = '1'; // 3. 变数赋值（会覆盖函式）
 ```
 
 ### 关键概念
@@ -193,9 +193,9 @@ var myVar = 'Hello';
 **3. 当函数声明和变量声明同名时**
 
 ```js
-// 提升後的順序
-function foo() {} // 函式先提升並賦值
-var foo; // 變數聲明提升，但不會覆蓋已存在的函式
+// 提升后的顺序
+function foo() {} // 函式先提升并赋值
+var foo; // 变数声明提升，但不会覆盖已存在的函式
 
 // 因此 foo 是函式
 console.log(foo); // [Function: foo]
@@ -204,22 +204,22 @@ console.log(foo); // [Function: foo]
 ### 完整执行流程
 
 ```js
-// 原始程式碼
+// 原始程式码
 console.log(foo); // ?
 var foo = '1';
 function foo() {}
 console.log(foo); // ?
 
-// ======== 等價於 ========
+// ======== 等价于 ========
 
-// 創造階段（Hoisting）
-function foo() {} // 1️⃣ 函式聲明提升（完整提升，包含函式體）
-var foo; // 2️⃣ 變數聲明提升（但不覆蓋 foo，因為已經是函式了）
+// 创造阶段（Hoisting）
+function foo() {} // 1️⃣ 函式声明提升（完整提升，包含函式体）
+var foo; // 2️⃣ 变数声明提升（但不覆盖 foo，因为已经是函式了）
 
-// 執行階段
+// 执行阶段
 console.log(foo); // [Function: foo] - foo 是函式
-foo = '1'; // 3️⃣ 變數賦值（此時才覆蓋函式）
-console.log(foo); // '1' - foo 變成字串
+foo = '1'; // 3️⃣ 变数赋值（此时才覆盖函式）
+console.log(foo); // '1' - foo 变成字串
 ```
 
 ### 延伸题目
@@ -236,8 +236,8 @@ console.log(foo); // ?
 **答案：**
 
 ```js
-[Function: foo] // 第一次輸出
-'1' // 第二次輸出
+[Function: foo] // 第一次输出
+'1' // 第二次输出
 ```
 
 **原因：** 代码顺序不影响 Hoisting 的结果，提升优先级依然是函数 > 变量。
@@ -263,26 +263,26 @@ console.log(foo); // ?
 **答案：**
 
 ```js
-[Function: foo] { return 2; } // 第一次輸出（後面的函式覆蓋前面的）
-'1' // 第二次輸出（變數賦值覆蓋函式）
+[Function: foo] { return 2; } // 第一次输出（后面的函式覆盖前面的）
+'1' // 第二次输出（变数赋值覆盖函式）
 ```
 
 **原因：**
 
 ```js
-// 提升後
+// 提升后
 function foo() {
   return 1;
-} // 第一個函式
+} // 第一个函式
 
 function foo() {
   return 2;
-} // 第二個函式覆蓋第一個
+} // 第二个函式覆盖第一个
 
-var foo; // 變數聲明（不覆蓋函式）
+var foo; // 变数声明（不覆盖函式）
 
 console.log(foo); // [Function: foo] { return 2; }
-foo = '1'; // 變數賦值（覆蓋函式）
+foo = '1'; // 变数赋值（覆盖函式）
 console.log(foo); // '1'
 ```
 
@@ -311,18 +311,18 @@ undefined; // foo 是 undefined
 **原因：**
 
 ```js
-// 提升後
-var foo; // 變數聲明提升（函式表達式只提升變數名）
+// 提升后
+var foo; // 变数声明提升（函式表达式只提升变数名）
 function bar() {
   return 2;
-} // 函式聲明完整提升
+} // 函式声明完整提升
 
 console.log(foo); // undefined
 console.log(bar); // [Function: bar]
 
 foo = function () {
   return 1;
-}; // 函式表達式賦值
+}; // 函式表达式赋值
 ```
 
 **关键差异：**
@@ -333,15 +333,15 @@ foo = function () {
 ### let/const 不会有这个问题
 
 ```js
-// ❌ var 會有提升問題
+// ❌ var 会有提升问题
 console.log(foo); // undefined
 var foo = '1';
 
-// ✅ let/const 有暫時性死區（TDZ）
+// ✅ let/const 有暂时性死区（TDZ）
 console.log(bar); // ReferenceError: Cannot access 'bar' before initialization
 let bar = '1';
 
-// ✅ let/const 與函式同名會報錯
+// ✅ let/const 与函式同名会报错
 function baz() {} // SyntaxError: Identifier 'baz' has already been declared
 let baz = '1';
 ```

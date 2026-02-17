@@ -1,45 +1,45 @@
 ---
 id: state-management-vue-pinia-usage
-title: 'Pinia 使用實踐'
+title: 'Thực hành sử dụng Pinia'
 slug: /experience/state-management/vue/pinia-usage
 tags: [Experience, Interview, State-Management, Vue]
 ---
 
-> 在多品牌平台專案中，Pinia Store 在組件和 Composables 中的使用方式，以及 Store 之間的通訊模式。
+> Trong dự án nền tảng đa thương hiệu, cách sử dụng Pinia Store trong component và Composables, cũng như các mô hình giao tiếp giữa các Store.
 
 ---
 
-## 1. 面試回答主軸
+## 1. Trục trả lời phỏng vấn
 
-1. **組件使用**：使用 `storeToRefs` 保持響應性，Actions 可以直接解構。
-2. **Composables 組合**：在 Composables 中組合多個 Store，封裝業務邏輯。
-3. **Store 通訊**：推薦在 Composable 中組合，避免循環依賴。
+1. **Sử dụng trong component**: Dùng `storeToRefs` để giữ tính phản ứng, Actions có thể destructure trực tiếp.
+2. **Kết hợp Composables**: Kết hợp nhiều Store trong Composables, đóng gói logic nghiệp vụ.
+3. **Giao tiếp Store**: Khuyến nghị kết hợp trong Composable, tránh phụ thuộc vòng.
 
 ---
 
-## 2. 在組件中使用 Store
+## 2. Sử dụng Store trong component
 
-### 2.1 基本使用
+### 2.1 Sử dụng cơ bản
 
 ```vue
 <script setup lang="ts">
 import { useAuthStore } from 'stores/authStore';
 
-// 直接使用 store 實例
+// Sử dụng trực tiếp instance của store
 const authStore = useAuthStore();
 
-// 訪問 state
+// Truy cập state
 console.log(authStore.access_token);
 
-// 調用 action
+// Gọi action
 authStore.setToptVerified(true);
 
-// 訪問 getter
+// Truy cập getter
 console.log(authStore.isLogin);
 </script>
 ```
 
-### 2.2 使用 `storeToRefs` 解構（重要！）
+### 2.2 Destructure bằng `storeToRefs` (Quan trọng!)
 
 ```vue
 <script setup lang="ts">
@@ -48,31 +48,31 @@ import { storeToRefs } from 'pinia';
 
 const authStore = useAuthStore();
 
-// ❌ 錯誤：會失去響應性
+// ❌ Sai: Sẽ mất tính phản ứng
 const { access_token, isLogin } = authStore;
 
-// ✅ 正確：保持響應性
+// ✅ Đúng: Giữ được tính phản ứng
 const { access_token, isLogin } = storeToRefs(authStore);
 
-// ✅ Actions 可以直接解構（不需要 storeToRefs）
+// ✅ Actions có thể destructure trực tiếp (không cần storeToRefs)
 const { setToptVerified } = authStore;
 </script>
 ```
 
-**為什麼直接解構會失去響應性？**
+**Tại sao destructure trực tiếp lại mất tính phản ứng?**
 
-- Pinia 的 state 和 getters 是響應式的
-- 直接解構會破壞響應式連接
-- `storeToRefs` 會將每個屬性轉換為 `ref`，保持響應性
-- Actions 本身不是響應式的，所以可以直接解構
+- State và getters của Pinia có tính phản ứng (reactive)
+- Destructure trực tiếp sẽ phá vỡ kết nối phản ứng
+- `storeToRefs` sẽ chuyển đổi mỗi thuộc tính thành `ref`, giữ được tính phản ứng
+- Actions bản thân không phải là reactive, nên có thể destructure trực tiếp
 
 ---
 
-## 3. 在 Composables 中使用 Store
+## 3. Sử dụng Store trong Composables
 
-### 3.1 實際案例：useGame.ts
+### 3.1 Ví dụ thực tế: useGame.ts
 
-Composables 是組合 Store 邏輯的最佳場所。
+Composables là nơi tốt nhất để kết hợp logic Store.
 
 ```typescript
 import { useGameStore } from 'stores/gameStore';
@@ -80,18 +80,18 @@ import { useProductStore } from 'stores/productStore';
 import { storeToRefs } from 'pinia';
 
 export function useGame() {
-  // 1️⃣ 引入多個 stores
+  // 1️⃣ Import nhiều stores
   const gameStore = useGameStore();
   const productStore = useProductStore();
 
-  // 2️⃣ 解構 state 和 getters（使用 storeToRefs）
+  // 2️⃣ Destructure state và getters (dùng storeToRefs)
   const { gameState } = storeToRefs(gameStore);
   const { productState } = storeToRefs(productStore);
 
-  // 3️⃣ 解構 actions（直接解構）
+  // 3️⃣ Destructure actions (destructure trực tiếp)
   const { initAllGameList, updateAllGameList } = gameStore;
 
-  // 4️⃣ 組合邏輯
+  // 4️⃣ Kết hợp logic
   async function initGameTypeList() {
     const { status, data } = await useApi(getGameTypes);
     if (status) {
@@ -100,7 +100,7 @@ export function useGame() {
     }
   }
 
-  // 5️⃣ 返回給組件使用
+  // 5️⃣ Trả về cho component sử dụng
   return {
     gameState,
     productState,
@@ -110,17 +110,17 @@ export function useGame() {
 }
 ```
 
-**面試重點**：
-- Composables 是組合 Store 邏輯的最佳場所
-- 使用 `storeToRefs` 確保響應性
-- Actions 可以直接解構
-- 將複雜的業務邏輯封裝在 composable 中
+**Điểm trọng tâm phỏng vấn**:
+- Composables là nơi tốt nhất để kết hợp logic Store
+- Dùng `storeToRefs` để đảm bảo tính phản ứng
+- Actions có thể destructure trực tiếp
+- Đóng gói logic nghiệp vụ phức tạp trong composable
 
 ---
 
-## 4. Store 之間的通訊
+## 4. Giao tiếp giữa các Store
 
-### 4.1 方法一：在 Store 內部調用其他 Store
+### 4.1 Cách 1: Gọi Store khác bên trong Store
 
 ```typescript
 import { defineStore } from 'pinia';
@@ -133,7 +133,7 @@ export const useAuthStore = defineStore('authStore', {
       if (status) {
         this.access_token = data.access_token;
 
-        // 調用其他 store 的方法
+        // Gọi phương thức của store khác
         const userInfoStore = useUserInfoStore();
         userInfoStore.setStoreUserInfo(data.user);
       }
@@ -142,7 +142,7 @@ export const useAuthStore = defineStore('authStore', {
 });
 ```
 
-### 4.2 方法二：在 Composable 中組合多個 Store（推薦）
+### 4.2 Cách 2: Kết hợp nhiều Store trong Composable (Khuyến nghị)
 
 ```typescript
 export function useInit() {
@@ -151,7 +151,7 @@ export function useInit() {
   const gameStore = useGameStore();
 
   async function initialize() {
-    // 依序執行多個 store 的初始化
+    // Thực thi khởi tạo nhiều store theo thứ tự
     await authStore.checkAuth();
     if (authStore.isLogin) {
       await userInfoStore.getUserInfo();
@@ -163,43 +163,43 @@ export function useInit() {
 }
 ```
 
-**面試重點**：
-- ✅ 推薦在 Composable 中組合多個 Store
-- ❌ 避免 Store 之間的循環依賴
-- 🎯 保持 Store 的單一職責原則
+**Điểm trọng tâm phỏng vấn**:
+- ✅ Khuyến nghị kết hợp nhiều Store trong Composable
+- ❌ Tránh phụ thuộc vòng giữa các Store
+- 🎯 Giữ nguyên tắc đơn trách nhiệm của Store
 
 ---
 
-## 5. 實戰案例：用戶登入流程
+## 5. Ví dụ thực chiến: Luồng đăng nhập người dùng
 
-這是一個完整的 Store 使用流程，涵蓋了多個 Store 的協作。
+Đây là một luồng sử dụng Store hoàn chỉnh, bao gồm sự phối hợp của nhiều Store.
 
-### 5.1 流程圖
+### 5.1 Sơ đồ luồng
 
 ```
-用戶點擊登入按鈕
+Người dùng nhấn nút đăng nhập
      ↓
-調用 useAuth().handleLogin()
+Gọi useAuth().handleLogin()
      ↓
-API 請求登入
+API yêu cầu đăng nhập
      ↓
-成功 → authStore 儲存 token
+Thành công → authStore lưu trữ token
      ↓
 useUserInfo().getUserInfo()
      ↓
-userInfoStore 儲存用戶資訊
+userInfoStore lưu trữ thông tin người dùng
      ↓
 useGame().initGameList()
      ↓
-gameStore 儲存遊戲列表
+gameStore lưu trữ danh sách trò chơi
      ↓
-跳轉到首頁
+Chuyển hướng đến trang chủ
 ```
 
-### 5.2 程式碼實作
+### 5.2 Triển khai mã nguồn
 
 ```typescript
-// 1️⃣ authStore.ts - 管理認證狀態
+// 1️⃣ authStore.ts - Quản lý trạng thái xác thực
 export const useAuthStore = defineStore('authStore', {
   state: () => ({
     access_token: undefined as string | undefined,
@@ -208,10 +208,10 @@ export const useAuthStore = defineStore('authStore', {
   getters: {
     isLogin: (state) => !!state.access_token,
   },
-  persist: true, // 持久化認證資訊
+  persist: true, // Lưu trữ bền vững thông tin xác thực
 });
 
-// 2️⃣ userInfoStore.ts - 管理用戶資訊
+// 2️⃣ userInfoStore.ts - Quản lý thông tin người dùng
 export const useUserInfoStore = defineStore('useInfoStore', {
   state: () => ({
     info: {} as Response.UserInfo,
@@ -221,10 +221,10 @@ export const useUserInfoStore = defineStore('useInfoStore', {
       this.info = userInfo;
     },
   },
-  persist: false, // 不持久化（敏感資訊）
+  persist: false, // Không lưu trữ bền vững (thông tin nhạy cảm)
 });
 
-// 3️⃣ useAuth.ts - 組合認證邏輯
+// 3️⃣ useAuth.ts - Kết hợp logic xác thực
 export function useAuth() {
   const authStore = useAuthStore();
   const { access_token } = storeToRefs(authStore);
@@ -233,7 +233,7 @@ export function useAuth() {
   async function handleLogin(credentials: LoginCredentials) {
     const { status, data } = await api.login(credentials);
     if (status) {
-      // 更新 authStore
+      // Cập nhật authStore
       authStore.$patch({
         access_token: data.access_token,
         user_id: data.user_id,
@@ -250,7 +250,7 @@ export function useAuth() {
   };
 }
 
-// 4️⃣ LoginPage.vue - 登入頁面
+// 4️⃣ LoginPage.vue - Trang đăng nhập
 <script setup lang="ts">
 import { useAuth } from 'src/common/hooks/useAuth';
 import { useUserInfo } from 'src/common/composables/useUserInfo';
@@ -263,73 +263,72 @@ const { initGameList } = useGame();
 const router = useRouter();
 
 const onSubmit = async (formData: LoginForm) => {
-  // 步驟 1: 登入
+  // Bước 1: Đăng nhập
   const success = await handleLogin(formData);
   if (success) {
-    // 步驟 2: 獲取用戶資訊
+    // Bước 2: Lấy thông tin người dùng
     await getUserInfo();
-    // 步驟 3: 初始化遊戲列表
+    // Bước 3: Khởi tạo danh sách trò chơi
     await initGameList();
-    // 步驟 4: 跳轉首頁
+    // Bước 4: Chuyển hướng trang chủ
     router.push('/');
   }
 };
 </script>
 ```
 
-**面試重點**：
+**Điểm trọng tâm phỏng vấn**:
 
-1. **職責分離**
-   - `authStore`: 只管理認證狀態
-   - `userInfoStore`: 只管理用戶資訊
-   - `useAuth`: 封裝認證相關業務邏輯
-   - `useUserInfo`: 封裝用戶資訊相關業務邏輯
+1. **Phân tách trách nhiệm**
+   - `authStore`: Chỉ quản lý trạng thái xác thực
+   - `userInfoStore`: Chỉ quản lý thông tin người dùng
+   - `useAuth`: Đóng gói logic nghiệp vụ liên quan đến xác thực
+   - `useUserInfo`: Đóng gói logic nghiệp vụ liên quan đến thông tin người dùng
 
-2. **響應式數據流**
-   - 使用 `storeToRefs` 保持響應性
-   - Store 更新會自動觸發組件更新
+2. **Luồng dữ liệu phản ứng**
+   - Dùng `storeToRefs` để giữ tính phản ứng
+   - Khi Store cập nhật sẽ tự động kích hoạt cập nhật component
 
-3. **持久化策略**
-   - `authStore` 持久化（用戶刷新頁面後保持登入）
-   - `userInfoStore` 不持久化（安全考量）
-
----
-
-## 6. 面試重點整理
-
-### 6.1 storeToRefs 的使用
-
-**可以這樣回答：**
-
-> 在組件中使用 Pinia Store 時，如果要解構 state 和 getters，必須使用 `storeToRefs` 保持響應性。直接解構會破壞響應式連接，因為 Pinia 的 state 和 getters 是響應式的。`storeToRefs` 會將每個屬性轉換為 `ref`，保持響應性。Actions 可以直接解構，不需要 `storeToRefs`，因為它們本身不是響應式的。
-
-**關鍵點：**
-- ✅ `storeToRefs` 的作用
-- ✅ 為什麼需要 `storeToRefs`
-- ✅ Actions 可以直接解構
-
-### 6.2 Store 之間通訊
-
-**可以這樣回答：**
-
-> Store 之間的通訊有兩種方式：1) 在 Store 內部調用其他 Store，但要注意避免循環依賴；2) 在 Composable 中組合多個 Store，這是推薦的方式。最佳實踐是保持 Store 的單一職責原則，將複雜的業務邏輯封裝在 Composable 中，避免 Store 之間的直接依賴。
-
-**關鍵點：**
-- ✅ 兩種通訊方式
-- ✅ 推薦在 Composable 中組合
-- ✅ 避免循環依賴
+3. **Chiến lược lưu trữ bền vững**
+   - `authStore` lưu trữ bền vững (giữ trạng thái đăng nhập khi người dùng làm mới trang)
+   - `userInfoStore` không lưu trữ bền vững (vì lý do bảo mật)
 
 ---
 
-## 7. 面試總結
+## 6. Tổng hợp điểm trọng tâm phỏng vấn
 
-**可以這樣回答：**
+### 6.1 Sử dụng storeToRefs
 
-> 在專案中使用 Pinia Store 時，有幾個關鍵實踐：1) 在組件中使用 `storeToRefs` 解構 state 和 getters，保持響應性；2) 在 Composables 中組合多個 Store，封裝業務邏輯；3) Store 之間的通訊推薦在 Composable 中組合，避免循環依賴；4) 保持 Store 的單一職責原則，將複雜邏輯放在 Composable 中。
+**Bạn có thể trả lời như sau:**
 
-**關鍵點：**
-- ✅ `storeToRefs` 的使用
-- ✅ Composables 組合 Store
-- ✅ Store 通訊模式
-- ✅ 職責分離原則
+> Khi sử dụng Pinia Store trong component, nếu muốn destructure state và getters, bắt buộc phải dùng `storeToRefs` để giữ tính phản ứng. Destructure trực tiếp sẽ phá vỡ kết nối phản ứng, vì state và getters của Pinia có tính phản ứng. `storeToRefs` sẽ chuyển đổi mỗi thuộc tính thành `ref`, giữ được tính phản ứng. Actions có thể destructure trực tiếp, không cần `storeToRefs`, vì bản thân chúng không phải là reactive.
 
+**Điểm mấu chốt:**
+- ✅ Tác dụng của `storeToRefs`
+- ✅ Tại sao cần `storeToRefs`
+- ✅ Actions có thể destructure trực tiếp
+
+### 6.2 Giao tiếp giữa các Store
+
+**Bạn có thể trả lời như sau:**
+
+> Giao tiếp giữa các Store có hai cách: 1) Gọi Store khác bên trong Store, nhưng cần chú ý tránh phụ thuộc vòng; 2) Kết hợp nhiều Store trong Composable, đây là cách được khuyến nghị. Thực hành tốt nhất là giữ nguyên tắc đơn trách nhiệm của Store, đóng gói logic nghiệp vụ phức tạp trong Composable, tránh phụ thuộc trực tiếp giữa các Store.
+
+**Điểm mấu chốt:**
+- ✅ Hai cách giao tiếp
+- ✅ Khuyến nghị kết hợp trong Composable
+- ✅ Tránh phụ thuộc vòng
+
+---
+
+## 7. Tổng kết phỏng vấn
+
+**Bạn có thể trả lời như sau:**
+
+> Khi sử dụng Pinia Store trong dự án, có một số thực hành quan trọng: 1) Trong component dùng `storeToRefs` để destructure state và getters, giữ tính phản ứng; 2) Trong Composables kết hợp nhiều Store, đóng gói logic nghiệp vụ; 3) Giao tiếp giữa các Store khuyến nghị kết hợp trong Composable, tránh phụ thuộc vòng; 4) Giữ nguyên tắc đơn trách nhiệm của Store, đặt logic phức tạp trong Composable.
+
+**Điểm mấu chốt:**
+- ✅ Sử dụng `storeToRefs`
+- ✅ Composables kết hợp Store
+- ✅ Mô hình giao tiếp Store
+- ✅ Nguyên tắc phân tách trách nhiệm

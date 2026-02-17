@@ -72,7 +72,9 @@
       "Bash(do mkdir -p \"/Users/pitt.wu/Documents/personal/blog-docusaurus/i18n/$locale/docusaurus-plugin-content-docs/current/Knowledge/JavaScript-Ecosystem/JavaScript\")",
       "Bash(do mkdir -p \"/Users/pitt.wu/Documents/personal/blog-docusaurus/i18n/$locale/docusaurus-plugin-content-docs/current/Experience/SSR-SEO\")",
       "Bash(do ls \"/Users/pitt.wu/Documents/personal/blog-docusaurus/i18n/$locale/docusaurus-plugin-content-docs/current/Coding/JavaScript/\")",
-      "Bash(do echo \"Missing pinia-usage.md for: $locale\")"
+      "Bash(do echo \"Missing pinia-usage.md for: $locale\")",
+      "Bash(else echo \"\\(directory does not exist\\)\")",
+      "Bash(fi)"
     ]
   }
 }

@@ -1,32 +1,32 @@
 ---
-title: '[Lv3] Nuxt 3 多語系 (i18n) 與 SEO 最佳實踐'
+title: '[Lv3] Nuxt 3 Đa ngôn ngữ (i18n) và Thực hành tốt nhất về SEO'
 slug: /experience/ssr-seo/lv3-i18n-seo
 tags: [Experience, Interview, SSR-SEO, Nuxt, Lv3, i18n]
 ---
 
-> 在 SSR 架構下實作多語系（Internationalization），不只是翻譯文字，更涉及路由策略、SEO 標籤（hreflang）、狀態管理與 Hydration 一致性。
+> Triển khai đa ngôn ngữ (Internationalization) trong kiến trúc SSR, không chỉ là dịch văn bản mà còn liên quan đến chiến lược route, SEO tags (hreflang), quản lý trạng thái và tính nhất quán của Hydration.
 
 ---
 
-## 1. 面試回答主軸
+## 1. Trọng tâm trả lời phỏng vấn
 
-1.  **路由策略**：使用 `@nuxtjs/i18n` 的 URL 前綴策略（如 `/en/about`, `/jp/about`）來區分語系，這對 SEO 最友善。
-2.  **SEO 標籤**：確保自動生成正確的 `<link rel="alternate" hreflang="..." />` 與 Canonical URL，避免重複內容懲罰。
-3.  **狀態管理**：在 SSR 階段正確偵測使用者語系（Cookie/Header），並確保 Client 端 Hydration 時語系一致。
+1.  **Chiến lược route**: Sử dụng chiến lược tiền tố URL của `@nuxtjs/i18n` (như `/en/about`, `/jp/about`) để phân biệt ngôn ngữ, thân thiện nhất với SEO.
+2.  **SEO tags**: Đảm bảo tự động tạo đúng `<link rel="alternate" hreflang="..." />` và Canonical URL, tránh bị phạt do nội dung trùng lặp.
+3.  **Quản lý trạng thái**: Phát hiện đúng ngôn ngữ của người dùng (Cookie/Header) trong giai đoạn SSR, và đảm bảo ngôn ngữ nhất quán khi Client Hydration.
 
 ---
 
-## 2. Nuxt 3 i18n 實作策略
+## 2. Chiến lược triển khai i18n trong Nuxt 3
 
-### 2.1 為什麼選擇 `@nuxtjs/i18n`？
+### 2.1 Tại sao chọn `@nuxtjs/i18n`?
 
-官方模組 `@nuxtjs/i18n` 是基於 `vue-i18n`，專為 Nuxt 優化。它解決了手動實作 i18n 常遇到的痛點：
+Module chính thức `@nuxtjs/i18n` được xây dựng trên `vue-i18n`, được tối ưu hóa đặc biệt cho Nuxt. Nó giải quyết các điểm khó thường gặp khi triển khai i18n thủ công:
 
-- 自動產生帶語系前綴的路由 (Auto-generated routes)。
-- 自動處理 SEO Meta Tags (hreflang, og:locale)。
-- 支援 Lazy Loading 語言包（優化 Bundle Size）。
+- Tự động tạo route có tiền tố ngôn ngữ (Auto-generated routes).
+- Tự động xử lý SEO Meta Tags (hreflang, og:locale).
+- Hỗ trợ Lazy Loading gói ngôn ngữ (tối ưu Bundle Size).
 
-### 2.2 安裝與配置
+### 2.2 Cài đặt và cấu hình
 
 ```bash
 npm install @nuxtjs/i18n
@@ -42,44 +42,44 @@ export default defineNuxtConfig({
       { code: 'tw', iso: 'zh-TW', file: 'tw.json', name: '繁體中文' },
     ],
     defaultLocale: 'tw',
-    lazy: true, // 啟用 Lazy Loading
-    langDir: 'locales', // 語言檔目錄
-    strategy: 'prefix_and_default', // 關鍵路由策略
+    lazy: true, // Bật Lazy Loading
+    langDir: 'locales', // Thư mục file ngôn ngữ
+    strategy: 'prefix_and_default', // Chiến lược route quan trọng
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'i18n_redirected',
-      redirectOn: 'root', // 只在根路徑偵測並轉導
+      redirectOn: 'root', // Chỉ phát hiện và chuyển hướng ở đường dẫn gốc
     },
   },
 });
 ```
 
-### 2.3 路由策略 (Routing Strategy)
+### 2.3 Chiến lược Route (Routing Strategy)
 
-這是 SEO 的關鍵。`@nuxtjs/i18n` 提供幾種策略：
+Đây là yếu tố then chốt của SEO. `@nuxtjs/i18n` cung cấp một số chiến lược:
 
-1.  **prefix_except_default** (推薦)：
+1.  **prefix_except_default** (Khuyến nghị):
 
-    - 預設語系 (tw) 不加前綴：`example.com/about`
-    - 其他語系 (en) 加前綴：`example.com/en/about`
-    - 優點：URL 乾淨，權重集中。
+    - Ngôn ngữ mặc định (tw) không thêm tiền tố: `example.com/about`
+    - Ngôn ngữ khác (en) thêm tiền tố: `example.com/en/about`
+    - Ưu điểm: URL gọn gàng, trọng số tập trung.
 
-2.  **prefix_and_default**：
+2.  **prefix_and_default**:
 
-    - 所有語系都加前綴：`example.com/tw/about`, `example.com/en/about`
-    - 優點：結構統一，容易處理重導向。
+    - Tất cả ngôn ngữ đều thêm tiền tố: `example.com/tw/about`, `example.com/en/about`
+    - Ưu điểm: Cấu trúc thống nhất, dễ xử lý redirect.
 
-3.  **no_prefix** (不推薦用於 SEO)：
-    - 所有語系網址一樣，靠 Cookie 切換。
-    - 缺點：搜尋引擎無法索引不同語言的版本。
+3.  **no_prefix** (Không khuyến nghị cho SEO):
+    - Tất cả ngôn ngữ có URL giống nhau, chuyển đổi bằng Cookie.
+    - Nhược điểm: Công cụ tìm kiếm không thể index các phiên bản ngôn ngữ khác nhau.
 
 ---
 
-## 3. SEO 關鍵實作
+## 3. Triển khai SEO quan trọng
 
-### 3.1 hreflang 標籤
+### 3.1 Thẻ hreflang
 
-搜尋引擎需要知道「這個頁面有哪些語言版本」。`@nuxtjs/i18n` 會自動在 `<head>` 生成：
+Công cụ tìm kiếm cần biết "trang này có những phiên bản ngôn ngữ nào". `@nuxtjs/i18n` sẽ tự động tạo trong `<head>`:
 
 ```html
 <link rel="alternate" href="https://example.com/about" hreflang="zh-TW" />
@@ -87,23 +87,23 @@ export default defineNuxtConfig({
 <link rel="alternate" href="https://example.com/about" hreflang="x-default" />
 ```
 
-**注意：** 必須在 `nuxt.config.ts` 設定 `baseUrl`，否則 hreflang 會產生相對路徑（無效）。
+**Lưu ý:** Phải thiết lập `baseUrl` trong `nuxt.config.ts`, nếu không hreflang sẽ tạo ra đường dẫn tương đối (không hợp lệ).
 
 ```typescript
 export default defineNuxtConfig({
   i18n: {
-    baseUrl: 'https://example.com', // 必須設定！
+    baseUrl: 'https://example.com', // Bắt buộc phải thiết lập!
   },
 });
 ```
 
 ### 3.2 Canonical URL
 
-確保每個語言版本的頁面都有指向自己的 Canonical URL，避免被視為重複內容。
+Đảm bảo mỗi trang phiên bản ngôn ngữ đều có Canonical URL trỏ đến chính nó, tránh bị coi là nội dung trùng lặp.
 
-### 3.3 動態內容翻譯 (API)
+### 3.3 Dịch nội dung động (API)
 
-後端 API 也需要支援多語系。通常會在請求時帶上 `Accept-Language` header。
+API backend cũng cần hỗ trợ đa ngôn ngữ. Thông thường sẽ gửi kèm header `Accept-Language` trong request.
 
 ```typescript
 // composables/useApi.ts
@@ -111,7 +111,7 @@ export const useApi = (url: string) => {
   const { locale } = useI18n();
   return useFetch(url, {
     headers: {
-      'Accept-Language': locale.value, // 傳送當前語系給後端
+      'Accept-Language': locale.value, // Gửi ngôn ngữ hiện tại cho backend
     },
   });
 };
@@ -119,20 +119,20 @@ export const useApi = (url: string) => {
 
 ---
 
-## 4. 常見挑戰與解法
+## 4. Các thách thức phổ biến và giải pháp
 
 ### 4.1 Hydration Mismatch
 
-**問題：** Server 端偵測到英文，渲染英文 HTML；Client 端瀏覽器預設是中文，Vue i18n 初始為中文，導致畫面閃爍或 Hydration Error。
+**Vấn đề:** Server phát hiện tiếng Anh, render HTML tiếng Anh; trình duyệt phía Client mặc định là tiếng Trung, Vue i18n khởi tạo bằng tiếng Trung, dẫn đến màn hình nhấp nháy hoặc Hydration Error.
 
-**解法：**
+**Giải pháp:**
 
-- 使用 `detectBrowserLanguage` 設定，讓 Client 端初始化時尊重 URL 或 Cookie 的設定，而不是瀏覽器設定。
-- 確保 Server 與 Client 的 `defaultLocale` 設定一致。
+- Sử dụng cấu hình `detectBrowserLanguage`, để khi Client khởi tạo tôn trọng thiết lập URL hoặc Cookie, thay vì thiết lập của trình duyệt.
+- Đảm bảo cấu hình `defaultLocale` của Server và Client nhất quán.
 
-### 4.2 語言切換
+### 4.2 Chuyển đổi ngôn ngữ
 
-使用 `switchLocalePath` 來生成連結，而不是手動組字串。
+Dùng `switchLocalePath` để tạo liên kết, thay vì ghép chuỗi thủ công.
 
 ```vue
 <script setup>
@@ -149,30 +149,30 @@ const switchLocalePath = useSwitchLocalePath();
 
 ---
 
-## 5. 面試重點整理
+## 5. Tổng hợp điểm mấu chốt phỏng vấn
 
-### 5.1 i18n 與 SEO
+### 5.1 i18n và SEO
 
-**Q: 多語系（i18n）在 SSR 環境下要注意什麼？如何處理 SEO？**
+**Q: Cần lưu ý gì khi làm đa ngôn ngữ (i18n) trong môi trường SSR? Làm thế nào để xử lý SEO?**
 
-> **回答範例：**
-> 在 SSR 環境下做 i18n，最重要的是 **SEO** 和 **Hydration 一致性**。
+> **Ví dụ trả lời:**
+> Khi làm i18n trong môi trường SSR, điều quan trọng nhất là **SEO** và **tính nhất quán của Hydration**.
 >
-> 關於 **SEO**：
+> Về **SEO**:
 >
-> 1.  **URL 結構**：我會使用「子路徑」策略（如 `/en/`、`/tw/`），讓不同語言有獨立的 URL，這樣搜尋引擎才能索引。
-> 2.  **hreflang**：必須正確設定 `<link rel="alternate" hreflang="..." />`，告訴 Google 這些頁面是同一內容的不同語言版本，避免重複內容懲罰。我通常使用 `@nuxtjs/i18n` 模組自動生成這些標籤。
+> 1.  **Cấu trúc URL**: Tôi sẽ dùng chiến lược "sub-path" (như `/en/`, `/tw/`), để các ngôn ngữ khác nhau có URL độc lập, công cụ tìm kiếm mới có thể index được.
+> 2.  **hreflang**: Phải thiết lập đúng `<link rel="alternate" hreflang="..." />`, báo cho Google biết các trang này là các phiên bản ngôn ngữ khác nhau của cùng một nội dung, tránh bị phạt do nội dung trùng lặp. Tôi thường dùng module `@nuxtjs/i18n` để tự động tạo các thẻ này.
 >
-> 關於 **Hydration**：
-> 確保 Server 端渲染的語言與 Client 端初始化的語言一致。我會設定從 URL 前綴或 Cookie 決定語言，並在 API 請求 header 帶上對應的 locale。
+> Về **Hydration**:
+> Đảm bảo ngôn ngữ render ở phía Server và ngôn ngữ khởi tạo ở phía Client nhất quán. Tôi sẽ thiết lập ngôn ngữ được quyết định từ tiền tố URL hoặc Cookie, và gửi kèm locale tương ứng trong header của API request.
 
-### 5.2 路由與狀態
+### 5.2 Route và trạng thái
 
-**Q: 如何實作語言切換功能？**
+**Q: Làm thế nào để triển khai tính năng chuyển đổi ngôn ngữ?**
 
-> **回答範例：**
-> 我會使用 `@nuxtjs/i18n` 提供的 `useSwitchLocalePath` composable。
-> 它會自動根據當前路由生成對應語言的 URL（保留 query parameters），並處理路由前綴的轉換。這樣可以避免手動處理字串拼接的錯誤，也確保切換語言時使用者還停留在原本的頁面內容。
+> **Ví dụ trả lời:**
+> Tôi sẽ dùng composable `useSwitchLocalePath` do `@nuxtjs/i18n` cung cấp.
+> Nó sẽ tự động tạo URL ngôn ngữ tương ứng dựa trên route hiện tại (giữ lại query parameters), và xử lý việc chuyển đổi tiền tố route. Cách này tránh được lỗi khi xử lý ghép chuỗi thủ công, đồng thời đảm bảo người dùng vẫn ở lại nội dung trang hiện tại khi chuyển ngôn ngữ.
 
 ---
 

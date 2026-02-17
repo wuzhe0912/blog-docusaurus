@@ -1,69 +1,69 @@
 ---
-title: '[Lv1] SEO 基礎實作：Router 模式與 Meta Tags'
+title: '[Lv1] SEO Cơ bản: Chế độ Router và Meta Tags'
 slug: /experience/ssr-seo/lv1-seo-basic
 tags: [Experience, Interview, SSR-SEO, Lv1]
 ---
 
-> 在多品牌平台專案中，實作 SEO 基礎配置：Router History Mode、Meta Tags 結構與靜態頁面 SEO。
+> Trong dự án nền tảng đa thương hiệu, triển khai cấu hình SEO cơ bản: Router History Mode, cấu trúc Meta Tags và SEO cho trang tĩnh.
 
 ---
 
-## 1. 面試回答主軸
+## 1. Trọng tâm trả lời phỏng vấn
 
-1. **Router 模式選擇**：使用 History Mode 而非 Hash Mode，提供乾淨的 URL 結構。
-2. **Meta Tags 基礎**：實作完整的 SEO meta tags，包含 Open Graph 和 Twitter Card。
-3. **靜態頁面 SEO**：為 Landing Page 配置完整的 SEO 元素。
+1. **Lựa chọn chế độ Router**: Sử dụng History Mode thay vì Hash Mode để cung cấp cấu trúc URL gọn gàng.
+2. **Cơ bản về Meta Tags**: Triển khai đầy đủ các SEO meta tags, bao gồm Open Graph và Twitter Card.
+3. **SEO trang tĩnh**: Cấu hình đầy đủ các phần tử SEO cho Landing Page.
 
 ---
 
-## 2. Router History Mode 配置
+## 2. Cấu hình Router History Mode
 
-### 2.1 為什麼選擇 History Mode？
+### 2.1 Tại sao chọn History Mode?
 
-**檔案位置：** `quasar.config.js`
+**Vị trí file:** `quasar.config.js`
 
 ```javascript
-// 第 82 行
-vueRouterMode: "history", // 使用 history 模式而非 hash 模式
+// Dòng 82
+vueRouterMode: "history", // Sử dụng chế độ history thay vì chế độ hash
 ```
 
-**SEO 優勢：**
+**Ưu điểm SEO:**
 
-| 模式             | URL 範例  | SEO 影響                |
-| ---------------- | --------- | ----------------------- |
-| **Hash Mode**    | `/#/home` | ❌ 搜尋引擎較難索引     |
-| **History Mode** | `/home`   | ✅ 乾淨的 URL，易於索引 |
+| Chế độ           | Ví dụ URL | Ảnh hưởng SEO                      |
+| ---------------- | --------- | ----------------------------------- |
+| **Hash Mode**    | `/#/home` | ❌ Khó được công cụ tìm kiếm index  |
+| **History Mode** | `/home`   | ✅ URL gọn gàng, dễ được index      |
 
-**關鍵差異：**
+**Điểm khác biệt chính:**
 
-- History Mode 產生乾淨的 URL（如：`/home` 而非 `/#/home`）
-- 搜尋引擎更容易索引和爬取
-- 更好的使用者體驗和分享體驗
-- 需要後端支援（避免 404 錯誤）
+- History Mode tạo ra URL gọn gàng (ví dụ: `/home` thay vì `/#/home`)
+- Công cụ tìm kiếm dễ dàng index và crawl hơn
+- Trải nghiệm người dùng và chia sẻ tốt hơn
+- Cần hỗ trợ từ phía backend (tránh lỗi 404)
 
-### 2.2 後端配置需求
+### 2.2 Yêu cầu cấu hình backend
 
-使用 History Mode 時，需要後端配置：
+Khi sử dụng History Mode, cần cấu hình backend:
 
 ```nginx
-# Nginx 範例
+# Ví dụ Nginx
 location / {
   try_files $uri $uri/ /index.html;
 }
 ```
 
-這樣可以確保所有路由都回傳 `index.html`，由前端 Router 處理。
+Cách này đảm bảo tất cả các route đều trả về `index.html`, để Router frontend xử lý.
 
 ---
 
-## 3. Meta Tags 基礎結構
+## 3. Cấu trúc cơ bản của Meta Tags
 
-### 3.1 基本 SEO Meta Tags
+### 3.1 Meta Tags SEO cơ bản
 
-**檔案位置：** `template/*/public/landingPage/index.html`
+**Vị trí file:** `template/*/public/landingPage/index.html`
 
 ```html
-<!-- 基本 Meta Tags -->
+<!-- Meta Tags cơ bản -->
 <meta charset="UTF-8" />
 <title>AMUSE VIP</title>
 <meta name="keywords" content="カジノ,Jackpot,オンカジ,VIP" />
@@ -73,13 +73,13 @@ location / {
 />
 ```
 
-**說明：**
+**Giải thích:**
 
-- `title`：頁面標題，影響搜尋結果顯示
-- `keywords`：關鍵字（現代 SEO 重要性較低，但仍建議設定）
-- `description`：頁面描述，會顯示在搜尋結果中
+- `title`: Tiêu đề trang, ảnh hưởng đến hiển thị kết quả tìm kiếm
+- `keywords`: Từ khóa (SEO hiện đại ít quan trọng hơn, nhưng vẫn nên thiết lập)
+- `description`: Mô tả trang, sẽ hiển thị trong kết quả tìm kiếm
 
-### 3.2 Open Graph Tags（社交媒體分享）
+### 3.2 Open Graph Tags (Chia sẻ mạng xã hội)
 
 ```html
 <!-- Open Graph Tags -->
@@ -93,11 +93,11 @@ location / {
 <meta property="og:image:height" content="630" />
 ```
 
-**用途：**
+**Mục đích:**
 
-- Facebook、LinkedIn 等社交媒體分享時顯示的預覽
-- `og:image` 建議尺寸：1200x630px
-- `og:type` 可設定為 `website`、`article` 等
+- Hiển thị preview khi chia sẻ trên các mạng xã hội như Facebook, LinkedIn
+- Kích thước khuyến nghị cho `og:image`: 1200x630px
+- `og:type` có thể đặt là `website`, `article`, v.v.
 
 ### 3.3 Twitter Card Tags
 
@@ -109,26 +109,25 @@ location / {
 <meta name="twitter:image" content="images/amuse.webp" />
 ```
 
-**Twitter Card 類型：**
+**Các loại Twitter Card:**
 
-- `summary`：小卡片
-- `summary_large_image`：大圖片卡片（推薦）
+- `summary`: Card nhỏ
+- `summary_large_image`: Card ảnh lớn (khuyến nghị)
 
 ---
 
-## 4. 靜態 Landing Page SEO 實作
+## 4. Triển khai SEO cho Landing Page tĩnh
 
-### 4.1 完整的 SEO 元素清單
+### 4.1 Danh sách đầy đủ các phần tử SEO
 
-在專案的 Landing Page 中，實作了以下 SEO 元素：
+Trong Landing Page của dự án, đã triển khai các phần tử SEO sau:
 
 ```html
-✅ Title 標籤 ✅ Keywords meta tag ✅ Description meta tag ✅ Open Graph
-tags（Facebook、LinkedIn 等） ✅ Twitter Card tags ✅ Canonical URL ✅ Favicon
-設定
+✅ Thẻ Title ✅ Keywords meta tag ✅ Description meta tag ✅ Open Graph
+tags (Facebook, LinkedIn, v.v.) ✅ Twitter Card tags ✅ Canonical URL ✅ Cấu hình Favicon
 ```
 
-### 4.2 實作範例
+### 4.2 Ví dụ triển khai
 
 ```html
 <!DOCTYPE html>
@@ -137,7 +136,7 @@ tags（Facebook、LinkedIn 等） ✅ Twitter Card tags ✅ Canonical URL ✅ Fa
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- 基本 SEO -->
+    <!-- SEO cơ bản -->
     <title>AMUSE VIP</title>
     <meta name="keywords" content="カジノ,Jackpot,オンカジ,VIP" />
     <meta
@@ -168,79 +167,79 @@ tags（Facebook、LinkedIn 等） ✅ Twitter Card tags ✅ Canonical URL ✅ Fa
     <link rel="icon" type="image/png" href="favicon.png" />
   </head>
   <body>
-    <!-- 頁面內容 -->
+    <!-- Nội dung trang -->
   </body>
 </html>
 ```
 
 ---
 
-## 5. 面試重點整理
+## 5. Tổng hợp điểm mấu chốt phỏng vấn
 
-### 5.1 Router 模式選擇
+### 5.1 Lựa chọn chế độ Router
 
-**為什麼選擇 History Mode？**
+**Tại sao chọn History Mode?**
 
-- 提供乾淨的 URL，提升 SEO 效果
-- 搜尋引擎更容易索引
-- 更好的使用者體驗
+- Cung cấp URL gọn gàng, nâng cao hiệu quả SEO
+- Công cụ tìm kiếm dễ dàng index hơn
+- Trải nghiệm người dùng tốt hơn
 
-**需要注意什麼？**
+**Cần lưu ý gì?**
 
-- 需要後端配置支援（避免直接存取路由時出現 404）
-- 需要設定 fallback 機制
+- Cần hỗ trợ cấu hình backend (tránh lỗi 404 khi truy cập trực tiếp vào route)
+- Cần thiết lập cơ chế fallback
 
-### 5.2 Meta Tags 的重要性
+### 5.2 Tầm quan trọng của Meta Tags
 
-**基本 Meta Tags：**
+**Meta Tags cơ bản:**
 
-- `title`：影響搜尋結果顯示
-- `description`：影響點擊率
-- `keywords`：現代 SEO 重要性較低，但仍建議設定
+- `title`: Ảnh hưởng đến hiển thị kết quả tìm kiếm
+- `description`: Ảnh hưởng đến tỷ lệ nhấp chuột
+- `keywords`: SEO hiện đại ít quan trọng hơn, nhưng vẫn nên thiết lập
 
-**社交媒體 Meta Tags：**
+**Meta Tags mạng xã hội:**
 
-- Open Graph：Facebook、LinkedIn 等平台分享預覽
-- Twitter Card：Twitter 分享預覽
-- 圖片尺寸建議：1200x630px
+- Open Graph: Preview chia sẻ trên Facebook, LinkedIn và các nền tảng khác
+- Twitter Card: Preview chia sẻ trên Twitter
+- Kích thước ảnh khuyến nghị: 1200x630px
 
 ---
 
-## 6. 最佳實踐
+## 6. Thực hành tốt nhất
 
-1. **Title 標籤**
+1. **Thẻ Title**
 
-   - 長度控制在 50-60 字元
-   - 包含主要關鍵字
-   - 每個頁面都應該有獨特的 title
+   - Kiểm soát độ dài trong 50-60 ký tự
+   - Bao gồm từ khóa chính
+   - Mỗi trang nên có title độc nhất
 
 2. **Description**
 
-   - 長度控制在 150-160 字元
-   - 簡潔描述頁面內容
-   - 包含行動呼籲（CTA）
+   - Kiểm soát độ dài trong 150-160 ký tự
+   - Mô tả ngắn gọn nội dung trang
+   - Bao gồm lời kêu gọi hành động (CTA)
 
-3. **Open Graph 圖片**
+3. **Ảnh Open Graph**
 
-   - 尺寸：1200x630px
-   - 檔案大小：< 1MB
-   - 使用高品質圖片
+   - Kích thước: 1200x630px
+   - Dung lượng file: < 1MB
+   - Sử dụng ảnh chất lượng cao
 
 4. **Canonical URL**
-   - 避免重複內容問題
-   - 指向主要版本的 URL
+   - Tránh vấn đề nội dung trùng lặp
+   - Trỏ đến URL của phiên bản chính
 
 ---
 
-## 7. 面試總結
+## 7. Tóm tắt phỏng vấn
 
-**可以這樣回答：**
+**Có thể trả lời như sau:**
 
-> 在專案中，我選擇使用 Vue Router 的 History Mode 而非 Hash Mode，因為 History Mode 提供乾淨的 URL 結構，對 SEO 更友善。同時，我也為 Landing Page 實作了完整的 SEO meta tags，包含基本的 title、description、keywords，以及 Open Graph 和 Twitter Card tags，確保在社交媒體分享時能正確顯示預覽內容。
+> Trong dự án, tôi chọn sử dụng History Mode của Vue Router thay vì Hash Mode, vì History Mode cung cấp cấu trúc URL gọn gàng, thân thiện hơn với SEO. Đồng thời, tôi cũng triển khai đầy đủ SEO meta tags cho Landing Page, bao gồm title, description, keywords cơ bản, cũng như Open Graph và Twitter Card tags, đảm bảo hiển thị đúng nội dung preview khi chia sẻ trên mạng xã hội.
 
-**關鍵點：**
+**Điểm chính:**
 
-- ✅ Router History Mode 的選擇與原因
-- ✅ Meta Tags 的完整結構
-- ✅ 社交媒體分享優化
-- ✅ 實際專案經驗
+- ✅ Lựa chọn và lý do sử dụng Router History Mode
+- ✅ Cấu trúc đầy đủ của Meta Tags
+- ✅ Tối ưu hóa chia sẻ mạng xã hội
+- ✅ Kinh nghiệm dự án thực tế

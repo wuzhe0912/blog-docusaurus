@@ -1,30 +1,30 @@
 ---
-title: '實作總覽'
+title: 'Tổng quan thực tế'
 slug: /experience/ssr-seo
 tags: [Experience, Interview, SSR-SEO]
 ---
 
-> 持續累積 Server Side Render 與 SEO 相關的實作經驗與面試重點，按學習路徑由淺入深整理。
+> Liên tục tích lũy kinh nghiệm thực tế và các điểm mấu chốt trong phỏng vấn liên quan đến Server Side Render và SEO, được sắp xếp theo lộ trình học tập từ cơ bản đến nâng cao.
 
 ---
 
-## 學習路徑
+## Lộ trình học tập
 
-### 1. SEO 基礎
+### 1. SEO Cơ bản
 
-- [SEO 基礎實作：Router 模式與 Meta Tags](/docs/experience/ssr-seo/lv1-seo-basic)
+- [SEO Cơ bản: Chế độ Router và Meta Tags](/docs/experience/ssr-seo/lv1-seo-basic)
 
-### 2. SEO 進階
+### 2. SEO Nâng cao
 
-- [SEO 進階優化：動態 Meta Tags 與追蹤整合](/docs/experience/ssr-seo/lv2-seo-optimization)
+- [SEO Nâng cao: Meta Tags Động và Tích hợp Tracking](/docs/experience/ssr-seo/lv2-seo-optimization)
 
-### 3. SSR 實作（Nuxt 3）
+### 3. SSR Thực tế (Nuxt 3)
 
-- [Nuxt 3 Rendering Modes：SSR、SSG、CSR 選擇策略](/docs/experience/ssr-seo/lv2-nuxt-rendering-modes)
-- [Nuxt 3 Lifecycle 與 Hydration 原理](/docs/experience/ssr-seo/lv2-nuxt-lifecycle-hydration)
-- [SSR 實作：Data Fetching 與 SEO Meta 管理](/docs/experience/ssr-seo/lv2-ssr-implementation)
-- [Nuxt 3 Server 功能實作：Server Routes 與動態 Sitemap](/docs/experience/ssr-seo/lv2-nuxt-server-features)
+- [Nuxt 3 Rendering Modes: Chiến lược lựa chọn SSR, SSG, CSR](/docs/experience/ssr-seo/lv2-nuxt-rendering-modes)
+- [Nuxt 3 Lifecycle và Nguyên lý Hydration](/docs/experience/ssr-seo/lv2-nuxt-lifecycle-hydration)
+- [SSR Thực tế: Data Fetching và Quản lý SEO Meta](/docs/experience/ssr-seo/lv2-ssr-implementation)
+- [Tính năng Nuxt 3 Server: Server Routes và Sitemap Động](/docs/experience/ssr-seo/lv2-nuxt-server-features)
 
-### 4. SSR 進階議題
+### 4. SSR Chủ đề Nâng cao
 
-- [SSR 實作難題與解決方案](/docs/experience/ssr-seo/lv3-ssr-challenges)
+- [Các vấn đề khó trong SSR và Giải pháp](/docs/experience/ssr-seo/lv3-ssr-challenges)

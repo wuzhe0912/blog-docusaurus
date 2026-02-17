@@ -1,68 +1,68 @@
 ---
-title: '[Lv2] Nuxt 3 Server 功能實作：Server Routes 與動態 Sitemap'
+title: '[Lv2] Tính năng Nuxt 3 Server: Server Routes và Sitemap Động'
 slug: /experience/ssr-seo/lv2-nuxt-server-features
 tags: [Experience, Interview, SSR-SEO, Nuxt, Lv2]
 ---
 
-> 掌握 Nuxt 3 的 Nitro Server Engine 功能，實作 Server Routes (API Routes)、動態 Sitemap 與 Robots.txt，提升網站的 SEO 與架構彈性。
+> Nắm vững tính năng Nitro Server Engine của Nuxt 3, triển khai Server Routes (API Routes), Sitemap động và Robots.txt, nâng cao SEO và tính linh hoạt của kiến trúc website.
 
 ---
 
-## 1. 面試回答主軸
+## 1. Trọng tâm trả lời phỏng vấn
 
-1.  **Server Routes (API Routes)**：使用 `server/api` 或 `server/routes` 建立後端邏輯。常用於隱藏 API Key、處理 CORS、BFF (Backend for Frontend) 架構。
-2.  **動態 Sitemap**：透過 Server Routes (`server/routes/sitemap.xml.ts`) 動態生成 XML，確保搜尋引擎能索引最新內容。
-3.  **Robots.txt**：同樣透過 Server Routes 動態生成，或使用 Nuxt Config 配置，控制爬蟲存取權限。
+1.  **Server Routes (API Routes)**: Dùng `server/api` hoặc `server/routes` để xây dựng logic backend. Thường dùng để ẩn API Key, xử lý CORS, kiến trúc BFF (Backend for Frontend).
+2.  **Sitemap động**: Tạo XML động qua Server Routes (`server/routes/sitemap.xml.ts`), đảm bảo công cụ tìm kiếm có thể index nội dung mới nhất.
+3.  **Robots.txt**: Cũng được tạo động qua Server Routes, hoặc cấu hình qua Nuxt Config, kiểm soát quyền truy cập của crawler.
 
 ---
 
 ## 2. Nuxt 3 Server Engine: Nitro
 
-### 2.1 什麼是 Nitro？
+### 2.1 Nitro là gì?
 
-Nitro 是 Nuxt 3 的全新伺服器引擎，它讓 Nuxt 應用程式可以部署到任何地方（Universal Deployment）。它不僅僅是一個伺服器，更是一個強大的建置與執行時工具。
+Nitro là engine server hoàn toàn mới của Nuxt 3, cho phép ứng dụng Nuxt triển khai ở bất kỳ đâu (Universal Deployment). Nó không chỉ là một server, mà còn là công cụ build và runtime mạnh mẽ.
 
-### 2.2 Nitro 的核心特色
+### 2.2 Tính năng cốt lõi của Nitro
 
-1.  **跨平台部署 (Universal Deployment)**：
-    可以編譯成 Node.js server、Serverless Functions (Vercel, AWS Lambda, Netlify)、Service Workers 等多種格式。Zero-config 即可部署到主流平台。
+1.  **Triển khai đa nền tảng (Universal Deployment)**:
+    Có thể biên dịch thành Node.js server, Serverless Functions (Vercel, AWS Lambda, Netlify), Service Workers và nhiều định dạng khác. Triển khai đến các nền tảng chính không cần cấu hình (Zero-config).
 
-2.  **輕量且快速 (Lightweight & Fast)**：
-    Cold start 時間極短，且生成的 bundle size 非常小（最小可達 < 1MB）。
+2.  **Nhẹ và nhanh (Lightweight & Fast)**:
+    Thời gian Cold start cực ngắn, và bundle size được tạo ra rất nhỏ (tối thiểu có thể đạt < 1MB).
 
-3.  **自動程式碼分割 (Auto Code Splitting)**：
-    自動分析 Server Routes 的相依性，並進行 code splitting，確保啟動速度。
+3.  **Tự động chia nhỏ code (Auto Code Splitting)**:
+    Tự động phân tích dependency của Server Routes và thực hiện code splitting, đảm bảo tốc độ khởi động.
 
-4.  **HMR (Hot Module Replacement)**：
-    不僅前端有 HMR，Nitro 讓後端 API 開發也能享有 HMR，修改 `server/` 檔案無需重啟伺服器。
+4.  **HMR (Hot Module Replacement)**:
+    Không chỉ frontend có HMR, Nitro còn cho phép phát triển backend API cũng được hưởng HMR, chỉnh sửa file trong `server/` mà không cần khởi động lại server.
 
-5.  **Storage Layer (Unstorage)**：
-    內建統一的 Storage API，可以輕鬆連接 Redis, GitHub, FS, Memory 等不同儲存介面。
+5.  **Storage Layer (Unstorage)**:
+    Tích hợp Storage API thống nhất, dễ dàng kết nối với Redis, GitHub, FS, Memory và các giao diện lưu trữ khác nhau.
 
-6.  **Server Assets**：
-    可以方便地在 Server 端存取靜態資源檔案。
+6.  **Server Assets**:
+    Dễ dàng truy cập file tài nguyên tĩnh ở phía Server.
 
 ---
 
 ## 3. Nuxt 3 Server Routes (API Routes)
 
-### 3.1 什麼是 Server Routes？
+### 3.1 Server Routes là gì?
 
-Nuxt 3 內建了 **Nitro** 伺服器引擎，允許開發者直接在專案中編寫後端 API。這些檔案放在 `server/api` 或 `server/routes` 目錄下，會自動映射為 API endpoint。
+Nuxt 3 tích hợp sẵn engine server **Nitro**, cho phép developer viết API backend trực tiếp trong dự án. Các file này đặt trong thư mục `server/api` hoặc `server/routes`, sẽ tự động được ánh xạ thành API endpoint.
 
 - `server/api/hello.ts` -> `/api/hello`
 - `server/routes/hello.ts` -> `/hello`
 
-### 2.2 什麼情況下會用？（常見面試題）
+### 2.2 Khi nào sẽ dùng? (Câu hỏi phỏng vấn phổ biến)
 
-**1. 隱藏敏感資訊 (Secret Management)**
-前端無法安全地儲存 Private API Key。透過 Server Routes 作為中介，可以在 Server 端使用環境變數存取 Key，只將結果回傳給前端。
+**1. Ẩn thông tin nhạy cảm (Secret Management)**
+Frontend không thể lưu trữ Private API Key một cách an toàn. Thông qua Server Routes làm trung gian, có thể sử dụng biến môi trường để truy cập Key ở phía Server, chỉ trả về kết quả cho frontend.
 
 ```typescript
 // server/api/weather.ts
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
-  // API Key 只在 Server 端使用，不會暴露給 Client
+  // API Key chỉ dùng ở phía Server, không bị lộ ra Client
   const data = await $fetch(
     `https://api.weather.com/v1?key=${config.weatherApiKey}`
   );
@@ -70,44 +70,44 @@ export default defineEventHandler(async (event) => {
 });
 ```
 
-**2. 處理 CORS 問題 (Proxy)**
-當外部 API 不支援 CORS 時，可以使用 Server Routes 作為 Proxy。瀏覽器請求 Nuxt Server (同源)，Nuxt Server 請求外部 API (無 CORS 限制)。
+**2. Xử lý vấn đề CORS (Proxy)**
+Khi API bên ngoài không hỗ trợ CORS, có thể dùng Server Routes làm Proxy. Trình duyệt gửi request đến Nuxt Server (cùng origin), Nuxt Server gửi request đến API bên ngoài (không có giới hạn CORS).
 
 **3. Backend for Frontend (BFF)**
-將多個後端 API 的資料在 Nuxt Server 端聚合、過濾或轉換格式後，再一次性回傳給前端。減少前端請求次數與 Payload 大小。
+Tổng hợp, lọc hoặc chuyển đổi định dạng dữ liệu từ nhiều API backend ở phía Nuxt Server, sau đó trả về cho frontend một lần. Giảm số lần request từ frontend và kích thước Payload.
 
-**4. 處理 Webhook**
-接收第三方服務（如金流、CMS）的 Webhook 通知。
+**4. Xử lý Webhook**
+Nhận thông báo Webhook từ các dịch vụ bên thứ ba (như cổng thanh toán, CMS).
 
 ---
 
-## 4. 實作動態 Sitemap
+## 4. Triển khai Sitemap động
 
-### 3.1 為什麼需要動態 Sitemap？
+### 3.1 Tại sao cần Sitemap động?
 
-對於內容經常變動的網站（如電商、新聞網），靜態生成的 `sitemap.xml` 很快就會過期。使用 Server Routes 可以每次請求時動態生成最新的 Sitemap。
+Đối với các website có nội dung thay đổi thường xuyên (như thương mại điện tử, trang tin tức), `sitemap.xml` được tạo tĩnh sẽ nhanh chóng lỗi thời. Sử dụng Server Routes có thể tạo Sitemap mới nhất mỗi khi có request.
 
-### 3.2 實作方式：手動生成
+### 3.2 Cách triển khai: Tạo thủ công
 
-建立 `server/routes/sitemap.xml.ts`：
+Tạo `server/routes/sitemap.xml.ts`:
 
 ```typescript
 // server/routes/sitemap.xml.ts
 import { SitemapStream, streamToPromise } from 'sitemap';
 
 export default defineEventHandler(async (event) => {
-  // 1. 從資料庫或 API 取得所有動態路由資料
+  // 1. Lấy tất cả dữ liệu route động từ database hoặc API
   const posts = await $fetch('https://api.example.com/posts');
 
   const sitemap = new SitemapStream({
     hostname: 'https://example.com',
   });
 
-  // 2. 加入靜態頁面
+  // 2. Thêm trang tĩnh
   sitemap.write({ url: '/', changefreq: 'daily', priority: 1.0 });
   sitemap.write({ url: '/about', changefreq: 'monthly', priority: 0.5 });
 
-  // 3. 加入動態頁面
+  // 3. Thêm trang động
   posts.forEach((post) => {
     sitemap.write({
       url: `/posts/${post.id}`,
@@ -118,15 +118,15 @@ export default defineEventHandler(async (event) => {
 
   sitemap.end();
 
-  // 4. 設定 Header 並回傳 XML
+  // 4. Thiết lập Header và trả về XML
   setHeader(event, 'content-type', 'application/xml');
   return streamToPromise(sitemap);
 });
 ```
 
-### 3.3 實作方式：使用模組 (`@nuxtjs/sitemap`)
+### 3.3 Cách triển khai: Dùng module (`@nuxtjs/sitemap`)
 
-對於標準需求，推薦使用官方模組：
+Với các nhu cầu tiêu chuẩn, khuyến nghị dùng module chính thức:
 
 ```typescript
 // nuxt.config.ts
@@ -135,7 +135,7 @@ export default defineNuxtConfig({
   sitemap: {
     siteUrl: 'https://example.com',
     sources: [
-      '/api/sitemap-urls', // 指定一個 API 來提供動態 URL 列表
+      '/api/sitemap-urls', // Chỉ định một API để cung cấp danh sách URL động
     ],
   },
 });
@@ -143,11 +143,11 @@ export default defineNuxtConfig({
 
 ---
 
-## 5. 實作動態 Robots.txt
+## 5. Triển khai Robots.txt động
 
-### 4.1 實作方式
+### 4.1 Cách triển khai
 
-建立 `server/routes/robots.txt.ts`：
+Tạo `server/routes/robots.txt.ts`:
 
 ```typescript
 // server/routes/robots.txt.ts
@@ -155,14 +155,14 @@ export default defineEventHandler((event) => {
   const config = useRuntimeConfig();
   const isProduction = config.public.siteEnv === 'production';
 
-  // 根據環境動態決定規則
+  // Quyết định quy tắc động dựa trên môi trường
   const robots = isProduction
     ? `User-agent: *
 Disallow: /admin
 Disallow: /private
 Sitemap: https://example.com/sitemap.xml`
     : `User-agent: *
-Disallow: /`; // 非正式環境禁止索引
+Disallow: /`; // Môi trường không chính thức cấm index
 
   setHeader(event, 'content-type', 'text/plain');
   return robots;
@@ -171,48 +171,48 @@ Disallow: /`; // 非正式環境禁止索引
 
 ---
 
-## 6. 面試重點整理
+## 6. Tổng hợp điểm mấu chốt phỏng vấn
 
 ### 5.1 Nitro Engine & Server Routes
 
-**Q: Nuxt 3 的 server engine 是什麼？Nitro 的特色是什麼？**
+**Q: Server engine của Nuxt 3 là gì? Đặc điểm của Nitro là gì?**
 
-> **回答範例：**
-> Nuxt 3 的 server engine 叫做 **Nitro**。
-> 它的最大特色是 **Universal Deployment**，也就是可以零配置部署到任何環境（Node.js, Vercel, AWS Lambda, Edge Workers 等）。
-> 其他特色包含：後端 API 的 **HMR**（修改免重啟）、**Auto Code Splitting**（加快啟動速度）、以及內建的 **Storage Layer**（方便連接 Redis 或 KV Storage）。
+> **Ví dụ trả lời:**
+> Server engine của Nuxt 3 được gọi là **Nitro**.
+> Đặc điểm lớn nhất của nó là **Universal Deployment**, tức là có thể triển khai đến bất kỳ môi trường nào mà không cần cấu hình (Node.js, Vercel, AWS Lambda, Edge Workers, v.v.).
+> Các đặc điểm khác bao gồm: **HMR** cho backend API (chỉnh sửa không cần khởi động lại), **Auto Code Splitting** (tăng tốc độ khởi động), và **Storage Layer** tích hợp sẵn (dễ dàng kết nối Redis hoặc KV Storage).
 
-**Q: Nuxt 3 的 Server Routes 是什麼？你有實作過嗎？**
+**Q: Server Routes của Nuxt 3 là gì? Bạn đã triển khai chưa?**
 
-> **回答範例：**
-> 是的，我實作過。Server Routes 是 Nuxt 3 透過 Nitro 引擎提供的後端功能，放在 `server/api` 目錄下。
-> 我主要在以下情境使用：
+> **Ví dụ trả lời:**
+> Có, tôi đã triển khai. Server Routes là tính năng backend mà Nuxt 3 cung cấp thông qua engine Nitro, đặt trong thư mục `server/api`.
+> Tôi chủ yếu sử dụng trong các tình huống sau:
 >
-> 1.  **隱藏 API Key**：例如串接第三方服務時，避免將 Secret Key 暴露在前端程式碼中。
-> 2.  **CORS Proxy**：解決跨域請求問題。
-> 3.  **BFF (Backend for Frontend)**：將多個 API 請求整合成一個，減少前端請求次數並優化資料結構。
+> 1.  **Ẩn API Key**: Ví dụ khi kết nối dịch vụ bên thứ ba, tránh lộ Secret Key trong code frontend.
+> 2.  **CORS Proxy**: Giải quyết vấn đề cross-origin request.
+> 3.  **BFF (Backend for Frontend)**: Tổng hợp nhiều API request thành một, giảm số lần request từ frontend và tối ưu cấu trúc dữ liệu.
 
-### 5.2 Sitemap 與 Robots.txt
+### 5.2 Sitemap và Robots.txt
 
-**Q: 如何在 Nuxt 3 實作動態 sitemap 和 robots.txt？**
+**Q: Làm thế nào để triển khai sitemap động và robots.txt trong Nuxt 3?**
 
-> **回答範例：**
-> 我會使用 Nuxt 的 Server Routes 來實作。
-> 對於 **Sitemap**，我會建立 `server/routes/sitemap.xml.ts`，在裡面呼叫後端 API 取得最新的文章或產品列表，然後使用 `sitemap` 套件生成 XML 字串並回傳。這樣可以確保搜尋引擎每次爬取都能拿到最新的連結。
-> 對於 **Robots.txt**，我會建立 `server/routes/robots.txt.ts`，並根據環境變數（Production 或 Staging）動態回傳不同的規則，例如在 Staging 環境設定 `Disallow: /` 防止被索引。
+> **Ví dụ trả lời:**
+> Tôi sẽ dùng Server Routes của Nuxt để triển khai.
+> Với **Sitemap**, tôi sẽ tạo `server/routes/sitemap.xml.ts`, trong đó gọi API backend để lấy danh sách bài viết hoặc sản phẩm mới nhất, sau đó dùng package `sitemap` để tạo chuỗi XML và trả về. Cách này đảm bảo công cụ tìm kiếm mỗi lần crawl đều lấy được các liên kết mới nhất.
+> Với **Robots.txt**, tôi sẽ tạo `server/routes/robots.txt.ts`, và dựa trên biến môi trường (Production hoặc Staging) để trả về các quy tắc khác nhau, ví dụ thiết lập `Disallow: /` trong môi trường Staging để tránh bị index.
 
-### 5.3 SEO Meta Tags (補充)
+### 5.3 SEO Meta Tags (Bổ sung)
 
-**Q: 你如何處理 Nuxt 3 的 SEO meta tags？有用過 useHead 或 useSeoMeta 嗎？**
+**Q: Bạn xử lý SEO meta tags trong Nuxt 3 như thế nào? Có dùng useHead hoặc useSeoMeta không?**
 
-> **回答範例：**
-> 我主要使用 Nuxt 3 內建的 `useHead` 和 `useSeoMeta` Composables。
-> `useHead` 允許我定義 `title`、`meta`、`link` 等標籤。如果是單純的 SEO 設定，我會優先使用 `useSeoMeta`，因為它的語法更簡潔且有型別提示（Type-safe），例如直接設定 `ogTitle`、`description` 等屬性。
-> 在動態頁面（如產品頁），我會傳入一個 Getter Function（例如 `title: () => product.value.name`），這樣當資料更新時，Meta Tags 也會自動響應更新。
+> **Ví dụ trả lời:**
+> Tôi chủ yếu sử dụng các Composables tích hợp sẵn của Nuxt 3 là `useHead` và `useSeoMeta`.
+> `useHead` cho phép tôi định nghĩa các thẻ `title`, `meta`, `link`. Nếu chỉ cần thiết lập SEO đơn thuần, tôi ưu tiên dùng `useSeoMeta` vì cú pháp ngắn gọn hơn và có gợi ý kiểu (Type-safe), ví dụ thiết lập trực tiếp các thuộc tính `ogTitle`, `description`.
+> Trên các trang động (như trang sản phẩm), tôi sẽ truyền vào một Getter Function (ví dụ `title: () => product.value.name`), để khi dữ liệu cập nhật, Meta Tags cũng tự động phản hồi cập nhật.
 
 ---
 
-## 7. 相關 Reference
+## 7. Reference liên quan
 
 - [Nuxt 3 Server Routes](https://nuxt.com/docs/guide/directory-structure/server)
 - [Nuxt SEO Module](https://nuxtseo.com/)

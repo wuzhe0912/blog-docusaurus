@@ -39,7 +39,7 @@ export default defineNuxtConfig({
   i18n: {
     locales: [
       { code: 'en', iso: 'en-US', file: 'en.json', name: 'English' },
-      { code: 'tw', iso: 'zh-TW', file: 'tw.json', name: '繁體中文' },
+      { code: 'tw', iso: 'zh-TW', file: 'tw.json', name: 'Chinois traditionnel' },
     ],
     defaultLocale: 'tw',
     lazy: true, // Activer le Lazy Loading
@@ -142,7 +142,7 @@ const switchLocalePath = useSwitchLocalePath();
 <template>
   <nav>
     <NuxtLink :to="switchLocalePath('en')">English</NuxtLink>
-    <NuxtLink :to="switchLocalePath('tw')">繁體中文</NuxtLink>
+    <NuxtLink :to="switchLocalePath('tw')">Chinois traditionnel</NuxtLink>
   </nav>
 </template>
 ```

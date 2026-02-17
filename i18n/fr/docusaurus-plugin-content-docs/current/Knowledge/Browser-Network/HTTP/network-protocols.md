@@ -78,7 +78,7 @@ Ce n'est qu'à la troisième étape, lorsque les deux parties ont confirmé la s
 ### Reference
 
 - [TCP 3-Way Handshake (SYN, SYN-ACK,ACK)](https://www.guru99.com/tcp-3-way-handshake.html)
-- [淘宝二面，面试官居然把 TCP 三次握手问的这么详细](https://www.eet-china.com/mp/a44399.html)
+- [Deuxieme entretien Taobao : questions tres detaillees sur le three-way handshake TCP](https://www.eet-china.com/mp/a44399.html)
 
 ## 3. Décrivez le mécanisme de cache HTTP
 

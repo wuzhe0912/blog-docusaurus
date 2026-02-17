@@ -23,14 +23,14 @@ Dieser sich staendig wiederholende Prozess ist das Konzept des Event Loop.
 ```js
 console.log(1);
 
-// 這個非同步的函式就是 callback
+// Diese asynchrone Funktion ist der Callback
 setTimeout(function () {
   console.log(2);
 }, 0);
 
 console.log(3);
 
-// 依序印出 1 3 2
+// Gibt in der Reihenfolge 1 3 2 aus
 ```
 
 ## 2. Why is setInterval not accurate in terms of timing ?
@@ -68,7 +68,7 @@ function moveElement(timestamp) {
     'myElement'
   ).style.transform = `translateX(${startPos}px)`;
 
-  // 如果元素還沒有到達目的地，繼續動畫
+  // Wenn das Element das Ziel noch nicht erreicht hat, Animation fortsetzen
   if (startPos < 500) {
     requestAnimationFrame(moveElement);
   }

@@ -78,7 +78,7 @@ Erst beim dritten Handshake, wenn beide Seiten die Synchronisation bestaetigt ha
 ### Reference
 
 - [TCP 3-Way Handshake (SYN, SYN-ACK,ACK)](https://www.guru99.com/tcp-3-way-handshake.html)
-- [淘宝二面，面试官居然把 TCP 三次握手问的这么详细](https://www.eet-china.com/mp/a44399.html)
+- [Zweites Taobao-Interview: sehr detaillierte Fragen zum TCP Three-Way Handshake](https://www.eet-china.com/mp/a44399.html)
 
 ## 3. Beschreiben Sie den HTTP-Caching-Mechanismus
 

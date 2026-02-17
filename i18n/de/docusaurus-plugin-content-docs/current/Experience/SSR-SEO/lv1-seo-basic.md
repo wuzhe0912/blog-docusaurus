@@ -69,7 +69,7 @@ Dies stellt sicher, dass alle Routen `index.html` zurueckgeben und der Frontend-
 <meta name="keywords" content="カジノ,Jackpot,オンカジ,VIP" />
 <meta
   name="description"
-  content="いつでもどこでも0秒反映。先着100名限定のVIP会員テストプログラムキャンペーン"
+  content="Sofortige Aktualisierung jederzeit und ueberall. VIP-Testprogramm nur fuer die ersten 100 Mitglieder."
 />
 ```
 
@@ -142,7 +142,7 @@ Konfiguration
     <meta name="keywords" content="カジノ,Jackpot,オンカジ,VIP" />
     <meta
       name="description"
-      content="いつでもどこでも0秒反映。先着100名限定のVIP会員テストプログラムキャンペーン"
+      content="Sofortige Aktualisierung jederzeit und ueberall. VIP-Testprogramm nur fuer die ersten 100 Mitglieder."
     />
 
     <!-- Open Graph -->

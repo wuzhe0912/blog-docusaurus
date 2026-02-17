@@ -69,7 +69,7 @@ Cela garantit que toutes les routes renvoient `index.html`, et le Router fronten
 <meta name="keywords" content="カジノ,Jackpot,オンカジ,VIP" />
 <meta
   name="description"
-  content="いつでもどこでも0秒反映。先着100名限定のVIP会員テストプログラムキャンペーン"
+  content="Mise a jour immediate partout et a tout moment. Programme test VIP reserve aux 100 premiers membres."
 />
 ```
 
@@ -142,7 +142,7 @@ Favicon
     <meta name="keywords" content="カジノ,Jackpot,オンカジ,VIP" />
     <meta
       name="description"
-      content="いつでもどこでも0秒反映。先着100名限定のVIP会員テストプログラムキャンペーン"
+      content="Mise a jour immediate partout et a tout moment. Programme test VIP reserve aux 100 premiers membres."
     />
 
     <!-- Open Graph -->

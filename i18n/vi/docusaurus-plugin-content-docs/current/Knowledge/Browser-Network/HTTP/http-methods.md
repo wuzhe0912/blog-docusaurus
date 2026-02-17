@@ -53,10 +53,10 @@ async function updateUser(userId, newName) {
   };
 
   try {
-    const response = await axios.put(url, data); // 執行 PUT 請求
-    console.log('User updated:', response.data); // 輸出更新後的用戶信息
+    const response = await axios.put(url, data); // Thực thi yêu cầu PUT
+    console.log('User updated:', response.data); // Xuất thông tin người dùng đã cập nhật
   } catch (error) {
-    console.log('Error updating user:', error); // 輸出錯誤信息
+    console.log('Error updating user:', error); // Xuất thông tin lỗi
   }
 }
 

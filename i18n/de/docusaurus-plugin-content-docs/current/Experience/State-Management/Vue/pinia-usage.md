@@ -1,45 +1,45 @@
 ---
 id: state-management-vue-pinia-usage
-title: 'Pinia 使用實踐'
+title: 'Pinia Nutzung in der Praxis'
 slug: /experience/state-management/vue/pinia-usage
 tags: [Experience, Interview, State-Management, Vue]
 ---
 
-> 在多品牌平台專案中，Pinia Store 在組件和 Composables 中的使用方式，以及 Store 之間的通訊模式。
+> In einem Multi-Brand-Projekt: Wie Pinia Stores in Komponenten und Composables eingesetzt werden und wie Stores miteinander kommunizieren.
 
 ---
 
-## 1. 面試回答主軸
+## 1. Kernpunkte fuer das Interview
 
-1. **組件使用**：使用 `storeToRefs` 保持響應性，Actions 可以直接解構。
-2. **Composables 組合**：在 Composables 中組合多個 Store，封裝業務邏輯。
-3. **Store 通訊**：推薦在 Composable 中組合，避免循環依賴。
+1. **Nutzung in Komponenten**: Fuer reaktive Werte `storeToRefs` verwenden, Actions koennen direkt destrukturiert werden.
+2. **Kombination in Composables**: Mehrere Stores in Composables zusammenfuehren und Business-Logik kapseln.
+3. **Store-Kommunikation**: Bevorzugt in Composables orchestrieren, um zyklische Abhaengigkeiten zu vermeiden.
 
 ---
 
-## 2. 在組件中使用 Store
+## 2. Store-Nutzung in Komponenten
 
-### 2.1 基本使用
+### 2.1 Basisnutzung
 
 ```vue
 <script setup lang="ts">
 import { useAuthStore } from 'stores/authStore';
 
-// 直接使用 store 實例
+// Store-Instanz direkt verwenden
 const authStore = useAuthStore();
 
-// 訪問 state
+// State lesen
 console.log(authStore.access_token);
 
-// 調用 action
+// Action aufrufen
 authStore.setToptVerified(true);
 
-// 訪問 getter
+// Getter lesen
 console.log(authStore.isLogin);
 </script>
 ```
 
-### 2.2 使用 `storeToRefs` 解構（重要！）
+### 2.2 Destrukturieren mit `storeToRefs` (wichtig)
 
 ```vue
 <script setup lang="ts">
@@ -48,31 +48,31 @@ import { storeToRefs } from 'pinia';
 
 const authStore = useAuthStore();
 
-// ❌ 錯誤：會失去響應性
+// ❌ Falsch: Reaktivitaet geht verloren
 const { access_token, isLogin } = authStore;
 
-// ✅ 正確：保持響應性
+// ✅ Richtig: Reaktivitaet bleibt erhalten
 const { access_token, isLogin } = storeToRefs(authStore);
 
-// ✅ Actions 可以直接解構（不需要 storeToRefs）
+// ✅ Actions koennen direkt destrukturiert werden
 const { setToptVerified } = authStore;
 </script>
 ```
 
-**為什麼直接解構會失去響應性？**
+**Warum geht Reaktivitaet bei direkter Destrukturierung verloren?**
 
-- Pinia 的 state 和 getters 是響應式的
-- 直接解構會破壞響應式連接
-- `storeToRefs` 會將每個屬性轉換為 `ref`，保持響應性
-- Actions 本身不是響應式的，所以可以直接解構
+- Pinia state und getters sind reaktiv
+- Direkte Destrukturierung trennt die reaktive Verbindung
+- `storeToRefs` konvertiert Eigenschaften in `ref`s und erhaelt Reaktivitaet
+- Actions selbst sind nicht reaktiv und koennen direkt destrukturiert werden
 
 ---
 
-## 3. 在 Composables 中使用 Store
+## 3. Store-Nutzung in Composables
 
-### 3.1 實際案例：useGame.ts
+### 3.1 Praxisbeispiel: useGame.ts
 
-Composables 是組合 Store 邏輯的最佳場所。
+Composables sind der beste Ort, um Store-Logik zu kombinieren.
 
 ```typescript
 import { useGameStore } from 'stores/gameStore';
@@ -80,18 +80,18 @@ import { useProductStore } from 'stores/productStore';
 import { storeToRefs } from 'pinia';
 
 export function useGame() {
-  // 1️⃣ 引入多個 stores
+  // 1) Mehrere Stores einbinden
   const gameStore = useGameStore();
   const productStore = useProductStore();
 
-  // 2️⃣ 解構 state 和 getters（使用 storeToRefs）
+  // 2) State und getters ueber storeToRefs destrukturieren
   const { gameState } = storeToRefs(gameStore);
   const { productState } = storeToRefs(productStore);
 
-  // 3️⃣ 解構 actions（直接解構）
+  // 3) Actions direkt destrukturieren
   const { initAllGameList, updateAllGameList } = gameStore;
 
-  // 4️⃣ 組合邏輯
+  // 4) Kombinierte Logik kapseln
   async function initGameTypeList() {
     const { status, data } = await useApi(getGameTypes);
     if (status) {
@@ -100,7 +100,7 @@ export function useGame() {
     }
   }
 
-  // 5️⃣ 返回給組件使用
+  // 5) Fuer Komponenten exportieren
   return {
     gameState,
     productState,
@@ -110,17 +110,17 @@ export function useGame() {
 }
 ```
 
-**面試重點**：
-- Composables 是組合 Store 邏輯的最佳場所
-- 使用 `storeToRefs` 確保響應性
-- Actions 可以直接解構
-- 將複雜的業務邏輯封裝在 composable 中
+**Interview-Fokus**:
+- Composables als Orchestrierungsschicht fuer mehrere Stores
+- `storeToRefs` fuer reaktive Werte
+- Actions direkt destrukturieren
+- Komplexe Business-Logik aus Komponenten herausziehen
 
 ---
 
-## 4. Store 之間的通訊
+## 4. Kommunikation zwischen Stores
 
-### 4.1 方法一：在 Store 內部調用其他 Store
+### 4.1 Methode 1: Einen anderen Store im Store aufrufen
 
 ```typescript
 import { defineStore } from 'pinia';
@@ -133,7 +133,7 @@ export const useAuthStore = defineStore('authStore', {
       if (status) {
         this.access_token = data.access_token;
 
-        // 調用其他 store 的方法
+        // Methode aus anderem Store aufrufen
         const userInfoStore = useUserInfoStore();
         userInfoStore.setStoreUserInfo(data.user);
       }
@@ -142,7 +142,7 @@ export const useAuthStore = defineStore('authStore', {
 });
 ```
 
-### 4.2 方法二：在 Composable 中組合多個 Store（推薦）
+### 4.2 Methode 2: Mehrere Stores im Composable kombinieren (empfohlen)
 
 ```typescript
 export function useInit() {
@@ -151,7 +151,7 @@ export function useInit() {
   const gameStore = useGameStore();
 
   async function initialize() {
-    // 依序執行多個 store 的初始化
+    // Initialisierung geordnet ausfuehren
     await authStore.checkAuth();
     if (authStore.isLogin) {
       await userInfoStore.getUserInfo();
@@ -163,43 +163,43 @@ export function useInit() {
 }
 ```
 
-**面試重點**：
-- ✅ 推薦在 Composable 中組合多個 Store
-- ❌ 避免 Store 之間的循環依賴
-- 🎯 保持 Store 的單一職責原則
+**Interview-Fokus**:
+- ✅ Mehrere Stores bevorzugt in Composables kombinieren
+- ❌ Zyklische Abhaengigkeiten zwischen Stores vermeiden
+- 🎯 Single-Responsibility pro Store beibehalten
 
 ---
 
-## 5. 實戰案例：用戶登入流程
+## 5. Praxisfall: Login-Flow
 
-這是一個完整的 Store 使用流程，涵蓋了多個 Store 的協作。
+Ein kompletter Ablauf mit Zusammenarbeit mehrerer Stores.
 
-### 5.1 流程圖
+### 5.1 Ablaufdiagramm
 
 ```
-用戶點擊登入按鈕
+Benutzer klickt auf Login
      ↓
-調用 useAuth().handleLogin()
+useAuth().handleLogin() aufrufen
      ↓
-API 請求登入
+API-Login anfordern
      ↓
-成功 → authStore 儲存 token
+Erfolg -> authStore speichert token
      ↓
 useUserInfo().getUserInfo()
      ↓
-userInfoStore 儲存用戶資訊
+userInfoStore speichert Benutzerdaten
      ↓
 useGame().initGameList()
      ↓
-gameStore 儲存遊戲列表
+gameStore speichert Spielliste
      ↓
-跳轉到首頁
+Weiterleitung zur Startseite
 ```
 
-### 5.2 程式碼實作
+### 5.2 Codebeispiel
 
 ```typescript
-// 1️⃣ authStore.ts - 管理認證狀態
+// 1) authStore.ts - Authentifizierungsstatus verwalten
 export const useAuthStore = defineStore('authStore', {
   state: () => ({
     access_token: undefined as string | undefined,
@@ -208,10 +208,10 @@ export const useAuthStore = defineStore('authStore', {
   getters: {
     isLogin: (state) => !!state.access_token,
   },
-  persist: true, // 持久化認證資訊
+  persist: true, // Auth-Daten persistieren
 });
 
-// 2️⃣ userInfoStore.ts - 管理用戶資訊
+// 2) userInfoStore.ts - Benutzerdaten verwalten
 export const useUserInfoStore = defineStore('useInfoStore', {
   state: () => ({
     info: {} as Response.UserInfo,
@@ -221,10 +221,10 @@ export const useUserInfoStore = defineStore('useInfoStore', {
       this.info = userInfo;
     },
   },
-  persist: false, // 不持久化（敏感資訊）
+  persist: false, // Keine Persistenz fuer sensible Daten
 });
 
-// 3️⃣ useAuth.ts - 組合認證邏輯
+// 3) useAuth.ts - Auth-Logik kapseln
 export function useAuth() {
   const authStore = useAuthStore();
   const { access_token } = storeToRefs(authStore);
@@ -233,7 +233,7 @@ export function useAuth() {
   async function handleLogin(credentials: LoginCredentials) {
     const { status, data } = await api.login(credentials);
     if (status) {
-      // 更新 authStore
+      // authStore aktualisieren
       authStore.$patch({
         access_token: data.access_token,
         user_id: data.user_id,
@@ -250,7 +250,7 @@ export function useAuth() {
   };
 }
 
-// 4️⃣ LoginPage.vue - 登入頁面
+// 4) LoginPage.vue - Login-Seite
 <script setup lang="ts">
 import { useAuth } from 'src/common/hooks/useAuth';
 import { useUserInfo } from 'src/common/composables/useUserInfo';
@@ -263,73 +263,72 @@ const { initGameList } = useGame();
 const router = useRouter();
 
 const onSubmit = async (formData: LoginForm) => {
-  // 步驟 1: 登入
+  // Schritt 1: Login
   const success = await handleLogin(formData);
   if (success) {
-    // 步驟 2: 獲取用戶資訊
+    // Schritt 2: Benutzerdaten laden
     await getUserInfo();
-    // 步驟 3: 初始化遊戲列表
+    // Schritt 3: Spielliste initialisieren
     await initGameList();
-    // 步驟 4: 跳轉首頁
+    // Schritt 4: Zur Startseite navigieren
     router.push('/');
   }
 };
 </script>
 ```
 
-**面試重點**：
+**Interview-Fokus**:
 
-1. **職責分離**
-   - `authStore`: 只管理認證狀態
-   - `userInfoStore`: 只管理用戶資訊
-   - `useAuth`: 封裝認證相關業務邏輯
-   - `useUserInfo`: 封裝用戶資訊相關業務邏輯
+1. **Klare Verantwortungen**
+   - `authStore`: Nur Auth-Status
+   - `userInfoStore`: Nur Benutzerdaten
+   - `useAuth`: Auth-bezogene Business-Logik
+   - `useUserInfo`: Business-Logik fuer Benutzerdaten
 
-2. **響應式數據流**
-   - 使用 `storeToRefs` 保持響應性
-   - Store 更新會自動觸發組件更新
+2. **Reaktiver Datenfluss**
+   - `storeToRefs` fuer reaktive Bindung
+   - Store-Updates aktualisieren Komponenten automatisch
 
-3. **持久化策略**
-   - `authStore` 持久化（用戶刷新頁面後保持登入）
-   - `userInfoStore` 不持久化（安全考量）
-
----
-
-## 6. 面試重點整理
-
-### 6.1 storeToRefs 的使用
-
-**可以這樣回答：**
-
-> 在組件中使用 Pinia Store 時，如果要解構 state 和 getters，必須使用 `storeToRefs` 保持響應性。直接解構會破壞響應式連接，因為 Pinia 的 state 和 getters 是響應式的。`storeToRefs` 會將每個屬性轉換為 `ref`，保持響應性。Actions 可以直接解構，不需要 `storeToRefs`，因為它們本身不是響應式的。
-
-**關鍵點：**
-- ✅ `storeToRefs` 的作用
-- ✅ 為什麼需要 `storeToRefs`
-- ✅ Actions 可以直接解構
-
-### 6.2 Store 之間通訊
-
-**可以這樣回答：**
-
-> Store 之間的通訊有兩種方式：1) 在 Store 內部調用其他 Store，但要注意避免循環依賴；2) 在 Composable 中組合多個 Store，這是推薦的方式。最佳實踐是保持 Store 的單一職責原則，將複雜的業務邏輯封裝在 Composable 中，避免 Store 之間的直接依賴。
-
-**關鍵點：**
-- ✅ 兩種通訊方式
-- ✅ 推薦在 Composable 中組合
-- ✅ 避免循環依賴
+3. **Persistenzstrategie**
+   - `authStore` persistieren (Login bleibt nach Reload)
+   - `userInfoStore` nicht persistieren (Sicherheitsaspekt)
 
 ---
 
-## 7. 面試總結
+## 6. Interview-Antwort kompakt
 
-**可以這樣回答：**
+### 6.1 Einsatz von `storeToRefs`
 
-> 在專案中使用 Pinia Store 時，有幾個關鍵實踐：1) 在組件中使用 `storeToRefs` 解構 state 和 getters，保持響應性；2) 在 Composables 中組合多個 Store，封裝業務邏輯；3) Store 之間的通訊推薦在 Composable 中組合，避免循環依賴；4) 保持 Store 的單一職責原則，將複雜邏輯放在 Composable 中。
+**Moegliche Antwort:**
 
-**關鍵點：**
-- ✅ `storeToRefs` 的使用
-- ✅ Composables 組合 Store
-- ✅ Store 通訊模式
-- ✅ 職責分離原則
+> Wenn ich in Komponenten state und getters aus einem Pinia Store destrukturiere, nutze ich `storeToRefs`, damit Reaktivitaet erhalten bleibt. Direkte Destrukturierung trennt die reaktive Verbindung. Actions kann ich direkt destrukturieren, weil sie selbst nicht reaktiv sind.
 
+**Wichtige Punkte:**
+- ✅ Zweck von `storeToRefs`
+- ✅ Grund fuer den Einsatz
+- ✅ Unterschied zu Actions
+
+### 6.2 Kommunikation zwischen Stores
+
+**Moegliche Antwort:**
+
+> Fuer Store-Kommunikation gibt es zwei Wege: direkter Aufruf eines anderen Stores innerhalb eines Stores oder Orchestrierung in einem Composable. In der Praxis bevorzuge ich Composables, weil so zyklische Abhaengigkeiten reduziert und Verantwortlichkeiten klar bleiben.
+
+**Wichtige Punkte:**
+- ✅ Zwei Kommunikationsmuster
+- ✅ Composable-Ansatz als Best Practice
+- ✅ Zyklische Abhaengigkeiten vermeiden
+
+---
+
+## 7. Interview-Zusammenfassung
+
+**Moegliche Antwort:**
+
+> Beim Einsatz von Pinia achte ich auf vier Dinge: erstens `storeToRefs` fuer reaktive Werte in Komponenten, zweitens Orchestrierung mehrerer Stores in Composables, drittens klare Kommunikationsgrenzen zwischen Stores und viertens saubere Verantwortungsaufteilung zwischen Store und Business-Logik.
+
+**Wichtige Punkte:**
+- ✅ `storeToRefs` korrekt einsetzen
+- ✅ Stores ueber Composables kombinieren
+- ✅ Kommunikation sauber gestalten
+- ✅ Verantwortungen klar trennen

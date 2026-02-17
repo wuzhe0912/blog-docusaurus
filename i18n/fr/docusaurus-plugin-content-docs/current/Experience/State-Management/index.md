@@ -1,6 +1,6 @@
 ---
 id: state-management-interview-index
-title: 'Aperçu de la Gestion d\'État'
+title: "Aperçu de la Gestion d'État"
 slug: /experience/state-management
 tags: [Experience, Interview, State-Management]
 ---

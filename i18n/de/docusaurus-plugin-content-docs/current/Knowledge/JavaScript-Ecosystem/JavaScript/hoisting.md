@@ -155,19 +155,19 @@ Diese Frage prüft die **Prioritätsregeln** des Hoisting:
 **Hoisting-Priorität: Funktionsdeklaration > Variablendeklaration**
 
 ```js
-// 原始程式碼
+// Originalcode
 console.log(foo);
 var foo = '1';
 function foo() {}
 
-// 等價於（經過 Hoisting）
-// 階段 1：創造階段（Hoisting）
-function foo() {} // 1. 函式聲明先提升
-var foo; // 2. 變數聲明提升（但不覆蓋已存在的函式）
+// Entspricht (nach Hoisting)
+// Phase 1: Erstellungsphase (Hoisting)
+function foo() {} // 1. Funktionsdeklaration wird zuerst gehoben
+var foo; // 2. Variablendeklaration wird gehoben (ueberschreibt vorhandene Funktion nicht)
 
-// 階段 2：執行階段
-console.log(foo); // 此時 foo 是函式，輸出 [Function: foo]
-foo = '1'; // 3. 變數賦值（會覆蓋函式）
+// Phase 2: Ausfuehrungsphase
+console.log(foo); // foo ist hier eine Funktion, Ausgabe [Function: foo]
+foo = '1'; // 3. Variablenzuweisung (ueberschreibt die Funktion)
 ```
 
 ### Schlüsselkonzepte
@@ -193,33 +193,33 @@ var myVar = 'Hello';
 **3. Wenn Funktionsdeklaration und Variablendeklaration denselben Namen haben**
 
 ```js
-// 提升後的順序
-function foo() {} // 函式先提升並賦值
-var foo; // 變數聲明提升，但不會覆蓋已存在的函式
+// Reihenfolge nach Hoisting
+function foo() {} // Funktion wird zuerst gehoben und initialisiert
+var foo; // Variablendeklaration wird gehoben, ueberschreibt vorhandene Funktion nicht
 
-// 因此 foo 是函式
+// Deshalb ist foo eine Funktion
 console.log(foo); // [Function: foo]
 ```
 
 ### Vollständiger Ausführungsablauf
 
 ```js
-// 原始程式碼
+// Originalcode
 console.log(foo); // ?
 var foo = '1';
 function foo() {}
 console.log(foo); // ?
 
-// ======== 等價於 ========
+// ======== Entspricht ========
 
-// 創造階段（Hoisting）
-function foo() {} // 1️⃣ 函式聲明提升（完整提升，包含函式體）
-var foo; // 2️⃣ 變數聲明提升（但不覆蓋 foo，因為已經是函式了）
+// Erstellungsphase (Hoisting)
+function foo() {} // 1) Funktionsdeklaration wird vollstaendig gehoben (inkl. Funktionskoerper)
+var foo; // 2) Variablendeklaration wird gehoben (ueberschreibt foo nicht, da bereits Funktion)
 
-// 執行階段
-console.log(foo); // [Function: foo] - foo 是函式
-foo = '1'; // 3️⃣ 變數賦值（此時才覆蓋函式）
-console.log(foo); // '1' - foo 變成字串
+// Ausfuehrungsphase
+console.log(foo); // [Function: foo] - foo ist eine Funktion
+foo = '1'; // 3) Variablenzuweisung (ueberschreibt die Funktion erst jetzt)
+console.log(foo); // '1' - foo wird zu einer Zeichenkette
 ```
 
 ### Weiterführende Aufgaben
@@ -236,8 +236,8 @@ console.log(foo); // ?
 **Antwort:**
 
 ```js
-[Function: foo] // 第一次輸出
-'1' // 第二次輸出
+[Function: foo] // Erste Ausgabe
+'1' // Zweite Ausgabe
 ```
 
 **Begründung:** Die Code-Reihenfolge beeinflusst das Hoisting-Ergebnis nicht. Die Hoisting-Priorität bleibt: Funktion > Variable.
@@ -263,26 +263,26 @@ console.log(foo); // ?
 **Antwort:**
 
 ```js
-[Function: foo] { return 2; } // 第一次輸出（後面的函式覆蓋前面的）
-'1' // 第二次輸出（變數賦值覆蓋函式）
+[Function: foo] { return 2; } // Erste Ausgabe (spaetere Funktion ueberschreibt fruehere)
+'1' // Zweite Ausgabe (Variablenzuweisung ueberschreibt Funktion)
 ```
 
 **Begründung:**
 
 ```js
-// 提升後
+// Nach Hoisting
 function foo() {
   return 1;
-} // 第一個函式
+} // Erste Funktion
 
 function foo() {
   return 2;
-} // 第二個函式覆蓋第一個
+} // Zweite Funktion ueberschreibt erste
 
-var foo; // 變數聲明（不覆蓋函式）
+var foo; // Variablendeklaration (ueberschreibt Funktion nicht)
 
 console.log(foo); // [Function: foo] { return 2; }
-foo = '1'; // 變數賦值（覆蓋函式）
+foo = '1'; // Variablenzuweisung (ueberschreibt Funktion)
 console.log(foo); // '1'
 ```
 
@@ -304,25 +304,25 @@ function bar() {
 **Antwort:**
 
 ```js
-undefined; // foo 是 undefined
-[Function: bar] // bar 是函式
+undefined; // foo ist undefined
+[Function: bar] // bar ist eine Funktion
 ```
 
 **Begründung:**
 
 ```js
-// 提升後
-var foo; // 變數聲明提升（函式表達式只提升變數名）
+// Nach Hoisting
+var foo; // Variablendeklaration wird gehoben (Funktionsausdruck hebt nur den Namen)
 function bar() {
   return 2;
-} // 函式聲明完整提升
+} // Funktionsdeklaration wird vollstaendig gehoben
 
 console.log(foo); // undefined
 console.log(bar); // [Function: bar]
 
 foo = function () {
   return 1;
-}; // 函式表達式賦值
+}; // Zuweisung des Funktionsausdrucks
 ```
 
 **Wesentlicher Unterschied:**
@@ -333,15 +333,15 @@ foo = function () {
 ### let/const haben dieses Problem nicht
 
 ```js
-// ❌ var 會有提升問題
+// ❌ var kann Hoisting-Probleme verursachen
 console.log(foo); // undefined
 var foo = '1';
 
-// ✅ let/const 有暫時性死區（TDZ）
+// ✅ let/const haben eine Temporal Dead Zone (TDZ)
 console.log(bar); // ReferenceError: Cannot access 'bar' before initialization
 let bar = '1';
 
-// ✅ let/const 與函式同名會報錯
+// ✅ Gleichnamige let/const und Funktion erzeugen Fehler
 function baz() {} // SyntaxError: Identifier 'baz' has already been declared
 let baz = '1';
 ```

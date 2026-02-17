@@ -155,19 +155,19 @@ Cette question examine les **règles de priorité** du Hoisting :
 **Priorité du Hoisting : Déclaration de fonction > Déclaration de variable**
 
 ```js
-// 原始程式碼
+// Code original
 console.log(foo);
 var foo = '1';
 function foo() {}
 
-// 等價於（經過 Hoisting）
-// 階段 1：創造階段（Hoisting）
-function foo() {} // 1. 函式聲明先提升
-var foo; // 2. 變數聲明提升（但不覆蓋已存在的函式）
+// Equivalent (apres Hoisting)
+// Etape 1 : phase de creation (Hoisting)
+function foo() {} // 1. La declaration de fonction est remontee en premier
+var foo; // 2. La declaration de variable est remontee (n'ecrase pas la fonction existante)
 
-// 階段 2：執行階段
-console.log(foo); // 此時 foo 是函式，輸出 [Function: foo]
-foo = '1'; // 3. 變數賦值（會覆蓋函式）
+// Etape 2 : phase d'execution
+console.log(foo); // Ici, foo est une fonction, sortie [Function: foo]
+foo = '1'; // 3. L'assignation de variable ecrase la fonction
 ```
 
 ### Concepts clés
@@ -193,33 +193,33 @@ var myVar = 'Hello';
 **3. Quand une déclaration de fonction et une déclaration de variable portent le même nom**
 
 ```js
-// 提升後的順序
-function foo() {} // 函式先提升並賦值
-var foo; // 變數聲明提升，但不會覆蓋已存在的函式
+// Ordre apres Hoisting
+function foo() {} // La fonction est remontee et initialisee en premier
+var foo; // La declaration de variable est remontee, sans ecraser la fonction
 
-// 因此 foo 是函式
+// Donc foo est une fonction
 console.log(foo); // [Function: foo]
 ```
 
 ### Flux d'exécution complet
 
 ```js
-// 原始程式碼
+// Code original
 console.log(foo); // ?
 var foo = '1';
 function foo() {}
 console.log(foo); // ?
 
-// ======== 等價於 ========
+// ======== Equivalent ========
 
-// 創造階段（Hoisting）
-function foo() {} // 1️⃣ 函式聲明提升（完整提升，包含函式體）
-var foo; // 2️⃣ 變數聲明提升（但不覆蓋 foo，因為已經是函式了）
+// Phase de creation (Hoisting)
+function foo() {} // 1) La declaration de fonction est entierement remontee (y compris le corps)
+var foo; // 2) La declaration de variable est remontee (n'ecrase pas foo, deja fonction)
 
-// 執行階段
-console.log(foo); // [Function: foo] - foo 是函式
-foo = '1'; // 3️⃣ 變數賦值（此時才覆蓋函式）
-console.log(foo); // '1' - foo 變成字串
+// Phase d'execution
+console.log(foo); // [Function: foo] - foo est une fonction
+foo = '1'; // 3) L'assignation de variable ecrase la fonction a ce moment
+console.log(foo); // '1' - foo devient une chaine
 ```
 
 ### Exercices avancés
@@ -236,8 +236,8 @@ console.log(foo); // ?
 **Réponse :**
 
 ```js
-[Function: foo] // 第一次輸出
-'1' // 第二次輸出
+[Function: foo] // Premiere sortie
+'1' // Deuxieme sortie
 ```
 
 **Raison :** L'ordre du code n'affecte pas le résultat du Hoisting. La priorité de remontée reste : fonction > variable.
@@ -263,26 +263,26 @@ console.log(foo); // ?
 **Réponse :**
 
 ```js
-[Function: foo] { return 2; } // 第一次輸出（後面的函式覆蓋前面的）
-'1' // 第二次輸出（變數賦值覆蓋函式）
+[Function: foo] { return 2; } // Premiere sortie (la fonction suivante ecrase la precedente)
+'1' // Deuxieme sortie (l'assignation de variable ecrase la fonction)
 ```
 
 **Raison :**
 
 ```js
-// 提升後
+// Apres Hoisting
 function foo() {
   return 1;
-} // 第一個函式
+} // Premiere fonction
 
 function foo() {
   return 2;
-} // 第二個函式覆蓋第一個
+} // Deuxieme fonction ecrase la premiere
 
-var foo; // 變數聲明（不覆蓋函式）
+var foo; // Declaration de variable (n'ecrase pas la fonction)
 
 console.log(foo); // [Function: foo] { return 2; }
-foo = '1'; // 變數賦值（覆蓋函式）
+foo = '1'; // Assignation de variable (ecrase la fonction)
 console.log(foo); // '1'
 ```
 
@@ -304,25 +304,25 @@ function bar() {
 **Réponse :**
 
 ```js
-undefined; // foo 是 undefined
-[Function: bar] // bar 是函式
+undefined; // foo vaut undefined
+[Function: bar] // bar est une fonction
 ```
 
 **Raison :**
 
 ```js
-// 提升後
-var foo; // 變數聲明提升（函式表達式只提升變數名）
+// Apres Hoisting
+var foo; // La declaration de variable est remontee (l'expression de fonction ne remonte que le nom)
 function bar() {
   return 2;
-} // 函式聲明完整提升
+} // La declaration de fonction est entierement remontee
 
 console.log(foo); // undefined
 console.log(bar); // [Function: bar]
 
 foo = function () {
   return 1;
-}; // 函式表達式賦值
+}; // Assignation de l'expression de fonction
 ```
 
 **Différence clé :**
@@ -333,15 +333,15 @@ foo = function () {
 ### let/const n'ont pas ce problème
 
 ```js
-// ❌ var 會有提升問題
+// ❌ var peut provoquer des problemes de Hoisting
 console.log(foo); // undefined
 var foo = '1';
 
-// ✅ let/const 有暫時性死區（TDZ）
+// ✅ let/const ont une zone morte temporaire (TDZ)
 console.log(bar); // ReferenceError: Cannot access 'bar' before initialization
 let bar = '1';
 
-// ✅ let/const 與函式同名會報錯
+// ✅ let/const avec le meme nom qu'une fonction provoquent une erreur
 function baz() {} // SyntaxError: Identifier 'baz' has already been declared
 let baz = '1';
 ```

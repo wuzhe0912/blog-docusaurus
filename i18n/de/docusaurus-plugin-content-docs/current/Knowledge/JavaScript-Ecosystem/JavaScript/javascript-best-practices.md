@@ -9,7 +9,7 @@ tags: [JavaScript, Quiz, Medium]
 
 > Warum sollte man `index` nicht als `key` verwenden?
 
-In Vorstellungsgespraechen zu Frameworks wie `Vue` und `React` tauchen haeufig aehnliche Fragen auf:
+In Vorstellungsgesprächen zu Frameworks wie `Vue` und `React` tauchen häufig ähnliche Fragen auf:
 
 - What happens if there is no key in `v-for`?
 - Why you shouldn't use `index` as a key in `React` lists and iterators?

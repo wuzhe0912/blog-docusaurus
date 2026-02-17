@@ -11,25 +11,25 @@ tags: [CSS, Quiz, Easy]
 
 ### Block Elements
 
-> Die folgenden inline- und block-Elemente listen nur die gaengigsten Tags auf. Seltenere Tags sollten bei Bedarf nachgeschlagen werden.
+> Die folgenden inline- und block-Elemente listen nur die gängigsten Tags auf. Seltenere Tags sollten bei Bedarf nachgeschlagen werden.
 
-Block-Level-Elemente belegen standardmaessig eine ganze Zeile. Wenn es also mehrere Block-Elemente gibt und kein CSS-Layout verwendet wird, werden sie standardmaessig vertikal von oben nach unten angeordnet. Block-Elemente koennen nur innerhalb von `<body></body>` geschrieben werden.
+Block-Level-Elemente belegen standardmäßig eine ganze Zeile. Wenn es also mehrere Block-Elemente gibt und kein CSS-Layout verwendet wird, werden sie standardmäßig vertikal von oben nach unten angeordnet. Block-Elemente können nur innerhalb von `<body></body>` geschrieben werden.
 
-#### Liste gaengiger Block-Elemente
+#### Liste gängiger Block-Elemente
 
 div, article, aside, footer, header, footer, main, nav, section, ul, li, ol, video, form.
 
 ### Inline Elements
 
-Inline-Elemente belegen nicht eine ganze Zeile. Wenn mehrere Inline-Elemente nebeneinander stehen, werden sie horizontal angeordnet. Block-Elemente koennen nicht innerhalb von Inline-Elementen platziert werden; Inline-Elemente koennen nur zur Darstellung von Daten oder Informationen verwendet werden. Die Eigenschaften von Inline-Elementen koennen jedoch ueber `CSS` geaendert werden, z.B. indem man einem `span` `display: block;` hinzufuegt.
+Inline-Elemente belegen nicht eine ganze Zeile. Wenn mehrere Inline-Elemente nebeneinander stehen, werden sie horizontal angeordnet. Block-Elemente können nicht innerhalb von Inline-Elementen platziert werden; Inline-Elemente können nur zur Darstellung von Daten oder Informationen verwendet werden. Die Eigenschaften von Inline-Elementen können jedoch über `CSS` geändert werden, z.B. indem man einem `span` `display: block;` hinzufügt.
 
-#### Liste gaengiger Inline-Elemente
+#### Liste gängiger Inline-Elemente
 
 a, br, button, br, code, img, input, span, strong, svg, textarea, label.
 
 ### inline-block
 
-In display gibt es eine `inline-block`-Eigenschaft, die Block-Elemente in Inline-Elemente umwandeln kann, wobei die Eigenschaften von Block-Elementen erhalten bleiben, z.B. die Moeglichkeit, Breite, Hoehe, margin, padding usw. festzulegen. Das bedeutet, dass sich dieses Element im Layout wie ein Inline-Element horizontal anordnet, aber Block-Eigenschaften nutzen kann, um andere Elemente im Layout zu verdraengen.
+In display gibt es eine `inline-block`-Eigenschaft, die Block-Elemente in Inline-Elemente umwandeln kann, wobei die Eigenschaften von Block-Elementen erhalten bleiben, z.B. die Möglichkeit, Breite, Höhe, margin, padding usw. festzulegen. Das bedeutet, dass sich dieses Element im Layout wie ein Inline-Element horizontal anordnet, aber Block-Eigenschaften nutzen kann, um andere Elemente im Layout zu verdrängen.
 
 ### Reference
 

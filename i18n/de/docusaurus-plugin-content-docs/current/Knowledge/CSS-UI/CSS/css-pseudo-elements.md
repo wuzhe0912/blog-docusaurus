@@ -7,13 +7,13 @@ tags: [CSS, Quiz, Easy]
 
 ## Was sind Pseudo-Elemente
 
-Pseudo-Elemente (Pseudo-elements) sind CSS-Schluesselwoerter, die verwendet werden, um bestimmte Teile eines Elements auszuwaehlen oder Inhalte vor oder nach einem Element einzufuegen. Sie verwenden die **Doppelpunkt**-Syntax `::` (CSS3-Standard), um sich von Pseudo-Klassen (pseudo-classes) mit der Einzelpunkt-Syntax `:` zu unterscheiden.
+Pseudo-Elemente (Pseudo-elements) sind CSS-Schlüsselwörter, die verwendet werden, um bestimmte Teile eines Elements auszuwählen oder Inhalte vor oder nach einem Element einzufügen. Sie verwenden die **Doppelpunkt**-Syntax `::` (CSS3-Standard), um sich von Pseudo-Klassen (pseudo-classes) mit der Einzelpunkt-Syntax `:` zu unterscheiden.
 
-## Gaengige Pseudo-Elemente
+## Gängige Pseudo-Elemente
 
 ### 1. ::before und ::after
 
-Die am haeufigsten verwendeten Pseudo-Elemente, die zum Einfuegen von Inhalten vor oder nach dem Elementinhalt verwendet werden.
+Die am häufigsten verwendeten Pseudo-Elemente, die zum Einfügen von Inhalten vor oder nach dem Elementinhalt verwendet werden.
 
 ```css
 .icon::before {
@@ -29,13 +29,13 @@ Die am haeufigsten verwendeten Pseudo-Elemente, die zum Einfuegen von Inhalten v
 
 **Eigenschaften**:
 
-- Muessen die Eigenschaft `content` enthalten (auch wenn es ein leerer String ist)
-- Sind standardmaessig `inline`-Elemente
-- Erscheinen nicht im DOM, koennen nicht von JavaScript ausgewaehlt werden
+- Müssen die Eigenschaft `content` enthalten (auch wenn es ein leerer String ist)
+- Sind standardmäßig `inline`-Elemente
+- Erscheinen nicht im DOM, können nicht von JavaScript ausgewählt werden
 
 ### 2. ::first-letter
 
-Waehlt den ersten Buchstaben des Elements aus, haeufig fuer Initialen im Magazinstil verwendet.
+Wählt den ersten Buchstaben des Elements aus, häufig für Initialen im Magazinstil verwendet.
 
 ```css
 .article::first-letter {
@@ -49,7 +49,7 @@ Waehlt den ersten Buchstaben des Elements aus, haeufig fuer Initialen im Magazin
 
 ### 3. ::first-line
 
-Waehlt die erste Textzeile des Elements aus.
+Wählt die erste Textzeile des Elements aus.
 
 ```css
 .intro::first-line {
@@ -58,11 +58,11 @@ Waehlt die erste Textzeile des Elements aus.
 }
 ```
 
-**Hinweis**: `::first-line` kann nur fuer Block-Level-Elemente verwendet werden.
+**Hinweis**: `::first-line` kann nur für Block-Level-Elemente verwendet werden.
 
 ### 4. ::selection
 
-Passt den Stil an, wenn der Benutzer Text auswaehlt.
+Passt den Stil an, wenn der Benutzer Text auswählt.
 
 ```css
 ::selection {
@@ -70,7 +70,7 @@ Passt den Stil an, wenn der Benutzer Text auswaehlt.
   color: #000;
 }
 
-/* Firefox benoetigt Praefix */
+/* Firefox benötigt Präfix */
 ::-moz-selection {
   background-color: #ffeb3b;
   color: #000;
@@ -103,7 +103,7 @@ li::marker {
 
 ### 7. ::backdrop
 
-Wird fuer die Hintergrundmaske von Vollbild-Elementen verwendet (wie `<dialog>` oder Vollbild-Videos).
+Wird für die Hintergrundmaske von Vollbild-Elementen verwendet (wie `<dialog>` oder Vollbild-Videos).
 
 ```css
 dialog::backdrop {
@@ -116,7 +116,7 @@ dialog::backdrop {
 
 ### 1. Dekorative Icons und Symbole
 
-Ohne zusaetzliche HTML-Elemente, reine CSS-Implementierung:
+Ohne zusätzliche HTML-Elemente, reine CSS-Implementierung:
 
 ```css
 .success::before {
@@ -132,7 +132,7 @@ Ohne zusaetzliche HTML-Elemente, reine CSS-Implementierung:
 }
 ```
 
-**Anwendungsfall**: Wenn man keine rein dekorativen Elemente im HTML hinzufuegen moechte.
+**Anwendungsfall**: Wenn man keine rein dekorativen Elemente im HTML hinzufügen möchte.
 
 ### 2. Clearfix (Float-Bereinigung)
 
@@ -146,11 +146,11 @@ Die klassische Float-Bereinigungstechnik:
 }
 ```
 
-**Anwendungsfall**: Wenn das Elternelement gefloatete Kindelemente enthaelt und die Hoehe des Elternelements expandiert werden muss.
+**Anwendungsfall**: Wenn das Elternelement gefloatete Kindelemente enthält und die Höhe des Elternelements expandiert werden muss.
 
-### 3. Anfuehrungszeichen-Dekoration
+### 3. Anführungszeichen-Dekoration
 
-Automatisch Anfuehrungszeichen zu zitiertem Text hinzufuegen:
+Automatisch Anführungszeichen zu zitiertem Text hinzufügen:
 
 ```css
 blockquote::before {
@@ -170,7 +170,7 @@ blockquote {
 }
 ```
 
-**Anwendungsfall**: Zitatbloecke verschoenern, ohne manuell Anfuehrungszeichen einzugeben.
+**Anwendungsfall**: Zitatblöcke verschönern, ohne manuell Anführungszeichen einzugeben.
 
 ### 4. Reine CSS-Formen
 
@@ -201,7 +201,7 @@ Pseudo-Elemente nutzen, um geometrische Formen zu erstellen:
 
 ### 5. Pflichtfeld-Markierung
 
-Roten Stern zu Pflichtfeldern im Formular hinzufuegen:
+Roten Stern zu Pflichtfeldern im Formular hinzufügen:
 
 ```css
 .required::after {
@@ -215,7 +215,7 @@ Roten Stern zu Pflichtfeldern im Formular hinzufuegen:
 
 ### 6. Externer-Link-Kennzeichnung
 
-Automatisch Symbol fuer externe Links hinzufuegen:
+Automatisch Symbol für externe Links hinzufügen:
 
 ```css
 a[href^='http']::after {
@@ -232,11 +232,11 @@ a[target='_blank']::after {
 }
 ```
 
-**Anwendungsfall**: Die Benutzererfahrung verbessern, indem der Benutzer weiss, dass ein neuer Tab geoeffnet wird.
+**Anwendungsfall**: Die Benutzererfahrung verbessern, indem der Benutzer weiß, dass ein neuer Tab geöffnet wird.
 
-### 7. Zaehler-Nummerierung
+### 7. Zähler-Nummerierung
 
-CSS-Zaehler fuer automatische Nummerierung verwenden:
+CSS-Zähler für automatische Nummerierung verwenden:
 
 ```css
 .faq-list {
@@ -255,7 +255,7 @@ CSS-Zaehler fuer automatische Nummerierung verwenden:
 
 ### 8. Overlay-Effekt
 
-Hover-Overlay fuer Bilder hinzufuegen:
+Hover-Overlay für Bilder hinzufügen:
 
 ```css
 .image-card {
@@ -278,22 +278,22 @@ Hover-Overlay fuer Bilder hinzufuegen:
 }
 ```
 
-**Anwendungsfall**: Wenn man keine zusaetzlichen HTML-Elemente fuer Overlay-Effekte hinzufuegen moechte.
+**Anwendungsfall**: Wenn man keine zusätzlichen HTML-Elemente für Overlay-Effekte hinzufügen möchte.
 
 ## Pseudo-Elemente vs Pseudo-Klassen
 
 | Eigenschaft | Pseudo-Elemente (::)                            | Pseudo-Klassen (:)                          |
 | ----------- | ----------------------------------------------- | ------------------------------------------- |
 | **Syntax**  | Doppelpunkt `::before`                          | Einzelpunkt `:hover`                        |
-| **Funktion** | Erstellen/Auswaehlen bestimmter Elementteile   | Auswaehlen bestimmter Elementzustaende      |
+| **Funktion** | Erstellen/Auswählen bestimmter Elementteile   | Auswählen bestimmter Elementzustände      |
 | **Beispiele** | `::before`, `::after`, `::first-letter`       | `:hover`, `:active`, `:nth-child()`         |
-| **DOM**     | Existieren nicht im DOM                         | Waehlen tatsaechliche DOM-Elemente aus      |
+| **DOM**     | Existieren nicht im DOM                         | Wählen tatsächliche DOM-Elemente aus      |
 
-## Haeufige Fallstricke
+## Häufige Fallstricke
 
 ### 1. Die content-Eigenschaft muss vorhanden sein
 
-`::before` und `::after` muessen die Eigenschaft `content` haben, andernfalls werden sie nicht angezeigt:
+`::before` und `::after` müssen die Eigenschaft `content` haben, andernfalls werden sie nicht angezeigt:
 
 ```css
 /* Wird nicht angezeigt */
@@ -305,7 +305,7 @@ Hover-Overlay fuer Bilder hinzufuegen:
 
 /* Korrekt */
 .box::before {
-  content: ''; /* Auch ein leerer String muss hinzugefuegt werden */
+  content: ''; /* Auch ein leerer String muss hinzugefügt werden */
   display: block;
   width: 20px;
   height: 20px;
@@ -313,12 +313,12 @@ Hover-Overlay fuer Bilder hinzufuegen:
 }
 ```
 
-### 2. Kann nicht fuer ersetzte Elemente verwendet werden
+### 2. Kann nicht für ersetzte Elemente verwendet werden
 
-Bestimmte Elemente (wie `<img>`, `<input>`, `<iframe>`) koennen `::before` und `::after` nicht verwenden:
+Bestimmte Elemente (wie `<img>`, `<input>`, `<iframe>`) können `::before` und `::after` nicht verwenden:
 
 ```css
-/* Ungueltig */
+/* Ungültig */
 img::before {
   content: 'Photo:';
 }
@@ -329,9 +329,9 @@ img::before {
 }
 ```
 
-### 3. Standardmaessig inline-Elemente
+### 3. Standardmäßig inline-Elemente
 
-`::before` und `::after` sind standardmaessig `inline`-Elemente. Beim Setzen von Breite und Hoehe ist Vorsicht geboten:
+`::before` und `::after` sind standardmäßig `inline`-Elemente. Beim Setzen von Breite und Höhe ist Vorsicht geboten:
 
 ```css
 .box::before {
@@ -354,13 +354,13 @@ Der `z-index` des Pseudo-Elements ist relativ zum Elternelement:
 .parent::before {
   content: '';
   position: absolute;
-  z-index: -1; /* Liegt unter dem Elternelement, aber ueber dessen Hintergrund */
+  z-index: -1; /* Liegt unter dem Elternelement, aber über dessen Hintergrund */
 }
 ```
 
-### 5. Rueckwaertskompatibilitaet mit einzelnem Doppelpunkt
+### 5. Rückwärtskompatibilität mit einzelnem Doppelpunkt
 
-Die CSS3-Spezifikation verwendet doppelte Doppelpunkte `::` zur Unterscheidung von Pseudo-Elementen und Pseudo-Klassen, aber einzelne Doppelpunkte `:` funktionieren weiterhin (Rueckwaertskompatibilitaet mit CSS2):
+Die CSS3-Spezifikation verwendet doppelte Doppelpunkte `::` zur Unterscheidung von Pseudo-Elementen und Pseudo-Klassen, aber einzelne Doppelpunkte `:` funktionieren weiterhin (Rückwärtskompatibilität mit CSS2):
 
 ```css
 /* CSS3-Standardschreibweise (empfohlen) */
@@ -375,9 +375,9 @@ Die CSS3-Spezifikation verwendet doppelte Doppelpunkte `::` zur Unterscheidung v
 ## Interview-Schwerpunkte
 
 1. **Doppelpunkt-Syntax der Pseudo-Elemente**: Unterscheidung von Pseudo-Elementen `::` und Pseudo-Klassen `:`
-2. **Die content-Eigenschaft muss vorhanden sein**: Schluessel fuer `::before` und `::after`
-3. **Nicht im DOM**: Koennen nicht direkt von JavaScript ausgewaehlt oder manipuliert werden
-4. **Nicht verwendbar fuer ersetzte Elemente**: `<img>`, `<input>` usw. funktionieren nicht
+2. **Die content-Eigenschaft muss vorhanden sein**: Schlüssel für `::before` und `::after`
+3. **Nicht im DOM**: Können nicht direkt von JavaScript ausgewählt oder manipuliert werden
+4. **Nicht verwendbar für ersetzte Elemente**: `<img>`, `<input>` usw. funktionieren nicht
 5. **Praktische Anwendungsszenarien**: Dekorative Icons, Clearfix, Formenzeichnung usw.
 
 ## Reference

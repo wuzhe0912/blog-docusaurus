@@ -5,16 +5,16 @@ slug: /experience/performance/lv3-web-worker
 tags: [Experience, Interview, Performance, Lv3]
 ---
 
-> **Web Worker** ist eine API, die JavaScript in einem Hintergrund-Thread des Browsers ausfuehrt und zeitaufwaendige Berechnungen ermoeglicht, ohne den Hauptthread (UI-Thread) zu blockieren.
+> **Web Worker** ist eine API, die JavaScript in einem Hintergrund-Thread des Browsers ausführt und zeitaufwändige Berechnungen ermöglicht, ohne den Hauptthread (UI-Thread) zu blockieren.
 
 ## Kernkonzept
 
 ### Problemhintergrund
 
-JavaScript ist urspruenglich **single-threaded**, der gesamte Code wird im Hauptthread ausgefuehrt:
+JavaScript ist ursprünglich **single-threaded**, der gesamte Code wird im Hauptthread ausgeführt:
 
 ```javascript
-// Zeitaufwaendige Berechnung blockiert den Hauptthread
+// Zeitaufwändige Berechnung blockiert den Hauptthread
 function heavyComputation() {
   for (let i = 0; i < 10000000000; i++) {
     // Komplexe Berechnung
@@ -22,7 +22,7 @@ function heavyComputation() {
   return result;
 }
 
-// Die gesamte Seite friert waehrend der Ausfuehrung ein
+// Die gesamte Seite friert während der Ausführung ein
 const result = heavyComputation(); // UI kann nicht interagieren
 ```
 
@@ -32,12 +32,12 @@ const result = heavyComputation(); // UI kann nicht interagieren
 - Animationen stoppen
 - Extrem schlechte Benutzererfahrung
 
-### Web Worker Loesung
+### Web Worker Lösung
 
-Web Worker bietet **Multi-Threading**-Faehigkeit fuer zeitaufwaendige Aufgaben im Hintergrund:
+Web Worker bietet **Multi-Threading**-Fähigkeit für zeitaufwändige Aufgaben im Hintergrund:
 
 ```javascript
-// Worker fuer Hintergrundausfuehrung verwenden
+// Worker für Hintergrundausführung verwenden
 const worker = new Worker('worker.js');
 
 // Hauptthread blockiert nicht, Seite bleibt interaktiv
@@ -83,11 +83,11 @@ Bildfilter, Komprimierung, Pixeloperationen - ohne UI-Einfrieren.
 
 ## Szenario 3: Komplexe Berechnungen
 
-Mathematische Operationen (Primzahlenberechnung, Verschluesselung/Entschluesselung)
+Mathematische Operationen (Primzahlenberechnung, Verschlüsselung/Entschlüsselung)
 Hash-Berechnung großer Dateien
 Datenanalyse und Statistik
 
-## Einschraenkungen und Hinweise
+## Einschränkungen und Hinweise
 
 ### Was im Worker NICHT geht
 
@@ -108,11 +108,11 @@ Datenanalyse und Statistik
 // 1. Einfache, schnelle Berechnungen (Worker-Erstellung hat Overhead)
 const result = 1 + 1; // Braucht keinen Worker
 
-// 2. Haeufige Kommunikation mit dem Hauptthread noetig
-// Kommunikationskosten koennen den Multi-Threading-Vorteil aufheben
+// 2. Häufige Kommunikation mit dem Hauptthread nötig
+// Kommunikationskosten können den Multi-Threading-Vorteil aufheben
 
 // Situationen, in denen Worker sinnvoll ist
-// 1. Einmalige laengere Berechnung
+// 1. Einmalige längere Berechnung
 const result = calculatePrimes(1000000);
 
 // 2. Batch-Verarbeitung großer Datenmengen
@@ -121,11 +121,11 @@ const processed = largeArray.map(complexOperation);
 
 ---
 
-## Reale Projektanwendungsfaelle
+## Reale Projektanwendungsfälle
 
-### Fall: Verschluesselungsverarbeitung von Spieldaten
+### Fall: Verschlüsselungsverarbeitung von Spieldaten
 
-Auf der Spieleplattform muessen sensible Daten ver-/entschluesselt werden:
+Auf der Spieleplattform müssen sensible Daten ver-/entschlüsselt werden:
 
 ```javascript
 // main.js - Hauptthread
@@ -195,11 +195,11 @@ filterWorker.onmessage = (e) => {
 
 ## Interview-Schwerpunkte
 
-### Haeufige Interview-Fragen
+### Häufige Interview-Fragen
 
 **F1: Wie kommunizieren Web Worker und Hauptthread?**
 
-A: Ueber `postMessage` und `onmessage`:
+A: Über `postMessage` und `onmessage`:
 
 ```javascript
 // Hauptthread -> Worker
@@ -209,8 +209,8 @@ worker.postMessage({ type: 'START', data: [1, 2, 3] });
 self.postMessage({ type: 'RESULT', result: processedData });
 
 // Hinweis: Daten werden "strukturiert geklont" (Structured Clone)
-// Uebertragbar: Number, String, Object, Array, Date, RegExp
-// Nicht uebertragbar: Function, DOM-Elemente, Symbol
+// Übertragbar: Number, String, Object, Array, Date, RegExp
+// Nicht übertragbar: Function, DOM-Elemente, Symbol
 ```
 
 **F2: Was ist der Performance-Overhead von Web Worker?**
@@ -224,31 +224,31 @@ const worker = new Worker('worker.js'); // Muss Datei laden
 // 2. Kommunikationskosten (Datenkopie)
 worker.postMessage(largeData); // Große Datenkopie braucht Zeit
 
-// Loesungen:
+// Lösungen:
 // 1. Worker wiederverwenden (nicht jedes Mal neu erstellen)
-// 2. Transferable Objects verwenden (Eigentumsuebergabe, keine Kopie)
+// 2. Transferable Objects verwenden (Eigentumsübergabe, keine Kopie)
 const buffer = new ArrayBuffer(1024 * 1024); // 1MB
-worker.postMessage(buffer, [buffer]); // Eigentum uebertragen
+worker.postMessage(buffer, [buffer]); // Eigentum übertragen
 ```
 
 **F3: Was sind Transferable Objects?**
 
-A: Datenbesitz uebertragen statt kopieren:
+A: Datenbesitz übertragen statt kopieren:
 
 ```javascript
 // Normaler Ansatz: Daten kopieren (langsam)
 const largeArray = new Uint8Array(10000000); // 10MB
-worker.postMessage(largeArray); // 10MB kopieren (zeitaufwaendig)
+worker.postMessage(largeArray); // 10MB kopieren (zeitaufwändig)
 
-// Transferable: Eigentum uebertragen (schnell)
+// Transferable: Eigentum übertragen (schnell)
 const buffer = largeArray.buffer;
-worker.postMessage(buffer, [buffer]); // Eigentum uebertragen (Millisekunden)
+worker.postMessage(buffer, [buffer]); // Eigentum übertragen (Millisekunden)
 
-// Achtung: Nach der Uebertragung kann der Hauptthread die Daten nicht mehr verwenden
-console.log(largeArray.length); // 0 (bereits uebertragen)
+// Achtung: Nach der Übertragung kann der Hauptthread die Daten nicht mehr verwenden
+console.log(largeArray.length); // 0 (bereits übertragen)
 ```
 
-**Unterstuetzte Transferable-Typen:**
+**Unterstützte Transferable-Typen:**
 
 - `ArrayBuffer`
 - `MessagePort`
@@ -260,22 +260,22 @@ console.log(largeArray.length); // 0 (bereits uebertragen)
 A: Entscheidungsbaum:
 
 ```
-Ist es eine zeitaufwaendige Berechnung (> 50ms)?
-|- Nein -> Kein Worker noetig
-|- Ja -> Weiter pruefen
+Ist es eine zeitaufwändige Berechnung (> 50ms)?
+|- Nein -> Kein Worker nötig
+|- Ja -> Weiter prüfen
     |
     |- Muss DOM manipuliert werden?
-    |   |- Ja -> Worker nicht moeglich (requestIdleCallback erwaegen)
-    |   |- Nein -> Weiter pruefen
+    |   |- Ja -> Worker nicht möglich (requestIdleCallback erwägen)
+    |   |- Nein -> Weiter prüfen
     |
     |- Ist die Kommunikationsfrequenz hoch (> 60 Mal/Sekunde)?
         |- Ja -> Vermutlich nicht geeignet (Kommunikationsoverhead)
-        |- Nein -> Geeignet fuer Worker
+        |- Nein -> Geeignet für Worker
 ```
 
 **Geeignete Szenarien:**
 
-- Verschluesselung/Entschluesselung
+- Verschlüsselung/Entschlüsselung
 - Bildverarbeitung (Filter, Komprimierung)
 - Sortierung/Filterung großer Datenmengen
 - Komplexe mathematische Berechnungen
@@ -283,10 +283,10 @@ Ist es eine zeitaufwaendige Berechnung (> 50ms)?
 
 **Nicht geeignete Szenarien:**
 
-- Einfache Berechnungen (Overhead groesser als Nutzen)
-- Haeufige Kommunikation noetig
-- DOM-Manipulation noetig
-- Nicht unterstuetzte APIs noetig
+- Einfache Berechnungen (Overhead größer als Nutzen)
+- Häufige Kommunikation nötig
+- DOM-Manipulation nötig
+- Nicht unterstützte APIs nötig
 
 **F5: Welche Typen von Web Worker gibt es?**
 
@@ -303,7 +303,7 @@ const sharedWorker = new SharedWorker('shared-worker.js');
 
 // 3. Service Worker (Dienst)
 navigator.serviceWorker.register('sw.js');
-// Fuer Cache, Offline-Unterstuetzung, Push-Benachrichtigungen
+// Für Cache, Offline-Unterstützung, Push-Benachrichtigungen
 ```
 
 **Vergleich:**
@@ -311,19 +311,19 @@ navigator.serviceWorker.register('sw.js');
 | Eigenschaft | Dedicated | Shared | Service |
 | ----------- | --------- | ------ | ------- |
 | Sharing | Einzelne Seite | Mehrere Seiten | Gesamte Website |
-| Lebenszyklus | Schließt mit der Seite | Letzte Seite schließt | Unabhaengig von Seite |
-| Hauptverwendung | Hintergrundberechnung | Seitenuebergreifende Kommunikation | Cache, Offline |
+| Lebenszyklus | Schließt mit der Seite | Letzte Seite schließt | Unabhängig von Seite |
+| Hauptverwendung | Hintergrundberechnung | Seitenübergreifende Kommunikation | Cache, Offline |
 
 **F6: Wie debuggt man Web Worker?**
 
-A: Chrome DevTools unterstuetzt:
+A: Chrome DevTools unterstützt:
 
 ```javascript
 // 1. Im Sources-Panel sind Worker-Dateien sichtbar
-// 2. Breakpoints koennen gesetzt werden
-// 3. Code kann in der Console ausgefuehrt werden
+// 2. Breakpoints können gesetzt werden
+// 3. Code kann in der Console ausgeführt werden
 
-// Nuetzlicher Tipp: console im Worker verwenden
+// Nützlicher Tipp: console im Worker verwenden
 self.addEventListener('message', (e) => {
   console.log('Worker empfangen:', e.data);
   // Im DevTools Console sichtbar
@@ -341,31 +341,31 @@ worker.onerror = (error) => {
 
 ## Performance-Vergleich
 
-### Reale Testdaten (Verarbeitung von 1 Million Eintraegen)
+### Reale Testdaten (Verarbeitung von 1 Million Einträgen)
 
-| Methode | Ausfuehrungszeit | UI friert ein? | Speicher-Spitze |
+| Methode | Ausführungszeit | UI friert ein? | Speicher-Spitze |
 | ------- | ---------------- | -------------- | --------------- |
 | Hauptthread (synchron) | 2,5 s | Komplett eingefroren | 250 MB |
 | Hauptthread (Time Slicing) | 3,2 s | Gelegentliches Ruckeln | 280 MB |
-| Web Worker | 2,3 s | Komplett fluessig | 180 MB |
+| Web Worker | 2,3 s | Komplett flüssig | 180 MB |
 
 **Fazit:**
 
-- Web Worker blockiert nicht nur die UI nicht, sondern ist auch schneller durch Multi-Core-Parallelitaet
+- Web Worker blockiert nicht nur die UI nicht, sondern ist auch schneller durch Multi-Core-Parallelität
 - Weniger Speicherverbrauch (Hauptthread muss große Datenmengen nicht vorhalten)
 
 ---
 
 ## Verwandte Technologien
 
-### Web Worker vs andere Loesungen
+### Web Worker vs andere Lösungen
 
 ```javascript
 // 1. setTimeout (Pseudo-Asynchron)
 setTimeout(() => heavyTask(), 0);
 // Immer noch im Hauptthread, wird ruckeln
 
-// 2. requestIdleCallback (Ausfuehrung in Leerlaufzeit)
+// 2. requestIdleCallback (Ausführung in Leerlaufzeit)
 requestIdleCallback(() => heavyTask());
 // Nur in Leerlaufzeiten, keine Abschlussgarantie
 
@@ -376,10 +376,10 @@ worker.postMessage(task);
 
 ### Fortgeschritten: Worker-Kommunikation mit Comlink vereinfachen
 
-[Comlink](https://github.com/GoogleChromeLabs/comlink) laesst Worker wie normale Funktionen verwenden:
+[Comlink](https://github.com/GoogleChromeLabs/comlink) lässt Worker wie normale Funktionen verwenden:
 
 ```javascript
-// Traditionell (umstaendlich)
+// Traditionell (umständlich)
 worker.postMessage({ action: 'add', a: 1, b: 2 });
 worker.onmessage = (e) => console.log(e.data);
 
@@ -400,15 +400,15 @@ console.log(result); // 3
 
 **Interview-Vorbereitung:**
 
-1. Verstehen, "warum Worker noetig ist" (Single-Thread-Problem)
-2. Wissen, "wann man ihn verwendet" (zeitaufwaendige Berechnung)
+1. Verstehen, "warum Worker nötig ist" (Single-Thread-Problem)
+2. Wissen, "wann man ihn verwendet" (zeitaufwändige Berechnung)
 3. "Kommunikationsmechanismus" verstehen (postMessage)
-4. "Einschraenkungen" kennen (kein DOM-Zugriff)
+4. "Einschränkungen" kennen (kein DOM-Zugriff)
 5. Mindestens einen Worker-Fall implementiert haben
 
 **Praxistipps:**
 
-- Mit einfachen Faellen beginnen (z.B. Primzahlenberechnung)
+- Mit einfachen Fällen beginnen (z.B. Primzahlenberechnung)
 - Chrome DevTools zum Debuggen nutzen
 - Performance-Unterschiede messen
 - Tools wie Comlink in Betracht ziehen
@@ -420,4 +420,4 @@ console.log(result); // 3
 - [Routing-Optimierung ->](/docs/experience/performance/lv1-route-optimization)
 - [Bildladungsoptimierung ->](/docs/experience/performance/lv1-image-optimization)
 - [Virtual Scroll Implementierung ->](/docs/experience/performance/lv3-virtual-scroll)
-- [Optimierungsstrategien fuer große Datenmengen ->](/docs/experience/performance/lv3-large-data-optimization)
+- [Optimierungsstrategien für große Datenmengen ->](/docs/experience/performance/lv3-large-data-optimization)

@@ -5,13 +5,13 @@ slug: /experience/performance/lv3-virtual-scroll
 tags: [Experience, Interview, Performance, Lv3]
 ---
 
-> Wenn eine Seite 1000+ Datensaetze rendern muss, kann Virtual Scroll die DOM-Knoten von 1000+ auf 20-30 reduzieren, mit 80% weniger Speicherverbrauch.
+> Wenn eine Seite 1000+ Datensätze rendern muss, kann Virtual Scroll die DOM-Knoten von 1000+ auf 20-30 reduzieren, mit 80% weniger Speicherverbrauch.
 
 ---
 
 ## Interview-Szenario
 
-**F: Wenn die Seite mehr als eine Tabelle hat, jede mit ueber hundert Eintraegen, und es haeufig DOM-aktualisierende Events gibt - welche Methode wuerden Sie zur Performance-Optimierung verwenden?**
+**F: Wenn die Seite mehr als eine Tabelle hat, jede mit über hundert Einträgen, und es häufig DOM-aktualisierende Events gibt - welche Methode würden Sie zur Performance-Optimierung verwenden?**
 
 ---
 
@@ -23,13 +23,13 @@ Im Plattformprojekt haben wir Seiten mit großen Datenmengen:
 
 ```markdown
 Seite mit Transaktionsverlauf
-- Einzahlungstabelle: 1000+ Eintraege
-- Auszahlungstabelle: 800+ Eintraege
-- Wetttabelle: 5000+ Eintraege
+- Einzahlungstabelle: 1000+ Einträge
+- Auszahlungstabelle: 800+ Einträge
+- Wetttabelle: 5000+ Einträge
 - Jeder Eintrag hat 8-10 Felder (Zeit, Betrag, Status etc.)
 
 Probleme ohne Optimierung
-- DOM-Knoten: 1000 Eintraege x 10 Felder = 10.000+ Knoten
+- DOM-Knoten: 1000 Einträge x 10 Felder = 10.000+ Knoten
 - Speicherverbrauch: ca. 150-200 MB
 - Erstrendering-Zeit: 3-5 Sekunden (weißer Bildschirm)
 - Scroll-Ruckeln: FPS < 20
@@ -40,7 +40,7 @@ Probleme ohne Optimierung
 
 ```javascript
 // Traditioneller Ansatz
-<tr v-for="record in allRecords">  // 1000+ Eintraege alle gerendert
+<tr v-for="record in allRecords">  // 1000+ Einträge alle gerendert
   <td>{{ record.time }}</td>
   <td>{{ record.amount }}</td>
   // ... 8-10 Felder
@@ -48,31 +48,31 @@ Probleme ohne Optimierung
 
 // Ergebnis:
 // - Initiales Rendering: 10.000+ DOM-Knoten
-// - Fuer Benutzer sichtbar: 20-30 Eintraege
+// - Für Benutzer sichtbar: 20-30 Einträge
 // - Verschwendung: 99% der Knoten sieht der Benutzer nie
 ```
 
 ---
 
-## Loesung (Action)
+## Lösung (Action)
 
 ### Virtual Scrolling
 
-Beim Virtual Scroll gibt es zwei Richtungen: die offiziell unterstuetzte Drittanbieter-Bibliothek [vue-virtual-scroller](https://github.com/Akryum/vue-virtual-scroller) verwenden, oder selbst implementieren. Unter Beruecksichtigung der realen Entwicklungskosten und abgedeckten Szenarien wuerde ich die offiziell unterstuetzte Bibliothek bevorzugen.
+Beim Virtual Scroll gibt es zwei Richtungen: die offiziell unterstützte Drittanbieter-Bibliothek [vue-virtual-scroller](https://github.com/Akryum/vue-virtual-scroller) verwenden, oder selbst implementieren. Unter Berücksichtigung der realen Entwicklungskosten und abgedeckten Szenarien würde ich die offiziell unterstützte Bibliothek bevorzugen.
 
 ```js
 // Nur sichtbare Zeilen rendern, z.B.:
-// - 100 Eintraege, nur die sichtbaren 20 rendern
+// - 100 Einträge, nur die sichtbaren 20 rendern
 // - Drastische Reduzierung der DOM-Knoten
 ```
 
 ### Datenaktualisierungsfrequenz-Kontrolle
 
-> Loesung 1: requestAnimationFrame (RAF)
-> Konzept: Der Browser zeichnet maximal 60 Mal pro Sekunde (60 FPS) neu. Schnellere Updates sind fuer das Auge unsichtbar, daher passen wir uns der Bildschirmaktualisierungsrate an.
+> Lösung 1: requestAnimationFrame (RAF)
+> Konzept: Der Browser zeichnet maximal 60 Mal pro Sekunde (60 FPS) neu. Schnellere Updates sind für das Auge unsichtbar, daher passen wir uns der Bildschirmaktualisierungsrate an.
 
 ```js
-// Vorher: sofortige Aktualisierung bei Datenempfang (moeglicherweise 100 Mal/Sekunde)
+// Vorher: sofortige Aktualisierung bei Datenempfang (möglicherweise 100 Mal/Sekunde)
 socket.on('price', (newPrice) => {
   btcPrice.value = newPrice;
 });
@@ -94,7 +94,7 @@ socket.on('price', (newPrice) => {
 });
 ```
 
-Loesung 2: Throttle
+Lösung 2: Throttle
 Konzept: Aktualisierungsfrequenz erzwungen begrenzen, z.B. "maximal 1 Aktualisierung pro 100ms"
 
 ```js
@@ -110,19 +110,19 @@ socket.on('price', updatePrice);
 ### Vue3-spezifische Optimierungen
 
 ```js
-// 1. v-memo - selten aendernde Spalten memoieren
+// 1. v-memo - selten ändernde Spalten memoieren
 <tr v-for="row in data"
   :key="row.id"
-  v-memo="[row.price, row.volume]">  // Nur bei Aenderung dieser Felder neu rendern
+  v-memo="[row.price, row.volume]">  // Nur bei Änderung dieser Felder neu rendern
 </tr>
 
 // 2. Statische Daten einfrieren, um reaktiven Overhead zu vermeiden
 const staticData = Object.freeze(largeDataArray)
 
-// 3. shallowRef fuer große Arrays
+// 3. shallowRef für große Arrays
 const tableData = shallowRef([...])  // Nur das Array verfolgen, nicht die inneren Objekte
 
-// 4. key fuer optimierten Diff-Algorithmus verwenden
+// 4. key für optimierten Diff-Algorithmus verwenden
 <tr v-for="row in data" :key="row.id">  // Stabiler key
 ```
 
@@ -131,7 +131,7 @@ const tableData = shallowRef([...])  // Nur das Array verfolgen, nicht die inner
 ```scss
 // CSS transform statt top/left verwenden
 .row-update {
-  transform: translateY(0); /* GPU-Beschleunigung ausloesen */
+  transform: translateY(0); /* GPU-Beschleunigung auslösen */
   will-change: transform; /* Browser-Hinweis zur Optimierung */
 }
 
@@ -159,7 +159,7 @@ const tableData = shallowRef([...])  // Nur das Array verfolgen, nicht die inner
 
 ## Interview-Schwerpunkte
 
-### Haeufige Erweiterungsfragen
+### Häufige Erweiterungsfragen
 
 **F: Was wenn man keine Drittanbieter-Bibliotheken verwenden darf?**
 A: Die Kernlogik des Virtual Scroll selbst implementieren:
@@ -189,7 +189,7 @@ const baseDelay = 1000;
 
 function reconnect() {
   if (retryCount >= maxRetries) {
-    showError('Verbindung nicht moeglich, bitte Seite neu laden');
+    showError('Verbindung nicht möglich, bitte Seite neu laden');
     return;
   }
 
@@ -213,30 +213,30 @@ A: Trade-offs zu beachten:
 
 ```markdown
 Nachteile
-- Keine native Browsersuche moeglich (Ctrl+F)
-- Keine "Alles auswaehlen"-Funktion (Sonderbehandlung noetig)
-- Hoehere Implementierungskomplexitaet
-- Feste Hoehe oder Vorberechnung noetig
-- Barrierefreiheit erfordert zusaetzliche Behandlung
+- Keine native Browsersuche möglich (Ctrl+F)
+- Keine "Alles auswählen"-Funktion (Sonderbehandlung nötig)
+- Höhere Implementierungskomplexität
+- Feste Höhe oder Vorberechnung nötig
+- Barrierefreiheit erfordert zusätzliche Behandlung
 
 Geeignete Szenarien
-- Datenmenge > 100 Eintraege
-- Aehnliche Datenstruktur pro Eintrag (feste Hoehe)
-- Hochperformantes Scrollen noetig
-- Hauptsaechlich Ansicht (nicht Bearbeitung)
+- Datenmenge > 100 Einträge
+- Ähnliche Datenstruktur pro Eintrag (feste Höhe)
+- Hochperformantes Scrollen nötig
+- Hauptsächlich Ansicht (nicht Bearbeitung)
 
 Nicht geeignete Szenarien
-- Datenmenge < 50 Eintraege (Over-Engineering)
-- Variable Hoehe (schwierige Implementierung)
-- Viel Interaktion noetig (Mehrfachauswahl, Drag & Drop)
-- Gesamte Tabelle drucken noetig
+- Datenmenge < 50 Einträge (Over-Engineering)
+- Variable Höhe (schwierige Implementierung)
+- Viel Interaktion nötig (Mehrfachauswahl, Drag & Drop)
+- Gesamte Tabelle drucken nötig
 ```
 
-**F: Wie optimiert man Listen mit variabler Hoehe?**
-A: Virtual Scroll mit dynamischer Hoehe verwenden:
+**F: Wie optimiert man Listen mit variabler Höhe?**
+A: Virtual Scroll mit dynamischer Höhe verwenden:
 
 ```javascript
-// Option 1: geschaetzte Hoehe + tatsaechliche Messung
+// Option 1: geschätzte Höhe + tatsächliche Messung
 const estimatedHeight = 50;
 const measuredHeights = {};
 
@@ -247,7 +247,7 @@ onMounted(() => {
   });
 });
 
-// Option 2: Bibliothek mit dynamischer Hoehenunterstuetzung
+// Option 2: Bibliothek mit dynamischer Höhenunterstützung
 <DynamicScroller
   :items="items"
   :min-item-size="50"
@@ -263,14 +263,14 @@ onMounted(() => {
 
 | Vergleichskriterium | Virtual Scroll | Traditionelle Paginierung |
 | ------------------- | -------------- | ------------------------- |
-| Benutzererfahrung | Durchgaengiges Scrollen (besser) | Seitenwechsel noetig (unterbrochen) |
+| Benutzererfahrung | Durchgängiges Scrollen (besser) | Seitenwechsel nötig (unterbrochen) |
 | Performance | Rendert immer nur sichtbaren Bereich | Rendert ganze Seite |
-| Implementierungskomplexitaet | Komplexer | Einfach |
+| Implementierungskomplexität | Komplexer | Einfach |
 | SEO-freundlich | Schlechter | Besser |
-| Barrierefreiheit | Sonderbehandlung noetig | Native Unterstuetzung |
+| Barrierefreiheit | Sonderbehandlung nötig | Native Unterstützung |
 
 **Empfehlung:**
 
 - Backend-Systeme, Dashboard -> Virtual Scroll
-- Oeffentliche Websites, Blogs -> Traditionelle Paginierung
-- Hybridloesung: Virtual Scroll + "Mehr laden"-Button
+- Öffentliche Websites, Blogs -> Traditionelle Paginierung
+- Hybridlösung: Virtual Scroll + "Mehr laden"-Button

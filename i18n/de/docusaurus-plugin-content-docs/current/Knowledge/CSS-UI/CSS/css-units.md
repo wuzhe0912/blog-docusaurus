@@ -5,19 +5,19 @@ slug: /css-units
 tags: [CSS, Quiz, Medium]
 ---
 
-## 1. Erklaeren Sie die Unterschiede zwischen `px`, `em`, `rem`, `vw` und `vh`
+## 1. Erklären Sie die Unterschiede zwischen `px`, `em`, `rem`, `vw` und `vh`
 
 ### Schnelle Vergleichstabelle
 
-| Einheit | Typ      | Relativ zu                       | Vom Elternelement beeinflusst? | Haeufige Verwendung                        |
+| Einheit | Typ      | Relativ zu                       | Vom Elternelement beeinflusst? | Häufige Verwendung                        |
 | ------- | -------- | -------------------------------- | ------------------------------ | ------------------------------------------ |
-| `px`    | Absolut  | Bildschirmpixel                  | Nein                           | Raender, Schatten, kleine Details          |
-| `em`    | Relativ  | font-size des **Elternelements** | Ja                             | Padding, Margin (Schriftgroesse folgend)   |
-| `rem`   | Relativ  | font-size des **Wurzelelements** | Nein                           | Schriften, Abstaende, allgemeine Groessen  |
+| `px`    | Absolut  | Bildschirmpixel                  | Nein                           | Ränder, Schatten, kleine Details          |
+| `em`    | Relativ  | font-size des **Elternelements** | Ja                             | Padding, Margin (Schriftgröße folgend)   |
+| `rem`   | Relativ  | font-size des **Wurzelelements** | Nein                           | Schriften, Abstände, allgemeine Größen  |
 | `vw`    | Relativ  | 1% der Viewport-Breite           | Nein                           | Responsive Breite, Full-Width-Elemente     |
-| `vh`    | Relativ  | 1% der Viewport-Hoehe            | Nein                           | Responsive Hoehe, Full-Screen-Bereiche     |
+| `vh`    | Relativ  | 1% der Viewport-Höhe            | Nein                           | Responsive Höhe, Full-Screen-Bereiche     |
 
-### Detaillierte Erklaerung
+### Detaillierte Erklärung
 
 #### `px` (Pixels)
 
@@ -25,19 +25,19 @@ tags: [CSS, Quiz, Medium]
 
 **Eigenschaften**:
 
-- Feste Groesse, aendert sich durch keine Einstellung
-- Praezise Kontrolle, aber wenig Flexibilitaet
-- Ungüuenstig fuer responsives Design und Barrierefreiheit
+- Feste Größe, ändert sich durch keine Einstellung
+- Präzise Kontrolle, aber wenig Flexibilität
+- Ungünstig für responsives Design und Barrierefreiheit
 
-**Anwendungsfaelle**:
+**Anwendungsfälle**:
 
 ```css
-/* Geeignet fuer */
-border: 1px solid #000; /* Raender */
+/* Geeignet für */
+border: 1px solid #000; /* Ränder */
 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Schatten */
 border-radius: 4px; /* Kleine abgerundete Ecken */
 
-/* Nicht empfohlen fuer */
+/* Nicht empfohlen für */
 font-size: 16px; /* Schrift: besser rem verwenden */
 width: 1200px; /* Breite: besser % oder vw verwenden */
 ```
@@ -49,8 +49,8 @@ width: 1200px; /* Breite: besser % oder vw verwenden */
 **Eigenschaften**:
 
 - Kumuliert durch Vererbung (verschachtelte Strukturen addieren sich)
-- Hohe Flexibilitaet, kann aber schwer kontrollierbar werden
-- Geeignet fuer Szenarien, in denen die Skalierung dem Elternelement folgen soll
+- Hohe Flexibilität, kann aber schwer kontrollierbar werden
+- Geeignet für Szenarien, in denen die Skalierung dem Elternelement folgen soll
 
 **Berechnungsbeispiel**:
 
@@ -69,18 +69,18 @@ width: 1200px; /* Breite: besser % oder vw verwenden */
 }
 ```
 
-**Anwendungsfaelle**:
+**Anwendungsfälle**:
 
 ```css
-/* Geeignet fuer */
+/* Geeignet für */
 .button {
   font-size: 1rem;
-  padding: 0.5em 1em; /* Padding folgt der Schriftgroesse des Buttons */
+  padding: 0.5em 1em; /* Padding folgt der Schriftgröße des Buttons */
 }
 
 .card-title {
   font-size: 1.2em; /* Relativ zur Basisschrift der Card */
-  margin-bottom: 0.5em; /* Abstand folgt der Titelgroesse */
+  margin-bottom: 0.5em; /* Abstand folgt der Titelgröße */
 }
 
 /* Vorsicht bei Verschachtelungskumulation */
@@ -94,7 +94,7 @@ width: 1200px; /* Breite: besser % oder vw verwenden */
 
 - Kumuliert nicht durch Vererbung (immer relativ zum Wurzelelement)
 - Einfach zu verwalten und zu warten
-- Praktisch fuer die Implementierung globaler Skalierung
+- Praktisch für die Implementierung globaler Skalierung
 - Eine der am meisten empfohlenen Einheiten
 
 **Berechnungsbeispiel**:
@@ -115,16 +115,16 @@ html {
 }
 ```
 
-**Anwendungsfaelle**:
+**Anwendungsfälle**:
 
 ```css
-/* Am meisten empfohlen fuer */
+/* Am meisten empfohlen für */
 html {
   font-size: 16px; /* Basis festlegen */
 }
 
 body {
-  font-size: 1rem; /* Fliesstext 16px */
+  font-size: 1rem; /* Fließtext 16px */
 }
 
 h1 {
@@ -141,7 +141,7 @@ p {
   max-width: 75rem; /* 1200px */
 }
 
-/* Praktisch fuer Dark Mode oder Barrierefreiheitsanpassungen */
+/* Praktisch für Dark Mode oder Barrierefreiheitsanpassungen */
 @media (prefers-reduced-motion: reduce) {
   html {
     font-size: 18px; /* Alle rem-Einheiten skalieren automatisch */
@@ -156,7 +156,7 @@ p {
 **Eigenschaften**:
 
 - Wirklich responsive Einheit
-- Aendert sich in Echtzeit mit der Browsergroesse
+- Ändert sich in Echtzeit mit der Browsergröße
 - Achtung: 100vw beinhaltet die Scrollbar-Breite
 
 **Berechnungsbeispiel**:
@@ -168,17 +168,17 @@ p {
   font-size: 5vw; /* 1920px × 5% = 96px */
 }
 
-/* Angenommen Viewport-Breite 375px (Mobilgeraet) */
+/* Angenommen Viewport-Breite 375px (Mobilgerät) */
 .element {
   width: 50vw; /* 375px × 50% = 187.5px */
   font-size: 5vw; /* 375px × 5% = 18.75px */
 }
 ```
 
-**Anwendungsfaelle**:
+**Anwendungsfälle**:
 
 ```css
-/* Geeignet fuer */
+/* Geeignet für */
 .hero {
   width: 100vw; /* Full-Width-Banner */
   margin-left: calc(-50vw + 50%); /* Container-Begrenzung durchbrechen */
@@ -190,7 +190,7 @@ p {
 
 .responsive-box {
   width: 80vw;
-  max-width: 1200px; /* Maximale Begrenzung hinzufuegen */
+  max-width: 1200px; /* Maximale Begrenzung hinzufügen */
 }
 
 /* Vermeiden */
@@ -201,18 +201,18 @@ body {
 
 #### `vh` (Viewport Height)
 
-**Definition**: Relativ zu 1% der Viewport-Hoehe (100vh = Viewport-Hoehe)
+**Definition**: Relativ zu 1% der Viewport-Höhe (100vh = Viewport-Höhe)
 
 **Eigenschaften**:
 
-- Geeignet fuer Fullscreen-Effekte
-- Bei Mobilgeraeten auf das Adressleisten-Problem achten
+- Geeignet für Fullscreen-Effekte
+- Bei Mobilgeräten auf das Adressleisten-Problem achten
 - Kann durch das Ausfahren der Tastatur beeinflusst werden
 
-**Anwendungsfaelle**:
+**Anwendungsfälle**:
 
 ```css
-/* Geeignet fuer */
+/* Geeignet für */
 .hero-section {
   height: 100vh; /* Fullscreen-Startseite */
 }
@@ -228,10 +228,10 @@ body {
   top: 0;
 }
 
-/* Alternative fuer Mobilgeraete */
+/* Alternative für Mobilgeräte */
 .hero-section {
   height: 100vh;
-  height: 100dvh; /* Dynamische Viewport-Hoehe (neuere Einheit) */
+  height: 100dvh; /* Dynamische Viewport-Höhe (neuere Einheit) */
 }
 
 /* Vertikale Zentrierung */
@@ -261,7 +261,7 @@ html {
 
 @media (max-width: 480px) {
   html {
-    font-size: 12px; /* Mobilgeraet */
+    font-size: 12px; /* Mobilgerät */
   }
 }
 
@@ -282,32 +282,32 @@ p {
   width: 90vw;
   max-width: 75rem;
 
-  /* rem fuer Abstaende */
+  /* rem für Abstände */
   padding: 2rem;
   margin: 1rem auto;
 
-  /* px fuer Details */
+  /* px für Details */
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card-title {
-  /* clamp kombiniert mehrere Einheiten fuer fliessende Skalierung */
+  /* clamp kombiniert mehrere Einheiten für fließende Skalierung */
   font-size: clamp(1.25rem, 3vw, 2rem);
 }
 ```
 
-### Muster fuer die Interview-Antwort
+### Muster für die Interview-Antwort
 
 **Antwortstruktur**:
 
 ```markdown
-1. **px**: Pixel-Kleindetails -> Raender, Schatten, kleine abgerundete Ecken
-2. **rem**: Stabile und unveraenderliche Basis -> Schriften, Abstaende, Hauptgroessen
+1. **px**: Pixel-Kleindetails -> Ränder, Schatten, kleine abgerundete Ecken
+2. **rem**: Stabile und unveränderliche Basis -> Schriften, Abstände, Hauptgrößen
 3. **em**: Folgt dem Elternelement
-4. **vw**: Aendert sich mit der Viewport-Breite -> Responsive Breite
-5. **vh**: Fuellt die Viewport-Hoehe -> Fullscreen-Bereiche
+4. **vw**: Ändert sich mit der Viewport-Breite -> Responsive Breite
+5. **vh**: Füllt die Viewport-Höhe -> Fullscreen-Bereiche
 ```
 
 1. **Schnelle Definition**
@@ -323,15 +323,15 @@ p {
 
 3. **Praktische Anwendung**
 
-   - **px**: 1px-Raender, Schatten und andere Details
-   - **rem**: Schriften, Abstaende, Container (am haeufigsten verwendet, einfach zu warten)
+   - **px**: 1px-Ränder, Schatten und andere Details
+   - **rem**: Schriften, Abstände, Container (am häufigsten verwendet, einfach zu warten)
    - **em**: Button-Padding (wenn es der Schriftskalierung folgen soll)
    - **vw/vh**: Full-Width-Banner, Fullscreen-Bereiche, responsive Schriften mit clamp
 
 4. **Best Practices**
    - html font-size als Basis festlegen
    - clamp() mit verschiedenen Einheiten kombinieren
-   - Auf das vh-Problem bei Mobilgeraeten achten (dvh verwenden)
+   - Auf das vh-Problem bei Mobilgeräten achten (dvh verwenden)
 
 ### Reference
 

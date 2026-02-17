@@ -8,7 +8,7 @@ slug: /knowledge
 >
 > _It's never too late to learn._
 
-Vous trouverez ici les notes techniques et Q&R que j'ai organisees au cours de mon developpement frontend. Si vous souhaitez lire le cheminement de pensee complet et les histoires de carriere, rendez-vous sur le [Blog](/blog).
+Vous trouverez ici les notes techniques et Q&R que j'ai organisées au cours de mon développement frontend. Si vous souhaitez lire le cheminement de pensée complet et les histoires de carrière, rendez-vous sur le [Blog](/blog).
 
 ---
 
@@ -16,35 +16,35 @@ Vous trouverez ici les notes techniques et Q&R que j'ai organisees au cours de m
 
 ### 🌐 Browser & Network
 
-Exploration des principes de rendu du navigateur, des protocoles HTTP et des mecanismes de transmission reseau.
+Exploration des principes de rendu du navigateur, des protocoles HTTP et des mécanismes de transmission réseau.
 
 ### 📒 JavaScript Ecosystem
 
-Concepts fondamentaux de JavaScript et TypeScript, closures, chaine de prototypes et analyses approfondies.
+Concepts fondamentaux de JavaScript et TypeScript, closures, chaîne de prototypes et analyses approfondies.
 
 ### ⚛️ Frontend Frameworks
 
-Principes des frameworks, cycle de vie, gestion d'etat et bonnes pratiques de React et Vue.
+Principes des frameworks, cycle de vie, gestion d'état et bonnes pratiques de React et Vue.
 
 ### 🎨 CSS & UI
 
-Traitement des styles, mise en page et fonctionnalites CSS modernes.
+Traitement des styles, mise en page et fonctionnalités CSS modernes.
 
 ### 🛡️ Web Security
 
-Des principes d'attaques CSRF/XSS a l'analyse complete de l'implementation des mecanismes d'authentification JWT/Session.
+Des principes d'attaques CSRF/XSS à l'analyse complète de l'implémentation des mécanismes d'authentification JWT/Session.
 
 ### 🛠️ Engineering & Tools
 
-Outils d'ingenierie frontend, strategies de bundling et techniques avancees d'optimisation de Performance.
+Outils d'ingénierie frontend, stratégies de bundling et techniques avancées d'optimisation de Performance.
 
 ### 💼 Experience
 
-Preparation aux entretiens et partage d'experiences pratiques.
+Préparation aux entretiens et partage d'expériences pratiques.
 
 ### ⌨️ Coding
 
-Implementation manuelle de fonctions Lodash et exercices avances en JavaScript.
+Implémentation manuelle de fonctions Lodash et exercices avancés en JavaScript.
 
 ### 📊 LeetCode
 
@@ -56,4 +56,4 @@ Notes sur les AI Prompts et l'utilisation d'outils.
 
 ---
 
-> Lorsque vous constatez que vous ne pouvez pas expliquer fluemment le contenu des notes, cela signifie qu'elles ne sont pas encore assez claires et simples. Ajoutez autant d'exemples que possible pour renforcer la memorisation.
+> Lorsque vous constatez que vous ne pouvez pas expliquer fluemment le contenu des notes, cela signifie qu'elles ne sont pas encore assez claires et simples. Ajoutez autant d'exemples que possible pour renforcer la mémorisation.

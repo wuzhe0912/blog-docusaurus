@@ -53,8 +53,8 @@ async function updateUser(userId, newName) {
   };
 
   try {
-    const response = await axios.put(url, data); // Execute la requete PUT
-    console.log('User updated:', response.data); // Affiche les informations utilisateur mises a jour
+    const response = await axios.put(url, data); // Exécute la requête PUT
+    console.log('User updated:', response.data); // Affiche les informations utilisateur mises à jour
   } catch (error) {
     console.log('Error updating user:', error); // Affiche les informations d'erreur
   }

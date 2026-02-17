@@ -23,14 +23,14 @@ JS 的本质是单线程的语言，因为它的工作之一就是修改浏览�
 ```js
 console.log(1);
 
-// 這個非同步的函式就是 callback
+// 这个异步函数就是 callback
 setTimeout(function () {
   console.log(2);
 }, 0);
 
 console.log(3);
 
-// 依序印出 1 3 2
+// 依次打印 1 3 2
 ```
 
 ## 2. Why is setInterval not accurate in terms of timing ?
@@ -68,7 +68,7 @@ function moveElement(timestamp) {
     'myElement'
   ).style.transform = `translateX(${startPos}px)`;
 
-  // 如果元素還沒有到達目的地，繼續動畫
+  // 如果元素还没有到达目的地，继续动画
   if (startPos < 500) {
     requestAnimationFrame(moveElement);
   }

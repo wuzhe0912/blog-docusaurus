@@ -162,12 +162,12 @@ function foo() {}
 
 // 等价于（经过 Hoisting）
 // 阶段 1：创造阶段（Hoisting）
-function foo() {} // 1. 函式声明先提升
-var foo; // 2. 变数声明提升（但不覆盖已存在的函式）
+function foo() {} // 1. 函数声明先提升
+var foo; // 2. 变量声明提升（但不覆盖已存在的函数）
 
 // 阶段 2：执行阶段
-console.log(foo); // 此时 foo 是函式，输出 [Function: foo]
-foo = '1'; // 3. 变数赋值（会覆盖函式）
+console.log(foo); // 此时 foo 是函数，输出 [Function: foo]
+foo = '1'; // 3. 变量赋值（会覆盖函数）
 ```
 
 ### 关键概念
@@ -194,10 +194,10 @@ var myVar = 'Hello';
 
 ```js
 // 提升后的顺序
-function foo() {} // 函式先提升并赋值
-var foo; // 变数声明提升，但不会覆盖已存在的函式
+function foo() {} // 函数先提升并赋值
+var foo; // 变量声明提升，但不会覆盖已存在的函数
 
-// 因此 foo 是函式
+// 因此 foo 是函数
 console.log(foo); // [Function: foo]
 ```
 
@@ -213,12 +213,12 @@ console.log(foo); // ?
 // ======== 等价于 ========
 
 // 创造阶段（Hoisting）
-function foo() {} // 1️⃣ 函式声明提升（完整提升，包含函式体）
-var foo; // 2️⃣ 变数声明提升（但不覆盖 foo，因为已经是函式了）
+function foo() {} // 1️⃣ 函数声明提升（完整提升，包含函数体）
+var foo; // 2️⃣ 变量声明提升（但不覆盖 foo，因为已经是函数了）
 
 // 执行阶段
-console.log(foo); // [Function: foo] - foo 是函式
-foo = '1'; // 3️⃣ 变数赋值（此时才覆盖函式）
+console.log(foo); // [Function: foo] - foo 是函数
+foo = '1'; // 3️⃣ 变量赋值（此时才覆盖函数）
 console.log(foo); // '1' - foo 变成字串
 ```
 
@@ -263,8 +263,8 @@ console.log(foo); // ?
 **答案：**
 
 ```js
-[Function: foo] { return 2; } // 第一次输出（后面的函式覆盖前面的）
-'1' // 第二次输出（变数赋值覆盖函式）
+[Function: foo] { return 2; } // 第一次输出（后面的函数覆盖前面的）
+'1' // 第二次输出（变量赋值覆盖函数）
 ```
 
 **原因：**
@@ -273,16 +273,16 @@ console.log(foo); // ?
 // 提升后
 function foo() {
   return 1;
-} // 第一个函式
+} // 第一个函数
 
 function foo() {
   return 2;
-} // 第二个函式覆盖第一个
+} // 第二个函数覆盖第一个
 
-var foo; // 变数声明（不覆盖函式）
+var foo; // 变量声明（不覆盖函数）
 
 console.log(foo); // [Function: foo] { return 2; }
-foo = '1'; // 变数赋值（覆盖函式）
+foo = '1'; // 变量赋值（覆盖函数）
 console.log(foo); // '1'
 ```
 
@@ -305,24 +305,24 @@ function bar() {
 
 ```js
 undefined; // foo 是 undefined
-[Function: bar] // bar 是函式
+[Function: bar] // bar 是函数
 ```
 
 **原因：**
 
 ```js
 // 提升后
-var foo; // 变数声明提升（函式表达式只提升变数名）
+var foo; // 变量声明提升（函数表达式只提升变量名）
 function bar() {
   return 2;
-} // 函式声明完整提升
+} // 函数声明完整提升
 
 console.log(foo); // undefined
 console.log(bar); // [Function: bar]
 
 foo = function () {
   return 1;
-}; // 函式表达式赋值
+}; // 函数表达式赋值
 ```
 
 **关键差异：**
@@ -341,7 +341,7 @@ var foo = '1';
 console.log(bar); // ReferenceError: Cannot access 'bar' before initialization
 let bar = '1';
 
-// ✅ let/const 与函式同名会报错
+// ✅ let/const 与函数同名会报错
 function baz() {} // SyntaxError: Identifier 'baz' has already been declared
 let baz = '1';
 ```

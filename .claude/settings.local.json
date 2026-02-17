@@ -67,7 +67,12 @@
       "Bash(git -C /Users/pitt.wu/Documents/personal/blog-docusaurus status --short)",
       "Bash(git -C /Users/pitt.wu/Documents/personal/blog-docusaurus log --oneline -5)",
       "Bash(do git add \"i18n/$locale/docusaurus-plugin-content-docs/current/Knowledge/JavaScript-Ecosystem/\" \"i18n/$locale/docusaurus-plugin-content-docs/current/Knowledge/knowledge.md\")",
-      "Bash(git -C /Users/pitt.wu/Documents/personal/blog-docusaurus diff --cached --stat)"
+      "Bash(git -C /Users/pitt.wu/Documents/personal/blog-docusaurus diff --cached --stat)",
+      "Bash(do mkdir -p \"/Users/pitt.wu/Documents/personal/blog-docusaurus/i18n/$locale/docusaurus-plugin-content-docs/current/Knowledge/JavaScript-Ecosystem/TypeScript\")",
+      "Bash(do mkdir -p \"/Users/pitt.wu/Documents/personal/blog-docusaurus/i18n/$locale/docusaurus-plugin-content-docs/current/Knowledge/JavaScript-Ecosystem/JavaScript\")",
+      "Bash(do mkdir -p \"/Users/pitt.wu/Documents/personal/blog-docusaurus/i18n/$locale/docusaurus-plugin-content-docs/current/Experience/SSR-SEO\")",
+      "Bash(do ls \"/Users/pitt.wu/Documents/personal/blog-docusaurus/i18n/$locale/docusaurus-plugin-content-docs/current/Coding/JavaScript/\")",
+      "Bash(do echo \"Missing pinia-usage.md for: $locale\")"
     ]
   }
 }

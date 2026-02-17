@@ -1,56 +1,56 @@
 ---
 id: performance-lv3-web-worker
-title: '[Lv3] Ung dung Web Worker: tinh toan nen khong chan UI'
+title: '[Lv3] Ứng dụng Web Worker: tính toán nền không chặn UI'
 slug: /experience/performance/lv3-web-worker
 tags: [Experience, Interview, Performance, Lv3]
 ---
 
-> **Web Worker** la API cho phep chay JavaScript trong thread nen cua trinh duyet, thuc hien tinh toan nang ma khong chan thread chinh (thread UI).
+> **Web Worker** là API cho phép chạy JavaScript trong thread nền của trình duyệt, thực hiện tính toán nặng mà không chặn thread chính (thread UI).
 
-## Khai niem cot loi
+## Khái niệm cốt lõi
 
-### Boi canh van de
+### Bối cảnh vấn đề
 
-JavaScript von la **don thread**, tat ca code deu chay tren thread chinh:
+JavaScript vốn là **đơn thread**, tất cả code đều chạy trên thread chính:
 
 ```javascript
-// ❌ Tinh toan nang chan thread chinh
+// ❌ Tính toán nặng chặn thread chính
 function heavyComputation() {
   for (let i = 0; i < 10000000000; i++) {
-    // Tinh toan phuc tap
+    // Tính toán phức tạp
   }
   return result;
 }
 
-// Toan trang bi dong cung khi thuc thi
-const result = heavyComputation(); // UI khong the tuong tac
+// Toàn trang bị đóng cứng khi thực thi
+const result = heavyComputation(); // UI không thể tương tác
 ```
 
-**Van de:**
+**Vấn đề:**
 
-- Trang bi dong cung, nguoi dung khong the click, cuon
-- Animation dung lai
-- Trai nghiem nguoi dung rat te
+- Trang bị đóng cứng, người dùng không thể click, cuộn
+- Animation dừng lại
+- Trải nghiệm người dùng rất tệ
 
-### Giai phap Web Worker
+### Giải pháp Web Worker
 
-Web Worker cung cap kha nang **da thread**, cho phep tac vu nang chay nen:
+Web Worker cung cấp khả năng **đa thread**, cho phép tác vụ nặng chạy nền:
 
 ```javascript
-// ✅ Dung Worker chay nen
+// ✅ Dùng Worker chạy nền
 const worker = new Worker('worker.js');
 
-// Thread chinh khong bi chan, trang van tuong tac duoc
+// Thread chính không bị chặn, trang vẫn tương tác được
 worker.postMessage({ data: largeData });
 
 worker.onmessage = (e) => {
-  console.log('Tinh toan nen hoan thanh:', e.data);
+  console.log('Tính toán nền hoàn thành:', e.data);
 };
 ```
 
 ---
 
-## Tinh huong 1: Xu ly du lieu lon
+## Tình huống 1: Xử lý dữ liệu lớn
 
 ```javascript
 // main.js
@@ -59,7 +59,7 @@ const worker = new Worker('worker.js');
 worker.postMessage({ data: largeDataArray, action: 'process' });
 
 worker.onmessage = function (e) {
-  console.log('Ket qua xu ly:', e.data);
+  console.log('Kết quả xử lý:', e.data);
 };
 
 // worker.js
@@ -76,58 +76,58 @@ self.onmessage = function (e) {
 };
 ```
 
-## Tinh huong 2: Xu ly hinh anh
+## Tình huống 2: Xử lý hình ảnh
 
-Filter hinh anh, nen, thao tac pixel, khong lam dong cung UI.
+Filter hình ảnh, nén, thao tác pixel, không làm đóng cứng UI.
 
-## Tinh huong 3: Tinh toan phuc tap
+## Tình huống 3: Tính toán phức tạp
 
-Phep toan (tinh so nguyen to, ma hoa/giai ma)
-Tinh hash cho file lon
-Phan tich va thong ke du lieu
+Phép toán (tính số nguyên tố, mã hóa/giải mã)
+Tính hash cho file lớn
+Phân tích và thống kê dữ liệu
 
-## Han che va luu y
+## Hạn chế và lưu ý
 
-### Khong the lam trong Worker
+### Không thể làm trong Worker
 
-- Thao tac truc tiep DOM
-- Truy cap object window, document, parent
-- Su dung mot so Web API (nhu alert)
+- Thao tác trực tiếp DOM
+- Truy cập object window, document, parent
+- Sử dụng một số Web API (như alert)
 
-### Co the su dung trong Worker
+### Có thể sử dụng trong Worker
 
 - XMLHttpRequest / Fetch API
 - WebSocket
 - IndexedDB
 - Timer (setTimeout, setInterval)
-- Mot so API trinh duyet
+- Một số API trình duyệt
 
 ```javascript
-// Truong hop khong nen dung Worker
-// 1. Tinh toan don gian nhanh (tao Worker ton chi phi hon tinh toan)
-const result = 1 + 1; // Khong can Worker
+// Trường hợp không nên dùng Worker
+// 1. Tính toán đơn giản nhanh (tạo Worker tốn chi phí hơn tính toán)
+const result = 1 + 1; // Không cần Worker
 
-// 2. Can giao tiep thuong xuyen voi thread chinh
-// Chi phi giao tiep co the lon hon loi ich da thread
+// 2. Cần giao tiếp thường xuyên với thread chính
+// Chi phí giao tiếp có thể lớn hơn lợi ích đa thread
 
-// Truong hop nen dung Worker
-// 1. Tinh toan don le thoi gian dai
+// Trường hợp nên dùng Worker
+// 1. Tính toán đơn lẻ thời gian dài
 const result = calculatePrimes(1000000);
 
-// 2. Xu ly lo du lieu lon
+// 2. Xử lý lô dữ liệu lớn
 const processed = largeArray.map(complexOperation);
 ```
 
 ---
 
-## Truong hop ung dung thuc te
+## Trường hợp ứng dụng thực tế
 
-### Truong hop: Ma hoa du lieu game
+### Trường hợp: Mã hóa dữ liệu game
 
-Trong platform game, can ma hoa/giai ma du lieu nhay cam:
+Trong platform game, cần mã hóa/giải mã dữ liệu nhạy cảm:
 
 ```javascript
-// main.js - Thread chinh
+// main.js - Thread chính
 const cryptoWorker = new Worker('/workers/crypto-worker.js');
 
 function encryptPlayerData(data) {
@@ -149,7 +149,7 @@ function encryptPlayerData(data) {
 }
 
 const encrypted = await encryptPlayerData(sensitiveData);
-// Trang khong bi giat, nguoi dung van tuong tac binh thuong
+// Trang không bị giật, người dùng vẫn tương tác bình thường
 
 // crypto-worker.js - Thread Worker
 self.onmessage = function (e) {
@@ -166,7 +166,7 @@ self.onmessage = function (e) {
 };
 ```
 
-### Truong hop: Loc du lieu game lon
+### Trường hợp: Lọc dữ liệu game lớn
 
 ```javascript
 const filterWorker = new Worker('/workers/game-filter.js');
@@ -179,7 +179,7 @@ const filters = {
 };
 
 filterWorker.postMessage({
-  games: allGames, // 3000+ tua
+  games: allGames, // 3000+ tựa
   filters: filters,
 });
 
@@ -187,145 +187,145 @@ filterWorker.onmessage = (e) => {
   displayGames(e.data.filtered);
 };
 
-// Thread chinh khong giat, nguoi dung van cuon va click binh thuong
+// Thread chính không giật, người dùng vẫn cuộn và click bình thường
 ```
 
 ---
 
-## Diem chinh phong van
+## Điểm chính phỏng vấn
 
-### Cau hoi phong van thuong gap
+### Câu hỏi phỏng vấn thường gặp
 
-**Q1: Web Worker va thread chinh giao tiep nhu the nao?**
+**Q1: Web Worker và thread chính giao tiếp như thế nào?**
 
-A: Qua `postMessage` va `onmessage`:
+A: Qua `postMessage` và `onmessage`:
 
 ```javascript
-// Thread chinh → Worker
+// Thread chính → Worker
 worker.postMessage({ type: 'START', data: [1, 2, 3] });
 
-// Worker → Thread chinh
+// Worker → Thread chính
 self.postMessage({ type: 'RESULT', result: processedData });
 
-// Luu y: du lieu duoc sao chep qua "Structured Clone"
-// Nghia la:
-// ✅ Co the truyen: Number, String, Object, Array, Date, RegExp
-// ❌ Khong the truyen: Function, phan tu DOM, Symbol
+// Lưu ý: dữ liệu được sao chép qua "Structured Clone"
+// Nghĩa là:
+// ✅ Có thể truyền: Number, String, Object, Array, Date, RegExp
+// ❌ Không thể truyền: Function, phần tử DOM, Symbol
 ```
 
-**Q2: Chi phi hieu nang cua Web Worker la gi?**
+**Q2: Chi phí hiệu năng của Web Worker là gì?**
 
-A: Hai chi phi chinh:
+A: Hai chi phí chính:
 
 ```javascript
-// 1. Chi phi tao Worker (khoang 30-50ms)
-const worker = new Worker('worker.js'); // Can tai file
+// 1. Chi phí tạo Worker (khoảng 30-50ms)
+const worker = new Worker('worker.js'); // Cần tải file
 
-// 2. Chi phi giao tiep (sao chep du lieu)
-worker.postMessage(largeData); // Sao chep du lieu lon ton thoi gian
+// 2. Chi phí giao tiếp (sao chép dữ liệu)
+worker.postMessage(largeData); // Sao chép dữ liệu lớn tốn thời gian
 
-// Giai phap:
-// 1. Tai su dung Worker (khong tao moi moi lan)
-// 2. Dung Transferable Objects (chuyen quyen so huu, khong sao chep)
+// Giải pháp:
+// 1. Tái sử dụng Worker (không tạo mới mỗi lần)
+// 2. Dùng Transferable Objects (chuyển quyền sở hữu, không sao chép)
 const buffer = new ArrayBuffer(1024 * 1024); // 1MB
-worker.postMessage(buffer, [buffer]); // Chuyen quyen so huu
+worker.postMessage(buffer, [buffer]); // Chuyển quyền sở hữu
 ```
 
-**Q3: Transferable Objects la gi?**
+**Q3: Transferable Objects là gì?**
 
-A: Chuyen quyen so huu du lieu thay vi sao chep:
+A: Chuyển quyền sở hữu dữ liệu thay vì sao chép:
 
 ```javascript
-// ❌ Cach thuong: sao chep du lieu (cham)
+// ❌ Cách thường: sao chép dữ liệu (chậm)
 const largeArray = new Uint8Array(10000000); // 10MB
-worker.postMessage(largeArray); // Sao chep 10MB (ton thoi gian)
+worker.postMessage(largeArray); // Sao chép 10MB (tốn thời gian)
 
-// ✅ Transferable: chuyen quyen so huu (nhanh)
+// ✅ Transferable: chuyển quyền sở hữu (nhanh)
 const buffer = largeArray.buffer;
-worker.postMessage(buffer, [buffer]); // Chuyen quyen so huu (cap mili giay)
+worker.postMessage(buffer, [buffer]); // Chuyển quyền sở hữu (cấp mili giây)
 
-// Luu y: sau khi chuyen, thread chinh khong the su dung du lieu do nua
-console.log(largeArray.length); // 0 (da chuyen)
+// Lưu ý: sau khi chuyển, thread chính không thể sử dụng dữ liệu đó nữa
+console.log(largeArray.length); // 0 (đã chuyển)
 ```
 
-**Cac loai Transferable duoc ho tro:**
+**Các loại Transferable được hỗ trợ:**
 
 - `ArrayBuffer`
 - `MessagePort`
 - `ImageBitmap`
 - `OffscreenCanvas`
 
-**Q4: Khi nao nen dung Web Worker?**
+**Q4: Khi nào nên dùng Web Worker?**
 
-A: Cay quyet dinh:
+A: Cây quyết định:
 
 ```
-Tinh toan co ton thoi gian (> 50ms) khong?
-├─ Khong → Khong can Worker
-└─ Co → Tiep tuc danh gia
+Tính toán có tốn thời gian (> 50ms) không?
+├─ Không → Không cần Worker
+└─ Có → Tiếp tục đánh giá
     │
-    ├─ Co can thao tac DOM khong?
-    │   ├─ Co → Khong the dung Worker (can nhac requestIdleCallback)
-    │   └─ Khong → Tiep tuc danh gia
+    ├─ Có cần thao tác DOM không?
+    │   ├─ Có → Không thể dùng Worker (cân nhắc requestIdleCallback)
+    │   └─ Không → Tiếp tục đánh giá
     │
-    └─ Tan suat giao tiep co rat cao (> 60 lan/giay) khong?
-        ├─ Co → Co le khong phu hop (chi phi giao tiep lon)
-        └─ Khong → ✅ Phu hop dung Worker
+    └─ Tần suất giao tiếp có rất cao (> 60 lần/giây) không?
+        ├─ Có → Có lẽ không phù hợp (chi phí giao tiếp lớn)
+        └─ Không → ✅ Phù hợp dùng Worker
 ```
 
-**Truong hop phu hop:**
+**Trường hợp phù hợp:**
 
-- Ma hoa/giai ma
-- Xu ly hinh anh (filter, nen)
-- Sap xep/loc du lieu lon
-- Tinh toan toan hoc phuc tap
+- Mã hóa/giải mã
+- Xử lý hình ảnh (filter, nén)
+- Sắp xếp/lọc dữ liệu lớn
+- Tính toán toán học phức tạp
 - Parse file (JSON, CSV)
 
-**Truong hop khong phu hop:**
+**Trường hợp không phù hợp:**
 
-- Tinh toan don gian (chi phi lon hon loi ich)
-- Can giao tiep thuong xuyen
-- Can thao tac DOM
-- Can API khong duoc ho tro
+- Tính toán đơn giản (chi phí lớn hơn lợi ích)
+- Cần giao tiếp thường xuyên
+- Cần thao tác DOM
+- Cần API không được hỗ trợ
 
-**Q5: Co nhung loai Web Worker nao?**
+**Q5: Có những loại Web Worker nào?**
 
-A: Ba loai:
+A: Ba loại:
 
 ```javascript
-// 1. Dedicated Worker (rieng)
+// 1. Dedicated Worker (riêng)
 const worker = new Worker('worker.js');
-// Chi giao tiep voi trang da tao no
+// Chỉ giao tiếp với trang đã tạo nó
 
-// 2. Shared Worker (chia se)
+// 2. Shared Worker (chia sẻ)
 const sharedWorker = new SharedWorker('shared-worker.js');
-// Co the duoc chia se boi nhieu trang/tab
+// Có thể được chia sẻ bởi nhiều trang/tab
 
 // 3. Service Worker
 navigator.serviceWorker.register('sw.js');
-// Dung cho cache, ho tro offline, push notification
+// Dùng cho cache, hỗ trợ offline, push notification
 ```
 
-**So sanh:**
+**So sánh:**
 
-| Dac diem        | Dedicated  | Shared               | Service    |
+| Đặc điểm        | Dedicated  | Shared               | Service    |
 | --------------- | ---------- | -------------------- | ---------- |
-| Chia se         | Mot trang  | Nhieu trang          | Toan trang |
-| Vong doi        | Dong voi trang | Dong trang cuoi cung | Doc lap voi trang |
-| Cong dung chinh | Tinh toan nen | Giao tiep giua cac trang | Cache, offline |
+| Chia sẻ         | Một trang  | Nhiều trang          | Toàn trang |
+| Vòng đời        | Đóng với trang | Đóng trang cuối cùng | Độc lập với trang |
+| Công dụng chính | Tính toán nền | Giao tiếp giữa các trang | Cache, offline |
 
-**Q6: Debug Web Worker nhu the nao?**
+**Q6: Debug Web Worker như thế nào?**
 
-A: Chrome DevTools ho tro:
+A: Chrome DevTools hỗ trợ:
 
 ```javascript
-// 1. File Worker hien thi trong panel Sources
-// 2. Co the dat breakpoint
-// 3. Co the chay code trong Console
+// 1. File Worker hiển thị trong panel Sources
+// 2. Có thể đặt breakpoint
+// 3. Có thể chạy code trong Console
 
 self.addEventListener('message', (e) => {
   console.log('Worker received:', e.data);
-  // Hien thi trong Console DevTools
+  // Hiển thị trong Console DevTools
 });
 
 worker.onerror = (error) => {
@@ -337,51 +337,51 @@ worker.onerror = (error) => {
 
 ---
 
-## So sanh hieu nang
+## So sánh hiệu năng
 
-### Du lieu test thuc te (xu ly 1 trieu dong)
+### Dữ liệu test thực tế (xử lý 1 triệu dòng)
 
-| Phuong phap                | Thoi gian thuc thi | UI bi dong cung?        | Bo nho dinh |
+| Phương pháp                | Thời gian thực thi | UI bị đóng cứng?        | Bộ nhớ đỉnh |
 | -------------------------- | ------------------ | ----------------------- | ----------- |
-| Thread chinh (dong bo)     | 2.5 giay           | Dong cung hoan toan     | 250 MB      |
-| Thread chinh (Time Slicing) | 3.2 giay          | Thinh thoang giat       | 280 MB      |
-| Web Worker                 | 2.3 giay           | Muot hoan toan          | 180 MB      |
+| Thread chính (đồng bộ)     | 2.5 giây           | Đóng cứng hoàn toàn     | 250 MB      |
+| Thread chính (Time Slicing) | 3.2 giây          | Thỉnh thoảng giật       | 280 MB      |
+| Web Worker                 | 2.3 giây           | Mượt hoàn toàn          | 180 MB      |
 
-**Ket luan:**
+**Kết luận:**
 
-- Web Worker khong chi khong chan UI ma con nhanh hon nho tinh toan song song da nhan
-- Su dung bo nho it hon (thread chinh khong can giu du lieu lon)
+- Web Worker không chỉ không chặn UI mà còn nhanh hơn nhờ tính toán song song đa nhân
+- Sử dụng bộ nhớ ít hơn (thread chính không cần giữ dữ liệu lớn)
 
 ---
 
-## Cong nghe lien quan
+## Công nghệ liên quan
 
-### Web Worker vs cac giai phap khac
+### Web Worker vs các giải pháp khác
 
 ```javascript
-// 1. setTimeout (bat dong bo gia)
+// 1. setTimeout (bất đồng bộ giả)
 setTimeout(() => heavyTask(), 0);
-// ❌ Van tren thread chinh, co the chan
+// ❌ Vẫn trên thread chính, có thể chặn
 
-// 2. requestIdleCallback (thuc thi khi ranh)
+// 2. requestIdleCallback (thực thi khi rảnh)
 requestIdleCallback(() => heavyTask());
-// ⚠️ Chi thuc thi khi ranh roi, khong dam bao thoi gian
+// ⚠️ Chỉ thực thi khi rảnh rỗi, không đảm bảo thời gian
 
-// 3. Web Worker (da thread thuc su)
+// 3. Web Worker (đa thread thực sự)
 worker.postMessage(task);
-// ✅ Song song thuc su, khong chan UI
+// ✅ Song song thực sự, không chặn UI
 ```
 
-### Nang cao: don gian hoa giao tiep Worker voi Comlink
+### Nâng cao: đơn giản hóa giao tiếp Worker với Comlink
 
-[Comlink](https://github.com/GoogleChromeLabs/comlink) cho phep dung Worker nhu ham thuong:
+[Comlink](https://github.com/GoogleChromeLabs/comlink) cho phép dùng Worker như hàm thường:
 
 ```javascript
-// Cach truyen thong (phuc tap)
+// Cách truyền thống (phức tạp)
 worker.postMessage({ action: 'add', a: 1, b: 2 });
 worker.onmessage = (e) => console.log(e.data);
 
-// Dung Comlink (gon gang)
+// Dùng Comlink (gọn gàng)
 import * as Comlink from 'comlink';
 
 const worker = new Worker('worker.js');
@@ -393,28 +393,28 @@ console.log(result); // 3
 
 ---
 
-## Goi y hoc tap
+## Gợi ý học tập
 
-**Chuan bi phong van:**
+**Chuẩn bị phỏng vấn:**
 
-1. Hieu "tai sao can Worker" (van de don thread)
-2. Biet "khi nao dung" (tinh toan ton thoi gian)
-3. Hieu "co che giao tiep" (postMessage)
-4. Biet "han che" (khong the thao tac DOM)
-5. Da trien khai it nhat mot truong hop voi Worker
+1. Hiểu "tại sao cần Worker" (vấn đề đơn thread)
+2. Biết "khi nào dùng" (tính toán tốn thời gian)
+3. Hiểu "cơ chế giao tiếp" (postMessage)
+4. Biết "hạn chế" (không thể thao tác DOM)
+5. Đã triển khai ít nhất một trường hợp với Worker
 
-**Goi y thuc hanh:**
+**Gợi ý thực hành:**
 
-- Bat dau tu truong hop don gian (nhu tinh so nguyen to)
-- Dung Chrome DevTools de debug
-- Do luong su khac biet hieu nang
-- Can nhac cong cu nhu Comlink
+- Bắt đầu từ trường hợp đơn giản (như tính số nguyên tố)
+- Dùng Chrome DevTools để debug
+- Đo lường sự khác biệt hiệu năng
+- Cân nhắc công cụ như Comlink
 
 ---
 
-## Chu de lien quan
+## Chủ đề liên quan
 
-- [Toi uu hoa cap route ->](/docs/experience/performance/lv1-route-optimization)
-- [Toi uu hoa tai hinh anh ->](/docs/experience/performance/lv1-image-optimization)
-- [Trien khai Virtual Scrolling ->](/docs/experience/performance/lv3-virtual-scroll)
-- [Chien luoc toi uu du lieu lon ->](/docs/experience/performance/lv3-large-data-optimization)
+- [Tối ưu hóa cấp route ->](/docs/experience/performance/lv1-route-optimization)
+- [Tối ưu hóa tải hình ảnh ->](/docs/experience/performance/lv1-image-optimization)
+- [Triển khai Virtual Scrolling ->](/docs/experience/performance/lv3-virtual-scroll)
+- [Chiến lược tối ưu dữ liệu lớn ->](/docs/experience/performance/lv3-large-data-optimization)

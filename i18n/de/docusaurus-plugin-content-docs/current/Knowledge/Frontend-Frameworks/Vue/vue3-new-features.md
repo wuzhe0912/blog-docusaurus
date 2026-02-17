@@ -9,27 +9,27 @@ tags: [Vue, Quiz, Easy]
 
 > Welche neuen Features hat Vue 3?
 
-Vue 3 hat viele neue Features und Verbesserungen eingefuehrt, darunter:
+Vue 3 hat viele neue Features und Verbesserungen eingeführt, darunter:
 
 ### Wichtigste neue Features
 
-1. **Composition API**: Neue Schreibweise fuer Komponenten
+1. **Composition API**: Neue Schreibweise für Komponenten
 2. **Teleport**: Komponenten an andere DOM-Positionen rendern
-3. **Fragment**: Komponenten koennen mehrere Wurzelknoten haben
+3. **Fragment**: Komponenten können mehrere Wurzelknoten haben
 4. **Suspense**: Behandlung des Ladens asynchroner Komponenten
-5. **Mehrere v-model**: Unterstuetzung mehrerer v-model
-6. **Bessere TypeScript-Unterstuetzung**
-7. **Performance-Optimierung**: Kleinere Bundle-Groesse, schnellere Rendergeschwindigkeit
+5. **Mehrere v-model**: Unterstützung mehrerer v-model
+6. **Bessere TypeScript-Unterstützung**
+7. **Performance-Optimierung**: Kleinere Bundle-Größe, schnellere Rendergeschwindigkeit
 
 ## 2. Teleport
 
 > Was ist Teleport?
 
-**Definition**: `Teleport` erlaubt es uns, den Inhalt einer Komponente an einer anderen Stelle im DOM-Baum zu rendern, ohne die logische Struktur der Komponente zu aendern.
+**Definition**: `Teleport` erlaubt es uns, den Inhalt einer Komponente an einer anderen Stelle im DOM-Baum zu rendern, ohne die logische Struktur der Komponente zu ändern.
 
 ### Anwendungsszenarien
 
-**Gaengige Szenarien**: Modal, Tooltip, Notification und andere Komponenten, die im body gerendert werden muessen
+**Gängige Szenarien**: Modal, Tooltip, Notification und andere Komponenten, die im body gerendert werden müssen
 
 <details>
 <summary>Klicken Sie hier, um das Teleport-Beispiel zu erweitern</summary>
@@ -37,7 +37,7 @@ Vue 3 hat viele neue Features und Verbesserungen eingefuehrt, darunter:
 ```vue
 <template>
   <div>
-    <button @click="showModal = true">Modal oeffnen</button>
+    <button @click="showModal = true">Modal öffnen</button>
 
     <!-- Teleport verwenden, um Modal im body zu rendern -->
     <Teleport to="body">
@@ -45,7 +45,7 @@ Vue 3 hat viele neue Features und Verbesserungen eingefuehrt, darunter:
         <div class="modal-content">
           <h2>Modal-Titel</h2>
           <p>Modal-Inhalt</p>
-          <button @click="showModal = false">Schliessen</button>
+          <button @click="showModal = false">Schließen</button>
         </div>
       </div>
     </Teleport>
@@ -63,15 +63,15 @@ const showModal = ref(false);
 
 ### Vorteile
 
-1. **Loest z-index-Probleme**: Modal wird im body gerendert, unabhaengig von Elternkomponenten-Stilen
-2. **Behaelt logische Struktur bei**: Komponentenlogik bleibt am urspruenglichen Ort, nur die DOM-Position ist anders
+1. **Löst z-index-Probleme**: Modal wird im body gerendert, unabhängig von Elternkomponenten-Stilen
+2. **Behält logische Struktur bei**: Komponentenlogik bleibt am ursprünglichen Ort, nur die DOM-Position ist anders
 3. **Bessere Wartbarkeit**: Modal-bezogener Code ist in der Komponente zentralisiert
 
 ## 3. Fragment (Mehrere Wurzelknoten)
 
 > Was ist Fragment?
 
-**Definition**: Vue 3 erlaubt Komponenten mit mehreren Wurzelknoten, ohne sie in ein einzelnes Element einwickeln zu muessen. Dies ist ein implizites Fragment, es wird keine `<Fragment>`-Tag wie in React benoetigt.
+**Definition**: Vue 3 erlaubt Komponenten mit mehreren Wurzelknoten, ohne sie in ein einzelnes Element einwickeln zu müssen. Dies ist ein implizites Fragment, es wird keine `<Fragment>`-Tag wie in React benötigt.
 
 ### Vue 2 vs Vue 3
 
@@ -87,10 +87,10 @@ const showModal = ref(false);
 </template>
 ```
 
-**Vue 3**: Mehrere Wurzelknoten moeglich
+**Vue 3**: Mehrere Wurzelknoten möglich
 
 ```vue
-<!-- Vue 3: Mehrere Wurzelknoten moeglich -->
+<!-- Vue 3: Mehrere Wurzelknoten möglich -->
 <template>
   <h1>Titel</h1>
   <p>Inhalt</p>
@@ -99,11 +99,11 @@ const showModal = ref(false);
 
 ### Warum brauchen wir Fragment?
 
-In Vue 2 mussten Komponenten einen einzelnen Wurzelknoten haben, was Entwickler oft zwang, zusaetzliche Wrapper-Elemente (wie `<div>`) hinzuzufuegen, die:
+In Vue 2 mussten Komponenten einen einzelnen Wurzelknoten haben, was Entwickler oft zwang, zusätzliche Wrapper-Elemente (wie `<div>`) hinzuzufügen, die:
 
-1. **Semantisches HTML brechen**: Bedeutungslose Wrapper-Elemente hinzufuegen
-2. **DOM-Ebenen erhoehen**: Stilselektoren und Performance beeinflussen
-3. **Stilkontrolle erschweren**: Stile des zusaetzlichen Wrapper-Elements muessen behandelt werden
+1. **Semantisches HTML brechen**: Bedeutungslose Wrapper-Elemente hinzufügen
+2. **DOM-Ebenen erhöhen**: Stilselektoren und Performance beeinflussen
+3. **Stilkontrolle erschweren**: Stile des zusätzlichen Wrapper-Elements müssen behandelt werden
 
 ### Anwendungsszenarien
 
@@ -111,7 +111,7 @@ In Vue 2 mussten Komponenten einen einzelnen Wurzelknoten haben, was Entwickler 
 
 ```vue
 <template>
-  <!-- Kein zusaetzliches Wrapper-Element noetig -->
+  <!-- Kein zusätzliches Wrapper-Element nötig -->
   <header>
     <h1>Seitentitel</h1>
   </header>
@@ -119,7 +119,7 @@ In Vue 2 mussten Komponenten einen einzelnen Wurzelknoten haben, was Entwickler 
     <p>Hauptinhalt</p>
   </main>
   <footer>
-    <p>Fusszeile</p>
+    <p>Fußzeile</p>
   </footer>
 </template>
 ```
@@ -147,13 +147,13 @@ defineProps({
 <template>
   <div v-if="showHeader" class="header">Titel</div>
   <div v-if="showContent" class="content">Inhalt</div>
-  <div v-if="showFooter" class="footer">Fusszeile</div>
+  <div v-if="showFooter" class="footer">Fußzeile</div>
 </template>
 ```
 
 ### Attributvererbung (Attribute Inheritance)
 
-Bei Komponenten mit mehreren Wurzelknoten aendert sich das Verhalten der Attributvererbung.
+Bei Komponenten mit mehreren Wurzelknoten ändert sich das Verhalten der Attributvererbung.
 
 **Einzelner Wurzelknoten**: Attribute werden automatisch an das Wurzelelement vererbt
 
@@ -187,7 +187,7 @@ Bei Komponenten mit mehreren Wurzelknoten aendert sich das Verhalten der Attribu
 <div>Zweiter Wurzelknoten</div>
 ```
 
-**Loesung**: `$attrs` verwenden, um Attribute manuell zu binden
+**Lösung**: `$attrs` verwenden, um Attribute manuell zu binden
 
 ```vue
 <!-- Kindkomponente -->
@@ -222,7 +222,7 @@ defineOptions({
 | -------------------- | ---------------------- | --------------------------------- |
 | **Syntax**           | Implizit (keine Tags)  | Explizit (`<Fragment>` oder `<>`) |
 | **Key-Attribut**     | Nicht erforderlich     | Bei Bedarf `<Fragment key={...}>` |
-| **Attributvererbung** | Manuelle Behandlung   | Keine Attributunterstuetzung      |
+| **Attributvererbung** | Manuelle Behandlung   | Keine Attributunterstützung       |
 
 **Vue 3**:
 
@@ -252,10 +252,10 @@ function Component() {
 
 1. **Attributvererbung**: Bei mehreren Wurzelknoten werden Attribute nicht automatisch vererbt, `$attrs` muss manuell verwendet werden
 2. **Style-Scoping**: Bei mehreren Wurzelknoten werden `scoped`-Stile auf alle Wurzelknoten angewendet
-3. **Logisches Wrapping**: Wenn logisch ein Wrapper benoetigt wird, sollte weiterhin ein einzelner Wurzelknoten verwendet werden
+3. **Logisches Wrapping**: Wenn logisch ein Wrapper benötigt wird, sollte weiterhin ein einzelner Wurzelknoten verwendet werden
 
 ```vue
-<!-- ✅ Gute Praxis: Logisch ein Wrapper noetig -->
+<!-- ✅ Gute Praxis: Logisch ein Wrapper nötig -->
 <template>
   <div class="card">
     <h2>Titel</h2>
@@ -267,7 +267,7 @@ function Component() {
 <template>
   <h2>Titel</h2>
   <p>Inhalt</p>
-  <!-- Wenn diese Elemente logisch zusammengehoeren, sollten sie eingewickelt werden -->
+  <!-- Wenn diese Elemente logisch zusammengehören, sollten sie eingewickelt werden -->
 </template>
 ```
 
@@ -335,10 +335,10 @@ const AsyncComponent = defineAsyncComponent(() =>
 <CustomInput v-model="value" />
 ```
 
-**Vue 3**: Mehrere `v-model` moeglich
+**Vue 3**: Mehrere `v-model` möglich
 
 ```vue
-<!-- Vue 3: Mehrere v-model moeglich -->
+<!-- Vue 3: Mehrere v-model möglich -->
 <CustomForm
   v-model:username="username"
   v-model:email="email"
@@ -372,16 +372,16 @@ defineEmits(['update:username', 'update:email', 'update:password']);
 
 ## 6. Common Interview Questions
 
-> Haeufige Interviewfragen
+> Häufige Interviewfragen
 
 ### Frage 1: Anwendungsszenarien von Teleport
 
-Erklaeren Sie, wann `Teleport` verwendet werden sollte.
+Erklären Sie, wann `Teleport` verwendet werden sollte.
 
 <details>
 <summary>Klicken Sie hier, um die Antwort zu sehen</summary>
 
-**Szenarien fuer Teleport**:
+**Szenarien für Teleport**:
 
 1. **Modal-Dialog**
 
@@ -391,8 +391,8 @@ Erklaeren Sie, wann `Teleport` verwendet werden sollte.
    </Teleport>
    ```
 
-   - Loest z-index-Probleme
-   - Unabhaengig von Elternkomponenten-Stilen
+   - Löst z-index-Probleme
+   - Unabhängig von Elternkomponenten-Stilen
 
 2. **Tooltip**
 
@@ -412,7 +412,7 @@ Erklaeren Sie, wann `Teleport` verwendet werden sollte.
    ```
    - Einheitliche Verwaltung der Benachrichtigungsposition
 
-**Kein Teleport noetig bei**:
+**Kein Teleport nötig bei**:
 
 - Allgemeinem Inhalt
 - Komponenten ohne besondere DOM-Positionsanforderungen
@@ -421,17 +421,17 @@ Erklaeren Sie, wann `Teleport` verwendet werden sollte.
 
 ### Frage 2: Vorteile von Fragment
 
-Erklaeren Sie die Vorteile von mehreren Wurzelknoten in Vue 3.
+Erklären Sie die Vorteile von mehreren Wurzelknoten in Vue 3.
 
 <details>
 <summary>Klicken Sie hier, um die Antwort zu sehen</summary>
 
 **Vorteile**:
 
-1. **Reduziert unnoetige DOM-Elemente**
+1. **Reduziert unnötige DOM-Elemente**
 
    ```vue
-   <!-- Vue 2: Zusaetzliches div noetig -->
+   <!-- Vue 2: Zusätzliches div nötig -->
    <template>
      <div>
        <header>...</header>
@@ -439,7 +439,7 @@ Erklaeren Sie die Vorteile von mehreren Wurzelknoten in Vue 3.
      </div>
    </template>
 
-   <!-- Vue 3: Kein zusaetzliches Element noetig -->
+   <!-- Vue 3: Kein zusätzliches Element nötig -->
    <template>
      <header>...</header>
      <main>...</main>
@@ -448,13 +448,13 @@ Erklaeren Sie die Vorteile von mehreren Wurzelknoten in Vue 3.
 
 2. **Besseres semantisches HTML**
 
-   - Keine bedeutungslosen Wrapper-Elemente wegen Vue-Einschraenkungen
-   - Behaelt die Semantik der HTML-Struktur bei
+   - Keine bedeutungslosen Wrapper-Elemente wegen Vue-Einschränkungen
+   - Behält die Semantik der HTML-Struktur bei
 
 3. **Flexiblere Stilkontrolle**
 
-   - Keine Behandlung von Wrapper-Element-Stilen noetig
-   - Reduziert CSS-Selektor-Komplexitaet
+   - Keine Behandlung von Wrapper-Element-Stilen nötig
+   - Reduziert CSS-Selektor-Komplexität
 
 4. **Weniger DOM-Ebenen**
 
@@ -462,21 +462,21 @@ Erklaeren Sie die Vorteile von mehreren Wurzelknoten in Vue 3.
    - Reduziert Browser-Rendering-Kosten
 
 5. **Bessere Wartbarkeit**
-   - Saubererer Code ohne zusaetzliche Wrapper-Elemente
+   - Saubererer Code ohne zusätzliche Wrapper-Elemente
    - Klarere Komponentenstruktur
 
 </details>
 
 ### Frage 3: Fragment-Attributvererbungsproblem
 
-Erklaeren Sie das Verhalten der Attributvererbung bei Komponenten mit mehreren Wurzelknoten. Wie loest man das?
+Erklären Sie das Verhalten der Attributvererbung bei Komponenten mit mehreren Wurzelknoten. Wie löst man das?
 
 <details>
 <summary>Klicken Sie hier, um die Antwort zu sehen</summary>
 
 **Problem**:
 
-Bei Komponenten mit mehreren Wurzelknoten werden von der Elternkomponente uebergebene Attribute (wie `class`, `id` usw.) nicht automatisch an einen Wurzelknoten vererbt.
+Bei Komponenten mit mehreren Wurzelknoten werden von der Elternkomponente übergebene Attribute (wie `class`, `id` usw.) nicht automatisch an einen Wurzelknoten vererbt.
 
 **Beispiel**:
 
@@ -495,7 +495,7 @@ Bei Komponenten mit mehreren Wurzelknoten werden von der Elternkomponente ueberg
 <div>Zweiter Wurzelknoten</div>
 ```
 
-**Loesungen**:
+**Lösungen**:
 
 1. **`$attrs` verwenden, um Attribute manuell zu binden**
 
@@ -538,7 +538,7 @@ defineOptions({
 **Wichtige Punkte**:
 
 - Einzelner Wurzelknoten: Attribute werden automatisch vererbt
-- Mehrere Wurzelknoten: Attribute werden nicht automatisch vererbt, manuelle Behandlung noetig
+- Mehrere Wurzelknoten: Attribute werden nicht automatisch vererbt, manuelle Behandlung nötig
 - Mit `$attrs` kann auf alle nicht in `props` definierten Attribute zugegriffen werden
 
 </details>
@@ -556,7 +556,7 @@ Vergleichen Sie Vue 3 Fragment und React Fragment.
 | -------------------- | ---------------------------- | --------------------------------- |
 | **Syntax**           | Implizit (keine Tags)        | Explizit (`<Fragment>` oder `<>`) |
 | **Key-Attribut**     | Nicht erforderlich           | Bei Bedarf `<Fragment key={...}>` |
-| **Attributvererbung** | Manuelle Behandlung (`$attrs`) | Keine Attributunterstuetzung   |
+| **Attributvererbung** | Manuelle Behandlung (`$attrs`) | Keine Attributunterstützung    |
 
 **Vue 3**:
 
@@ -595,8 +595,8 @@ function Component() {
 
 **Vorteilsvergleich**:
 
-- **Vue 3**: Kompaktere Syntax, keine zusaetzlichen Tags
-- **React**: Expliziter, Key-Attribut moeglich
+- **Vue 3**: Kompaktere Syntax, keine zusätzlichen Tags
+- **React**: Expliziter, Key-Attribut möglich
 
 </details>
 
@@ -697,16 +697,16 @@ const onReject = (error) => {
 ### Zu vermeidende Praktiken
 
 ```vue
-<!-- 1. Teleport nicht uebermaessig verwenden -->
+<!-- 1. Teleport nicht übermäßig verwenden -->
 <Teleport to="body">
-  <div>Allgemeiner Inhalt</div> <!-- ❌ Nicht noetig -->
+  <div>Allgemeiner Inhalt</div> <!-- ❌ Nicht nötig -->
 </Teleport>
 
-<!-- 2. Struktur nicht fuer mehrere Wurzelknoten aufbrechen -->
+<!-- 2. Struktur nicht für mehrere Wurzelknoten aufbrechen -->
 <template>
   <h1>Titel</h1>
   <p>Inhalt</p>
-  <!-- ⚠️ Wenn logisch ein Wrapper noetig ist, einzelnen Wurzelknoten verwenden -->
+  <!-- ⚠️ Wenn logisch ein Wrapper nötig ist, einzelnen Wurzelknoten verwenden -->
 </template>
 
 <!-- 3. Fehlerbehandlung bei Suspense nicht ignorieren -->
@@ -724,11 +724,11 @@ const onReject = (error) => {
 
 **Hauptneuerungen von Vue 3**:
 
-- **Composition API**: Neue Schreibweise fuer Komponenten
+- **Composition API**: Neue Schreibweise für Komponenten
 - **Teleport**: Komponenten an andere DOM-Positionen rendern
-- **Fragment**: Unterstuetzung mehrerer Wurzelknoten
+- **Fragment**: Unterstützung mehrerer Wurzelknoten
 - **Suspense**: Behandlung des Ladens asynchroner Komponenten
-- **Mehrere v-model**: Unterstuetzung mehrerer v-model-Bindungen
+- **Mehrere v-model**: Unterstützung mehrerer v-model-Bindungen
 
 **Anwendungsszenarien**:
 
@@ -737,15 +737,15 @@ const onReject = (error) => {
 - Asynchrone Komponenten → `Suspense`
 - Formularkomponenten → Mehrere `v-model`
 
-### Beispielantwort fuer Interviews
+### Beispielantwort für Interviews
 
 **F: Welche sind die wichtigsten neuen Features von Vue 3?**
 
-> "Vue 3 hat viele neue Features eingefuehrt, darunter: 1) Composition API, bietet eine neue Schreibweise mit besserer Logikorganisation und Wiederverwendbarkeit; 2) Teleport, erlaubt das Rendern von Komponenteninhalten an anderen DOM-Baum-Positionen, haeufig verwendet fuer Modal, Tooltip usw.; 3) Fragment, Komponenten koennen mehrere Wurzelknoten haben ohne zusaetzliche Wrapper-Elemente; 4) Suspense, behandelt den Ladezustand asynchroner Komponenten; 5) Mehrere v-model, unterstuetzt mehrere v-model-Bindungen pro Komponente; 6) Bessere TypeScript-Unterstuetzung und Performance-Optimierung. Diese Features machen Vue 3 leistungsfaehiger und flexibler bei gleichzeitiger Abwaertskompatibilitaet."
+> "Vue 3 hat viele neue Features eingeführt, darunter: 1) Composition API, bietet eine neue Schreibweise mit besserer Logikorganisation und Wiederverwendbarkeit; 2) Teleport, erlaubt das Rendern von Komponenteninhalten an anderen DOM-Baum-Positionen, häufig verwendet für Modal, Tooltip usw.; 3) Fragment, Komponenten können mehrere Wurzelknoten haben ohne zusätzliche Wrapper-Elemente; 4) Suspense, behandelt den Ladezustand asynchroner Komponenten; 5) Mehrere v-model, unterstützt mehrere v-model-Bindungen pro Komponente; 6) Bessere TypeScript-Unterstützung und Performance-Optimierung. Diese Features machen Vue 3 leistungsfähiger und flexibler bei gleichzeitiger Abwärtskompatibilität."
 
 **F: Was sind die Anwendungsszenarien von Teleport?**
 
-> "Teleport wird hauptsaechlich in Szenarien verwendet, in denen Komponenten an anderen DOM-Baum-Positionen gerendert werden muessen. Gaengige Szenarien sind: 1) Modal-Dialoge, die im body gerendert werden, um z-index-Probleme zu vermeiden; 2) Tooltips, die nicht durch overflow der Elternkomponente versteckt werden; 3) Benachrichtigungen mit einheitlicher Positionsverwaltung. Der Vorteil von Teleport ist, dass die logische Komponentenstruktur unveraendert bleibt und nur die DOM-Renderposition geaendert wird, was sowohl Stilprobleme loest als auch die Wartbarkeit des Codes beibehalt."
+> "Teleport wird hauptsächlich in Szenarien verwendet, in denen Komponenten an anderen DOM-Baum-Positionen gerendert werden müssen. Gängige Szenarien sind: 1) Modal-Dialoge, die im body gerendert werden, um z-index-Probleme zu vermeiden; 2) Tooltips, die nicht durch overflow der Elternkomponente versteckt werden; 3) Benachrichtigungen mit einheitlicher Positionsverwaltung. Der Vorteil von Teleport ist, dass die logische Komponentenstruktur unverändert bleibt und nur die DOM-Renderposition geändert wird, was sowohl Stilprobleme löst als auch die Wartbarkeit des Codes beibehält."
 
 ## Reference
 

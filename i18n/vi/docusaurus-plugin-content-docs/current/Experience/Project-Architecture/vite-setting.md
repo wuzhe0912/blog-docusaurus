@@ -1,15 +1,15 @@
 ---
 id: project-architecture-vite-setting
-title: 'Cau hinh Vite va he thong multi-tenant'
+title: 'Cấu hình Vite và hệ thống multi-tenant'
 slug: /experience/project-architecture/vite-setting
 tags: [Experience, Interview, Project-Architecture]
 ---
 
-> Cach su dung Vite de quan ly he thong multi-tenant voi 27 mau thuong hieu, thuc hien bien dich dong va cach ly moi truong.
+> Cách sử dụng Vite để quản lý hệ thống multi-tenant với 27 mẫu thương hiệu, thực hiện biên dịch động và cách ly môi trường.
 
 ---
 
-## 1. Tai dong cac route template tuong ung thong qua SiteKey
+## 1. Tải động các route template tương ứng thông qua SiteKey
 
 ```typescript
 function writeBuildRouter() {
@@ -39,19 +39,19 @@ function writeBuildRouter() {
 }
 ```
 
-- Khi build, tai dong cac route template tuong ung thong qua SiteKey
-- Su dung bien moi truong `SITE_KEY` de chon template can bien dich
-- Mot repo duy nhat quan ly nhieu template, tranh trung lap ma nguon
+- Khi build, tải động các route template tương ứng thông qua SiteKey
+- Sử dụng biến môi trường `SITE_KEY` để chọn template cần biên dịch
+- Một repo duy nhất quản lý nhiều template, tránh trùng lặp mã nguồn
 
-## 2. He thong tiem bien moi truong tuy chinh
+## 2. Hệ thống tiêm biến môi trường tùy chỉnh
 
-## 3. Tich hop TailwindCSS & thiet ke breakpoint RWD
+## 3. Tích hợp TailwindCSS & thiết kế breakpoint RWD
 
-## 4. Cau hinh Proxy moi truong phat trien
+## 4. Cấu hình Proxy môi trường phát triển
 
-## 5. Tich hop plugin Vue i18n Vite
+## 5. Tích hợp plugin Vue i18n Vite
 
-## 6. Cau hinh tuong thich
+## 6. Cấu hình tương thích
 
 ```js
       target: {
@@ -60,5 +60,5 @@ function writeBuildRouter() {
       },
 ```
 
-- Kiem soat tuong thich trinh duyet chinh xac
-- Can bang giua tinh nang hien dai va tuong thich
+- Kiểm soát tương thích trình duyệt chính xác
+- Cân bằng giữa tính năng hiện đại và tương thích

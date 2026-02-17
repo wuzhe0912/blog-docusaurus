@@ -163,11 +163,11 @@ function foo() {}
 // Entspricht (nach Hoisting)
 // Phase 1: Erstellungsphase (Hoisting)
 function foo() {} // 1. Funktionsdeklaration wird zuerst gehoben
-var foo; // 2. Variablendeklaration wird gehoben (ueberschreibt vorhandene Funktion nicht)
+var foo; // 2. Variablendeklaration wird gehoben (überschreibt vorhandene Funktion nicht)
 
-// Phase 2: Ausfuehrungsphase
+// Phase 2: Ausführungsphase
 console.log(foo); // foo ist hier eine Funktion, Ausgabe [Function: foo]
-foo = '1'; // 3. Variablenzuweisung (ueberschreibt die Funktion)
+foo = '1'; // 3. Variablenzuweisung (überschreibt die Funktion)
 ```
 
 ### Schlüsselkonzepte
@@ -195,7 +195,7 @@ var myVar = 'Hello';
 ```js
 // Reihenfolge nach Hoisting
 function foo() {} // Funktion wird zuerst gehoben und initialisiert
-var foo; // Variablendeklaration wird gehoben, ueberschreibt vorhandene Funktion nicht
+var foo; // Variablendeklaration wird gehoben, überschreibt vorhandene Funktion nicht
 
 // Deshalb ist foo eine Funktion
 console.log(foo); // [Function: foo]
@@ -213,12 +213,12 @@ console.log(foo); // ?
 // ======== Entspricht ========
 
 // Erstellungsphase (Hoisting)
-function foo() {} // 1) Funktionsdeklaration wird vollstaendig gehoben (inkl. Funktionskoerper)
-var foo; // 2) Variablendeklaration wird gehoben (ueberschreibt foo nicht, da bereits Funktion)
+function foo() {} // 1) Funktionsdeklaration wird vollständig gehoben (inkl. Funktionskörper)
+var foo; // 2) Variablendeklaration wird gehoben (überschreibt foo nicht, da bereits Funktion)
 
-// Ausfuehrungsphase
+// Ausführungsphase
 console.log(foo); // [Function: foo] - foo ist eine Funktion
-foo = '1'; // 3) Variablenzuweisung (ueberschreibt die Funktion erst jetzt)
+foo = '1'; // 3) Variablenzuweisung (überschreibt die Funktion erst jetzt)
 console.log(foo); // '1' - foo wird zu einer Zeichenkette
 ```
 
@@ -263,8 +263,8 @@ console.log(foo); // ?
 **Antwort:**
 
 ```js
-[Function: foo] { return 2; } // Erste Ausgabe (spaetere Funktion ueberschreibt fruehere)
-'1' // Zweite Ausgabe (Variablenzuweisung ueberschreibt Funktion)
+[Function: foo] { return 2; } // Erste Ausgabe (spätere Funktion überschreibt frühere)
+'1' // Zweite Ausgabe (Variablenzuweisung überschreibt Funktion)
 ```
 
 **Begründung:**
@@ -277,12 +277,12 @@ function foo() {
 
 function foo() {
   return 2;
-} // Zweite Funktion ueberschreibt erste
+} // Zweite Funktion überschreibt erste
 
-var foo; // Variablendeklaration (ueberschreibt Funktion nicht)
+var foo; // Variablendeklaration (überschreibt Funktion nicht)
 
 console.log(foo); // [Function: foo] { return 2; }
-foo = '1'; // Variablenzuweisung (ueberschreibt Funktion)
+foo = '1'; // Variablenzuweisung (überschreibt Funktion)
 console.log(foo); // '1'
 ```
 
@@ -315,7 +315,7 @@ undefined; // foo ist undefined
 var foo; // Variablendeklaration wird gehoben (Funktionsausdruck hebt nur den Namen)
 function bar() {
   return 2;
-} // Funktionsdeklaration wird vollstaendig gehoben
+} // Funktionsdeklaration wird vollständig gehoben
 
 console.log(foo); // undefined
 console.log(bar); // [Function: bar]

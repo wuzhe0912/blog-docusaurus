@@ -1,55 +1,55 @@
 ---
 id: performance-lv3-virtual-scroll
-title: '[Lv3] Implementation du Virtual Scrolling : gestion du rendu de grandes quantites de donnees'
+title: '[Lv3] Implémentation du Virtual Scrolling : gestion du rendu de grandes quantités de données'
 slug: /experience/performance/lv3-virtual-scroll
 tags: [Experience, Interview, Performance, Lv3]
 ---
 
-> Lorsqu'une page doit afficher plus de 1000 lignes de donnees, le Virtual Scrolling permet de reduire les noeuds DOM de 1000+ a 20-30 et l'utilisation memoire de 80 %.
+> Lorsqu'une page doit afficher plus de 1000 lignes de données, le Virtual Scrolling permet de réduire les nœuds DOM de 1000+ à 20-30 et l'utilisation mémoire de 80 %.
 
 ---
 
 ## Question type en entretien
 
-**Q : Lorsqu'une page contient plusieurs tables, chacune avec plus de cent lignes de donnees, et que des evenements de mise a jour frequente du DOM existent, quelle methode utiliseriez-vous pour optimiser les performances de cette page ?**
+**Q : Lorsqu'une page contient plusieurs tables, chacune avec plus de cent lignes de données, et que des événements de mise à jour fréquente du DOM existent, quelle méthode utiliseriez-vous pour optimiser les performances de cette page ?**
 
 ---
 
-## Analyse du probleme (Situation)
+## Analyse du problème (Situation)
 
-### Scenario reel du projet
+### Scénario réel du projet
 
-Dans un projet de plateforme, certaines pages doivent traiter de grandes quantites de donnees :
+Dans un projet de plateforme, certaines pages doivent traiter de grandes quantités de données :
 
 ```markdown
 📊 Page d'historique
-├─ Table des depots : 1000+ lignes
+├─ Table des dépôts : 1000+ lignes
 ├─ Table des retraits : 800+ lignes
 ├─ Table des mises : 5000+ lignes
-└─ Chaque ligne comporte 8 a 10 colonnes (date, montant, statut, etc.)
+└─ Chaque ligne comporte 8 à 10 colonnes (date, montant, statut, etc.)
 
-❌ Problemes sans optimisation
-├─ Nombre de noeuds DOM : 1000 lignes × 10 colonnes = 10 000+ noeuds
-├─ Consommation memoire : environ 150-200 Mo
-├─ Temps du premier rendu : 3-5 secondes (ecran blanc)
-├─ Saccades au defilement : FPS < 20
-└─ Lors des mises a jour WebSocket : la table entiere est re-rendue (tres lent)
+❌ Problèmes sans optimisation
+├─ Nombre de nœuds DOM : 1000 lignes × 10 colonnes = 10 000+ nœuds
+├─ Consommation mémoire : environ 150-200 Mo
+├─ Temps du premier rendu : 3-5 secondes (écran blanc)
+├─ Saccades au défilement : FPS < 20
+└─ Lors des mises à jour WebSocket : la table entière est re-rendue (très lent)
 ```
 
-### Gravite du probleme
+### Gravité du problème
 
 ```javascript
 // ❌ Approche traditionnelle
 <tr v-for="record in allRecords">  // 1000+ lignes toutes rendues
   <td>{{ record.time }}</td>
   <td>{{ record.amount }}</td>
-  // ... 8 a 10 colonnes
+  // ... 8 à 10 colonnes
 </tr>
 
-// Resultat :
-// - Rendu initial : 10 000+ noeuds DOM
-// - Reellement visible pour l'utilisateur : 20-30 lignes
-// - Gaspillage : 99 % des noeuds sont invisibles pour l'utilisateur
+// Résultat :
+// - Rendu initial : 10 000+ nœuds DOM
+// - Réellement visible pour l'utilisateur : 20-30 lignes
+// - Gaspillage : 99 % des nœuds sont invisibles pour l'utilisateur
 ```
 
 ---
@@ -58,28 +58,28 @@ Dans un projet de plateforme, certaines pages doivent traiter de grandes quantit
 
 ### Virtual Scrolling
 
-Concernant l'optimisation du Virtual Scrolling, deux directions principales : la premiere est d'utiliser une librairie tierce officiellement recommandee comme [vue-virtual-scroller](https://github.com/Akryum/vue-virtual-scroller), qui determine les lignes visibles en fonction des parametres et des besoins.
+Concernant l'optimisation du Virtual Scrolling, deux directions principales : la première est d'utiliser une librairie tierce officiellement recommandée comme [vue-virtual-scroller](https://github.com/Akryum/vue-virtual-scroller), qui détermine les lignes visibles en fonction des paramètres et des besoins.
 
 ```js
 // Ne rendre que les lignes visibles, par exemple :
-// - 100 lignes de donnees, seules les 20 visibles sont rendues
-// - Reduction considerable du nombre de noeuds DOM
+// - 100 lignes de données, seules les 20 visibles sont rendues
+// - Réduction considérable du nombre de nœuds DOM
 ```
 
-L'autre option est de l'implementer soi-meme, mais compte tenu du cout de developpement reel et de la couverture des cas d'utilisation, je pencherais davantage pour la librairie tierce recommandee.
+L'autre option est de l'implémenter soi-même, mais compte tenu du coût de développement réel et de la couverture des cas d'utilisation, je pencherais davantage pour la librairie tierce recommandée.
 
-### Controle de la frequence de mise a jour des donnees
+### Contrôle de la fréquence de mise à jour des données
 
 > Solution 1 : requestAnimationFrame (RAF)
-> Concept : le navigateur ne peut rafraichir que 60 fois par seconde maximum (60 FPS). Les mises a jour plus rapides sont invisibles a l'oeil, donc on synchronise avec le taux de rafraichissement de l'ecran.
+> Concept : le navigateur ne peut rafraîchir que 60 fois par seconde maximum (60 FPS). Les mises à jour plus rapides sont invisibles à l'œil, donc on synchronise avec le taux de rafraîchissement de l'écran.
 
 ```js
-// ❌ Avant : mise a jour immediate a chaque reception (potentiellement 100 fois/seconde)
+// ❌ Avant : mise à jour immédiate à chaque réception (potentiellement 100 fois/seconde)
 socket.on('price', (newPrice) => {
   btcPrice.value = newPrice;
 });
 
-// ✅ Ameliore : collecter les donnees, mise a jour synchronisee avec le rafraichissement (max 60 fois/seconde)
+// ✅ Amélioré : collecter les données, mise à jour synchronisée avec le rafraîchissement (max 60 fois/seconde)
 let latestPrice = null;
 let isScheduled = false;
 
@@ -89,7 +89,7 @@ socket.on('price', (newPrice) => {
   if (!isScheduled) {
     isScheduled = true;
     requestAnimationFrame(() => {
-      btcPrice.value = latestPrice; // Mise a jour au moment du rafraichissement du navigateur
+      btcPrice.value = latestPrice; // Mise à jour au moment du rafraîchissement du navigateur
       isScheduled = false;
     });
   }
@@ -97,49 +97,49 @@ socket.on('price', (newPrice) => {
 ```
 
 Solution 2 : Throttle
-Concept : limiter de force la frequence des mises a jour, par exemple "maximum 1 mise a jour par 100 ms"
+Concept : limiter de force la fréquence des mises à jour, par exemple "maximum 1 mise à jour par 100 ms"
 
 ```js
-// throttle de lodash (si deja utilise dans le projet)
+// throttle de lodash (si déjà utilisé dans le projet)
 import { throttle } from 'lodash-es';
 
 const updatePrice = throttle((newPrice) => {
   btcPrice.value = newPrice;
-}, 100); // Maximum 1 execution par 100 ms
+}, 100); // Maximum 1 exécution par 100 ms
 
 socket.on('price', updatePrice);
 ```
 
-### Optimisations specifiques a Vue 3
+### Optimisations spécifiques à Vue 3
 
 Certains sucres syntaxiques de Vue 3 offrent des optimisations de performance, comme v-memo, bien que personnellement j'utilise rarement ce cas.
 
 ```js
-// 1. v-memo - memoriser les colonnes qui changent rarement
+// 1. v-memo - mémoriser les colonnes qui changent rarement
 <tr v-for="row in data"
   :key="row.id"
   v-memo="[row.price, row.volume]">  // Re-rendu uniquement quand ces champs changent
 </tr>
 
-// 2. Geler les donnees statiques pour eviter le surcout du systeme reactif
+// 2. Geler les données statiques pour éviter le surcoût du système réactif
 const staticData = Object.freeze(largeDataArray)
 
 // 3. shallowRef pour les grands tableaux
-const tableData = shallowRef([...])  // Ne suit que le tableau lui-meme, pas les objets internes
+const tableData = shallowRef([...])  // Ne suit que le tableau lui-même, pas les objets internes
 
-// 4. Utiliser key pour optimiser l'algorithme de diff (un id unique par item pour limiter les mises a jour DOM aux noeuds modifies)
+// 4. Utiliser key pour optimiser l'algorithme de diff (un id unique par item pour limiter les mises à jour DOM aux nœuds modifiés)
 <tr v-for="row in data" :key="row.id">  // Key stable**
 ```
 
-RAF : synchronise avec le rafraichissement ecran (~16 ms), adapte aux animations et au defilement
-Throttle : intervalle personnalise (ex. 100 ms), adapte a la recherche et au resize
+RAF : synchronisé avec le rafraîchissement écran (~16 ms), adapté aux animations et au défilement
+Throttle : intervalle personnalisé (ex. 100 ms), adapté à la recherche et au resize
 
 ### Optimisation du rendu DOM
 
 ```scss
 // Utiliser CSS transform au lieu de top/left
 .row-update {
-  transform: translateY(0); /* Declenche l'acceleration GPU */
+  transform: translateY(0); /* Déclenche l'accélération GPU */
   will-change: transform; /* Indique au navigateur d'optimiser */
 }
 
@@ -151,46 +151,46 @@ Throttle : intervalle personnalise (ex. 100 ms), adapte a la recherche et au res
 
 ---
 
-## Resultats de l'optimisation (Result)
+## Résultats de l'optimisation (Result)
 
 ### Comparaison des performances
 
-| Indicateur     | Avant optimisation | Apres optimisation | Amelioration |
+| Indicateur     | Avant optimisation | Après optimisation | Amélioration |
 | -------------- | ------------------ | ------------------ | ------------ |
-| Noeuds DOM     | 10 000+            | 20-30              | ↓ 99,7 %    |
-| Utilisation memoire | 150-200 Mo      | 30-40 Mo           | ↓ 80 %      |
+| Nœuds DOM     | 10 000+            | 20-30              | ↓ 99,7 %    |
+| Utilisation mémoire | 150-200 Mo      | 30-40 Mo           | ↓ 80 %      |
 | Premier rendu  | 3-5 s              | 0,3-0,5 s          | ↑ 90 %      |
-| FPS defilement | < 20               | 55-60              | ↑ 200 %     |
-| Reponse aux mises a jour | 500-800 ms | 16-33 ms          | ↑ 95 %      |
+| FPS défilement | < 20               | 55-60              | ↑ 200 %     |
+| Réponse aux mises à jour | 500-800 ms | 16-33 ms          | ↑ 95 %      |
 
-### Resultats concrets
+### Résultats concrets
 
 ```markdown
 ✅ Virtual Scrolling
 ├─ Seules les 20-30 lignes visibles sont rendues
-├─ Mise a jour dynamique de la zone visible pendant le defilement
-├─ Imperceptible pour l'utilisateur (experience fluide)
-└─ Memoire stable (ne croit pas avec le volume de donnees)
+├─ Mise à jour dynamique de la zone visible pendant le défilement
+├─ Imperceptible pour l'utilisateur (expérience fluide)
+└─ Mémoire stable (ne croît pas avec le volume de données)
 
-✅ Mise a jour des donnees via RAF
-├─ WebSocket : 100 mises a jour/seconde → maximum 60 rendus
-├─ Synchronise avec le taux de rafraichissement (60 FPS)
-└─ Utilisation CPU reduite de 60 %
+✅ Mise à jour des données via RAF
+├─ WebSocket : 100 mises à jour/seconde → maximum 60 rendus
+├─ Synchronisé avec le taux de rafraîchissement (60 FPS)
+└─ Utilisation CPU réduite de 60 %
 
 ✅ Optimisations Vue 3
-├─ v-memo : evite les re-rendus inutiles
-├─ shallowRef : reduit le surcout reactif
+├─ v-memo : évite les re-rendus inutiles
+├─ shallowRef : réduit le surcoût réactif
 └─ :key stable : optimise l'algorithme de diff
 ```
 
 ---
 
-## Points cles pour l'entretien
+## Points clés pour l'entretien
 
 ### Questions d'approfondissement courantes
 
 **Q : Et si on ne peut pas utiliser de librairie tierce ?**
-R : Implementer la logique fondamentale du Virtual Scrolling soi-meme :
+R : Implémenter la logique fondamentale du Virtual Scrolling soi-même :
 
 ```javascript
 // Concept fondamental
@@ -198,7 +198,7 @@ const itemHeight = 50; // Hauteur de chaque ligne
 const containerHeight = 600; // Hauteur du conteneur
 const visibleCount = Math.ceil(containerHeight / itemHeight); // Nombre visible
 
-// Calculer quels elements doivent etre affiches
+// Calculer quels éléments doivent être affichés
 const scrollTop = container.scrollTop;
 const startIndex = Math.floor(scrollTop / itemHeight);
 const endIndex = startIndex + visibleCount;
@@ -206,20 +206,20 @@ const endIndex = startIndex + visibleCount;
 // Ne rendre que la zone visible
 const visibleItems = allItems.slice(startIndex, endIndex);
 
-// Compenser la hauteur avec du padding (pour une barre de defilement correcte)
+// Compenser la hauteur avec du padding (pour une barre de défilement correcte)
 const paddingTop = startIndex * itemHeight;
 const paddingBottom = (allItems.length - endIndex) * itemHeight;
 ```
 
-**Points cles :**
+**Points clés :**
 
 - Calcul de la zone visible (startIndex -> endIndex)
-- Chargement dynamique des donnees (slice)
+- Chargement dynamique des données (slice)
 - Compensation de la hauteur (padding top/bottom)
-- Ecoute de l'evenement scroll (optimisation throttle)
+- Écoute de l'événement scroll (optimisation throttle)
 
-**Q : Comment gerer la reconnexion apres une deconnexion WebSocket ?**
-R : Implementer une strategie de reconnexion avec backoff exponentiel :
+**Q : Comment gérer la reconnexion après une déconnexion WebSocket ?**
+R : Implémenter une stratégie de reconnexion avec backoff exponentiel :
 
 ```javascript
 let retryCount = 0;
@@ -228,7 +228,7 @@ const baseDelay = 1000; // 1 seconde
 
 function reconnect() {
   if (retryCount >= maxRetries) {
-    showError('Connexion impossible, veuillez rafraichir la page');
+    showError('Connexion impossible, veuillez rafraîchir la page');
     return;
   }
 
@@ -241,11 +241,11 @@ function reconnect() {
   }, delay);
 }
 
-// Apres une reconnexion reussie
+// Après une reconnexion réussie
 socket.on('connect', () => {
-  retryCount = 0; // Reinitialiser le compteur
-  syncData(); // Synchroniser les donnees
-  showSuccess('Connexion retablie');
+  retryCount = 0; // Réinitialiser le compteur
+  syncData(); // Synchroniser les données
+  showSuccess('Connexion rétablie');
 });
 ```
 
@@ -270,15 +270,15 @@ function measureFPS() {
 
 // 2. Memory Profiling (Chrome DevTools)
 // - Snapshot avant le rendu
-// - Snapshot apres le rendu
-// - Comparer la difference de memoire
+// - Snapshot après le rendu
+// - Comparer la différence de mémoire
 
 // 3. Lighthouse / Performance Tab
 // - Temps des Long Tasks
 // - Total Blocking Time
 // - Cumulative Layout Shift
 
-// 4. Tests automatises (Playwright)
+// 4. Tests automatisés (Playwright)
 const { test } = require('@playwright/test');
 
 test('virtual scroll performance', async ({ page }) => {
@@ -287,7 +287,7 @@ test('virtual scroll performance', async ({ page }) => {
   // Mesurer le temps du premier rendu
   const renderTime = await page.evaluate(() => {
     const start = performance.now();
-    // Declencher le rendu
+    // Déclencher le rendu
     const end = performance.now();
     return end - start;
   });
@@ -296,39 +296,39 @@ test('virtual scroll performance', async ({ page }) => {
 });
 ```
 
-**Q : Quels sont les inconvenients du Virtual Scroll ?**
-R : Des compromis a noter :
+**Q : Quels sont les inconvénients du Virtual Scroll ?**
+R : Des compromis à noter :
 
 ```markdown
-❌ Inconvenients
+❌ Inconvénients
 ├─ Impossible d'utiliser la recherche native du navigateur (Ctrl+F)
-├─ La fonction "tout selectionner" necessite un traitement special
-├─ Complexite d'implementation elevee
-├─ Necessite une hauteur fixe ou un calcul prealable de la hauteur
-└─ L'accessibilite necessite un traitement supplementaire
+├─ La fonction "tout sélectionner" nécessite un traitement spécial
+├─ Complexité d'implémentation élevée
+├─ Nécessite une hauteur fixe ou un calcul préalable de la hauteur
+└─ L'accessibilité nécessite un traitement supplémentaire
 
-✅ Cas adaptes
-├─ Volume de donnees > 100 lignes
-├─ Structure de donnees similaire (hauteur fixe)
-├─ Defilement haute performance requis
-└─ Consultation principalement (pas d'edition)
+✅ Cas adaptés
+├─ Volume de données > 100 lignes
+├─ Structure de données similaire (hauteur fixe)
+├─ Défilement haute performance requis
+└─ Consultation principalement (pas d'édition)
 
-❌ Cas non adaptes
-├─ Volume < 50 lignes (sur-ingenierie)
-├─ Hauteur variable (implementation difficile)
-├─ Beaucoup d'interactions (multi-selection, drag & drop)
-└─ Besoin d'imprimer la table entiere
+❌ Cas non adaptés
+├─ Volume < 50 lignes (sur-ingénierie)
+├─ Hauteur variable (implémentation difficile)
+├─ Beaucoup d'interactions (multi-sélection, drag & drop)
+└─ Besoin d'imprimer la table entière
 ```
 
-**Q : Comment optimiser une liste a hauteur variable ?**
-R : Utiliser le Virtual Scrolling a hauteur dynamique :
+**Q : Comment optimiser une liste à hauteur variable ?**
+R : Utiliser le Virtual Scrolling à hauteur dynamique :
 
 ```javascript
-// Solution 1 : hauteur estimee + mesure reelle
-const estimatedHeight = 50; // Hauteur estimee
-const measuredHeights = {}; // Hauteurs reelles enregistrees
+// Solution 1 : hauteur estimée + mesure réelle
+const estimatedHeight = 50; // Hauteur estimée
+const measuredHeights = {}; // Hauteurs réelles enregistrées
 
-// Mesurer apres le rendu
+// Mesurer après le rendu
 onMounted(() => {
   const elements = document.querySelectorAll('.list-item');
   elements.forEach((el, index) => {
@@ -351,13 +351,13 @@ onMounted(() => {
 
 ### Virtual Scroll vs Pagination
 
-| Critere          | Virtual Scroll             | Pagination traditionnelle |
+| Critère          | Virtual Scroll             | Pagination traditionnelle |
 | ---------------- | -------------------------- | ------------------------- |
-| Experience utilisateur | Defilement continu (meilleur) | Changement de page necessaire (interrompu) |
+| Expérience utilisateur | Défilement continu (meilleur) | Changement de page nécessaire (interrompu) |
 | Performance      | Toujours uniquement la zone visible | Rendu complet de chaque page |
-| Difficulte d'implementation | Plus complexe      | Simple                    |
+| Difficulté d'implémentation | Plus complexe      | Simple                    |
 | SEO              | Moins bon                  | Meilleur                  |
-| Accessibilite    | Traitement special necessaire | Support natif            |
+| Accessibilité    | Traitement spécial nécessaire | Support natif            |
 
 **Recommandation :**
 

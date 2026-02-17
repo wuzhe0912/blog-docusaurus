@@ -7,9 +7,9 @@ tags: [Vue, Quiz, Medium]
 
 ## 1. Please explain Vue lifecycle hooks (include Vue 2 & Vue 3)
 
-> Erklaeren Sie die Lifecycle Hooks von Vue (einschliesslich Vue 2 und Vue 3)
+> Erklären Sie die Lifecycle Hooks von Vue (einschließlich Vue 2 und Vue 3)
 
-Vue-Komponenten durchlaufen vom Erstellen bis zum Zerstoeren eine Reihe von Prozessen. Waehrend dieser Prozesse werden automatisch bestimmte Funktionen aufgerufen - diese Funktionen sind die "Lifecycle Hooks". Das Verstaendnis des Lebenszyklus ist sehr wichtig, um das Verhalten von Komponenten zu beherrschen.
+Vue-Komponenten durchlaufen vom Erstellen bis zum Zerstören eine Reihe von Prozessen. Während dieser Prozesse werden automatisch bestimmte Funktionen aufgerufen - diese Funktionen sind die "Lifecycle Hooks". Das Verständnis des Lebenszyklus ist sehr wichtig, um das Verhalten von Komponenten zu beherrschen.
 
 ### Vue Lifecycle-Diagramm
 
@@ -25,8 +25,8 @@ Erstellungsphase → Mounting-Phase → Update-Phase → Unmounting-Phase
 | ------------------- | ------------------- | ----------------------- | ----------------------------------- |
 | `beforeCreate`      | `beforeCreate`      | `setup()`               | Vor der Instanz-Initialisierung     |
 | `created`           | `created`           | `setup()`               | Komponenteninstanz erstellt         |
-| `beforeMount`       | `beforeMount`       | `onBeforeMount`         | Vor dem Einhaengen in das DOM       |
-| `mounted`           | `mounted`           | `onMounted`             | Nach dem Einhaengen in das DOM      |
+| `beforeMount`       | `beforeMount`       | `onBeforeMount`         | Vor dem Einhängen in das DOM        |
+| `mounted`           | `mounted`           | `onMounted`             | Nach dem Einhängen in das DOM       |
 | `beforeUpdate`      | `beforeUpdate`      | `onBeforeUpdate`        | Vor der Datenaktualisierung         |
 | `updated`           | `updated`           | `onUpdated`             | Nach der Datenaktualisierung        |
 | `beforeDestroy`     | `beforeUnmount`     | `onBeforeUnmount`       | Vor dem Entfernen der Komponente    |
@@ -59,9 +59,9 @@ export default {
     // ✅ Zu diesem Zeitpunkt sind data, computed, methods und watch initialisiert
     console.log('created');
     console.log(this.message); // 'Hello Vue'
-    console.log(this.$el); // undefined (noch nicht in DOM eingehaengt)
+    console.log(this.$el); // undefined (noch nicht in DOM eingehängt)
 
-    // ✅ Geeignet fuer API-Anfragen hier
+    // ✅ Geeignet für API-Anfragen hier
     this.fetchData();
   },
 
@@ -77,12 +77,12 @@ export default {
 
 **Verwendungszeitpunkt:**
 
-- `beforeCreate`: Selten verwendet, ueblicherweise fuer Plugin-Entwicklung
+- `beforeCreate`: Selten verwendet, üblicherweise für Plugin-Entwicklung
 - `created`:
   - ✅ API-Anfragen senden
   - ✅ Nicht-reaktive Daten initialisieren
   - ✅ Event Listener einrichten
-  - ❌ DOM-Manipulation nicht moeglich (noch nicht eingehaengt)
+  - ❌ DOM-Manipulation nicht möglich (noch nicht eingehängt)
 
 ### 2. Mounting-Phase (Mounting Phase)
 
@@ -112,15 +112,15 @@ export default {
   },
 
   mounted() {
-    // ✅ Komponente ist im DOM eingehaengt, DOM-Elemente koennen manipuliert werden
+    // ✅ Komponente ist im DOM eingehängt, DOM-Elemente können manipuliert werden
     console.log('mounted');
     console.log(this.$el); // Echtes DOM-Element
     console.log(this.$refs.myElement); // Ref kann zugegriffen werden
 
-    // ✅ Geeignet fuer DOM-Manipulation hier
+    // ✅ Geeignet für DOM-Manipulation hier
     this.initCanvas();
 
-    // ✅ Geeignet fuer Drittanbieter-DOM-Bibliotheken
+    // ✅ Geeignet für Drittanbieter-DOM-Bibliotheken
     this.initChart();
   },
 
@@ -151,9 +151,9 @@ export default {
 - `mounted`:
   - ✅ DOM-Elemente manipulieren
   - ✅ Drittanbieter-DOM-Bibliotheken initialisieren (z.B. Diagramme, Karten)
-  - ✅ Event Listener einrichten, die DOM benoetigen
+  - ✅ Event Listener einrichten, die DOM benötigen
   - ✅ Timer starten
-  - ⚠️ **Hinweis**: `mounted` von Kindkomponenten wird vor dem `mounted` der Elternkomponente ausgefuehrt
+  - ⚠️ **Hinweis**: `mounted` von Kindkomponenten wird vor dem `mounted` der Elternkomponente ausgeführt
 
 ### 3. Update-Phase (Updating Phase)
 
@@ -162,8 +162,8 @@ export default {
 ```vue
 <template>
   <div>
-    <p>Zaehler: {{ count }}</p>
-    <button @click="count++">Erhoehen</button>
+    <p>Zähler: {{ count }}</p>
+    <button @click="count++">Erhöhen</button>
   </div>
 </template>
 
@@ -190,8 +190,8 @@ export default {
     console.log('data count:', this.count); // Neuer Wert
     console.log('DOM count:', this.$el.querySelector('p').textContent); // Neuer Wert
 
-    // ⚠️ Achtung: Keine Daten hier aendern, fuehrt zu Endlosschleife
-    // this.count++; // ❌ Falsch! Fuehrt zu endloser Aktualisierung
+    // ⚠️ Achtung: Keine Daten hier ändern, führt zu Endlosschleife
+    // this.count++; // ❌ Falsch! Führt zu endloser Aktualisierung
   },
 };
 </script>
@@ -199,11 +199,11 @@ export default {
 
 **Verwendungszeitpunkt:**
 
-- `beforeUpdate`: Wenn der alte DOM-Zustand vor der Aktualisierung benoetigt wird
+- `beforeUpdate`: Wenn der alte DOM-Zustand vor der Aktualisierung benötigt wird
 - `updated`:
-  - ✅ Operationen nach DOM-Aktualisierung (z.B. Elementgroessen neu berechnen)
-  - ❌ **Keine Daten hier aendern**, fuehrt zu endloser Aktualisierungsschleife
-  - ⚠️ Fuer Operationen nach Datenaenderung wird `watch` oder `nextTick` empfohlen
+  - ✅ Operationen nach DOM-Aktualisierung (z.B. Elementgrößen neu berechnen)
+  - ❌ **Keine Daten hier ändern**, führt zu endloser Aktualisierungsschleife
+  - ⚠️ Für Operationen nach Datenänderung wird `watch` oder `nextTick` empfohlen
 
 ### 4. Unmounting-Phase (Unmounting Phase)
 
@@ -222,7 +222,7 @@ export default {
   mounted() {
     // Timer einrichten
     this.timer = setInterval(() => {
-      console.log('Timer laeuft...');
+      console.log('Timer läuft...');
     }, 1000);
 
     // WebSocket-Verbindung erstellen
@@ -240,7 +240,7 @@ export default {
     // Vue 3 verwendet beforeUnmount
     // Vue 2 verwendet beforeDestroy
     console.log('beforeUnmount');
-    // Komponente wird gleich zerstoert, aber Daten und DOM sind noch zugaenglich
+    // Komponente wird gleich zerstört, aber Daten und DOM sind noch zugänglich
   },
 
   unmounted() {
@@ -254,7 +254,7 @@ export default {
       this.timer = null;
     }
 
-    // ✅ WebSocket-Verbindung schliessen
+    // ✅ WebSocket-Verbindung schließen
     if (this.ws) {
       this.ws.close();
       this.ws = null;
@@ -267,7 +267,7 @@ export default {
 
   methods: {
     handleResize() {
-      console.log('Fenstergroesse geaendert');
+      console.log('Fenstergröße geändert');
     },
     handleClick() {
       console.log('Klick-Ereignis');
@@ -283,18 +283,18 @@ export default {
 - `unmounted` / `destroyed`:
   - ✅ Timer bereinigen (`setInterval`, `setTimeout`)
   - ✅ Event Listener entfernen
-  - ✅ WebSocket-Verbindungen schliessen
-  - ✅ Unvollstaendige API-Anfragen abbrechen
+  - ✅ WebSocket-Verbindungen schließen
+  - ✅ Unvollständige API-Anfragen abbrechen
   - ✅ Drittanbieter-Bibliotheksinstanzen bereinigen
 
 ### 5. Spezialkomponente: KeepAlive
 
 #### Was ist `<KeepAlive>`?
 
-`<KeepAlive>` ist eine eingebaute Vue-Komponente, deren Hauptfunktion das **Caching von Komponenteninstanzen** ist, um zu vermeiden, dass Komponenten beim Wechseln zerstoert werden.
+`<KeepAlive>` ist eine eingebaute Vue-Komponente, deren Hauptfunktion das **Caching von Komponenteninstanzen** ist, um zu vermeiden, dass Komponenten beim Wechseln zerstört werden.
 
-- **Standardverhalten**: Beim Komponentenwechsel (z.B. Routenwechsel oder `v-if`-Wechsel) zerstoert Vue die alte Komponente und erstellt eine neue.
-- **KeepAlive-Verhalten**: Mit `<KeepAlive>` umschlossene Komponenten behalten ihren Zustand im Speicher und werden nicht zerstoert.
+- **Standardverhalten**: Beim Komponentenwechsel (z.B. Routenwechsel oder `v-if`-Wechsel) zerstört Vue die alte Komponente und erstellt eine neue.
+- **KeepAlive-Verhalten**: Mit `<KeepAlive>` umschlossene Komponenten behalten ihren Zustand im Speicher und werden nicht zerstört.
 
 #### Kernfunktionen und Eigenschaften
 
@@ -305,8 +305,8 @@ export default {
 #### Anwendungsszenarien
 
 1. **Tab-Wechsel**: Z.B. Tabs in Admin-Systemen.
-2. **Listen- und Detailseiten-Wechsel**: Beim Zurueckkehren von der Detailseite sollen Scroll-Position und Filter der Liste erhalten bleiben.
-3. **Komplexe Formulare**: Beim Wechsel zu einer anderen Seite waehrend der Eingabe soll der Formularinhalt nicht verloren gehen.
+2. **Listen- und Detailseiten-Wechsel**: Beim Zurückkehren von der Detailseite sollen Scroll-Position und Filter der Liste erhalten bleiben.
+3. **Komplexe Formulare**: Beim Wechsel zu einer anderen Seite während der Eingabe soll der Formularinhalt nicht verloren gehen.
 
 #### Verwendungsbeispiel
 
@@ -318,8 +318,8 @@ export default {
 </template>
 ```
 
-- `include`: Nur Komponenten mit uebereinstimmenden Namen werden gecacht.
-- `exclude`: Komponenten mit uebereinstimmenden Namen werden **nicht** gecacht.
+- `include`: Nur Komponenten mit übereinstimmenden Namen werden gecacht.
+- `exclude`: Komponenten mit übereinstimmenden Namen werden **nicht** gecacht.
 - `max`: Maximale Anzahl gecachter Komponenteninstanzen.
 
 ### 6. Spezielle Lifecycle Hooks
@@ -344,23 +344,23 @@ export default {
   name: 'ChildComponent',
 
   mounted() {
-    console.log('mounted - wird nur einmal ausgefuehrt');
+    console.log('mounted - wird nur einmal ausgeführt');
   },
 
   activated() {
-    console.log('activated - wird bei jeder Aktivierung ausgefuehrt');
+    console.log('activated - wird bei jeder Aktivierung ausgeführt');
     // ✅ Geeignet zum erneuten Laden von Daten
     this.refreshData();
   },
 
   deactivated() {
-    console.log('deactivated - wird bei jeder Deaktivierung ausgefuehrt');
+    console.log('deactivated - wird bei jeder Deaktivierung ausgeführt');
     // ✅ Geeignet zum Pausieren von Operationen (z.B. Videowiedergabe)
     this.pauseVideo();
   },
 
   unmounted() {
-    console.log('unmounted - wird nicht ausgefuehrt (durch keep-alive gecacht)');
+    console.log('unmounted - wird nicht ausgeführt (durch keep-alive gecacht)');
   },
 
   methods: {
@@ -386,7 +386,7 @@ export default {
     console.log('Fehlerquelle-Komponente:', instance);
     console.log('Fehlerinformation:', info);
 
-    // Rueckgabe von false verhindert weitere Fehlerweiterleitung
+    // Rückgabe von false verhindert weitere Fehlerweiterleitung
     return false;
   },
 };
@@ -413,7 +413,7 @@ import {
 const count = ref(0);
 
 // setup() selbst entspricht beforeCreate + created
-console.log('setup wird ausgefuehrt');
+console.log('setup wird ausgeführt');
 
 onBeforeMount(() => {
   console.log('onBeforeMount');
@@ -458,11 +458,11 @@ onErrorCaptured((err, instance, info) => {
 
 ## 2. What's the execution order of parent and child component lifecycle hooks?
 
-> Wie ist die Ausfuehrungsreihenfolge der Lifecycle Hooks von Eltern- und Kindkomponenten?
+> Wie ist die Ausführungsreihenfolge der Lifecycle Hooks von Eltern- und Kindkomponenten?
 
-Dies ist eine sehr wichtige Interviewfrage. Das Verstaendnis der Ausfuehrungsreihenfolge der Lebenszyklen zwischen Eltern- und Kindkomponenten hilft beim Verstaendnis der Interaktion zwischen Komponenten.
+Dies ist eine sehr wichtige Interviewfrage. Das Verständnis der Ausführungsreihenfolge der Lebenszyklen zwischen Eltern- und Kindkomponenten hilft beim Verständnis der Interaktion zwischen Komponenten.
 
-### Ausfuehrungsreihenfolge
+### Ausführungsreihenfolge
 
 ```
 Eltern beforeCreate
@@ -475,7 +475,7 @@ Eltern beforeCreate
 → Eltern mounted
 ```
 
-**Merkhilfe: "Erstellung von aussen nach innen, Mounting von innen nach aussen"**
+**Merkhilfe: "Erstellung von außen nach innen, Mounting von innen nach außen"**
 
 ### Praktisches Beispiel
 
@@ -563,7 +563,7 @@ export default {
 </script>
 ```
 
-### Ausfuehrungsreihenfolge nach Phase
+### Ausführungsreihenfolge nach Phase
 
 #### 1. Erstellungs- und Mounting-Phase
 
@@ -578,21 +578,21 @@ export default {
 8. Eltern mounted        ← Elternkomponente wird danach gemountet
 ```
 
-**Grund**: Die Elternkomponente muss warten, bis die Kindkomponenten das Mounting abgeschlossen haben, um sicherzustellen, dass der gesamte Komponentenbaum vollstaendig gerendert wurde.
+**Grund**: Die Elternkomponente muss warten, bis die Kindkomponenten das Mounting abgeschlossen haben, um sicherzustellen, dass der gesamte Komponentenbaum vollständig gerendert wurde.
 
 #### 2. Update-Phase
 
 ```
-Datenaenderung der Elternkomponente:
+Datenänderung der Elternkomponente:
 1. Eltern beforeUpdate
 2. Kind beforeUpdate    ← Wenn die Kindkomponente Daten der Elternkomponente verwendet
 3. Kind updated
 4. Eltern updated
 
-Datenaenderung der Kindkomponente:
+Datenänderung der Kindkomponente:
 1. Kind beforeUpdate
 2. Kind updated
-(Elternkomponente loest kein Update aus)
+(Elternkomponente löst kein Update aus)
 ```
 
 #### 3. Unmounting-Phase
@@ -600,8 +600,8 @@ Datenaenderung der Kindkomponente:
 ```
 9. Eltern beforeUnmount
 10. Kind beforeUnmount
-11. Kind unmounted       ← Kindkomponente wird zuerst zerstoert
-12. Eltern unmounted     ← Elternkomponente wird danach zerstoert
+11. Kind unmounted       ← Kindkomponente wird zuerst zerstört
+12. Eltern unmounted     ← Elternkomponente wird danach zerstört
 ```
 
 ### Fall mit mehreren Kindkomponenten
@@ -617,7 +617,7 @@ Datenaenderung der Kindkomponente:
 </template>
 ```
 
-Ausfuehrungsreihenfolge:
+Ausführungsreihenfolge:
 
 ```
 1. Eltern beforeCreate
@@ -642,35 +642,35 @@ Ausfuehrungsreihenfolge:
 
 #### Mounting-Phase
 
-Der Mounting-Prozess von Vue aehnelt einer "Tiefensuche":
+Der Mounting-Prozess von Vue ähnelt einer "Tiefensuche":
 
 1. Elternkomponente beginnt mit der Erstellung
 2. Beim Template-Parsing werden Kindkomponenten entdeckt
-3. Kindkomponenten werden zuerst vollstaendig gemountet
-4. Nachdem alle Kindkomponenten gemountet sind, schliesst die Elternkomponente das Mounting ab
+3. Kindkomponenten werden zuerst vollständig gemountet
+4. Nachdem alle Kindkomponenten gemountet sind, schließt die Elternkomponente das Mounting ab
 
 ```
 Elternkomponente bereitet Mounting vor
     ↓
 Kindkomponente entdeckt
     ↓
-Kindkomponente vollstaendig gemountet (beforeMount → mounted)
+Kindkomponente vollständig gemountet (beforeMount → mounted)
     ↓
-Elternkomponente schliesst Mounting ab (mounted)
+Elternkomponente schließt Mounting ab (mounted)
 ```
 
 #### Unmounting-Phase
 
-Die Unmounting-Reihenfolge ist "erst Elternkomponente benachrichtigen, dann Kindkomponenten der Reihe nach zerstoeren":
+Die Unmounting-Reihenfolge ist "erst Elternkomponente benachrichtigen, dann Kindkomponenten der Reihe nach zerstören":
 
 ```
 Elternkomponente bereitet Unmounting vor (beforeUnmount)
     ↓
 Kindkomponenten benachrichtigen (beforeUnmount)
     ↓
-Kindkomponenten abschliessen (unmounted)
+Kindkomponenten abschließen (unmounted)
     ↓
-Elternkomponente abschliessen (unmounted)
+Elternkomponente abschließen (unmounted)
 ```
 
 ### Praktische Anwendungsszenarien
@@ -705,7 +705,7 @@ export default {
   inject: ['parentData'], // Daten der Elternkomponente empfangen
 
   created() {
-    // ✅ Zu diesem Zeitpunkt kann auf Elterndaten zugegriffen werden (created der Elternkomponente wurde bereits ausgefuehrt)
+    // ✅ Zu diesem Zeitpunkt kann auf Elterndaten zugegriffen werden (created der Elternkomponente wurde bereits ausgeführt)
     console.log('Elterndaten:', this.parentData);
   },
 };
@@ -730,7 +730,7 @@ export default {
 </script>
 ```
 
-### Haeufige Fehler
+### Häufige Fehler
 
 #### Fehler 1: Zugriff auf Kindkomponenten-Ref im `created` der Elternkomponente
 
@@ -750,7 +750,7 @@ export default {
 export default {
   mounted() {
     // Zu diesem Zeitpunkt ist die Kindkomponente gemountet
-    console.log(this.$refs.child); // Zugriff moeglich
+    console.log(this.$refs.child); // Zugriff möglich
   },
 };
 </script>
@@ -788,11 +788,11 @@ export default {
 
 > Wann sollten wir welchen Lifecycle Hook verwenden?
 
-Hier ist eine Zusammenfassung der besten Anwendungsszenarien fuer jeden Lifecycle Hook.
+Hier ist eine Zusammenfassung der besten Anwendungsszenarien für jeden Lifecycle Hook.
 
-### Uebersichtstabelle der Anwendungsszenarien
+### Übersichtstabelle der Anwendungsszenarien
 
-| Lebenszyklus | Haeufige Verwendung                    | Zugaengliche Inhalte              |
+| Lebenszyklus | Häufige Verwendung                     | Zugängliche Inhalte               |
 | ------------ | -------------------------------------- | --------------------------------- |
 | `created`    | API-Anfragen, Daten initialisieren     | ✅ data, methods ❌ DOM          |
 | `mounted`    | DOM manipulieren, Bibliotheken init.   | ✅ data, methods, DOM            |
@@ -816,7 +816,7 @@ export default {
   },
 
   created() {
-    // ✅ Geeignet fuer API-Anfragen hier
+    // ✅ Geeignet für API-Anfragen hier
     this.fetchUsers();
   },
 
@@ -857,7 +857,7 @@ export default {
   },
 
   mounted() {
-    // ✅ Geeignet fuer Initialisierung von DOM-abhaengigen Bibliotheken
+    // ✅ Geeignet für Initialisierung von DOM-abhängigen Bibliotheken
     this.initChart();
   },
 
@@ -898,7 +898,7 @@ export default {
   mounted() {
     // Timer starten
     this.intervalId = setInterval(() => {
-      console.log('Ausfuehrung...');
+      console.log('Ausführung...');
     }, 1000);
 
     // Intersection Observer erstellen
@@ -907,7 +907,7 @@ export default {
     });
     this.observer.observe(this.$el);
 
-    // Globale Events ueberwachen
+    // Globale Events überwachen
     window.addEventListener('resize', this.handleResize);
   },
 
@@ -928,7 +928,7 @@ export default {
 
   methods: {
     handleResize() {
-      console.log('Fenstergroesse geaendert');
+      console.log('Fenstergröße geändert');
     },
   },
 };
@@ -940,7 +940,7 @@ export default {
 1. **`created`**: "Erstellung abgeschlossen, Daten nutzbar" → API-Anfragen
 2. **`mounted`**: "Mounting abgeschlossen, DOM nutzbar" → DOM-Manipulation, Drittanbieter-Bibliotheken
 3. **`updated`**: "Aktualisierung abgeschlossen, DOM synchronisiert" → Operationen nach DOM-Aktualisierung
-4. **`unmounted`**: "Unmounting abgeschlossen, aufraeumen" → Ressourcen bereinigen
+4. **`unmounted`**: "Unmounting abgeschlossen, aufräumen" → Ressourcen bereinigen
 
 ## Reference
 

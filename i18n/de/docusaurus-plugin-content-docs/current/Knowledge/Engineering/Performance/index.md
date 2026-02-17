@@ -1,6 +1,6 @@
 ---
 id: performance-interview-index
-title: 'Ueberblick zur Web-Performance-Optimierung'
+title: 'Überblick zur Web-Performance-Optimierung'
 slug: /experience/performance
 tags: [Experience, Interview, Performance]
 ---
@@ -24,5 +24,5 @@ tags: [Experience, Interview, Performance]
 
 - [Virtual Scroll Implementierung: Umgang mit großen Datenmengen beim Rendering](/docs/experience/performance/lv3-virtual-scroll)
 - [Web Worker Anwendung: Hintergrundberechnung ohne UI-Blockierung](/docs/experience/performance/lv3-web-worker)
-- [Optimierungsstrategien fuer große Datenmengen: Loesungsauswahl und Implementierung](/docs/experience/performance/lv3-large-data-optimization)
+- [Optimierungsstrategien für große Datenmengen: Lösungsauswahl und Implementierung](/docs/experience/performance/lv3-large-data-optimization)
 - [Nuxt 3 Performance-Optimierung: Bundle Size, SSR-Geschwindigkeit und Bildoptimierung](/docs/experience/performance/lv3-nuxt-performance)

@@ -1,24 +1,24 @@
 ---
 id: generics
-title: '[Medium] Kieu tong quat (Generics)'
+title: '[Medium] Kiểu tổng quát (Generics)'
 slug: /generics
 tags: [TypeScript, Quiz, Medium]
 ---
 
 ## 1. What are Generics?
 
-> Generics la gi?
+> Generics là gì?
 
-Generics la mot tinh nang manh me trong TypeScript, cho phep chung ta tao cac thanh phan tai su dung co the xu ly nhieu kieu du lieu thay vi chi mot kieu duy nhat.
+Generics là một tính năng mạnh mẽ trong TypeScript, cho phép chúng ta tạo các thành phần tái sử dụng có thể xử lý nhiều kiểu dữ liệu thay vì chỉ một kiểu duy nhất.
 
-**Khai niem cot loi**: Khi dinh nghia ham, interface hoac class, khong chi dinh truoc kieu cu the ma chi dinh khi su dung.
+**Khái niệm cốt lõi**: Khi định nghĩa hàm, interface hoặc class, không chỉ định trước kiểu cụ thể mà chỉ định khi sử dụng.
 
-### Tai sao can Generics?
+### Tại sao cần Generics?
 
-**Van de khi khong co Generics**:
+**Vấn đề khi không có Generics**:
 
 ```typescript
-// Van de: can viet mot ham cho moi kieu
+// Vấn đề: cần viết một hàm cho mỗi kiểu
 function getStringItem(arr: string[]): string {
   return arr[0];
 }
@@ -32,10 +32,10 @@ function getBooleanItem(arr: boolean[]): boolean {
 }
 ```
 
-**Giai phap voi Generics**:
+**Giải pháp với Generics**:
 
 ```typescript
-// Mot ham xu ly tat ca cac kieu
+// Một hàm xử lý tất cả các kiểu
 function getItem<T>(arr: T[]): T {
   return arr[0];
 }
@@ -47,21 +47,21 @@ getItem<boolean>([true, false]);  // boolean
 
 ## 2. Basic Generic Syntax
 
-> Cu phap Generics co ban
+> Cú pháp Generics cơ bản
 
-### Ham generic
+### Hàm generic
 
 ```typescript
-// Cu phap: <T> bieu thi tham so kieu
+// Cú pháp: <T> biểu thị tham số kiểu
 function identity<T>(arg: T): T {
   return arg;
 }
 
-// Cach su dung 1: chi dinh kieu ro rang
+// Cách sử dụng 1: chỉ định kiểu rõ ràng
 let output1 = identity<string>('hello');  // output1: string
 
-// Cach su dung 2: de TypeScript suy luan kieu
-let output2 = identity('hello');  // output2: string (tu dong suy luan)
+// Cách sử dụng 2: để TypeScript suy luận kiểu
+let output2 = identity('hello');  // output2: string (tự động suy luận)
 ```
 
 ### Interface generic
@@ -106,14 +106,14 @@ numberContainer.add(2);
 
 ## 3. Generic Constraints
 
-> Rang buoc generic
+> Ràng buộc generic
 
-### Rang buoc co ban
+### Ràng buộc cơ bản
 
-**Cu phap**: Su dung tu khoa `extends` de gioi han kieu generic.
+**Cú pháp**: Sử dụng từ khóa `extends` để giới hạn kiểu generic.
 
 ```typescript
-// T phai co thuoc tinh length
+// T phải có thuộc tính length
 function getLength<T extends { length: number }>(arg: T): number {
   return arg.length;
 }
@@ -121,13 +121,13 @@ function getLength<T extends { length: number }>(arg: T): number {
 getLength('hello');        // ✅ 5
 getLength([1, 2, 3]);      // ✅ 3
 getLength({ length: 10 }); // ✅ 10
-getLength(42);             // ❌ Loi: number khong co thuoc tinh length
+getLength(42);             // ❌ Lỗi: number không có thuộc tính length
 ```
 
-### Rang buoc voi keyof
+### Ràng buộc với keyof
 
 ```typescript
-// K phai la khoa cua T
+// K phải là khóa của T
 function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
   return obj[key];
 }
@@ -140,76 +140,76 @@ const user = {
 
 getProperty(user, 'name');  // ✅ 'John'
 getProperty(user, 'age');   // ✅ 30
-getProperty(user, 'id');    // ❌ Loi: 'id' khong phai la khoa cua user
+getProperty(user, 'id');    // ❌ Lỗi: 'id' không phải là khóa của user
 ```
 
-### Nhieu rang buoc
+### Nhiều ràng buộc
 
 ```typescript
-// T phai thoa man nhieu dieu kien dong thoi
+// T phải thỏa mãn nhiều điều kiện đồng thời
 function process<T extends string | number>(value: T): T {
   return value;
 }
 
 process('hello');  // ✅
 process(42);       // ✅
-process(true);     // ❌ Loi: boolean nam ngoai pham vi rang buoc
+process(true);     // ❌ Lỗi: boolean nằm ngoài phạm vi ràng buộc
 ```
 
 ## 4. Common Interview Questions
 
-> Cac cau hoi phong van thuong gap
+> Các câu hỏi phỏng vấn thường gặp
 
-### Cau hoi 1: Hien thuc ham generic
+### Câu hỏi 1: Hiện thực hàm generic
 
-Hay hien thuc mot ham generic `first`, tra ve phan tu dau tien cua mang.
+Hãy hiện thực một hàm generic `first`, trả về phần tử đầu tiên của mảng.
 
 ```typescript
 function first<T>(arr: T[]): T | undefined {
-  // Hien thuc cua ban
+  // Hiện thực của bạn
 }
 ```
 
 <details>
-<summary>Nhan de xem dap an</summary>
+<summary>Nhấn để xem đáp án</summary>
 
 ```typescript
 function first<T>(arr: T[]): T | undefined {
   return arr.length > 0 ? arr[0] : undefined;
 }
 
-// Vi du su dung
+// Ví dụ sử dụng
 const firstString = first<string>(['a', 'b', 'c']);  // 'a'
 const firstNumber = first<number>([1, 2, 3]);        // 1
 const firstEmpty = first<number>([]);                 // undefined
 ```
 
-**Giai thich**:
-- `<T>` dinh nghia tham so kieu generic
-- `arr: T[]` bieu thi mang kieu T
-- Gia tri tra ve `T | undefined` bieu thi co the la kieu T hoac undefined
+**Giải thích**:
+- `<T>` định nghĩa tham số kiểu generic
+- `arr: T[]` biểu thị mảng kiểu T
+- Giá trị trả về `T | undefined` biểu thị có thể là kiểu T hoặc undefined
 
 </details>
 
-### Cau hoi 2: Rang buoc generic
+### Câu hỏi 2: Ràng buộc generic
 
-Hay hien thuc mot ham gop hai doi tuong, nhung chi gop cac thuoc tinh ton tai trong doi tuong dau tien.
+Hãy hiện thực một hàm gộp hai đối tượng, nhưng chỉ gộp các thuộc tính tồn tại trong đối tượng đầu tiên.
 
 ```typescript
 function merge<T, U>(obj1: T, obj2: U): T & U {
-  // Hien thuc cua ban
+  // Hiện thực của bạn
 }
 ```
 
 <details>
-<summary>Nhan de xem dap an</summary>
+<summary>Nhấn để xem đáp án</summary>
 
 ```typescript
 function merge<T, U>(obj1: T, obj2: U): T & U {
   return { ...obj1, ...obj2 } as T & U;
 }
 
-// Vi du su dung
+// Ví dụ sử dụng
 const obj1 = { name: 'John', age: 30 };
 const obj2 = { age: 31, email: 'john@example.com' };
 
@@ -217,7 +217,7 @@ const merged = merge(obj1, obj2);
 // { name: 'John', age: 31, email: 'john@example.com' }
 ```
 
-**Phien ban nang cao (chi gop thuoc tinh cua doi tuong dau tien)**:
+**Phiên bản nâng cao (chỉ gộp thuộc tính của đối tượng đầu tiên)**:
 
 ```typescript
 function merge<T extends object, U extends Partial<T>>(
@@ -228,7 +228,7 @@ function merge<T extends object, U extends Partial<T>>(
 }
 
 const obj1 = { name: 'John', age: 30 };
-const obj2 = { age: 31 };  // Chi co the chua thuoc tinh cua obj1
+const obj2 = { age: 31 };  // Chỉ có thể chứa thuộc tính của obj1
 
 const merged = merge(obj1, obj2);
 // { name: 'John', age: 31 }
@@ -236,18 +236,18 @@ const merged = merge(obj1, obj2);
 
 </details>
 
-### Cau hoi 3: Interface generic
+### Câu hỏi 3: Interface generic
 
-Hay dinh nghia mot interface generic `Repository` cho cac thao tac truy cap du lieu.
+Hãy định nghĩa một interface generic `Repository` cho các thao tác truy cập dữ liệu.
 
 ```typescript
 interface Repository<T> {
-  // Dinh nghia cua ban
+  // Định nghĩa của bạn
 }
 ```
 
 <details>
-<summary>Nhan de xem dap an</summary>
+<summary>Nhấn để xem đáp án</summary>
 
 ```typescript
 interface Repository<T> {
@@ -257,7 +257,7 @@ interface Repository<T> {
   delete(id: string): void;
 }
 
-// Vi du hien thuc
+// Ví dụ hiện thực
 class UserRepository implements Repository<User> {
   private users: User[] = [];
 
@@ -286,25 +286,25 @@ class UserRepository implements Repository<User> {
 
 </details>
 
-### Cau hoi 4: Rang buoc generic va keyof
+### Câu hỏi 4: Ràng buộc generic và keyof
 
-Hay hien thuc mot ham lay gia tri thuoc tinh cua doi tuong theo ten khoa, dam bao an toan kieu.
+Hãy hiện thực một hàm lấy giá trị thuộc tính của đối tượng theo tên khóa, đảm bảo an toàn kiểu.
 
 ```typescript
 function getValue<T, K extends keyof T>(obj: T, key: K): T[K] {
-  // Hien thuc cua ban
+  // Hiện thực của bạn
 }
 ```
 
 <details>
-<summary>Nhan de xem dap an</summary>
+<summary>Nhấn để xem đáp án</summary>
 
 ```typescript
 function getValue<T, K extends keyof T>(obj: T, key: K): T[K] {
   return obj[key];
 }
 
-// Vi du su dung
+// Ví dụ sử dụng
 const user = {
   name: 'John',
   age: 30,
@@ -314,19 +314,19 @@ const user = {
 const name = getValue(user, 'name');   // string
 const age = getValue(user, 'age');     // number
 const email = getValue(user, 'email');  // string
-// const id = getValue(user, 'id');    // ❌ Loi: 'id' khong phai la khoa cua user
+// const id = getValue(user, 'id');    // ❌ Lỗi: 'id' không phải là khóa của user
 ```
 
-**Giai thich**:
-- `K extends keyof T` dam bao K phai la mot trong cac khoa cua T
-- `T[K]` bieu thi kieu gia tri tuong ung voi khoa K trong doi tuong T
-- Dieu nay dam bao an toan kieu, phat hien loi ngay luc bien dich
+**Giải thích**:
+- `K extends keyof T` đảm bảo K phải là một trong các khóa của T
+- `T[K]` biểu thị kiểu giá trị tương ứng với khóa K trong đối tượng T
+- Điều này đảm bảo an toàn kiểu, phát hiện lỗi ngay lúc biên dịch
 
 </details>
 
-### Cau hoi 5: Kieu dieu kien va generics
+### Câu hỏi 5: Kiểu điều kiện và generics
 
-Hay giai thich ket qua suy luan kieu cua doan code sau.
+Hãy giải thích kết quả suy luận kiểu của đoạn code sau.
 
 ```typescript
 type NonNullable<T> = T extends null | undefined ? never : T;
@@ -337,7 +337,7 @@ type C = NonNullable<string | number>;
 ```
 
 <details>
-<summary>Nhan de xem dap an</summary>
+<summary>Nhấn để xem đáp án</summary>
 
 ```typescript
 type NonNullable<T> = T extends null | undefined ? never : T;
@@ -347,13 +347,13 @@ type B = NonNullable<number | undefined>; // number
 type C = NonNullable<string | number>;    // string | number
 ```
 
-**Giai thich**:
-- `NonNullable<T>` la mot kieu dieu kien (Conditional Type)
-- Neu T co the gan cho `null | undefined` thi tra ve `never`, nguoc lai tra ve `T`
-- Trong `string | null`, `string` khong thoa dieu kien, `null` thoa dieu kien, nen ket qua la `string`
-- Trong `string | number`, ca hai deu khong thoa dieu kien, nen ket qua la `string | number`
+**Giải thích**:
+- `NonNullable<T>` là một kiểu điều kiện (Conditional Type)
+- Nếu T có thể gán cho `null | undefined` thì trả về `never`, ngược lại trả về `T`
+- Trong `string | null`, `string` không thỏa điều kiện, `null` thỏa điều kiện, nên kết quả là `string`
+- Trong `string | number`, cả hai đều không thỏa điều kiện, nên kết quả là `string | number`
 
-**Ung dung thuc te**:
+**Ứng dụng thực tế**:
 ```typescript
 function processValue<T>(value: T): NonNullable<T> {
   if (value === null || value === undefined) {
@@ -369,20 +369,20 @@ const result = processValue<string | null>('hello');  // string
 
 ## 5. Advanced Generic Patterns
 
-> Cac mau generic nang cao
+> Các mẫu generic nâng cao
 
-### Tham so kieu mac dinh
+### Tham số kiểu mặc định
 
 ```typescript
 interface Container<T = string> {
   value: T;
 }
 
-const container1: Container = { value: 'hello' };  // Su dung kieu mac dinh string
+const container1: Container = { value: 'hello' };  // Sử dụng kiểu mặc định string
 const container2: Container<number> = { value: 42 };
 ```
 
-### Nhieu tham so kieu
+### Nhiều tham số kiểu
 
 ```typescript
 function map<T, U>(arr: T[], fn: (item: T) => U): U[] {
@@ -393,104 +393,104 @@ const numbers = [1, 2, 3];
 const strings = map(numbers, (n) => n.toString());  // string[]
 ```
 
-### Cac kieu tien ich generic
+### Các kiểu tiện ích generic
 
 ```typescript
-// Partial: tat ca thuoc tinh tro thanh tuy chon
+// Partial: tất cả thuộc tính trở thành tùy chọn
 type Partial<T> = {
   [P in keyof T]?: T[P];
 };
 
-// Required: tat ca thuoc tinh tro thanh bat buoc
+// Required: tất cả thuộc tính trở thành bắt buộc
 type Required<T> = {
   [P in keyof T]-?: T[P];
 };
 
-// Pick: chon cac thuoc tinh cu the
+// Pick: chọn các thuộc tính cụ thể
 type Pick<T, K extends keyof T> = {
   [P in K]: T[P];
 };
 
-// Omit: loai tru cac thuoc tinh cu the
+// Omit: loại trừ các thuộc tính cụ thể
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 ```
 
 ## 6. Best Practices
 
-> Thuc hanh tot nhat
+> Thực hành tốt nhất
 
-### Cach lam khuyen dung
+### Cách làm khuyên dùng
 
 ```typescript
-// 1. Su dung ten generic co y nghia
+// 1. Sử dụng tên generic có ý nghĩa
 function process<TData, TResponse>(data: TData): TResponse {
   // ...
 }
 
-// 2. Su dung rang buoc de gioi han pham vi generic
+// 2. Sử dụng ràng buộc để giới hạn phạm vi generic
 function getLength<T extends { length: number }>(arg: T): number {
   return arg.length;
 }
 
-// 3. Cung cap tham so kieu mac dinh
+// 3. Cung cấp tham số kiểu mặc định
 interface Config<T = string> {
   value: T;
 }
 
-// 4. Su dung cac kieu tien ich generic
+// 4. Sử dụng các kiểu tiện ích generic
 type UserUpdate = Partial<User>;
 type UserKeys = keyof User;
 ```
 
-### Cach lam nen tranh
+### Cách làm nên tránh
 
 ```typescript
-// 1. Khong lam dung generics
-function process<T>(value: T): T {  // ⚠️ Neu chi co mot kieu, khong can generics
+// 1. Không lạm dụng generics
+function process<T>(value: T): T {  // ⚠️ Nếu chỉ có một kiểu, không cần generics
   return value;
 }
 
-// 2. Khong su dung ten generic mot chu cai (tru truong hop don gian)
-function process<A, B, C>(a: A, b: B, c: C) {  // ❌ Y nghia khong ro rang
+// 2. Không sử dụng tên generic một chữ cái (trừ trường hợp đơn giản)
+function process<A, B, C>(a: A, b: B, c: C) {  // ❌ Ý nghĩa không rõ ràng
   // ...
 }
 
-// 3. Khong bo qua rang buoc
-function process<T>(value: T) {  // ⚠️ Neu co gioi han, nen them rang buoc
-  return value.length;  // Co the loi
+// 3. Không bỏ qua ràng buộc
+function process<T>(value: T) {  // ⚠️ Nếu có giới hạn, nên thêm ràng buộc
+  return value.length;  // Có thể lỗi
 }
 ```
 
 ## 7. Interview Summary
 
-> Tom tat phong van
+> Tóm tắt phỏng vấn
 
-### Tham khao nhanh
+### Tham khảo nhanh
 
-**Khai niem cot loi cua Generics**:
-- Khong chi dinh kieu cu the khi dinh nghia, chi dinh khi su dung
-- Cu phap: `<T>` dinh nghia tham so kieu
-- Co the ap dung cho ham, interface, class
+**Khái niệm cốt lõi của Generics**:
+- Không chỉ định kiểu cụ thể khi định nghĩa, chỉ định khi sử dụng
+- Cú pháp: `<T>` định nghĩa tham số kiểu
+- Có thể áp dụng cho hàm, interface, class
 
-**Rang buoc generic**:
-- Su dung `extends` de gioi han pham vi generic
-- `K extends keyof T` dam bao K la khoa cua T
-- Co the ket hop nhieu rang buoc
+**Ràng buộc generic**:
+- Sử dụng `extends` để giới hạn phạm vi generic
+- `K extends keyof T` đảm bảo K là khóa của T
+- Có thể kết hợp nhiều ràng buộc
 
-**Cac mau thuong gap**:
-- Ham generic: `function identity<T>(arg: T): T`
+**Các mẫu thường gặp**:
+- Hàm generic: `function identity<T>(arg: T): T`
 - Interface generic: `interface Box<T> { value: T; }`
 - Class generic: `class Container<T> { ... }`
 
-### Vi du tra loi phong van
+### Ví dụ trả lời phỏng vấn
 
-**Q: Generics la gi? Tai sao can Generics?**
+**Q: Generics là gì? Tại sao cần Generics?**
 
-> "Generics la mot co che trong TypeScript de tao cac thanh phan tai su dung, cho phep khong chi dinh kieu cu the khi dinh nghia ma chi dinh khi su dung. Cac uu diem chinh cua Generics la: 1) Tang kha nang tai su dung code - mot ham co the xu ly nhieu kieu; 2) Duy tri an toan kieu - kiem tra loi kieu ngay luc bien dich; 3) Giam code trung lap - khong can viet mot ham cho moi kieu. Vi du `function identity<T>(arg: T): T` co the xu ly bat ky kieu nao ma khong can viet ham rieng cho string, number, v.v."
+> "Generics là một cơ chế trong TypeScript để tạo các thành phần tái sử dụng, cho phép không chỉ định kiểu cụ thể khi định nghĩa mà chỉ định khi sử dụng. Các ưu điểm chính của Generics là: 1) Tăng khả năng tái sử dụng code - một hàm có thể xử lý nhiều kiểu; 2) Duy trì an toàn kiểu - kiểm tra lỗi kiểu ngay lúc biên dịch; 3) Giảm code trùng lặp - không cần viết một hàm cho mỗi kiểu. Ví dụ `function identity<T>(arg: T): T` có thể xử lý bất kỳ kiểu nào mà không cần viết hàm riêng cho string, number, v.v."
 
-**Q: Rang buoc generic la gi? Su dung nhu the nao?**
+**Q: Ràng buộc generic là gì? Sử dụng như thế nào?**
 
-> "Rang buoc generic su dung tu khoa `extends` de gioi han pham vi cua kieu generic. Vi du `function getLength<T extends { length: number }>(arg: T)` dam bao T phai co thuoc tinh length. Mot rang buoc thuong gap khac la `K extends keyof T`, dam bao K phai la mot trong cac khoa cua T, giup hien thuc truy cap thuoc tinh an toan kieu. Rang buoc giup chung ta duy tri an toan kieu khi su dung generics, dong thoi cung cap thong tin kieu can thiet."
+> "Ràng buộc generic sử dụng từ khóa `extends` để giới hạn phạm vi của kiểu generic. Ví dụ `function getLength<T extends { length: number }>(arg: T)` đảm bảo T phải có thuộc tính length. Một ràng buộc thường gặp khác là `K extends keyof T`, đảm bảo K phải là một trong các khóa của T, giúp hiện thực truy cập thuộc tính an toàn kiểu. Ràng buộc giúp chúng ta duy trì an toàn kiểu khi sử dụng generics, đồng thời cung cấp thông tin kiểu cần thiết."
 
 ## Reference
 

@@ -1,60 +1,60 @@
 ---
-title: '[Lv2] Trien khai SSR: Data Fetching va quan ly SEO Meta'
+title: '[Lv2] Triển khai SSR: Data Fetching và quản lý SEO Meta'
 slug: /experience/ssr-seo/lv2-ssr-implementation
 tags: [Experience, Interview, SSR-SEO, Lv2]
 ---
 
-> Trong du an Nuxt 3: trien khai tai du lieu bang SSR va quan ly SEO Meta dong de cong cu tim kiem index dung cac route dong.
+> Trong dự án Nuxt 3: triển khai tải dữ liệu bằng SSR và quản lý SEO Meta động để công cụ tìm kiếm index đúng các route động.
 
 ---
 
-## 1. Trong tam tra loi phong van
+## 1. Trọng tâm trả lời phỏng vấn
 
-1. **Chien luoc data fetching**: dung `useFetch`/`useAsyncData` de preload tren server, dam bao HTML day du cho SEO.
-2. **Meta tags dong**: dung `useHead` hoac `useSeoMeta` de tao metadata theo tung resource.
-3. **Hieu nang**: ap dung request deduplication, cache phia server, va tach ro trang SSR/CSR.
+1. **Chiến lược data fetching**: dùng `useFetch`/`useAsyncData` để preload trên server, đảm bảo HTML đầy đủ cho SEO.
+2. **Meta tags động**: dùng `useHead` hoặc `useSeoMeta` để tạo metadata theo từng resource.
+3. **Hiệu năng**: áp dụng request deduplication, cache phía server, và tách rõ trang SSR/CSR.
 
 ---
 
-## 2. Cach dung dung useFetch / useAsyncData
+## 2. Cách dùng đúng useFetch / useAsyncData
 
-### 2.1 Tai sao data fetching trong SSR quan trong
+### 2.1 Tại sao data fetching trong SSR quan trọng
 
-**Tinh huong pho bien:**
+**Tình huống phổ biến:**
 
-- Route dong (vi du `/products/[id]`) can du lieu tu API.
-- Neu chi load o client, crawler co the thay noi dung khong day du.
-- Muc tieu: tra ve HTML da render day du du lieu tu server.
+- Route động (ví dụ `/products/[id]`) cần dữ liệu từ API.
+- Nếu chỉ load ở client, crawler có thể thấy nội dung không đầy đủ.
+- Mục tiêu: trả về HTML đã render đầy đủ dữ liệu từ server.
 
-**Giai phap:** dung `useFetch` hoac `useAsyncData` trong Nuxt 3.
+**Giải pháp:** dùng `useFetch` hoặc `useAsyncData` trong Nuxt 3.
 
-### 2.2 Vi du co ban voi useFetch
+### 2.2 Ví dụ cơ bản với useFetch
 
 **File:** `pages/products/[id].vue`
 
 ```typescript
-// cach dung co ban
+// cách dùng cơ bản
 const { data: product } = await useFetch(`/api/products/${route.params.id}`);
 ```
 
-**Cac option quan trong:**
+**Các option quan trọng:**
 
-| Option      | Muc dich                                      | Default  |
+| Option      | Mục đích                                      | Default  |
 | ----------- | --------------------------------------------- | -------- |
-| `key`       | Khoa duy nhat de deduplicate request          | auto     |
-| `lazy`      | Tai tre (khong block SSR)                     | `false`  |
-| `server`    | Chay tren server                              | `true`   |
-| `default`   | Gia tri fallback                              | `null`   |
-| `transform` | Bien doi response truoc khi su dung           | -        |
+| `key`       | Khóa duy nhất để deduplicate request          | auto     |
+| `lazy`      | Tải trễ (không block SSR)                     | `false`  |
+| `server`    | Chạy trên server                              | `true`   |
+| `default`   | Giá trị fallback                              | `null`   |
+| `transform` | Biến đổi response trước khi sử dụng           | -        |
 
-### 2.3 Vi du day du
+### 2.3 Ví dụ đầy đủ
 
 ```typescript
 // pages/products/[id].vue
 const { data: product } = await useFetch(`/api/products/${route.params.id}`, {
-  key: `product-${route.params.id}`, // tranh request trung lap
-  lazy: false, // SSR doi du lieu
-  server: true, // dam bao chay o server
+  key: `product-${route.params.id}`, // tránh request trùng lặp
+  lazy: false, // SSR đợi dữ liệu
+  server: true, // đảm bảo chạy ở server
   default: () => ({
     id: null,
     name: '',
@@ -62,7 +62,7 @@ const { data: product } = await useFetch(`/api/products/${route.params.id}`, {
     image: '',
   }),
   transform: (data: any) => {
-    // chuan hoa du lieu
+    // chuẩn hóa dữ liệu
     return {
       ...data,
       formattedPrice: formatPrice(data.price),
@@ -71,31 +71,31 @@ const { data: product } = await useFetch(`/api/products/${route.params.id}`, {
 });
 ```
 
-**Vi sao cac option nay quan trong:**
+**Vì sao các option này quan trọng:**
 
 1. **`key`**
-   - Cho phep request deduplication.
-   - Cung key -> mot request hieu luc.
+   - Cho phép request deduplication.
+   - Cùng key -> một request hiệu lực.
 2. **`lazy: false`**
-   - Server chi render sau khi co du lieu.
-   - Crawler nhan duoc noi dung cuoi.
+   - Server chỉ render sau khi có dữ liệu.
+   - Crawler nhận được nội dung cuối.
 3. **`server: true`**
-   - Fetch chay tren duong SSR.
-   - Khong phu thuoc chi vao client.
+   - Fetch chạy trên đường SSR.
+   - Không phụ thuộc chỉ vào client.
 
 ### 2.4 useAsyncData vs useFetch
 
-| Tieu chi        | useFetch                    | useAsyncData                        |
+| Tiêu chí        | useFetch                    | useAsyncData                        |
 | --------------- | --------------------------- | ----------------------------------- |
-| Muc dich chinh  | Goi API                     | Moi tac vu bat dong bo              |
-| Muc do tien loi | URL/header tich hop         | Tu viet logic                       |
-| Tinh huong dung | HTTP data fetching          | DB query, tong hop, doc file        |
+| Mục đích chính  | Gọi API                     | Mọi tác vụ bất đồng bộ              |
+| Mức độ tiện lợi | URL/header tích hợp         | Tự viết logic                       |
+| Tình huống dùng | HTTP data fetching          | DB query, tổng hợp, đọc file        |
 
 ```typescript
-// useFetch: tap trung vao API
+// useFetch: tập trung vào API
 const { data } = await useFetch('/api/products/123');
 
-// useAsyncData: logic async tuy bien
+// useAsyncData: logic async tùy biến
 const { data } = await useAsyncData('products', async () => {
   const result = await someAsyncOperation();
   return result;
@@ -104,59 +104,59 @@ const { data } = await useAsyncData('products', async () => {
 
 ### 2.5 $fetch vs useFetch
 
-**Quy tac ngan cho phong van:**
+**Quy tắc ngắn cho phỏng vấn:**
 
-- **`$fetch`** cho hanh dong nguoi dung (click, submit, refresh).
-- **`useFetch`** cho tai lan dau, dong bo voi SSR/Hydration.
+- **`$fetch`** cho hành động người dùng (click, submit, refresh).
+- **`useFetch`** cho tải lần đầu, đồng bộ với SSR/Hydration.
 
-**`$fetch` dac diem:**
+**`$fetch` đặc điểm:**
 
-- HTTP client thuan (`ofetch`)
-- Khong chuyen state SSR
-- Dung truc tiep trong `setup()` de gay double fetch
+- HTTP client thuần (`ofetch`)
+- Không chuyển state SSR
+- Dùng trực tiếp trong `setup()` dễ gây double fetch
 
-**`useFetch` dac diem:**
+**`useFetch` đặc điểm:**
 
-- Ket hop `useAsyncData` + `$fetch`
-- Than thien voi hydration
-- Tra ve `data`, `pending`, `error`, `refresh`
+- Kết hợp `useAsyncData` + `$fetch`
+- Thân thiện với hydration
+- Trả về `data`, `pending`, `error`, `refresh`
 
-**So sanh:**
+**So sánh:**
 
-| Muc               | useFetch                        | $fetch                         |
+| Mục               | useFetch                        | $fetch                         |
 | ----------------- | ------------------------------- | ------------------------------ |
-| Chuyen state SSR  | Co                              | Khong                          |
-| Gia tri tra ve    | Ref reactive                    | Promise du lieu raw            |
-| Muc dich chinh    | Tai du lieu ban dau cua trang   | Tac vu theo su kien            |
+| Chuyển state SSR  | Có                              | Không                          |
+| Giá trị trả về    | Ref reactive                    | Promise dữ liệu raw            |
+| Mục đích chính    | Tải dữ liệu ban đầu của trang   | Tác vụ theo sự kiện            |
 
 ```typescript
-// dung: tai ban dau
+// đúng: tải ban đầu
 const { data } = await useFetch('/api/user');
 
-// dung: hanh dong nguoi dung
+// đúng: hành động người dùng
 const submitForm = async () => {
   await $fetch('/api/submit', { method: 'POST', body: form });
 };
 
-// tranh: setup + $fetch truc tiep
+// tránh: setup + $fetch trực tiếp
 const data = await $fetch('/api/user');
 ```
 
 ---
 
-## 3. Quan ly SEO Meta voi useHead
+## 3. Quản lý SEO Meta với useHead
 
-### 3.1 Tai sao can meta tags dong
+### 3.1 Tại sao cần meta tags động
 
-**Tinh huong pho bien:**
+**Tình huống phổ biến:**
 
-- Trang san pham va bai viet la dong.
-- Moi URL can `title`, `description`, `og:image`, canonical rieng.
-- Chia se social (Open Graph/Twitter) can dong nhat.
+- Trang sản phẩm và bài viết là động.
+- Mỗi URL cần `title`, `description`, `og:image`, canonical riêng.
+- Chia sẻ social (Open Graph/Twitter) cần động nhất.
 
-**Giai phap:** `useHead` hoac `useSeoMeta`.
+**Giải pháp:** `useHead` hoặc `useSeoMeta`.
 
-### 3.2 Vi du useHead
+### 3.2 Ví dụ useHead
 
 ```typescript
 useHead({
@@ -177,11 +177,11 @@ useHead({
 
 **Best practices:**
 
-1. Truyen gia tri dang ham (`() => ...`) de metadata cap nhat theo du lieu.
-2. Dat day du cau truc SEO: title, description, OG, canonical.
-3. Voi 404, dat `noindex, nofollow`.
+1. Truyền giá trị dạng hàm (`() => ...`) để metadata cập nhật theo dữ liệu.
+2. Đặt đầy đủ cấu trúc SEO: title, description, OG, canonical.
+3. Với 404, đặt `noindex, nofollow`.
 
-### 3.3 Ban gon voi useSeoMeta
+### 3.3 Bản gọn với useSeoMeta
 
 ```typescript
 useSeoMeta({
@@ -195,24 +195,24 @@ useSeoMeta({
 
 ---
 
-## 4. Tinh huong thuc te 1: SEO cho route dong
+## 4. Tình huống thực tế 1: SEO cho route động
 
-### 4.1 Boi canh
+### 4.1 Bối cảnh
 
-Kich ban e-commerce co nhieu trang SKU (`/products/[id]`).
+Kịch bản e-commerce có nhiều trang SKU (`/products/[id]`).
 
-**Thach thuc:**
+**Thách thức:**
 
-- Nhieu URL dong
-- SEO rieng cho tung URL
-- Xu ly 404 dung
-- Tranh duplicate content
+- Nhiều URL động
+- SEO riêng cho từng URL
+- Xử lý 404 đúng
+- Tránh duplicate content
 
-### 4.2 Chien luoc
+### 4.2 Chiến lược
 
-1. Preload tren server (`lazy: false`, `server: true`)
-2. Nem loi 404 voi `createError`
-3. Tao meta va canonical dong
+1. Preload trên server (`lazy: false`, `server: true`)
+2. Ném lỗi 404 với `createError`
+3. Tạo meta và canonical động
 
 ```typescript
 const { data: product, error } = await useFetch(`/api/products/${id}`, {
@@ -234,27 +234,27 @@ useSeoMeta({
 });
 ```
 
-### 4.3 Ket qua
+### 4.3 Kết quả
 
-**Truoc do:**
-- Crawler thay noi dung thieu
-- Nhieu trang trung metadata
-- 404 khong nhat quan
+**Trước đó:**
+- Crawler thấy nội dung thiếu
+- Nhiều trang trùng metadata
+- 404 không nhất quán
 
-**Sau khi lam:**
-- HTML SSR day du cho crawler
-- Metadata rieng theo route
-- Xu ly loi nhat quan va an toan cho SEO
+**Sau khi làm:**
+- HTML SSR đầy đủ cho crawler
+- Metadata riêng theo route
+- Xử lý lỗi nhất quán và an toàn cho SEO
 
 ---
 
-## 5. Tinh huong thuc te 2: Toi uu hieu nang
+## 5. Tình huống thực tế 2: Tối ưu hiệu năng
 
-### 5.1 Van de
+### 5.1 Vấn đề
 
-SSR tang tai cho server. Khong toi uu se tang do tre va chi phi.
+SSR tăng tải cho server. Không tối ưu sẽ tăng độ trễ và chi phí.
 
-### 5.2 Chien luoc
+### 5.2 Chiến lược
 
 1. **Request deduplication**
 
@@ -278,41 +278,41 @@ export default defineCachedEventHandler(
 );
 ```
 
-3. **Tach SSR/CSR**
-- Trang quan trong cho SEO: SSR
-- Trang noi bo khong can index: CSR
+3. **Tách SSR/CSR**
+- Trang quan trọng cho SEO: SSR
+- Trang nội bộ không cần index: CSR
 
-4. **Critical CSS va chien luoc assets**
-- Uu tien CSS above-the-fold
-- Tai tai nguyen khong quan trong sau
+4. **Critical CSS và chiến lược assets**
+- Ưu tiên CSS above-the-fold
+- Tải tài nguyên không quan trọng sau
 
-### 5.3 Tac dong
+### 5.3 Tác động
 
-**Truoc do:**
-- Tai server cao
-- Request lap lai
-- Khong co chien luoc cache
+**Trước đó:**
+- Tải server cao
+- Request lặp lại
+- Không có chiến lược cache
 
-**Sau khi lam:**
-- Thoi gian phan hoi tot hon
-- Giam ap luc backend/DB
-- On dinh hon khi co tai cao
+**Sau khi làm:**
+- Thời gian phản hồi tốt hơn
+- Giảm áp lực backend/DB
+- Ổn định hơn khi có tải cao
 
 ---
 
-## 6. Cau tra loi phong van ngan gon
+## 6. Câu trả lời phỏng vấn ngắn gọn
 
 ### 6.1 useFetch / useAsyncData
 
-> Toi dung `useFetch` cho tai ban dau voi `key`, `lazy: false`, `server: true` de dam bao SSR day du va HTML co ich cho index.
+> Tôi dùng `useFetch` cho tải ban đầu với `key`, `lazy: false`, `server: true` để đảm bảo SSR đầy đủ và HTML có ích cho index.
 
-### 6.2 Meta tags dong
+### 6.2 Meta tags động
 
-> Toi dung `useHead`/`useSeoMeta` voi gia tri dang ham de metadata cap nhat theo du lieu, bao gom OG va canonical.
+> Tôi dùng `useHead`/`useSeoMeta` với giá trị dạng hàm để metadata cập nhật theo dữ liệu, bao gồm OG và canonical.
 
-### 6.3 Hieu nang
+### 6.3 Hiệu năng
 
-> Toi ket hop deduplication, cache server, va tach SSR/CSR de giam TTFB ma van giu chat luong SEO.
+> Tôi kết hợp deduplication, cache server, và tách SSR/CSR để giảm TTFB mà vẫn giữ chất lượng SEO.
 
 ---
 
@@ -320,30 +320,30 @@ export default defineCachedEventHandler(
 
 ### 7.1 Data fetching
 
-1. Luon dat `key`.
-2. Chon `lazy` theo nhu cau SEO.
-3. Xu ly loi (404/5xx) ro rang.
+1. Luôn đặt `key`.
+2. Chọn `lazy` theo nhu cầu SEO.
+3. Xử lý lỗi (404/5xx) rõ ràng.
 
 ### 7.2 SEO Meta
 
-1. Gia tri dang ham cho cap nhat reactive.
-2. Cau truc day du (title/description/OG/canonical).
-3. Bao ve trang loi voi `noindex, nofollow`.
+1. Giá trị dạng hàm cho cập nhật reactive.
+2. Cấu trúc đầy đủ (title/description/OG/canonical).
+3. Bảo vệ trang lỗi với `noindex, nofollow`.
 
-### 7.3 Hieu nang
+### 7.3 Hiệu năng
 
-1. Dung cache tren server.
-2. Chi dung SSR o noi SEO can.
-3. Giam chi phi render bang chien luoc CSS/assets.
+1. Dùng cache trên server.
+2. Chỉ dùng SSR ở nơi SEO cần.
+3. Giảm chi phí render bằng chiến lược CSS/assets.
 
 ---
 
-## 8. Tong ket phong van
+## 8. Tổng kết phỏng vấn
 
-> Trong Nuxt 3, toi da trien khai SSR data fetching va SEO Meta dong de dat hai muc tieu: index dung va trai nghiem nhanh. Cach lam gom preload tren server, metadata theo route, va toi uu bang deduplication, cache, va tach SSR/CSR.
+> Trong Nuxt 3, tôi đã triển khai SSR data fetching và SEO Meta động để đạt hai mục tiêu: index đúng và trải nghiệm nhanh. Cách làm gồm preload trên server, metadata theo route, và tối ưu bằng deduplication, cache, và tách SSR/CSR.
 
-**Diem chinh:**
-- ✅ Dung `useFetch`/`useAsyncData` dung cach
-- ✅ Quan ly metadata dong bang `useHead`/`useSeoMeta`
-- ✅ SEO cho route dong
-- ✅ Toi uu hieu nang cho du an thuc te
+**Điểm chính:**
+- ✅ Dùng `useFetch`/`useAsyncData` đúng cách
+- ✅ Quản lý metadata động bằng `useHead`/`useSeoMeta`
+- ✅ SEO cho route động
+- ✅ Tối ưu hiệu năng cho dự án thực tế

@@ -1,33 +1,33 @@
 ---
 id: performance-lv2-js-optimization
-title: '[Lv2] Toi uu hieu nang JavaScript: Debounce, Throttle, Time Slicing'
+title: '[Lv2] Tối ưu hiệu năng JavaScript: Debounce, Throttle, Time Slicing'
 slug: /experience/performance/lv2-js-optimization
 tags: [Experience, Interview, Performance, Lv2]
 ---
 
-> Toi uu hieu nang JavaScript thong qua Debounce, Throttle, Time Slicing va requestAnimationFrame, nang cao trai nghiem nguoi dung.
+> Tối ưu hiệu năng JavaScript thông qua Debounce, Throttle, Time Slicing và requestAnimationFrame, nâng cao trải nghiệm người dùng.
 
 ---
 
-## Boi canh van de
+## Bối cảnh vấn đề
 
-Trong du an platform, nguoi dung thuong xuyen thuc hien cac thao tac sau:
+Trong dự án platform, người dùng thường xuyên thực hiện các thao tác sau:
 
-- **Tim kiem** (nhap tu khoa loc tuc thi trong 3000+ san pham)
-- **Cuon danh sach** (theo doi vi tri va tai them khi cuon)
-- **Chuyen danh muc** (loc hien thi theo loai san pham)
-- **Hieu ung animation** (cuon muot, hieu ung qua tang)
+- **Tìm kiếm** (nhập từ khóa lọc tức thì trong 3000+ sản phẩm)
+- **Cuộn danh sách** (theo dõi vị trí và tải thêm khi cuộn)
+- **Chuyển danh mục** (lọc hiển thị theo loại sản phẩm)
+- **Hiệu ứng animation** (cuộn mượt, hiệu ứng quà tặng)
 
-Cac thao tac nay neu khong toi uu se gay giat trang va CPU chiem dung qua cao.
+Các thao tác này nếu không tối ưu sẽ gây giật trang và CPU chiếm dụng quá cao.
 
 ---
 
-## Chien luoc 1: Debounce (chong rung) - Toi uu nhap tim kiem
+## Chiến lược 1: Debounce (chống rung) - Tối ưu nhập tìm kiếm
 
 ```javascript
 import { useDebounceFn } from '@vueuse/core';
 
-// Ham debounce: neu nhap lai trong 500ms, dem lai tu dau
+// Hàm debounce: nếu nhập lại trong 500ms, đếm lại từ đầu
 const debounceKeyword = useDebounceFn((keyword) => {
   searchGameKeyword(gameState.list, keyword.toLowerCase());
 }, 500);
@@ -35,34 +35,34 @@ const debounceKeyword = useDebounceFn((keyword) => {
 watch(
   () => searchState.keyword,
   (newValue) => {
-    debounceKeyword(newValue); // Chi thuc thi sau 500ms ngung nhap
+    debounceKeyword(newValue); // Chỉ thực thi sau 500ms ngừng nhập
   }
 );
 ```
 
 ```md
-Truoc toi uu: nhap "slot game" (9 ky tu)
+Trước tối ưu: nhập "slot game" (9 ký tự)
 
-- Kich hoat 9 lan tim kiem
-- Loc 3000 game × 9 lan = 27,000 phep tinh
-- Thoi gian: khoang 1.8 giay (trang giat)
+- Kích hoạt 9 lần tìm kiếm
+- Lọc 3000 game × 9 lần = 27,000 phép tính
+- Thời gian: khoảng 1.8 giây (trang giật)
 
-Sau toi uu: nhap "slot game"
+Sau tối ưu: nhập "slot game"
 
-- Kich hoat 1 lan tim kiem (sau khi ngung nhap)
-- Loc 3000 game × 1 lan = 3,000 phep tinh
-- Thoi gian: khoang 0.2 giay
-- Cai thien hieu nang: 90%
+- Kích hoạt 1 lần tìm kiếm (sau khi ngừng nhập)
+- Lọc 3000 game × 1 lần = 3,000 phép tính
+- Thời gian: khoảng 0.2 giây
+- Cải thiện hiệu năng: 90%
 ```
 
-## Chien luoc 2: Throttle (giam tan) - Toi uu su kien cuon
+## Chiến lược 2: Throttle (giảm tần) - Tối ưu sự kiện cuộn
 
-> Truong hop ap dung: theo doi vi tri cuon, tai vo han
+> Trường hợp áp dụng: theo dõi vị trí cuộn, tải vô hạn
 
 ```javascript
 import { throttle } from 'lodash';
 
-// Ham throttle: trong 100ms chi thuc thi 1 lan
+// Hàm throttle: trong 100ms chỉ thực thi 1 lần
 const handleScroll = throttle(() => {
   scrollTop.value = document.documentElement.scrollTop;
 }, 100);
@@ -71,53 +71,53 @@ window.addEventListener('scroll', handleScroll);
 ```
 
 ```md
-Truoc toi uu:
+Trước tối ưu:
 
-- Su kien scroll kich hoat 60 lan/giay (60 FPS)
-- Moi lan kich hoat deu tinh toan vi tri cuon
-- Thoi gian: khoang 600ms (trang giat)
+- Sự kiện scroll kích hoạt 60 lần/giây (60 FPS)
+- Mỗi lần kích hoạt đều tính toán vị trí cuộn
+- Thời gian: khoảng 600ms (trang giật)
 
-Sau toi uu:
+Sau tối ưu:
 
-- Su kien scroll toi da 1 lan moi 100ms
-- Thoi gian: khoang 100ms
-- Cai thien hieu nang: 90%
+- Sự kiện scroll tối đa 1 lần mỗi 100ms
+- Thời gian: khoảng 100ms
+- Cải thiện hiệu năng: 90%
 ```
 
-## Chien luoc 3: Time Slicing (cat thoi gian) - Xu ly du lieu lon
+## Chiến lược 3: Time Slicing (cắt thời gian) - Xử lý dữ liệu lớn
 
-> Truong hop ap dung: tag cloud, ket hop menu, loc 3000+ game, render lich su giao dich
+> Trường hợp áp dụng: tag cloud, kết hợp menu, lọc 3000+ game, render lịch sử giao dịch
 
 ```javascript
-// Ham Time Slicing tuy chinh
+// Hàm Time Slicing tùy chỉnh
 function processInBatches(
   array: GameList, // 3000 game
-  batchSize: number, // Moi lo xu ly 200
+  batchSize: number, // Mỗi lô xử lý 200
   callback: Function
 ) {
   let index = 0;
 
   function processNextBatch() {
-    if (index >= array.length) return; // Xu ly xong
+    if (index >= array.length) return; // Xử lý xong
 
-    const batch = array.slice(index, index + batchSize); // Cat lo
-    callback(batch); // Xu ly lo nay
+    const batch = array.slice(index, index + batchSize); // Cắt lô
+    callback(batch); // Xử lý lô này
     index += batchSize;
 
-    setTimeout(processNextBatch, 0); // Lo tiep theo dat vao hang doi
+    setTimeout(processNextBatch, 0); // Lô tiếp theo đặt vào hàng đợi
   }
 
   processNextBatch();
 }
 ```
 
-Vi du su dung:
+Ví dụ sử dụng:
 
 ```javascript
 function searchGameKeyword(games: GameList, keyword: string) {
   searchState.gameList.length = 0;
 
-  // Cat 3000 game thanh 15 lo, moi lo 200
+  // Cắt 3000 game thành 15 lô, mỗi lô 200
   processInBatches(games, 200, (batch) => {
     const filteredBatch = batch.filter((game) =>
       game.game_name.toLowerCase().includes(keyword)
@@ -127,9 +127,9 @@ function searchGameKeyword(games: GameList, keyword: string) {
 }
 ```
 
-## Chien luoc 4: requestAnimationFrame - Toi uu animation
+## Chiến lược 4: requestAnimationFrame - Tối ưu animation
 
-> Truong hop ap dung: cuon muot, animation Canvas, hieu ung qua tang
+> Trường hợp áp dụng: cuộn mượt, animation Canvas, hiệu ứng quà tặng
 
 ```javascript
 const scrollToTopAnimated = (el: any, speed = 500) => {
@@ -137,7 +137,7 @@ const scrollToTopAnimated = (el: any, speed = 500) => {
   const duration = speed;
   let startTime = null;
 
-  // Su dung ham easing (Easing Function)
+  // Sử dụng hàm easing (Easing Function)
   const easeInOutQuad = (t, b, c, d) => {
     t /= d / 2;
     if (t < 1) return (c / 2) * t * t + b;
@@ -157,7 +157,7 @@ const scrollToTopAnimated = (el: any, speed = 500) => {
     el.scrollTop = run;
 
     if (timeElapsed < duration) {
-      requestAnimationFrame(animateScroll); // Goi de quy
+      requestAnimationFrame(animateScroll); // Gọi đệ quy
     }
   };
 
@@ -165,69 +165,69 @@ const scrollToTopAnimated = (el: any, speed = 500) => {
 };
 ```
 
-Tai sao dung requestAnimationFrame?
+Tại sao dùng requestAnimationFrame?
 
 ```javascript
-// Cach lam sai: dung setInterval
+// Cách làm sai: dùng setInterval
 setInterval(() => {
   el.scrollTop += 10;
-}, 16); // Muon 60fps (1000ms / 60 ≈ 16ms)
-// Van de:
-// 1. Khong dong bo voi render trinh duyet (co the thuc thi nhieu lan giua hai lan ve)
-// 2. Van chay o tab an (lang phi tai nguyen)
-// 3. Co the gay giat khung hinh (Jank)
+}, 16); // Muốn 60fps (1000ms / 60 ≈ 16ms)
+// Vấn đề:
+// 1. Không đồng bộ với render trình duyệt (có thể thực thi nhiều lần giữa hai lần vẽ)
+// 2. Vẫn chạy ở tab ẩn (lãng phí tài nguyên)
+// 3. Có thể gây giật khung hình (Jank)
 
-// Cach lam dung: dung requestAnimationFrame
+// Cách làm đúng: dùng requestAnimationFrame
 requestAnimationFrame(animateScroll);
-// Uu diem:
-// 1. Dong bo voi render trinh duyet (60fps hoac 120fps)
-// 2. Tu dong dung khi tab khong hien thi (tiet kiem pin)
-// 3. Muot hon, khong giat khung hinh
+// Ưu điểm:
+// 1. Đồng bộ với render trình duyệt (60fps hoặc 120fps)
+// 2. Tự động dừng khi tab không hiển thị (tiết kiệm pin)
+// 3. Mượt hơn, không giật khung hình
 ```
 
 ---
 
-## Diem chinh phong van
+## Điểm chính phỏng vấn
 
 ### Debounce vs Throttle
 
-| Dac diem       | Debounce                              | Throttle                              |
+| Đặc điểm       | Debounce                              | Throttle                              |
 | -------------- | ------------------------------------- | ------------------------------------- |
-| Thoi diem kich hoat | Sau khi ngung thao tac mot khoang thoi gian | Chi thuc thi 1 lan trong khoang thoi gian co dinh |
-| Truong hop ap dung | Nhap tim kiem, resize cua so     | Su kien scroll, di chuyen chuot       |
-| So lan thuc thi | Co the khong thuc thi (neu kich hoat lien tuc) | Dam bao thuc thi (tan suat co dinh) |
-| Do tre         | Co do tre (doi ngung)                 | Thuc thi ngay, sau do gioi han        |
+| Thời điểm kích hoạt | Sau khi ngừng thao tác một khoảng thời gian | Chỉ thực thi 1 lần trong khoảng thời gian cố định |
+| Trường hợp áp dụng | Nhập tìm kiếm, resize cửa sổ     | Sự kiện scroll, di chuyển chuột       |
+| Số lần thực thi | Có thể không thực thi (nếu kích hoạt liên tục) | Đảm bảo thực thi (tần suất cố định) |
+| Độ trễ         | Có độ trễ (đợi ngừng)                 | Thực thi ngay, sau đó giới hạn        |
 
 ### Time Slicing vs Web Worker
 
-| Dac diem         | Time Slicing                          | Web Worker                            |
+| Đặc điểm         | Time Slicing                          | Web Worker                            |
 | ---------------- | ------------------------------------- | ------------------------------------- |
-| Moi truong thuc thi | Thread chinh                       | Thread nen                            |
-| Truong hop ap dung | Nhiem vu can thao tac DOM          | Nhiem vu tinh toan thuan              |
-| Do phuc tap trien khai | Don gian hon                     | Phuc tap hon (can giao tiep)          |
-| Cai thien hieu nang | Tranh chan thread chinh            | Tinh toan song song thuc su           |
+| Môi trường thực thi | Thread chính                       | Thread nền                            |
+| Trường hợp áp dụng | Nhiệm vụ cần thao tác DOM          | Nhiệm vụ tính toán thuần              |
+| Độ phức tạp triển khai | Đơn giản hơn                     | Phức tạp hơn (cần giao tiếp)          |
+| Cải thiện hiệu năng | Tránh chặn thread chính            | Tính toán song song thực sự           |
 
-### Cau hoi phong van thuong gap
+### Câu hỏi phỏng vấn thường gặp
 
-**Q: Chon Debounce hay Throttle nhu the nao?**
+**Q: Chọn Debounce hay Throttle như thế nào?**
 
-A: Theo truong hop su dung:
+A: Theo trường hợp sử dụng:
 
-- **Debounce**: phu hop voi tinh huong "doi nguoi dung hoan thanh thao tac" (nhu nhap tim kiem)
-- **Throttle**: phu hop voi tinh huong "can cap nhat lien tuc nhung khong qua thuong xuyen" (nhu theo doi cuon)
+- **Debounce**: phù hợp với tình huống "đợi người dùng hoàn thành thao tác" (như nhập tìm kiếm)
+- **Throttle**: phù hợp với tình huống "cần cập nhật liên tục nhưng không quá thường xuyên" (như theo dõi cuộn)
 
-**Q: Chon Time Slicing hay Web Worker nhu the nao?**
-
-A:
-
-- **Time Slicing**: can thao tac DOM, xu ly du lieu don gian
-- **Web Worker**: tinh toan thuan, xu ly du lieu lon, khong can DOM
-
-**Q: Uu diem cua requestAnimationFrame la gi?**
+**Q: Chọn Time Slicing hay Web Worker như thế nào?**
 
 A:
 
-1. Dong bo voi render trinh duyet (60fps)
-2. Tu dong dung khi tab khong hien thi (tiet kiem pin)
-3. Khong giat khung hinh (Jank)
-4. Hieu nang tot hon setInterval/setTimeout
+- **Time Slicing**: cần thao tác DOM, xử lý dữ liệu đơn giản
+- **Web Worker**: tính toán thuần, xử lý dữ liệu lớn, không cần DOM
+
+**Q: Ưu điểm của requestAnimationFrame là gì?**
+
+A:
+
+1. Đồng bộ với render trình duyệt (60fps)
+2. Tự động dừng khi tab không hiển thị (tiết kiệm pin)
+3. Không giật khung hình (Jank)
+4. Hiệu năng tốt hơn setInterval/setTimeout

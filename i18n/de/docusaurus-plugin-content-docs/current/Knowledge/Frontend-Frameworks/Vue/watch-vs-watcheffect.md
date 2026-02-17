@@ -9,11 +9,11 @@ tags: [Vue, Quiz, Medium]
 
 > Was sind watch und watchEffect?
 
-`watch` und `watchEffect` sind zwei APIs der Vue 3 Composition API zum Ueberwachen von Aenderungen reaktiver Daten.
+`watch` und `watchEffect` sind zwei APIs der Vue 3 Composition API zum Überwachen von Änderungen reaktiver Daten.
 
 ### watch
 
-**Definition**: Gibt explizit die zu ueberwachende Datenquelle an und fuehrt eine Callback-Funktion aus, wenn sich die Daten aendern.
+**Definition**: Gibt explizit die zu überwachende Datenquelle an und führt eine Callback-Funktion aus, wenn sich die Daten ändern.
 
 ```vue
 <script setup>
@@ -22,21 +22,21 @@ import { ref, watch } from 'vue';
 const count = ref(0);
 const message = ref('Hello');
 
-// Einzelne Datenquelle ueberwachen
+// Einzelne Datenquelle überwachen
 watch(count, (newValue, oldValue) => {
-  console.log(`count aenderte sich von ${oldValue} zu ${newValue}`);
+  console.log(`count änderte sich von ${oldValue} zu ${newValue}`);
 });
 
-// Mehrere Datenquellen ueberwachen
+// Mehrere Datenquellen überwachen
 watch([count, message], ([newCount, newMessage], [oldCount, oldMessage]) => {
-  console.log('count oder message hat sich geaendert');
+  console.log('count oder message hat sich geändert');
 });
 </script>
 ```
 
 ### watchEffect
 
-**Definition**: Verfolgt automatisch die reaktiven Daten, die in der Callback-Funktion verwendet werden, und fuehrt sie automatisch aus, wenn sich diese Daten aendern.
+**Definition**: Verfolgt automatisch die reaktiven Daten, die in der Callback-Funktion verwendet werden, und führt sie automatisch aus, wenn sich diese Daten ändern.
 
 ```vue
 <script setup>
@@ -48,7 +48,7 @@ const message = ref('Hello');
 // Verfolgt automatisch count und message
 watchEffect(() => {
   console.log(`count: ${count.value}, message: ${message.value}`);
-  // Wenn sich count oder message aendert, automatisch ausfuehren
+  // Wenn sich count oder message ändert, automatisch ausführen
 });
 </script>
 ```
@@ -59,20 +59,20 @@ watchEffect(() => {
 
 ### 1. Angabe der Datenquelle
 
-**watch**: Gibt explizit die zu ueberwachenden Daten an
+**watch**: Gibt explizit die zu überwachenden Daten an
 
 ```typescript
 const count = ref(0);
 const message = ref('Hello');
 
-// Explizit count ueberwachen
+// Explizit count überwachen
 watch(count, (newVal, oldVal) => {
-  console.log('count hat sich geaendert');
+  console.log('count hat sich geändert');
 });
 
-// Explizit mehrere Daten ueberwachen
+// Explizit mehrere Daten überwachen
 watch([count, message], ([newCount, newMessage]) => {
-  console.log('count oder message hat sich geaendert');
+  console.log('count oder message hat sich geändert');
 });
 ```
 
@@ -89,31 +89,31 @@ watchEffect(() => {
 });
 ```
 
-### 2. Ausfuehrungszeitpunkt
+### 2. Ausführungszeitpunkt
 
-**watch**: Standardmaessig lazy (verzoegert), fuehrt nur bei Datenaenderung aus
+**watch**: Standardmäßig lazy (verzögert), führt nur bei Datenänderung aus
 
 ```typescript
 const count = ref(0);
 
 watch(count, (newVal) => {
-  console.log('Ausgefuehrt'); // Nur wenn sich count aendert
+  console.log('Ausgeführt'); // Nur wenn sich count ändert
 });
 
-count.value = 1; // Loest Ausfuehrung aus
+count.value = 1; // Löst Ausführung aus
 ```
 
-**watchEffect**: Sofortige Ausfuehrung, dann Aenderungen verfolgen
+**watchEffect**: Sofortige Ausführung, dann Änderungen verfolgen
 
 ```typescript
 const count = ref(0);
 
 watchEffect(() => {
-  console.log('Ausgefuehrt'); // Wird sofort einmal ausgefuehrt
+  console.log('Ausgeführt'); // Wird sofort einmal ausgeführt
   console.log(count.value);
 });
 
-count.value = 1; // Erneute Ausfuehrung
+count.value = 1; // Erneute Ausführung
 ```
 
 ### 3. Zugriff auf alten Wert
@@ -124,7 +124,7 @@ count.value = 1; // Erneute Ausfuehrung
 const count = ref(0);
 
 watch(count, (newVal, oldVal) => {
-  console.log(`Aenderte sich von ${oldVal} zu ${newVal}`);
+  console.log(`Änderte sich von ${oldVal} zu ${newVal}`);
 });
 ```
 
@@ -135,13 +135,13 @@ const count = ref(0);
 
 watchEffect(() => {
   console.log(count.value); // Kann nur auf aktuellen Wert zugreifen
-  // Alter Wert nicht verfuegbar
+  // Alter Wert nicht verfügbar
 });
 ```
 
-### 4. Ueberwachung stoppen
+### 4. Überwachung stoppen
 
-**watch**: Gibt eine Stopp-Funktion zurueck
+**watch**: Gibt eine Stopp-Funktion zurück
 
 ```typescript
 const count = ref(0);
@@ -150,11 +150,11 @@ const stopWatch = watch(count, (newVal) => {
   console.log(newVal);
 });
 
-// Ueberwachung stoppen
+// Überwachung stoppen
 stopWatch();
 ```
 
-**watchEffect**: Gibt eine Stopp-Funktion zurueck
+**watchEffect**: Gibt eine Stopp-Funktion zurück
 
 ```typescript
 const count = ref(0);
@@ -163,7 +163,7 @@ const stopEffect = watchEffect(() => {
   console.log(count.value);
 });
 
-// Ueberwachung stoppen
+// Überwachung stoppen
 stopEffect();
 ```
 
@@ -173,7 +173,7 @@ stopEffect();
 
 ### Wann watch verwenden
 
-1. **Explizite Angabe der zu ueberwachenden Daten erforderlich**
+1. **Explizite Angabe der zu überwachenden Daten erforderlich**
    ```typescript
    watch(userId, (newId) => {
      fetchUser(newId);
@@ -183,11 +183,11 @@ stopEffect();
 2. **Zugriff auf alten Wert erforderlich**
    ```typescript
    watch(count, (newVal, oldVal) => {
-     console.log(`Aenderte sich von ${oldVal} zu ${newVal}`);
+     console.log(`Änderte sich von ${oldVal} zu ${newVal}`);
    });
    ```
 
-3. **Lazy-Ausfuehrung erforderlich (nur bei Aenderung)**
+3. **Lazy-Ausführung erforderlich (nur bei Änderung)**
    ```typescript
    watch(searchQuery, (newQuery) => {
      if (newQuery.length > 2) {
@@ -209,7 +209,7 @@ stopEffect();
 
 ### Wann watchEffect verwenden
 
-1. **Automatische Verfolgung mehrerer zusammenhaengender Daten**
+1. **Automatische Verfolgung mehrerer zusammenhängender Daten**
    ```typescript
    watchEffect(() => {
      // Verfolgt automatisch alle verwendeten reaktiven Daten
@@ -219,28 +219,28 @@ stopEffect();
    });
    ```
 
-2. **Alter Wert nicht benoetigt**
+2. **Alter Wert nicht benötigt**
    ```typescript
    watchEffect(() => {
-     console.log(`Aktueller Zaehler: ${count.value}`);
+     console.log(`Aktueller Zähler: ${count.value}`);
    });
    ```
 
-3. **Sofortige Ausfuehrung erforderlich**
+3. **Sofortige Ausführung erforderlich**
    ```typescript
    watchEffect(() => {
-     // Sofort ausfuehren, dann Aenderungen verfolgen
+     // Sofort ausführen, dann Änderungen verfolgen
      updateChart(count.value, message.value);
    });
    ```
 
 ## 4. Common Interview Questions
 
-> Haeufige Interviewfragen
+> Häufige Interviewfragen
 
 ### Frage 1: Grundlegende Unterschiede
 
-Erklaeren Sie die Ausfuehrungsreihenfolge und das Ergebnis des folgenden Codes.
+Erklären Sie die Ausführungsreihenfolge und das Ergebnis des folgenden Codes.
 
 ```typescript
 const count = ref(0);
@@ -267,41 +267,41 @@ message.value = 'World';
 const count = ref(0);
 const message = ref('Hello');
 
-// watch: lazy Ausfuehrung, wird nicht sofort ausgefuehrt
+// watch: lazy Ausführung, wird nicht sofort ausgeführt
 watch(count, (newVal) => {
   console.log('watch:', newVal);
 });
 
-// watchEffect: sofortige Ausfuehrung
+// watchEffect: sofortige Ausführung
 watchEffect(() => {
   console.log('watchEffect:', count.value, message.value);
   // Sofortige Ausgabe: watchEffect: 0 Hello
 });
 
 count.value = 1;
-// Loest watch aus: watch: 1
-// Loest watchEffect aus: watchEffect: 1 Hello
+// Löst watch aus: watch: 1
+// Löst watchEffect aus: watchEffect: 1 Hello
 
 message.value = 'World';
-// watch ueberwacht message nicht, wird nicht ausgefuehrt
-// watchEffect ueberwacht message, Ausfuehrung: watchEffect: 1 World
+// watch überwacht message nicht, wird nicht ausgeführt
+// watchEffect überwacht message, Ausführung: watchEffect: 1 World
 ```
 
 **Ausgabereihenfolge**:
-1. `watchEffect: 0 Hello` (sofortige Ausfuehrung)
-2. `watch: 1` (count geaendert)
-3. `watchEffect: 1 Hello` (count geaendert)
-4. `watchEffect: 1 World` (message geaendert)
+1. `watchEffect: 0 Hello` (sofortige Ausführung)
+2. `watch: 1` (count geändert)
+3. `watchEffect: 1 Hello` (count geändert)
+4. `watchEffect: 1 World` (message geändert)
 
 **Wesentliche Unterschiede**:
-- `watch` lazy Ausfuehrung, nur bei Aenderung der ueberwachten Daten
-- `watchEffect` sofortige Ausfuehrung, verfolgt dann alle verwendeten Daten
+- `watch` lazy Ausführung, nur bei Änderung der überwachten Daten
+- `watchEffect` sofortige Ausführung, verfolgt dann alle verwendeten Daten
 
 </details>
 
 ### Frage 2: Zugriff auf alten Wert
 
-Erklaeren Sie, wie man bei Verwendung von `watchEffect` an den alten Wert gelangt.
+Erklären Sie, wie man bei Verwendung von `watchEffect` an den alten Wert gelangt.
 
 <details>
 <summary>Klicken Sie hier, um die Antwort zu sehen</summary>
@@ -313,44 +313,44 @@ const count = ref(0);
 
 watchEffect(() => {
   console.log(count.value); // Kann nur auf aktuellen Wert zugreifen
-  // Alter Wert nicht verfuegbar
+  // Alter Wert nicht verfügbar
 });
 ```
 
-**Loesung 1: ref zum Speichern des alten Werts verwenden**
+**Lösung 1: ref zum Speichern des alten Werts verwenden**
 
 ```typescript
 const count = ref(0);
 const prevCount = ref(0);
 
 watchEffect(() => {
-  console.log(`Aenderte sich von ${prevCount.value} zu ${count.value}`);
+  console.log(`Änderte sich von ${prevCount.value} zu ${count.value}`);
   prevCount.value = count.value; // Alten Wert aktualisieren
 });
 ```
 
-**Loesung 2: watch verwenden (wenn alter Wert benoetigt)**
+**Lösung 2: watch verwenden (wenn alter Wert benötigt)**
 
 ```typescript
 const count = ref(0);
 
 watch(count, (newVal, oldVal) => {
-  console.log(`Aenderte sich von ${oldVal} zu ${newVal}`);
+  console.log(`Änderte sich von ${oldVal} zu ${newVal}`);
 });
 ```
 
 **Empfehlung**:
-- Wenn der alte Wert benoetigt wird, bevorzugt `watch` verwenden
-- `watchEffect` eignet sich fuer Szenarien ohne Bedarf an altem Wert
+- Wenn der alte Wert benötigt wird, bevorzugt `watch` verwenden
+- `watchEffect` eignet sich für Szenarien ohne Bedarf an altem Wert
 
 </details>
 
-### Frage 3: watch oder watchEffect waehlen?
+### Frage 3: watch oder watchEffect wählen?
 
-Erklaeren Sie, welches in den folgenden Szenarien verwendet werden sollte: `watch` oder `watchEffect`.
+Erklären Sie, welches in den folgenden Szenarien verwendet werden sollte: `watch` oder `watchEffect`.
 
 ```typescript
-// Szenario 1: Benutzer-ID-Aenderung ueberwachen, Benutzerdaten neu laden
+// Szenario 1: Benutzer-ID-Änderung überwachen, Benutzerdaten neu laden
 const userId = ref(1);
 // ?
 
@@ -359,7 +359,7 @@ const form = reactive({ username: '', password: '' });
 const isValid = computed(() => form.username && form.password);
 // ?
 
-// Szenario 3: Suchbegriff ueberwachen, Suche ausfuehren (mit Debounce)
+// Szenario 3: Suchbegriff überwachen, Suche ausführen (mit Debounce)
 const searchQuery = ref('');
 // ?
 ```
@@ -367,12 +367,12 @@ const searchQuery = ref('');
 <details>
 <summary>Klicken Sie hier, um die Antwort zu sehen</summary>
 
-**Szenario 1: Benutzer-ID ueberwachen**
+**Szenario 1: Benutzer-ID überwachen**
 
 ```typescript
 const userId = ref(1);
 
-// ✅ watch verwenden: explizite Angabe der zu ueberwachenden Daten
+// ✅ watch verwenden: explizite Angabe der zu überwachenden Daten
 watch(userId, (newId) => {
   fetchUser(newId);
 });
@@ -384,7 +384,7 @@ watch(userId, (newId) => {
 const form = reactive({ username: '', password: '' });
 const isValid = computed(() => form.username && form.password);
 
-// ✅ watchEffect verwenden: automatische Verfolgung zusammenhaengender Daten
+// ✅ watchEffect verwenden: automatische Verfolgung zusammenhängender Daten
 watchEffect(() => {
   submitButton.disabled = !isValid.value;
 });
@@ -406,10 +406,10 @@ watch(searchQuery, (newQuery) => {
 ```
 
 **Auswahlprinzipien**:
-- Explizite Ueberwachungsdaten angeben → `watch`
-- Automatische Verfolgung mehrerer zusammenhaengender Daten → `watchEffect`
-- Alter Wert oder feine Kontrolle benoetigt → `watch`
-- Sofortige Ausfuehrung benoetigt → `watchEffect`
+- Explizite Überwachungsdaten angeben → `watch`
+- Automatische Verfolgung mehrerer zusammenhängender Daten → `watchEffect`
+- Alter Wert oder feine Kontrolle benötigt → `watch`
+- Sofortige Ausführung benötigt → `watchEffect`
 
 </details>
 
@@ -420,24 +420,24 @@ watch(searchQuery, (newQuery) => {
 ### Empfohlene Vorgehensweisen
 
 ```typescript
-// 1. watch verwenden, wenn explizite Ueberwachungsdaten angegeben werden
+// 1. watch verwenden, wenn explizite Überwachungsdaten angegeben werden
 watch(userId, (newId) => {
   fetchUser(newId);
 });
 
-// 2. watchEffect verwenden, wenn mehrere zusammenhaengende Daten automatisch verfolgt werden
+// 2. watchEffect verwenden, wenn mehrere zusammenhängende Daten automatisch verfolgt werden
 watchEffect(() => {
   if (user.value && permissions.value.includes('admin')) {
     loadAdminData();
   }
 });
 
-// 3. watch verwenden, wenn alter Wert benoetigt wird
+// 3. watch verwenden, wenn alter Wert benötigt wird
 watch(count, (newVal, oldVal) => {
-  console.log(`Aenderte sich von ${oldVal} zu ${newVal}`);
+  console.log(`Änderte sich von ${oldVal} zu ${newVal}`);
 });
 
-// 4. Ueberwacher bereinigen nicht vergessen
+// 4. Überwacher bereinigen nicht vergessen
 onUnmounted(() => {
   stopWatch();
   stopEffect();
@@ -449,17 +449,17 @@ onUnmounted(() => {
 ```typescript
 // 1. Keine asynchronen Operationen in watchEffect ohne Bereinigung
 watchEffect(async () => {
-  const data = await fetchData(); // ❌ Kann zu Speicherlecks fuehren
+  const data = await fetchData(); // ❌ Kann zu Speicherlecks führen
   // ...
 });
 
-// 2. watchEffect nicht uebermaessig verwenden
-// Wenn nur bestimmte Daten ueberwacht werden muessen, ist watch expliziter
+// 2. watchEffect nicht übermäßig verwenden
+// Wenn nur bestimmte Daten überwacht werden müssen, ist watch expliziter
 watchEffect(() => {
-  console.log(count.value); // ⚠️ Wenn nur count ueberwacht werden muss, ist watch besser geeignet
+  console.log(count.value); // ⚠️ Wenn nur count überwacht werden muss, ist watch besser geeignet
 });
 
-// 3. Keine ueberwachten Daten in watchEffect aendern (moegliche Endlosschleife)
+// 3. Keine überwachten Daten in watchEffect ändern (mögliche Endlosschleife)
 watchEffect(() => {
   count.value++; // ❌ Kann Endlosschleife verursachen
 });
@@ -472,32 +472,32 @@ watchEffect(() => {
 ### Schnelle Merkhilfe
 
 **watch**:
-- Gibt explizit die zu ueberwachenden Daten an
-- Lazy-Ausfuehrung (Standard)
+- Gibt explizit die zu überwachenden Daten an
+- Lazy-Ausführung (Standard)
 - Kann auf alten Wert zugreifen
-- Geeignet fuer Szenarien mit feiner Kontrolle
+- Geeignet für Szenarien mit feiner Kontrolle
 
 **watchEffect**:
 - Verfolgt automatisch verwendete Daten
-- Sofortige Ausfuehrung
+- Sofortige Ausführung
 - Kein Zugriff auf alten Wert
-- Geeignet fuer automatische Verfolgung mehrerer zusammenhaengender Daten
+- Geeignet für automatische Verfolgung mehrerer zusammenhängender Daten
 
 **Auswahlprinzipien**:
-- Explizite Ueberwachung → `watch`
+- Explizite Überwachung → `watch`
 - Automatische Verfolgung → `watchEffect`
-- Alter Wert benoetigt → `watch`
-- Sofortige Ausfuehrung benoetigt → `watchEffect`
+- Alter Wert benötigt → `watch`
+- Sofortige Ausführung benötigt → `watchEffect`
 
-### Beispielantwort fuer Interviews
+### Beispielantwort für Interviews
 
 **F: Was ist der Unterschied zwischen watch und watchEffect?**
 
-> "watch und watchEffect sind beide Vue 3 APIs zum Ueberwachen von Aenderungen reaktiver Daten. Die Hauptunterschiede umfassen: 1) Datenquelle: watch erfordert die explizite Angabe der zu ueberwachenden Daten, watchEffect verfolgt automatisch die reaktiven Daten im Callback; 2) Ausfuehrungszeitpunkt: watch ist standardmaessig lazy, fuehrt nur bei Datenaenderung aus, watchEffect fuehrt sofort aus und verfolgt dann Aenderungen; 3) Zugriff auf alten Wert: watch kann auf den alten Wert zugreifen, watchEffect nicht; 4) Anwendungsszenarien: watch eignet sich fuer explizite Datenueberwachung oder wenn der alte Wert benoetigt wird, watchEffect eignet sich fuer die automatische Verfolgung mehrerer zusammenhaengender Daten."
+> "watch und watchEffect sind beide Vue 3 APIs zum Überwachen von Änderungen reaktiver Daten. Die Hauptunterschiede umfassen: 1) Datenquelle: watch erfordert die explizite Angabe der zu überwachenden Daten, watchEffect verfolgt automatisch die reaktiven Daten im Callback; 2) Ausführungszeitpunkt: watch ist standardmäßig lazy, führt nur bei Datenänderung aus, watchEffect führt sofort aus und verfolgt dann Änderungen; 3) Zugriff auf alten Wert: watch kann auf den alten Wert zugreifen, watchEffect nicht; 4) Anwendungsszenarien: watch eignet sich für explizite Datenüberwachung oder wenn der alte Wert benötigt wird, watchEffect eignet sich für die automatische Verfolgung mehrerer zusammenhängender Daten."
 
 **F: Wann sollte man watch verwenden? Wann watchEffect?**
 
-> "watch verwenden bei: 1) Expliziter Angabe der zu ueberwachenden Daten; 2) Bedarf am alten Wert; 3) Lazy-Ausfuehrung; 4) Feiner Kontrolle (wie immediate, deep Optionen). watchEffect verwenden bei: 1) Automatischer Verfolgung mehrerer zusammenhaengender Daten; 2) Kein Bedarf am alten Wert; 3) Sofortiger Ausfuehrung. Generell gilt: Wenn nur bestimmte Daten ueberwacht werden muessen, ist watch expliziter; wenn mehrere zusammenhaengende Daten automatisch verfolgt werden sollen, ist watchEffect bequemer."
+> "watch verwenden bei: 1) Expliziter Angabe der zu überwachenden Daten; 2) Bedarf am alten Wert; 3) Lazy-Ausführung; 4) Feiner Kontrolle (wie immediate, deep Optionen). watchEffect verwenden bei: 1) Automatischer Verfolgung mehrerer zusammenhängender Daten; 2) Kein Bedarf am alten Wert; 3) Sofortiger Ausführung. Generell gilt: Wenn nur bestimmte Daten überwacht werden müssen, ist watch expliziter; wenn mehrere zusammenhängende Daten automatisch verfolgt werden sollen, ist watchEffect bequemer."
 
 ## Reference
 

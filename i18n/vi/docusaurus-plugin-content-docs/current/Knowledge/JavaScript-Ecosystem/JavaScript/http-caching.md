@@ -7,204 +7,204 @@ tags: [JavaScript, HTTP, Quiz, Medium]
 
 ## 1. What is HTTP caching and why is it important?
 
-> HTTP caching la gi? Tai sao no quan trong?
+> HTTP caching là gì? Tại sao nó quan trọng?
 
-HTTP caching la ky thuat luu tru tam thoi cac phan hoi HTTP tren may khach (trinh duyet) hoac cac may chu trung gian, nham muc dich su dung truc tiep du lieu da duoc cache trong cac yeu cau tiep theo ma khong can gui lai yeu cau den may chu.
+HTTP caching là kỹ thuật lưu trữ tạm thời các phản hồi HTTP trên máy khách (trình duyệt) hoặc các máy chủ trung gian, nhằm mục đích sử dụng trực tiếp dữ liệu đã được cache trong các yêu cầu tiếp theo mà không cần gửi lại yêu cầu đến máy chủ.
 
-### Cache vs Luu tru tam thoi: Co gi khac nhau?
+### Cache vs Lưu trữ tạm thời: Có gì khác nhau?
 
-Trong tai lieu ky thuat, hai thuat ngu nay thuong duoc su dung lan lon, nhung thuc te chung co y nghia khac nhau:
+Trong tài liệu kỹ thuật, hai thuật ngữ này thường được sử dụng lẫn lộn, nhưng thực tế chúng có ý nghĩa khác nhau:
 
 #### Cache
 
-**Dinh nghia**: Ban sao du lieu duoc luu tru de **toi uu hoa hieu suat**, nhan manh vao "tai su dung" va "truy cap nhanh hon".
+**Định nghĩa**: Bản sao dữ liệu được lưu trữ để **tối ưu hóa hiệu suất**, nhấn mạnh vào "tái sử dụng" và "truy cập nhanh hơn".
 
-**Dac diem**:
+**Đặc điểm**:
 
-- ✅ Muc dich la nang cao hieu suat
-- ✅ Du lieu co the duoc tai su dung
-- ✅ Co chinh sach het han ro rang
-- ✅ Thuong la ban sao cua du lieu goc
+- ✅ Mục đích là nâng cao hiệu suất
+- ✅ Dữ liệu có thể được tái sử dụng
+- ✅ Có chính sách hết hạn rõ ràng
+- ✅ Thường là bản sao của dữ liệu gốc
 
-**Vi du**:
+**Ví dụ**:
 
 ```javascript
-// HTTP Cache - Cache phan hoi API
-Cache-Control: max-age=3600  // Cache 1 gio
+// HTTP Cache - Cache phản hồi API
+Cache-Control: max-age=3600  // Cache 1 giờ
 
-// Memory Cache - Cache ket qua tinh toan
+// Memory Cache - Cache kết quả tính toán
 const cache = new Map();
 function fibonacci(n) {
-  if (cache.has(n)) return cache.get(n);  // Tai su dung cache
-  const result = /* tinh toan */;
+  if (cache.has(n)) return cache.get(n);  // Tái sử dụng cache
+  const result = /* tính toán */;
   cache.set(n, result);
   return result;
 }
 ```
 
-#### Temporary Storage (Luu tru tam thoi)
+#### Temporary Storage (Lưu trữ tạm thời)
 
-**Dinh nghia**: Du lieu duoc luu tru **tam thoi**, nhan manh vao "tinh tam thoi" va "se bi xoa".
+**Định nghĩa**: Dữ liệu được lưu trữ **tạm thời**, nhấn mạnh vào "tính tạm thời" và "sẽ bị xóa".
 
-**Dac diem**:
+**Đặc điểm**:
 
-- ✅ Muc dich la luu tru tam thoi
-- ✅ Khong nhat thiet duoc tai su dung
-- ✅ Vong doi thuong ngan
-- ✅ Co the chua cac trang thai trung gian
+- ✅ Mục đích là lưu trữ tạm thời
+- ✅ Không nhất thiết được tái sử dụng
+- ✅ Vòng đời thường ngắn
+- ✅ Có thể chứa các trạng thái trung gian
 
-**Vi du**:
+**Ví dụ**:
 
 ```javascript
-// sessionStorage - Luu tam du lieu nhap cua nguoi dung
-sessionStorage.setItem('formData', JSON.stringify(form)); // Bi xoa khi dong tab
+// sessionStorage - Lưu tạm dữ liệu nhập của người dùng
+sessionStorage.setItem('formData', JSON.stringify(form)); // Bị xóa khi đóng tab
 
-// Luu tam file upload
-const tempFile = await uploadToTemp(file); // Xoa sau khi xu ly
+// Lưu tạm file upload
+const tempFile = await uploadToTemp(file); // Xóa sau khi xử lý
 await processFile(tempFile);
 await deleteTempFile(tempFile);
 ```
 
-#### Bang so sanh
+#### Bảng so sánh
 
-| Dac tinh        | Cache                    | Temporary Storage (Luu tru tam thoi) |
+| Đặc tính        | Cache                    | Temporary Storage (Lưu trữ tạm thời) |
 | --------------- | ------------------------ | ------------------------------------- |
-| **Muc dich chinh** | Toi uu hoa hieu suat  | Luu tru tam thoi                      |
-| **Tai su dung** | Co, doc nhieu lan        | Khong nhat thiet                      |
-| **Vong doi**    | Theo chinh sach          | Thuong ngan                           |
-| **Su dung dien hinh** | HTTP Cache, Memory Cache | sessionStorage, file tam thoi   |
-| **Tuong ung tieng Anh** | Cache              | Temp / Temporary / Buffer             |
+| **Mục đích chính** | Tối ưu hóa hiệu suất  | Lưu trữ tạm thời                      |
+| **Tái sử dụng** | Có, đọc nhiều lần        | Không nhất thiết                      |
+| **Vòng đời**    | Theo chính sách          | Thường ngắn                           |
+| **Sử dụng điển hình** | HTTP Cache, Memory Cache | sessionStorage, file tạm thời   |
+| **Tương ứng tiếng Anh** | Cache              | Temp / Temporary / Buffer             |
 
-#### Su khac biet trong ung dung thuc te
+#### Sự khác biệt trong ứng dụng thực tế
 
 ```javascript
-// ===== Cac tinh huong su dung Cache =====
+// ===== Các tình huống sử dụng Cache =====
 
-// 1. HTTP Cache: Tai su dung phan hoi API
-fetch('/api/users') // Yeu cau lan dau
+// 1. HTTP Cache: Tái sử dụng phản hồi API
+fetch('/api/users') // Yêu cầu lần đầu
   .then((response) => response.json());
 
-fetch('/api/users') // Lan thu hai doc tu cache
+fetch('/api/users') // Lần thứ hai đọc từ cache
   .then((response) => response.json());
 
-// 2. Cache ket qua tinh toan
+// 2. Cache kết quả tính toán
 const memoize = (fn) => {
   const cache = new Map();
   return (...args) => {
     const key = JSON.stringify(args);
-    if (cache.has(key)) return cache.get(key); // Tai su dung
+    if (cache.has(key)) return cache.get(key); // Tái sử dụng
     const result = fn(...args);
     cache.set(key, result);
     return result;
   };
 };
 
-// ===== Cac tinh huong su dung Luu tru tam thoi =====
+// ===== Các tình huống sử dụng Lưu trữ tạm thời =====
 
-// 1. Luu tam du lieu form (phong truong hop dong nham)
+// 1. Lưu tạm dữ liệu form (phòng trường hợp đóng nhầm)
 window.addEventListener('beforeunload', () => {
   sessionStorage.setItem('formDraft', JSON.stringify(formData));
 });
 
-// 2. Luu tam file upload
+// 2. Lưu tạm file upload
 async function handleUpload(file) {
-  const tempPath = await uploadToTempStorage(file); // Luu tam
+  const tempPath = await uploadToTempStorage(file); // Lưu tạm
   const processed = await processFile(tempPath);
-  await deleteTempFile(tempPath); // Xoa sau khi dung
+  await deleteTempFile(tempPath); // Xóa sau khi dùng
   return processed;
 }
 
-// 3. Luu tam ket qua tinh toan trung gian
-const tempResults = []; // Luu tam ket qua trung gian
+// 3. Lưu tạm kết quả tính toán trung gian
+const tempResults = []; // Lưu tạm kết quả trung gian
 for (const item of items) {
   tempResults.push(process(item));
 }
-const final = combine(tempResults); // Khong can nua sau khi dung
+const final = combine(tempResults); // Không cần nữa sau khi dùng
 ```
 
-#### Ung dung trong phat trien web
+#### Ứng dụng trong phát triển web
 
 ```javascript
-// HTTP Cache - Luu tru dai han, tai su dung
+// HTTP Cache - Lưu trữ dài hạn, tái sử dụng
 Cache-Control: public, max-age=31536000, immutable
-// → Trinh duyet se cache file nay trong 1 nam va tai su dung
+// → Trình duyệt sẽ cache file này trong 1 năm và tái sử dụng
 
-// sessionStorage (Luu tru tam thoi) - Luu tam, xoa khi dong
+// sessionStorage (Lưu trữ tạm thời) - Lưu tạm, xóa khi đóng
 sessionStorage.setItem('tempData', data);
-// → Chi co hieu luc trong tab hien tai, bi xoa khi dong
+// → Chỉ có hiệu lực trong tab hiện tại, bị xóa khi đóng
 
-// localStorage (Luu tru dai han) - O giua hai loai
+// localStorage (Lưu trữ dài hạn) - Ở giữa hai loại
 localStorage.setItem('userPreferences', prefs);
-// → Luu tru vinh vien, nhung khong phai de toi uu hieu suat
+// → Lưu trữ vĩnh viễn, nhưng không phải để tối ưu hiệu suất
 ```
 
-### Tai sao viec phan biet hai khai niem nay lai quan trong?
+### Tại sao việc phân biệt hai khái niệm này lại quan trọng?
 
-1. **Quyet dinh thiet ke**:
+1. **Quyết định thiết kế**:
 
-   - Can toi uu hieu suat? → Su dung cache
-   - Can luu tru tam thoi? → Su dung luu tru tam thoi
+   - Cần tối ưu hiệu suất? → Sử dụng cache
+   - Cần lưu trữ tạm thời? → Sử dụng lưu trữ tạm thời
 
-2. **Quan ly tai nguyen**:
+2. **Quản lý tài nguyên**:
 
-   - Cache: Tap trung vao ty le trung va chinh sach het han
-   - Luu tru tam thoi: Tap trung vao thoi diem don dep va gioi han dung luong
+   - Cache: Tập trung vào tỷ lệ trúng và chính sách hết hạn
+   - Lưu trữ tạm thời: Tập trung vào thời điểm dọn dẹp và giới hạn dung lượng
 
-3. **Tra loi phong van**:
+3. **Trả lời phỏng vấn**:
 
-   - "Lam the nao de toi uu hieu suat" → Noi ve chien luoc cache
-   - "Lam the nao de xu ly du lieu tam thoi" → Noi ve giai phap luu tru tam thoi
+   - "Làm thế nào để tối ưu hiệu suất" → Nói về chiến lược cache
+   - "Làm thế nào để xử lý dữ liệu tạm thời" → Nói về giải pháp lưu trữ tạm thời
 
-Trong bai viet nay, chung ta chu yeu thao luan ve **Cache**, dac biet la co che HTTP caching.
+Trong bài viết này, chúng ta chủ yếu thảo luận về **Cache**, đặc biệt là cơ chế HTTP caching.
 
-### Loi ich cua cache
+### Lợi ích của cache
 
-1. **Giam yeu cau mang**: Doc truc tiep tu cache cuc bo, khong can gui yeu cau HTTP
-2. **Giam tai may chu**: Giam so luong yeu cau ma may chu can xu ly
-3. **Tang toc do tai trang**: Toc do doc cache cuc bo nhanh hon nhieu so voi yeu cau mang
-4. **Tiet kiem bang thong**: Giam luong truyen du lieu
-5. **Cai thien trai nghiem nguoi dung**: Trang phan hoi nhanh hon, su dung muot ma hon
+1. **Giảm yêu cầu mạng**: Đọc trực tiếp từ cache cục bộ, không cần gửi yêu cầu HTTP
+2. **Giảm tải máy chủ**: Giảm số lượng yêu cầu mà máy chủ cần xử lý
+3. **Tăng tốc độ tải trang**: Tốc độ đọc cache cục bộ nhanh hơn nhiều so với yêu cầu mạng
+4. **Tiết kiệm băng thông**: Giảm lượng truyền dữ liệu
+5. **Cải thiện trải nghiệm người dùng**: Trang phản hồi nhanh hơn, sử dụng mượt mà hơn
 
-### Cac loai cache
+### Các loại cache
 
 ```text
 ┌─────────────────────────────────────┐
-│      Phan cap cache trinh duyet     │
+│      Phân cấp cache trình duyệt     │
 ├─────────────────────────────────────┤
-│  1. Memory Cache (Cache bo nho)     │
-│     - Nhanh nhat, dung luong nho    │
-│     - Bi xoa khi dong tab           │
+│  1. Memory Cache (Cache bộ nhớ)     │
+│     - Nhanh nhất, dung lượng nhỏ    │
+│     - Bị xóa khi đóng tab           │
 ├─────────────────────────────────────┤
-│  2. Disk Cache (Cache dia)          │
-│     - Cham hon, dung luong lon      │
-│     - Luu tru lau dai               │
+│  2. Disk Cache (Cache đĩa)          │
+│     - Chậm hơn, dung lượng lớn      │
+│     - Lưu trữ lâu dài               │
 ├─────────────────────────────────────┤
 │  3. Service Worker Cache            │
-│     - Lap trinh vien kiem soat      │
-│       hoan toan                     │
-│     - Ho tro ung dung offline       │
+│     - Lập trình viên kiểm soát      │
+│       hoàn toàn                     │
+│     - Hỗ trợ ứng dụng offline       │
 └─────────────────────────────────────┘
 ```
 
 ## 2. What are the HTTP caching strategies?
 
-> Cac chien luoc HTTP caching la gi?
+> Các chiến lược HTTP caching là gì?
 
-### Phan loai chien luoc cache
+### Phân loại chiến lược cache
 
 ```text
-Chien luoc HTTP caching
-├── Cache manh (Strong Cache)
+Chiến lược HTTP caching
+├── Cache mạnh (Strong Cache)
 │   ├── Cache-Control
 │   └── Expires
-└── Cache thuong luong (Negotiation Cache)
+└── Cache thương lượng (Negotiation Cache)
     ├── Last-Modified / If-Modified-Since
     └── ETag / If-None-Match
 ```
 
-### 1. Cache manh (Strong Cache / Fresh)
+### 1. Cache mạnh (Strong Cache / Fresh)
 
-**Dac diem**: Trinh duyet doc truc tiep tu cache cuc bo ma khong gui yeu cau den may chu.
+**Đặc điểm**: Trình duyệt đọc trực tiếp từ cache cục bộ mà không gửi yêu cầu đến máy chủ.
 
 #### Cache-Control (HTTP/1.1)
 
@@ -212,150 +212,150 @@ Chien luoc HTTP caching
 Cache-Control: max-age=3600
 ```
 
-**Cac chi thi thuong dung**:
+**Các chỉ thị thường dùng**:
 
 ```javascript
-// 1. max-age: Thoi gian hieu luc cua cache (giay)
-Cache-Control: max-age=3600  // Cache 1 gio
+// 1. max-age: Thời gian hiệu lực của cache (giây)
+Cache-Control: max-age=3600  // Cache 1 giờ
 
-// 2. no-cache: Can xac minh voi may chu (su dung cache thuong luong)
+// 2. no-cache: Cần xác minh với máy chủ (sử dụng cache thương lượng)
 Cache-Control: no-cache
 
-// 3. no-store: Hoan toan khong cache
+// 3. no-store: Hoàn toàn không cache
 Cache-Control: no-store
 
-// 4. public: Bat ky cache nao cung co the luu tru (trinh duyet, CDN)
+// 4. public: Bất kỳ cache nào cũng có thể lưu trữ (trình duyệt, CDN)
 Cache-Control: public, max-age=31536000
 
-// 5. private: Chi trinh duyet moi co the cache
+// 5. private: Chỉ trình duyệt mới có thể cache
 Cache-Control: private, max-age=3600
 
-// 6. immutable: Tai nguyen khong bao gio thay doi (ket hop voi ten file hash)
+// 6. immutable: Tài nguyên không bao giờ thay đổi (kết hợp với tên file hash)
 Cache-Control: public, max-age=31536000, immutable
 
-// 7. must-revalidate: Sau khi het han phai xac minh voi may chu
+// 7. must-revalidate: Sau khi hết hạn phải xác minh với máy chủ
 Cache-Control: max-age=3600, must-revalidate
 ```
 
-#### Expires (HTTP/1.0, da loi thoi)
+#### Expires (HTTP/1.0, đã lỗi thời)
 
 ```http
 Expires: Wed, 21 Oct 2025 07:28:00 GMT
 ```
 
-**Van de**:
+**Vấn đề**:
 
-- Su dung thoi gian tuyet doi, phu thuoc vao gio cua client
-- Gio client khong chinh xac se dan den cache hoat dong sai
-- Da bi thay the boi `Cache-Control`
+- Sử dụng thời gian tuyệt đối, phụ thuộc vào giờ của client
+- Giờ client không chính xác sẽ dẫn đến cache hoạt động sai
+- Đã bị thay thế bởi `Cache-Control`
 
-### 2. Cache thuong luong (Negotiation Cache / Validation)
+### 2. Cache thương lượng (Negotiation Cache / Validation)
 
-**Dac diem**: Trinh duyet gui yeu cau den may chu de kiem tra tai nguyen da duoc cap nhat chua.
+**Đặc điểm**: Trình duyệt gửi yêu cầu đến máy chủ để kiểm tra tài nguyên đã được cập nhật chưa.
 
 #### Last-Modified / If-Modified-Since
 
 ```http
-# Phan hoi may chu (yeu cau lan dau)
+# Phản hồi máy chủ (yêu cầu lần đầu)
 Last-Modified: Wed, 21 Oct 2024 07:28:00 GMT
 
-# Yeu cau trinh duyet (cac yeu cau tiep theo)
+# Yêu cầu trình duyệt (các yêu cầu tiếp theo)
 If-Modified-Since: Wed, 21 Oct 2024 07:28:00 GMT
 ```
 
-**Quy trinh**:
+**Quy trình**:
 
-1. Yeu cau lan dau: May chu tra ve `Last-Modified`
-2. Cac yeu cau tiep theo: Trinh duyet gui kem `If-Modified-Since`
-3. Tai nguyen chua thay doi: May chu tra ve `304 Not Modified`
-4. Tai nguyen da thay doi: May chu tra ve `200 OK` va tai nguyen moi
+1. Yêu cầu lần đầu: Máy chủ trả về `Last-Modified`
+2. Các yêu cầu tiếp theo: Trình duyệt gửi kèm `If-Modified-Since`
+3. Tài nguyên chưa thay đổi: Máy chủ trả về `304 Not Modified`
+4. Tài nguyên đã thay đổi: Máy chủ trả về `200 OK` và tài nguyên mới
 
 #### ETag / If-None-Match
 
 ```http
-# Phan hoi may chu (yeu cau lan dau)
+# Phản hồi máy chủ (yêu cầu lần đầu)
 ETag: "33a64df551425fcc55e4d42a148795d9f25f89d4"
 
-# Yeu cau trinh duyet (cac yeu cau tiep theo)
+# Yêu cầu trình duyệt (các yêu cầu tiếp theo)
 If-None-Match: "33a64df551425fcc55e4d42a148795d9f25f89d4"
 ```
 
-**Uu diem**:
+**Ưu điểm**:
 
-- Chinh xac hon `Last-Modified`
-- Khong phu thuoc thoi gian, su dung hash noi dung
-- Co the phat hien thay doi duoi muc giay
+- Chính xác hơn `Last-Modified`
+- Không phụ thuộc thời gian, sử dụng hash nội dung
+- Có thể phát hiện thay đổi dưới mức giây
 
 ### Last-Modified vs ETag
 
-| Dac tinh       | Last-Modified          | ETag                          |
+| Đặc tính       | Last-Modified          | ETag                          |
 | -------------- | ---------------------- | ----------------------------- |
-| Do chinh xac   | Muc giay               | Hash noi dung, chinh xac hon  |
-| Hieu suat      | Nhanh hon              | Can tinh hash, cham hon       |
-| Truong hop su dung | Tai nguyen tinh chung | Tai nguyen can kiem soat chinh xac |
-| Uu tien        | Thap                   | Cao (ETag uu tien)            |
+| Độ chính xác   | Mức giây               | Hash nội dung, chính xác hơn  |
+| Hiệu suất      | Nhanh hơn              | Cần tính hash, chậm hơn       |
+| Trường hợp sử dụng | Tài nguyên tĩnh chung | Tài nguyên cần kiểm soát chính xác |
+| Ưu tiên        | Thấp                   | Cao (ETag ưu tiên)            |
 
 ## 3. How does browser caching work?
 
-> Quy trinh hoat dong cua cache trinh duyet la gi?
+> Quy trình hoạt động của cache trình duyệt là gì?
 
-### Quy trinh cache day du
+### Quy trình cache đầy đủ
 
 ```text
 ┌──────────────────────────────────────────────┐
-│    Quy trinh yeu cau tai nguyen cua           │
-│            trinh duyet                        │
+│    Quy trình yêu cầu tài nguyên của           │
+│            trình duyệt                        │
 └──────────────────────────────────────────────┘
                     ↓
-         1. Kiem tra Memory Cache
+         1. Kiểm tra Memory Cache
                     ↓
             ┌───────┴────────┐
-            │ Tim thay cache? │
+            │ Tìm thấy cache? │
             └───────┬────────┘
                 Yes │ No
                     ↓
-         2. Kiem tra Disk Cache
+         2. Kiểm tra Disk Cache
                     ↓
             ┌───────┴────────┐
-            │ Tim thay cache? │
+            │ Tìm thấy cache? │
             └───────┬────────┘
                 Yes │ No
                     ↓
-         3. Kiem tra Service Worker
+         3. Kiểm tra Service Worker
                     ↓
             ┌───────┴────────┐
-            │ Tim thay cache? │
+            │ Tìm thấy cache? │
             └───────┬────────┘
                 Yes │ No
                     ↓
-         4. Kiem tra cache het han chua
+         4. Kiểm tra cache hết hạn chưa
                     ↓
             ┌───────┴────────┐
-            │   Da het han?   │
+            │   Đã hết hạn?   │
             └───────┬────────┘
                 Yes │ No
                     ↓
-         5. Xac minh bang cache thuong luong
+         5. Xác minh bằng cache thương lượng
                     ↓
             ┌───────┴────────┐
-            │ Tai nguyen da   │
-            │ thay doi?       │
+            │ Tài nguyên đã   │
+            │ thay đổi?       │
             └───────┬────────┘
                 Yes │ No (304)
                     ↓
-         6. Yeu cau tai nguyen moi tu may chu
+         6. Yêu cầu tài nguyên mới từ máy chủ
                     ↓
             ┌───────┴────────┐
-            │ Tra ve tai      │
-            │ nguyen moi      │
+            │ Trả về tài      │
+            │ nguyên mới      │
             │ (200 OK)        │
             └────────────────┘
 ```
 
-### Vi du thuc te
+### Ví dụ thực tế
 
 ```javascript
-// Yeu cau lan dau
+// Yêu cầu lần đầu
 GET /api/data.json
 Response:
   200 OK
@@ -364,21 +364,21 @@ Response:
 
   { data: "..." }
 
-// ========== Yeu cau lai trong vong 1 gio ==========
-// Cache manh: Doc truc tiep tu cuc bo, khong gui yeu cau
+// ========== Yêu cầu lại trong vòng 1 giờ ==========
+// Cache mạnh: Đọc trực tiếp từ cục bộ, không gửi yêu cầu
 // Status: 200 OK (from disk cache)
 
-// ========== Yeu cau lai sau 1 gio ==========
-// Cache thuong luong: Gui yeu cau xac minh
+// ========== Yêu cầu lại sau 1 giờ ==========
+// Cache thương lượng: Gửi yêu cầu xác minh
 GET /api/data.json
 If-None-Match: "abc123"
 
-// Tai nguyen chua thay doi
+// Tài nguyên chưa thay đổi
 Response:
   304 Not Modified
-  (Khong tra ve body, su dung cache cuc bo)
+  (Không trả về body, sử dụng cache cục bộ)
 
-// Tai nguyen da thay doi
+// Tài nguyên đã thay đổi
 Response:
   200 OK
   ETag: "def456"
@@ -388,81 +388,81 @@ Response:
 
 ## 4. What are the common caching strategies?
 
-> Cac chien luoc cache pho bien la gi?
+> Các chiến lược cache phổ biến là gì?
 
-### 1. Chien luoc cache vinh vien (ap dung cho tai nguyen tinh)
+### 1. Chiến lược cache vĩnh viễn (áp dụng cho tài nguyên tĩnh)
 
 ```javascript
-// HTML: Khong cache, kiem tra moi lan
+// HTML: Không cache, kiểm tra mỗi lần
 Cache-Control: no-cache
 
-// CSS/JS (co hash): Cache vinh vien
+// CSS/JS (có hash): Cache vĩnh viễn
 Cache-Control: public, max-age=31536000, immutable
-// Ten file: main.abc123.js
+// Tên file: main.abc123.js
 ```
 
-**Nguyen ly**:
+**Nguyên lý**:
 
-- HTML khong duoc cache, dam bao nguoi dung nhan duoc phien ban moi nhat
-- CSS/JS su dung ten file hash, ten file thay doi khi noi dung thay doi
-- Phien ban cu khong duoc su dung, phien ban moi duoc tai lai
+- HTML không được cache, đảm bảo người dùng nhận được phiên bản mới nhất
+- CSS/JS sử dụng tên file hash, tên file thay đổi khi nội dung thay đổi
+- Phiên bản cũ không được sử dụng, phiên bản mới được tải lại
 
-### 2. Chien luoc cho tai nguyen cap nhat thuong xuyen
+### 2. Chiến lược cho tài nguyên cập nhật thường xuyên
 
 ```javascript
-// Du lieu API: Cache ngan han + cache thuong luong
+// Dữ liệu API: Cache ngắn hạn + cache thương lượng
 Cache-Control: max-age=60, must-revalidate
 ETag: "abc123"
 ```
 
-### 3. Chien luoc cho tai nguyen hinh anh
+### 3. Chiến lược cho tài nguyên hình ảnh
 
 ```javascript
-// Anh dai dien nguoi dung: Cache trung han
-Cache-Control: public, max-age=86400  // 1 ngay
+// Ảnh đại diện người dùng: Cache trung hạn
+Cache-Control: public, max-age=86400  // 1 ngày
 
-// Logo, icon: Cache dai han
-Cache-Control: public, max-age=2592000  // 30 ngay
+// Logo, icon: Cache dài hạn
+Cache-Control: public, max-age=2592000  // 30 ngày
 
-// Hinh anh dong: Cache thuong luong
+// Hình ảnh động: Cache thương lượng
 Cache-Control: no-cache
 ETag: "image-hash"
 ```
 
-### 4. Khuyen nghi cache theo loai tai nguyen
+### 4. Khuyến nghị cache theo loại tài nguyên
 
 ```javascript
 const cachingStrategies = {
   // File HTML
   html: 'Cache-Control: no-cache',
 
-  // Tai nguyen tinh co hash
+  // Tài nguyên tĩnh có hash
   staticWithHash: 'Cache-Control: public, max-age=31536000, immutable',
 
-  // Tai nguyen tinh it cap nhat
+  // Tài nguyên tĩnh ít cập nhật
   staticAssets: 'Cache-Control: public, max-age=2592000',
 
-  // Du lieu API
+  // Dữ liệu API
   apiData: 'Cache-Control: private, max-age=60',
 
-  // Du lieu rieng cua nguoi dung
+  // Dữ liệu riêng của người dùng
   userData: 'Cache-Control: private, no-cache',
 
-  // Du lieu nhay cam
+  // Dữ liệu nhạy cảm
   sensitive: 'Cache-Control: no-store',
 };
 ```
 
 ## 5. Service Worker caching
 
-> Cache voi Service Worker
+> Cache với Service Worker
 
-Service Worker cung cap kha nang kiem soat cache linh hoat nhat, cho phep lap trinh vien kiem soat hoan toan logic cache.
+Service Worker cung cấp khả năng kiểm soát cache linh hoạt nhất, cho phép lập trình viên kiểm soát hoàn toàn logic cache.
 
-### Su dung co ban
+### Sử dụng cơ bản
 
 ```javascript
-// Dang ky Service Worker
+// Đăng ký Service Worker
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js');
 }
@@ -478,7 +478,7 @@ const urlsToCache = [
   '/images/logo.png',
 ];
 
-// Su kien cai dat: Cache tai nguyen tinh
+// Sự kiện cài đặt: Cache tài nguyên tĩnh
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -487,17 +487,17 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// Chan yeu cau: Su dung chien luoc cache
+// Chặn yêu cầu: Sử dụng chiến lược cache
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
-      // Chien luoc Cache First
+      // Chiến lược Cache First
       return response || fetch(event.request);
     })
   );
 });
 
-// Su kien kich hoat: Don dep cache cu
+// Sự kiện kích hoạt: Dọn dẹp cache cũ
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
@@ -513,12 +513,12 @@ self.addEventListener('activate', (event) => {
 });
 ```
 
-### Cac chien luoc cache pho bien
+### Các chiến lược cache phổ biến
 
-#### 1. Cache First (Uu tien cache)
+#### 1. Cache First (Ưu tiên cache)
 
 ```javascript
-// Phu hop cho: Tai nguyen tinh
+// Phù hợp cho: Tài nguyên tĩnh
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
@@ -528,15 +528,15 @@ self.addEventListener('fetch', (event) => {
 });
 ```
 
-#### 2. Network First (Uu tien mang)
+#### 2. Network First (Ưu tiên mạng)
 
 ```javascript
-// Phu hop cho: Yeu cau API
+// Phù hợp cho: Yêu cầu API
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     fetch(event.request)
       .then((response) => {
-        // Cap nhat cache
+        // Cập nhật cache
         const responseClone = response.clone();
         caches.open(CACHE_NAME).then((cache) => {
           cache.put(event.request, responseClone);
@@ -544,17 +544,17 @@ self.addEventListener('fetch', (event) => {
         return response;
       })
       .catch(() => {
-        // Mang that bai, su dung cache
+        // Mạng thất bại, sử dụng cache
         return caches.match(event.request);
       })
   );
 });
 ```
 
-#### 3. Stale While Revalidate (Het han va xac minh lai)
+#### 3. Stale While Revalidate (Hết hạn và xác minh lại)
 
 ```javascript
-// Phu hop cho: Tai nguyen can phan hoi nhanh nhung cung can cap nhat
+// Phù hợp cho: Tài nguyên cần phản hồi nhanh nhưng cũng cần cập nhật
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
@@ -565,7 +565,7 @@ self.addEventListener('fetch', (event) => {
         return networkResponse;
       });
 
-      // Tra ve cache, cap nhat o nen
+      // Trả về cache, cập nhật ở nền
       return cachedResponse || fetchPromise;
     })
   );
@@ -574,15 +574,15 @@ self.addEventListener('fetch', (event) => {
 
 ## 6. How to implement cache busting?
 
-> Lam the nao de thuc hien Cache Busting?
+> Làm thế nào để thực hiện Cache Busting?
 
-Cache Busting la ky thuat dam bao nguoi dung nhan duoc tai nguyen moi nhat.
+Cache Busting là kỹ thuật đảm bảo người dùng nhận được tài nguyên mới nhất.
 
-### Phuong phap 1: Hash trong ten file (khuyen nghi)
+### Phương pháp 1: Hash trong tên file (khuyến nghị)
 
 ```javascript
-// Su dung cong cu dong goi nhu Webpack/Vite
-// Dau ra: main.abc123.js
+// Sử dụng công cụ đóng gói như Webpack/Vite
+// Đầu ra: main.abc123.js
 
 // webpack.config.js
 module.exports = {
@@ -593,52 +593,52 @@ module.exports = {
 ```
 
 ```html
-<!-- Tu dong cap nhat tham chieu -->
+<!-- Tự động cập nhật tham chiếu -->
 <script src="/js/main.abc123.js"></script>
 ```
 
-**Uu diem**:
+**Ưu điểm**:
 
-- ✅ Ten file thay doi, buoc tai file moi
-- ✅ Phien ban cu van duoc cache, khong lang phi
-- ✅ Thuc hanh tot nhat
+- ✅ Tên file thay đổi, buộc tải file mới
+- ✅ Phiên bản cũ vẫn được cache, không lãng phí
+- ✅ Thực hành tốt nhất
 
-### Phuong phap 2: So phien ban voi Query String
+### Phương pháp 2: Số phiên bản với Query String
 
 ```html
-<!-- Cap nhat so phien ban thu cong -->
+<!-- Cập nhật số phiên bản thủ công -->
 <script src="/js/main.js?v=1.2.3"></script>
 <link rel="stylesheet" href="/css/style.css?v=1.2.3" />
 ```
 
-**Nhuoc diem**:
+**Nhược điểm**:
 
-- ❌ Mot so CDN khong cache tai nguyen co query string
-- ❌ Can quan ly so phien ban thu cong
+- ❌ Một số CDN không cache tài nguyên có query string
+- ❌ Cần quản lý số phiên bản thủ công
 
-### Phuong phap 3: Dau thoi gian
+### Phương pháp 3: Dấu thời gian
 
 ```javascript
-// Su dung trong moi truong phat trien
+// Sử dụng trong môi trường phát triển
 const timestamp = Date.now();
 const script = document.createElement('script');
 script.src = `/js/main.js?t=${timestamp}`;
 document.body.appendChild(script);
 ```
 
-**Muc dich su dung**:
+**Mục đích sử dụng**:
 
-- Tranh cache trong moi truong phat trien
-- Khong phu hop cho moi truong san xuat (moi lan la mot yeu cau moi)
+- Tránh cache trong môi trường phát triển
+- Không phù hợp cho môi trường sản xuất (mỗi lần là một yêu cầu mới)
 
 ## 7. Common caching interview questions
 
-> Cac cau hoi phong van thuong gap ve cache
+> Các câu hỏi phỏng vấn thường gặp về cache
 
-### Cau hoi 1: Lam sao de HTML khong bi cache?
+### Câu hỏi 1: Làm sao để HTML không bị cache?
 
 <details>
-<summary>Nhan de xem cau tra loi</summary>
+<summary>Nhấn để xem câu trả lời</summary>
 
 ```http
 Cache-Control: no-cache, no-store, must-revalidate
@@ -646,7 +646,7 @@ Pragma: no-cache
 Expires: 0
 ```
 
-Hoac su dung the meta:
+Hoặc sử dụng thẻ meta:
 
 ```html
 <meta
@@ -659,107 +659,107 @@ Hoac su dung the meta:
 
 </details>
 
-### Cau hoi 2: Tai sao nen su dung ETag thay vi chi dung Last-Modified?
+### Câu hỏi 2: Tại sao nên sử dụng ETag thay vì chỉ dùng Last-Modified?
 
 <details>
-<summary>Nhan de xem cau tra loi</summary>
+<summary>Nhấn để xem câu trả lời</summary>
 
-**Uu diem cua ETag**:
+**Ưu điểm của ETag**:
 
-1. **Chinh xac hon**: Co the phat hien thay doi duoi muc giay
-2. **Dua tren noi dung**: Dua tren hash noi dung, khong phai thoi gian
-3. **Tranh van de thoi gian**:
-   - Noi dung file khong thay doi nhung thoi gian thay doi (nhu khi trien khai lai)
-   - Tai nguyen quay lai cung noi dung theo chu ky
-4. **He thong phan tan**: Dong ho cua cac may chu khac nhau co the khong dong bo
+1. **Chính xác hơn**: Có thể phát hiện thay đổi dưới mức giây
+2. **Dựa trên nội dung**: Dựa trên hash nội dung, không phải thời gian
+3. **Tránh vấn đề thời gian**:
+   - Nội dung file không thay đổi nhưng thời gian thay đổi (như khi triển khai lại)
+   - Tài nguyên quay lại cùng nội dung theo chu kỳ
+4. **Hệ thống phân tán**: Đồng hồ của các máy chủ khác nhau có thể không đồng bộ
 
-**Vi du**:
+**Ví dụ**:
 
 ```javascript
-// Noi dung file khong thay doi, nhung Last-Modified thay doi
-// 2024-01-01 12:00 - Trien khai phien ban A (noi dung: abc)
-// 2024-01-02 12:00 - Trien khai lai phien ban A (noi dung: abc)
-// Last-Modified thay doi, nhung noi dung van giong!
+// Nội dung file không thay đổi, nhưng Last-Modified thay đổi
+// 2024-01-01 12:00 - Triển khai phiên bản A (nội dung: abc)
+// 2024-01-02 12:00 - Triển khai lại phiên bản A (nội dung: abc)
+// Last-Modified thay đổi, nhưng nội dung vẫn giống!
 
-// ETag khong co van de nay
-ETag: 'hash-of-abc'; // Luon giong nhau
+// ETag không có vấn đề này
+ETag: 'hash-of-abc'; // Luôn giống nhau
 ```
 
 </details>
 
-### Cau hoi 3: Su khac biet giua from disk cache va from memory cache?
+### Câu hỏi 3: Sự khác biệt giữa from disk cache và from memory cache?
 
 <details>
-<summary>Nhan de xem cau tra loi</summary>
+<summary>Nhấn để xem câu trả lời</summary>
 
-| Dac tinh       | Memory Cache           | Disk Cache           |
+| Đặc tính       | Memory Cache           | Disk Cache           |
 | -------------- | ---------------------- | -------------------- |
-| Vi tri luu tru | Bo nho (RAM)           | O cung               |
-| Toc do         | Cuc nhanh             | Cham hon             |
-| Dung luong     | Nho (cap MB)           | Lon (cap GB)         |
-| Tinh ben vung  | Bi xoa khi dong tab    | Luu tru lau dai      |
-| Uu tien        | Cao (uu tien su dung)  | Thap                 |
+| Vị trí lưu trữ | Bộ nhớ (RAM)           | Ổ cứng               |
+| Tốc độ         | Cực nhanh             | Chậm hơn             |
+| Dung lượng     | Nhỏ (cấp MB)           | Lớn (cấp GB)         |
+| Tính bền vững  | Bị xóa khi đóng tab    | Lưu trữ lâu dài      |
+| Ưu tiên        | Cao (ưu tiên sử dụng)  | Thấp                 |
 
-**Thu tu uu tien tai**:
+**Thứ tự ưu tiên tải**:
 
 ```text
-1. Memory Cache (nhanh nhat)
+1. Memory Cache (nhanh nhất)
 2. Service Worker Cache
 3. Disk Cache
 4. HTTP Cache
-5. Yeu cau mang (cham nhat)
+5. Yêu cầu mạng (chậm nhất)
 ```
 
-**Dieu kien kich hoat**:
+**Điều kiện kích hoạt**:
 
-- **Memory Cache**: Tai nguyen vua truy cap gan day (nhu tai lai trang)
-- **Disk Cache**: Tai nguyen truy cap tu lau hoac file co kich thuoc lon
+- **Memory Cache**: Tài nguyên vừa truy cập gần đây (như tải lại trang)
+- **Disk Cache**: Tài nguyên truy cập từ lâu hoặc file có kích thước lớn
 
 </details>
 
-### Cau hoi 4: Lam the nao de buoc trinh duyet tai lai tai nguyen?
+### Câu hỏi 4: Làm thế nào để buộc trình duyệt tải lại tài nguyên?
 
 <details>
-<summary>Nhan de xem cau tra loi</summary>
+<summary>Nhấn để xem câu trả lời</summary>
 
-**Giai doan phat trien**:
+**Giai đoạn phát triển**:
 
 ```javascript
 // 1. Hard Reload (Ctrl/Cmd + Shift + R)
-// 2. Xoa cache va tai lai
+// 2. Xóa cache và tải lại
 
-// 3. Them dau thoi gian trong code
+// 3. Thêm dấu thời gian trong code
 const script = document.createElement('script');
 script.src = `/js/main.js?t=${Date.now()}`;
 ```
 
-**Moi truong san xuat**:
+**Môi trường sản xuất**:
 
 ```javascript
-// 1. Su dung hash trong ten file (thuc hanh tot nhat)
-main.abc123.js  // Webpack/Vite tu dong tao
+// 1. Sử dụng hash trong tên file (thực hành tốt nhất)
+main.abc123.js  // Webpack/Vite tự động tạo
 
-// 2. Cap nhat so phien ban
+// 2. Cập nhật số phiên bản
 <script src="/js/main.js?v=2.0.0"></script>
 
-// 3. Cai dat Cache-Control
-Cache-Control: no-cache  // Buoc xac minh
-Cache-Control: no-store  // Hoan toan khong cache
+// 3. Cài đặt Cache-Control
+Cache-Control: no-cache  // Buộc xác minh
+Cache-Control: no-store  // Hoàn toàn không cache
 ```
 
 </details>
 
-### Cau hoi 5: Cache offline PWA duoc thuc hien nhu the nao?
+### Câu hỏi 5: Cache offline PWA được thực hiện như thế nào?
 
 <details>
-<summary>Nhan de xem cau tra loi</summary>
+<summary>Nhấn để xem câu trả lời</summary>
 
 ```javascript
 // sw.js - Service Worker
 const CACHE_NAME = 'pwa-v1';
 const OFFLINE_URL = '/offline.html';
 
-// Cache trang offline khi cai dat
+// Cache trang offline khi cài đặt
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -772,12 +772,12 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// Chan yeu cau
+// Chặn yêu cầu
 self.addEventListener('fetch', (event) => {
   if (event.request.mode === 'navigate') {
     event.respondWith(
       fetch(event.request).catch(() => {
-        // Mang that bai, hien thi trang offline
+        // Mạng thất bại, hiển thị trang offline
         return caches.match(OFFLINE_URL);
       })
     );
@@ -785,72 +785,72 @@ self.addEventListener('fetch', (event) => {
 });
 ```
 
-**Chien luoc cache PWA day du**:
+**Chiến lược cache PWA đầy đủ**:
 
 ```javascript
-// 1. Cache tai nguyen tinh
+// 1. Cache tài nguyên tĩnh
 caches.addAll(['/css/', '/js/', '/images/']);
 
-// 2. Yeu cau API: Network First
-// 3. Hinh anh: Cache First
-// 4. HTML: Network First, hien thi trang offline neu that bai
+// 2. Yêu cầu API: Network First
+// 3. Hình ảnh: Cache First
+// 4. HTML: Network First, hiển thị trang offline nếu thất bại
 ```
 
 </details>
 
 ## 8. Best practices
 
-> Cac thuc hanh tot nhat
+> Các thực hành tốt nhất
 
-### ✅ Cach lam khuyen nghi
+### ✅ Cách làm khuyến nghị
 
 ```javascript
-// 1. HTML - Khong cache, dam bao nguoi dung nhan duoc phien ban moi nhat
+// 1. HTML - Không cache, đảm bảo người dùng nhận được phiên bản mới nhất
 // Response Headers:
 Cache-Control: no-cache
 
-// 2. CSS/JS (co hash) - Cache vinh vien
-// Ten file: main.abc123.js
+// 2. CSS/JS (có hash) - Cache vĩnh viễn
+// Tên file: main.abc123.js
 Cache-Control: public, max-age=31536000, immutable
 
-// 3. Hinh anh - Cache dai han
-Cache-Control: public, max-age=2592000  // 30 ngay
+// 3. Hình ảnh - Cache dài hạn
+Cache-Control: public, max-age=2592000  // 30 ngày
 
-// 4. Du lieu API - Cache ngan han + cache thuong luong
+// 4. Dữ liệu API - Cache ngắn hạn + cache thương lượng
 Cache-Control: private, max-age=60
 ETag: "api-response-hash"
 
-// 5. Su dung Service Worker de ho tro offline
+// 5. Sử dụng Service Worker để hỗ trợ offline
 ```
 
-### ❌ Cach lam nen tranh
+### ❌ Cách làm nên tránh
 
 ```javascript
-// ❌ Xau: Cai dat cache dai han cho HTML
-Cache-Control: max-age=31536000  // Nguoi dung co the thay phien ban cu
+// ❌ Xấu: Cài đặt cache dài hạn cho HTML
+Cache-Control: max-age=31536000  // Người dùng có thể thấy phiên bản cũ
 
-// ❌ Xau: Su dung Expires thay vi Cache-Control
-Expires: Wed, 21 Oct 2025 07:28:00 GMT  // HTTP/1.0, da loi thoi
+// ❌ Xấu: Sử dụng Expires thay vì Cache-Control
+Expires: Wed, 21 Oct 2025 07:28:00 GMT  // HTTP/1.0, đã lỗi thời
 
-// ❌ Xau: Hoan toan khong cai dat cache
-// Khong co header cache, hanh vi trinh duyet khong xac dinh
+// ❌ Xấu: Hoàn toàn không cài đặt cache
+// Không có header cache, hành vi trình duyệt không xác định
 
-// ❌ Xau: Su dung cung chien luoc cho tat ca tai nguyen
-Cache-Control: max-age=3600  // Nen dieu chinh theo loai tai nguyen
+// ❌ Xấu: Sử dụng cùng chiến lược cho tất cả tài nguyên
+Cache-Control: max-age=3600  // Nên điều chỉnh theo loại tài nguyên
 ```
 
-### Cay quyet dinh chien luoc cache
+### Cây quyết định chiến lược cache
 
 ```text
-La tai nguyen tinh?
-├─ Co → Ten file co hash?
-│      ├─ Co → Cache vinh vien (max-age=31536000, immutable)
-│      └─ Khong → Cache trung-dai han (max-age=2592000)
-└─ Khong → La HTML?
-          ├─ Co → Khong cache (no-cache)
-          └─ Khong → La API?
-                 ├─ Co → Cache ngan han + thuong luong (max-age=60, ETag)
-                 └─ Khong → Quyet dinh theo tan suat cap nhat
+Là tài nguyên tĩnh?
+├─ Có → Tên file có hash?
+│      ├─ Có → Cache vĩnh viễn (max-age=31536000, immutable)
+│      └─ Không → Cache trung-dài hạn (max-age=2592000)
+└─ Không → Là HTML?
+          ├─ Có → Không cache (no-cache)
+          └─ Không → Là API?
+                 ├─ Có → Cache ngắn hạn + thương lượng (max-age=60, ETag)
+                 └─ Không → Quyết định theo tần suất cập nhật
 ```
 
 ## Reference

@@ -7,16 +7,16 @@ tags: [JavaScript, Coding, Medium]
 
 ## 1. What is Deep Clone?
 
-> Deep Clone la gi?
+> Deep Clone là gì?
 
-**Deep Clone (Sao chep sau)** la viec tao mot doi tuong moi va sao chep de quy tat ca cac thuoc tinh cua doi tuong goc cung nhu tat ca cac doi tuong va mang long nhau cua no. Doi tuong sau khi Deep Clone hoan toan doc lap voi doi tuong goc -- viec thay doi mot doi tuong se khong anh huong den doi tuong kia.
+**Deep Clone (Sao chép sâu)** là việc tạo một đối tượng mới và sao chép đệ quy tất cả các thuộc tính của đối tượng gốc cũng như tất cả các đối tượng và mảng lồng nhau của nó. Đối tượng sau khi Deep Clone hoàn toàn độc lập với đối tượng gốc -- việc thay đổi một đối tượng sẽ không ảnh hưởng đến đối tượng kia.
 
-### Sao chep nong vs Sao chep sau
+### Sao chép nông vs Sao chép sâu
 
-**Shallow Clone (Sao chep nong)**: Chi sao chep cac thuoc tinh o cap do dau tien cua doi tuong; cac doi tuong long nhau van chia se cung mot tham chieu.
+**Shallow Clone (Sao chép nông)**: Chỉ sao chép các thuộc tính ở cấp độ đầu tiên của đối tượng; các đối tượng lồng nhau vẫn chia sẻ cùng một tham chiếu.
 
 ```javascript
-// Vi du sao chep nong
+// Ví dụ sao chép nông
 const original = {
   name: 'John',
   address: {
@@ -28,13 +28,13 @@ const original = {
 const shallowCopy = { ...original };
 shallowCopy.address.city = 'Kaohsiung';
 
-console.log(original.address.city); // 'Kaohsiung' ❌ Doi tuong goc cung bi thay doi
+console.log(original.address.city); // 'Kaohsiung' ❌ Đối tượng gốc cũng bị thay đổi
 ```
 
-**Deep Clone (Sao chep sau)**: Sao chep de quy tat ca cac cap do thuoc tinh, hoan toan doc lap.
+**Deep Clone (Sao chép sâu)**: Sao chép đệ quy tất cả các cấp độ thuộc tính, hoàn toàn độc lập.
 
 ```javascript
-// Vi du sao chep sau
+// Ví dụ sao chép sâu
 const original = {
   name: 'John',
   address: {
@@ -46,24 +46,24 @@ const original = {
 const deepCopy = deepClone(original);
 deepCopy.address.city = 'Kaohsiung';
 
-console.log(original.address.city); // 'Taipei' ✅ Doi tuong goc khong bi anh huong
+console.log(original.address.city); // 'Taipei' ✅ Đối tượng gốc không bị ảnh hưởng
 ```
 
 ## 2. Implementation Methods
 
-> Cac phuong phap trien khai
+> Các phương pháp triển khai
 
-### Phuong phap 1: Su dung JSON.parse va JSON.stringify
+### Phương pháp 1: Sử dụng JSON.parse và JSON.stringify
 
-**Uu diem**: Don gian va nhanh
-**Nhuoc diem**: Khong the xu ly ham, undefined, Symbol, Date, RegExp, Map, Set va cac kieu dac biet khac
+**Ưu điểm**: Đơn giản và nhanh
+**Nhược điểm**: Không thể xử lý hàm, undefined, Symbol, Date, RegExp, Map, Set và các kiểu đặc biệt khác
 
 ```javascript
 function deepClone(obj) {
   return JSON.parse(JSON.stringify(obj));
 }
 
-// Kiem tra
+// Kiểm tra
 const original = {
   name: 'John',
   age: 30,
@@ -82,7 +82,7 @@ console.log(original.address.city); // 'Taipei' ✅
 console.log(original.hobbies); // ['reading', 'coding'] ✅
 ```
 
-**Han che**:
+**Hạn chế**:
 
 ```javascript
 const obj = {
@@ -94,38 +94,38 @@ const obj = {
 };
 
 const cloned = deepClone(obj);
-console.log(cloned.date); // {} ❌ Date tro thanh doi tuong rong
-console.log(cloned.func); // undefined ❌ Ham bi mat
-console.log(cloned.undefined); // undefined ✅ Nhung JSON.stringify se loai bo no
-console.log(cloned.symbol); // undefined ❌ Symbol bi mat
-console.log(cloned.regex); // {} ❌ RegExp tro thanh doi tuong rong
+console.log(cloned.date); // {} ❌ Date trở thành đối tượng rỗng
+console.log(cloned.func); // undefined ❌ Hàm bị mất
+console.log(cloned.undefined); // undefined ✅ Nhưng JSON.stringify sẽ loại bỏ nó
+console.log(cloned.symbol); // undefined ❌ Symbol bị mất
+console.log(cloned.regex); // {} ❌ RegExp trở thành đối tượng rỗng
 ```
 
-### Phuong phap 2: Trien khai de quy (xu ly cac kieu co ban va doi tuong)
+### Phương pháp 2: Triển khai đệ quy (xử lý các kiểu cơ bản và đối tượng)
 
 ```javascript
 function deepClone(obj) {
-  // Xu ly null va cac kieu co ban
+  // Xử lý null và các kiểu cơ bản
   if (obj === null || typeof obj !== 'object') {
     return obj;
   }
 
-  // Xu ly Date
+  // Xử lý Date
   if (obj instanceof Date) {
     return new Date(obj.getTime());
   }
 
-  // Xu ly RegExp
+  // Xử lý RegExp
   if (obj instanceof RegExp) {
     return new RegExp(obj);
   }
 
-  // Xu ly mang
+  // Xử lý mảng
   if (Array.isArray(obj)) {
     return obj.map((item) => deepClone(item));
   }
 
-  // Xu ly doi tuong
+  // Xử lý đối tượng
   const cloned = {};
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
@@ -136,7 +136,7 @@ function deepClone(obj) {
   return cloned;
 }
 
-// Kiem tra
+// Kiểm tra
 const original = {
   name: 'John',
   date: new Date(),
@@ -151,35 +151,35 @@ const cloned = deepClone(original);
 cloned.date.setFullYear(2025);
 cloned.hobbies.push('swimming');
 
-console.log(original.date.getFullYear()); // 2024 ✅ Khong bi anh huong
+console.log(original.date.getFullYear()); // 2024 ✅ Không bị ảnh hưởng
 console.log(original.hobbies); // ['reading', 'coding'] ✅
 ```
 
-### Phuong phap 3: Trien khai day du (xu ly Map, Set, Symbol, v.v.)
+### Phương pháp 3: Triển khai đầy đủ (xử lý Map, Set, Symbol, v.v.)
 
 ```javascript
 function deepClone(obj, map = new WeakMap()) {
-  // Xu ly null va cac kieu co ban
+  // Xử lý null và các kiểu cơ bản
   if (obj === null || typeof obj !== 'object') {
     return obj;
   }
 
-  // Xu ly tham chieu vong
+  // Xử lý tham chiếu vòng
   if (map.has(obj)) {
     return map.get(obj);
   }
 
-  // Xu ly Date
+  // Xử lý Date
   if (obj instanceof Date) {
     return new Date(obj.getTime());
   }
 
-  // Xu ly RegExp
+  // Xử lý RegExp
   if (obj instanceof RegExp) {
     return new RegExp(obj.source, obj.flags);
   }
 
-  // Xu ly Map
+  // Xử lý Map
   if (obj instanceof Map) {
     const clonedMap = new Map();
     map.set(obj, clonedMap);
@@ -189,7 +189,7 @@ function deepClone(obj, map = new WeakMap()) {
     return clonedMap;
   }
 
-  // Xu ly Set
+  // Xử lý Set
   if (obj instanceof Set) {
     const clonedSet = new Set();
     map.set(obj, clonedSet);
@@ -199,7 +199,7 @@ function deepClone(obj, map = new WeakMap()) {
     return clonedSet;
   }
 
-  // Xu ly mang
+  // Xử lý mảng
   if (Array.isArray(obj)) {
     const clonedArray = [];
     map.set(obj, clonedArray);
@@ -209,20 +209,20 @@ function deepClone(obj, map = new WeakMap()) {
     return clonedArray;
   }
 
-  // Xu ly doi tuong
+  // Xử lý đối tượng
   const cloned = {};
   map.set(obj, cloned);
 
-  // Xu ly thuoc tinh Symbol
+  // Xử lý thuộc tính Symbol
   const symbolKeys = Object.getOwnPropertySymbols(obj);
   const stringKeys = Object.keys(obj);
 
-  // Sao chep thuoc tinh thuong
+  // Sao chép thuộc tính thường
   stringKeys.forEach((key) => {
     cloned[key] = deepClone(obj[key], map);
   });
 
-  // Sao chep thuoc tinh Symbol
+  // Sao chép thuộc tính Symbol
   symbolKeys.forEach((symbolKey) => {
     cloned[symbolKey] = deepClone(obj[symbolKey], map);
   });
@@ -230,7 +230,7 @@ function deepClone(obj, map = new WeakMap()) {
   return cloned;
 }
 
-// Kiem tra
+// Kiểm tra
 const symbolKey = Symbol('test');
 const original = {
   name: 'John',
@@ -247,31 +247,31 @@ console.log(cloned.map.get('key')); // 'value' ✅
 console.log(cloned.set.has(1)); // true ✅
 ```
 
-### Phuong phap 4: Xu ly tham chieu vong
+### Phương pháp 4: Xử lý tham chiếu vòng
 
 ```javascript
 function deepClone(obj, map = new WeakMap()) {
-  // Xu ly null va cac kieu co ban
+  // Xử lý null và các kiểu cơ bản
   if (obj === null || typeof obj !== 'object') {
     return obj;
   }
 
-  // Xu ly tham chieu vong
+  // Xử lý tham chiếu vòng
   if (map.has(obj)) {
     return map.get(obj);
   }
 
-  // Xu ly Date
+  // Xử lý Date
   if (obj instanceof Date) {
     return new Date(obj.getTime());
   }
 
-  // Xu ly RegExp
+  // Xử lý RegExp
   if (obj instanceof RegExp) {
     return new RegExp(obj.source, obj.flags);
   }
 
-  // Xu ly mang
+  // Xử lý mảng
   if (Array.isArray(obj)) {
     const clonedArray = [];
     map.set(obj, clonedArray);
@@ -281,7 +281,7 @@ function deepClone(obj, map = new WeakMap()) {
     return clonedArray;
   }
 
-  // Xu ly doi tuong
+  // Xử lý đối tượng
   const cloned = {};
   map.set(obj, cloned);
 
@@ -294,51 +294,51 @@ function deepClone(obj, map = new WeakMap()) {
   return cloned;
 }
 
-// Kiem tra tham chieu vong
+// Kiểm tra tham chiếu vòng
 const original = {
   name: 'John',
 };
-original.self = original; // Tham chieu vong
+original.self = original; // Tham chiếu vòng
 
 const cloned = deepClone(original);
-console.log(cloned.self === cloned); // true ✅ Xu ly tham chieu vong chinh xac
-console.log(cloned !== original); // true ✅ La cac doi tuong khac nhau
+console.log(cloned.self === cloned); // true ✅ Xử lý tham chiếu vòng chính xác
+console.log(cloned !== original); // true ✅ Là các đối tượng khác nhau
 ```
 
 ## 3. Common Interview Questions
 
-> Cau hoi phong van thuong gap
+> Câu hỏi phỏng vấn thường gặp
 
-### Bai 1: Trien khai Deep Clone co ban
+### Bài 1: Triển khai Deep Clone cơ bản
 
-Hay trien khai mot ham `deepClone` co the sao chep sau cac doi tuong va mang.
+Hãy triển khai một hàm `deepClone` có thể sao chép sâu các đối tượng và mảng.
 
 <details>
-<summary>Nhan de xem dap an</summary>
+<summary>Nhấn để xem đáp án</summary>
 
 ```javascript
 function deepClone(obj) {
-  // Xu ly null va cac kieu co ban
+  // Xử lý null và các kiểu cơ bản
   if (obj === null || typeof obj !== 'object') {
     return obj;
   }
 
-  // Xu ly Date
+  // Xử lý Date
   if (obj instanceof Date) {
     return new Date(obj.getTime());
   }
 
-  // Xu ly RegExp
+  // Xử lý RegExp
   if (obj instanceof RegExp) {
     return new RegExp(obj.source, obj.flags);
   }
 
-  // Xu ly mang
+  // Xử lý mảng
   if (Array.isArray(obj)) {
     return obj.map((item) => deepClone(item));
   }
 
-  // Xu ly doi tuong
+  // Xử lý đối tượng
   const cloned = {};
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
@@ -349,7 +349,7 @@ function deepClone(obj) {
   return cloned;
 }
 
-// Kiem tra
+// Kiểm tra
 const original = {
   name: 'John',
   age: 30,
@@ -370,36 +370,36 @@ console.log(original.hobbies); // ['reading', 'coding'] ✅
 
 </details>
 
-### Bai 2: Xu ly tham chieu vong
+### Bài 2: Xử lý tham chiếu vòng
 
-Hay trien khai mot ham `deepClone` co the xu ly tham chieu vong.
+Hãy triển khai một hàm `deepClone` có thể xử lý tham chiếu vòng.
 
 <details>
-<summary>Nhan de xem dap an</summary>
+<summary>Nhấn để xem đáp án</summary>
 
 ```javascript
 function deepClone(obj, map = new WeakMap()) {
-  // Xu ly null va cac kieu co ban
+  // Xử lý null và các kiểu cơ bản
   if (obj === null || typeof obj !== 'object') {
     return obj;
   }
 
-  // Xu ly tham chieu vong
+  // Xử lý tham chiếu vòng
   if (map.has(obj)) {
     return map.get(obj);
   }
 
-  // Xu ly Date
+  // Xử lý Date
   if (obj instanceof Date) {
     return new Date(obj.getTime());
   }
 
-  // Xu ly RegExp
+  // Xử lý RegExp
   if (obj instanceof RegExp) {
     return new RegExp(obj.source, obj.flags);
   }
 
-  // Xu ly mang
+  // Xử lý mảng
   if (Array.isArray(obj)) {
     const clonedArray = [];
     map.set(obj, clonedArray);
@@ -409,7 +409,7 @@ function deepClone(obj, map = new WeakMap()) {
     return clonedArray;
   }
 
-  // Xu ly doi tuong
+  // Xử lý đối tượng
   const cloned = {};
   map.set(obj, cloned);
 
@@ -422,96 +422,96 @@ function deepClone(obj, map = new WeakMap()) {
   return cloned;
 }
 
-// Kiem tra tham chieu vong
+// Kiểm tra tham chiếu vòng
 const original = {
   name: 'John',
 };
-original.self = original; // Tham chieu vong
+original.self = original; // Tham chiếu vòng
 
 const cloned = deepClone(original);
 console.log(cloned.self === cloned); // true ✅
 console.log(cloned !== original); // true ✅
 ```
 
-**Diem chinh**:
+**Điểm chính**:
 
-- Su dung `WeakMap` de theo doi cac doi tuong da duoc xu ly
-- Truoc khi tao doi tuong moi, kiem tra xem no da ton tai trong map chua
-- Neu da ton tai, tra ve truc tiep tham chieu tu map de tranh de quy vo han
+- Sử dụng `WeakMap` để theo dõi các đối tượng đã được xử lý
+- Trước khi tạo đối tượng mới, kiểm tra xem nó đã tồn tại trong map chưa
+- Nếu đã tồn tại, trả về trực tiếp tham chiếu từ map để tránh đệ quy vô hạn
 
 </details>
 
-### Bai 3: Han che cua JSON.parse va JSON.stringify
+### Bài 3: Hạn chế của JSON.parse và JSON.stringify
 
-Hay giai thich cac han che khi su dung `JSON.parse(JSON.stringify())` de Deep Clone va dua ra giai phap.
+Hãy giải thích các hạn chế khi sử dụng `JSON.parse(JSON.stringify())` để Deep Clone và đưa ra giải pháp.
 
 <details>
-<summary>Nhan de xem dap an</summary>
+<summary>Nhấn để xem đáp án</summary>
 
-**Han che**:
+**Hạn chế**:
 
-1. **Khong the xu ly ham**
+1. **Không thể xử lý hàm**
    ```javascript
    const obj = { func: function () {} };
    const cloned = JSON.parse(JSON.stringify(obj));
    console.log(cloned.func); // undefined ❌
    ```
 
-2. **Khong the xu ly undefined**
+2. **Không thể xử lý undefined**
    ```javascript
    const obj = { value: undefined };
    const cloned = JSON.parse(JSON.stringify(obj));
-   console.log(cloned.value); // undefined (nhung thuoc tinh bi xoa) ❌
+   console.log(cloned.value); // undefined (nhưng thuộc tính bị xóa) ❌
    ```
 
-3. **Khong the xu ly Symbol**
+3. **Không thể xử lý Symbol**
    ```javascript
    const obj = { [Symbol('key')]: 'value' };
    const cloned = JSON.parse(JSON.stringify(obj));
-   console.log(cloned); // {} ❌ Thuoc tinh Symbol bi mat
+   console.log(cloned); // {} ❌ Thuộc tính Symbol bị mất
    ```
 
-4. **Date tro thanh chuoi**
+4. **Date trở thành chuỗi**
    ```javascript
    const obj = { date: new Date() };
    const cloned = JSON.parse(JSON.stringify(obj));
-   console.log(cloned.date); // "2024-01-01T00:00:00.000Z" ❌ Tro thanh chuoi
+   console.log(cloned.date); // "2024-01-01T00:00:00.000Z" ❌ Trở thành chuỗi
    ```
 
-5. **RegExp tro thanh doi tuong rong**
+5. **RegExp trở thành đối tượng rỗng**
    ```javascript
    const obj = { regex: /test/g };
    const cloned = JSON.parse(JSON.stringify(obj));
-   console.log(cloned.regex); // {} ❌ Tro thanh doi tuong rong
+   console.log(cloned.regex); // {} ❌ Trở thành đối tượng rỗng
    ```
 
-6. **Khong the xu ly Map, Set**
+6. **Không thể xử lý Map, Set**
    ```javascript
    const obj = { map: new Map([['key', 'value']]) };
    const cloned = JSON.parse(JSON.stringify(obj));
-   console.log(cloned.map); // {} ❌ Tro thanh doi tuong rong
+   console.log(cloned.map); // {} ❌ Trở thành đối tượng rỗng
    ```
 
-7. **Khong the xu ly tham chieu vong**
+7. **Không thể xử lý tham chiếu vòng**
    ```javascript
    const obj = { name: 'John' };
    obj.self = obj;
-   JSON.parse(JSON.stringify(obj)); // ❌ Loi: Converting circular structure to JSON
+   JSON.parse(JSON.stringify(obj)); // ❌ Lỗi: Converting circular structure to JSON
    ```
 
-**Giai phap**: Su dung trien khai de quy voi xu ly dac biet cho cac kieu khac nhau.
+**Giải pháp**: Sử dụng triển khai đệ quy với xử lý đặc biệt cho các kiểu khác nhau.
 
 </details>
 
 ## 4. Best Practices
 
-> Cac phuong phap tot nhat
+> Các phương pháp tốt nhất
 
-### Cach lam khuyen nghi
+### Cách làm khuyên nghị
 
 ```javascript
-// 1. Chon phuong phap phu hop dua tren yeu cau
-// Neu chi can xu ly doi tuong co ban va mang, su dung trien khai de quy don gian
+// 1. Chọn phương pháp phù hợp dựa trên yêu cầu
+// Nếu chỉ cần xử lý đối tượng cơ bản và mảng, sử dụng triển khai đệ quy đơn giản
 function simpleDeepClone(obj) {
   if (obj === null || typeof obj !== 'object') return obj;
   if (obj instanceof Date) return new Date(obj.getTime());
@@ -526,65 +526,65 @@ function simpleDeepClone(obj) {
   return cloned;
 }
 
-// 2. Neu can xu ly cac kieu phuc tap, su dung trien khai day du
+// 2. Nếu cần xử lý các kiểu phức tạp, sử dụng triển khai đầy đủ
 function completeDeepClone(obj, map = new WeakMap()) {
-  // ... Trien khai day du
+  // ... Triển khai đầy đủ
 }
 
-// 3. Su dung WeakMap de xu ly tham chieu vong
-// WeakMap khong ngan can thu gom rac, phu hop de theo doi tham chieu doi tuong
+// 3. Sử dụng WeakMap để xử lý tham chiếu vòng
+// WeakMap không ngăn cản thu gom rác, phù hợp để theo dõi tham chiếu đối tượng
 ```
 
-### Cach lam can tranh
+### Cách làm cần tránh
 
 ```javascript
-// 1. Khong lam dung JSON.parse(JSON.stringify())
-// ❌ Ham, Symbol, Date va cac kieu dac biet khac se bi mat
+// 1. Không lạm dụng JSON.parse(JSON.stringify())
+// ❌ Hàm, Symbol, Date và các kiểu đặc biệt khác sẽ bị mất
 const cloned = JSON.parse(JSON.stringify(obj));
 
-// 2. Khong quen xu ly tham chieu vong
-// ❌ Se gay tran bo nho
+// 2. Không quên xử lý tham chiếu vòng
+// ❌ Sẽ gây tràn bộ nhớ
 function deepClone(obj) {
   const cloned = {};
   for (let key in obj) {
-    cloned[key] = deepClone(obj[key]); // De quy vo han
+    cloned[key] = deepClone(obj[key]); // Đệ quy vô hạn
   }
   return cloned;
 }
 
-// 3. Khong quen xu ly Date, RegExp va cac kieu dac biet khac
-// ❌ Cac kieu nay can xu ly dac biet
+// 3. Không quên xử lý Date, RegExp và các kiểu đặc biệt khác
+// ❌ Các kiểu này cần xử lý đặc biệt
 ```
 
 ## 5. Interview Summary
 
-> Tom tat phong van
+> Tóm tắt phỏng vấn
 
-### Ghi nho nhanh
+### Ghi nhớ nhanh
 
 **Deep Clone**:
 
-- **Dinh nghia**: Sao chep de quy doi tuong va tat ca cac thuoc tinh long nhau, hoan toan doc lap
-- **Phuong phap**: Trien khai de quy, JSON.parse(JSON.stringify()), structuredClone()
-- **Diem chinh**: Xu ly cac kieu dac biet, tham chieu vong, thuoc tinh Symbol
+- **Định nghĩa**: Sao chép đệ quy đối tượng và tất cả các thuộc tính lồng nhau, hoàn toàn độc lập
+- **Phương pháp**: Triển khai đệ quy, JSON.parse(JSON.stringify()), structuredClone()
+- **Điểm chính**: Xử lý các kiểu đặc biệt, tham chiếu vòng, thuộc tính Symbol
 
-**Diem trien khai**:
+**Điểm triển khai**:
 
-1. Xu ly cac kieu co ban va null
-2. Xu ly Date, RegExp va cac doi tuong dac biet khac
-3. Xu ly mang va doi tuong
-4. Xu ly tham chieu vong (su dung WeakMap)
-5. Xu ly thuoc tinh Symbol
+1. Xử lý các kiểu cơ bản và null
+2. Xử lý Date, RegExp và các đối tượng đặc biệt khác
+3. Xử lý mảng và đối tượng
+4. Xử lý tham chiếu vòng (sử dụng WeakMap)
+5. Xử lý thuộc tính Symbol
 
-### Vi du tra loi phong van
+### Ví dụ trả lời phỏng vấn
 
-**Q: Hay trien khai mot ham Deep Clone.**
+**Q: Hãy triển khai một hàm Deep Clone.**
 
-> "Deep Clone la viec tao mot doi tuong moi hoan toan doc lap, sao chep de quy tat ca cac thuoc tinh long nhau. Trien khai cua toi se xu ly cac kieu co ban va null truoc, sau do thuc hien xu ly dac biet cho cac kieu khac nhau nhu Date, RegExp, mang va doi tuong. De xu ly tham chieu vong, toi se su dung WeakMap de theo doi cac doi tuong da duoc xu ly. Doi voi thuoc tinh Symbol, toi se su dung Object.getOwnPropertySymbols de lay va sao chep. Dieu nay dam bao rang doi tuong sau khi sao chep sau hoan toan doc lap voi doi tuong goc, viec thay doi mot doi tuong se khong anh huong den doi tuong kia."
+> "Deep Clone là việc tạo một đối tượng mới hoàn toàn độc lập, sao chép đệ quy tất cả các thuộc tính lồng nhau. Triển khai của tôi sẽ xử lý các kiểu cơ bản và null trước, sau đó thực hiện xử lý đặc biệt cho các kiểu khác nhau như Date, RegExp, mảng và đối tượng. Để xử lý tham chiếu vòng, tôi sẽ sử dụng WeakMap để theo dõi các đối tượng đã được xử lý. Đối với thuộc tính Symbol, tôi sẽ sử dụng Object.getOwnPropertySymbols để lấy và sao chép. Điều này đảm bảo rằng đối tượng sau khi sao chép sâu hoàn toàn độc lập với đối tượng gốc, việc thay đổi một đối tượng sẽ không ảnh hưởng đến đối tượng kia."
 
-**Q: JSON.parse(JSON.stringify()) co nhung han che gi?**
+**Q: JSON.parse(JSON.stringify()) có những hạn chế gì?**
 
-> "Cac han che chinh cua phuong phap nay bao gom: 1) Khong the xu ly ham, ham se bi xoa; 2) Khong the xu ly undefined va Symbol, cac thuoc tinh nay se bi bo qua; 3) Doi tuong Date se tro thanh chuoi; 4) RegExp se tro thanh doi tuong rong; 5) Khong the xu ly Map, Set va cac cau truc du lieu dac biet khac; 6) Khong the xu ly tham chieu vong, se bao loi. Neu can xu ly cac truong hop dac biet nay, nen su dung cach trien khai de quy."
+> "Các hạn chế chính của phương pháp này bao gồm: 1) Không thể xử lý hàm, hàm sẽ bị xóa; 2) Không thể xử lý undefined và Symbol, các thuộc tính này sẽ bị bỏ qua; 3) Đối tượng Date sẽ trở thành chuỗi; 4) RegExp sẽ trở thành đối tượng rỗng; 5) Không thể xử lý Map, Set và các cấu trúc dữ liệu đặc biệt khác; 6) Không thể xử lý tham chiếu vòng, sẽ báo lỗi. Nếu cần xử lý các trường hợp đặc biệt này, nên sử dụng cách triển khai đệ quy."
 
 ## Reference
 

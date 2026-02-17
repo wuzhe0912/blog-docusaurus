@@ -9,7 +9,7 @@ tags: [Vue, Quiz, Medium]
 
 > Was ist die Composition API?
 
-Die Composition API ist eine neue Art der Komponentenentwicklung, die in Vue 3 eingefuehrt wurde. Sie bietet eine flexiblere Moeglichkeit, die Komponentenlogik zu organisieren. Im Gegensatz zur traditionellen Options API ermoeglicht die Composition API, zusammengehoerige Logik gemeinsam zu organisieren, anstatt sie auf verschiedene Optionen zu verteilen.
+Die Composition API ist eine neue Art der Komponentenentwicklung, die in Vue 3 eingeführt wurde. Sie bietet eine flexiblere Möglichkeit, die Komponentenlogik zu organisieren. Im Gegensatz zur traditionellen Options API ermöglicht die Composition API, zusammengehörige Logik gemeinsam zu organisieren, anstatt sie auf verschiedene Optionen zu verteilen.
 
 ### Options API (Traditionelle Schreibweise)
 
@@ -60,7 +60,7 @@ export default {
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 
-// Zusammengehoerige Logik gemeinsam organisiert
+// Zusammengehörige Logik gemeinsam organisiert
 const firstName = ref('John');
 const lastName = ref('Doe');
 const fullName = computed(() => `${firstName.value} ${lastName.value}`);
@@ -87,7 +87,7 @@ onMounted(() => {
 ```vue
 <script>
 export default {
-  // Daten ueberall verstreut
+  // Daten überall verstreut
   data() {
     return {
       user: null,
@@ -125,7 +125,7 @@ export default {
 </script>
 ```
 
-**Composition API**: Zusammengehoerige Logik gemeinsam organisiert
+**Composition API**: Zusammengehörige Logik gemeinsam organisiert
 
 ```vue
 <script setup>
@@ -161,7 +161,7 @@ onMounted(() => {
 
 ### 2. Code-Wiederverwendung
 
-**Options API**: Verwendet Mixins (anfaellig fuer Namenskonflikte)
+**Options API**: Verwendet Mixins (anfällig für Namenskonflikte)
 
 ```vue
 <script>
@@ -183,7 +183,7 @@ export default {
 import UserMixin from './UserMixin';
 export default {
   mixins: [UserMixin],
-  // Bei mehreren Mixins koennen leicht Namenskonflikte auftreten
+  // Bei mehreren Mixins können leicht Namenskonflikte auftreten
 };
 </script>
 ```
@@ -206,13 +206,13 @@ export function useUser() {
 // Component.vue
 import { useUser } from './useUser';
 const { user, fetchUser } = useUser();
-// Selektive Nutzung moeglich, Namenskonflikte vermeidbar
+// Selektive Nutzung möglich, Namenskonflikte vermeidbar
 </script>
 ```
 
-### 3. TypeScript-Unterstuetzung
+### 3. TypeScript-Unterstützung
 
-**Options API**: Eingeschraenkte TypeScript-Unterstuetzung
+**Options API**: Eingeschränkte TypeScript-Unterstützung
 
 ```vue
 <script lang="ts">
@@ -233,7 +233,7 @@ export default defineComponent({
 </script>
 ```
 
-**Composition API**: Vollstaendige TypeScript-Unterstuetzung
+**Composition API**: Vollständige TypeScript-Unterstützung
 
 ```vue
 <script setup lang="ts">
@@ -250,27 +250,27 @@ const increment = (): void => {
 
 | Eigenschaft | Options API | Composition API |
 | --------------- | ------------------ | ------------------- |
-| Lernkurve | Niedriger | Hoeher |
-| Logikorganisation | Auf Optionen verteilt | Zusammengehoerige Logik zusammen |
-| Code-Wiederverwendung | Mixins (konfliktanfaellig) | Composables (flexibel) |
-| TypeScript-Unterstuetzung | Eingeschraenkt | Vollstaendig |
-| Anwendungsfall | Einfache Komponenten | Komplexe Komponenten, grosse Projekte |
-| Abwaertskompatibilitaet | Vue 2/3 unterstuetzt | Exklusiv fuer Vue 3 |
+| Lernkurve | Niedriger | Höher |
+| Logikorganisation | Auf Optionen verteilt | Zusammengehörige Logik zusammen |
+| Code-Wiederverwendung | Mixins (konfliktanfällig) | Composables (flexibel) |
+| TypeScript-Unterstützung | Eingeschränkt | Vollständig |
+| Anwendungsfall | Einfache Komponenten | Komplexe Komponenten, große Projekte |
+| Abwärtskompatibilität | Vue 2/3 unterstützt | Exklusiv für Vue 3 |
 
 ## 4. Common Interview Questions
 
-> Haeufige Interviewfragen
+> Häufige Interviewfragen
 
-### Frage 1: API-Stil waehlen
+### Frage 1: API-Stil wählen
 
-Erklaeren Sie, in welchen Situationen Composition API und in welchen Options API verwendet werden sollte.
+Erklären Sie, in welchen Situationen Composition API und in welchen Options API verwendet werden sollte.
 
 <details>
 <summary>Klicken Sie hier, um die Antwort zu sehen</summary>
 
-**Situationen fuer Composition API**:
+**Situationen für Composition API**:
 
-1. **Komplexe Komponenten**: Komplexe Logik, die bessere Organisation benoetigt
+1. **Komplexe Komponenten**: Komplexe Logik, die bessere Organisation benötigt
 
    ```vue
    <script setup>
@@ -281,7 +281,7 @@ Erklaeren Sie, in welchen Situationen Composition API und in welchen Options API
    </script>
    ```
 
-2. **Code-Wiederverwendung noetig**: Mehrere Komponenten teilen sich Logik
+2. **Code-Wiederverwendung nötig**: Mehrere Komponenten teilen sich Logik
 
    ```vue
    <script setup>
@@ -290,20 +290,20 @@ Erklaeren Sie, in welchen Situationen Composition API und in welchen Options API
    </script>
    ```
 
-3. **TypeScript-Projekte**: Vollstaendige Typunterstuetzung erforderlich
+3. **TypeScript-Projekte**: Vollständige Typunterstützung erforderlich
 
    ```vue
    <script setup lang="ts">
-   // Composition API bietet bessere TypeScript-Unterstuetzung
+   // Composition API bietet bessere TypeScript-Unterstützung
    const count = ref<number>(0);
    </script>
    ```
 
-4. **Grosse Projekte**: Bessere Logikorganisation und Wartbarkeit noetig
+4. **Große Projekte**: Bessere Logikorganisation und Wartbarkeit nötig
 
-**Situationen fuer Options API**:
+**Situationen für Options API**:
 
-1. **Einfache Komponenten**: Einfache Logik, keine komplexe Organisation noetig
+1. **Einfache Komponenten**: Einfache Logik, keine komplexe Organisation nötig
 
    ```vue
    <script>
@@ -320,7 +320,7 @@ Erklaeren Sie, in welchen Situationen Composition API und in welchen Options API
    </script>
    ```
 
-2. **Vue 2-Projekte**: Abwaertskompatibilitaet erforderlich
+2. **Vue 2-Projekte**: Abwärtskompatibilität erforderlich
 3. **Team-Vertrautheit**: Team ist mit Options API vertrauter
 
 **Empfehlung**:
@@ -398,7 +398,7 @@ export default {
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue';
 
-// Zusammengehoerige Logik gemeinsam organisiert
+// Zusammengehörige Logik gemeinsam organisiert
 const searchQuery = ref('');
 const results = ref([]);
 const isLoading = ref(false);
@@ -487,7 +487,7 @@ export function useSearch() {
 
 ### Frage 3: Code-Wiederverwendung
 
-Erklaeren Sie, wie man mit der Composition API Code-Wiederverwendung implementiert, und vergleichen Sie mit Mixins.
+Erklären Sie, wie man mit der Composition API Code-Wiederverwendung implementiert, und vergleichen Sie mit Mixins.
 
 <details>
 <summary>Klicken Sie hier, um die Antwort zu sehen</summary>
@@ -525,12 +525,12 @@ export default {
   // Probleme:
   // 1. Namenskonflikte: Wenn zwei Mixins gleichnamige Eigenschaften haben
   // 2. Unklare Datenherkunft: Unklar, woher user stammt
-  // 3. Schwer nachverfolgbar: Verfuegbare Eigenschaften und Methoden nicht klar ersichtlich
+  // 3. Schwer nachverfolgbar: Verfügbare Eigenschaften und Methoden nicht klar ersichtlich
 };
 </script>
 ```
 
-**Loesung mit Composition API**:
+**Lösung mit Composition API**:
 
 ```vue
 <script setup>
@@ -558,8 +558,8 @@ import { usePosts } from './composables/usePosts';
 
 // Vorteile:
 // 1. Eindeutige Benennung: Datenherkunft klar
-// 2. Selektive Nutzung: Nur benoetigte Teile verwenden
-// 3. Einfach nachverfolgbar: IDE kann automatisch vervollstaendigen
+// 2. Selektive Nutzung: Nur benötigte Teile verwenden
+// 3. Einfach nachverfolgbar: IDE kann automatisch vervollständigen
 const { user, fetchUser } = useUser();
 const { posts, fetchPosts } = usePosts();
 </script>
@@ -569,10 +569,10 @@ const { posts, fetchPosts } = usePosts();
 
 | Eigenschaft | Mixins | Composables |
 | --------------- | -------- | ----------- |
-| Namenskonflikte | Haeufig | Vermeidbar |
+| Namenskonflikte | Häufig | Vermeidbar |
 | Nachverfolgbarkeit | Niedrig | Hoch |
-| Selektivitaet | Keine | Vorhanden |
-| TypeScript-Unterstuetzung | Eingeschraenkt | Vollstaendig |
+| Selektivität | Keine | Vorhanden |
+| TypeScript-Unterstützung | Eingeschränkt | Vollständig |
 | Anwendungsfall | Vue 2 | Vue 3 |
 
 </details>
@@ -588,7 +588,7 @@ const { posts, fetchPosts } = usePosts();
 // 1. <script setup>-Syntax verwenden
 import { ref, computed } from 'vue';
 
-// 2. Zusammengehoerige Logik gemeinsam organisieren
+// 2. Zusammengehörige Logik gemeinsam organisieren
 const count = ref(0);
 const doubleCount = computed(() => count.value * 2);
 const increment = () => count.value++;
@@ -607,7 +607,7 @@ const u = ref(''); // Unklar
 
 ```vue
 <script setup>
-// 1. Options API und Composition API nicht mischen (es sei denn noetig)
+// 1. Options API und Composition API nicht mischen (es sei denn nötig)
 export default {
   setup() {
     // ...
@@ -617,9 +617,9 @@ export default {
   },
 };
 
-// 2. Composables nicht uebertrieben auslagern
+// 2. Composables nicht übertrieben auslagern
 // Einfache Logik muss nicht ausgelagert werden
-const count = ref(0); // Einfach, keine Auslagerung noetig
+const count = ref(0); // Einfach, keine Auslagerung nötig
 
 // 3. DOM nicht direkt in Composables manipulieren
 function useCounter() {
@@ -638,10 +638,10 @@ function useCounter() {
 
 **Kernkonzepte der Composition API**:
 
-- Zusammengehoerige Logik gemeinsam organisieren
+- Zusammengehörige Logik gemeinsam organisieren
 - Code-Wiederverwendung mit Composables
-- Bessere TypeScript-Unterstuetzung
-- Geeignet fuer komplexe Komponenten und grosse Projekte
+- Bessere TypeScript-Unterstützung
+- Geeignet für komplexe Komponenten und große Projekte
 
 **Auswahlempfehlungen**:
 
@@ -650,15 +650,15 @@ function useCounter() {
 - Komplexe Komponenten: Composition API empfohlen
 - TypeScript-Projekte: Composition API empfohlen
 
-### Beispielantwort fuer Interviews
+### Beispielantwort für Interviews
 
 **F: Was ist der Unterschied zwischen Composition API und Options API?**
 
-> "Die Composition API ist eine neue Schreibweise, die in Vue 3 eingefuehrt wurde. Der Hauptunterschied liegt in der Logikorganisation. Die Options API verteilt die Logik auf data, computed, methods und andere Optionen, waehrend die Composition API es ermoeglicht, zusammengehoerige Logik gemeinsam zu organisieren. Zu den Vorteilen der Composition API gehoeren: 1) Bessere Logikorganisation mit zusammengehoeriger Code-Konzentration; 2) Einfachere Code-Wiederverwendung mit Composables statt Mixins; 3) Vollstaendige TypeScript-Unterstuetzung; 4) Geeignet fuer komplexe Komponenten und grosse Projekte. Der Vorteil der Options API ist die niedrigere Lernkurve, geeignet fuer einfache Komponenten. Beide koennen koexistieren, Vue 3 unterstuetzt beide Schreibweisen."
+> "Die Composition API ist eine neue Schreibweise, die in Vue 3 eingeführt wurde. Der Hauptunterschied liegt in der Logikorganisation. Die Options API verteilt die Logik auf data, computed, methods und andere Optionen, während die Composition API es ermöglicht, zusammengehörige Logik gemeinsam zu organisieren. Zu den Vorteilen der Composition API gehören: 1) Bessere Logikorganisation mit zusammengehöriger Code-Konzentration; 2) Einfachere Code-Wiederverwendung mit Composables statt Mixins; 3) Vollständige TypeScript-Unterstützung; 4) Geeignet für komplexe Komponenten und große Projekte. Der Vorteil der Options API ist die niedrigere Lernkurve, geeignet für einfache Komponenten. Beide können koexistieren, Vue 3 unterstützt beide Schreibweisen."
 
 **F: Wann sollte man die Composition API verwenden?**
 
-> "Die Composition API wird in folgenden Situationen empfohlen: 1) Komplexe Komponenten, die bessere Logikorganisation benoetigen; 2) Code-Wiederverwendung bei mehreren Komponenten; 3) TypeScript-Projekte mit vollstaendiger Typunterstuetzung; 4) Grosse Projekte mit besserer Wartbarkeit. Fuer einfache Komponenten oder Teams, die mit Options API vertrauter sind, kann die Options API weiter verwendet werden. Vue 3 unterstuetzt beide Schreibweisen, die je nach Projektanforderungen gewaehlt werden koennen."
+> "Die Composition API wird in folgenden Situationen empfohlen: 1) Komplexe Komponenten, die bessere Logikorganisation benötigen; 2) Code-Wiederverwendung bei mehreren Komponenten; 3) TypeScript-Projekte mit vollständiger Typunterstützung; 4) Große Projekte mit besserer Wartbarkeit. Für einfache Komponenten oder Teams, die mit Options API vertrauter sind, kann die Options API weiter verwendet werden. Vue 3 unterstützt beide Schreibweisen, die je nach Projektanforderungen gewählt werden können."
 
 ## Reference
 

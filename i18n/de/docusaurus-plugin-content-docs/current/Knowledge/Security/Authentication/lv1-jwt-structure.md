@@ -5,7 +5,7 @@ slug: /experience/login/lv1-jwt-structure
 tags: [Experience, Interview, Login, Lv1, JWT]
 ---
 
-> Interviewer fragen haeufig: "Wie sieht ein JWT aus? Warum wurde es so designed?" Wenn man die Struktur, die Kodierungsmethode und den Verifizierungsablauf versteht, kann man schnell antworten.
+> Interviewer fragen häufig: "Wie sieht ein JWT aus? Warum wurde es so designed?" Wenn man die Struktur, die Kodierungsmethode und den Verifizierungsablauf versteht, kann man schnell antworten.
 
 ---
 
@@ -20,8 +20,8 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkphbmU
 Aufgeteilt sind es drei Base64URL-kodierte JSON-Objekte:
 
 1. **Header**: beschreibt den Algorithmus und Typ des Tokens.
-2. **Payload**: speichert Benutzerinformationen und Claims (Ansprueche).
-3. **Signature**: Signatur mit einem geheimen Schluessel, die sicherstellt, dass der Inhalt nicht veraendert wurde.
+2. **Payload**: speichert Benutzerinformationen und Claims (Ansprüche).
+3. **Signature**: Signatur mit einem geheimen Schlüssel, die sicherstellt, dass der Inhalt nicht verändert wurde.
 
 ---
 
@@ -37,7 +37,7 @@ Aufgeteilt sind es drei Base64URL-kodierte JSON-Objekte:
 ```
 
 - `alg`: Signaturalgorithmus, z.B. `HS256` (HMAC + SHA-256), `RS256` (RSA + SHA-256).
-- `typ`: Token-Typ, ueblicherweise `JWT`.
+- `typ`: Token-Typ, üblicherweise `JWT`.
 
 ### 2.2 Payload (Nutzlast)
 
@@ -54,12 +54,12 @@ Aufgeteilt sind es drei Base64URL-kodierte JSON-Objekte:
 - **Registered Claims (offiziell reserviert, aber nicht erforderlich)**:
   - `iss` (Issuer): Aussteller
   - `sub` (Subject): Subjekt (normalerweise die Benutzer-ID)
-  - `aud` (Audience): Empfaenger
+  - `aud` (Audience): Empfänger
   - `exp` (Expiration Time): Ablaufzeit (Unix Timestamp, in Sekunden)
-  - `nbf` (Not Before): vor diesem Zeitpunkt ungueltig
+  - `nbf` (Not Before): vor diesem Zeitpunkt ungültig
   - `iat` (Issued At): Ausstellungszeitpunkt
   - `jti` (JWT ID): eindeutige Token-Kennung
-- **Public / Private Claims**: Man kann benutzerdefinierte Felder hinzufuegen (z.B. `role`, `permissions`), sollte aber uebermaeßig lange Eintraege vermeiden.
+- **Public / Private Claims**: Man kann benutzerdefinierte Felder hinzufügen (z.B. `role`, `permissions`), sollte aber übermäßig lange Einträge vermeiden.
 
 ### 2.3 Signature (Signatur)
 
@@ -72,10 +72,10 @@ signature = HMACSHA256(
 )
 ```
 
-- Verwendet einen geheimen Schluessel (`secret` oder privaten Schluessel), um die ersten beiden Teile zu signieren.
-- Der Server berechnet die Signatur beim Empfang des Tokens neu. Stimmt sie ueberein, wurde der Token nicht manipuliert und stammt von einer legitimen Quelle.
+- Verwendet einen geheimen Schlüssel (`secret` oder privaten Schlüssel), um die ersten beiden Teile zu signieren.
+- Der Server berechnet die Signatur beim Empfang des Tokens neu. Stimmt sie überein, wurde der Token nicht manipuliert und stammt von einer legitimen Quelle.
 
-> Hinweis: JWT garantiert nur die Datenintegritaet (Integrity), nicht die Vertraulichkeit (Confidentiality), es sei denn, es wird zusaetzlich verschluesselt.
+> Hinweis: JWT garantiert nur die Datenintegrität (Integrity), nicht die Vertraulichkeit (Confidentiality), es sei denn, es wird zusätzlich verschlüsselt.
 
 ---
 
@@ -92,30 +92,30 @@ Der Vorteil ist, dass der Token sicher in URLs, Cookies oder Headers platziert w
 
 ## 4. Vereinfachtes Diagramm des Verifizierungsablaufs
 
-1. Der Client fuegt im Header `Authorization: Bearer <JWT>` ein.
+1. Der Client fügt im Header `Authorization: Bearer <JWT>` ein.
 2. Der Server nach dem Empfang:
    - Parst Header und Payload.
    - Ermittelt den in `alg` angegebenen Algorithmus.
-   - Berechnet die Signatur mit dem gemeinsamen Schluessel oder oeffentlichen Schluessel neu.
-   - Vergleicht, ob die Signaturen uebereinstimmen und prueft Zeitfelder wie `exp` und `nbf`.
+   - Berechnet die Signatur mit dem gemeinsamen Schlüssel oder öffentlichen Schlüssel neu.
+   - Vergleicht, ob die Signaturen übereinstimmen und prüft Zeitfelder wie `exp` und `nbf`.
 3. Erst nach erfolgreicher Verifizierung kann dem Payload-Inhalt vertraut werden.
 
 ---
 
-## 5. Antwortvorlage fuer das Interview
+## 5. Antwortvorlage für das Interview
 
 > "JWT besteht aus drei Teilen: Header, Payload und Signature, verbunden mit `.`.
-> Der Header beschreibt den Algorithmus und Typ; der Payload speichert Benutzerinformationen und einige Standardfelder wie `iss`, `sub`, `exp`; die Signature verwendet einen geheimen Schluessel, um die ersten beiden Teile zu signieren und zu bestaetigen, dass der Inhalt nicht veraendert wurde.
-> Der Inhalt ist Base64URL-kodiertes JSON, aber nicht verschluesselt, sondern nur kodiert, daher sollten sensible Daten nicht direkt darin gespeichert werden. Der Server berechnet beim Empfang des Tokens die Signatur neu zum Vergleich. Stimmt sie ueberein und ist der Token nicht abgelaufen, ist er gueltig."
+> Der Header beschreibt den Algorithmus und Typ; der Payload speichert Benutzerinformationen und einige Standardfelder wie `iss`, `sub`, `exp`; die Signature verwendet einen geheimen Schlüssel, um die ersten beiden Teile zu signieren und zu bestätigen, dass der Inhalt nicht verändert wurde.
+> Der Inhalt ist Base64URL-kodiertes JSON, aber nicht verschlüsselt, sondern nur kodiert, daher sollten sensible Daten nicht direkt darin gespeichert werden. Der Server berechnet beim Empfang des Tokens die Signatur neu zum Vergleich. Stimmt sie überein und ist der Token nicht abgelaufen, ist er gültig."
 
 ---
 
-## 6. Hinweise fuer erweiterte Interview-Fragen
+## 6. Hinweise für erweiterte Interview-Fragen
 
-- **Sicherheit**: Der Payload kann dekodiert werden; speichern Sie keine Passwoerter, Kreditkarten oder andere sensible Informationen.
+- **Sicherheit**: Der Payload kann dekodiert werden; speichern Sie keine Passwörter, Kreditkarten oder andere sensible Informationen.
 - **Ablauf und Erneuerung**: Normalerweise kombiniert mit kurzlebigem Access Token + langlebigem Refresh Token.
-- **Signaturalgorithmen**: Erwaehnen Sie den Unterschied zwischen symmetrisch (HMAC) und asymmetrisch (RSA, ECDSA).
-- **Warum kann er nicht unendlich lang sein?**: Zu große Tokens erhoehen die Netzwerkuebertragungskosten und koennen vom Browser abgelehnt werden.
+- **Signaturalgorithmen**: Erwähnen Sie den Unterschied zwischen symmetrisch (HMAC) und asymmetrisch (RSA, ECDSA).
+- **Warum kann er nicht unendlich lang sein?**: Zu große Tokens erhöhen die Netzwerkübertragungskosten und können vom Browser abgelehnt werden.
 
 ---
 

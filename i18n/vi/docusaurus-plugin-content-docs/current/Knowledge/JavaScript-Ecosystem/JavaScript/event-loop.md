@@ -7,18 +7,18 @@ tags: [JavaScript, Quiz, Medium]
 
 ## 1. Why Javascript need asynchronous ? And please explain callback and event loop
 
-> Tai sao JavaScript can xu ly bat dong bo? Va hay giai thich callback va event loop
+> Tại sao JavaScript cần xử lý bất đồng bộ? Và hãy giải thích callback và event loop
 
-Ban chat cua JavaScript la ngon ngu don luong (single-thread), vi mot trong nhung nhiem vu cua no la thao tac cau truc DOM cua trinh duyet. Neu da luong dong thoi sua doi cung mot node, tinh huong se tro nen rat phuc tap. De tranh dieu nay, don luong duoc ap dung.
+Bản chất của JavaScript là ngôn ngữ đơn luồng (single-thread), vì một trong những nhiệm vụ của nó là thao tác cấu trúc DOM của trình duyệt. Nếu đa luồng đồng thời sửa đổi cùng một node, tình huống sẽ trở nên rất phức tạp. Để tránh điều này, đơn luồng được áp dụng.
 
-Xu ly bat dong bo la mot giai phap kha thi trong boi canh don luong. Gia su mot thao tac can doi 2 giay, trinh duyet khong the dung yen cho 2 giay. Vi vay, no se thuc hien tat ca cac cong viec dong bo truoc, con cac cong viec bat dong bo duoc dat vao task queue (hang doi tac vu).
+Xử lý bất đồng bộ là một giải pháp khả thi trong bối cảnh đơn luồng. Giả sử một thao tác cần đợi 2 giây, trình duyệt không thể đứng yên chờ 2 giây. Vì vậy, nó sẽ thực hiện tất cả các công việc đồng bộ trước, còn các công việc bất đồng bộ được đặt vào task queue (hàng đợi tác vụ).
 
-Moi truong noi trinh duyet thuc hien cong viec dong bo co the hieu la call stack. Trinh duyet thuc hien tuan tu cac tac vu trong call stack. Khi phat hien call stack trong, no lay cac tac vu dang cho tu task queue va dat vao call stack de thuc hien tuan tu.
+Môi trường nơi trình duyệt thực hiện công việc đồng bộ có thể hiểu là call stack. Trình duyệt thực hiện tuần tự các tác vụ trong call stack. Khi phát hiện call stack trống, nó lấy các tác vụ đang chờ từ task queue và đặt vào call stack để thực hiện tuần tự.
 
-1. Trinh duyet kiem tra call stack co trong khong => Khong => Tiep tuc thuc hien tac vu trong call stack
-2. Trinh duyet kiem tra call stack co trong khong => Co => Kiem tra task queue co tac vu dang cho khong => Co => Chuyen vao call stack de thuc hien
+1. Trình duyệt kiểm tra call stack có trống không => Không => Tiếp tục thực hiện tác vụ trong call stack
+2. Trình duyệt kiểm tra call stack có trống không => Có => Kiểm tra task queue có tác vụ đang chờ không => Có => Chuyển vào call stack để thực hiện
 
-Qua trinh lap di lap lai nay chinh la khai niem event loop.
+Quá trình lặp đi lặp lại này chính là khái niệm event loop.
 
 ```js
 console.log(1);
@@ -35,26 +35,26 @@ console.log(3);
 
 ## 2. Why is setInterval not accurate in terms of timing ?
 
-> Tai sao `setInterval` khong chinh xac ve mat thoi gian?
+> Tại sao `setInterval` không chính xác về mặt thời gian?
 
-1. Do JavaScript la ngon ngu don luong (chi co the thuc hien mot tac vu tai mot thoi diem, cac tac vu khac phai cho trong Queue), khi thoi gian thuc hien callback cua setInterval vuot qua khoang thoi gian da thiet lap, lan thuc hien tiep theo se bi tre. Vi du, neu setInterval duoc thiet lap de thuc hien ham moi giay, nhung mot thao tac trong ham mat 2 giay, lan thuc hien tiep theo se bi tre 1 giay. Tich luy dan, setInterval se ngay cang khong chinh xac.
+1. Do JavaScript là ngôn ngữ đơn luồng (chỉ có thể thực hiện một tác vụ tại một thời điểm, các tác vụ khác phải chờ trong Queue), khi thời gian thực hiện callback của setInterval vượt quá khoảng thời gian đã thiết lập, lần thực hiện tiếp theo sẽ bị trễ. Ví dụ, nếu setInterval được thiết lập để thực hiện hàm mỗi giây, nhưng một thao tác trong hàm mất 2 giây, lần thực hiện tiếp theo sẽ bị trễ 1 giây. Tích lũy dần, setInterval sẽ ngày càng không chính xác.
 
-2. Trinh duyet hoac moi truong chay cung gioi han. Trong hau het cac trinh duyet chinh (Chrome, Firefox, Safari, v.v.), khoang thoi gian toi thieu la khoang 4 mili giay. Du thiet lap 1 mili giay, thuc te chi thuc hien moi 4 mili giay.
+2. Trình duyệt hoặc môi trường chạy cũng giới hạn. Trong hầu hết các trình duyệt chính (Chrome, Firefox, Safari, v.v.), khoảng thời gian tối thiểu là khoảng 4 mili giây. Dù thiết lập 1 mili giây, thực tế chỉ thực hiện mỗi 4 mili giây.
 
-3. Khi he thong thuc hien cac tac vu ton nhieu bo nho hoac CPU, cung gay ra tre. Cac thao tac nhu chinh sua video hoac xu ly hinh anh co kha nang cao gay tre.
+3. Khi hệ thống thực hiện các tác vụ tốn nhiều bộ nhớ hoặc CPU, cũng gây ra trễ. Các thao tác như chỉnh sửa video hoặc xử lý hình ảnh có khả năng cao gây trễ.
 
-4. JavaScript co co che Garbage Collection. Neu trong ham setInterval tao nhieu object ma khong duoc su dung sau khi thuc hien, chung se bi GC thu hoi, dieu nay cung gay tre thoi gian thuc hien.
+4. JavaScript có cơ chế Garbage Collection. Nếu trong hàm setInterval tạo nhiều object mà không được sử dụng sau khi thực hiện, chúng sẽ bị GC thu hồi, điều này cũng gây trễ thời gian thực hiện.
 
-### Phuong an thay the
+### Phương án thay thế
 
 #### requestAnimationFrame
 
-Neu hien tai su dung `setInterval` de trien khai animation, co the xem xet su dung `requestAnimationFrame` thay the.
+Nếu hiện tại sử dụng `setInterval` để triển khai animation, có thể xem xét sử dụng `requestAnimationFrame` thay thế.
 
-- Dong bo voi repaint cua trinh duyet: Thuc hien khi trinh duyet san sang ve frame moi. Chinh xac hon nhieu so voi viec doan thoi diem repaint bang setInterval hoac setTimeout.
-- Hieu suat: Vi dong bo voi repaint, no khong chay khi trinh duyet cho rang khong can repaint. Tiet kiem tai nguyen tinh toan, dac biet khi tab khong duoc focus hoac bi thu nho.
-- Tu dong dieu tiet: Tu dong dieu chinh tan suat thuc hien theo thiet bi va tinh huong, thuong la 60 frame moi giay.
-- Tham so thoi gian do chinh xac cao: Co the nhan tham so thoi gian do chinh xac cao (kieu DOMHighResTimeStamp, chinh xac den micro giay) de kiem soat animation hoac cac thao tac nhay cam voi thoi gian chinh xac hon.
+- Đồng bộ với repaint của trình duyệt: Thực hiện khi trình duyệt sẵn sàng vẽ frame mới. Chính xác hơn nhiều so với việc đoán thời điểm repaint bằng setInterval hoặc setTimeout.
+- Hiệu suất: Vì đồng bộ với repaint, nó không chạy khi trình duyệt cho rằng không cần repaint. Tiết kiệm tài nguyên tính toán, đặc biệt khi tab không được focus hoặc bị thu nhỏ.
+- Tự động điều tiết: Tự động điều chỉnh tần suất thực hiện theo thiết bị và tình huống, thường là 60 frame mỗi giây.
+- Tham số thời gian độ chính xác cao: Có thể nhận tham số thời gian độ chính xác cao (kiểu DOMHighResTimeStamp, chính xác đến micro giây) để kiểm soát animation hoặc các thao tác nhạy cảm với thời gian chính xác hơn.
 
 ##### Example
 
@@ -78,4 +78,4 @@ function moveElement(timestamp) {
 requestAnimationFrame(moveElement);
 ```
 
-`moveElement()` cap nhat vi tri phan tu o moi frame (thuong la 60 frame moi giay) cho den khi dat 500 pixel. Phuong phap nay tao hieu ung animation muot ma va tu nhien hon so voi `setInterval`.
+`moveElement()` cập nhật vị trí phần tử ở mỗi frame (thường là 60 frame mỗi giây) cho đến khi đạt 500 pixel. Phương pháp này tạo hiệu ứng animation mượt mà và tự nhiên hơn so với `setInterval`.

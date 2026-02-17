@@ -11,7 +11,7 @@ tags: [Experience, Interview, Performance, Lv2]
 
 ## Problemhintergrund
 
-Im Plattformprojekt fuehren Benutzer haeufig folgende Aktionen aus:
+Im Plattformprojekt führen Benutzer häufig folgende Aktionen aus:
 
 - **Suche** (Eingabe von Stichworten zur Echtzeitfilterung von 3000+ Produkten)
 - **Listen scrollen** (Position verfolgen und mehr Inhalte beim Scrollen laden)
@@ -27,7 +27,7 @@ Ohne Optimierung verursachen diese Aktionen Seitenruckeln und hohe CPU-Auslastun
 ```javascript
 import { useDebounceFn } from '@vueuse/core';
 
-// Debounce-Funktion: bei erneuter Eingabe innerhalb von 500ms wird der Timer zurueckgesetzt
+// Debounce-Funktion: bei erneuter Eingabe innerhalb von 500ms wird der Timer zurückgesetzt
 const debounceKeyword = useDebounceFn((keyword) => {
   searchGameKeyword(gameState.list, keyword.toLowerCase());
 }, 500);
@@ -35,7 +35,7 @@ const debounceKeyword = useDebounceFn((keyword) => {
 watch(
   () => searchState.keyword,
   (newValue) => {
-    debounceKeyword(newValue); // Wird erst 500ms nach dem Aufhoeren der Eingabe ausgefuehrt
+    debounceKeyword(newValue); // Wird erst 500ms nach dem Aufhören der Eingabe ausgeführt
   }
 );
 ```
@@ -43,13 +43,13 @@ watch(
 ```md
 Vor der Optimierung: Eingabe von "slot game" (9 Zeichen)
 
-- Loest 9 Suchen aus
+- Löst 9 Suchen aus
 - Filterung von 3000 Spielen x 9 Mal = 27.000 Operationen
 - Dauer: ca. 1,8 Sekunden (Seite ruckelt)
 
 Nach der Optimierung: Eingabe von "slot game"
 
-- Loest 1 Suche aus (nach Ende der Eingabe)
+- Löst 1 Suche aus (nach Ende der Eingabe)
 - Filterung von 3000 Spielen x 1 Mal = 3.000 Operationen
 - Dauer: ca. 0,2 Sekunden
 - Performance-Verbesserung: 90%
@@ -62,7 +62,7 @@ Nach der Optimierung: Eingabe von "slot game"
 ```javascript
 import { throttle } from 'lodash';
 
-// Throttle-Funktion: innerhalb von 100ms maximal 1 Ausfuehrung
+// Throttle-Funktion: innerhalb von 100ms maximal 1 Ausführung
 const handleScroll = throttle(() => {
   scrollTop.value = document.documentElement.scrollTop;
 }, 100);
@@ -73,20 +73,20 @@ window.addEventListener('scroll', handleScroll);
 ```md
 Vor der Optimierung:
 
-- Scroll-Event wird 60 Mal pro Sekunde ausgeloest (60 FPS)
-- Jede Ausloesung berechnet die Scroll-Position
+- Scroll-Event wird 60 Mal pro Sekunde ausgelöst (60 FPS)
+- Jede Auslösung berechnet die Scroll-Position
 - Dauer: ca. 600ms (Seite ruckelt)
 
 Nach der Optimierung:
 
-- Scroll-Event wird maximal 1 Mal pro Sekunde ausgeloest (100ms zwischen Ausfuehrungen)
+- Scroll-Event wird maximal 1 Mal pro Sekunde ausgelöst (100ms zwischen Ausführungen)
 - Dauer: ca. 100ms
 - Performance-Verbesserung: 90%
 ```
 
 ## Strategie 3: Time Slicing - Verarbeitung großer Datenmengen
 
-> Anwendungsszenario: Tag-Cloud, Menuekombinationen, Filterung von 3000+ Spielen, Rendering von Transaktionsverlaeufen
+> Anwendungsszenario: Tag-Cloud, Menükombinationen, Filterung von 3000+ Spielen, Rendering von Transaktionsverläufen
 
 ```javascript
 // Benutzerdefinierte Time-Slicing-Funktion
@@ -104,7 +104,7 @@ function processInBatches(
     callback(batch); // Diesen Batch verarbeiten
     index += batchSize;
 
-    setTimeout(processNextBatch, 0); // Naechster Batch in die Microtask-Queue
+    setTimeout(processNextBatch, 0); // Nächster Batch in die Microtask-Queue
   }
 
   processNextBatch();
@@ -173,16 +173,16 @@ setInterval(() => {
   el.scrollTop += 10;
 }, 16); // Versuch 60fps (1000ms / 60 = 16ms)
 // Probleme:
-// 1. Nicht mit dem Browser-Repaint synchronisiert (kann mehrmals zwischen Repaints ausgefuehrt werden)
-// 2. Wird auch in Hintergrund-Tabs ausgefuehrt (Ressourcenverschwendung)
-// 3. Kann zu Jank fuehren (Frame-Verlust)
+// 1. Nicht mit dem Browser-Repaint synchronisiert (kann mehrmals zwischen Repaints ausgeführt werden)
+// 2. Wird auch in Hintergrund-Tabs ausgeführt (Ressourcenverschwendung)
+// 3. Kann zu Jank führen (Frame-Verlust)
 
 // Richtiger Ansatz: requestAnimationFrame verwenden
 requestAnimationFrame(animateScroll);
 // Vorteile:
 // 1. Mit dem Browser-Repaint synchronisiert (60fps oder 120fps)
 // 2. Pausiert automatisch, wenn Tab nicht sichtbar (Energiesparen)
-// 3. Fluessiger, kein Frame-Verlust
+// 3. Flüssiger, kein Frame-Verlust
 ```
 
 ---
@@ -193,35 +193,35 @@ requestAnimationFrame(animateScroll);
 
 | Eigenschaft | Debounce                             | Throttle                              |
 | ----------- | ------------------------------------ | ------------------------------------- |
-| Ausloesezeitpunkt | Nach Beendigung der Aktion, wartet eine Zeitspanne | Maximal eine Ausfuehrung in festem Zeitintervall |
+| Auslösezeitpunkt | Nach Beendigung der Aktion, wartet eine Zeitspanne | Maximal eine Ausführung in festem Zeitintervall |
 | Geeignetes Szenario | Sucheingabe, Fenster-Resize | Scroll-Events, Mausbewegung |
-| Ausfuehrungsanzahl | Kann nicht ausgefuehrt werden (bei fortlaufender Ausloesung) | Garantierte Ausfuehrung (feste Frequenz) |
-| Verzoegerung | Mit Verzoegerung (wartet auf Stopp) | Sofortige Ausfuehrung, anschließend begrenzt |
+| Ausführungsanzahl | Kann nicht ausgeführt werden (bei fortlaufender Auslösung) | Garantierte Ausführung (feste Frequenz) |
+| Verzögerung | Mit Verzögerung (wartet auf Stopp) | Sofortige Ausführung, anschließend begrenzt |
 
 ### Time Slicing vs Web Worker
 
 | Eigenschaft | Time Slicing                          | Web Worker                            |
 | ----------- | ------------------------------------- | ------------------------------------- |
-| Ausfuehrungsumgebung | Hauptthread                   | Hintergrundthread                     |
+| Ausführungsumgebung | Hauptthread                   | Hintergrundthread                     |
 | Geeignetes Szenario | Aufgaben mit DOM-Manipulation | Reine Berechnungsaufgaben             |
-| Implementierungskomplexitaet | Einfacher               | Komplexer (Kommunikation erforderlich) |
+| Implementierungskomplexität | Einfacher               | Komplexer (Kommunikation erforderlich) |
 | Performance-Verbesserung | Verhindert Blockierung des Hauptthreads | Echte parallele Berechnung |
 
-### Haeufige Interview-Fragen
+### Häufige Interview-Fragen
 
-**F: Wie waehlt man zwischen Debounce und Throttle?**
+**F: Wie wählt man zwischen Debounce und Throttle?**
 
-A: Abhaengig vom Anwendungsszenario:
+A: Abhängig vom Anwendungsszenario:
 
-- **Debounce**: Geeignet fuer Szenarien "Warten, bis der Benutzer die Aktion abgeschlossen hat" (z.B. Sucheingabe)
-- **Throttle**: Geeignet fuer Szenarien "Muss kontinuierlich aktualisieren, aber nicht zu haeufig" (z.B. Scroll-Tracking)
+- **Debounce**: Geeignet für Szenarien "Warten, bis der Benutzer die Aktion abgeschlossen hat" (z.B. Sucheingabe)
+- **Throttle**: Geeignet für Szenarien "Muss kontinuierlich aktualisieren, aber nicht zu häufig" (z.B. Scroll-Tracking)
 
-**F: Wie waehlt man zwischen Time Slicing und Web Worker?**
+**F: Wie wählt man zwischen Time Slicing und Web Worker?**
 
 A:
 
 - **Time Slicing**: DOM-Manipulation erforderlich, einfache Datenverarbeitung
-- **Web Worker**: Reine Berechnung, große Datenmengen, keine DOM-Manipulation noetig
+- **Web Worker**: Reine Berechnung, große Datenmengen, keine DOM-Manipulation nötig
 
 **F: Was sind die Vorteile von requestAnimationFrame?**
 
@@ -230,4 +230,4 @@ A:
 1. Mit dem Browser-Repaint synchronisiert (60fps)
 2. Pausiert automatisch, wenn Tab nicht sichtbar (Energiesparen)
 3. Vermeidet Frame-Verlust (Jank)
-4. Performance ueberlegen gegenueber setInterval/setTimeout
+4. Performance überlegen gegenüber setInterval/setTimeout

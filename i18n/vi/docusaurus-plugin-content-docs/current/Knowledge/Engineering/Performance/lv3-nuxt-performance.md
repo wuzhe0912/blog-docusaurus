@@ -1,38 +1,38 @@
 ---
-title: '[Lv3] Toi uu hieu nang Nuxt 3: Bundle Size, toc do SSR va toi uu hinh anh'
+title: '[Lv3] Tối ưu hiệu năng Nuxt 3: Bundle Size, tốc độ SSR và tối ưu hình ảnh'
 slug: /experience/performance/lv3-nuxt-performance
 tags: [Experience, Interview, Performance, Nuxt, Lv3]
 ---
 
-> Huong dan toi uu hieu nang Nuxt 3 toan dien: tu giam Bundle Size, toi uu toc do SSR den chien luoc tai hinh anh, tao trai nghiem hieu nang toi uu.
+> Hướng dẫn tối ưu hiệu năng Nuxt 3 toàn diện: từ giảm Bundle Size, tối ưu tốc độ SSR đến chiến lược tải hình ảnh, tạo trải nghiệm hiệu năng tối ưu.
 
 ---
 
-## 1. Cac truc chinh tra loi phong van
+## 1. Các trục chính trả lời phỏng vấn
 
-1. **Toi uu Bundle Size**: phan tich (`nuxi analyze`), tach (`SplitChunks`), Tree Shaking, tai tri hoan (Lazy Loading).
-2. **Toi uu toc do SSR (TTFB)**: cache Redis, Nitro Cache, giam cac cuoc goi API chan, Streaming SSR.
-3. **Toi uu hinh anh**: `@nuxt/image`, dinh dang WebP, CDN, Lazy Loading.
-4. **Toi uu du lieu lon**: Virtual Scrolling, cuon vo han (Infinite Scroll), phan trang (Pagination).
+1. **Tối ưu Bundle Size**: phân tích (`nuxi analyze`), tách (`SplitChunks`), Tree Shaking, tải trì hoãn (Lazy Loading).
+2. **Tối ưu tốc độ SSR (TTFB)**: cache Redis, Nitro Cache, giảm các cuộc gọi API chặn, Streaming SSR.
+3. **Tối ưu hình ảnh**: `@nuxt/image`, định dạng WebP, CDN, Lazy Loading.
+4. **Tối ưu dữ liệu lớn**: Virtual Scrolling, cuộn vô hạn (Infinite Scroll), phân trang (Pagination).
 
 ---
 
-## 2. Lam sao giam Bundle Size cua Nuxt 3?
+## 2. Làm sao giảm Bundle Size của Nuxt 3?
 
-### 2.1 Cong cu chan doan
+### 2.1 Công cụ chẩn đoán
 
-Truoc tien, phai biet bottleneck o dau. Dung `nuxi analyze` de truc quan hoa cau truc Bundle.
+Trước tiên, phải biết bottleneck ở đâu. Dùng `nuxi analyze` để trực quan hóa cấu trúc Bundle.
 
 ```bash
 npx nuxi analyze
 ```
 
-Lenh nay se tao bao cao hien thi package nao chiem nhieu khong gian nhat.
+Lệnh này sẽ tạo báo cáo hiển thị package nào chiếm nhiều không gian nhất.
 
-### 2.2 Chien luoc toi uu
+### 2.2 Chiến lược tối ưu
 
-#### 1. Code Splitting (tach code)
-Nuxt 3 mac dinh da thuc hien Code Splitting dua tren route. Nhung voi cac package lon (nhu ECharts, Lodash), can toi uu thu cong.
+#### 1. Code Splitting (tách code)
+Nuxt 3 mặc định đã thực hiện Code Splitting dựa trên route. Nhưng với các package lớn (như ECharts, Lodash), cần tối ưu thủ công.
 
 ```typescript
 // nuxt.config.ts
@@ -54,18 +54,18 @@ export default defineNuxtConfig({
 });
 ```
 
-#### 2. Tree Shaking va import theo yeu cau
+#### 2. Tree Shaking và import theo yêu cầu
 
 ```typescript
-// ❌ Sai: import toan bo lodash
+// ❌ Sai: import toàn bộ lodash
 import _ from 'lodash';
 _.debounce(() => {}, 100);
 
-// ✅ Dung: chi import debounce
+// ✅ Đúng: chỉ import debounce
 import debounce from 'lodash/debounce';
 debounce(() => {}, 100);
 
-// ✅ Khuyen nghi: dung vueuse (chuyen cho Vue va Tree-shakable)
+// ✅ Khuyên nghị: dùng vueuse (chuyên cho Vue và Tree-shakable)
 import { useDebounceFn } from '@vueuse/core';
 ```
 
@@ -74,28 +74,28 @@ import { useDebounceFn } from '@vueuse/core';
 ```vue
 <template>
   <div>
-    <!-- Code component chi duoc tai khi show la true -->
+    <!-- Code component chỉ được tải khi show là true -->
     <LazyHeavyComponent v-if="show" />
   </div>
 </template>
 ```
 
-#### 4. Loai bo package Server-side khong can thiet
-Dam bao cac package chi dung o Server (database driver, thao tac fs) khong bi dong goi vao Client. Nuxt 3 tu dong xu ly cac file ket thuc bang `.server.ts`, hoac dung thu muc `server/`.
+#### 4. Loại bỏ package Server-side không cần thiết
+Đảm bảo các package chỉ dùng ở Server (database driver, thao tác fs) không bị đóng gói vào Client. Nuxt 3 tự động xử lý các file kết thúc bằng `.server.ts`, hoặc dùng thư mục `server/`.
 
 ---
 
-## 3. Lam sao toi uu toc do SSR (TTFB)?
+## 3. Làm sao tối ưu tốc độ SSR (TTFB)?
 
-### 3.1 Tai sao TTFB qua lau?
-TTFB (Time To First Byte) la chi so then chot cua hieu nang SSR. Nguyen nhan thuong gap:
-1. **API tra loi cham**: Server phai doi back-end tra du lieu moi render HTML.
-2. **Request noi tiep**: nhieu API request chay lien tiep thay vi song song.
-3. **Tinh toan nang**: Server thuc thi qua nhieu tac vu CPU-intensive.
+### 3.1 Tại sao TTFB quá lâu?
+TTFB (Time To First Byte) là chỉ số then chốt của hiệu năng SSR. Nguyên nhân thường gặp:
+1. **API trả lời chậm**: Server phải đợi back-end trả dữ liệu mới render HTML.
+2. **Request nối tiếp**: nhiều API request chạy liên tiếp thay vì song song.
+3. **Tính toán nặng**: Server thực thi quá nhiều tác vụ CPU-intensive.
 
-### 3.2 Giai phap toi uu
+### 3.2 Giải pháp tối ưu
 
-#### 1. Cache phia Server (Nitro Cache)
+#### 1. Cache phía Server (Nitro Cache)
 
 ```typescript
 // nuxt.config.ts
@@ -111,18 +111,18 @@ export default defineNuxtConfig({
 #### 2. Request song song (Parallel Fetching)
 
 ```typescript
-// ❌ Cham: chay noi tiep (tong thoi gian = A + B)
+// ❌ Chậm: chạy nối tiếp (tổng thời gian = A + B)
 const { data: user } = await useFetch('/api/user');
 const { data: posts } = await useFetch('/api/posts');
 
-// ✅ Nhanh: chay song song (tong thoi gian = Max(A, B))
+// ✅ Nhanh: chạy song song (tổng thời gian = Max(A, B))
 const [{ data: user }, { data: posts }] = await Promise.all([
   useFetch('/api/user'),
   useFetch('/api/posts'),
 ]);
 ```
 
-#### 3. Tri hoan du lieu khong quan trong (Lazy Fetching)
+#### 3. Trì hoãn dữ liệu không quan trọng (Lazy Fetching)
 
 ```typescript
 const { data: comments } = await useFetch('/api/comments', {
@@ -131,21 +131,21 @@ const { data: comments } = await useFetch('/api/comments', {
 });
 ```
 
-#### 4. Streaming SSR (thu nghiem)
-Nuxt 3 ho tro HTML Streaming, cho phep gui noi dung trong khi render, giup nguoi dung thay noi dung nhanh hon.
+#### 4. Streaming SSR (thử nghiệm)
+Nuxt 3 hỗ trợ HTML Streaming, cho phép gửi nội dung trong khi render, giúp người dùng thấy nội dung nhanh hơn.
 
 ---
 
-## 4. Toi uu hinh anh Nuxt 3
+## 4. Tối ưu hình ảnh Nuxt 3
 
-### 4.1 Su dung @nuxt/image
-Module chinh thuc `@nuxt/image` la giai phap tot nhat:
-- **Tu dong chuyen doi dinh dang**: tu dong chuyen sang WebP/AVIF.
-- **Tu dong thay doi kich thuoc**: tao hinh anh theo kich thuoc man hinh.
-- **Lazy Loading**: tich hop san.
-- **Tich hop CDN**: ho tro Cloudinary, Imgix va nhieu provider khac.
+### 4.1 Sử dụng @nuxt/image
+Module chính thức `@nuxt/image` là giải pháp tốt nhất:
+- **Tự động chuyển đổi định dạng**: tự động chuyển sang WebP/AVIF.
+- **Tự động thay đổi kích thước**: tạo hình ảnh theo kích thước màn hình.
+- **Lazy Loading**: tích hợp sẵn.
+- **Tích hợp CDN**: hỗ trợ Cloudinary, Imgix và nhiều provider khác.
 
-### 4.2 Vi du trien khai
+### 4.2 Ví dụ triển khai
 
 ```bash
 npm install @nuxt/image
@@ -175,24 +175,24 @@ export default defineNuxtConfig({
 
 ---
 
-## 5. Phan trang va cuon cho du lieu lon
+## 5. Phân trang và cuộn cho dữ liệu lớn
 
-### 5.1 Chon giai phap
-Voi du lieu lon (vd. 10,000 san pham), ba chien luoc chinh, can xem xet **SEO**:
+### 5.1 Chọn giải pháp
+Với dữ liệu lớn (vd. 10,000 sản phẩm), ba chiến lược chính, cần xem xét **SEO**:
 
-| Chien luoc | Truong hop ap dung | Tuong thich SEO |
+| Chiến lược | Trường hợp áp dụng | Tương thích SEO |
 | :--- | :--- | :--- |
-| **Phan trang truyen thong** | Danh sach e-commerce, bai viet | Xuat sac (tot nhat) |
-| **Cuon vo han** | Feed xa hoi, tuong anh | Thap (can xu ly dac biet) |
-| **Virtual Scrolling** | Bao cao phuc tap, danh sach rat dai | Rat thap (noi dung khong co trong DOM) |
+| **Phân trang truyền thống** | Danh sách e-commerce, bài viết | Xuất sắc (tốt nhất) |
+| **Cuộn vô hạn** | Feed xã hội, tường ảnh | Thấp (cần xử lý đặc biệt) |
+| **Virtual Scrolling** | Báo cáo phức tạp, danh sách rất dài | Rất thấp (nội dung không có trong DOM) |
 
-### 5.2 Lam sao duy tri SEO voi cuon vo han?
-Voi cuon vo han, cong cu tim kiem thuong chi crawl duoc trang dau. Giai phap:
-1. **Ket hop che do phan trang**: cung cap the `<link rel="next" href="...">` de crawler biet trang tiep theo.
-2. **Noscript Fallback**: cung cap phien ban phan trang truyen thong trong `<noscript>` cho crawler.
-3. **Nut "Tai them"**: SSR render 20 dong dau, phan con lai tai qua click "Tai them" hoac cuon.
+### 5.2 Làm sao duy trì SEO với cuộn vô hạn?
+Với cuộn vô hạn, công cụ tìm kiếm thường chỉ crawl được trang đầu. Giải pháp:
+1. **Kết hợp chế độ phân trang**: cung cấp thẻ `<link rel="next" href="...">` để crawler biết trang tiếp theo.
+2. **Noscript Fallback**: cung cấp phiên bản phân trang truyền thống trong `<noscript>` cho crawler.
+3. **Nút "Tải thêm"**: SSR render 20 dòng đầu, phần còn lại tải qua click "Tải thêm" hoặc cuộn.
 
-### 5.3 Vi du trien khai (Load More + SEO)
+### 5.3 Ví dụ triển khai (Load More + SEO)
 
 ```vue
 <script setup>
@@ -213,7 +213,7 @@ const loadMore = async () => {
 <template>
   <div>
     <div v-for="post in posts" :key="post.id">{{ post.title }}</div>
-    <button @click="loadMore">Tai them</button>
+    <button @click="loadMore">Tải thêm</button>
 
     <Head>
       <Link rel="next" :href="`/posts?page=${page + 1}`" />
@@ -224,18 +224,18 @@ const loadMore = async () => {
 
 ---
 
-## 6. Lazy Loading trong moi truong SSR
+## 6. Lazy Loading trong môi trường SSR
 
-### 6.1 Mo ta van de
-Trong moi truong SSR, su dung `IntersectionObserver` se gay loi hoac Hydration Mismatch vi Server khong co `window` hay `document`.
+### 6.1 Mô tả vấn đề
+Trong môi trường SSR, sử dụng `IntersectionObserver` sẽ gây lỗi hoặc Hydration Mismatch vì Server không có `window` hay `document`.
 
-### 6.2 Giai phap
+### 6.2 Giải pháp
 
-#### 1. Dung component tich hop cua Nuxt
+#### 1. Dùng component tích hợp của Nuxt
 - `<LazyComponent>`
 - `<NuxtImg loading="lazy">`
 
-#### 2. Directive tuy chinh (xu ly SSR)
+#### 2. Directive tùy chỉnh (xử lý SSR)
 
 ```typescript
 // plugins/lazy-load.ts
@@ -261,25 +261,25 @@ export default defineNuxtPlugin((nuxtApp) => {
 
 ---
 
-## 7. Giam sat va theo doi hieu nang SSR
+## 7. Giám sát và theo dõi hiệu năng SSR
 
-### 7.1 Tai sao can giam sat?
-Bottleneck cua ung dung SSR thuong o phia Server, DevTools trinh duyet khong thay duoc. Neu khong giam sat, kho phat hien API tra loi cham, Memory Leak hay CPU cao la nguyen nhan TTFB tang.
+### 7.1 Tại sao cần giám sát?
+Bottleneck của ứng dụng SSR thường ở phía Server, DevTools trình duyệt không thấy được. Nếu không giám sát, khó phát hiện API trả lời chậm, Memory Leak hay CPU cao là nguyên nhân TTFB tăng.
 
-### 7.2 Cong cu thuong dung
+### 7.2 Công cụ thường dùng
 
-1. **Nuxt DevTools (giai doan phat trien)**:
-    - Tich hop san trong Nuxt 3.
-    - Xem thoi gian phan hoi cua Server Routes.
+1. **Nuxt DevTools (giai đoạn phát triển)**:
+    - Tích hợp sẵn trong Nuxt 3.
+    - Xem thời gian phản hồi của Server Routes.
 
-2. **Lighthouse / PageSpeed Insights (sau trien khai)**:
-    - Giam sat Core Web Vitals (LCP, CLS, FID/INP).
+2. **Lighthouse / PageSpeed Insights (sau triển khai)**:
+    - Giám sát Core Web Vitals (LCP, CLS, FID/INP).
 
-3. **Giam sat phia Server (APM)**:
-    - **Sentry / Datadog**: theo doi loi va hieu nang phia Server.
-    - **OpenTelemetry**: theo doi toan bo Request Trace.
+3. **Giám sát phía Server (APM)**:
+    - **Sentry / Datadog**: theo dõi lỗi và hiệu năng phía Server.
+    - **OpenTelemetry**: theo dõi toàn bộ Request Trace.
 
-### 7.3 Trien khai theo doi thoi gian don gian
+### 7.3 Triển khai theo dõi thời gian đơn giản
 
 ```typescript
 // server/middleware/timing.ts
@@ -295,19 +295,19 @@ export default defineEventHandler((event) => {
 
 ---
 
-## 8. Tong ket phong van
+## 8. Tổng kết phỏng vấn
 
-**Q: Lam sao theo doi va giam sat van de hieu nang SSR?**
-> Trong giai doan phat trien, toi chu yeu dung **Nuxt DevTools** de xem thoi gian phan hoi Server Routes va kich thuoc Payload. Trong Production, toi theo doi **Core Web Vitals** (dac biet LCP) va **TTFB**. Neu can phan tich sau, toi dung Server Middleware tuy chinh ghi thoi gian request, hoac tich hop **Sentry** / **OpenTelemetry**.
+**Q: Làm sao theo dõi và giám sát vấn đề hiệu năng SSR?**
+> Trong giai đoạn phát triển, tôi chủ yếu dùng **Nuxt DevTools** để xem thời gian phản hồi Server Routes và kích thước Payload. Trong Production, tôi theo dõi **Core Web Vitals** (đặc biệt LCP) và **TTFB**. Nếu cần phân tích sâu, tôi dùng Server Middleware tùy chỉnh ghi thời gian request, hoặc tích hợp **Sentry** / **OpenTelemetry**.
 
-**Q: Lam sao giam Bundle Size cua Nuxt 3?**
-> Toi bat dau phan tich bang `nuxi analyze`. Voi cac package lon (nhu lodash) thi Tree Shaking hoac tach thu cong (`manualChunks`). Component khong can cho man hinh dau thi dung `<LazyComponent>`.
+**Q: Làm sao giảm Bundle Size của Nuxt 3?**
+> Tôi bắt đầu phân tích bằng `nuxi analyze`. Với các package lớn (như lodash) thì Tree Shaking hoặc tách thủ công (`manualChunks`). Component không cần cho màn hình đầu thì dùng `<LazyComponent>`.
 
-**Q: Lam sao toi uu toc do SSR?**
-> Trong tam la giam TTFB. Toi dung `routeRules` cua Nitro de cau hinh cache phia Server (SWR). Request API chay song song bang `Promise.all`. Du lieu khong quan trong dat `lazy: true` de tai phia Client.
+**Q: Làm sao tối ưu tốc độ SSR?**
+> Trọng tâm là giảm TTFB. Tôi dùng `routeRules` của Nitro để cấu hình cache phía Server (SWR). Request API chạy song song bằng `Promise.all`. Dữ liệu không quan trọng đặt `lazy: true` để tải phía Client.
 
-**Q: Toi uu hinh anh nhu the nao?**
-> Toi dung module `@nuxt/image`, tu dong chuyen WebP, tu dong thay doi kich thuoc va ho tro Lazy Loading, giam dang ke luong truyen tai.
+**Q: Tối ưu hình ảnh như thế nào?**
+> Tôi dùng module `@nuxt/image`, tự động chuyển WebP, tự động thay đổi kích thước và hỗ trợ Lazy Loading, giảm đáng kể lượng truyền tải.
 
-**Q: Cuon vo han lam sao dam bao SEO?**
-> Cuon vo han khong tot cho SEO. Voi trang noi dung, toi uu tien phan trang truyen thong. Neu bat buoc dung cuon vo han, toi render trang dau bang SSR va dung Meta Tags (`rel="next"`) de bao crawler cau truc phan trang.
+**Q: Cuộn vô hạn làm sao đảm bảo SEO?**
+> Cuộn vô hạn không tốt cho SEO. Với trang nội dung, tôi ưu tiên phân trang truyền thống. Nếu bắt buộc dùng cuộn vô hạn, tôi render trang đầu bằng SSR và dùng Meta Tags (`rel="next"`) để báo crawler cấu trúc phân trang.

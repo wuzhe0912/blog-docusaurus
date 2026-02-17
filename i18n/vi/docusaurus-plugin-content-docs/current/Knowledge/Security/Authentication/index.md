@@ -1,33 +1,33 @@
 ---
 id: login-interview-index
-title: 'Tong quan cau hoi phong van ve co che dang nhap'
+title: 'Tổng quan câu hỏi phỏng vấn về cơ chế đăng nhập'
 slug: /experience/login
 tags: [Experience, Interview, Login]
 ---
 
-> Tich luy dan cac cau hoi phong van lien quan den dang nhap va cac diem tra loi chinh, sap xep theo do kho tang dan.
+> Tích lũy dần các câu hỏi phỏng vấn liên quan đến đăng nhập và các điểm trả lời chính, sắp xếp theo độ khó tăng dần.
 
 ---
 
-## Lv1 Co ban
+## Lv1 Cơ bản
 
-- [Co che dang nhap trong cac du an truoc day duoc trien khai nhu the nao?](/docs/experience/login/lv1-project-implementation)
-- [Su khac biet giua Session-based va Token-based la gi?](/docs/experience/login/lv1-session-vs-token)
-- [Cau truc cua JWT la gi?](/docs/experience/login/lv1-jwt-structure)
+- [Cơ chế đăng nhập trong các dự án trước đây được triển khai như thế nào?](/docs/experience/login/lv1-project-implementation)
+- [Sự khác biệt giữa Session-based và Token-based là gì?](/docs/experience/login/lv1-session-vs-token)
+- [Cấu trúc của JWT là gì?](/docs/experience/login/lv1-jwt-structure)
 
-## Lv2 Nang cao
+## Lv2 Nâng cao
 
-- Token co the duoc luu tru o nhung vi tri nao? Can luu y nhung van de bao mat nao? (sap cap nhat)
-- Front-end tu dong dinh kem Token vao moi request API nhu the nao? (sap cap nhat)
-- Xu ly nhu the nao khi Token het han? (sap cap nhat)
+- Token có thể được lưu trữ ở những vị trí nào? Cần lưu ý những vấn đề bảo mật nào? (sắp cập nhật)
+- Front-end tự động đính kèm Token vào mỗi request API như thế nào? (sắp cập nhật)
+- Xử lý như thế nào khi Token hết hạn? (sắp cập nhật)
 
-## Lv3 Thiet ke he thong
+## Lv3 Thiết kế hệ thống
 
-- Tai sao kien truc microservices uu tien su dung JWT? (sap cap nhat)
-- JWT co nhung nhuoc diem gi? Xu ly dang xuat chu dong nhu the nao? (sap cap nhat)
-- Lam the nao de giam thieu hoac ngan chan viec Token bi danh cap? (sap cap nhat)
+- Tại sao kiến trúc microservices ưu tiên sử dụng JWT? (sắp cập nhật)
+- JWT có những nhược điểm gì? Xử lý đăng xuất chủ động như thế nào? (sắp cập nhật)
+- Làm thế nào để giảm thiểu hoặc ngăn chặn việc Token bị đánh cắp? (sắp cập nhật)
 
-## Lv4 Cau hoi mo rong nang cao
+## Lv4 Câu hỏi mở rộng nâng cao
 
-- Neu can trien khai "buoc dang xuat tat ca thiet bi", kien truc Session va Token se lam nhu the nao? (sap cap nhat)
-- SSO (Single Sign-On) thuong ket hop voi chien luoc dang nhap nao? (sap cap nhat)
+- Nếu cần triển khai "buộc đăng xuất tất cả thiết bị", kiến trúc Session và Token sẽ làm như thế nào? (sắp cập nhật)
+- SSO (Single Sign-On) thường kết hợp với chiến lược đăng nhập nào? (sắp cập nhật)

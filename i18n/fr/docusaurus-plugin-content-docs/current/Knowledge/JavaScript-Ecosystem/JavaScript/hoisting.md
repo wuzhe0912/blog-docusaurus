@@ -80,7 +80,7 @@ var name = 'Jane';
 var name;
 
 // execute
-console.log(name); // print undefined，car la valeur n'a pas encore été assignée, seul le undefined par défaut est obtenu
+console.log(name); // print undefined, car la valeur n'a pas encore été assignée, seul le undefined par défaut est obtenu
 name = 'Pitt';
 ```
 
@@ -160,14 +160,14 @@ console.log(foo);
 var foo = '1';
 function foo() {}
 
-// Equivalent (apres Hoisting)
-// Etape 1 : phase de creation (Hoisting)
-function foo() {} // 1. La declaration de fonction est remontee en premier
-var foo; // 2. La declaration de variable est remontee (n'ecrase pas la fonction existante)
+// Équivalent (après Hoisting)
+// Étape 1 : phase de création (Hoisting)
+function foo() {} // 1. La déclaration de fonction est remontée en premier
+var foo; // 2. La déclaration de variable est remontée (n'écrase pas la fonction existante)
 
-// Etape 2 : phase d'execution
+// Étape 2 : phase d'exécution
 console.log(foo); // Ici, foo est une fonction, sortie [Function: foo]
-foo = '1'; // 3. L'assignation de variable ecrase la fonction
+foo = '1'; // 3. L'assignation de variable écrase la fonction
 ```
 
 ### Concepts clés
@@ -193,9 +193,9 @@ var myVar = 'Hello';
 **3. Quand une déclaration de fonction et une déclaration de variable portent le même nom**
 
 ```js
-// Ordre apres Hoisting
-function foo() {} // La fonction est remontee et initialisee en premier
-var foo; // La declaration de variable est remontee, sans ecraser la fonction
+// Ordre après Hoisting
+function foo() {} // La fonction est remontée et initialisée en premier
+var foo; // La déclaration de variable est remontée, sans écraser la fonction
 
 // Donc foo est une fonction
 console.log(foo); // [Function: foo]
@@ -210,16 +210,16 @@ var foo = '1';
 function foo() {}
 console.log(foo); // ?
 
-// ======== Equivalent ========
+// ======== Équivalent ========
 
-// Phase de creation (Hoisting)
-function foo() {} // 1) La declaration de fonction est entierement remontee (y compris le corps)
-var foo; // 2) La declaration de variable est remontee (n'ecrase pas foo, deja fonction)
+// Phase de création (Hoisting)
+function foo() {} // 1) La déclaration de fonction est entièrement remontée (y compris le corps)
+var foo; // 2) La déclaration de variable est remontée (n'écrase pas foo, déjà fonction)
 
-// Phase d'execution
+// Phase d'exécution
 console.log(foo); // [Function: foo] - foo est une fonction
-foo = '1'; // 3) L'assignation de variable ecrase la fonction a ce moment
-console.log(foo); // '1' - foo devient une chaine
+foo = '1'; // 3) L'assignation de variable écrase la fonction à ce moment
+console.log(foo); // '1' - foo devient une chaîne
 ```
 
 ### Exercices avancés
@@ -236,8 +236,8 @@ console.log(foo); // ?
 **Réponse :**
 
 ```js
-[Function: foo] // Premiere sortie
-'1' // Deuxieme sortie
+[Function: foo] // Première sortie
+'1' // Deuxième sortie
 ```
 
 **Raison :** L'ordre du code n'affecte pas le résultat du Hoisting. La priorité de remontée reste : fonction > variable.
@@ -263,26 +263,26 @@ console.log(foo); // ?
 **Réponse :**
 
 ```js
-[Function: foo] { return 2; } // Premiere sortie (la fonction suivante ecrase la precedente)
-'1' // Deuxieme sortie (l'assignation de variable ecrase la fonction)
+[Function: foo] { return 2; } // Première sortie (la fonction suivante écrase la précédente)
+'1' // Deuxième sortie (l'assignation de variable écrase la fonction)
 ```
 
 **Raison :**
 
 ```js
-// Apres Hoisting
+// Après Hoisting
 function foo() {
   return 1;
-} // Premiere fonction
+} // Première fonction
 
 function foo() {
   return 2;
-} // Deuxieme fonction ecrase la premiere
+} // Deuxième fonction écrase la première
 
-var foo; // Declaration de variable (n'ecrase pas la fonction)
+var foo; // Déclaration de variable (n'écrase pas la fonction)
 
 console.log(foo); // [Function: foo] { return 2; }
-foo = '1'; // Assignation de variable (ecrase la fonction)
+foo = '1'; // Assignation de variable (écrase la fonction)
 console.log(foo); // '1'
 ```
 
@@ -311,11 +311,11 @@ undefined; // foo vaut undefined
 **Raison :**
 
 ```js
-// Apres Hoisting
-var foo; // La declaration de variable est remontee (l'expression de fonction ne remonte que le nom)
+// Après Hoisting
+var foo; // La déclaration de variable est remontée (l'expression de fonction ne remonte que le nom)
 function bar() {
   return 2;
-} // La declaration de fonction est entierement remontee
+} // La déclaration de fonction est entièrement remontée
 
 console.log(foo); // undefined
 console.log(bar); // [Function: bar]
@@ -333,15 +333,15 @@ foo = function () {
 ### let/const n'ont pas ce problème
 
 ```js
-// ❌ var peut provoquer des problemes de Hoisting
+// ❌ var peut provoquer des problèmes de Hoisting
 console.log(foo); // undefined
 var foo = '1';
 
-// ✅ let/const ont une zone morte temporaire (TDZ)
+// ✅ let/const ont une zone morte temporelle (TDZ)
 console.log(bar); // ReferenceError: Cannot access 'bar' before initialization
 let bar = '1';
 
-// ✅ let/const avec le meme nom qu'une fonction provoquent une erreur
+// ✅ let/const avec le même nom qu'une fonction provoquent une erreur
 function baz() {} // SyntaxError: Identifier 'baz' has already been declared
 let baz = '1';
 ```

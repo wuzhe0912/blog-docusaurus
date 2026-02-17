@@ -7,69 +7,69 @@ tags: [JavaScript, Quiz, Hard]
 
 ## 1. Please explain and compare the advantages and disadvantages of SPA and SSR
 
-> Hay giai thich va so sanh uu nhuoc diem cua SPA va SSR
+> Hãy giải thích và so sánh ưu nhược điểm của SPA và SSR
 
-### SPA (Ung dung Trang don)
+### SPA (Ứng dụng Trang đơn)
 
-#### Uu diem SPA
+#### Ưu điểm SPA
 
-1. Trai nghiem nguoi dung: Ban chat cua SPA la mot trang duy nhat, chi tai du lieu dong va ket hop routing frontend de nguoi dung cam thay nhu dang chuyen trang, nhung thuc te chi dang chuyen component. Trai nghiem su dung nay tu nhien muot ma va nhanh hon.
-2. Tach biet frontend-backend: Frontend chi can dam nhan render trang va tuong tac, con backend chi can cung cap API du lieu. Giam bot ganh nang phat trien cua ca hai phia va de bao tri hon.
-3. Toi uu mang: Chi can tai trang mot lan, khong nhu cau truc da trang truyen thong phai tai lai moi lan chuyen trang, giam so luong request va ganh nang server.
+1. Trải nghiệm người dùng: Bản chất của SPA là một trang duy nhất, chỉ tải dữ liệu động và kết hợp routing frontend để người dùng cảm thấy như đang chuyển trang, nhưng thực tế chỉ đang chuyển component. Trải nghiệm sử dụng này tự nhiên mượt mà và nhanh hơn.
+2. Tách biệt frontend-backend: Frontend chỉ cần đảm nhận render trang và tương tác, còn backend chỉ cần cung cấp API dữ liệu. Giảm bớt gánh nặng phát triển của cả hai phía và dễ bảo trì hơn.
+3. Tối ưu mạng: Chỉ cần tải trang một lần, không như cấu trúc đa trang truyền thống phải tải lại mỗi lần chuyển trang, giảm số lượng request và gánh nặng server.
 
-#### Nhuoc diem SPA
+#### Nhược điểm SPA
 
-1. SEO: Trang SPA duoc tai dong, nen cong cu tim kiem khong the truc tiep lay noi dung trang (du Google tuyen bo dang cai thien dieu nay). Doi voi crawler tim kiem, van khong bang HTML truyen thong.
-2. Thoi gian tai lan dau: SPA can tai va thuc thi JavaScript o client truoc khi render trang, nen thoi gian tai lan dau dai hon, dac biet khi mang khong tot.
+1. SEO: Trang SPA được tải động, nên công cụ tìm kiếm không thể trực tiếp lấy nội dung trang (dù Google tuyên bố đang cải thiện điều này). Đối với crawler tìm kiếm, vẫn không bằng HTML truyền thống.
+2. Thời gian tải lần đầu: SPA cần tải và thực thi JavaScript ở client trước khi render trang, nên thời gian tải lần đầu dài hơn, đặc biệt khi mạng không tốt.
 
-### SSR (Render Phia Server)
+### SSR (Render Phía Server)
 
-#### Uu diem SSR
+#### Ưu điểm SSR
 
-1. SEO: SSR render trang chua du lieu san o server, nen cong cu tim kiem co the lay truc tiep noi dung trang. Day la uu diem lon nhat cua SSR.
-2. Thoi gian tai: SSR chuyen ganh nang render sang server, co the rut ngan thoi gian render lan dau truy cap.
+1. SEO: SSR render trang chứa dữ liệu sẵn ở server, nên công cụ tìm kiếm có thể lấy trực tiếp nội dung trang. Đây là ưu điểm lớn nhất của SSR.
+2. Thời gian tải: SSR chuyển gánh nặng render sang server, có thể rút ngắn thời gian render lần đầu truy cập.
 
-#### Nhuoc diem SSR
+#### Nhược điểm SSR
 
-1. Chi phi hoc va do phuc tap: Lay Next va Nuxt lam vi du, du ban chat deu dua tren React va Vue, nhung da phat trien he sinh thai rieng, tang chi phi hoc. Nhin phien ban Next.js 14 gan day, khach quan ma noi khong phai moi developer deu chap nhan duoc thay doi nhu vay.
-2. Ganh nang server: Vi cong viec render chuyen sang server, co the tao ganh nang lon hon cho server, dac biet trong cac tinh huong luu luong cao.
+1. Chi phí học và độ phức tạp: Lấy Next và Nuxt làm ví dụ, dù bản chất đều dựa trên React và Vue, nhưng đã phát triển hệ sinh thái riêng, tăng chi phí học. Nhìn phiên bản Next.js 14 gần đây, khách quan mà nói không phải mọi developer đều chấp nhận được thay đổi như vậy.
+2. Gánh nặng server: Vì công việc render chuyển sang server, có thể tạo gánh nặng lớn hơn cho server, đặc biệt trong các tình huống lưu lượng cao.
 
-### Ket luan
+### Kết luận
 
-Nguyen tac la, neu la he thong back-office khong co nhu cau SEO, khong can thiet su dung framework SSR. Tru khi la trang web san pham phu thuoc vao cong cu tim kiem, thi co the danh gia viec su dung framework SSR.
+Nguyên tắc là, nếu là hệ thống back-office không có nhu cầu SEO, không cần thiết sử dụng framework SSR. Trừ khi là trang web sản phẩm phụ thuộc vào công cụ tìm kiếm, thì có thể đánh giá việc sử dụng framework SSR.
 
-## 2. Hay trinh bay ve cac Web Framework da su dung va so sanh uu nhuoc diem
+## 2. Hãy trình bày về các Web Framework đã sử dụng và so sánh ưu nhược điểm
 
-**Ca hai deu dang hoi tu ve "phat trien component dua tren ham":**
+**Cả hai đều đang hội tụ về "phát triển component dựa trên hàm":**
 
-> Vue 3 thong qua Composition API, tach logic thanh cac composable tai su dung; React lay Hooks lam cot loi. Ve trai nghiem developer, ca hai kha tuong dong, nhung nhin chung Vue co chi phi nhap mon thap hon, con React manh hon ve he sinh thai va tinh linh hoat.
+> Vue 3 thông qua Composition API, tách logic thành các composable tái sử dụng; React lấy Hooks làm cốt lõi. Về trải nghiệm developer, cả hai khá tương đồng, nhưng nhìn chung Vue có chi phí nhập môn thấp hơn, còn React mạnh hơn về hệ sinh thái và tính linh hoạt.
 
-### Vue (chu yeu Vue 3)
+### Vue (chủ yếu Vue 3)
 
-**Uu diem:**
+**Ưu điểm:**
 
-- **Duong cong hoc tap thoai mai hon**: SFC (Single File Component) gop template / script / style lai, rat than thien voi developer chuyen tu frontend truyen thong (backend template).
-- **Quy uoc chinh thuc ro rang, co loi cho team**: Huong dan phong cach va quy uoc chinh thuc ro rang, thanh vien moi de duy tri tinh nhat quan khi tiep nhan du an.
-- **He sinh thai cot loi hoan chinh**: Chinh thuc duy tri Vue Router, Pinia (hoac Vuex), CLI / Vite Plugin, v.v., tu tao du an den quan ly state, routing deu co "giai phap chinh thuc", giam chi phi lua chon.
-- **Composition API nang cao kha nang bao tri**: Co the tach logic theo chuc nang thanh composable (vi du: useAuth, useForm), chia se logic va giam code trung lap trong du an lon.
+- **Đường cong học tập thoải mái hơn**: SFC (Single File Component) gộp template / script / style lại, rất thân thiện với developer chuyển từ frontend truyền thống (backend template).
+- **Quy ước chính thức rõ ràng, có lợi cho team**: Hướng dẫn phong cách và quy ước chính thức rõ ràng, thành viên mới dễ duy trì tính nhất quán khi tiếp nhận dự án.
+- **Hệ sinh thái cốt lõi hoàn chỉnh**: Chính thức duy trì Vue Router, Pinia (hoặc Vuex), CLI / Vite Plugin, v.v., từ tạo dự án đến quản lý state, routing đều có "giải pháp chính thức", giảm chi phí lựa chọn.
+- **Composition API nâng cao khả năng bảo trì**: Có thể tách logic theo chức năng thành composable (ví dụ: useAuth, useForm), chia sẻ logic và giảm code trùng lặp trong dự án lớn.
 
-**Nhuoc diem:**
+**Nhược điểm:**
 
-- **He sinh thai va cong dong nho hon React mot chut**: So luong va da dang cua package ben thu ba khong bang React, mot so cong cu tien tien uu tien React truoc.
-- **Thi truong viec lam tap trung o cac khu vuc/nganh cu the**: So voi React, cac team quoc te hoac da quoc gia chu yeu dung React, bat loi ve tinh linh hoat nghe nghiep (nhung trong vung noi tieng Hoa thi khoang nua nua).
+- **Hệ sinh thái và cộng đồng nhỏ hơn React một chút**: Số lượng và đa dạng của package bên thứ ba không bằng React, một số công cụ tiên tiến ưu tiên React trước.
+- **Thị trường việc làm tập trung ở các khu vực/ngành cụ thể**: So với React, các team quốc tế hoặc đa quốc gia chủ yếu dùng React, bất lợi về tính linh hoạt nghề nghiệp (nhưng trong vùng nói tiếng Hoa thì khoảng nửa nửa).
 
 ---
 
 ### React
 
-**Uu diem:**
+**Ưu điểm:**
 
-- **He sinh thai khong lo, toc do cap nhat cong nghe nhanh**: Hau het tat ca cong nghe frontend moi, he thong thiet ke hoac dich vu ben thu ba deu uu tien cung cap phien ban React.
-- **Linh hoat cao, tu do ket hop stack cong nghe theo du an**: Ket hop voi Redux / Zustand / Recoil va cac state management khac, cung co Meta Framework nhu Next.js, Remix, voi giai phap chin muoi tu SPA den SSR, SSG, CSR.
-- **Tich hop chin muoi voi TypeScript va ky thuat frontend**: Nhieu thao luan cong dong ve typing va best practices cho du an lon, huu ich cho cac du an bao tri dai han.
+- **Hệ sinh thái khổng lồ, tốc độ cập nhật công nghệ nhanh**: Hầu hết tất cả công nghệ frontend mới, hệ thống thiết kế hoặc dịch vụ bên thứ ba đều ưu tiên cung cấp phiên bản React.
+- **Linh hoạt cao, tự do kết hợp stack công nghệ theo dự án**: Kết hợp với Redux / Zustand / Recoil và các state management khác, cũng có Meta Framework như Next.js, Remix, với giải pháp chín muồi từ SPA đến SSR, SSG, CSR.
+- **Tích hợp chín muồi với TypeScript và kỹ thuật frontend**: Nhiều thảo luận cộng đồng về typing và best practices cho dự án lớn, hữu ích cho các dự án bảo trì dài hạn.
 
-**Nhuoc diem:**
+**Nhược điểm:**
 
-- **Tu do cao, team can tu dinh quy tac**: Khong co coding style ro rang hay quy uoc kien truc, cac developer co the dung cach viet va state management hoan toan khac nhau, tang chi phi bao tri.
-- **Duong cong hoc tap thuc te khong thap**: Ngoai React (JSX, tu duy Hooks), con phai doi mat voi Router, state management, data fetching, SSR, v.v., nguoi moi de bi lac trong "chon library nao".
-- **Thay doi API va tien hoa best practices nhanh**: Tu Class Component sang Function Component + Hooks, roi Server Components, khi du an cu va phong cach moi cung ton tai, can chi phi di chuyen va bao tri them.
+- **Tự do cao, team cần tự định quy tắc**: Không có coding style rõ ràng hay quy ước kiến trúc, các developer có thể dùng cách viết và state management hoàn toàn khác nhau, tăng chi phí bảo trì.
+- **Đường cong học tập thực tế không thấp**: Ngoài React (JSX, tư duy Hooks), còn phải đối mặt với Router, state management, data fetching, SSR, v.v., người mới dễ bị lạc trong "chọn library nào".
+- **Thay đổi API và tiến hóa best practices nhanh**: Từ Class Component sang Function Component + Hooks, rồi Server Components, khi dự án cũ và phong cách mới cùng tồn tại, cần chi phí di chuyển và bảo trì thêm.

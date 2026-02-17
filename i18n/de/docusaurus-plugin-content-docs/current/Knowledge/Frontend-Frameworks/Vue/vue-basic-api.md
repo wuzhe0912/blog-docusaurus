@@ -15,27 +15,27 @@ Vue ist ein progressives JavaScript-Framework, dessen Kernprinzipien folgende wi
 
 #### 1. Virtual DOM
 
-Verwendet Virtual DOM zur Performance-Verbesserung. Es aktualisiert nur geaenderte DOM-Knoten, anstatt den gesamten DOM-Baum neu zu rendern. Der Diff-Algorithmus vergleicht Unterschiede zwischen altem und neuem Virtual DOM.
+Verwendet Virtual DOM zur Performance-Verbesserung. Es aktualisiert nur geänderte DOM-Knoten, anstatt den gesamten DOM-Baum neu zu rendern. Der Diff-Algorithmus vergleicht Unterschiede zwischen altem und neuem Virtual DOM.
 
 #### 2. Bidirektionale Datenbindung (Two-way Data Binding)
 
-Wenn sich das Model aendert, aktualisiert sich die View automatisch und umgekehrt. Entwickler muessen das DOM nicht manuell manipulieren.
+Wenn sich das Model ändert, aktualisiert sich die View automatisch und umgekehrt. Entwickler müssen das DOM nicht manuell manipulieren.
 
 #### 3. Komponentenbasiert (Component-based)
 
-Teilt die gesamte Anwendung in einzelne Komponenten auf, was die Wiederverwendbarkeit erhoeht. Jede Komponente hat ihren eigenen Zustand, Stil und Logik.
+Teilt die gesamte Anwendung in einzelne Komponenten auf, was die Wiederverwendbarkeit erhöht. Jede Komponente hat ihren eigenen Zustand, Stil und Logik.
 
 #### 4. Lifecycle Hooks
 
-Besitzt eigene Lebenszyklen. Bei Datenaenderungen werden entsprechende Lifecycle Hooks ausgeloest.
+Besitzt eigene Lebenszyklen. Bei Datenänderungen werden entsprechende Lifecycle Hooks ausgelöst.
 
 #### 5. Direktivensystem
 
-Bietet gaengige Direktiven wie `v-if`, `v-for`, `v-bind`, `v-model` fuer schnellere Entwicklung.
+Bietet gängige Direktiven wie `v-if`, `v-for`, `v-bind`, `v-model` für schnellere Entwicklung.
 
 #### 6. Template-Syntax
 
-Verwendet Templates zum Schreiben von HTML, wobei Daten durch Interpolation direkt in Templates gerendert werden koennen.
+Verwendet Templates zum Schreiben von HTML, wobei Daten durch Interpolation direkt in Templates gerendert werden können.
 
 ### Einzigartige Vorteile von Vue (im Vergleich zu React)
 
@@ -43,15 +43,15 @@ Verwendet Templates zum Schreiben von HTML, wobei Daten durch Interpolation dire
 2. **Eigene Direktivensyntax**: Intuitivere UI-Logikbehandlung
 3. **Einfachere bidirektionale Bindung**: `v-model` macht es sehr einfach
 4. **Template- und Logiktrennung**: Bessere Lesbarkeit und Wartbarkeit
-5. **Vollstaendiges offizielles Oekosystem**: Vue Router, Vuex/Pinia, Vue CLI
+5. **Vollständiges offizielles Ökosystem**: Vue Router, Vuex/Pinia, Vue CLI
 
 ## 2. Please explain the usage of `v-model`, `v-bind` and `v-html`
 
-> Erklaeren Sie die Verwendung von `v-model`, `v-bind` und `v-html`
+> Erklären Sie die Verwendung von `v-model`, `v-bind` und `v-html`
 
 ### `v-model`: Bidirektionale Datenbindung
 
-Bei Datenaenderung aktualisiert sich automatisch der Template-Inhalt und umgekehrt.
+Bei Datenänderung aktualisiert sich automatisch der Template-Inhalt und umgekehrt.
 
 ```vue
 <template>
@@ -62,14 +62,14 @@ Bei Datenaenderung aktualisiert sich automatisch der Template-Inhalt und umgekeh
 
     <!-- Checkbox -->
     <input type="checkbox" v-model="checked" />
-    <p>Ausgewaehlt: {{ checked }}</p>
+    <p>Ausgewählt: {{ checked }}</p>
 
     <!-- Auswahlliste -->
     <select v-model="selected">
       <option value="A">Option A</option>
       <option value="B">Option B</option>
     </select>
-    <p>Ausgewaehlte Option: {{ selected }}</p>
+    <p>Ausgewählte Option: {{ selected }}</p>
   </div>
 </template>
 
@@ -101,7 +101,7 @@ export default {
 
 ### `v-bind`: Dynamische Attributbindung
 
-Haeufig zum Binden von Klassen, Links, Bildern usw. verwendet.
+Häufig zum Binden von Klassen, Links, Bildern usw. verwendet.
 
 ```vue
 <template>
@@ -123,11 +123,11 @@ Haeufig zum Binden von Klassen, Links, Bildern usw. verwendet.
 
 ### `v-html`: HTML-String rendern
 
-Wird verwendet, wenn zurueckgegebener Inhalt HTML-Tags enthaelt.
+Wird verwendet, wenn zurückgegebener Inhalt HTML-Tags enthält.
 
 **Sicherheitswarnung**: Verwenden Sie `v-html` niemals mit benutzergeneriertem Inhalt, um XSS-Schwachstellen zu vermeiden!
 
-### Vergleichsuebersicht
+### Vergleichsübersicht
 
 | Direktive | Verwendung | Kurzform | Beispiel |
 | --------- | ---------------- | ---- | --------------------------- |
@@ -166,11 +166,11 @@ onMounted(() => {
 </script>
 ```
 
-**Hinweise**: Der Variablenname muss mit dem `ref`-Attributwert im Template uebereinstimmen. DOM-Elemente erst nach `onMounted` zugreifen.
+**Hinweise**: Der Variablenname muss mit dem `ref`-Attributwert im Template übereinstimmen. DOM-Elemente erst nach `onMounted` zugreifen.
 
 ## 4. Please explain the difference between `v-show` and `v-if`
 
-> Erklaeren Sie den Unterschied zwischen `v-show` und `v-if`
+> Erklären Sie den Unterschied zwischen `v-show` und `v-if`
 
 ### Gemeinsamkeiten
 
@@ -180,32 +180,32 @@ Beide steuern die Anzeige und das Ausblenden von DOM-Elementen basierend auf Bed
 
 #### 1. DOM-Manipulation
 
-- **`v-show`**: Steuert ueber CSS `display`. Element bleibt im DOM.
-- **`v-if`**: Entfernt oder fuegt Element direkt im DOM hinzu.
+- **`v-show`**: Steuert über CSS `display`. Element bleibt im DOM.
+- **`v-if`**: Entfernt oder fügt Element direkt im DOM hinzu.
 
 #### 2. Performance-Unterschiede
 
-- **`v-show`**: Hoeherer Anfangsaufwand (Element wird immer erstellt), niedrigerer Umschaltaufwand (nur CSS). Geeignet fuer **haeufiges Umschalten**.
-- **`v-if`**: Niedrigerer Anfangsaufwand (rendert nicht bei false), hoeherer Umschaltaufwand (zerstoert/erstellt neu). Geeignet fuer **selten wechselnde Bedingungen**.
+- **`v-show`**: Höherer Anfangsaufwand (Element wird immer erstellt), niedrigerer Umschaltaufwand (nur CSS). Geeignet für **häufiges Umschalten**.
+- **`v-if`**: Niedrigerer Anfangsaufwand (rendert nicht bei false), höherer Umschaltaufwand (zerstört/erstellt neu). Geeignet für **selten wechselnde Bedingungen**.
 
-#### 3. Lifecycle-Ausloesung
+#### 3. Lifecycle-Auslösung
 
-- **`v-if`**: Loest vollstaendigen Komponentenlebenszyklus aus
-- **`v-show`**: Loest keinen Komponentenlebenszyklus aus
+- **`v-if`**: Löst vollständigen Komponentenlebenszyklus aus
+- **`v-show`**: Löst keinen Komponentenlebenszyklus aus
 
 ### Vergleichstabelle
 
 | Eigenschaft | v-if | v-show |
 | ------------ | ------------------------- | ---------------- |
 | Anfangsaufwand | Niedrig (rendert nicht bei false) | Hoch (rendert immer) |
-| Umschaltaufwand | Hoch (zerstoert/erstellt) | Niedrig (nur CSS) |
-| Anwendungsfall | Selten wechselnde Bedingungen | Haeufiges Umschalten |
-| Lifecycle | Loest aus | Loest nicht aus |
+| Umschaltaufwand | Hoch (zerstört/erstellt) | Niedrig (nur CSS) |
+| Anwendungsfall | Selten wechselnde Bedingungen | Häufiges Umschalten |
+| Lifecycle | Löst aus | Löst nicht aus |
 
 ### Merkhilfe
 
-> - `v-if`: Rendert nicht wenn nicht angezeigt, fuer selten wechselnde Bedingungen
-> - `v-show`: Von Anfang an gerendert, jederzeit bereit zur Anzeige, fuer haeufiges Umschalten
+> - `v-if`: Rendert nicht wenn nicht angezeigt, für selten wechselnde Bedingungen
+> - `v-show`: Von Anfang an gerendert, jederzeit bereit zur Anzeige, für häufiges Umschalten
 
 ## 5. What's the difference between `computed` and `watch`?
 
@@ -213,35 +213,35 @@ Beide steuern die Anzeige und das Ausblenden von DOM-Elementen basierend auf Bed
 
 ### `computed` (Berechnete Eigenschaften)
 
-- **Cache-Mechanismus**: Ergebnis wird gecacht und nur bei Abhaengigkeitsaenderung neu berechnet
+- **Cache-Mechanismus**: Ergebnis wird gecacht und nur bei Abhängigkeitsänderung neu berechnet
 - **Automatisches Tracking**: Verfolgt automatisch verwendete reaktive Daten
-- **Synchrone Berechnung**: Muss synchron sein und Rueckgabewert haben
-- Geeignet fuer: Datenformatierung, Filterung, Summierung
+- **Synchrone Berechnung**: Muss synchron sein und Rückgabewert haben
+- Geeignet für: Datenformatierung, Filterung, Summierung
 
-### `watch` (Ueberwachungseigenschaften)
+### `watch` (Überwachungseigenschaften)
 
-- **Manuelles Tracking**: Erfordert explizite Angabe der zu ueberwachenden Daten
-- **Asynchrone Operationen**: Geeignet fuer API-Aufrufe, Timer usw.
-- **Kein Rueckgabewert**: Hauptsaechlich fuer Seiteneffekte
-- **Alter und neuer Wert**: Kann Werte vor und nach Aenderung abrufen
+- **Manuelles Tracking**: Erfordert explizite Angabe der zu überwachenden Daten
+- **Asynchrone Operationen**: Geeignet für API-Aufrufe, Timer usw.
+- **Kein Rückgabewert**: Hauptsächlich für Seiteneffekte
+- **Alter und neuer Wert**: Kann Werte vor und nach Änderung abrufen
 
 ### Vergleichstabelle
 
 | Eigenschaft | computed | watch |
 | ----------------- | ---------------------- | ---------------------- |
-| **Hauptverwendung** | Neue Daten aus bestehenden berechnen | Datenaenderungen ueberwachen und Effekte ausfuehren |
-| **Rueckgabewert** | Pflicht | Nicht erforderlich |
+| **Hauptverwendung** | Neue Daten aus bestehenden berechnen | Datenänderungen überwachen und Effekte ausführen |
+| **Rückgabewert** | Pflicht | Nicht erforderlich |
 | **Cache** | Ja | Nein |
 | **Tracking** | Automatisch | Manuell |
-| **Asynchrone Ops** | Nicht unterstuetzt | Unterstuetzt |
-| **Alter/neuer Wert** | Nicht verfuegbar | Verfuegbar |
+| **Asynchrone Ops** | Nicht unterstützt | Unterstützt |
+| **Alter/neuer Wert** | Nicht verfügbar | Verfügbar |
 
 ### Merkhilfe
 
-> **"`computed` berechnet Daten, `watch` fuehrt Aktionen aus"**
+> **"`computed` berechnet Daten, `watch` führt Aktionen aus"**
 >
 > - `computed`: Zum **Berechnen neuer Daten** (Formatierung, Filterung, Summierung)
-> - `watch`: Zum **Ausfuehren von Aktionen** (API-Anfragen, Daten speichern, Benachrichtigungen)
+> - `watch`: Zum **Ausführen von Aktionen** (API-Anfragen, Daten speichern, Benachrichtigungen)
 
 ## Reference
 

@@ -1,85 +1,85 @@
 ---
 id: performance-lv3-virtual-scroll
-title: '[Lv3] Trien khai Virtual Scrolling: xu ly render du lieu lon'
+title: '[Lv3] Triển khai Virtual Scrolling: xử lý render dữ liệu lớn'
 slug: /experience/performance/lv3-virtual-scroll
 tags: [Experience, Interview, Performance, Lv3]
 ---
 
-> Khi trang can render 1000+ dong du lieu, Virtual Scrolling giam node DOM tu 1000+ xuong 20-30, giam su dung bo nho 80%.
+> Khi trang cần render 1000+ dòng dữ liệu, Virtual Scrolling giảm node DOM từ 1000+ xuống 20-30, giảm sử dụng bộ nhớ 80%.
 
 ---
 
-## Cau hoi tinh huong phong van
+## Câu hỏi tình huống phỏng vấn
 
-**Q: Khi trang co nhieu table, moi table co hon tram dong du lieu, dong thoi co event cap nhat DOM thuong xuyen, ban se dung phuong phap gi de toi uu hieu nang trang nay?**
+**Q: Khi trang có nhiều table, mỗi table có hơn trăm dòng dữ liệu, đồng thời có event cập nhật DOM thường xuyên, bạn sẽ dùng phương pháp gì để tối ưu hiệu năng trang này?**
 
 ---
 
-## Phan tich van de (Situation)
+## Phân tích vấn đề (Situation)
 
-### Tinh huong thuc te
+### Tình huống thực tế
 
-Trong du an platform, mot so trang can xu ly du lieu lon:
+Trong dự án platform, một số trang cần xử lý dữ liệu lớn:
 
 ```markdown
-Trang lich su
-├─ Bang nap tien: 1000+ dong
-├─ Bang rut tien: 800+ dong
-├─ Bang dat cuoc: 5000+ dong
-└─ Moi dong co 8-10 cot (thoi gian, so tien, trang thai, v.v.)
+Trang lịch sử
+├─ Bảng nạp tiền: 1000+ dòng
+├─ Bảng rút tiền: 800+ dòng
+├─ Bảng đặt cược: 5000+ dòng
+└─ Mỗi dòng có 8-10 cột (thời gian, số tiền, trạng thái, v.v.)
 
-Van de khi chua toi uu
-├─ So node DOM: 1000 dong × 10 cot = 10,000+ node
-├─ Chiem bo nho: khoang 150-200 MB
-├─ Thoi gian render dau: 3-5 giay (man hinh trang)
-├─ Giat khi cuon: FPS < 20
-└─ Khi WebSocket cap nhat: toan bo table bi render lai (rat cham)
+Vấn đề khi chưa tối ưu
+├─ Số node DOM: 1000 dòng × 10 cột = 10,000+ node
+├─ Chiếm bộ nhớ: khoảng 150-200 MB
+├─ Thời gian render đầu: 3-5 giây (màn hình trắng)
+├─ Giật khi cuộn: FPS < 20
+└─ Khi WebSocket cập nhật: toàn bộ table bị render lại (rất chậm)
 ```
 
-### Muc do nghiem trong
+### Mức độ nghiêm trọng
 
 ```javascript
-// ❌ Cach truyen thong
-<tr v-for="record in allRecords">  // 1000+ dong render het
+// ❌ Cách truyền thống
+<tr v-for="record in allRecords">  // 1000+ dòng render hết
   <td>{{ record.time }}</td>
   <td>{{ record.amount }}</td>
-  // ... 8-10 cot
+  // ... 8-10 cột
 </tr>
 
-// Ket qua:
-// - Render ban dau: 10,000+ node DOM
-// - Nguoi dung thuc te nhin thay: 20-30 dong
-// - Lang phi: 99% node nguoi dung khong nhin thay
+// Kết quả:
+// - Render ban đầu: 10,000+ node DOM
+// - Người dùng thực tế nhìn thấy: 20-30 dòng
+// - Lãng phí: 99% node người dùng không nhìn thấy
 ```
 
 ---
 
-## Giai phap (Action)
+## Giải pháp (Action)
 
 ### Virtual Scrolling
 
-Xem xet toi uu Virtual Scrolling, co hai huong chinh: mot la chon thu vien thu ba duoc chinh thuc khuyen nghi nhu [vue-virtual-scroller](https://github.com/Akryum/vue-virtual-scroller), xac dinh pham vi dong hien thi theo tham so va nhu cau.
+Xem xét tối ưu Virtual Scrolling, có hai hướng chính: một là chọn thư viện thứ ba được chính thức khuyên nghị như [vue-virtual-scroller](https://github.com/Akryum/vue-virtual-scroller), xác định phạm vi dòng hiển thị theo tham số và nhu cầu.
 
 ```js
-// Chi render dong hien thi, vi du:
-// - 100 dong du lieu, chi render 20 dong hien thi
-// - Giam dang ke so node DOM
+// Chỉ render dòng hiển thị, ví dụ:
+// - 100 dòng dữ liệu, chỉ render 20 dòng hiển thị
+// - Giảm đáng kể số node DOM
 ```
 
-Huong khac la tu code tay, nhung xet den chi phi phat trien thuc te va cac tinh huong bao phu, toi se nghieng ve thu vien thu ba duoc khuyen nghi.
+Hướng khác là tự code tay, nhưng xét đến chi phí phát triển thực tế và các tình huống bao phủ, tôi sẽ nghiêng về thư viện thứ ba được khuyên nghị.
 
-### Kiem soat tan suat cap nhat du lieu
+### Kiểm soát tần suất cập nhật dữ liệu
 
-> Giai phap 1: requestAnimationFrame (RAF)
-> Khai niem: trinh duyet toi da chi ve lai 60 lan/giay (60 FPS), cap nhat nhanh hon mat nguoi cung khong thay, nen dong bo voi tan suat lam moi man hinh
+> Giải pháp 1: requestAnimationFrame (RAF)
+> Khái niệm: trình duyệt tối đa chỉ vẽ lại 60 lần/giây (60 FPS), cập nhật nhanh hơn mắt người cũng không thấy, nên đồng bộ với tần suất làm mới màn hình
 
 ```js
-// ❌ Truoc: nhan du lieu la cap nhat ngay (co the 100 lan/giay)
+// ❌ Trước: nhận dữ liệu là cập nhật ngay (có thể 100 lần/giây)
 socket.on('price', (newPrice) => {
   btcPrice.value = newPrice;
 });
 
-// ✅ Cai thien: thu thap du lieu, dong bo cap nhat voi tan suat man hinh (toi da 60 lan/giay)
+// ✅ Cải thiện: thu thập dữ liệu, đồng bộ cập nhật với tần suất màn hình (tối đa 60 lần/giây)
 let latestPrice = null;
 let isScheduled = false;
 
@@ -96,8 +96,8 @@ socket.on('price', (newPrice) => {
 });
 ```
 
-Giai phap 2: Throttle
-Khai niem: cuong che gioi han tan suat cap nhat, vi du "moi 100ms toi da cap nhat 1 lan"
+Giải pháp 2: Throttle
+Khái niệm: cưỡng chế giới hạn tần suất cập nhật, ví dụ "mỗi 100ms tối đa cập nhật 1 lần"
 
 ```js
 import { throttle } from 'lodash-es';
@@ -109,37 +109,37 @@ const updatePrice = throttle((newPrice) => {
 socket.on('price', updatePrice);
 ```
 
-### Toi uu dac thu Vue 3
+### Tối ưu đặc thù Vue 3
 
-Mot so cu phap duong cua Vue 3 cung cap toi uu hieu nang, nhu v-memo, du ca nhan toi it khi su dung tinh huong nay.
+Một số cú pháp đường của Vue 3 cung cấp tối ưu hiệu năng, như v-memo, dù cá nhân tôi ít khi sử dụng tình huống này.
 
 ```js
-// 1. v-memo - ghi nho cac cot it thay doi
+// 1. v-memo - ghi nhớ các cột ít thay đổi
 <tr v-for="row in data"
   :key="row.id"
-  v-memo="[row.price, row.volume]">  // Chi render lai khi cac truong nay thay doi
+  v-memo="[row.price, row.volume]">  // Chỉ render lại khi các trường này thay đổi
 </tr>
 
-// 2. Dong bang du lieu tinh, tranh chi phi reactive
+// 2. Đóng băng dữ liệu tĩnh, tránh chi phí reactive
 const staticData = Object.freeze(largeDataArray)
 
-// 3. shallowRef cho mang lon
-const tableData = shallowRef([...])  // Chi theo doi mang, khong theo doi object ben trong
+// 3. shallowRef cho mảng lớn
+const tableData = shallowRef([...])  // Chỉ theo dõi mảng, không theo dõi object bên trong
 
-// 4. Dung key toi uu thuat toan diff
-<tr v-for="row in data" :key="row.id">  // Key on dinh
+// 4. Dùng key tối ưu thuật toán diff
+<tr v-for="row in data" :key="row.id">  // Key ổn định
 ```
 
-### Toi uu render DOM
+### Tối ưu render DOM
 
 ```scss
-// Dung CSS transform thay vi top/left
+// Dùng CSS transform thay vì top/left
 .row-update {
-  transform: translateY(0); /* Kich hoat GPU tang toc */
-  will-change: transform; /* Goi y trinh duyet toi uu */
+  transform: translateY(0); /* Kích hoạt GPU tăng tốc */
+  will-change: transform; /* Gợi ý trình duyệt tối ưu */
 }
 
-// CSS containment cach ly pham vi render
+// CSS containment cách ly phạm vi render
 .table-container {
   contain: layout style paint;
 }
@@ -147,46 +147,46 @@ const tableData = shallowRef([...])  // Chi theo doi mang, khong theo doi object
 
 ---
 
-## Ket qua toi uu (Result)
+## Kết quả tối ưu (Result)
 
-### So sanh hieu nang
+### So sánh hiệu năng
 
-| Chi so          | Truoc toi uu   | Sau toi uu     | Cai thien  |
+| Chỉ số          | Trước tối ưu   | Sau tối ưu     | Cải thiện  |
 | --------------- | -------------- | -------------- | ---------- |
-| So node DOM     | 10,000+        | 20-30          | ↓ 99.7%   |
-| Su dung bo nho  | 150-200 MB     | 30-40 MB       | ↓ 80%     |
-| Render dau      | 3-5 giay       | 0.3-0.5 giay   | ↑ 90%     |
-| FPS cuon        | < 20           | 55-60          | ↑ 200%    |
-| Phan hoi cap nhat | 500-800 ms   | 16-33 ms       | ↑ 95%     |
+| Số node DOM     | 10,000+        | 20-30          | ↓ 99.7%   |
+| Sử dụng bộ nhớ  | 150-200 MB     | 30-40 MB       | ↓ 80%     |
+| Render đầu      | 3-5 giây       | 0.3-0.5 giây   | ↑ 90%     |
+| FPS cuộn        | < 20           | 55-60          | ↑ 200%    |
+| Phản hồi cập nhật | 500-800 ms   | 16-33 ms       | ↑ 95%     |
 
-### Ket qua thuc te
+### Kết quả thực tế
 
 ```markdown
 ✅ Virtual Scrolling
-├─ Chi render 20-30 dong hien thi
-├─ Cap nhat dong pham vi hien thi khi cuon
-├─ Nguoi dung khong cam nhan (trai nghiem muot)
-└─ Bo nho on dinh (khong tang theo luong du lieu)
+├─ Chỉ render 20-30 dòng hiển thị
+├─ Cập nhật động phạm vi hiển thị khi cuộn
+├─ Người dùng không cảm nhận (trải nghiệm mượt)
+└─ Bộ nhớ ổn định (không tăng theo lượng dữ liệu)
 
-✅ Cap nhat du lieu qua RAF
-├─ WebSocket 100 cap nhat/giay → toi da 60 render
-├─ Dong bo voi tan suat lam moi (60 FPS)
-└─ Su dung CPU giam 60%
+✅ Cập nhật dữ liệu qua RAF
+├─ WebSocket 100 cập nhật/giây → tối đa 60 render
+├─ Đồng bộ với tần suất làm mới (60 FPS)
+└─ Sử dụng CPU giảm 60%
 
-✅ Toi uu Vue 3
-├─ v-memo: tranh render lai khong can thiet
-├─ shallowRef: giam chi phi reactive
-└─ :key on dinh: toi uu thuat toan diff
+✅ Tối ưu Vue 3
+├─ v-memo: tránh render lại không cần thiết
+├─ shallowRef: giảm chi phí reactive
+└─ :key ổn định: tối ưu thuật toán diff
 ```
 
 ---
 
-## Diem chinh phong van
+## Điểm chính phỏng vấn
 
-### Cau hoi mo rong thuong gap
+### Câu hỏi mở rộng thường gặp
 
-**Q: Neu khong dung thu vien thu ba thi sao?**
-A: Tu trien khai logic cot loi cua Virtual Scrolling:
+**Q: Nếu không dùng thư viện thứ ba thì sao?**
+A: Tự triển khai logic cốt lõi của Virtual Scrolling:
 
 ```javascript
 const itemHeight = 50;
@@ -203,8 +203,8 @@ const paddingTop = startIndex * itemHeight;
 const paddingBottom = (allItems.length - endIndex) * itemHeight;
 ```
 
-**Q: Xu ly ket noi lai khi WebSocket mat ket noi nhu the nao?**
-A: Trien khai chien luoc ket noi lai voi exponential backoff:
+**Q: Xử lý kết nối lại khi WebSocket mất kết nối như thế nào?**
+A: Triển khai chiến lược kết nối lại với exponential backoff:
 
 ```javascript
 let retryCount = 0;
@@ -213,7 +213,7 @@ const baseDelay = 1000;
 
 function reconnect() {
   if (retryCount >= maxRetries) {
-    showError('Khong the ket noi, vui long tai lai trang');
+    showError('Không thể kết nối, vui lòng tải lại trang');
     return;
   }
 
@@ -228,39 +228,39 @@ function reconnect() {
 socket.on('connect', () => {
   retryCount = 0;
   syncData();
-  showSuccess('Da ket noi lai');
+  showSuccess('Đã kết nối lại');
 });
 ```
 
-**Q: Virtual Scroll co nhuoc diem gi?**
-A: Can luu y cac danh doi:
+**Q: Virtual Scroll có nhược điểm gì?**
+A: Cần lưu ý các đánh đổi:
 
 ```markdown
-❌ Nhuoc diem
-├─ Khong the dung tim kiem goc trinh duyet (Ctrl+F)
-├─ Chuc nang "chon tat ca" can xu ly dac biet
-├─ Do phuc tap trien khai cao
-├─ Can chieu cao co dinh hoac tinh truoc chieu cao
-└─ Tinh nang accessibility can xu ly bo sung
+❌ Nhược điểm
+├─ Không thể dùng tìm kiếm gốc trình duyệt (Ctrl+F)
+├─ Chức năng "chọn tất cả" cần xử lý đặc biệt
+├─ Độ phức tạp triển khai cao
+├─ Cần chiều cao cố định hoặc tính trước chiều cao
+└─ Tính năng accessibility cần xử lý bổ sung
 
-✅ Truong hop phu hop
-├─ Luong du lieu > 100 dong
-├─ Cau truc du lieu tuong tu (chieu cao co dinh)
-├─ Can cuon hieu nang cao
-└─ Chu yeu xem (khong chinh sua)
+✅ Trường hợp phù hợp
+├─ Lượng dữ liệu > 100 dòng
+├─ Cấu trúc dữ liệu tương tự (chiều cao cố định)
+├─ Cần cuộn hiệu năng cao
+└─ Chủ yếu xem (không chỉnh sửa)
 
-❌ Truong hop khong phu hop
-├─ Luong du lieu < 50 dong (thiet ke qua muc)
-├─ Chieu cao khong co dinh (trien khai kho)
-├─ Nhieu tuong tac (multi-select, keo tha)
-└─ Can in toan bo bang
+❌ Trường hợp không phù hợp
+├─ Lượng dữ liệu < 50 dòng (thiết kế quá mức)
+├─ Chiều cao không cố định (triển khai khó)
+├─ Nhiều tương tác (multi-select, kéo thả)
+└─ Cần in toàn bộ bảng
 ```
 
-**Q: Toi uu danh sach chieu cao khong deu nhu the nao?**
-A: Dung Virtual Scrolling chieu cao dong:
+**Q: Tối ưu danh sách chiều cao không đều như thế nào?**
+A: Dùng Virtual Scrolling chiều cao động:
 
 ```javascript
-// Phuong an 1: chieu cao uoc tinh + do thuc te
+// Phương án 1: chiều cao ước tính + đo thực tế
 const estimatedHeight = 50;
 const measuredHeights = {};
 
@@ -271,7 +271,7 @@ onMounted(() => {
   });
 });
 
-// Phuong an 2: dung thu vien ho tro chieu cao dong
+// Phương án 2: dùng thư viện hỗ trợ chiều cao động
 <DynamicScroller
   :items="items"
   :min-item-size="50"
@@ -281,20 +281,20 @@ onMounted(() => {
 
 ---
 
-## So sanh ky thuat
+## So sánh kỹ thuật
 
-### Virtual Scroll vs Phan trang
+### Virtual Scroll vs Phân trang
 
-| Tieu chi         | Virtual Scroll            | Phan trang truyen thong   |
+| Tiêu chí         | Virtual Scroll            | Phân trang truyền thống   |
 | ---------------- | ------------------------- | ------------------------- |
-| Trai nghiem nguoi dung | Cuon lien tuc (tot hon) | Can lat trang (gian doan) |
-| Hieu nang        | Luon chi render vung hien thi | Render toan bo moi trang |
-| Do kho trien khai | Phuc tap hon             | Don gian                  |
-| SEO              | Kem hon                   | Tot hon                   |
-| Accessibility    | Can xu ly dac biet        | Ho tro goc                |
+| Trải nghiệm người dùng | Cuộn liên tục (tốt hơn) | Cần lật trang (gián đoạn) |
+| Hiệu năng        | Luôn chỉ render vùng hiển thị | Render toàn bộ mỗi trang |
+| Độ khó triển khai | Phức tạp hơn             | Đơn giản                  |
+| SEO              | Kém hơn                   | Tốt hơn                   |
+| Accessibility    | Cần xử lý đặc biệt        | Hỗ trợ gốc                |
 
-**Khuyen nghi:**
+**Khuyên nghị:**
 
 - Back-office, Dashboard → Virtual Scroll
-- Trang web cong khai, blog → Phan trang truyen thong
-- Giai phap ket hop: Virtual Scroll + nut "Tai them"
+- Trang web công khai, blog → Phân trang truyền thống
+- Giải pháp kết hợp: Virtual Scroll + nút "Tải thêm"

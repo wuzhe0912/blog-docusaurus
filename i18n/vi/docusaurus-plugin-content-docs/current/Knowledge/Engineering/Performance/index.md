@@ -1,28 +1,28 @@
 ---
 id: performance-interview-index
-title: 'Tong quan toi uu hoa hieu nang web'
+title: 'Tổng quan tối ưu hóa hiệu năng web'
 slug: /experience/performance
 tags: [Experience, Interview, Performance]
 ---
 
-> Tich luy kinh nghiem thuc te va diem chinh phong van ve toi uu hoa hieu nang web, sap xep theo do kho tang dan.
+> Tích lũy kinh nghiệm thực tế và điểm chính phỏng vấn về tối ưu hóa hiệu năng web, sắp xếp theo độ khó tăng dần.
 
 ---
 
-## Lo trinh hoc tap
+## Lộ trình học tập
 
-### Lv1 Co ban
+### Lv1 Cơ bản
 
-- [Toi uu hoa cap route: ba tang Lazy Loading](/docs/experience/performance/lv1-route-optimization)
-- [Toi uu hoa tai hinh anh: bon tang Lazy Load](/docs/experience/performance/lv1-image-optimization)
+- [Tối ưu hóa cấp route: ba tầng Lazy Loading](/docs/experience/performance/lv1-route-optimization)
+- [Tối ưu hóa tải hình ảnh: bốn tầng Lazy Load](/docs/experience/performance/lv1-image-optimization)
 
-### Lv2 Nang cao
+### Lv2 Nâng cao
 
-- [Toi uu hoa hieu nang JavaScript: Debounce, Throttle, Time Slicing](/docs/experience/performance/lv2-js-optimization)
+- [Tối ưu hóa hiệu năng JavaScript: Debounce, Throttle, Time Slicing](/docs/experience/performance/lv2-js-optimization)
 
-### Lv3 Mo rong
+### Lv3 Mở rộng
 
-- [Trien khai Virtual Scrolling: xu ly render du lieu lon](/docs/experience/performance/lv3-virtual-scroll)
-- [Ung dung Web Worker: tinh toan nen khong chan UI](/docs/experience/performance/lv3-web-worker)
-- [Chien luoc toi uu du lieu lon: lua chon giai phap va trien khai](/docs/experience/performance/lv3-large-data-optimization)
-- [Toi uu hieu nang Nuxt 3: Bundle Size, toc do SSR va toi uu hinh anh](/docs/experience/performance/lv3-nuxt-performance)
+- [Triển khai Virtual Scrolling: xử lý render dữ liệu lớn](/docs/experience/performance/lv3-virtual-scroll)
+- [Ứng dụng Web Worker: tính toán nền không chặn UI](/docs/experience/performance/lv3-web-worker)
+- [Chiến lược tối ưu dữ liệu lớn: lựa chọn giải pháp và triển khai](/docs/experience/performance/lv3-large-data-optimization)
+- [Tối ưu hiệu năng Nuxt 3: Bundle Size, tốc độ SSR và tối ưu hình ảnh](/docs/experience/performance/lv3-nuxt-performance)

@@ -1,29 +1,29 @@
 ---
 id: project-architecture-browser-compatibility
-title: 'Xu ly tuong thich trinh duyet'
+title: 'Xử lý tương thích trình duyệt'
 slug: /experience/project-architecture/browser-compatibility
 tags: [Experience, Interview, Project-Architecture]
 ---
 
-> Xu ly cac van de tuong thich giua cac trinh duyet, dac biet la xu ly dac biet cho Safari va thiet bi di dong.
+> Xử lý các vấn đề tương thích giữa các trình duyệt, đặc biệt là xử lý đặc biệt cho Safari và thiết bị di động.
 
 ---
 
-## Tuong thich trinh duyet
+## Tương thích trình duyệt
 
-> Don vi viewport nho (Small Viewport Units): svh
-> Don vi viewport lon (Large Viewport Units): lvh
-> Don vi viewport dong (Dynamic Viewport Units): dvh
+> Đơn vị viewport nhỏ (Small Viewport Units): svh
+> Đơn vị viewport lớn (Large Viewport Units): lvh
+> Đơn vị viewport động (Dynamic Viewport Units): dvh
 
-Trong cac tinh huong cu the, cho phep su dung cu phap moi dvh de giai quyet van de thanh noi cua Safari do thiet ke kem. Neu can buoc tuong thich voi cac trinh duyet cu hoac it pho bien, thi su dung JS de phat hien chieu cao.
+Trong các tình huống cụ thể, cho phép sử dụng cú pháp mới dvh để giải quyết vấn đề thanh nổi của Safari do thiết kế kém. Nếu cần buộc tương thích với các trình duyệt cũ hoặc ít phổ biến, thì sử dụng JS để phát hiện chiều cao.
 
-## Ngan chan iOS Safari tu dong dieu chinh kich thuoc van ban
+## Ngăn chặn iOS Safari tự động điều chỉnh kích thước văn bản
 
 ```css
 -webkit-text-size-adjust: none;
 text-size-adjust: none;
 ```
 
-## Tien to nha cung cap
+## Tiền tố nhà cung cấp
 
-Tien to nha cung cap duoc xu ly thong qua cau hinh thu cong ket hop voi cau hinh tu dong cua Autoprefixer.
+Tiền tố nhà cung cấp được xử lý thông qua cấu hình thủ công kết hợp với cấu hình tự động của Autoprefixer.

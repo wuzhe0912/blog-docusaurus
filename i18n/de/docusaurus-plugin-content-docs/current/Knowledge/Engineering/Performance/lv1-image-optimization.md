@@ -5,15 +5,15 @@ slug: /experience/performance/lv1-image-optimization
 tags: [Experience, Interview, Performance, Lv1]
 ---
 
-> Durch eine vierstufige Lazy-Loading-Strategie fuer Bilder wurde der Bilder-Traffic der ersten Ansicht von 60 MB auf 2 MB reduziert, mit einer Ladezeitverbesserung von 85%.
+> Durch eine vierstufige Lazy-Loading-Strategie für Bilder wurde der Bilder-Traffic der ersten Ansicht von 60 MB auf 2 MB reduziert, mit einer Ladezeitverbesserung von 85%.
 
 ---
 
 ## Problemhintergrund (Situation)
 
-> Stellen Sie sich vor, Sie scrollen auf dem Handy durch eine Webseite. Der Bildschirm zeigt nur 10 Bilder, aber die Seite laedt alle 500 Bilder komplett. Ihr Handy wuerde einfrieren und das Datenvolumen wuerde sofort 50 MB verbrauchen.
+> Stellen Sie sich vor, Sie scrollen auf dem Handy durch eine Webseite. Der Bildschirm zeigt nur 10 Bilder, aber die Seite lädt alle 500 Bilder komplett. Ihr Handy würde einfrieren und das Datenvolumen würde sofort 50 MB verbrauchen.
 
-**Tatsaechliche Projektsituation:**
+**Tatsächliche Projektsituation:**
 
 ```markdown
 Statistiken einer Startseite
@@ -21,15 +21,15 @@ Statistiken einer Startseite
 - 50+ Werbebanner
 - Wenn alles geladen wird: 300 x 200 KB = 60 MB+ Bilddaten
 
-Tatsaechliche Probleme
+Tatsächliche Probleme
 - Erste Ansicht zeigt nur 8-12 Bilder
-- Benutzer scrollt moeglicherweise nur bis Bild 30 und verlaesst die Seite
-- Restliche 270 Bilder werden voellig umsonst geladen (Traffic-Verschwendung + Verlangsamung)
+- Benutzer scrollt möglicherweise nur bis Bild 30 und verlässt die Seite
+- Restliche 270 Bilder werden völlig umsonst geladen (Traffic-Verschwendung + Verlangsamung)
 
 Auswirkungen
 - Erstladezeit: 15-20 Sekunden
 - Datenverbrauch: 60 MB+ (Nutzerbeschwerden)
-- Seitenruckeln: Scrollen nicht fluessig
+- Seitenruckeln: Scrollen nicht flüssig
 - Absprungrate: 42% (sehr hoch)
 ```
 
@@ -37,11 +37,11 @@ Auswirkungen
 
 1. **Nur Bilder im sichtbaren Bereich laden**
 2. **Bilder vorladen, die kurz vor dem Viewport stehen** (50 px vorher mit dem Laden beginnen)
-3. **Parallelitaet kontrollieren** (vermeiden, dass zu viele Bilder gleichzeitig geladen werden)
+3. **Parallelität kontrollieren** (vermeiden, dass zu viele Bilder gleichzeitig geladen werden)
 4. **Ressourcenverschwendung durch schnelles Wechseln verhindern**
 5. **Bilder-Traffic der ersten Ansicht < 3 MB**
 
-## Loesung (Action)
+## Lösung (Action)
 
 ### v-lazy-load.ts Implementierung
 
@@ -50,7 +50,7 @@ Auswirkungen
 #### Erste Ebene: Viewport-Sichtbarkeitserkennung (IntersectionObserver)
 
 ```js
-// Observer erstellen, der ueberwacht, ob ein Bild den Viewport betritt
+// Observer erstellen, der überwacht, ob ein Bild den Viewport betritt
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -62,16 +62,16 @@ const observer = new IntersectionObserver(
   },
   {
     rootMargin: '50px 0px', // 50 px vorher mit dem Laden beginnen (Vorladen)
-    threshold: 0.1, // Ausloesen, sobald 10% sichtbar sind
+    threshold: 0.1, // Auslösen, sobald 10% sichtbar sind
   }
 );
 ```
 
-- Verwendet die native IntersectionObserver API des Browsers (Performance weit ueberlegen gegenueber Scroll-Events)
-- rootMargin: "50px" -> Wenn das Bild noch 50 px unterhalb ist, beginnt bereits das Laden; wenn der Benutzer dort ankommt, ist es bereits fertig (fuehlbar fluessiger)
+- Verwendet die native IntersectionObserver API des Browsers (Performance weit überlegen gegenüber Scroll-Events)
+- rootMargin: "50px" -> Wenn das Bild noch 50 px unterhalb ist, beginnt bereits das Laden; wenn der Benutzer dort ankommt, ist es bereits fertig (fühlbar flüssiger)
 - Bilder außerhalb des Viewports werden nicht geladen
 
-#### Zweite Ebene: Parallelitaetskontrollmechanismus (Queue-Management)
+#### Zweite Ebene: Parallelitätskontrollmechanismus (Queue-Management)
 
 ```js
 class LazyLoadQueue {
@@ -90,28 +90,28 @@ class LazyLoadQueue {
 ```
 
 - Auch wenn 20 Bilder gleichzeitig den Viewport betreten, werden nur 6 gleichzeitig geladen
-- Vermeidet "Kaskaden-Laden", das den Browser blockiert (Chrome erlaubt standardmaessig maximal 6 gleichzeitige Anfragen)
-- Nach Abschluss wird automatisch das naechste aus der Warteschlange verarbeitet
+- Vermeidet "Kaskaden-Laden", das den Browser blockiert (Chrome erlaubt standardmäßig maximal 6 gleichzeitige Anfragen)
+- Nach Abschluss wird automatisch das nächste aus der Warteschlange verarbeitet
 
 ```md
-Benutzer scrollt schnell zum Ende -> 30 Bilder gleichzeitig ausgeloest
+Benutzer scrollt schnell zum Ende -> 30 Bilder gleichzeitig ausgelöst
 Ohne Queue-Management: 30 Anfragen gleichzeitig -> Browser friert ein
-Mit Queue-Management: Erste 6 laden -> nach Abschluss naechste 6 -> fluessig
+Mit Queue-Management: Erste 6 laden -> nach Abschluss nächste 6 -> flüssig
 ```
 
-#### Dritte Ebene: Loesung des Ressourcen-Race-Condition-Problems (Versionskontrolle)
+#### Dritte Ebene: Lösung des Ressourcen-Race-Condition-Problems (Versionskontrolle)
 
 ```js
 // Versionsnummer beim Laden setzen
 el.setAttribute('data-version', Date.now().toString());
 
-// Version nach dem Laden ueberpruefen
+// Version nach dem Laden überprüfen
 img.onload = () => {
   const currentVersion = img.getAttribute('data-version');
   if (loadVersion === currentVersion) {
-    // Version stimmt ueberein, Bild anzeigen
+    // Version stimmt überein, Bild anzeigen
   } else {
-    // Version stimmt nicht ueberein, Benutzer hat bereits gewechselt, nicht anzeigen
+    // Version stimmt nicht überein, Benutzer hat bereits gewechselt, nicht anzeigen
   }
 };
 ```
@@ -121,18 +121,18 @@ Praxisbeispiel:
 ```md
 Benutzeraktionen:
 
-1. Klickt auf Kategorie "Nachrichten" -> Laden von 100 Bildern ausgeloest (Version 1001)
-2. 0,5 Sekunden spaeter klickt auf "Aktionen" -> Laden von 80 Bildern ausgeloest (Version 1002)
-3. Nachrichtenbilder sind erst 1 Sekunde spaeter fertig geladen
+1. Klickt auf Kategorie "Nachrichten" -> Laden von 100 Bildern ausgelöst (Version 1001)
+2. 0,5 Sekunden später klickt auf "Aktionen" -> Laden von 80 Bildern ausgelöst (Version 1002)
+3. Nachrichtenbilder sind erst 1 Sekunde später fertig geladen
 
 Ohne Versionskontrolle: Nachrichtenbilder werden angezeigt (falsch!)
-Mit Versionskontrolle: Versionspruefung ergibt Unstimmigkeit, Nachrichtenbilder werden verworfen (korrekt!)
+Mit Versionskontrolle: Versionsprüfung ergibt Unstimmigkeit, Nachrichtenbilder werden verworfen (korrekt!)
 ```
 
 #### Vierte Ebene: Platzhalter-Strategie (Base64 transparentes Bild)
 
 ```js
-// Standardmaessig 1x1 transparentes SVG anzeigen, um Layout-Verschiebung zu vermeiden
+// Standardmäßig 1x1 transparentes SVG anzeigen, um Layout-Verschiebung zu vermeiden
 el.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIi...';
 
 // Echte Bild-URL in data-src speichern
@@ -141,7 +141,7 @@ el.setAttribute('data-src', realImageUrl);
 
 - Verwendet Base64-kodiertes transparentes SVG (nur 100 Bytes)
 - Vermeidet CLS (Cumulative Layout Shift)
-- Benutzer sieht kein "ploetzlich erscheinendes Bild"
+- Benutzer sieht kein "plötzlich erscheinendes Bild"
 
 ## Optimierungsergebnis (Result)
 
@@ -150,7 +150,7 @@ el.setAttribute('data-src', realImageUrl);
 ```markdown
 Bilder der ersten Ansicht: Alle 300 Bilder auf einmal (60 MB)
 Ladezeit: 15-20 Sekunden
-Scroll-Fluessigkeit: starkes Ruckeln
+Scroll-Flüssigkeit: starkes Ruckeln
 Absprungrate: 42%
 ```
 
@@ -159,7 +159,7 @@ Absprungrate: 42%
 ```markdown
 Bilder der ersten Ansicht: Nur 8-12 Bilder (2 MB) -97%
 Ladezeit: 2-3 Sekunden +85%
-Scroll-Fluessigkeit: fluessig (60 fps)
+Scroll-Flüssigkeit: flüssig (60 fps)
 Absprungrate: 28% -33%
 ```
 
@@ -172,23 +172,23 @@ Absprungrate: 28% -33%
 
 **Technische Indikatoren:**
 
-- IntersectionObserver Performance: weit ueberlegen gegenueber traditionellem Scroll-Event (CPU-Nutzung um 80% reduziert)
-- Effekt der Parallelitaetskontrolle: Verhindert Anfragenblockierung des Browsers
-- Trefferquote der Versionskontrolle: 99,5% (auesserst selten falsche Bilder)
+- IntersectionObserver Performance: weit überlegen gegenüber traditionellem Scroll-Event (CPU-Nutzung um 80% reduziert)
+- Effekt der Parallelitätskontrolle: Verhindert Anfragenblockierung des Browsers
+- Trefferquote der Versionskontrolle: 99,5% (äußerst selten falsche Bilder)
 
 ## Interview-Schwerpunkte
 
-**Haeufige Erweiterungsfragen:**
+**Häufige Erweiterungsfragen:**
 
 1. **F: Warum nicht einfach das `loading="lazy"`-Attribut verwenden?**
-   A: Das native `loading="lazy"` hat einige Einschraenkungen:
+   A: Das native `loading="lazy"` hat einige Einschränkungen:
 
-   - Keine Kontrolle ueber die Vorladeentfernung (Browser entscheidet)
-   - Keine Kontrolle ueber die Parallelitaetsmenge
+   - Keine Kontrolle über die Vorladeentfernung (Browser entscheidet)
+   - Keine Kontrolle über die Parallelitätsmenge
    - Kein Umgang mit Versionskontrolle (Problem bei schnellem Wechsel)
-   - Aeltere Browser unterstuetzen es nicht
+   - Ältere Browser unterstützen es nicht
 
-   Eine benutzerdefinierte Directive bietet feinere Kontrolle, geeignet fuer unsere komplexen Szenarien.
+   Eine benutzerdefinierte Directive bietet feinere Kontrolle, geeignet für unsere komplexen Szenarien.
 
 2. **F: Was ist am IntersectionObserver besser als an Scroll-Events?**
    A:
@@ -196,33 +196,33 @@ Absprungrate: 28% -33%
    ```javascript
    // Traditionelles Scroll-Event
    window.addEventListener('scroll', () => {
-     // Wird bei jedem Scrollen ausgeloest (60 Mal/Sekunde)
+     // Wird bei jedem Scrollen ausgelöst (60 Mal/Sekunde)
      // Muss Elementposition berechnen (getBoundingClientRect)
      // Kann erzwungenen Reflow verursachen (Performance-Killer)
    });
 
    // IntersectionObserver
    const observer = new IntersectionObserver(callback);
-   // Wird nur ausgeloest, wenn Element den Viewport betritt/verlaesst
+   // Wird nur ausgelöst, wenn Element den Viewport betritt/verlässt
    // Native Browser-Optimierung, blockiert nicht den Hauptthread
    // 80% Performance-Verbesserung
    ```
 
-3. **F: Woher kommt das 6-Bilder-Limit bei der Parallelitaetskontrolle?**
-   A: Basiert auf dem **HTTP/1.1 Same-Origin-Parallelitaetslimit** des Browsers:
+3. **F: Woher kommt das 6-Bilder-Limit bei der Parallelitätskontrolle?**
+   A: Basiert auf dem **HTTP/1.1 Same-Origin-Parallelitätslimit** des Browsers:
 
    - Chrome/Firefox: Maximal 6 gleichzeitige Verbindungen pro Domain
-   - Anfragen ueber dem Limit werden in die Warteschlange gestellt
-   - HTTP/2 erlaubt mehr, aber aus Kompatibilitaetsgruenden halten wir bei 6
+   - Anfragen über dem Limit werden in die Warteschlange gestellt
+   - HTTP/2 erlaubt mehr, aber aus Kompatibilitätsgründen halten wir bei 6
    - Reale Tests: 6 gleichzeitige Bilder sind das optimale Gleichgewicht zwischen Performance und Erlebnis
 
-4. **F: Warum Timestamp statt UUID fuer die Versionskontrolle?**
+4. **F: Warum Timestamp statt UUID für die Versionskontrolle?**
    A:
 
    - Timestamp: `Date.now()` (einfach, ausreichend, sortierbar)
    - UUID: `crypto.randomUUID()` (strenger, aber Over-Engineering)
    - Unser Szenario: Timestamp ist ausreichend eindeutig (Millisekundenebene)
-   - Performance-Ueberlegung: Timestamp-Generierung ist schneller
+   - Performance-Überlegung: Timestamp-Generierung ist schneller
 
 5. **F: Wie wird mit fehlgeschlagenem Bildladen umgegangen?**
    A: Mehrstufiges Fallback implementiert:
@@ -246,11 +246,11 @@ Absprungrate: 28% -33%
    <!-- 1. Standard-Platzhalter-SVG -->
    <img src="data:image/svg+xml..." />
 
-   <!-- 2. CSS aspect-ratio fuer festes Verhaeltnis -->
+   <!-- 2. CSS aspect-ratio für festes Verhältnis -->
    <img style="aspect-ratio: 16/9;" />
 
    <!-- 3. Skeleton Screen -->
    <div class="skeleton-box"></div>
    ```
 
-   Endgueltiger CLS-Score: < 0,1 (ausgezeichnet)
+   Endgültiger CLS-Score: < 0,1 (ausgezeichnet)

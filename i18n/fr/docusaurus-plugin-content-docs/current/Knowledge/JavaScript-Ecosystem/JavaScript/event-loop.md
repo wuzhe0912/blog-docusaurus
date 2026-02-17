@@ -9,16 +9,16 @@ tags: [JavaScript, Quiz, Medium]
 
 > Pourquoi JavaScript a-t-il besoin du traitement asynchrone ? Et expliquez le callback et l'event loop
 
-JavaScript est essentiellement un langage monothread, car l'une de ses taches est de modifier la structure DOM du navigateur. Si plusieurs threads modifiaient le meme noeud simultanement, la situation deviendrait tres complexe. Pour eviter cela, le monothread a ete adopte.
+JavaScript est essentiellement un langage monothread, car l'une de ses tâches est de modifier la structure DOM du navigateur. Si plusieurs threads modifiaient le même nœud simultanément, la situation deviendrait très complexe. Pour éviter cela, le monothread a été adopté.
 
-Le traitement asynchrone est une solution viable dans le contexte du monothread. Si une action necessite 2 secondes d'attente, le navigateur ne peut evidemment pas attendre sur place. Il execute donc d'abord tout le travail synchrone, tandis que les taches asynchrones sont placees dans la task queue (file d'attente des taches).
+Le traitement asynchrone est une solution viable dans le contexte du monothread. Si une action nécessite 2 secondes d'attente, le navigateur ne peut évidemment pas attendre sur place. Il exécute donc d'abord tout le travail synchrone, tandis que les tâches asynchrones sont placées dans la task queue (file d'attente des tâches).
 
-L'environnement ou le navigateur execute le travail synchrone peut etre compris comme le call stack. Le navigateur execute sequentiellement les taches dans le call stack. Lorsqu'il detecte que le call stack est vide, il prend les taches en attente de la task queue et les place dans le call stack pour les executer sequentiellement.
+L'environnement où le navigateur exécute le travail synchrone peut être compris comme le call stack. Le navigateur exécute séquentiellement les tâches dans le call stack. Lorsqu'il détecte que le call stack est vide, il prend les tâches en attente de la task queue et les place dans le call stack pour les exécuter séquentiellement.
 
-1. Le navigateur verifie si le call stack est vide => Non => Continue l'execution des taches dans le call stack
-2. Le navigateur verifie si le call stack est vide => Oui => Verifie s'il y a des taches en attente dans la task queue => Oui => Les deplace dans le call stack pour execution
+1. Le navigateur vérifie si le call stack est vide => Non => Continue l'exécution des tâches dans le call stack
+2. Le navigateur vérifie si le call stack est vide => Oui => Vérifie s'il y a des tâches en attente dans la task queue => Oui => Les déplace dans le call stack pour exécution
 
-Ce processus de repetition continue est le concept de l'event loop.
+Ce processus de répétition continue est le concept de l'event loop.
 
 ```js
 console.log(1);
@@ -35,26 +35,26 @@ console.log(3);
 
 ## 2. Why is setInterval not accurate in terms of timing ?
 
-> Pourquoi `setInterval` n'est-il pas precis en termes de timing ?
+> Pourquoi `setInterval` n'est-il pas précis en termes de timing ?
 
-1. Etant donne que JavaScript est un langage monothread (il ne peut executer qu'une tache a la fois, les autres doivent attendre dans la Queue), lorsque le temps d'execution du callback de setInterval depasse l'intervalle configure, l'execution suivante est retardee. Par exemple, si setInterval est configure pour executer une fonction chaque seconde, mais qu'une action dans la fonction prend deux secondes, la prochaine execution sera retardee d'une seconde. Au fil du temps, le timing de setInterval devient de plus en plus imprecis.
+1. Étant donné que JavaScript est un langage monothread (il ne peut exécuter qu'une tâche à la fois, les autres doivent attendre dans la Queue), lorsque le temps d'exécution du callback de setInterval dépasse l'intervalle configuré, l'exécution suivante est retardée. Par exemple, si setInterval est configuré pour exécuter une fonction chaque seconde, mais qu'une action dans la fonction prend deux secondes, la prochaine exécution sera retardée d'une seconde. Au fil du temps, le timing de setInterval devient de plus en plus imprécis.
 
-2. Les navigateurs ou environnements d'execution imposent egalement des limites. Dans la plupart des navigateurs principaux (Chrome, Firefox, Safari, etc.), l'intervalle minimum est d'environ 4 millisecondes. Meme avec un reglage a 1 milliseconde, l'execution reelle ne se fait que toutes les 4 millisecondes.
+2. Les navigateurs ou environnements d'exécution imposent également des limites. Dans la plupart des navigateurs principaux (Chrome, Firefox, Safari, etc.), l'intervalle minimum est d'environ 4 millisecondes. Même avec un réglage à 1 milliseconde, l'exécution réelle ne se fait que toutes les 4 millisecondes.
 
-3. Lorsque le systeme execute des taches tres gourmandes en memoire ou en CPU, cela provoque egalement des retards. Des operations comme le montage video ou le traitement d'images ont une forte probabilite de causer des retards.
+3. Lorsque le système exécute des tâches très gourmandes en mémoire ou en CPU, cela provoque également des retards. Des opérations comme le montage vidéo ou le traitement d'images ont une forte probabilité de causer des retards.
 
-4. JavaScript possede un mecanisme de Garbage Collection. Si la fonction du setInterval cree de nombreux objets qui ne sont plus utilises apres execution, ils seront collectes par le GC, ce qui cause egalement des retards.
+4. JavaScript possède un mécanisme de Garbage Collection. Si la fonction du setInterval crée de nombreux objets qui ne sont plus utilisés après exécution, ils seront collectés par le GC, ce qui cause également des retards.
 
 ### Alternatives
 
 #### requestAnimationFrame
 
-Si `setInterval` est actuellement utilise pour implementer des animations, `requestAnimationFrame` peut etre envisage comme remplacement.
+Si `setInterval` est actuellement utilisé pour implémenter des animations, `requestAnimationFrame` peut être envisagé comme remplacement.
 
-- Synchronise avec le repaint du navigateur : S'execute lorsque le navigateur est pret a dessiner un nouveau frame. C'est beaucoup plus precis que d'essayer de deviner le moment du repaint avec setInterval ou setTimeout.
-- Performance : Etant synchronise avec le repaint, il ne s'execute pas quand le navigateur juge qu'un repaint n'est pas necessaire. Cela economise des ressources de calcul, surtout quand l'onglet n'est pas au premier plan ou est minimise.
-- Limitation automatique : Ajuste automatiquement la frequence d'execution selon l'appareil et la situation, generalement 60 frames par seconde.
-- Parametre temporel de haute precision : Peut recevoir un parametre temporel de haute precision (type DOMHighResTimeStamp, precis a la microseconde) pour controler plus precisement les animations ou autres operations sensibles au temps.
+- Synchronisé avec le repaint du navigateur : S'exécute lorsque le navigateur est prêt à dessiner un nouveau frame. C'est beaucoup plus précis que d'essayer de deviner le moment du repaint avec setInterval ou setTimeout.
+- Performance : Étant synchronisé avec le repaint, il ne s'exécute pas quand le navigateur juge qu'un repaint n'est pas nécessaire. Cela économise des ressources de calcul, surtout quand l'onglet n'est pas au premier plan ou est minimisé.
+- Limitation automatique : Ajuste automatiquement la fréquence d'exécution selon l'appareil et la situation, généralement 60 frames par seconde.
+- Paramètre temporel de haute précision : Peut recevoir un paramètre temporel de haute précision (type DOMHighResTimeStamp, précis à la microseconde) pour contrôler plus précisément les animations ou autres opérations sensibles au temps.
 
 ##### Example
 
@@ -68,7 +68,7 @@ function moveElement(timestamp) {
     'myElement'
   ).style.transform = `translateX(${startPos}px)`;
 
-  // Si l'element n'a pas encore atteint sa position cible, continuer l'animation
+  // Si l'élément n'a pas encore atteint sa position cible, continuer l'animation
   if (startPos < 500) {
     requestAnimationFrame(moveElement);
   }
@@ -78,4 +78,4 @@ function moveElement(timestamp) {
 requestAnimationFrame(moveElement);
 ```
 
-`moveElement()` met a jour la position de l'element a chaque frame (generalement 60 frames par seconde) jusqu'a atteindre 500 pixels. Cette methode produit un effet d'animation plus fluide et naturel que `setInterval`.
+`moveElement()` met à jour la position de l'élément à chaque frame (généralement 60 frames par seconde) jusqu'à atteindre 500 pixels. Cette méthode produit un effet d'animation plus fluide et naturel que `setInterval`.

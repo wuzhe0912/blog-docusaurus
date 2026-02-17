@@ -5,16 +5,16 @@ slug: /js-null-undefined
 tags: [JavaScript, Quiz, Easy]
 ---
 
-## Comparaison des differences
+## Comparaison des différences
 
 - **`undefined`** :
-  - Indique qu'une variable a ete declaree mais qu'aucune valeur ne lui a encore ete attribuee.
-  - C'est la valeur par defaut des variables non initialisees.
-  - Si une fonction n'a pas de valeur de retour explicite, elle renvoie `undefined` par defaut.
+  - Indique qu'une variable a été déclarée mais qu'aucune valeur ne lui a encore été attribuée.
+  - C'est la valeur par défaut des variables non initialisées.
+  - Si une fonction n'a pas de valeur de retour explicite, elle renvoie `undefined` par défaut.
 - **`null`** :
-  - Represente une valeur vide ou l'absence de valeur.
-  - Doit generalement etre explicitement assigne a `null`.
-  - Utilise pour indiquer qu'une variable ne pointe intentionnellement vers aucun objet ou valeur.
+  - Représente une valeur vide ou l'absence de valeur.
+  - Doit généralement être explicitement assigné à `null`.
+  - Utilisé pour indiquer qu'une variable ne pointe intentionnellement vers aucun objet ou valeur.
 
 ## Exemple
 
@@ -33,7 +33,7 @@ obj.x = null;
 console.log(obj.x); // Sortie : null
 ```
 
-## Verification avec typeof
+## Vérification avec typeof
 
 ```js
 console.log(typeof undefined); // Sortie : "undefined"

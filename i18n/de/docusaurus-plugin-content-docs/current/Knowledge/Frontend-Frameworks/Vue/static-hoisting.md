@@ -13,11 +13,11 @@ In Vue3 ist das sogenannte **Static Hoisting (Statisches Hochheben)** eine Optim
 
 ### Definition
 
-**Static Hoisting** bedeutet, dass der Vue 3-Compiler beim Kompilieren des Templates analysiert, welche Knoten keinerlei Abhaengigkeit von reaktivem Zustand haben und sich niemals aendern werden. Diese statischen Knoten werden als Konstanten an den Dateianfang extrahiert, nur beim ersten Render erstellt und bei nachfolgenden Re-Renders direkt wiederverwendet. Dies reduziert die Kosten fuer VNode-Erstellung und Diff.
+**Static Hoisting** bedeutet, dass der Vue 3-Compiler beim Kompilieren des Templates analysiert, welche Knoten keinerlei Abhängigkeit von reaktivem Zustand haben und sich niemals ändern werden. Diese statischen Knoten werden als Konstanten an den Dateianfang extrahiert, nur beim ersten Render erstellt und bei nachfolgenden Re-Renders direkt wiederverwendet. Dies reduziert die Kosten für VNode-Erstellung und Diff.
 
 ### Funktionsweise
 
-Der Compiler analysiert das Template und extrahiert Knoten, die vollstaendig unabhaengig vom reaktiven Zustand sind und sich nie aendern, als Konstanten an den Dateianfang. Sie werden nur einmal beim ersten Render erstellt und danach direkt wiederverwendet.
+Der Compiler analysiert das Template und extrahiert Knoten, die vollständig unabhängig vom reaktiven Zustand sind und sich nie ändern, als Konstanten an den Dateianfang. Sie werden nur einmal beim ersten Render erstellt und danach direkt wiederverwendet.
 
 ### Vergleich Vor und Nach der Kompilierung
 
@@ -64,7 +64,7 @@ function render() {
 1. **Reduziert VNode-Erstellungskosten**: Statische Knoten werden nur einmal erstellt und danach wiederverwendet
 2. **Reduziert Diff-Kosten**: Statische Knoten nehmen nicht am Diff-Vergleich teil
 3. **Verbessert Rendering-Performance**: Besonders wirksam bei Komponenten mit viel statischem Inhalt
-4. **Automatische Optimierung**: Entwickler muessen nichts Besonderes tun, um von dieser Optimierung zu profitieren
+4. **Automatische Optimierung**: Entwickler müssen nichts Besonderes tun, um von dieser Optimierung zu profitieren
 
 ## 2. How Static Hoisting Works
 
@@ -74,9 +74,9 @@ function render() {
 
 Der Compiler analysiert jeden Knoten im Template:
 
-1. **Prueft, ob der Knoten dynamische Bindungen enthaelt** - Prueft auf `{{ }}`, `v-bind`, `v-if`, `v-for` und andere dynamische Direktiven
+1. **Prüft, ob der Knoten dynamische Bindungen enthält** - Prüft auf `{{ }}`, `v-bind`, `v-if`, `v-for` und andere dynamische Direktiven
 2. **Markiert statische Knoten** - Wenn Knoten und Kindknoten keine dynamischen Bindungen haben, wird er als statisch markiert
-3. **Hebt statische Knoten hoch** - Extrahiert statische Knoten ausserhalb der Render-Funktion als Modul-Konstanten
+3. **Hebt statische Knoten hoch** - Extrahiert statische Knoten außerhalb der Render-Funktion als Modul-Konstanten
 
 ### Beispiel 1: Grundlegendes Static Hoisting
 
@@ -117,7 +117,7 @@ Der Compiler analysiert jeden Knoten im Template:
 
 > v-once-Direktive
 
-Wenn ein Entwickler manuell einen grossen Block markieren moechte, der sich nie aendern wird, kann die `v-once`-Direktive verwendet werden.
+Wenn ein Entwickler manuell einen großen Block markieren möchte, der sich nie ändern wird, kann die `v-once`-Direktive verwendet werden.
 
 ### Funktion von v-once
 
@@ -127,10 +127,10 @@ Wenn ein Entwickler manuell einen grossen Block markieren moechte, der sich nie 
 
 | Eigenschaft | Static Hoisting | v-once |
 | ------------ | ------------------- | ------------------------ |
-| **Ausloesung** | Automatisch (Compiler-Analyse) | Manuell (Entwickler-Markierung) |
-| **Anwendungsfall** | Vollstaendig statischer Inhalt | Enthaelt dynamische Bindungen, wird aber nur einmal gerendert |
+| **Auslösung** | Automatisch (Compiler-Analyse) | Manuell (Entwickler-Markierung) |
+| **Anwendungsfall** | Vollständig statischer Inhalt | Enthält dynamische Bindungen, wird aber nur einmal gerendert |
 | **Performance** | Optimal (nimmt nicht am Diff teil) | Gut (wird nur einmal gerendert) |
-| **Verwendungszeitpunkt** | Compiler entscheidet automatisch | Entwickler weiss, dass sich nichts aendert |
+| **Verwendungszeitpunkt** | Compiler entscheidet automatisch | Entwickler weiß, dass sich nichts ändert |
 
 ### Anwendungsszenarien
 
@@ -162,18 +162,18 @@ Wenn ein Entwickler manuell einen grossen Block markieren moechte, der sich nie 
 
 ## 4. Common Interview Questions
 
-> Haeufige Interviewfragen
+> Häufige Interviewfragen
 
 ### Frage 1: Prinzip des Static Hoisting
 
-Erklaeren Sie das Funktionsprinzip von Static Hoisting in Vue3 und wie es die Performance verbessert.
+Erklären Sie das Funktionsprinzip von Static Hoisting in Vue3 und wie es die Performance verbessert.
 
 <details>
 <summary>Klicken Sie hier, um die Antwort zu sehen</summary>
 
-**Funktionsprinzip**: 1) Kompilierungsphase-Analyse: Der Compiler analysiert jeden Knoten und markiert solche ohne dynamische Bindungen als statisch; 2) Knotenhochhebung: Statische Knoten werden ausserhalb der Render-Funktion als Konstanten definiert; 3) Wiederverwendungsmechanismus: Nachfolgende Renders verwenden diese statischen Knoten direkt wieder.
+**Funktionsprinzip**: 1) Kompilierungsphase-Analyse: Der Compiler analysiert jeden Knoten und markiert solche ohne dynamische Bindungen als statisch; 2) Knotenhochhebung: Statische Knoten werden außerhalb der Render-Funktion als Konstanten definiert; 3) Wiederverwendungsmechanismus: Nachfolgende Renders verwenden diese statischen Knoten direkt wieder.
 
-**Performance-Verbesserung**: Reduziert VNode-Erstellungskosten, Diff-Kosten, Speicherverbrauch und erhoeht die Rendering-Geschwindigkeit. In Komponenten mit viel statischem Inhalt kann dies 30-50% der VNode-Erstellungszeit und 40-60% der Diff-Vergleichszeit einsparen.
+**Performance-Verbesserung**: Reduziert VNode-Erstellungskosten, Diff-Kosten, Speicherverbrauch und erhöht die Rendering-Geschwindigkeit. In Komponenten mit viel statischem Inhalt kann dies 30-50% der VNode-Erstellungszeit und 40-60% der Diff-Vergleichszeit einsparen.
 
 </details>
 
@@ -182,9 +182,9 @@ Erklaeren Sie das Funktionsprinzip von Static Hoisting in Vue3 und wie es die Pe
 <details>
 <summary>Klicken Sie hier, um die Antwort zu sehen</summary>
 
-**Hauptunterschiede**: Static Hoisting ist automatisch durch den Compiler, fuer vollstaendig statischen Inhalt. v-once ist manuell vom Entwickler markiert, fuer Inhalte mit dynamischen Bindungen die nur einmal gerendert werden. Static Hoisting nimmt nicht am Diff teil (optimale Performance), v-once wird nur einmal gerendert (gute Performance).
+**Hauptunterschiede**: Static Hoisting ist automatisch durch den Compiler, für vollständig statischen Inhalt. v-once ist manuell vom Entwickler markiert, für Inhalte mit dynamischen Bindungen die nur einmal gerendert werden. Static Hoisting nimmt nicht am Diff teil (optimale Performance), v-once wird nur einmal gerendert (gute Performance).
 
-**Empfehlung**: Vollstaendig statischer Inhalt -> Compiler automatisch behandeln lassen. Dynamische Bindungen, die nur einmal gerendert werden -> `v-once` verwenden. Inhalt mit reaktiven Updates -> kein `v-once`.
+**Empfehlung**: Vollständig statischer Inhalt -> Compiler automatisch behandeln lassen. Dynamische Bindungen, die nur einmal gerendert werden -> `v-once` verwenden. Inhalt mit reaktiven Updates -> kein `v-once`.
 
 </details>
 
@@ -204,7 +204,7 @@ Erklaeren Sie das Funktionsprinzip von Static Hoisting in Vue3 und wie es die Pe
   </div>
 </template>
 
-<!-- 2. v-once explizit fuer einmalig gerenderten Inhalt verwenden -->
+<!-- 2. v-once explizit für einmalig gerenderten Inhalt verwenden -->
 <template>
   <div v-once>
     <p>Erstellungszeit: {{ createdAt }}</p>
@@ -221,13 +221,13 @@ Erklaeren Sie das Funktionsprinzip von Static Hoisting in Vue3 und wie es die Pe
 
 **Static Hoisting**: Kompilierungsphase-Optimierung, hebt statische Knoten als Konstanten hoch, erstellt nur einmal. Automatisch, Entwickler merkt nichts.
 
-**v-once**: Manuelle Markierung fuer einmalig gerenderten Inhalt. Geeignet fuer Bloecke mit dynamischen Bindungen die sich nicht aendern.
+**v-once**: Manuelle Markierung für einmalig gerenderten Inhalt. Geeignet für Blöcke mit dynamischen Bindungen die sich nicht ändern.
 
-### Beispielantwort fuer Interviews
+### Beispielantwort für Interviews
 
 **F: Was ist Static Hoisting in Vue3?**
 
-> "In Vue3 ist Static Hoisting eine Optimierung in der Kompilierungsphase. Der Compiler analysiert das Template und extrahiert Knoten, die keinerlei Abhaengigkeit von reaktivem Zustand haben, als Konstanten an den Dateianfang. Sie werden nur beim ersten Render erstellt und danach direkt wiederverwendet, was die VNode-Erstellungs- und Diff-Kosten reduziert. Entwickler muessen nichts Besonderes tun - der Compiler entscheidet automatisch, welche Knoten hochgehoben werden koennen. Fuer manuelle Markierung von unveraenderlichem Inhalt kann v-once verwendet werden."
+> "In Vue3 ist Static Hoisting eine Optimierung in der Kompilierungsphase. Der Compiler analysiert das Template und extrahiert Knoten, die keinerlei Abhängigkeit von reaktivem Zustand haben, als Konstanten an den Dateianfang. Sie werden nur beim ersten Render erstellt und danach direkt wiederverwendet, was die VNode-Erstellungs- und Diff-Kosten reduziert. Entwickler müssen nichts Besonderes tun - der Compiler entscheidet automatisch, welche Knoten hochgehoben werden können. Für manuelle Markierung von unveränderlichem Inhalt kann v-once verwendet werden."
 
 ## Reference
 

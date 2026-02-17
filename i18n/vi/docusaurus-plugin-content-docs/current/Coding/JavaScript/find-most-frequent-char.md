@@ -7,11 +7,11 @@ tags: [JavaScript, Coding, Easy]
 
 ## 1. Question Description
 
-> Mo ta bai toan
+> Mô tả bài toán
 
-Trien khai mot ham nhan vao mot chuoi va tra ve ky tu xuat hien nhieu nhat trong chuoi do.
+Triển khai một hàm nhận vào một chuỗi và trả về ký tự xuất hiện nhiều nhất trong chuỗi đó.
 
-### Vi du
+### Ví dụ
 
 ```javascript
 findMostFrequentChar('abcccccccd'); // 'c'
@@ -21,64 +21,64 @@ findMostFrequentChar('javascript'); // 'a'
 
 ## 2. Implementation Methods
 
-> Cac phuong phap trien khai
+> Các phương pháp triển khai
 
-### Phuong phap 1: Dem bang doi tuong (phien ban co ban)
+### Phương pháp 1: Đếm bằng đối tượng (phiên bản cơ bản)
 
-**Y tuong**: Duyet qua chuoi, su dung doi tuong de ghi lai so lan xuat hien cua moi ky tu, sau do tim ky tu xuat hien nhieu nhat.
+**Ý tưởng**: Duyệt qua chuỗi, sử dụng đối tượng để ghi lại số lần xuất hiện của mỗi ký tự, sau đó tìm ký tự xuất hiện nhiều nhất.
 
 ```javascript
 function findMostFrequentChar(str) {
-  // Khoi tao doi tuong de luu tru ky tu va so dem
+  // Khởi tạo đối tượng để lưu trữ ký tự và số đếm
   const charCount = {};
 
-  // Khoi tao bien ghi lai so dem lon nhat va ky tu
+  // Khởi tạo biến ghi lại số đếm lớn nhất và ký tự
   let maxCount = 0;
   let maxChar = '';
 
-  // Duyet qua chuoi
+  // Duyệt qua chuỗi
   for (let char of str) {
-    // Neu ky tu khong co trong doi tuong, dat so dem la 0
+    // Nếu ký tự không có trong đối tượng, đặt số đếm là 0
     if (!charCount[char]) {
       charCount[char] = 0;
     }
 
-    // Tang so dem cua ky tu nay
+    // Tăng số đếm của ký tự này
     charCount[char]++;
 
-    // Neu so dem cua ky tu nay lon hon so dem lon nhat
-    // Cap nhat so dem lon nhat va ky tu lon nhat
+    // Nếu số đếm của ký tự này lớn hơn số đếm lớn nhất
+    // Cập nhật số đếm lớn nhất và ký tự lớn nhất
     if (charCount[char] > maxCount) {
       maxCount = charCount[char];
       maxChar = char;
     }
   }
 
-  // Tra ve ky tu lon nhat
+  // Trả về ký tự lớn nhất
   return maxChar;
 }
 
-// Kiem tra
+// Kiểm tra
 console.log(findMostFrequentChar('abcccccccd')); // 'c'
 console.log(findMostFrequentChar('hello world')); // 'l'
 ```
 
-**Do phuc tap thoi gian**: O(n), trong do n la do dai chuoi
-**Do phuc tap khong gian**: O(k), trong do k la so ky tu khac nhau
+**Độ phức tạp thời gian**: O(n), trong đó n là độ dài chuỗi
+**Độ phức tạp không gian**: O(k), trong đó k là số ký tự khác nhau
 
-### Phuong phap 2: Dem truoc roi tim gia tri lon nhat (hai giai doan)
+### Phương pháp 2: Đếm trước rồi tìm giá trị lớn nhất (hai giai đoạn)
 
-**Y tuong**: Duyet mot lan de tinh so lan xuat hien cua tat ca ky tu, roi duyet lan nua de tim gia tri lon nhat.
+**Ý tưởng**: Duyệt một lần để tính số lần xuất hiện của tất cả ký tự, rồi duyệt lần nữa để tìm giá trị lớn nhất.
 
 ```javascript
 function findMostFrequentChar(str) {
-  // Giai doan 1: Tinh so lan xuat hien cua moi ky tu
+  // Giai đoạn 1: Tính số lần xuất hiện của mỗi ký tự
   const charCount = {};
   for (let char of str) {
     charCount[char] = (charCount[char] || 0) + 1;
   }
 
-  // Giai doan 2: Tim ky tu xuat hien nhieu nhat
+  // Giai đoạn 2: Tìm ký tự xuất hiện nhiều nhất
   let maxCount = 0;
   let maxChar = '';
 
@@ -92,16 +92,16 @@ function findMostFrequentChar(str) {
   return maxChar;
 }
 
-// Kiem tra
+// Kiểm tra
 console.log(findMostFrequentChar('abcccccccd')); // 'c'
 ```
 
-**Uu diem**: Logic ro rang hon, xu ly theo tung giai doan
-**Nhuoc diem**: Can hai lan duyet
+**Ưu điểm**: Logic rõ ràng hơn, xử lý theo từng giai đoạn
+**Nhược điểm**: Cần hai lần duyệt
 
-### Phuong phap 3: Su dung Map (ES6)
+### Phương pháp 3: Sử dụng Map (ES6)
 
-**Y tuong**: Su dung Map de luu tru moi quan he giua ky tu va so dem.
+**Ý tưởng**: Sử dụng Map để lưu trữ mối quan hệ giữa ký tự và số đếm.
 
 ```javascript
 function findMostFrequentChar(str) {
@@ -122,54 +122,54 @@ function findMostFrequentChar(str) {
   return maxChar;
 }
 
-// Kiem tra
+// Kiểm tra
 console.log(findMostFrequentChar('abcccccccd')); // 'c'
 ```
 
-**Uu diem**: Su dung Map phu hop hon voi phong cach JavaScript hien dai
-**Nhuoc diem**: Doi voi truong hop don gian, doi tuong co the truc quan hon
+**Ưu điểm**: Sử dụng Map phù hợp hơn với phong cách JavaScript hiện đại
+**Nhược điểm**: Đối với trường hợp đơn giản, đối tượng có thể trực quan hơn
 
-### Phuong phap 4: Su dung reduce (phong cach ham)
+### Phương pháp 4: Sử dụng reduce (phong cách hàm)
 
-**Y tuong**: Su dung `reduce` va `Object.entries` de trien khai.
+**Ý tưởng**: Sử dụng `reduce` và `Object.entries` để triển khai.
 
 ```javascript
 function findMostFrequentChar(str) {
-  // Tinh so lan xuat hien cua moi ky tu
+  // Tính số lần xuất hiện của mỗi ký tự
   const charCount = str.split('').reduce((acc, char) => {
     acc[char] = (acc[char] || 0) + 1;
     return acc;
   }, {});
 
-  // Tim ky tu xuat hien nhieu nhat
+  // Tìm ký tự xuất hiện nhiều nhất
   return Object.entries(charCount).reduce((max, [char, count]) => {
     return count > max[1] ? [char, count] : max;
   }, ['', 0])[0];
 }
 
-// Kiem tra
+// Kiểm tra
 console.log(findMostFrequentChar('abcccccccd')); // 'c'
 ```
 
-**Uu diem**: Phong cach ham, code ngan gon
-**Nhuoc diem**: Doc kho hon, hieu suat thap hon mot chut
+**Ưu điểm**: Phong cách hàm, code ngắn gọn
+**Nhược điểm**: Đọc khó hơn, hiệu suất thấp hơn một chút
 
-### Phuong phap 5: Xu ly truong hop nhieu gia tri lon nhat giong nhau
+### Phương pháp 5: Xử lý trường hợp nhiều giá trị lớn nhất giống nhau
 
-**Y tuong**: Neu nhieu ky tu co so lan xuat hien giong nhau va deu la gia tri lon nhat, tra ve mang hoac ky tu dau tien gap duoc.
+**Ý tưởng**: Nếu nhiều ký tự có số lần xuất hiện giống nhau và đều là giá trị lớn nhất, trả về mảng hoặc ký tự đầu tiên gặp được.
 
 ```javascript
 function findMostFrequentChar(str) {
   const charCount = {};
   let maxCount = 0;
 
-  // Tinh so lan xuat hien cua moi ky tu
+  // Tính số lần xuất hiện của mỗi ký tự
   for (let char of str) {
     charCount[char] = (charCount[char] || 0) + 1;
     maxCount = Math.max(maxCount, charCount[char]);
   }
 
-  // Tim tat ca ky tu co so lan xuat hien bang gia tri lon nhat
+  // Tìm tất cả ký tự có số lần xuất hiện bằng giá trị lớn nhất
   const mostFrequentChars = [];
   for (let char in charCount) {
     if (charCount[char] === maxCount) {
@@ -177,25 +177,25 @@ function findMostFrequentChar(str) {
     }
   }
 
-  // Tra ve ky tu dau tien gap duoc (hoac tra ve toan bo mang)
+  // Trả về ký tự đầu tiên gặp được (hoặc trả về toàn bộ mảng)
   return mostFrequentChars[0];
-  // Hoac tra ve tat ca: return mostFrequentChars;
+  // Hoặc trả về tất cả: return mostFrequentChars;
 }
 
-// Kiem tra
-console.log(findMostFrequentChar('aabbcc')); // 'a' (ky tu dau tien gap duoc)
+// Kiểm tra
+console.log(findMostFrequentChar('aabbcc')); // 'a' (ký tự đầu tiên gặp được)
 ```
 
 ## 3. Edge Cases
 
-> Xu ly truong hop bien
+> Xử lý trường hợp biên
 
-### Xu ly chuoi rong
+### Xử lý chuỗi rỗng
 
 ```javascript
 function findMostFrequentChar(str) {
   if (!str || str.length === 0) {
-    return ''; // Hoac throw new Error('String cannot be empty')
+    return ''; // Hoặc throw new Error('String cannot be empty')
   }
 
   const charCount = {};
@@ -214,7 +214,7 @@ function findMostFrequentChar(str) {
 }
 ```
 
-### Xu ly chu hoa chu thuong
+### Xử lý chữ hoa chữ thường
 
 ```javascript
 function findMostFrequentChar(str, caseSensitive = true) {
@@ -234,12 +234,12 @@ function findMostFrequentChar(str, caseSensitive = true) {
   return maxChar;
 }
 
-// Kiem tra
-console.log(findMostFrequentChar('Hello', false)); // 'l' (khong phan biet chu hoa/thuong)
-console.log(findMostFrequentChar('Hello', true)); // 'l' (phan biet chu hoa/thuong)
+// Kiểm tra
+console.log(findMostFrequentChar('Hello', false)); // 'l' (không phân biệt chữ hoa/thường)
+console.log(findMostFrequentChar('Hello', true)); // 'l' (phân biệt chữ hoa/thường)
 ```
 
-### Xu ly khoang trang va ky tu dac biet
+### Xử lý khoảng trắng và ký tự đặc biệt
 
 ```javascript
 function findMostFrequentChar(str, ignoreSpaces = false) {
@@ -259,21 +259,21 @@ function findMostFrequentChar(str, ignoreSpaces = false) {
   return maxChar;
 }
 
-// Kiem tra
-console.log(findMostFrequentChar('hello world', true)); // 'l' (bo qua khoang trang)
-console.log(findMostFrequentChar('hello world', false)); // ' ' (khoang trang)
+// Kiểm tra
+console.log(findMostFrequentChar('hello world', true)); // 'l' (bỏ qua khoảng trắng)
+console.log(findMostFrequentChar('hello world', false)); // ' ' (khoảng trắng)
 ```
 
 ## 4. Common Interview Questions
 
-> Cau hoi phong van thuong gap
+> Câu hỏi phỏng vấn thường gặp
 
-### Bai 1: Trien khai co ban
+### Bài 1: Triển khai cơ bản
 
-Hay trien khai mot ham tim ky tu xuat hien nhieu nhat trong chuoi.
+Hãy triển khai một hàm tìm ký tự xuất hiện nhiều nhất trong chuỗi.
 
 <details>
-<summary>Nhan de xem dap an</summary>
+<summary>Nhấn để xem đáp án</summary>
 
 ```javascript
 function findMostFrequentChar(str) {
@@ -292,38 +292,38 @@ function findMostFrequentChar(str) {
   return maxChar;
 }
 
-// Kiem tra
+// Kiểm tra
 console.log(findMostFrequentChar('abcccccccd')); // 'c'
 console.log(findMostFrequentChar('hello world')); // 'l'
 ```
 
-**Diem chinh**:
+**Điểm chính**:
 
-- Su dung doi tuong hoac Map de ghi lai so lan xuat hien cua moi ky tu
-- Cap nhat gia tri lon nhat trong qua trinh duyet
-- Do phuc tap thoi gian O(n), do phuc tap khong gian O(k)
+- Sử dụng đối tượng hoặc Map để ghi lại số lần xuất hiện của mỗi ký tự
+- Cập nhật giá trị lớn nhất trong quá trình duyệt
+- Độ phức tạp thời gian O(n), độ phức tạp không gian O(k)
 
 </details>
 
-### Bai 2: Phien ban toi uu
+### Bài 2: Phiên bản tối ưu
 
-Hay toi uu ham tren de xu ly truong hop nhieu gia tri lon nhat giong nhau.
+Hãy tối ưu hàm trên để xử lý trường hợp nhiều giá trị lớn nhất giống nhau.
 
 <details>
-<summary>Nhan de xem dap an</summary>
+<summary>Nhấn để xem đáp án</summary>
 
 ```javascript
 function findMostFrequentChar(str) {
   const charCount = {};
   let maxCount = 0;
 
-  // Giai doan 1: Tinh so lan xuat hien cua moi ky tu
+  // Giai đoạn 1: Tính số lần xuất hiện của mỗi ký tự
   for (let char of str) {
     charCount[char] = (charCount[char] || 0) + 1;
     maxCount = Math.max(maxCount, charCount[char]);
   }
 
-  // Giai doan 2: Tim tat ca ky tu co so lan xuat hien bang gia tri lon nhat
+  // Giai đoạn 2: Tìm tất cả ký tự có số lần xuất hiện bằng giá trị lớn nhất
   const mostFrequentChars = [];
   for (let char in charCount) {
     if (charCount[char] === maxCount) {
@@ -331,22 +331,22 @@ function findMostFrequentChar(str) {
     }
   }
 
-  // Tra ve ky tu dau tien hoac tat ca tuy theo yeu cau
-  return mostFrequentChars[0]; // Hoac tra ve mostFrequentChars
+  // Trả về ký tự đầu tiên hoặc tất cả tùy theo yêu cầu
+  return mostFrequentChars[0]; // Hoặc trả về mostFrequentChars
 }
 
-// Kiem tra
+// Kiểm tra
 console.log(findMostFrequentChar('aabbcc')); // 'a'
 ```
 
 </details>
 
-### Bai 3: Trien khai voi Map
+### Bài 3: Triển khai với Map
 
-Hay su dung Map cua ES6 de trien khai ham nay.
+Hãy sử dụng Map của ES6 để triển khai hàm này.
 
 <details>
-<summary>Nhan de xem dap an</summary>
+<summary>Nhấn để xem đáp án</summary>
 
 ```javascript
 function findMostFrequentChar(str) {
@@ -367,33 +367,33 @@ function findMostFrequentChar(str) {
   return maxChar;
 }
 
-// Kiem tra
+// Kiểm tra
 console.log(findMostFrequentChar('abcccccccd')); // 'c'
 ```
 
 **Map vs Object**:
 
-- **Map**: Phu hop hon cho cac cap khoa-gia tri dong, khoa co the la bat ky kieu nao
-- **Object**: Don gian va truc quan hon, phu hop cho khoa kieu chuoi
+- **Map**: Phù hợp hơn cho các cặp khóa-giá trị động, khóa có thể là bất kỳ kiểu nào
+- **Object**: Đơn giản và trực quan hơn, phù hợp cho khóa kiểu chuỗi
 
 </details>
 
 ## 5. Best Practices
 
-> Cac phuong phap tot nhat
+> Các phương pháp tốt nhất
 
-### Cach lam khuyen nghi
+### Cách làm khuyên nghị
 
 ```javascript
-// 1. Su dung ten bien ro rang
+// 1. Sử dụng tên biến rõ ràng
 function findMostFrequentChar(str) {
-  const charCount = {}; // The hien ro muc dich
+  const charCount = {}; // Thể hiện rõ mục đích
   let maxCount = 0;
   let maxChar = '';
   // ...
 }
 
-// 2. Xu ly truong hop bien
+// 2. Xử lý trường hợp biên
 function findMostFrequentChar(str) {
   if (!str || str.length === 0) {
     return '';
@@ -401,7 +401,7 @@ function findMostFrequentChar(str) {
   // ...
 }
 
-// 3. Cap nhat gia tri lon nhat trong khi duyet (mot lan duyet)
+// 3. Cập nhật giá trị lớn nhất trong khi duyệt (một lần duyệt)
 function findMostFrequentChar(str) {
   const charCount = {};
   let maxCount = 0;
@@ -419,30 +419,30 @@ function findMostFrequentChar(str) {
 }
 ```
 
-### Cach lam can tranh
+### Cách làm cần tránh
 
 ```javascript
-// 1. Khong su dung hai lan duyet (tru khi can thiet)
-// ❌ Hieu suat kem hon
+// 1. Không sử dụng hai lần duyệt (trừ khi cần thiết)
+// ❌ Hiệu suất kém hơn
 function findMostFrequentChar(str) {
   const charCount = {};
   for (let char of str) {
     charCount[char] = (charCount[char] || 0) + 1;
   }
-  // Lan duyet thu hai
+  // Lần duyệt thứ hai
   return Object.entries(charCount).sort((a, b) => b[1] - a[1])[0][0];
 }
 
-// 2. Khong quen xu ly chuoi rong
-// ❌ Co the tra ve undefined
+// 2. Không quên xử lý chuỗi rỗng
+// ❌ Có thể trả về undefined
 function findMostFrequentChar(str) {
   const charCount = {};
   // ...
-  return maxChar; // Khi chuoi rong, maxChar la ''
+  return maxChar; // Khi chuỗi rỗng, maxChar là ''
 }
 
-// 3. Khong su dung cach viet ham qua phuc tap (tru khi la quy uoc cua nhom)
-// ❌ Doc kho hon
+// 3. Không sử dụng cách viết hàm quá phức tạp (trừ khi là quy ước của nhóm)
+// ❌ Đọc khó hơn
 const findMostFrequentChar = (str) =>
   Object.entries(
     str.split('').reduce((acc, char) => {
@@ -454,29 +454,29 @@ const findMostFrequentChar = (str) =>
 
 ## 6. Interview Summary
 
-> Tom tat phong van
+> Tóm tắt phỏng vấn
 
-### Ghi nho nhanh
+### Ghi nhớ nhanh
 
-**Diem trien khai**:
+**Điểm triển khai**:
 
-1. Su dung doi tuong hoac Map de ghi lai so lan xuat hien cua moi ky tu
-2. Cap nhat gia tri lon nhat trong qua trinh duyet
-3. Do phuc tap thoi gian O(n), do phuc tap khong gian O(k)
-4. Xu ly truong hop bien (chuoi rong, chu hoa/thuong, v.v.)
+1. Sử dụng đối tượng hoặc Map để ghi lại số lần xuất hiện của mỗi ký tự
+2. Cập nhật giá trị lớn nhất trong quá trình duyệt
+3. Độ phức tạp thời gian O(n), độ phức tạp không gian O(k)
+4. Xử lý trường hợp biên (chuỗi rỗng, chữ hoa/thường, v.v.)
 
-**Huong toi uu**:
+**Hướng tối ưu**:
 
-- Hoan thanh trong mot lan duyet (dem va tim gia tri lon nhat dong thoi)
-- Su dung Map cho cac tinh huong phuc tap
-- Xu ly truong hop nhieu gia tri lon nhat giong nhau
-- Xem xet chu hoa/thuong, khoang trang va cac truong hop dac biet khac
+- Hoàn thành trong một lần duyệt (đếm và tìm giá trị lớn nhất đồng thời)
+- Sử dụng Map cho các tình huống phức tạp
+- Xử lý trường hợp nhiều giá trị lớn nhất giống nhau
+- Xem xét chữ hoa/thường, khoảng trắng và các trường hợp đặc biệt khác
 
-### Vi du tra loi phong van
+### Ví dụ trả lời phỏng vấn
 
-**Q: Hay trien khai mot ham tim ky tu xuat hien nhieu nhat trong chuoi.**
+**Q: Hãy triển khai một hàm tìm ký tự xuất hiện nhiều nhất trong chuỗi.**
 
-> "Toi se su dung mot doi tuong de ghi lai so lan xuat hien cua moi ky tu, va cap nhat gia tri lon nhat trong qua trinh duyet chuoi. Trien khai cu the la: khoi tao mot doi tuong rong charCount de luu tru ky tu va so dem, khoi tao bien maxCount va maxChar. Sau do duyet qua chuoi, voi moi ky tu, neu khong co trong doi tuong thi khoi tao la 0, roi tang so dem. Neu so dem cua ky tu hien tai lon hon maxCount, cap nhat maxCount va maxChar. Cuoi cung tra ve maxChar. Do phuc tap thoi gian cua phuong phap nay la O(n), do phuc tap khong gian la O(k), trong do n la do dai chuoi va k la so ky tu khac nhau."
+> "Tôi sẽ sử dụng một đối tượng để ghi lại số lần xuất hiện của mỗi ký tự, và cập nhật giá trị lớn nhất trong quá trình duyệt chuỗi. Triển khai cụ thể là: khởi tạo một đối tượng rỗng charCount để lưu trữ ký tự và số đếm, khởi tạo biến maxCount và maxChar. Sau đó duyệt qua chuỗi, với mỗi ký tự, nếu không có trong đối tượng thì khởi tạo là 0, rồi tăng số đếm. Nếu số đếm của ký tự hiện tại lớn hơn maxCount, cập nhật maxCount và maxChar. Cuối cùng trả về maxChar. Độ phức tạp thời gian của phương pháp này là O(n), độ phức tạp không gian là O(k), trong đó n là độ dài chuỗi và k là số ký tự khác nhau."
 
 ## Reference
 

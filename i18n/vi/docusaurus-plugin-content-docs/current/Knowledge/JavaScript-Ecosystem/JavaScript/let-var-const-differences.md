@@ -5,25 +5,25 @@ slug: /let-var-const-differences
 tags: [JavaScript, Quiz, Medium]
 ---
 
-## Tong quan
+## Tổng quan
 
-Trong JavaScript co ba tu khoa de khai bao bien: `var`, `let` va `const`. Mac du chung deu dung de khai bao bien, nhung chung khac nhau ve pham vi, khoi tao, khai bao trung lap, gan lai va thoi diem truy cap.
+Trong JavaScript có ba từ khóa để khai báo biến: `var`, `let` và `const`. Mặc dù chúng đều dùng để khai báo biến, nhưng chúng khác nhau về phạm vi, khởi tạo, khai báo trùng lặp, gán lại và thời điểm truy cập.
 
-## Nhung khac biet chinh
+## Những khác biệt chính
 
-| Hanh vi              | `var`                       | `let`                | `const`              |
+| Hành vi              | `var`                       | `let`                | `const`              |
 | -------------------- | --------------------------- | -------------------- | -------------------- |
-| Pham vi              | Ham hoac toan cuc           | Khoi                 | Khoi                 |
-| Khoi tao             | Tuy chon                    | Tuy chon             | Bat buoc             |
-| Khai bao trung lap   | Cho phep                    | Khong cho phep       | Khong cho phep       |
-| Gan lai              | Cho phep                    | Cho phep             | Khong cho phep       |
-| Truy cap truoc khai bao | Tra ve undefined         | Nem ReferenceError   | Nem ReferenceError   |
+| Phạm vi              | Hàm hoặc toàn cục           | Khối                 | Khối                 |
+| Khởi tạo             | Tùy chọn                    | Tùy chọn             | Bắt buộc             |
+| Khai báo trùng lặp   | Cho phép                    | Không cho phép       | Không cho phép       |
+| Gán lại              | Cho phép                    | Cho phép             | Không cho phép       |
+| Truy cập trước khai báo | Trả về undefined         | Ném ReferenceError   | Ném ReferenceError   |
 
-## Giai thich chi tiet
+## Giải thích chi tiết
 
-### Pham vi
+### Phạm vi
 
-Pham vi cua `var` la pham vi ham hoac toan cuc, trong khi `let` va `const` co pham vi khoi (bao gom ham, khoi if-else hoac vong lap for).
+Phạm vi của `var` là phạm vi hàm hoặc toàn cục, trong khi `let` và `const` có phạm vi khối (bao gồm hàm, khối if-else hoặc vòng lặp for).
 
 ```javascript
 function scopeExample() {
@@ -53,23 +53,23 @@ console.log(letInBlock); // ReferenceError: letInBlock is not defined
 console.log(constInBlock); // ReferenceError: constInBlock is not defined
 ```
 
-### Khoi tao
+### Khởi tạo
 
-`var` va `let` co the khai bao ma khong can khoi tao, trong khi `const` bat buoc phai khoi tao khi khai bao.
+`var` và `let` có thể khai báo mà không cần khởi tạo, trong khi `const` bắt buộc phải khởi tạo khi khai báo.
 
 ```javascript
-var varVariable;  // Hop le
-let letVariable;  // Hop le
+var varVariable;  // Hợp lệ
+let letVariable;  // Hợp lệ
 const constVariable;  // SyntaxError: Missing initializer in const declaration
 ```
 
-### Khai bao trung lap
+### Khai báo trùng lặp
 
-Trong cung mot pham vi, `var` cho phep khai bao trung lap cung mot bien, trong khi `let` va `const` khong cho phep.
+Trong cùng một phạm vi, `var` cho phép khai báo trùng lặp cùng một biến, trong khi `let` và `const` không cho phép.
 
 ```javascript
 var x = 1;
-var x = 2; // Hop le, x bay gio bang 2
+var x = 2; // Hợp lệ, x bây giờ bằng 2
 
 let y = 1;
 let y = 2; // SyntaxError: Identifier 'y' has already been declared
@@ -78,36 +78,36 @@ const z = 1;
 const z = 2; // SyntaxError: Identifier 'z' has already been declared
 ```
 
-### Gan lai
+### Gán lại
 
-Bien duoc khai bao voi `var` va `let` co the gan lai, nhung bien khai bao voi `const` khong the gan lai.
+Biến được khai báo với `var` và `let` có thể gán lại, nhưng biến khai báo với `const` không thể gán lại.
 
 ```javascript
 var x = 1;
-x = 2; // Hop le
+x = 2; // Hợp lệ
 
 let y = 1;
-y = 2; // Hop le
+y = 2; // Hợp lệ
 
 const z = 1;
 z = 2; // TypeError: Assignment to a constant variable
 ```
 
-Luu y: Mac du bien khai bao voi `const` khong the gan lai, nhung neu no la mot object hoac array, noi dung cua no van co the thay doi.
+Lưu ý: Mặc dù biến khai báo với `const` không thể gán lại, nhưng nếu nó là một object hoặc array, nội dung của nó vẫn có thể thay đổi.
 
 ```javascript
 const obj = { key: 'value' };
-obj.key = 'new value'; // Hop le
+obj.key = 'new value'; // Hợp lệ
 console.log(obj); // { key: 'new value' }
 
 const arr = [1, 2, 3];
-arr.push(4); // Hop le
+arr.push(4); // Hợp lệ
 console.log(arr); // [1, 2, 3, 4]
 ```
 
-### Truy cap truoc khai bao (Temporal Dead Zone)
+### Truy cập trước khai báo (Temporal Dead Zone)
 
-Bien khai bao voi `var` duoc dua len va tu dong khoi tao thanh `undefined`. Bien khai bao voi `let` va `const` cung duoc dua len nhung khong duoc khoi tao, truy cap truoc khai bao se nem `ReferenceError`.
+Biến khai báo với `var` được đưa lên và tự động khởi tạo thành `undefined`. Biến khai báo với `let` và `const` cũng được đưa lên nhưng không được khởi tạo, truy cập trước khai báo sẽ ném `ReferenceError`.
 
 ```javascript
 console.log(x); // undefined
@@ -120,11 +120,11 @@ console.log(z); // ReferenceError: Cannot access 'z' before initialization
 const z = 5;
 ```
 
-## Cau hoi phong van
+## Câu hỏi phỏng vấn
 
-### De bai: Bay co dien cua setTimeout + var
+### Đề bài: Bẫy cổ điển của setTimeout + var
 
-Hay xac dinh ket qua dau ra cua doan code sau:
+Hãy xác định kết quả đầu ra của đoạn code sau:
 
 ```javascript
 for (var i = 1; i <= 5; i++) {
@@ -134,11 +134,11 @@ for (var i = 1; i <= 5; i++) {
 }
 ```
 
-#### Dap an sai (hieu nham pho bien)
+#### Đáp án sai (hiểu nhầm phổ biến)
 
-Nhieu nguoi cho rang dau ra la: `1 2 3 4 5`
+Nhiều người cho rằng đầu ra là: `1 2 3 4 5`
 
-#### Ket qua thuc te
+#### Kết quả thực tế
 
 ```
 6
@@ -148,52 +148,52 @@ Nhieu nguoi cho rang dau ra la: `1 2 3 4 5`
 6
 ```
 
-#### Tai sao?
+#### Tại sao?
 
-Van de nay lien quan den ba khai niem cot loi:
+Vấn đề này liên quan đến ba khái niệm cốt lõi:
 
-**1. Pham vi ham cua var**
+**1. Phạm vi hàm của var**
 
 ```javascript
-// var khong tao pham vi khoi trong vong lap
+// var không tạo phạm vi khối trong vòng lặp
 for (var i = 1; i <= 5; i++) {
-  // i nam o pham vi ngoai, tat ca cac lan lap deu chia se cung mot i
+  // i nằm ở phạm vi ngoài, tất cả các lần lặp đều chia sẻ cùng một i
 }
-console.log(i); // 6 (gia tri cua i sau khi vong lap ket thuc)
+console.log(i); // 6 (giá trị của i sau khi vòng lặp kết thúc)
 
-// Truong hop var
+// Trường hợp var
 {
   var i;
   i = 1;
   i = 2;
   i = 3;
-  i = 4; // vong lap ket thuc
+  i = 4; // vòng lặp kết thúc
 }
 ```
 
-**2. Thuc thi bat dong bo cua setTimeout**
+**2. Thực thi bất đồng bộ của setTimeout**
 
 ```javascript
-// setTimeout la bat dong bo, thuc thi sau khi code dong bo hien tai chay xong
+// setTimeout là bất đồng bộ, thực thi sau khi code đồng bộ hiện tại chạy xong
 for (var i = 1; i <= 5; i++) {
   setTimeout(function () {
-    // Code nay duoc dat vao hang doi tac vu cua Event Loop
+    // Code này được đặt vào hàng đợi tác vụ của Event Loop
     console.log(i);
   }, 0);
 }
-// Vong lap chay xong truoc (i tro thanh 6), sau do cac callback cua setTimeout moi bat dau thuc thi
+// Vòng lặp chạy xong trước (i trở thành 6), sau đó các callback của setTimeout mới bắt đầu thực thi
 ```
 
-**3. Tham chieu Closure**
+**3. Tham chiếu Closure**
 
 ```javascript
-// Tat ca cac ham callback cua setTimeout deu tham chieu cung mot i
-// Khi cac callback thuc thi, i da tro thanh 6
+// Tất cả các hàm callback của setTimeout đều tham chiếu cùng một i
+// Khi các callback thực thi, i đã trở thành 6
 ```
 
-#### Giai phap
+#### Giải pháp
 
-**Giai phap 1: Su dung let (khuyen dung) ★**
+**Giải pháp 1: Sử dụng let (khuyên dùng) ★**
 
 ```javascript
 for (let i = 1; i <= 5; i++) {
@@ -201,24 +201,24 @@ for (let i = 1; i <= 5; i++) {
     console.log(i);
   }, 0);
 }
-// Dau ra: 1 2 3 4 5
+// Đầu ra: 1 2 3 4 5
 
-// Truong hop let
+// Trường hợp let
 {
-  let i = 1; // i cua lan lap thu nhat
+  let i = 1; // i của lần lặp thứ nhất
 }
 {
-  let i = 2; // i cua lan lap thu hai
+  let i = 2; // i của lần lặp thứ hai
 }
 {
-  let i = 3; // i cua lan lap thu ba
+  let i = 3; // i của lần lặp thứ ba
 }
 ```
 
-**Nguyen ly**: `let` tao mot pham vi khoi moi o moi lan lap, moi callback `setTimeout` bat duoc gia tri `i` cua lan lap hien tai.
+**Nguyên lý**: `let` tạo một phạm vi khối mới ở mỗi lần lặp, mỗi callback `setTimeout` bắt được giá trị `i` của lần lặp hiện tại.
 
 ```javascript
-// Tuong duong voi
+// Tương đương với
 {
   let i = 1;
   setTimeout(function () {
@@ -231,10 +231,10 @@ for (let i = 1; i <= 5; i++) {
     console.log(i);
   }, 0);
 }
-// ... tuong tu
+// ... tương tự
 ```
 
-**Giai phap 2: Su dung IIFE (Ham Thuc Thi Ngay Lap Tuc)**
+**Giải pháp 2: Sử dụng IIFE (Hàm Thực Thi Ngay Lập Tức)**
 
 ```javascript
 for (var i = 1; i <= 5; i++) {
@@ -244,12 +244,12 @@ for (var i = 1; i <= 5; i++) {
     }, 0);
   })(i);
 }
-// Dau ra: 1 2 3 4 5
+// Đầu ra: 1 2 3 4 5
 ```
 
-**Nguyen ly**: IIFE tao mot pham vi ham moi, moi lan lap deu truyen gia tri `i` hien tai lam tham so `j`, hinh thanh Closure.
+**Nguyên lý**: IIFE tạo một phạm vi hàm mới, mỗi lần lặp đều truyền giá trị `i` hiện tại làm tham số `j`, hình thành Closure.
 
-**Giai phap 3: Su dung tham so thu ba cua setTimeout**
+**Giải pháp 3: Sử dụng tham số thứ ba của setTimeout**
 
 ```javascript
 for (var i = 1; i <= 5; i++) {
@@ -259,14 +259,14 @@ for (var i = 1; i <= 5; i++) {
     },
     0,
     i
-  ); // Tham so thu ba duoc truyen cho ham callback
+  ); // Tham số thứ ba được truyền cho hàm callback
 }
-// Dau ra: 1 2 3 4 5
+// Đầu ra: 1 2 3 4 5
 ```
 
-**Nguyen ly**: Tham so thu ba va cac tham so tiep theo cua `setTimeout` duoc truyen lam doi so cho ham callback.
+**Nguyên lý**: Tham số thứ ba và các tham số tiếp theo của `setTimeout` được truyền làm đối số cho hàm callback.
 
-**Giai phap 4: Su dung bind**
+**Giải pháp 4: Sử dụng bind**
 
 ```javascript
 for (var i = 1; i <= 5; i++) {
@@ -277,23 +277,23 @@ for (var i = 1; i <= 5; i++) {
     0
   );
 }
-// Dau ra: 1 2 3 4 5
+// Đầu ra: 1 2 3 4 5
 ```
 
-**Nguyen ly**: `bind` tao mot ham moi va rang buoc gia tri `i` hien tai lam tham so.
+**Nguyên lý**: `bind` tạo một hàm mới và ràng buộc giá trị `i` hiện tại làm tham số.
 
-#### So sanh cac giai phap
+#### So sánh các giải pháp
 
-| Giai phap           | Uu diem                          | Nhuoc diem           | Muc khuyen dung           |
+| Giải pháp           | Ưu điểm                          | Nhược điểm           | Mức khuyên dùng           |
 | ------------------- | -------------------------------- | -------------------- | ------------------------- |
-| `let`               | Gon, hien dai, de hieu           | ES6+                 | 5/5 Rat khuyen dung       |
-| IIFE                | Tuong thich tot                  | Cu phap phuc tap     | 3/5 Co the xem xet        |
-| Tham so setTimeout  | Don gian, truc tiep              | It nguoi biet        | 4/5 Khuyen dung            |
-| `bind`              | Phong cach ham                   | Doc hoi kho hon      | 3/5 Co the xem xet        |
+| `let`               | Gọn, hiện đại, dễ hiểu           | ES6+                 | 5/5 Rất khuyên dùng       |
+| IIFE                | Tương thích tốt                  | Cú pháp phức tạp     | 3/5 Có thể xem xét        |
+| Tham số setTimeout  | Đơn giản, trực tiếp              | Ít người biết        | 4/5 Khuyên dùng            |
+| `bind`              | Phong cách hàm                   | Đọc hơi khó hơn      | 3/5 Có thể xem xét        |
 
-#### Cau hoi mo rong
+#### Câu hỏi mở rộng
 
-**Q1: Neu doi thanh the nay thi sao?**
+**Q1: Nếu đổi thành thế này thì sao?**
 
 ```javascript
 for (var i = 1; i <= 5; i++) {
@@ -303,9 +303,9 @@ for (var i = 1; i <= 5; i++) {
 }
 ```
 
-**Dap an**: Moi giay xuat ra `6` mot lan, tong cong 5 lan (lan luot tai giay thu 1, 2, 3, 4, 5).
+**Đáp án**: Mỗi giây xuất ra `6` một lần, tổng cộng 5 lần (lần lượt tại giây thứ 1, 2, 3, 4, 5).
 
-**Q2: Neu muon xuat ra 1, 2, 3, 4, 5 theo thu tu moi giay thi sao?**
+**Q2: Nếu muốn xuất ra 1, 2, 3, 4, 5 theo thứ tự mỗi giây thì sao?**
 
 ```javascript
 for (let i = 1; i <= 5; i++) {
@@ -313,37 +313,37 @@ for (let i = 1; i <= 5; i++) {
     console.log(i);
   }, i * 1000);
 }
-// Sau 1 giay xuat ra 1
-// Sau 2 giay xuat ra 2
-// Sau 3 giay xuat ra 3
-// Sau 4 giay xuat ra 4
-// Sau 5 giay xuat ra 5
+// Sau 1 giây xuất ra 1
+// Sau 2 giây xuất ra 2
+// Sau 3 giây xuất ra 3
+// Sau 4 giây xuất ra 4
+// Sau 5 giây xuất ra 5
 ```
 
-#### Trong diem phong van
+#### Trọng điểm phỏng vấn
 
-Cau hoi nay kiem tra:
+Câu hỏi này kiểm tra:
 
-1. **Pham vi cua var**: Pham vi ham vs pham vi khoi
-2. **Event Loop**: Thuc thi dong bo vs bat dong bo
-3. **Closure**: Ham bat bien ben ngoai nhu the nao
-4. **Giai phap**: Nhieu cach giai va so sanh uu nhuoc diem
+1. **Phạm vi của var**: Phạm vi hàm vs phạm vi khối
+2. **Event Loop**: Thực thi đồng bộ vs bất đồng bộ
+3. **Closure**: Hàm bắt biến bên ngoài như thế nào
+4. **Giải pháp**: Nhiều cách giải và so sánh ưu nhược điểm
 
-Khi tra loi nen:
+Khi trả lời nên:
 
-- Noi dap an dung truoc (6 6 6 6 6)
-- Giai thich ly do (pham vi var + setTimeout bat dong bo)
-- Dua ra giai phap (uu tien let va giai thich cac phuong an khac)
-- The hien su hieu biet ve co che ben trong cua JavaScript
+- Nói đáp án đúng trước (6 6 6 6 6)
+- Giải thích lý do (phạm vi var + setTimeout bất đồng bộ)
+- Đưa ra giải pháp (ưu tiên let và giải thích các phương án khác)
+- Thể hiện sự hiểu biết về cơ chế bên trong của JavaScript
 
 ## Best practice
 
-1. Uu tien su dung `const`: Voi nhung bien khong can gan lai, su dung `const` giup tang kha nang doc va bao tri code.
-2. Tiep theo su dung `let`: Khi can gan lai gia tri, su dung `let`.
-3. Tranh su dung `var`: Vi pham vi va hanh vi Hoisting cua `var` co the gay ra van de khong mong muon, khuyen nghi tranh su dung trong phat trien JavaScript hien dai.
-4. Chu y tuong thich trinh duyet: Neu can ho tro cac trinh duyet cu, co the su dung cac cong cu nhu Babel de transpile `let` va `const` thanh `var`.
+1. Ưu tiên sử dụng `const`: Với những biến không cần gán lại, sử dụng `const` giúp tăng khả năng đọc và bảo trì code.
+2. Tiếp theo sử dụng `let`: Khi cần gán lại giá trị, sử dụng `let`.
+3. Tránh sử dụng `var`: Vì phạm vi và hành vi Hoisting của `var` có thể gây ra vấn đề không mong muốn, khuyến nghị tránh sử dụng trong phát triển JavaScript hiện đại.
+4. Chú ý tương thích trình duyệt: Nếu cần hỗ trợ các trình duyệt cũ, có thể sử dụng các công cụ như Babel để transpile `let` và `const` thành `var`.
 
-## Chu de lien quan
+## Chủ đề liên quan
 
 - [Closure](/docs/closure)
 - [Event Loop](/docs/event-loop)

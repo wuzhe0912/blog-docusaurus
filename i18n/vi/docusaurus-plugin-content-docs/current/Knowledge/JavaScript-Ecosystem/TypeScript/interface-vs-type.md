@@ -7,17 +7,17 @@ tags: [TypeScript, Quiz, Medium]
 
 ## 1. What are Interface and Type Alias?
 
-> Interface va Type Alias la gi?
+> Interface và Type Alias là gì?
 
-### Interface (Giao dien)
+### Interface (Giao diện)
 
-**Dinh nghia**: Dung de dinh nghia cau truc cua doi tuong, mo ta cac thuoc tinh va phuong thuc ma doi tuong can co.
+**Định nghĩa**: Dùng để định nghĩa cấu trúc của đối tượng, mô tả các thuộc tính và phương thức mà đối tượng cần có.
 
 ```typescript
 interface User {
   name: string;
   age: number;
-  email?: string;  // Thuoc tinh tuy chon
+  email?: string;  // Thuộc tính tùy chọn
 }
 
 const user: User = {
@@ -26,9 +26,9 @@ const user: User = {
 };
 ```
 
-### Type Alias (Bi danh kieu)
+### Type Alias (Bí danh kiểu)
 
-**Dinh nghia**: Tao bi danh cho kieu, co the su dung voi bat ky kieu nao, khong chi gioi han o doi tuong.
+**Định nghĩa**: Tạo bí danh cho kiểu, có thể sử dụng với bất kỳ kiểu nào, không chỉ giới hạn ở đối tượng.
 
 ```typescript
 type User = {
@@ -45,11 +45,11 @@ const user: User = {
 
 ## 2. Interface vs Type Alias: Key Differences
 
-> Su khac biet chinh giua Interface va Type Alias
+> Sự khác biệt chính giữa Interface và Type Alias
 
-### 1. Cach mo rong
+### 1. Cách mở rộng
 
-**Interface: su dung extends**
+**Interface: sử dụng extends**
 
 ```typescript
 interface Animal { name: string; }
@@ -57,7 +57,7 @@ interface Dog extends Animal { breed: string; }
 const dog: Dog = { name: 'Buddy', breed: 'Golden Retriever' };
 ```
 
-**Type Alias: su dung kieu giao (Intersection)**
+**Type Alias: sử dụng kiểu giao (Intersection)**
 
 ```typescript
 type Animal = { name: string; };
@@ -65,33 +65,33 @@ type Dog = Animal & { breed: string; };
 const dog: Dog = { name: 'Buddy', breed: 'Golden Retriever' };
 ```
 
-### 2. Gop (Declaration Merging)
+### 2. Gộp (Declaration Merging)
 
-**Interface: ho tro gop**
+**Interface: hỗ trợ gộp**
 
 ```typescript
 interface User { name: string; }
 interface User { age: number; }
-// Tu dong gop thanh { name: string; age: number; }
+// Tự động gộp thành { name: string; age: number; }
 const user: User = { name: 'John', age: 30 };
 ```
 
-**Type Alias: khong ho tro gop**
+**Type Alias: không hỗ trợ gộp**
 
 ```typescript
 type User = { name: string; };
-type User = { age: number; };  // ❌ Loi: Duplicate identifier 'User'
+type User = { age: number; };  // ❌ Lỗi: Duplicate identifier 'User'
 ```
 
-### 3. Pham vi ap dung
+### 3. Phạm vi áp dụng
 
-**Interface: chu yeu cho cau truc doi tuong**
+**Interface: chủ yếu cho cấu trúc đối tượng**
 
 ```typescript
 interface User { name: string; age: number; }
 ```
 
-**Type Alias: co the su dung voi bat ky kieu nao**
+**Type Alias: có thể sử dụng với bất kỳ kiểu nào**
 
 ```typescript
 type ID = string | number;
@@ -101,15 +101,15 @@ type Point = [number, number];
 type User = { name: string; age: number; };
 ```
 
-### 4. Thuoc tinh tinh toan
+### 4. Thuộc tính tính toán
 
-**Interface: khong ho tro thuoc tinh tinh toan**
+**Interface: không hỗ trợ thuộc tính tính toán**
 
 ```typescript
 interface User { [key: string]: any; }
 ```
 
-**Type Alias: ho tro phep toan kieu phuc tap hon**
+**Type Alias: hỗ trợ phép toán kiểu phức tạp hơn**
 
 ```typescript
 type Keys = 'name' | 'age' | 'email';
@@ -118,28 +118,28 @@ type User = { [K in Keys]: string; };
 
 ## 3. When to Use Interface vs Type Alias?
 
-> Khi nao su dung Interface? Khi nao su dung Type Alias?
+> Khi nào sử dụng Interface? Khi nào sử dụng Type Alias?
 
-### Su dung Interface khi
+### Sử dụng Interface khi
 
-1. **Dinh nghia cau truc doi tuong** (pho bien nhat)
-2. **Can gop khai bao** (vi du: mo rong kieu cua goi thu ba)
-3. **Dinh nghia hop dong cho class**
+1. **Định nghĩa cấu trúc đối tượng** (phổ biến nhất)
+2. **Cần gộp khai báo** (ví dụ: mở rộng kiểu của gói thư ba)
+3. **Định nghĩa hợp đồng cho class**
 
-### Su dung Type Alias khi
+### Sử dụng Type Alias khi
 
-1. **Dinh nghia kieu union hoac intersection**: `type ID = string | number;`
-2. **Dinh nghia kieu ham**: `type EventHandler = (event: Event) => void;`
-3. **Dinh nghia tuple**: `type Point = [number, number];`
-4. **Can kieu mapped hoac kieu dieu kien**
+1. **Định nghĩa kiểu union hoặc intersection**: `type ID = string | number;`
+2. **Định nghĩa kiểu hàm**: `type EventHandler = (event: Event) => void;`
+3. **Định nghĩa tuple**: `type Point = [number, number];`
+4. **Cần kiểu mapped hoặc kiểu điều kiện**
 
 ## 4. Common Interview Questions
 
-> Cac cau hoi phong van thuong gap
+> Các câu hỏi phỏng vấn thường gặp
 
-### Cau hoi 1: Khac biet co ban
+### Câu hỏi 1: Khác biệt cơ bản
 
-Hay giai thich su khac biet giua hai cach dinh nghia sau.
+Hãy giải thích sự khác biệt giữa hai cách định nghĩa sau.
 
 ```typescript
 interface User { name: string; age: number; }
@@ -147,107 +147,107 @@ type User = { name: string; age: number; };
 ```
 
 <details>
-<summary>Nhan de xem dap an</summary>
+<summary>Nhấn để xem đáp án</summary>
 
-**Giong nhau**: Ca hai deu co the dinh nghia cau truc doi tuong, su dung giong nhau, ca hai deu co the mo rong.
+**Giống nhau**: Cả hai đều có thể định nghĩa cấu trúc đối tượng, sử dụng giống nhau, cả hai đều có thể mở rộng.
 
-**Khac nhau**:
-1. **Gop khai bao**: Interface ho tro; Type Alias khong.
-2. **Pham vi**: Interface chu yeu cho doi tuong; Type Alias cho bat ky kieu nao.
+**Khác nhau**:
+1. **Gộp khai báo**: Interface hỗ trợ; Type Alias không.
+2. **Phạm vi**: Interface chủ yếu cho đối tượng; Type Alias cho bất kỳ kiểu nào.
 
-**Khuyen nghi**: Cho cau truc doi tuong, ca hai deu dung. Cho gop khai bao, dung Interface. Cho kieu khong phai doi tuong, dung Type Alias.
+**Khuyến nghị**: Cho cấu trúc đối tượng, cả hai đều đúng. Cho gộp khai báo, dùng Interface. Cho kiểu không phải đối tượng, dùng Type Alias.
 
 </details>
 
-### Cau hoi 2: Cach mo rong
+### Câu hỏi 2: Cách mở rộng
 
-Hay giai thich su khac biet giua `extends` va intersection `&`.
+Hãy giải thích sự khác biệt giữa `extends` và intersection `&`.
 
 <details>
-<summary>Nhan de xem dap an</summary>
+<summary>Nhấn để xem đáp án</summary>
 
-- **Cu phap**: Interface dung `extends`, Type dung `&`
-- **Ket qua**: Ca hai cho ket qua giong nhau
-- **Do doc**: `extends` cua Interface truc quan hon
-- **Linh hoat**: `&` cua Type co the ket hop nhieu kieu
+- **Cú pháp**: Interface dùng `extends`, Type dùng `&`
+- **Kết quả**: Cả hai cho kết quả giống nhau
+- **Độ đọc**: `extends` của Interface trực quan hơn
+- **Linh hoạt**: `&` của Type có thể kết hợp nhiều kiểu
 
 </details>
 
-### Cau hoi 3: Gop khai bao
+### Câu hỏi 3: Gộp khai báo
 
 ```typescript
 interface User { name: string; }
 interface User { age: number; }
-const user: User = { name: 'John' };  // Thieu age?
+const user: User = { name: 'John' };  // Thiếu age?
 ```
 
 <details>
-<summary>Nhan de xem dap an</summary>
+<summary>Nhấn để xem đáp án</summary>
 
-Hai khai bao tu dong gop lai. Thieu `age` se tao loi. Type Alias khong ho tro gop khai bao.
+Hai khai báo tự động gộp lại. Thiếu `age` sẽ tạo lỗi. Type Alias không hỗ trợ gộp khai báo.
 
 </details>
 
-### Cau hoi 4: Hien thuc (implements)
+### Câu hỏi 4: Hiện thực (implements)
 
 <details>
-<summary>Nhan de xem dap an</summary>
+<summary>Nhấn để xem đáp án</summary>
 
-Ca hai deu co the dung voi `implements`. Interface pho bien hon cho hop dong class. Type Alias cua ham khong the hien thuc.
+Cả hai đều có thể dùng với `implements`. Interface phổ biến hơn cho hợp đồng class. Type Alias của hàm không thể hiện thực.
 
 </details>
 
 ## 5. Best Practices
 
-> Thuc hanh tot nhat
+> Thực hành tốt nhất
 
-### Cach lam khuyen dung
+### Cách làm khuyên dùng
 
 ```typescript
-// 1. Cho doi tuong, uu tien Interface
+// 1. Cho đối tượng, ưu tiên Interface
 interface User { name: string; age: number; }
 
-// 2. Cho kieu union, dung Type Alias
+// 2. Cho kiểu union, dùng Type Alias
 type Status = 'active' | 'inactive' | 'pending';
 
-// 3. Cho kieu ham, dung Type Alias
+// 3. Cho kiểu hàm, dùng Type Alias
 type EventHandler = (event: Event) => void;
 
-// 4. Cho gop khai bao, dung Interface
+// 4. Cho gộp khai báo, dùng Interface
 interface Window { customProperty: string; }
 
-// 5. Cho hop dong class, dung Interface
+// 5. Cho hợp đồng class, dùng Interface
 interface Flyable { fly(): void; }
 class Bird implements Flyable { fly(): void {} }
 ```
 
-### Cach lam nen tranh
+### Cách làm nên tránh
 
 ```typescript
-// 1. Khong tron lan Interface va Type Alias cho cung cau truc
-// 2. Khong dung Type Alias cho doi tuong don gian (Interface phu hop hon)
-// 3. Khong dung Interface cho kieu khong phai doi tuong
+// 1. Không trộn lẫn Interface và Type Alias cho cùng cấu trúc
+// 2. Không dùng Type Alias cho đối tượng đơn giản (Interface phù hợp hơn)
+// 3. Không dùng Interface cho kiểu không phải đối tượng
 ```
 
 ## 6. Interview Summary
 
-> Tom tat phong van
+> Tóm tắt phỏng vấn
 
-### Tham khao nhanh
+### Tham khảo nhanh
 
-**Interface**: doi tuong, Declaration Merging, `extends`, hop dong class.
+**Interface**: đối tượng, Declaration Merging, `extends`, hợp đồng class.
 
-**Type Alias**: bat ky kieu nao, khong Declaration Merging, `&` intersection, union/ham/tuple.
+**Type Alias**: bất kỳ kiểu nào, không Declaration Merging, `&` intersection, union/hàm/tuple.
 
-### Vi du tra loi phong van
+### Ví dụ trả lời phỏng vấn
 
-**Q: Su khac biet giua Interface va Type Alias la gi?**
+**Q: Sự khác biệt giữa Interface và Type Alias là gì?**
 
-> "Interface va Type Alias deu co the dung de dinh nghia cau truc doi tuong, nhung co mot so khac biet chinh: 1) Interface ho tro gop khai bao; Type Alias khong. 2) Interface chu yeu cho doi tuong; Type Alias cho bat ky kieu nao. 3) Interface dung extends; Type Alias dung &. 4) Interface phu hop hon cho hop dong class. Cho doi tuong, ca hai deu dung. Cho gop khai bao, dung Interface. Cho kieu khong phai doi tuong, dung Type Alias."
+> "Interface và Type Alias đều có thể dùng để định nghĩa cấu trúc đối tượng, nhưng có một số khác biệt chính: 1) Interface hỗ trợ gộp khai báo; Type Alias không. 2) Interface chủ yếu cho đối tượng; Type Alias cho bất kỳ kiểu nào. 3) Interface dùng extends; Type Alias dùng &. 4) Interface phù hợp hơn cho hợp đồng class. Cho đối tượng, cả hai đều đúng. Cho gộp khai báo, dùng Interface. Cho kiểu không phải đối tượng, dùng Type Alias."
 
-**Q: Khi nao nen dung Interface va khi nao nen dung Type Alias?**
+**Q: Khi nào nên dùng Interface và khi nào nên dùng Type Alias?**
 
-> "Dung Interface cho: cau truc doi tuong, gop khai bao, hop dong class. Dung Type Alias cho: kieu union/intersection, kieu ham, tuple, kieu mapped/dieu kien. Tom lai, uu tien Interface cho doi tuong, Type Alias cho cac kieu con lai."
+> "Dùng Interface cho: cấu trúc đối tượng, gộp khai báo, hợp đồng class. Dùng Type Alias cho: kiểu union/intersection, kiểu hàm, tuple, kiểu mapped/điều kiện. Tóm lại, ưu tiên Interface cho đối tượng, Type Alias cho các kiểu còn lại."
 
 ## Reference
 

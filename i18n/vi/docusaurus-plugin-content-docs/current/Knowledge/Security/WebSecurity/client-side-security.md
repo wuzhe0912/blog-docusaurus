@@ -4,19 +4,19 @@ title: "[Easy] Client Side Security"
 slug: /client-side-security
 ---
 
-## 1. Ban co the giai thich CSP (Content Security Policy) la gi khong?
+## 1. Bạn có thể giải thích CSP (Content Security Policy) là gì không?
 
 > Can you explain what CSP (Content Security Policy) is?
 
-Ve nguyen tac, CSP la mot co che tang cuong bao mat cho trang web, cho phep cau hinh HTTP header de gioi han cac nguon du lieu ma noi dung trang web co the tai (danh sach trang), nham ngan chan ke tan cong tiem script doc hai de danh cap du lieu nguoi dung.
+Về nguyên tắc, CSP là một cơ chế tăng cường bảo mật cho trang web, cho phép cấu hình HTTP header để giới hạn các nguồn dữ liệu mà nội dung trang web có thể tải (danh sách trắng), nhằm ngăn chặn kẻ tấn công tiêm script độc hại để đánh cắp dữ liệu người dùng.
 
-Tu goc do front-end, de phong chong tan cong XSS (Cross-site scripting), phan lon su dung cac framework hien dai de phat trien, vi chung cung cap co che bao ve co ban. Vi du, JSX cua React tu dong escape HTML, Vue thi thong qua cach bind du lieu `{{ data }}` dong thoi tu dong escape cac the HTML.
+Từ góc độ front-end, để phòng chống tấn công XSS (Cross-site scripting), phần lớn sử dụng các framework hiện đại để phát triển, vì chúng cung cấp cơ chế bảo vệ cơ bản. Ví dụ, JSX của React tự động escape HTML, Vue thì thông qua cách bind dữ liệu `{{ data }}` đồng thời tự động escape các thẻ HTML.
 
-Mac du front-end co kha han che trong linh vuc nay, van co mot so toi uu chi tiet co the xu ly:
+Mặc dù front-end có khá hạn chế trong lĩnh vực này, vẫn có một số tối ưu chi tiết có thể xử lý:
 
-1. Neu co form nhap noi dung, co the xac thuc cac ky tu dac biet de tranh tan cong (nhung thuc te rat kho luong truoc moi tinh huong), nen phan lon chon cach gioi han do dai de kiem soat noi dung nhap tu client, hoac gioi han loai du lieu dau vao.
-2. Khi can tham chieu lien ket ngoai, tranh dung http url ma dung https url.
-3. Voi trang web tinh, co the cau hinh meta tag de gioi han, nhu sau:
+1. Nếu có form nhập nội dung, có thể xác thực các ký tự đặc biệt để tránh tấn công (nhưng thực tế rất khó lường trước mọi tình huống), nên phần lớn chọn cách giới hạn độ dài để kiểm soát nội dung nhập từ client, hoặc giới hạn loại dữ liệu đầu vào.
+2. Khi cần tham chiếu liên kết ngoài, tránh dùng http url mà dùng https url.
+3. Với trang web tĩnh, có thể cấu hình meta tag để giới hạn, như sau:
 
 ```html
 <meta
@@ -25,24 +25,24 @@ Mac du front-end co kha han che trong linh vuc nay, van co mot so toi uu chi tie
 />
 ```
 
-- `default-src 'self'`: mac dinh chi cho phep tai du lieu tu cung nguon goc (cung domain).
-- `img-src https://*`: chi cho phep tai hinh anh qua giao thuc HTTPS.
-- `child-src 'none'`: khong cho phep nhung bat ky tai nguyen con ben ngoai nao, vi du `<iframe>`.
+- `default-src 'self'`: mặc định chỉ cho phép tải dữ liệu từ cùng nguồn gốc (cùng domain).
+- `img-src https://*`: chỉ cho phép tải hình ảnh qua giao thức HTTPS.
+- `child-src 'none'`: không cho phép nhúng bất kỳ tài nguyên con bên ngoài nào, ví dụ `<iframe>`.
 
-## 2. Tan cong XSS (Cross-site scripting) la gi?
+## 2. Tấn công XSS (Cross-site scripting) là gì?
 
 > What is XSS (Cross-site scripting) attack?
 
-XSS, hay tan cong scripting xuyen trang, la khi ke tan cong tiem script doc hai, khien no chay tren trinh duyet cua nguoi dung, tu do lay cap du lieu nhay cam nhu cookie, hoac truc tiep thay doi noi dung trang web de dan nguoi dung den trang web doc hai.
+XSS, hay tấn công scripting xuyên trang, là khi kẻ tấn công tiêm script độc hại, khiến nó chạy trên trình duyệt của người dùng, từ đó lấy cắp dữ liệu nhạy cảm như cookie, hoặc trực tiếp thay đổi nội dung trang web để dẫn người dùng đến trang web độc hại.
 
-### Phong chong XSS kieu luu tru
+### Phòng chống XSS kiểu lưu trữ
 
-Ke tan cong co the thong qua binh luan, co tinh chen HTML hoac script doc hai vao co so du lieu. Luc nay ngoai viec back-end se escape, cac framework front-end hien dai nhu JSX cua React hoac template Vue `{{ data }}` cung ho tro escape, giam thieu kha nang tan cong XSS.
+Kẻ tấn công có thể thông qua bình luận, cố tình chèn HTML hoặc script độc hại vào cơ sở dữ liệu. Lúc này ngoài việc back-end sẽ escape, các framework front-end hiện đại như JSX của React hoặc template Vue `{{ data }}` cũng hỗ trợ escape, giảm thiểu khả năng tấn công XSS.
 
-### Phong chong XSS kieu phan xa
+### Phòng chống XSS kiểu phản xạ
 
-Tranh su dung `innerHTML` de thao tac DOM, vi nhu vay co co hoi thuc thi cac the HTML. Thuong khuyen nghi su dung `textContent` de thao tac.
+Tránh sử dụng `innerHTML` để thao tác DOM, vì như vậy có cơ hội thực thi các thẻ HTML. Thường khuyến nghị sử dụng `textContent` để thao tác.
 
-### Phong chong XSS dua tren DOM
+### Phòng chống XSS dựa trên DOM
 
-Ve nguyen tac, chung ta co gang khong cho nguoi dung truc tiep chen HTML vao trang. Neu co nhu cau ve tinh huong, ban than framework cung co cac directive tuong tu de ho tro, vi du `dangerouslySetInnerHTML` cua React, `v-html` cua Vue, co gang tu dong phong chong XSS. Nhung neu can phat trien bang JS thuan, cung nen su dung `textContent`, `createElement`, `setAttribute` de thao tac DOM.
+Về nguyên tắc, chúng ta cố gắng không cho người dùng trực tiếp chèn HTML vào trang. Nếu có nhu cầu về tình huống, bản thân framework cũng có các directive tương tự để hỗ trợ, ví dụ `dangerouslySetInnerHTML` của React, `v-html` của Vue, cố gắng tự động phòng chống XSS. Nhưng nếu cần phát triển bằng JS thuần, cũng nên sử dụng `textContent`, `createElement`, `setAttribute` để thao tác DOM.

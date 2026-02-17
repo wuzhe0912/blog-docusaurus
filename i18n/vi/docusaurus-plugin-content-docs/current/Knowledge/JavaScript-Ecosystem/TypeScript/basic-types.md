@@ -1,127 +1,127 @@
 ---
 id: basic-types
-title: '[Easy] Cac kieu du lieu co ban va chu thich kieu'
+title: '[Easy] Các kiểu dữ liệu cơ bản và chú thích kiểu'
 slug: /basic-types
 tags: [TypeScript, Quiz, Easy]
 ---
 
 ## 1. What are TypeScript Basic Types?
 
-> Cac kieu du lieu co ban cua TypeScript la gi?
+> Các kiểu dữ liệu cơ bản của TypeScript là gì?
 
-TypeScript cung cap nhieu kieu du lieu co ban de dinh nghia kieu cho bien, tham so ham va gia tri tra ve.
+TypeScript cung cấp nhiều kiểu dữ liệu cơ bản để định nghĩa kiểu cho biến, tham số hàm và giá trị trả về.
 
-### Cac kieu co ban
+### Các kiểu cơ bản
 
 ```typescript
-// 1. number: so (so nguyen, so thuc)
+// 1. number: số (số nguyên, số thực)
 let age: number = 30;
 let price: number = 99.99;
 
-// 2. string: chuoi ky tu
+// 2. string: chuỗi ký tự
 let name: string = 'John';
 let message: string = `Hello, ${name}!`;
 
-// 3. boolean: gia tri boolean
+// 3. boolean: giá trị boolean
 let isActive: boolean = true;
 let isCompleted: boolean = false;
 
-// 4. null: gia tri rong
+// 4. null: giá trị rỗng
 let data: null = null;
 
-// 5. undefined: chua dinh nghia
+// 5. undefined: chưa định nghĩa
 let value: undefined = undefined;
 
-// 6. void: khong co gia tri tra ve (chu yeu dung cho ham)
+// 6. void: không có giá trị trả về (chủ yếu dùng cho hàm)
 function logMessage(): void {
   console.log('Hello');
 }
 
-// 7. any: kieu bat ky (nen tranh su dung)
+// 7. any: kiểu bất kỳ (nên tránh sử dụng)
 let anything: any = 'hello';
 anything = 42;
 anything = true;
 
-// 8. unknown: kieu chua biet (an toan hon any)
+// 8. unknown: kiểu chưa biết (an toàn hơn any)
 let userInput: unknown = 'hello';
-// userInput.toUpperCase(); // ❌ Loi: can kiem tra kieu truoc
+// userInput.toUpperCase(); // ❌ Lỗi: cần kiểm tra kiểu trước
 
-// 9. never: gia tri khong bao gio xay ra (cho ham khong bao gio tra ve)
+// 9. never: giá trị không bao giờ xảy ra (cho hàm không bao giờ trả về)
 function throwError(): never {
   throw new Error('Error');
 }
 
-// 10. object: doi tuong (it dung, khuyen dung interface)
+// 10. object: đối tượng (ít dùng, khuyên dùng interface)
 let user: object = { name: 'John' };
 
-// 11. array: mang
+// 11. array: mảng
 let numbers: number[] = [1, 2, 3];
 let names: Array<string> = ['John', 'Jane'];
 
-// 12. tuple: tuple (mang co do dai va kieu co dinh)
+// 12. tuple: tuple (mảng có độ dài và kiểu cố định)
 let person: [string, number] = ['John', 30];
 ```
 
 ## 2. Type Annotations vs Type Inference
 
-> Chu thich kieu vs Suy luan kieu
+> Chú thích kiểu vs Suy luận kiểu
 
-### Chu thich kieu (Type Annotations)
+### Chú thích kiểu (Type Annotations)
 
-**Dinh nghia**: Chi dinh ro rang kieu cua bien.
+**Định nghĩa**: Chỉ định rõ ràng kiểu của biến.
 
 ```typescript
-// Chi dinh kieu ro rang
+// Chỉ định kiểu rõ ràng
 let age: number = 30;
 let name: string = 'John';
 let isActive: boolean = true;
 
-// Tham so ham va gia tri tra ve
+// Tham số hàm và giá trị trả về
 function add(a: number, b: number): number {
   return a + b;
 }
 ```
 
-### Suy luan kieu (Type Inference)
+### Suy luận kiểu (Type Inference)
 
-**Dinh nghia**: TypeScript tu dong suy luan kieu dua tren gia tri khoi tao.
+**Định nghĩa**: TypeScript tự động suy luận kiểu dựa trên giá trị khởi tạo.
 
 ```typescript
-// TypeScript tu dong suy luan la number
+// TypeScript tự động suy luận là number
 let age = 30;        // age: number
 
-// TypeScript tu dong suy luan la string
+// TypeScript tự động suy luận là string
 let name = 'John';   // name: string
 
-// TypeScript tu dong suy luan la boolean
+// TypeScript tự động suy luận là boolean
 let isActive = true;  // isActive: boolean
 
-// Gia tri tra ve cua ham cung duoc tu dong suy luan
+// Giá trị trả về của hàm cũng được tự động suy luận
 function add(a: number, b: number) {
-  return a + b;  // Tu dong suy luan gia tri tra ve la number
+  return a + b;  // Tự động suy luận giá trị trả về là number
 }
 ```
 
-### Khi nao nen su dung chu thich kieu
+### Khi nào nên sử dụng chú thích kiểu
 
-**Cac truong hop can chi dinh kieu ro rang**:
+**Các trường hợp cần chỉ định kiểu rõ ràng**:
 
 ```typescript
-// 1. Khai bao bien ma khong co gia tri khoi tao
+// 1. Khai báo biến mà không có giá trị khởi tạo
 let value: number;
 value = 10;
 
-// 2. Tham so ham (bat buoc chi dinh)
+// 2. Tham số hàm (bắt buộc chỉ định)
 function greet(name: string): void {
   console.log(`Hello, ${name}!`);
 }
 
-// 3. Gia tri tra ve cua ham (khuyen chi dinh ro rang)
+// 3. Giá trị trả về của hàm (khuyên chỉ định rõ ràng)
 function calculate(): number {
   return 42;
 }
 
-// 4. Kieu phuc tap, suy luan co the khong chinh xac
+// 4. Kiểu phức tạp, suy luận có thể không chính xác
 let data: { name: string; age: number } = {
   name: 'John',
   age: 30,
@@ -130,11 +130,11 @@ let data: { name: string; age: number } = {
 
 ## 3. Common Interview Questions
 
-> Cac cau hoi phong van thuong gap
+> Các câu hỏi phỏng vấn thường gặp
 
-### Cau hoi 1: Suy luan kieu
+### Câu hỏi 1: Suy luận kiểu
 
-Hay giai thich kieu cua moi bien trong doan code sau.
+Hãy giải thích kiểu của mỗi biến trong đoạn code sau.
 
 ```typescript
 let value1 = 10;
@@ -145,7 +145,7 @@ let value5 = { name: 'John', age: 30 };
 ```
 
 <details>
-<summary>Nhan de xem dap an</summary>
+<summary>Nhấn để xem đáp án</summary>
 
 ```typescript
 let value1 = 10;                    // number
@@ -155,16 +155,16 @@ let value4 = [1, 2, 3];             // number[]
 let value5 = { name: 'John', age: 30 }; // { name: string; age: number }
 ```
 
-**Giai thich**:
-- TypeScript tu dong suy luan kieu dua tren gia tri khoi tao
-- Mang duoc suy luan la mang cua kieu phan tu
-- Doi tuong duoc suy luan la kieu cau truc cua doi tuong
+**Giải thích**:
+- TypeScript tự động suy luận kiểu dựa trên giá trị khởi tạo
+- Mảng được suy luận là mảng của kiểu phần tử
+- Đối tượng được suy luận là kiểu cấu trúc của đối tượng
 
 </details>
 
-### Cau hoi 2: Loi kieu
+### Câu hỏi 2: Lỗi kiểu
 
-Hay tim cac loi kieu trong doan code sau.
+Hãy tìm các lỗi kiểu trong đoạn code sau.
 
 ```typescript
 let age: number = 30;
@@ -181,7 +181,7 @@ numbers.push('4');
 ```
 
 <details>
-<summary>Nhan de xem dap an</summary>
+<summary>Nhấn để xem đáp án</summary>
 
 ```typescript
 let age: number = 30;
@@ -197,7 +197,7 @@ let numbers: number[] = [1, 2, 3];
 numbers.push('4'); // ❌ Argument of type 'string' is not assignable to parameter of type 'number'
 ```
 
-**Cach viet dung**:
+**Cách viết đúng**:
 ```typescript
 let age: number = 30;
 age = 30; // ✅
@@ -214,58 +214,58 @@ numbers.push(4); // ✅
 
 </details>
 
-### Cau hoi 3: any vs unknown
+### Câu hỏi 3: any vs unknown
 
-Hay giai thich su khac biet giua `any` va `unknown`, va cho biet nen su dung cai nao.
+Hãy giải thích sự khác biệt giữa `any` và `unknown`, và cho biết nên sử dụng cái nào.
 
 ```typescript
-// Truong hop 1: su dung any
+// Trường hợp 1: sử dụng any
 function processAny(value: any): void {
   console.log(value.toUpperCase()); // ?
 }
 
-// Truong hop 2: su dung unknown
+// Trường hợp 2: sử dụng unknown
 function processUnknown(value: unknown): void {
   console.log(value.toUpperCase()); // ?
 }
 ```
 
 <details>
-<summary>Nhan de xem dap an</summary>
+<summary>Nhấn để xem đáp án</summary>
 
-**Truong hop 1: su dung any**
+**Trường hợp 1: sử dụng any**
 ```typescript
 function processAny(value: any): void {
-  console.log(value.toUpperCase()); // ⚠️ Bien dich thanh cong, nhung co the loi khi chay
+  console.log(value.toUpperCase()); // ⚠️ Biên dịch thành công, nhưng có thể lỗi khi chạy
 }
 
-processAny('hello');  // ✅ Chay binh thuong
-processAny(42);       // ❌ Loi runtime: value.toUpperCase is not a function
+processAny('hello');  // ✅ Chạy bình thường
+processAny(42);       // ❌ Lỗi runtime: value.toUpperCase is not a function
 ```
 
-**Truong hop 2: su dung unknown**
+**Trường hợp 2: sử dụng unknown**
 ```typescript
 function processUnknown(value: unknown): void {
-  // console.log(value.toUpperCase()); // ❌ Loi bien dich: Object is of type 'unknown'
+  // console.log(value.toUpperCase()); // ❌ Lỗi biên dịch: Object is of type 'unknown'
 
-  // Can kiem tra kieu truoc
+  // Cần kiểm tra kiểu trước
   if (typeof value === 'string') {
-    console.log(value.toUpperCase()); // ✅ An toan
+    console.log(value.toUpperCase()); // ✅ An toàn
   }
 }
 ```
 
-**So sanh su khac biet**:
+**So sánh sự khác biệt**:
 
-| Dac diem | any | unknown |
+| Đặc điểm | any | unknown |
 | --- | --- | --- |
-| Kiem tra kieu | Tat hoan toan | Can kiem tra truoc khi su dung |
-| Do an toan | Khong an toan | An toan |
-| Khuyen dung | Tranh su dung | Khuyen dung |
+| Kiểm tra kiểu | Tắt hoàn toàn | Cần kiểm tra trước khi sử dụng |
+| Độ an toàn | Không an toàn | An toàn |
+| Khuyên dùng | Tránh sử dụng | Khuyên dùng |
 
-**Thuc hanh tot nhat**:
+**Thực hành tốt nhất**:
 ```typescript
-// ✅ Khuyen dung: su dung unknown va kiem tra kieu
+// ✅ Khuyên dùng: sử dụng unknown và kiểm tra kiểu
 function processValue(value: unknown): void {
   if (typeof value === 'string') {
     console.log(value.toUpperCase());
@@ -274,17 +274,17 @@ function processValue(value: unknown): void {
   }
 }
 
-// ❌ Tranh: su dung any
+// ❌ Tránh: sử dụng any
 function processValue(value: any): void {
-  console.log(value.toUpperCase()); // Khong an toan
+  console.log(value.toUpperCase()); // Không an toàn
 }
 ```
 
 </details>
 
-### Cau hoi 4: Kieu mang
+### Câu hỏi 4: Kiểu mảng
 
-Hay giai thich su khac biet giua cac khai bao kieu mang sau.
+Hãy giải thích sự khác biệt giữa các khai báo kiểu mảng sau.
 
 ```typescript
 let arr1: number[];
@@ -294,189 +294,189 @@ let arr4: any[];
 ```
 
 <details>
-<summary>Nhan de xem dap an</summary>
+<summary>Nhấn để xem đáp án</summary>
 
 ```typescript
-// 1. number[]: mang so (cach viet khuyen dung)
+// 1. number[]: mảng số (cách viết khuyên dùng)
 let arr1: number[] = [1, 2, 3];
 arr1.push(4);        // ✅
-arr1.push('4');     // ❌ Loi
+arr1.push('4');     // ❌ Lỗi
 
-// 2. Array<number>: mang generic (tuong duong voi number[])
+// 2. Array<number>: mảng generic (tương đương với number[])
 let arr2: Array<number> = [1, 2, 3];
 arr2.push(4);        // ✅
-arr2.push('4');      // ❌ Loi
+arr2.push('4');      // ❌ Lỗi
 
-// 3. [number, string]: tuple (Tuple) - do dai va kieu co dinh
+// 3. [number, string]: tuple (Tuple) - độ dài và kiểu cố định
 let arr3: [number, string] = [1, 'hello'];
 arr3[0] = 2;         // ✅
 arr3[1] = 'world';   // ✅
-arr3[2] = true;      // ❌ Loi: do dai vuot qua 2
-arr3.push('test');   // ⚠️ TypeScript cho phep, nhung khong khuyen dung
+arr3[2] = true;      // ❌ Lỗi: độ dài vượt quá 2
+arr3.push('test');   // ⚠️ TypeScript cho phép, nhưng không khuyên dùng
 
-// 4. any[]: mang kieu bat ky (khong khuyen dung)
+// 4. any[]: mảng kiểu bất kỳ (không khuyên dùng)
 let arr4: any[] = [1, 'hello', true];
 arr4.push(42);       // ✅
 arr4.push('world');  // ✅
-arr4.push(false);    // ✅ (nhung mat kiem tra kieu)
+arr4.push(false);    // ✅ (nhưng mất kiểm tra kiểu)
 ```
 
-**Khuyen nghi su dung**:
-- Mang thong thuong: su dung `number[]` hoac `Array<number>`
-- Cau truc co dinh: su dung tuple `[type1, type2]`
-- Tranh su dung `any[]`, uu tien su dung kieu cu the hoac `unknown[]`
+**Khuyến nghị sử dụng**:
+- Mảng thông thường: sử dụng `number[]` hoặc `Array<number>`
+- Cấu trúc cố định: sử dụng tuple `[type1, type2]`
+- Tránh sử dụng `any[]`, ưu tiên sử dụng kiểu cụ thể hoặc `unknown[]`
 
 </details>
 
-### Cau hoi 5: void vs never
+### Câu hỏi 5: void vs never
 
-Hay giai thich su khac biet va cac truong hop su dung cua `void` va `never`.
+Hãy giải thích sự khác biệt và các trường hợp sử dụng của `void` và `never`.
 
 ```typescript
-// Truong hop 1: void
+// Trường hợp 1: void
 function logMessage(): void {
   console.log('Hello');
 }
 
-// Truong hop 2: never
+// Trường hợp 2: never
 function throwError(): never {
   throw new Error('Error');
 }
 
 function infiniteLoop(): never {
   while (true) {
-    // Vong lap vo han
+    // Vòng lặp vô hạn
   }
 }
 ```
 
 <details>
-<summary>Nhan de xem dap an</summary>
+<summary>Nhấn để xem đáp án</summary>
 
 **void**:
-- **Muc dich**: Bieu thi ham khong tra ve gia tri
-- **Dac diem**: Ham ket thuc binh thuong, chi khong tra ve gia tri
-- **Truong hop su dung**: Ham xu ly su kien, ham co tac dung phu
+- **Mục đích**: Biểu thị hàm không trả về giá trị
+- **Đặc điểm**: Hàm kết thúc bình thường, chỉ không trả về giá trị
+- **Trường hợp sử dụng**: Hàm xử lý sự kiện, hàm có tác dụng phụ
 
 ```typescript
 function logMessage(): void {
   console.log('Hello');
-  // Ham ket thuc binh thuong, khong tra ve gia tri
+  // Hàm kết thúc bình thường, không trả về giá trị
 }
 
 function onClick(): void {
-  // Xu ly su kien click, khong can gia tri tra ve
+  // Xử lý sự kiện click, không cần giá trị trả về
 }
 ```
 
 **never**:
-- **Muc dich**: Bieu thi ham khong bao gio ket thuc binh thuong
-- **Dac diem**: Ham se nem loi hoac di vao vong lap vo han
-- **Truong hop su dung**: Xu ly loi, vong lap vo han, type guard
+- **Mục đích**: Biểu thị hàm không bao giờ kết thúc bình thường
+- **Đặc điểm**: Hàm sẽ ném lỗi hoặc đi vào vòng lặp vô hạn
+- **Trường hợp sử dụng**: Xử lý lỗi, vòng lặp vô hạn, type guard
 
 ```typescript
 function throwError(): never {
   throw new Error('Error');
-  // Khong bao gio thuc thi den day
+  // Không bao giờ thực thi đến đây
 }
 
 function infiniteLoop(): never {
   while (true) {
-    // Khong bao gio ket thuc
+    // Không bao giờ kết thúc
   }
 }
 
-// Su dung trong type guard
+// Sử dụng trong type guard
 function assertNever(value: never): never {
   throw new Error(`Unexpected value: ${value}`);
 }
 ```
 
-**So sanh su khac biet**:
+**So sánh sự khác biệt**:
 
-| Dac diem | void | never |
+| Đặc điểm | void | never |
 | --- | --- | --- |
-| Ket thuc ham | Ket thuc binh thuong | Khong bao gio ket thuc |
-| Gia tri tra ve | undefined | Khong co gia tri tra ve |
-| Truong hop su dung | Ham khong tra ve gia tri | Xu ly loi, vong lap vo han |
+| Kết thúc hàm | Kết thúc bình thường | Không bao giờ kết thúc |
+| Giá trị trả về | undefined | Không có giá trị trả về |
+| Trường hợp sử dụng | Hàm không trả về giá trị | Xử lý lỗi, vòng lặp vô hạn |
 
 </details>
 
 ## 4. Best Practices
 
-> Thuc hanh tot nhat
+> Thực hành tốt nhất
 
-### Cach lam khuyen dung
+### Cách làm khuyên dùng
 
 ```typescript
-// 1. Uu tien su dung suy luan kieu
-let age = 30;  // ✅ De TypeScript suy luan
+// 1. Ưu tiên sử dụng suy luận kiểu
+let age = 30;  // ✅ Để TypeScript suy luận
 let name = 'John';  // ✅
 
-// 2. Chi dinh ro rang kieu cho tham so va gia tri tra ve cua ham
+// 2. Chỉ định rõ ràng kiểu cho tham số và giá trị trả về của hàm
 function calculate(a: number, b: number): number {
   return a + b;
 }
 
-// 3. Su dung unknown thay vi any
+// 3. Sử dụng unknown thay vì any
 function processValue(value: unknown): void {
   if (typeof value === 'string') {
     console.log(value.toUpperCase());
   }
 }
 
-// 4. Su dung kieu mang cu the
+// 4. Sử dụng kiểu mảng cụ thể
 let numbers: number[] = [1, 2, 3];  // ✅
 let names: Array<string> = ['John', 'Jane'];  // ✅
 
-// 5. Su dung tuple de bieu dien cau truc co dinh
+// 5. Sử dụng tuple để biểu diễn cấu trúc cố định
 let person: [string, number] = ['John', 30];  // ✅
 ```
 
-### Cach lam nen tranh
+### Cách làm nên tránh
 
 ```typescript
-// 1. Tranh su dung any
+// 1. Tránh sử dụng any
 let value: any = 'hello';  // ❌
 
-// 2. Tranh chu thich kieu khong can thiet
-let age: number = 30;  // ⚠️ Co the don gian thanh let age = 30;
+// 2. Tránh chú thích kiểu không cần thiết
+let age: number = 30;  // ⚠️ Có thể đơn giản thành let age = 30;
 
-// 3. Tranh su dung kieu object
-let user: object = { name: 'John' };  // ❌ Su dung interface tot hon
+// 3. Tránh sử dụng kiểu object
+let user: object = { name: 'John' };  // ❌ Sử dụng interface tốt hơn
 
-// 4. Tranh mang kieu hon hop (tru khi can thiet)
-let mixed: (string | number)[] = ['hello', 42];  // ⚠️ Xem xet co thuc su can thiet khong
+// 4. Tránh mảng kiểu hỗn hợp (trừ khi cần thiết)
+let mixed: (string | number)[] = ['hello', 42];  // ⚠️ Xem xét có thực sự cần thiết không
 ```
 
 ## 5. Interview Summary
 
-> Tom tat phong van
+> Tóm tắt phỏng vấn
 
-### Tham khao nhanh
+### Tham khảo nhanh
 
-**Cac kieu co ban**:
+**Các kiểu cơ bản**:
 - `number`, `string`, `boolean`, `null`, `undefined`
-- `void` (khong co gia tri tra ve), `never` (khong bao gio tra ve)
-- `any` (kieu bat ky, tranh su dung), `unknown` (kieu chua biet, khuyen dung)
+- `void` (không có giá trị trả về), `never` (không bao giờ trả về)
+- `any` (kiểu bất kỳ, tránh sử dụng), `unknown` (kiểu chưa biết, khuyên dùng)
 
-**Chu thich kieu vs Suy luan**:
-- Chu thich kieu: chi dinh ro rang `let age: number = 30`
-- Suy luan kieu: tu dong suy luan `let age = 30`
+**Chú thích kiểu vs Suy luận**:
+- Chú thích kiểu: chỉ định rõ ràng `let age: number = 30`
+- Suy luận kiểu: tự động suy luận `let age = 30`
 
-**Kieu mang**:
-- `number[]` hoac `Array<number>`: mang thong thuong
-- `[number, string]`: tuple (cau truc co dinh)
+**Kiểu mảng**:
+- `number[]` hoặc `Array<number>`: mảng thông thường
+- `[number, string]`: tuple (cấu trúc cố định)
 
-### Vi du tra loi phong van
+### Ví dụ trả lời phỏng vấn
 
-**Q: TypeScript co nhung kieu co ban nao?**
+**Q: TypeScript có những kiểu cơ bản nào?**
 
-> "TypeScript cung cap nhieu kieu co ban, bao gom number, string, boolean, null, undefined. Con co mot so kieu dac biet: void bieu thi khong co gia tri tra ve, chu yeu dung cho ham; never bieu thi gia tri khong bao gio xay ra, dung cho ham khong bao gio tra ve; any la kieu bat ky nhung nen tranh su dung; unknown la kieu chua biet, an toan hon any, can kiem tra kieu truoc khi su dung. Ngoai ra con co kieu mang number[] va kieu tuple [number, string]."
+> "TypeScript cung cấp nhiều kiểu cơ bản, bao gồm number, string, boolean, null, undefined. Còn có một số kiểu đặc biệt: void biểu thị không có giá trị trả về, chủ yếu dùng cho hàm; never biểu thị giá trị không bao giờ xảy ra, dùng cho hàm không bao giờ trả về; any là kiểu bất kỳ nhưng nên tránh sử dụng; unknown là kiểu chưa biết, an toàn hơn any, cần kiểm tra kiểu trước khi sử dụng. Ngoài ra còn có kiểu mảng number[] và kiểu tuple [number, string]."
 
-**Q: Su khac biet giua any va unknown la gi?**
+**Q: Sự khác biệt giữa any và unknown là gì?**
 
-> "any se tat hoan toan kiem tra kieu, co the su dung truc tiep bat ky thuoc tinh hoac phuong thuc nao, nhung dieu nay khong an toan. unknown can kiem tra kieu truoc khi su dung, an toan hon. Vi du khi su dung unknown, can kiem tra kieu bang typeof truoc, xac nhan xong moi co the goi phuong thuc tuong ung. Khuyen su dung unknown hon la any."
+> "any sẽ tắt hoàn toàn kiểm tra kiểu, có thể sử dụng trực tiếp bất kỳ thuộc tính hoặc phương thức nào, nhưng điều này không an toàn. unknown cần kiểm tra kiểu trước khi sử dụng, an toàn hơn. Ví dụ khi sử dụng unknown, cần kiểm tra kiểu bằng typeof trước, xác nhận xong mới có thể gọi phương thức tương ứng. Khuyên sử dụng unknown hơn là any."
 
 ## Reference
 

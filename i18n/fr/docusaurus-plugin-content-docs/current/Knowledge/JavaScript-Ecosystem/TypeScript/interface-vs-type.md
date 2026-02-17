@@ -11,13 +11,13 @@ tags: [TypeScript, Quiz, Medium]
 
 ### Interface
 
-**Definition** : Utilisee pour definir la structure d'un objet, decrivant les proprietes et methodes qu'un objet doit avoir.
+**Définition** : Utilisée pour définir la structure d'un objet, décrivant les propriétés et méthodes qu'un objet doit avoir.
 
 ```typescript
 interface User {
   name: string;
   age: number;
-  email?: string;  // Propriete optionnelle
+  email?: string;  // Propriété optionnelle
 }
 
 const user: User = {
@@ -28,7 +28,7 @@ const user: User = {
 
 ### Type Alias (Alias de type)
 
-**Definition** : Cree un alias pour un type, utilisable avec n'importe quel type, pas seulement les objets.
+**Définition** : Crée un alias pour un type, utilisable avec n'importe quel type, pas seulement les objets.
 
 ```typescript
 type User = {
@@ -45,9 +45,9 @@ const user: User = {
 
 ## 2. Interface vs Type Alias: Key Differences
 
-> Principales differences entre Interface et Type Alias
+> Principales différences entre Interface et Type Alias
 
-### 1. Methode d'extension
+### 1. Méthode d'extension
 
 **Interface : utilisation de extends**
 
@@ -83,7 +83,7 @@ type User = { name: string; };
 type User = { age: number; };  // ❌ Erreur : Duplicate identifier 'User'
 ```
 
-### 3. Portee d'application
+### 3. Portée d'application
 
 **Interface : principalement pour les structures d'objets**
 
@@ -101,15 +101,15 @@ type Point = [number, number];
 type User = { name: string; age: number; };
 ```
 
-### 4. Proprietes calculees
+### 4. Propriétés calculées
 
-**Interface : ne supporte pas les proprietes calculees**
+**Interface : ne supporte pas les propriétés calculées**
 
 ```typescript
 interface User { [key: string]: any; }
 ```
 
-**Type Alias : supporte des operations de type plus complexes**
+**Type Alias : supporte des opérations de type plus complexes**
 
 ```typescript
 type Keys = 'name' | 'age' | 'email';
@@ -122,24 +122,24 @@ type User = { [K in Keys]: string; };
 
 ### Utiliser Interface quand
 
-1. **Definir des structures d'objets** (le plus courant)
-2. **La fusion de declarations est necessaire** (ex. etendre les types de packages tiers)
-3. **Definir des contrats de classe**
+1. **Définir des structures d'objets** (le plus courant)
+2. **La fusion de déclarations est nécessaire** (ex. étendre les types de packages tiers)
+3. **Définir des contrats de classe**
 
 ### Utiliser Type Alias quand
 
-1. **Definir des types union ou intersection** : `type ID = string | number;`
-2. **Definir des types de fonction** : `type EventHandler = (event: Event) => void;`
-3. **Definir des tuples** : `type Point = [number, number];`
-4. **Des types mappes ou conditionnels sont necessaires**
+1. **Définir des types union ou intersection** : `type ID = string | number;`
+2. **Définir des types de fonction** : `type EventHandler = (event: Event) => void;`
+3. **Définir des tuples** : `type Point = [number, number];`
+4. **Des types mappés ou conditionnels sont nécessaires**
 
 ## 4. Common Interview Questions
 
 > Questions d'entretien courantes
 
-### Question 1 : Differences de base
+### Question 1 : Différences de base
 
-Expliquez les differences entre les deux methodes de definition suivantes.
+Expliquez les différences entre les deux méthodes de définition suivantes.
 
 ```typescript
 interface User { name: string; age: number; }
@@ -147,33 +147,33 @@ type User = { name: string; age: number; };
 ```
 
 <details>
-<summary>Cliquez pour voir la reponse</summary>
+<summary>Cliquez pour voir la réponse</summary>
 
-**Points communs** : Les deux peuvent definir des structures d'objets, s'utilisent de la meme maniere, les deux peuvent etre etendus.
+**Points communs** : Les deux peuvent définir des structures d'objets, s'utilisent de la même manière, les deux peuvent être étendus.
 
-**Differences** :
-1. **Fusion de declarations** : Interface la supporte ; Type Alias non.
-2. **Portee** : Interface est principalement pour les objets ; Type Alias pour n'importe quel type.
+**Différences** :
+1. **Fusion de déclarations** : Interface la supporte ; Type Alias non.
+2. **Portée** : Interface est principalement pour les objets ; Type Alias pour n'importe quel type.
 
-**Recommandation** : Pour les structures d'objets, les deux conviennent. Pour la fusion de declarations, utilisez Interface. Pour les types non-objet, utilisez Type Alias.
+**Recommandation** : Pour les structures d'objets, les deux conviennent. Pour la fusion de déclarations, utilisez Interface. Pour les types non-objet, utilisez Type Alias.
 
 </details>
 
-### Question 2 : Methodes d'extension
+### Question 2 : Méthodes d'extension
 
-Expliquez les differences entre `extends` et l'intersection `&`.
+Expliquez les différences entre `extends` et l'intersection `&`.
 
 <details>
-<summary>Cliquez pour voir la reponse</summary>
+<summary>Cliquez pour voir la réponse</summary>
 
 - **Syntaxe** : Interface utilise `extends`, Type utilise `&`
-- **Resultat** : Les deux produisent le meme resultat
-- **Lisibilite** : `extends` d'Interface est plus intuitif
-- **Flexibilite** : `&` de Type peut combiner plusieurs types
+- **Résultat** : Les deux produisent le même résultat
+- **Lisibilité** : `extends` d'Interface est plus intuitif
+- **Flexibilité** : `&` de Type peut combiner plusieurs types
 
 </details>
 
-### Question 3 : Fusion de declarations
+### Question 3 : Fusion de déclarations
 
 ```typescript
 interface User { name: string; }
@@ -182,18 +182,18 @@ const user: User = { name: 'John' };  // Il manque age ?
 ```
 
 <details>
-<summary>Cliquez pour voir la reponse</summary>
+<summary>Cliquez pour voir la réponse</summary>
 
-Les deux declarations sont automatiquement fusionnees. L'absence de `age` genere une erreur. Type Alias ne supporte pas la fusion de declarations.
+Les deux déclarations sont automatiquement fusionnées. L'absence de `age` génère une erreur. Type Alias ne supporte pas la fusion de déclarations.
 
 </details>
 
-### Question 4 : Implementation (implements)
+### Question 4 : Implémentation (implements)
 
 <details>
-<summary>Cliquez pour voir la reponse</summary>
+<summary>Cliquez pour voir la réponse</summary>
 
-Les deux peuvent etre utilises avec `implements`. Interface est plus courant pour les contrats de classe. Les Type Alias de fonctions ne peuvent pas etre implementes.
+Les deux peuvent être utilisés avec `implements`. Interface est plus courant pour les contrats de classe. Les Type Alias de fonctions ne peuvent pas être implémentés.
 
 </details>
 
@@ -201,10 +201,10 @@ Les deux peuvent etre utilises avec `implements`. Interface est plus courant pou
 
 > Meilleures pratiques
 
-### Pratiques recommandees
+### Pratiques recommandées
 
 ```typescript
-// 1. Pour les objets, privilegier Interface
+// 1. Pour les objets, privilégier Interface
 interface User { name: string; age: number; }
 
 // 2. Pour les types union, utiliser Type Alias
@@ -213,7 +213,7 @@ type Status = 'active' | 'inactive' | 'pending';
 // 3. Pour les types de fonction, utiliser Type Alias
 type EventHandler = (event: Event) => void;
 
-// 4. Pour la fusion de declarations, utiliser Interface
+// 4. Pour la fusion de déclarations, utiliser Interface
 interface Window { customProperty: string; }
 
 // 5. Pour les contrats de classe, utiliser Interface
@@ -221,33 +221,33 @@ interface Flyable { fly(): void; }
 class Bird implements Flyable { fly(): void {} }
 ```
 
-### Pratiques a eviter
+### Pratiques à éviter
 
 ```typescript
-// 1. Ne pas melanger Interface et Type Alias pour la meme structure
-// 2. Ne pas utiliser Type Alias pour des objets simples (Interface est plus approprie)
+// 1. Ne pas mélanger Interface et Type Alias pour la même structure
+// 2. Ne pas utiliser Type Alias pour des objets simples (Interface est plus approprié)
 // 3. Ne pas utiliser Interface pour des types non-objet
 ```
 
 ## 6. Interview Summary
 
-> Resume pour l'entretien
+> Résumé pour l'entretien
 
-### Reference rapide
+### Référence rapide
 
 **Interface** : objets, Declaration Merging, `extends`, contrats de classe.
 
 **Type Alias** : tout type, pas de Declaration Merging, `&` intersection, union/fonction/tuple.
 
-### Exemples de reponses pour l'entretien
+### Exemples de réponses pour l'entretien
 
-**Q : Quelles sont les differences entre Interface et Type Alias ?**
+**Q : Quelles sont les différences entre Interface et Type Alias ?**
 
-> "Interface et Type Alias peuvent tous deux definir des structures d'objets, mais ont des differences cles : 1) Interface supporte la fusion de declarations ; Type Alias non. 2) Interface est pour les objets ; Type Alias pour tout type. 3) Interface utilise extends ; Type Alias utilise &. 4) Interface est mieux adapte aux contrats de classe. Pour les objets, les deux conviennent. Pour la fusion, utilisez Interface. Pour les types non-objet, utilisez Type Alias."
+> "Interface et Type Alias peuvent tous deux définir des structures d'objets, mais ont des différences clés : 1) Interface supporte la fusion de déclarations ; Type Alias non. 2) Interface est pour les objets ; Type Alias pour tout type. 3) Interface utilise extends ; Type Alias utilise &. 4) Interface est mieux adapté aux contrats de classe. Pour les objets, les deux conviennent. Pour la fusion, utilisez Interface. Pour les types non-objet, utilisez Type Alias."
 
 **Q : Quand utiliser Interface et quand Type Alias ?**
 
-> "Utilisez Interface pour : structures d'objets, fusion de declarations, contrats de classe. Utilisez Type Alias pour : types union/intersection, types de fonction, tuples, types mappes/conditionnels. En resume, privilegiez Interface pour les objets, Type Alias pour le reste."
+> "Utilisez Interface pour : structures d'objets, fusion de déclarations, contrats de classe. Utilisez Type Alias pour : types union/intersection, types de fonction, tuples, types mappés/conditionnels. En résumé, privilégiez Interface pour les objets, Type Alias pour le reste."
 
 ## Reference
 

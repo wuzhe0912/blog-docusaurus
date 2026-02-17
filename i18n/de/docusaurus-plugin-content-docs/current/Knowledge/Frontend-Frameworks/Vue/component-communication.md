@@ -7,22 +7,22 @@ tags: [Vue, Quiz, Medium]
 
 ## 1. What are the ways for Vue components to communicate with each other?
 
-> Welche Moeglichkeiten gibt es fuer die Kommunikation zwischen Vue-Komponenten?
+> Welche Möglichkeiten gibt es für die Kommunikation zwischen Vue-Komponenten?
 
-Die Datenuebertragung zwischen Vue-Komponenten ist eine sehr haeufige Anforderung in der Entwicklung. Je nach Beziehung zwischen den Komponenten stehen verschiedene Kommunikationsmethoden zur Verfuegung.
+Die Datenübertragung zwischen Vue-Komponenten ist eine sehr häufige Anforderung in der Entwicklung. Je nach Beziehung zwischen den Komponenten stehen verschiedene Kommunikationsmethoden zur Verfügung.
 
 ### Klassifizierung der Komponentenbeziehungen
 
 ```text
 Eltern-Kind: props / $emit
-Grosseltern-Enkel: provide / inject
+Großeltern-Enkel: provide / inject
 Geschwister: Event Bus / Vuex / Pinia
 Beliebige Komponenten: Vuex / Pinia
 ```
 
 ### 1. Props (Eltern an Kind)
 
-**Verwendung**: Elternkomponente uebergibt Daten an die Kindkomponente
+**Verwendung**: Elternkomponente übergibt Daten an die Kindkomponente
 
 ```vue
 <!-- ParentComponent.vue - Vue 3 <script setup> -->
@@ -57,7 +57,7 @@ const counter = ref(0);
     <h2>Kindkomponente</h2>
     <p>Empfangene Nachricht: {{ message }}</p>
     <p>Benutzer: {{ user.name }} ({{ user.age }} Jahre)</p>
-    <p>Zaehler: {{ count }}</p>
+    <p>Zähler: {{ count }}</p>
   </div>
 </template>
 
@@ -149,7 +149,7 @@ const handleInput = () => {
   <div>
     <h1>Elternkomponente</h1>
 
-    <!-- Events der Kindkomponente abhoeren -->
+    <!-- Events der Kindkomponente abhören -->
     <ChildComponent
       @custom-event="handleCustomEvent"
       @update:modelValue="handleUpdate"
@@ -310,15 +310,15 @@ defineEmits(['update:name', 'update:email']);
 </script>
 ```
 
-### 4. Provide / Inject (Grosseltern-Enkel-Komponenten)
+### 4. Provide / Inject (Großeltern-Enkel-Komponenten)
 
-**Verwendung**: Kommunikation ueber mehrere Ebenen hinweg, vermeidet schichtweises Weiterreichen von Props
+**Verwendung**: Kommunikation über mehrere Ebenen hinweg, vermeidet schichtweises Weiterreichen von Props
 
 ```vue
 <!-- GrandparentComponent.vue -->
 <template>
   <div>
-    <h1>Grosselternkomponente</h1>
+    <h1>Großelternkomponente</h1>
     <parent-component />
   </div>
 </template>
@@ -340,7 +340,7 @@ export default {
       userInfo.value = { ...userInfo.value, ...newInfo };
     };
 
-    // Daten und Methoden fuer Nachfahrenkomponenten bereitstellen
+    // Daten und Methoden für Nachfahrenkomponenten bereitstellen
     provide('userInfo', userInfo);
     provide('updateUser', updateUser);
 
@@ -375,7 +375,7 @@ export default {
     <h3>Kindkomponente</h3>
     <p>Benutzer: {{ userInfo.name }}</p>
     <p>Rolle: {{ userInfo.role }}</p>
-    <button @click="changeUser">Benutzer aendern</button>
+    <button @click="changeUser">Benutzer ändern</button>
   </div>
 </template>
 
@@ -384,7 +384,7 @@ import { inject } from 'vue';
 
 export default {
   setup() {
-    // Daten der Grosselternkomponente injizieren
+    // Daten der Großelternkomponente injizieren
     const userInfo = inject('userInfo');
     const updateUser = inject('updateUser');
 
@@ -411,10 +411,10 @@ export default {
   setup() {
     const state = ref({ count: 0 });
 
-    // Falsch: Nachfahrenkomponenten koennen direkt aendern
+    // Falsch: Nachfahrenkomponenten können direkt ändern
     provide('state', state);
 
-    // Richtig: Schreibgeschuetzte Daten und Aenderungsmethoden bereitstellen
+    // Richtig: Schreibgeschützte Daten und Änderungsmethoden bereitstellen
     provide('state', readonly(state));
     provide('updateState', (newState) => {
       state.value = newState;
@@ -520,16 +520,16 @@ export default {
 </script>
 ```
 
-**Gruende, warum es nicht empfohlen wird**:
+**Gründe, warum es nicht empfohlen wird**:
 
-- Erhoeht die Kopplung zwischen Komponenten
+- Erhöht die Kopplung zwischen Komponenten
 - Datenfluss schwer nachverfolgbar
-- Nachteilig fuer die Wiederverwendbarkeit von Komponenten
+- Nachteilig für die Wiederverwendbarkeit von Komponenten
 - Verwenden Sie stattdessen Props, $emit oder Provide/Inject
 
 ### 7. Event Bus (Beliebige Komponenten)
 
-**Verwendung**: Kommunikation zwischen beliebigen Komponenten (in Vue 2 ueblich, in Vue 3 nicht empfohlen)
+**Verwendung**: Kommunikation zwischen beliebigen Komponenten (in Vue 2 üblich, in Vue 3 nicht empfohlen)
 
 #### Event Bus in Vue 2
 
@@ -623,7 +623,7 @@ onUnmounted(() => {
 
 **Verwendung**: Komplexen globalen Zustand verwalten
 
-#### Pinia (Empfohlen fuer Vue 3)
+#### Pinia (Empfohlen für Vue 3)
 
 ```js
 // stores/user.js
@@ -692,7 +692,7 @@ const userStore = useUserStore();
 
 ### 9. Slots (Inhaltsverteilung)
 
-**Verwendung**: Elternkomponente uebergibt Template-Inhalte an die Kindkomponente
+**Verwendung**: Elternkomponente übergibt Template-Inhalte an die Kindkomponente
 
 #### Grundlegender Slot
 
@@ -726,20 +726,20 @@ const userStore = useUserStore();
     <p>Dies ist der Hauptinhalt</p>
 
     <template #footer>
-      <button>Bestaetigen</button>
+      <button>Bestätigen</button>
     </template>
   </child-component>
 </template>
 ```
 
-#### Scoped Slots (Slots mit Gueltigkeitsbereich)
+#### Scoped Slots (Slots mit Gültigkeitsbereich)
 
 ```vue
 <!-- ListComponent.vue -->
 <template>
   <ul>
     <li v-for="item in items" :key="item.id">
-      <!-- Daten an die Elternkomponente uebergeben -->
+      <!-- Daten an die Elternkomponente übergeben -->
       <slot :item="item" :index="index"></slot>
     </li>
   </ul>
@@ -756,7 +756,7 @@ export default {
 <!-- ParentComponent.vue -->
 <template>
   <list-component :items="users">
-    <!-- Von der Kindkomponente uebergebene Daten empfangen -->
+    <!-- Von der Kindkomponente übergebene Daten empfangen -->
     <template #default="{ item, index }">
       <span>{{ index + 1 }}. {{ item.name }}</span>
     </template>
@@ -768,22 +768,22 @@ export default {
 
 | Beziehung | Empfohlene Methode | Anwendungsfall |
 | -------- | -------------- | -------------------------- |
-| Eltern -> Kind | Props | Daten an Kind uebergeben |
-| Kind -> Eltern | $emit | Eltern ueber Events benachrichtigen |
+| Eltern -> Kind | Props | Daten an Kind übergeben |
+| Kind -> Eltern | $emit | Eltern über Events benachrichtigen |
 | Eltern ↔ Kind | v-model | Bidirektionale Formularbindung |
-| Grosseltern -> Enkel | Provide/Inject | Ebenuebergreifende Datenuebertragung |
+| Großeltern -> Enkel | Provide/Inject | Ebenübergreifende Datenübertragung |
 | Eltern -> Kind | $refs | Kind-Methoden direkt aufrufen (selten) |
 | Beliebig | Pinia/Vuex | Globale Zustandsverwaltung |
 | Beliebig | Event Bus | Einfache Eventkommunikation (nicht empfohlen) |
-| Eltern -> Kind | Slots | Template-Inhalte uebergeben |
+| Eltern -> Kind | Slots | Template-Inhalte übergeben |
 
-### Praxisbeispiel: Warenkorb-Funktionalitaet
+### Praxisbeispiel: Warenkorb-Funktionalität
 
 ```vue
 <!-- App.vue -->
 <template>
   <div>
-    <!-- Pinia fuer globale Warenkorb-Zustandsverwaltung verwenden -->
+    <!-- Pinia für globale Warenkorb-Zustandsverwaltung verwenden -->
     <header-component />
     <product-list />
     <cart-component />
@@ -884,9 +884,9 @@ const cartStore = useCartStore();
 
 **Eigenschaften**:
 
-- Geeignet fuer direkte Eltern-Kind-Kommunikation
+- Geeignet für direkte Eltern-Kind-Kommunikation
 - Klarer Datenfluss
-- Umfassende Typueberpruefung
+- Umfassende Typüberprüfung
 - Bei tiefer Verschachtelung schichtweises Weiterreichen erforderlich (Props Drilling)
 
 ```vue
@@ -904,13 +904,13 @@ const cartStore = useCartStore();
 
 **Eigenschaften**:
 
-- Geeignet fuer ebenuebergreifende Kommunikation zwischen Grosseltern und Enkeln
+- Geeignet für ebenübergreifende Kommunikation zwischen Großeltern und Enkeln
 - Kein schichtweises Weiterreichen erforderlich
 - Datenherkunft nicht offensichtlich
-- Schwaeachere Typueberpruefung
+- Schwächere Typüberprüfung
 
 ```vue
-<!-- Ebenuebergreifende Uebertragung, Zwischenschichten muessen nicht empfangen -->
+<!-- Ebenübergreifende Übertragung, Zwischenschichten müssen nicht empfangen -->
 <grandparent> <!-- provide -->
   <parent> <!-- muss nicht behandeln -->
     <child> <!-- muss nicht behandeln -->

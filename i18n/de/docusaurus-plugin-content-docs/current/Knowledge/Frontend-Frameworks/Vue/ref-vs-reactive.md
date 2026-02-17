@@ -27,15 +27,15 @@ const count = ref(0);
 const message = ref('Hello');
 const isActive = ref(true);
 
-// Objekte (koennen auch ref verwenden)
+// Objekte (können auch ref verwenden)
 const user = ref({
   name: 'John',
   age: 30,
 });
 
-// Zugriff ueber .value erforderlich
+// Zugriff über .value erforderlich
 console.log(count.value); // 0
-count.value++; // Wert aendern
+count.value++; // Wert ändern
 </script>
 ```
 
@@ -43,7 +43,7 @@ count.value++; // Wert aendern
 
 ### reactive
 
-**Definition**: `reactive` wird verwendet, um ein reaktives **Objekt** zu erstellen (kann nicht direkt fuer primitive Typen verwendet werden).
+**Definition**: `reactive` wird verwendet, um ein reaktives **Objekt** zu erstellen (kann nicht direkt für primitive Typen verwendet werden).
 
 <details>
 <summary>Klicken Sie hier, um das grundlegende reactive-Beispiel zu erweitern</summary>
@@ -52,7 +52,7 @@ count.value++; // Wert aendern
 <script setup>
 import { reactive } from 'vue';
 
-// Nur fuer Objekte
+// Nur für Objekte
 const state = reactive({
   count: 0,
   message: 'Hello',
@@ -62,9 +62,9 @@ const state = reactive({
   },
 });
 
-// Direkter Zugriff auf Eigenschaften, kein .value noetig
+// Direkter Zugriff auf Eigenschaften, kein .value nötig
 console.log(state.count); // 0
-state.count++; // Wert aendern
+state.count++; // Wert ändern
 </script>
 ```
 
@@ -76,7 +76,7 @@ state.count++; // Wert aendern
 
 ### 1. Anwendbare Typen
 
-**ref**: Kann fuer jeden Typ verwendet werden
+**ref**: Kann für jeden Typ verwendet werden
 
 ```typescript
 const count = ref(0); // Zahl
@@ -86,18 +86,18 @@ const user = ref({ name: 'John' }); // Objekt
 const items = ref([1, 2, 3]); // Array
 ```
 
-**reactive**: Nur fuer Objekte
+**reactive**: Nur für Objekte
 
 ```typescript
 const state = reactive({ count: 0 }); // Objekt
 const state = reactive([1, 2, 3]); // Array (ist auch ein Objekt)
-const count = reactive(0); // Fehler: Primitive Typen nicht moeglich
-const message = reactive('Hello'); // Fehler: Primitive Typen nicht moeglich
+const count = reactive(0); // Fehler: Primitive Typen nicht möglich
+const message = reactive('Hello'); // Fehler: Primitive Typen nicht möglich
 ```
 
 ### 2. Zugriffsweise
 
-**ref**: Erfordert `.value` fuer den Zugriff
+**ref**: Erfordert `.value` für den Zugriff
 
 <details>
 <summary>Klicken Sie hier, um das ref-Zugriffsbeispiel zu erweitern</summary>
@@ -112,12 +112,12 @@ const count = ref(0);
 console.log(count.value); // 0
 count.value = 10;
 
-// Im Template automatisches Unwrapping, kein .value noetig
+// Im Template automatisches Unwrapping, kein .value nötig
 </script>
 
 <template>
   <div>{{ count }}</div>
-  <!-- Automatisches Unwrapping, kein .value noetig -->
+  <!-- Automatisches Unwrapping, kein .value nötig -->
 </template>
 ```
 
@@ -152,45 +152,45 @@ state.count = 10;
 
 ```typescript
 const user = ref({ name: 'John' });
-user.value = { name: 'Jane' }; // Neuzuweisung moeglich
+user.value = { name: 'Jane' }; // Neuzuweisung möglich
 ```
 
-**reactive**: Kann nicht neu zugewiesen werden (verliert Reaktivitaet)
+**reactive**: Kann nicht neu zugewiesen werden (verliert Reaktivität)
 
 ```typescript
 let state = reactive({ count: 0 });
-state = { count: 10 }; // Verliert Reaktivitaet, loest keine Updates aus
+state = { count: 10 }; // Verliert Reaktivität, löst keine Updates aus
 ```
 
 ### 4. Destrukturierung
 
-**ref**: Behaelt Reaktivitaet nach Destrukturierung
+**ref**: Behält Reaktivität nach Destrukturierung
 
 ```typescript
 const user = ref({ name: 'John', age: 30 });
-const { name, age } = user.value; // Destrukturiert primitive Werte, verliert Reaktivitaet
+const { name, age } = user.value; // Destrukturiert primitive Werte, verliert Reaktivität
 
 // Aber der ref selbst kann destrukturiert werden
 const nameRef = ref('John');
 const ageRef = ref(30);
 ```
 
-**reactive**: Verliert Reaktivitaet nach Destrukturierung
+**reactive**: Verliert Reaktivität nach Destrukturierung
 
 ```typescript
 const state = reactive({ count: 0, message: 'Hello' });
-const { count, message } = state; // Verliert Reaktivitaet
+const { count, message } = state; // Verliert Reaktivität
 
-// toRefs verwenden, um Reaktivitaet zu erhalten
+// toRefs verwenden, um Reaktivität zu erhalten
 import { toRefs } from 'vue';
-const { count, message } = toRefs(state); // Erhaelt Reaktivitaet
+const { count, message } = toRefs(state); // Erhält Reaktivität
 ```
 
 ## 3. When to Use ref vs reactive?
 
 > Wann ref verwenden? Wann reactive?
 
-### Situationen fuer ref
+### Situationen für ref
 
 1. **Primitive Werte**
 
@@ -199,11 +199,11 @@ const { count, message } = toRefs(state); // Erhaelt Reaktivitaet
    const message = ref('Hello');
    ```
 
-2. **Objekte, die neu zugewiesen werden muessen**
+2. **Objekte, die neu zugewiesen werden müssen**
 
    ```typescript
    const user = ref({ name: 'John' });
-   user.value = { name: 'Jane' }; // Neuzuweisung moeglich
+   user.value = { name: 'Jane' }; // Neuzuweisung möglich
    ```
 
 3. **Template Refs**
@@ -223,7 +223,7 @@ const { count, message } = toRefs(state); // Erhaelt Reaktivitaet
    // Destrukturierung primitiver Werte kein Problem
    ```
 
-### Situationen fuer reactive
+### Situationen für reactive
 
 1. **Komplexer Objektzustand**
 
@@ -244,7 +244,7 @@ const { count, message } = toRefs(state); // Erhaelt Reaktivitaet
    });
    ```
 
-3. **Mehrere zusammengehoerige Eigenschaften organisieren**
+3. **Mehrere zusammengehörige Eigenschaften organisieren**
    ```typescript
    const userState = reactive({
      user: null,
@@ -255,11 +255,11 @@ const { count, message } = toRefs(state); // Erhaelt Reaktivitaet
 
 ## 4. Common Interview Questions
 
-> Haeufige Interviewfragen
+> Häufige Interviewfragen
 
 ### Frage 1: Grundlegende Unterschiede
 
-Erklaeren Sie die Unterschiede und Ausgabeergebnisse des folgenden Codes.
+Erklären Sie die Unterschiede und Ausgabeergebnisse des folgenden Codes.
 
 ```typescript
 // Fall 1: Mit ref
@@ -294,22 +294,22 @@ console.log(state.count); // 10
 
 // Fall 3: reactive Neuzuweisung
 let state2 = reactive({ count: 0 });
-state2 = { count: 10 }; // Verliert Reaktivitaet
-console.log(state2.count); // 10 (Wert korrekt, aber Reaktivitaet verloren)
-// Spaetere Aenderungen an state2.count loesen keine View-Updates aus
+state2 = { count: 10 }; // Verliert Reaktivität
+console.log(state2.count); // 10 (Wert korrekt, aber Reaktivität verloren)
+// Spätere Änderungen an state2.count lösen keine View-Updates aus
 ```
 
 **Hauptunterschiede**:
 
-- `ref` erfordert `.value` fuer den Zugriff
+- `ref` erfordert `.value` für den Zugriff
 - `reactive` greift direkt auf Eigenschaften zu
-- `reactive` kann nicht neu zugewiesen werden, verliert sonst Reaktivitaet
+- `reactive` kann nicht neu zugewiesen werden, verliert sonst Reaktivität
 
 </details>
 
 ### Frage 2: Destrukturierungsproblem
 
-Erklaeren Sie das Problem im folgenden Code und bieten Sie eine Loesung an.
+Erklären Sie das Problem im folgenden Code und bieten Sie eine Lösung an.
 
 ```typescript
 // Fall 1: ref-Destrukturierung
@@ -333,7 +333,7 @@ const user = ref({ name: 'John', age: 30 });
 const { name, age } = user.value;
 name = 'Jane'; // Aktualisiert user.value.name nicht
 
-// Richtig: ref-Wert direkt aendern
+// Richtig: ref-Wert direkt ändern
 user.value.name = 'Jane'; // Richtig
 // Oder neu zuweisen
 user.value = { name: 'Jane', age: 30 }; // Richtig
@@ -344,12 +344,12 @@ user.value = { name: 'Jane', age: 30 }; // Richtig
 ```typescript
 const state = reactive({ count: 0, message: 'Hello' });
 const { count, message } = state;
-count = 10; // Verliert Reaktivitaet, loest kein Update aus
+count = 10; // Verliert Reaktivität, löst kein Update aus
 
-// Richtig 1: Eigenschaft direkt aendern
+// Richtig 1: Eigenschaft direkt ändern
 state.count = 10; // Richtig
 
-// Richtig 2: toRefs verwenden, um Reaktivitaet zu erhalten
+// Richtig 2: toRefs verwenden, um Reaktivität zu erhalten
 import { toRefs } from 'vue';
 const { count, message } = toRefs(state);
 count.value = 10; // Jetzt ein ref, .value erforderlich
@@ -357,24 +357,24 @@ count.value = 10; // Jetzt ein ref, .value erforderlich
 
 **Zusammenfassung**:
 
-- Destrukturierung primitiver Werte verliert Reaktivitaet
-- `reactive`-Destrukturierung muss `toRefs` verwenden, um Reaktivitaet zu erhalten
-- Destrukturierung von `ref`-Objekteigenschaften verliert ebenfalls Reaktivitaet, `.value` direkt aendern
+- Destrukturierung primitiver Werte verliert Reaktivität
+- `reactive`-Destrukturierung muss `toRefs` verwenden, um Reaktivität zu erhalten
+- Destrukturierung von `ref`-Objekteigenschaften verliert ebenfalls Reaktivität, `.value` direkt ändern
 
 </details>
 
-### Frage 3: ref oder reactive waehlen?
+### Frage 3: ref oder reactive wählen?
 
 Geben Sie an, ob in den folgenden Szenarien `ref` oder `reactive` verwendet werden sollte.
 
 ```typescript
-// Szenario 1: Zaehler
+// Szenario 1: Zähler
 const count = ?;
 
 // Szenario 2: Formularzustand
 const form = ?;
 
-// Szenario 3: Benutzerdaten (moeglicherweise Neuzuweisung noetig)
+// Szenario 3: Benutzerdaten (möglicherweise Neuzuweisung nötig)
 const user = ?;
 
 // Szenario 4: Template-Referenz
@@ -385,7 +385,7 @@ const inputRef = ?;
 <summary>Klicken Sie hier, um die Antwort zu sehen</summary>
 
 ```typescript
-// Szenario 1: Zaehler (primitiver Typ)
+// Szenario 1: Zähler (primitiver Typ)
 const count = ref(0); // ref
 
 // Szenario 2: Formularzustand (komplexes Objekt, keine Neuzuweisung)
@@ -395,17 +395,17 @@ const form = reactive({
   errors: {},
 }); // reactive
 
-// Szenario 3: Benutzerdaten (moeglicherweise Neuzuweisung noetig)
+// Szenario 3: Benutzerdaten (möglicherweise Neuzuweisung nötig)
 const user = ref({ name: 'John', age: 30 }); // ref (kann neu zugewiesen werden)
 
 // Szenario 4: Template-Referenz
-const inputRef = ref(null); // ref (Template Refs muessen ref verwenden)
+const inputRef = ref(null); // ref (Template Refs müssen ref verwenden)
 ```
 
 **Auswahlprinzipien**:
 
 - Primitiver Typ -> `ref`
-- Neuzuweisung noetig -> `ref`
+- Neuzuweisung nötig -> `ref`
 - Template-Referenz -> `ref`
 - Komplexer Objektzustand ohne Neuzuweisung -> `reactive`
 
@@ -437,24 +437,24 @@ user.value = { name: 'Jane' }; // Richtig
 import { toRefs } from 'vue';
 const { count, message } = toRefs(state);
 
-// 5. Einheitlicher Stil: Team kann hauptsaechlich ref oder reactive waehlen
+// 5. Einheitlicher Stil: Team kann hauptsächlich ref oder reactive wählen
 ```
 
 ### Zu vermeidende Vorgehensweisen
 
 ```typescript
-// 1. reactive nicht fuer primitive Typen verwenden
+// 1. reactive nicht für primitive Typen verwenden
 const count = reactive(0); // Fehler
 
 // 2. reactive nicht neu zuweisen
 let state = reactive({ count: 0 });
-state = { count: 10 }; // Verliert Reaktivitaet
+state = { count: 10 }; // Verliert Reaktivität
 
 // 3. reactive nicht direkt destrukturieren
-const { count } = reactive({ count: 0 }); // Verliert Reaktivitaet
+const { count } = reactive({ count: 0 }); // Verliert Reaktivität
 
 // 4. .value im Template nicht vergessen (bei ref)
-// Im Template kein .value noetig, aber in JavaScript schon
+// Im Template kein .value nötig, aber in JavaScript schon
 ```
 
 ## 6. Interview Summary
@@ -465,14 +465,14 @@ const { count } = reactive({ count: 0 }); // Verliert Reaktivitaet
 
 **ref**:
 
-- Anwendbar fuer jeden Typ
-- Erfordert `.value` fuer den Zugriff
+- Anwendbar für jeden Typ
+- Erfordert `.value` für den Zugriff
 - Kann neu zugewiesen werden
 - Automatisches Unwrapping im Template
 
 **reactive**:
 
-- Nur fuer Objekte
+- Nur für Objekte
 - Direkter Zugriff auf Eigenschaften
 - Kann nicht neu zugewiesen werden
 - Destrukturierung erfordert `toRefs`
@@ -480,18 +480,18 @@ const { count } = reactive({ count: 0 }); // Verliert Reaktivitaet
 **Auswahlprinzipien**:
 
 - Primitiver Typ -> `ref`
-- Neuzuweisung noetig -> `ref`
+- Neuzuweisung nötig -> `ref`
 - Komplexer Objektzustand -> `reactive`
 
-### Beispielantwort fuer Interviews
+### Beispielantwort für Interviews
 
 **F: Was ist der Unterschied zwischen ref und reactive?**
 
-> "ref und reactive sind beides APIs in Vue 3 zur Erstellung reaktiver Daten. Die Hauptunterschiede umfassen: 1) Anwendbare Typen: ref kann fuer jeden Typ verwendet werden, reactive nur fuer Objekte; 2) Zugriffsweise: ref erfordert .value, reactive greift direkt auf Eigenschaften zu; 3) Neuzuweisung: ref kann neu zugewiesen werden, reactive verliert bei Neuzuweisung die Reaktivitaet; 4) Destrukturierung: reactive-Destrukturierung erfordert toRefs, um Reaktivitaet zu erhalten. Generell verwenden primitive Typen und Objekte mit Neuzuweisung ref, komplexer Objektzustand verwendet reactive."
+> "ref und reactive sind beides APIs in Vue 3 zur Erstellung reaktiver Daten. Die Hauptunterschiede umfassen: 1) Anwendbare Typen: ref kann für jeden Typ verwendet werden, reactive nur für Objekte; 2) Zugriffsweise: ref erfordert .value, reactive greift direkt auf Eigenschaften zu; 3) Neuzuweisung: ref kann neu zugewiesen werden, reactive verliert bei Neuzuweisung die Reaktivität; 4) Destrukturierung: reactive-Destrukturierung erfordert toRefs, um Reaktivität zu erhalten. Generell verwenden primitive Typen und Objekte mit Neuzuweisung ref, komplexer Objektzustand verwendet reactive."
 
 **F: Wann ref und wann reactive verwenden?**
 
-> "ref verwenden bei: 1) Primitiven Werten (Zahlen, Strings, Booleans); 2) Objekten mit Neuzuweisung; 3) Template Refs. reactive verwenden bei: 1) Komplexem Objektzustand mit mehreren zusammengehoerigen Eigenschaften; 2) Zustand ohne Neuzuweisung. In der Praxis verwenden viele Teams einheitlich ref, da es flexibler ist und einen breiteren Anwendungsbereich hat."
+> "ref verwenden bei: 1) Primitiven Werten (Zahlen, Strings, Booleans); 2) Objekten mit Neuzuweisung; 3) Template Refs. reactive verwenden bei: 1) Komplexem Objektzustand mit mehreren zusammengehörigen Eigenschaften; 2) Zustand ohne Neuzuweisung. In der Praxis verwenden viele Teams einheitlich ref, da es flexibler ist und einen breiteren Anwendungsbereich hat."
 
 ## Reference
 

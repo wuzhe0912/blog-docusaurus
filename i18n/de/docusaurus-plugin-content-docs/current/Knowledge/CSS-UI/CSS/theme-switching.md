@@ -9,35 +9,35 @@ tags: [CSS, Quiz, Medium, RWD]
 
 **F: Wenn eine Seite 2 verschiedene Stile haben soll (z.B. helles/dunkles Theme), wie organisiert man das CSS?**
 
-Dies ist eine Frage, die CSS-Architekturdesign und praktische Erfahrung prueft und folgende Bereiche umfasst:
+Dies ist eine Frage, die CSS-Architekturdesign und praktische Erfahrung prüft und folgende Bereiche umfasst:
 
 1. CSS-Architekturdesign
 2. Theme-Wechselstrategie
 3. Anwendung moderner Tools (Tailwind CSS, CSS Variables)
-4. Performance- und Wartbarkeitsueberlegungen
+4. Performance- und Wartbarkeitsüberlegungen
 
 ---
 
-## Loesungsueberblick
+## Lösungsüberblick
 
-| Loesung                   | Einsatzszenario             | Vorteile                                   | Nachteile                    | Empfehlung           |
+| Lösung                   | Einsatzszenario             | Vorteile                                   | Nachteile                    | Empfehlung           |
 | ------------------------- | --------------------------- | ------------------------------------------ | ---------------------------- | -------------------- |
 | **CSS Variables**         | Moderne Browser-Projekte    | Dynamischer Wechsel, gute Performance      | Kein IE-Support              | 5/5 Sehr empfohlen   |
-| **Quasar + Pinia + SCSS** | Vue 3 + Quasar Projekte     | Komplettes Oekosystem, Zustandsverwaltung  | Erfordert Quasar Framework   | 5/5 Sehr empfohlen   |
+| **Quasar + Pinia + SCSS** | Vue 3 + Quasar Projekte     | Komplettes Ökosystem, Zustandsverwaltung  | Erfordert Quasar Framework   | 5/5 Sehr empfohlen   |
 | **Tailwind CSS**          | Schnelle Entwicklung, Design System | Schnelle Entwicklung, hohe Konsistenz | Lernkurve, HTML-Overhead     | 5/5 Sehr empfohlen   |
-| **CSS-Class-Wechsel**     | Kompatibilitaet mit alten Browsern | Gute Kompatibilitaet                 | Groesseres CSS               | 4/5 Empfohlen        |
+| **CSS-Class-Wechsel**     | Kompatibilität mit alten Browsern | Gute Kompatibilität                 | Größeres CSS               | 4/5 Empfohlen        |
 | **CSS Modules**           | React/Vue Komponentenprojekte | Scope-Isolation                          | Erfordert Bundler            | 4/5 Empfohlen        |
 | **Styled Components**     | React-Projekte              | CSS-in-JS, dynamische Stile                | Runtime-Overhead             | 4/5 Empfohlen        |
-| **SASS/LESS Variablen**   | Theme zur Compile-Time      | Leistungsstarke Funktionen                 | Kein dynamischer Wechsel     | 3/5 Erwaegbar        |
-| **Separate CSS-Dateien**  | Grosse Theme-Unterschiede   | Klare Trennung                             | Ladezeitkosten, doppelter Code | 2/5 Nicht empfohlen |
+| **SASS/LESS Variablen**   | Theme zur Compile-Time      | Leistungsstarke Funktionen                 | Kein dynamischer Wechsel     | 3/5 Erwägbar        |
+| **Separate CSS-Dateien**  | Große Theme-Unterschiede   | Klare Trennung                             | Ladezeitkosten, doppelter Code | 2/5 Nicht empfohlen |
 
 ---
 
-## Loesung 1: CSS Variables
+## Lösung 1: CSS Variables
 
 ### Kernkonzept
 
-Verwendung von CSS Custom Properties, um durch Wechsel der Class am Root-Element die Variablenwerte zu aendern.
+Verwendung von CSS Custom Properties, um durch Wechsel der Class am Root-Element die Variablenwerte zu ändern.
 
 ### Implementierung
 
@@ -127,16 +127,16 @@ function toggleTheme() {
   setTheme(newTheme);
 }
 
-// Initialisieren (Benutzerpraeferenz aus localStorage lesen)
+// Initialisieren (Benutzerpräferenz aus localStorage lesen)
 function initTheme() {
   const savedTheme = getCurrentTheme();
   setTheme(savedTheme);
 
-  // System-Theme-Aenderung ueberwachen
+  // System-Theme-Änderung überwachen
   const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
   mediaQuery.addEventListener('change', (e) => {
     if (!localStorage.getItem('theme')) {
-      // Wenn der Benutzer keine Praeferenz festgelegt hat, dem System folgen
+      // Wenn der Benutzer keine Präferenz festgelegt hat, dem System folgen
       setTheme(e.matches ? 'dark' : 'light');
     }
   });
@@ -181,18 +181,18 @@ onMounted(() => {
 ### Vorteile
 
 - **Dynamischer Wechsel**: Kein Neuladen von CSS-Dateien erforderlich
-- **Gute Performance**: Nativer Browser-Support, aendert nur Variablenwerte
-- **Einfache Wartung**: Themes zentral verwaltet, leicht aenderbar
-- **Erweiterbar**: Einfach drittes, viertes Theme hinzufuegen
+- **Gute Performance**: Nativer Browser-Support, ändert nur Variablenwerte
+- **Einfache Wartung**: Themes zentral verwaltet, leicht änderbar
+- **Erweiterbar**: Einfach drittes, viertes Theme hinzufügen
 
 ### Nachteile
 
-- **Kein IE-Support**: Benoetigt Polyfill oder Fallback-Loesung
-- **Praeprozessor-Integration**: Vorsicht beim Mischen mit SASS/LESS-Variablen
+- **Kein IE-Support**: Benötigt Polyfill oder Fallback-Lösung
+- **Präprozessor-Integration**: Vorsicht beim Mischen mit SASS/LESS-Variablen
 
 ---
 
-## Loesung 2: Tailwind CSS
+## Lösung 2: Tailwind CSS
 
 ### Kernkonzept
 
@@ -235,7 +235,7 @@ module.exports = {
 <template>
   <!-- Methode 1: dark: Variante verwenden -->
   <div class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100">
-    <h1 class="text-blue-600 dark:text-blue-400">Ueberschrift</h1>
+    <h1 class="text-blue-600 dark:text-blue-400">Überschrift</h1>
 
     <button
       class="bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white px-4 py-2 rounded"
@@ -282,7 +282,7 @@ function updateTheme() {
 }
 
 onMounted(() => {
-  // Gespeicherte Theme-Praeferenz lesen
+  // Gespeicherte Theme-Präferenz lesen
   const savedTheme = localStorage.getItem('theme');
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
@@ -358,7 +358,7 @@ function setTheme(theme) {
 
 ### Vorteile von Tailwind
 
-- **Schnelle Entwicklung**: Utility-first, kein CSS schreiben noetig
+- **Schnelle Entwicklung**: Utility-first, kein CSS schreiben nötig
 - **Konsistenz**: Integriertes Design System, einheitlicher Stil
 - **Tree-shaking**: Entfernt automatisch nicht verwendete Stile
 - **RWD-freundlich**: Responsive Varianten `sm:`, `md:`, `lg:`
@@ -366,23 +366,23 @@ function setTheme(theme) {
 
 ### Nachteile
 
-- **HTML-Overhead**: Viele Klassen, kann die Lesbarkeit beeintraechtigen
+- **HTML-Overhead**: Viele Klassen, kann die Lesbarkeit beeinträchtigen
 - **Lernkurve**: Utility-Class-Benennung muss erlernt werden
 - **Anpassung**: Tiefe Anpassung erfordert Konfigurationskenntnisse
 
 ---
 
-## Loesung 3: Quasar + Pinia + SCSS (Aktuelle Erfahrung)
+## Lösung 3: Quasar + Pinia + SCSS (Aktuelle Erfahrung)
 
-> **Tatsaechliche Projekterfahrung**: Dies ist die Loesung, die ich in einem realen Projekt verwendet habe, die Quasar Framework, Pinia Zustandsverwaltung und SCSS Variablensystem integriert.
+> **Tatsächliche Projekterfahrung**: Dies ist die Lösung, die ich in einem realen Projekt verwendet habe, die Quasar Framework, Pinia Zustandsverwaltung und SCSS Variablensystem integriert.
 
 ### Kernkonzept
 
 Verwendet ein mehrschichtiges Architekturdesign:
 
-1. **Quasar Dark Mode API** - Theme-Unterstuetzung auf Framework-Ebene
+1. **Quasar Dark Mode API** - Theme-Unterstützung auf Framework-Ebene
 2. **Pinia Store** - Zentralisierte Verwaltung des Theme-Zustands
-3. **SessionStorage** - Persistierung der Benutzerpraeferenz
+3. **SessionStorage** - Persistierung der Benutzerpräferenz
 4. **SCSS Variables + Mixin** - Theme-Variablen und Stilverwaltung
 
 ### Architekturablauf
@@ -449,7 +449,7 @@ module.exports = configure(function (/* ctx */) {
 ```scss
 // assets/css/_variable.scss
 
-// Variablen-Mapping fuer Light- und Dark-Themes definieren
+// Variablen-Mapping für Light- und Dark-Themes definieren
 $themes: (
   light: (
     --bg-main: #ffffff,
@@ -476,14 +476,14 @@ $themes: (
   }
 }
 
-// Mixin: Exklusiv fuer Light Mode
+// Mixin: Exklusiv für Light Mode
 @mixin light {
   .body--light & {
     @content;
   }
 }
 
-// Mixin: Exklusiv fuer Dark Mode
+// Mixin: Exklusiv für Dark Mode
 @mixin dark {
   .body--dark & {
     @content;
@@ -497,7 +497,7 @@ $themes: (
 // src/css/app.scss
 @import 'assets/css/_variable.scss';
 
-// Standardmaessig Light Theme anwenden
+// Standardmäßig Light Theme anwenden
 :root {
   @include theme-vars('light');
 }
@@ -515,7 +515,7 @@ $themes: (
 ```vue
 <template>
   <div class="my-card">
-    <h2 class="title">Ueberschrift</h2>
+    <h2 class="title">Überschrift</h2>
     <p class="content">Inhaltstext</p>
   </div>
 </template>
@@ -577,7 +577,7 @@ $themes: (
 </style>
 ```
 
-#### 6. Wechselfunktionalitaet
+#### 6. Wechselfunktionalität
 
 ```vue
 <template>
@@ -601,7 +601,7 @@ const toggleDarkMode = () => {
   updateIsDarkMode($q.dark.isActive); // Mit Store synchronisieren
 };
 
-// Benutzerpraeferenz beim Laden der Seite wiederherstellen
+// Benutzerpräferenz beim Laden der Seite wiederherstellen
 onMounted(() => {
   if (isDarkMode.value) {
     $q.dark.set(true);
@@ -631,18 +631,18 @@ onMounted(() => {
 
 ### Vorteile
 
-- **Komplettes Oekosystem**: Quasar + Pinia + VueUse als Komplettloesung
+- **Komplettes Ökosystem**: Quasar + Pinia + VueUse als Komplettlösung
 - **Zustandsverwaltung**: Pinia zentralisiert Verwaltung, leicht testbar und wartbar
 - **Persistierung**: SessionStorage speichert automatisch, geht bei Aktualisierung nicht verloren
-- **Typsicherheit**: TypeScript-Unterstuetzung, weniger Fehler
+- **Typsicherheit**: TypeScript-Unterstützung, weniger Fehler
 - **Entwicklungserfahrung**: SCSS Mixin vereinfacht Stilentwicklung
 - **Gute Performance**: CSS Variables aktualisieren dynamisch, kein Neuladen
 
 ### Nachteile
 
-- **Framework-Abhaengigkeit**: Erfordert Quasar Framework
-- **Lernaufwand**: Quasar, Pinia, SCSS muessen erlernt werden
-- **Groessere Paketgroesse**: Komplettes Framework schwerer als reines CSS
+- **Framework-Abhängigkeit**: Erfordert Quasar Framework
+- **Lernaufwand**: Quasar, Pinia, SCSS müssen erlernt werden
+- **Größere Paketgröße**: Komplettes Framework schwerer als reines CSS
 
 ### Best Practices
 
@@ -676,20 +676,20 @@ export function useTheme() {
 }
 ```
 
-### Wie man es im Interview praesentiert
+### Wie man es im Interview präsentiert
 
-> "In meinem letzten Projekt haben wir ein vollstaendiges Dark Mode System mit **Quasar + Pinia + SCSS** implementiert:
+> "In meinem letzten Projekt haben wir ein vollständiges Dark Mode System mit **Quasar + Pinia + SCSS** implementiert:
 >
-> 1. **Zustandsverwaltung**: Einheitliche Verwaltung des Theme-Zustands ueber Pinia Store, mit VueUse's `useSessionStorage` fuer Persistierung
+> 1. **Zustandsverwaltung**: Einheitliche Verwaltung des Theme-Zustands über Pinia Store, mit VueUse's `useSessionStorage` für Persistierung
 > 2. **Stilsystem**: Verwendung von SCSS Map + Mixin zur Definition von Theme-Variablen, angewendet in `:root` und `.body--dark`
-> 3. **Wechselmechanismus**: Gesteuert ueber Quasars `$q.dark` API, die automatisch die entsprechende Class am `<body>` hinzufuegt
+> 3. **Wechselmechanismus**: Gesteuert über Quasars `$q.dark` API, die automatisch die entsprechende Class am `<body>` hinzufügt
 > 4. **Entwicklungserfahrung**: Bereitstellung von `@include light` und `@include dark` Mixins, die die Stilentwicklung von Komponenten intuitiver machen
 >
-> Diese Loesung funktionierte in unserem Projekt hervorragend: fliessender Wechsel, stabiler Zustand und einfache Wartung."
+> Diese Lösung funktionierte in unserem Projekt hervorragend: fließender Wechsel, stabiler Zustand und einfache Wartung."
 
 ---
 
-## Loesung 4: CSS-Class-Wechsel
+## Lösung 4: CSS-Class-Wechsel
 
 ### Implementierung
 
@@ -739,13 +739,13 @@ function setTheme(theme) {
 
 ### Einsatzszenarien
 
-- Unterstuetzung alter Browser wie IE erforderlich
-- Theme-Unterschiede sind gross, Variablen nicht geeignet
-- Keine zusaetzlichen Abhaengigkeiten gewuenscht
+- Unterstützung alter Browser wie IE erforderlich
+- Theme-Unterschiede sind groß, Variablen nicht geeignet
+- Keine zusätzlichen Abhängigkeiten gewünscht
 
 ---
 
-## Loesung 5: Separate CSS-Dateien (Nicht empfohlen)
+## Lösung 5: Separate CSS-Dateien (Nicht empfohlen)
 
 ### Implementierung
 
@@ -764,8 +764,8 @@ function setTheme(theme) {
 ### Nachteile
 
 - **Ladekosten**: Beim Wechsel muss neues CSS heruntergeladen werden
-- **FOUC**: Moegliches kurzes Aufblitzen ohne Stile
-- **Doppelter Code**: Gemeinsame Stile muessen wiederholt definiert werden
+- **FOUC**: Mögliches kurzes Aufblitzen ohne Stile
+- **Doppelter Code**: Gemeinsame Stile müssen wiederholt definiert werden
 
 ---
 
@@ -786,16 +786,16 @@ function setTheme(theme) {
       /* Dunkles Theme */
       dark:bg-gray-800 dark:text-gray-100
 
-      /* RWD: Mobilgeraet */
+      /* RWD: Mobilgerät */
       text-sm
 
-      /* RWD: Tablet aufwaerts */
+      /* RWD: Tablet aufwärts */
       md:text-base md:p-6
 
-      /* RWD: Desktop aufwaerts */
+      /* RWD: Desktop aufwärts */
       lg:text-lg lg:p-8
 
-      /* Interaktionszustaende */
+      /* Interaktionszustände */
       hover:shadow-lg hover:scale-105
     "
   >
@@ -806,7 +806,7 @@ function setTheme(theme) {
         text-blue-600 dark:text-blue-400
       "
     >
-      Responsive Ueberschrift
+      Responsive Überschrift
     </h2>
 
     <p class="mt-2 text-gray-700 dark:text-gray-300">Inhaltstext</p>
@@ -849,7 +849,7 @@ function setTheme(theme) {
   --font-size-base: 16px;
 }
 
-/* Tablet aufwaerts: Abstaende anpassen */
+/* Tablet aufwärts: Abstände anpassen */
 @media (min-width: 768px) {
   :root {
     --spacing-sm: 0.75rem;
@@ -858,7 +858,7 @@ function setTheme(theme) {
   }
 }
 
-/* Desktop aufwaerts: Schrift anpassen */
+/* Desktop aufwärts: Schrift anpassen */
 @media (min-width: 1024px) {
   :root {
     --font-size-base: 18px;
@@ -886,7 +886,7 @@ function setTheme(theme) {
 ### 1. FOUC vermeiden (Flash of Unstyled Content)
 
 ```html
-<!-- Im <head> sofort ausfuehren, um Aufblitzen zu vermeiden -->
+<!-- Im <head> sofort ausführen, um Aufblitzen zu vermeiden -->
 <script>
   (function () {
     const theme = localStorage.getItem('theme') || 'light';
@@ -904,7 +904,7 @@ function setTheme(theme) {
 /* System-Theme automatisch erkennen */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
-    /* Wenn der Benutzer keine Praeferenz hat, dem System folgen */
+    /* Wenn der Benutzer keine Präferenz hat, dem System folgen */
     --color-background: #1f2937;
     --color-text: #f9fafb;
   }
@@ -919,16 +919,16 @@ if (!localStorage.getItem('theme')) {
 }
 ```
 
-### 3. CSS-Animationsuebergang
+### 3. CSS-Animationsübergang
 
 ```css
-/* Sanfter Uebergang */
+/* Sanfter Übergang */
 * {
   transition: background-color 0.3s ease, color 0.3s ease,
     border-color 0.3s ease;
 }
 
-/* Oder fuer bestimmte Elemente */
+/* Oder für bestimmte Elemente */
 body,
 .card,
 .button {
@@ -939,7 +939,7 @@ body,
 ### 4. Reflow reduzieren
 
 ```css
-/* transform statt direkter Aenderung von Breite/Hoehe verwenden */
+/* transform statt direkter Änderung von Breite/Höhe verwenden */
 .theme-switching {
   transform: scale(1);
   transition: transform 0.3s ease;
@@ -1021,7 +1021,7 @@ export function useTheme() {
   onMounted(() => {
     initTheme();
 
-    // System-Theme-Aenderung ueberwachen
+    // System-Theme-Änderung überwachen
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     mediaQuery.addEventListener('change', (e) => {
       if (!localStorage.getItem('theme')) {
@@ -1047,13 +1047,13 @@ export function useTheme() {
 
 **Antwortmethode A: Reale Erfahrung zeigen (Empfohlen)**
 
-> "Ich waehle die am besten geeignete Loesung basierend auf dem Technologie-Stack des Projekts. **In meinem letzten Projekt** haben wir **Quasar + Pinia + SCSS** implementiert:
+> "Ich wähle die am besten geeignete Lösung basierend auf dem Technologie-Stack des Projekts. **In meinem letzten Projekt** haben wir **Quasar + Pinia + SCSS** implementiert:
 >
 > **1. Zustandsverwaltung (30 Sekunden)**
 >
-> - Einheitliche Verwaltung des Theme-Zustands ueber Pinia Store
+> - Einheitliche Verwaltung des Theme-Zustands über Pinia Store
 > - Persistierung mit VueUse's `useSessionStorage`
-> - Theme-Steuerung ueber Quasars `$q.dark` API
+> - Theme-Steuerung über Quasars `$q.dark` API
 >
 > **2. Stilsystem (1 Minute)**
 >
@@ -1079,8 +1079,8 @@ export function useTheme() {
 > }
 > ```
 >
-> - Komponenten verwenden `var(--bg-main)` fuer automatischen Wechsel
-> - Bereitstellung von `@include light` / `@include dark` Mixins fuer komplexe Stile
+> - Komponenten verwenden `var(--bg-main)` für automatischen Wechsel
+> - Bereitstellung von `@include light` / `@include dark` Mixins für komplexe Stile
 >
 > **3. Wechselmechanismus (30 Sekunden)**
 >
@@ -1091,22 +1091,22 @@ export function useTheme() {
 > };
 > ```
 >
-> **4. Tatsaechliche Ergebnisse (30 Sekunden)**
+> **4. Tatsächliche Ergebnisse (30 Sekunden)**
 >
-> - Fliessender Wechsel ohne Aufblitzen (CSS Variables dynamisch aktualisiert)
+> - Fließender Wechsel ohne Aufblitzen (CSS Variables dynamisch aktualisiert)
 > - Zustand persistent (Theme geht bei Seitenaktualisierung nicht verloren)
 > - Einfache Wartung (Theme-Variablen zentral verwaltet)
 > - Hohe Entwicklungseffizienz (Mixin vereinfacht Stilentwicklung)"
 
-**Antwortmethode B: Universelle Loesung (Alternative)**
+**Antwortmethode B: Universelle Lösung (Alternative)**
 
-> "Fuer moderne Projekte empfehle ich **CSS Variables + Tailwind CSS**:
+> "Für moderne Projekte empfehle ich **CSS Variables + Tailwind CSS**:
 >
 > **1. Architekturdesign (30 Sekunden)**
 >
-> - CSS Variables zur Definition von Theme-Variablen verwenden (Farben, Abstaende, Schatten usw.)
-> - Theme ueber `data-theme`-Attribut am Root-Element wechseln
-> - Mit Tailwinds `dark:` Variante fuer schnelle Entwicklung kombinieren
+> - CSS Variables zur Definition von Theme-Variablen verwenden (Farben, Abstände, Schatten usw.)
+> - Theme über `data-theme`-Attribut am Root-Element wechseln
+> - Mit Tailwinds `dark:` Variante für schnelle Entwicklung kombinieren
 >
 > **2. Implementierungsschwerpunkte (1 Minute)**
 >
@@ -1121,7 +1121,7 @@ export function useTheme() {
 > }
 > ```
 >
-> Beim JavaScript-Wechsel muss nur das `data-theme`-Attribut geaendert werden, und der Browser wendet automatisch die entsprechenden Variablen an.
+> Beim JavaScript-Wechsel muss nur das `data-theme`-Attribut geändert werden, und der Browser wendet automatisch die entsprechenden Variablen an.
 >
 > **3. RWD-Integration (30 Sekunden)**
 >
@@ -1133,21 +1133,21 @@ export function useTheme() {
 >
 > **4. Best Practices (30 Sekunden)**
 >
-> - Theme-Initialisierung sofort im `<head>` ausfuehren, um FOUC zu vermeiden
-> - `localStorage` zum Speichern der Benutzerpraeferenz verwenden
+> - Theme-Initialisierung sofort im `<head>` ausführen, um FOUC zu vermeiden
+> - `localStorage` zum Speichern der Benutzerpräferenz verwenden
 > - `prefers-color-scheme` erkennen, um dem System-Theme zu folgen"
 
 ---
 
 ## Erweiterungsfragen
 
-**F1: Was, wenn IE unterstuetzt werden muss?**
+**F1: Was, wenn IE unterstützt werden muss?**
 
-A: CSS-Class-Wechsel-Loesung verwenden oder das Polyfill [css-vars-ponyfill](https://github.com/jhildenbiddle/css-vars-ponyfill) einsetzen.
+A: CSS-Class-Wechsel-Lösung verwenden oder das Polyfill [css-vars-ponyfill](https://github.com/jhildenbiddle/css-vars-ponyfill) einsetzen.
 
 **F2: Wie vermeidet man das Aufblitzen beim Theme-Wechsel?**
 
-A: Skript sofort im HTML-`<head>` ausfuehren, damit das Theme vor dem Seitenrendering gesetzt wird.
+A: Skript sofort im HTML-`<head>` ausführen, damit das Theme vor dem Seitenrendering gesetzt wird.
 
 **F3: Wie verwaltet man mehrere Themes?**
 

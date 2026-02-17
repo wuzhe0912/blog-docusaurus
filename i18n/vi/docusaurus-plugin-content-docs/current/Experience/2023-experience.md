@@ -6,15 +6,15 @@ slug: /2023-experience
 
 ## What is the most challenging technical problem you have solved ?
 
-> Van de ky thuat kho khan nhat ma ban da giai quyet la gi?
+> Vấn đề kỹ thuật khó khăn nhất mà bạn đã giải quyết là gì?
 
 ### Webauthn
 
-Van de ky thuat gan day toi xu ly ma tuong doi moi va it kinh nghiem lien quan la trien khai dang nhap bang Webauthn. Phia yeu cau mong muon rang nguoi dung khi dang nhap vao trang web co the kich hoat co che Face ID / Touch ID giong nhu trong ung dung, mang lai trai nghiem nguoi dung muot ma hon.
+Vấn đề kỹ thuật gần đây tôi xử lý mà tương đối mới và ít kinh nghiệm liên quan là triển khai đăng nhập bằng Webauthn. Phía yêu cầu mong muốn rằng người dùng khi đăng nhập vào trang web có thể kích hoạt cơ chế Face ID / Touch ID giống như trong ứng dụng, mang lại trải nghiệm người dùng mượt mà hơn.
 
-Tai lieu tham khao truoc khi trien khai:
+Tài liệu tham khảo trước khi triển khai:
 
 - https://webauthn.io/
 - https://medium.com/@herrjemand/introduction-to-webauthn-api-5fd1fb46c285
 
-Sau khi xac nhan so bo tinh kha thi, da phoi hop voi phia PM xac nhan toan bo quy trinh dang nhap va dang ky, bao gom viec co kich hoat xac thuc sinh trac hoc khi dang nhap lan dau hay khong, cung nhu cac co che xac dinh. Thach thuc lon nhat trong qua trinh trien khai la phai lien tuc tinh chinh cac tham so dau vao, vi tai lieu tham khao con qua it va y nghia cua nhieu tham so khong ro rang, chi co the lien tuc thu nghiem. Ve thiet bi, dien thoai iOS tuong doi de xu ly, nhung dien thoai Android xuat hien van de Touch ID kho kich hoat, can su ho tro cua backend de dieu chinh mot so tham so tuong thich. Cuoi cung sau khi hoan thanh chuc nang, ket hop voi PWA da duoc trien khai truoc do, toan bo trang web mang lai trai nghiem su dung gan gui hon voi ung dung.
+Sau khi xác nhận sơ bộ tính khả thi, đã phối hợp với phía PM xác nhận toàn bộ quy trình đăng nhập và đăng ký, bao gồm việc có kích hoạt xác thực sinh trắc học khi đăng nhập lần đầu hay không, cũng như các cơ chế xác định. Thách thức lớn nhất trong quá trình triển khai là phải liên tục tinh chỉnh các tham số đầu vào, vì tài liệu tham khảo còn quá ít và ý nghĩa của nhiều tham số không rõ ràng, chỉ có thể liên tục thử nghiệm. Về thiết bị, điện thoại iOS tương đối dễ xử lý, nhưng điện thoại Android xuất hiện vấn đề Touch ID khó kích hoạt, cần sự hỗ trợ của backend để điều chỉnh một số tham số tương thích. Cuối cùng sau khi hoàn thành chức năng, kết hợp với PWA đã được triển khai trước đó, toàn bộ trang web mang lại trải nghiệm sử dụng gần gũi hơn với ứng dụng.

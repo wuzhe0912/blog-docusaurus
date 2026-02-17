@@ -5,29 +5,29 @@ slug: /experience/login
 tags: [Experience, Interview, Login]
 ---
 
-> Compilation progressive des questions d'entretien liées au login et des points de reponse cles, organises par niveau de difficulte.
+> Compilation progressive des questions d'entretien liées au login et des points de réponse clés, organisés par niveau de difficulté.
 
 ---
 
 ## Lv1 Les bases
 
-- [Comment le mecanisme de login a-t-il ete implemente dans vos projets precedents ?](/docs/experience/login/lv1-project-implementation)
-- [Quelle est la difference entre Session-based et Token-based ?](/docs/experience/login/lv1-session-vs-token)
+- [Comment le mécanisme de login a-t-il été implémenté dans vos projets précédents ?](/docs/experience/login/lv1-project-implementation)
+- [Quelle est la différence entre Session-based et Token-based ?](/docs/experience/login/lv1-session-vs-token)
 - [Quelle est la structure d'un JWT ?](/docs/experience/login/lv1-jwt-structure)
 
-## Lv2 Intermediaire
+## Lv2 Intermédiaire
 
-- Dans quels emplacements le Token peut-il etre stocke ? Quels sont les enjeux de securite a considerer ? (a venir)
-- Comment le front-end attache-t-il automatiquement le Token a chaque requete API ? (a venir)
-- Comment gerer l'expiration du Token ? (a venir)
+- Dans quels emplacements le Token peut-il être stocké ? Quels sont les enjeux de sécurité à considérer ? (à venir)
+- Comment le front-end attache-t-il automatiquement le Token à chaque requête API ? (à venir)
+- Comment gérer l'expiration du Token ? (à venir)
 
-## Lv3 Conception systeme
+## Lv3 Conception système
 
-- Pourquoi l'architecture microservices prefere-t-elle le JWT ? (a venir)
-- Quels sont les inconvenients du JWT ? Comment gerer la deconnexion active ? (a venir)
-- Comment reduire ou empecher le vol de Token ? (a venir)
+- Pourquoi l'architecture microservices préfère-t-elle le JWT ? (à venir)
+- Quels sont les inconvénients du JWT ? Comment gérer la déconnexion active ? (à venir)
+- Comment réduire ou empêcher le vol de Token ? (à venir)
 
-## Lv4 Questions avancees
+## Lv4 Questions avancées
 
-- Si l'on doit implementer une "deconnexion forcee de tous les appareils", comment faire avec Session et avec Token ? (a venir)
-- Avec quelle strategie d'authentification le SSO (Single Sign-On) est-il generalement associe ? (a venir)
+- Si l'on doit implémenter une "déconnexion forcée de tous les appareils", comment faire avec Session et avec Token ? (à venir)
+- Avec quelle stratégie d'authentification le SSO (Single Sign-On) est-il généralement associé ? (à venir)

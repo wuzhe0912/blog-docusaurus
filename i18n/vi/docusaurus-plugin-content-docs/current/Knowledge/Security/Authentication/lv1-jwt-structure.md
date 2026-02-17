@@ -1,33 +1,33 @@
 ---
 id: login-lv1-jwt-structure
-title: '[Lv1] Cau truc cua JWT la gi?'
+title: '[Lv1] Cấu trúc của JWT là gì?'
 slug: /experience/login/lv1-jwt-structure
 tags: [Experience, Interview, Login, Lv1, JWT]
 ---
 
-> Nguoi phong van thuong hoi tiep: "JWT trong nhu the nao? Tai sao lai thiet ke nhu vay?" Hieu ro cau truc, cach ma hoa va quy trinh xac minh se giup ban tra loi nhanh chong.
+> Người phỏng vấn thường hỏi tiếp: "JWT trông như thế nào? Tại sao lại thiết kế như vậy?" Hiểu rõ cấu trúc, cách mã hóa và quy trình xác minh sẽ giúp bạn trả lời nhanh chóng.
 
 ---
 
-## 1. Tong quan
+## 1. Tổng quan
 
-JWT (JSON Web Token) la mot dinh dang Token **tu chua (self-contained)**, dung de truyen thong tin mot cach an toan giua hai ben. Noi dung gom ba chuoi ky tu noi voi nhau bang dau `.`:
+JWT (JSON Web Token) là một định dạng Token **tự chứa (self-contained)**, dùng để truyền thông tin một cách an toàn giữa hai bên. Nội dung gồm ba chuỗi ký tự nối với nhau bằng dấu `.`:
 
 ```
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkphbmUgRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
 ```
 
-Tach ra se la ba khoi JSON duoc ma hoa Base64URL:
+Tách ra sẽ là ba khối JSON được mã hóa Base64URL:
 
-1. **Header**: mo ta thuat toan va loai cua Token.
-2. **Payload**: chua thong tin nguoi dung va cac khai bao (claims).
-3. **Signature**: duoc ky bang khoa bi mat de dam bao noi dung khong bi thay doi.
+1. **Header**: mô tả thuật toán và loại của Token.
+2. **Payload**: chứa thông tin người dùng và các khai báo (claims).
+3. **Signature**: được ký bằng khóa bí mật để đảm bảo nội dung không bị thay đổi.
 
 ---
 
-## 2. Chi tiet Header, Payload, Signature
+## 2. Chi tiết Header, Payload, Signature
 
-### 2.1 Header (Phan dau)
+### 2.1 Header (Phần đầu)
 
 ```json
 {
@@ -36,10 +36,10 @@ Tach ra se la ba khoi JSON duoc ma hoa Base64URL:
 }
 ```
 
-- `alg`: thuat toan ky, vi du `HS256` (HMAC + SHA-256), `RS256` (RSA + SHA-256).
-- `typ`: loai Token, thuong la `JWT`.
+- `alg`: thuật toán ký, ví dụ `HS256` (HMAC + SHA-256), `RS256` (RSA + SHA-256).
+- `typ`: loại Token, thường là `JWT`.
 
-### 2.2 Payload (Tai trong)
+### 2.2 Payload (Tải trọng)
 
 ```json
 {
@@ -51,19 +51,19 @@ Tach ra se la ba khoi JSON duoc ma hoa Base64URL:
 }
 ```
 
-- **Registered Claims (duoc dang ky theo dac ta, khong bat buoc)**:
-  - `iss` (Issuer): ben phat hanh
-  - `sub` (Subject): chu de (thuong la ID nguoi dung)
-  - `aud` (Audience): ben nhan
-  - `exp` (Expiration Time): thoi gian het han (Unix timestamp, tinh bang giay)
-  - `nbf` (Not Before): khong hop le truoc thoi diem nay
-  - `iat` (Issued At): thoi gian phat hanh
-  - `jti` (JWT ID): ma dinh danh duy nhat cua Token
-- **Public / Private Claims**: co the them cac truong tuy chinh (vi du `role`, `permissions`), nhung tranh qua dai dong.
+- **Registered Claims (được đăng ký theo đặc tả, không bắt buộc)**:
+  - `iss` (Issuer): bên phát hành
+  - `sub` (Subject): chủ đề (thường là ID người dùng)
+  - `aud` (Audience): bên nhận
+  - `exp` (Expiration Time): thời gian hết hạn (Unix timestamp, tính bằng giây)
+  - `nbf` (Not Before): không hợp lệ trước thời điểm này
+  - `iat` (Issued At): thời gian phát hành
+  - `jti` (JWT ID): mã định danh duy nhất của Token
+- **Public / Private Claims**: có thể thêm các trường tùy chỉnh (ví dụ `role`, `permissions`), nhưng tránh quá dài dòng.
 
-### 2.3 Signature (Chu ky)
+### 2.3 Signature (Chữ ký)
 
-Quy trinh tao chu ky:
+Quy trình tạo chữ ký:
 
 ```text
 signature = HMACSHA256(
@@ -72,55 +72,55 @@ signature = HMACSHA256(
 )
 ```
 
-- Su dung khoa bi mat (hoac khoa rieng tu) de ky len hai phan dau tien.
-- Khi server nhan duoc Token, se tinh lai chu ky. Neu khop, co nghia la Token chua bi thay doi va duoc phat hanh tu nguon hop phap.
+- Sử dụng khóa bí mật (hoặc khóa riêng tư) để ký lên hai phần đầu tiên.
+- Khi server nhận được Token, sẽ tính lại chữ ký. Nếu khớp, có nghĩa là Token chưa bị thay đổi và được phát hành từ nguồn hợp pháp.
 
-> Luu y: JWT chi dam bao tinh toan ven du lieu (Integrity), khong dam bao tinh bao mat (Confidentiality), tru khi duoc ma hoa them.
-
----
-
-## 3. Ma hoa Base64URL la gi?
-
-JWT su dung **Base64URL** thay vi Base64 thong thuong, su khac biet la:
-
-- Thay `+` bang `-`, thay `/` bang `_`.
-- Loai bo dau `=` o cuoi.
-
-Nhu vay Token co the duoc su dung an toan trong URL, Cookie hoac Header ma khong gay van de voi cac ky tu dac biet.
+> Lưu ý: JWT chỉ đảm bảo tính toàn vẹn dữ liệu (Integrity), không đảm bảo tính bảo mật (Confidentiality), trừ khi được mã hóa thêm.
 
 ---
 
-## 4. So do quy trinh xac minh
+## 3. Mã hóa Base64URL là gì?
 
-1. Client gui Token trong Header: `Authorization: Bearer <JWT>`.
-2. Server nhan duoc va:
-   - Phan tich Header va Payload.
-   - Xac dinh thuat toan duoc chi dinh boi `alg`.
-   - Tinh lai chu ky bang khoa chia se hoac khoa cong khai.
-   - So sanh chu ky va kiem tra cac truong thoi gian (`exp`, `nbf`, v.v.).
-3. Chi sau khi xac minh thanh cong moi tin tuong noi dung Payload.
+JWT sử dụng **Base64URL** thay vì Base64 thông thường, sự khác biệt là:
 
----
+- Thay `+` bằng `-`, thay `/` bằng `_`.
+- Loại bỏ dấu `=` ở cuối.
 
-## 5. Khung tra loi phong van
-
-> "JWT gom ba phan: Header, Payload va Signature, noi voi nhau bang dau `.`.
-> Header mo ta thuat toan va loai; Payload chua thong tin nguoi dung va mot so truong chuan nhu `iss`, `sub`, `exp`; Signature ky len hai phan dau bang khoa bi mat de xac nhan noi dung chua bi thay doi.
-> Noi dung la JSON duoc ma hoa Base64URL, nhung khong duoc ma hoa, chi la chuyen doi, nen du lieu nhay cam khong nen dat truc tiep vao trong. Server nhan Token se tinh lai chu ky de so sanh, neu khop va chua het han thi Token hop le."
+Như vậy Token có thể được sử dụng an toàn trong URL, Cookie hoặc Header mà không gây vấn đề với các ký tự đặc biệt.
 
 ---
 
-## 6. Goi y mo rong trong phong van
+## 4. Sơ đồ quy trình xác minh
 
-- **Bao mat**: Payload co the duoc giai ma, tuyet doi khong luu mat khau, so the tin dung va cac thong tin nhay cam.
-- **Het han va lam moi**: thuong ket hop Access Token ngan han + Refresh Token dai han.
-- **Thuat toan ky**: co the de cap su khac biet giua doi xung (HMAC) va bat doi xung (RSA, ECDSA).
-- **Tai sao khong the tao Token vo han?**: Token qua lon se tang chi phi truyen tai mang va co the bi trinh duyet tu choi.
+1. Client gửi Token trong Header: `Authorization: Bearer <JWT>`.
+2. Server nhận được và:
+   - Phân tích Header và Payload.
+   - Xác định thuật toán được chỉ định bởi `alg`.
+   - Tính lại chữ ký bằng khóa chia sẻ hoặc khóa công khai.
+   - So sánh chữ ký và kiểm tra các trường thời gian (`exp`, `nbf`, v.v.).
+3. Chỉ sau khi xác minh thành công mới tin tưởng nội dung Payload.
 
 ---
 
-## 7. Tai lieu tham khao
+## 5. Khung trả lời phỏng vấn
 
-- [Trang web chinh thuc JWT](https://jwt.io/)
+> "JWT gồm ba phần: Header, Payload và Signature, nối với nhau bằng dấu `.`.
+> Header mô tả thuật toán và loại; Payload chứa thông tin người dùng và một số trường chuẩn như `iss`, `sub`, `exp`; Signature ký lên hai phần đầu bằng khóa bí mật để xác nhận nội dung chưa bị thay đổi.
+> Nội dung là JSON được mã hóa Base64URL, nhưng không được mã hóa, chỉ là chuyển đổi, nên dữ liệu nhạy cảm không nên đặt trực tiếp vào trong. Server nhận Token sẽ tính lại chữ ký để so sánh, nếu khớp và chưa hết hạn thì Token hợp lệ."
+
+---
+
+## 6. Gợi ý mở rộng trong phỏng vấn
+
+- **Bảo mật**: Payload có thể được giải mã, tuyệt đối không lưu mật khẩu, số thẻ tín dụng và các thông tin nhạy cảm.
+- **Hết hạn và làm mới**: thường kết hợp Access Token ngắn hạn + Refresh Token dài hạn.
+- **Thuật toán ký**: có thể đề cập sự khác biệt giữa đối xứng (HMAC) và bất đối xứng (RSA, ECDSA).
+- **Tại sao không thể tạo Token vô hạn?**: Token quá lớn sẽ tăng chi phí truyền tải mạng và có thể bị trình duyệt từ chối.
+
+---
+
+## 7. Tài liệu tham khảo
+
+- [Trang web chính thức JWT](https://jwt.io/)
 - [RFC 7519: JSON Web Token (JWT)](https://datatracker.ietf.org/doc/html/rfc7519)
 - [Auth0: Anatomy of a JWT](https://auth0.com/docs/secure/tokens/json-web-tokens/json-web-token-structure)

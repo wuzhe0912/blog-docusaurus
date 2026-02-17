@@ -1,98 +1,98 @@
 ---
 id: performance-lv3-large-data-optimization
-title: '[Lv3] Chien luoc toi uu du lieu lon: lua chon giai phap va trien khai'
+title: '[Lv3] Chiến lược tối ưu dữ liệu lớn: lựa chọn giải pháp và triển khai'
 slug: /experience/performance/lv3-large-data-optimization
 tags: [Experience, Interview, Performance, Lv3]
 ---
 
-> Khi giao dien can hien thi hang van du lieu, lam the nao de can bang giua hieu nang, trai nghiem nguoi dung va chi phi phat trien?
+> Khi giao diện cần hiển thị hàng vạn dữ liệu, làm thế nào để cân bằng giữa hiệu năng, trải nghiệm người dùng và chi phí phát triển?
 
-## Cau hoi tinh huong phong van
+## Câu hỏi tình huống phỏng vấn
 
-**Q: Khi giao dien co hang van du lieu, ban se toi uu nhu the nao?**
+**Q: Khi giao diện có hàng vạn dữ liệu, bạn sẽ tối ưu như thế nào?**
 
-Day la cau hoi mo, nguoi phong van mong doi nghe khong chi mot giai phap duy nhat:
+Đây là câu hỏi mở, người phỏng vấn mong đợi nghe không chỉ một giải pháp duy nhất:
 
-1. **Danh gia nhu cau**: co thuc su can hien thi nhieu du lieu cung luc nhu vay khong?
-2. **Lua chon giai phap**: co nhung phuong an nao? Uu nhuoc diem cua tung cai?
-3. **Suy nghi toan dien**: front-end + back-end + UX ket hop
-4. **Kinh nghiem thuc te**: ly do chon va ket qua trien khai
+1. **Đánh giá nhu cầu**: có thực sự cần hiển thị nhiều dữ liệu cùng lúc như vậy không?
+2. **Lựa chọn giải pháp**: có những phương án nào? Ưu nhược điểm của từng cái?
+3. **Suy nghĩ toàn diện**: front-end + back-end + UX kết hợp
+4. **Kinh nghiệm thực tế**: lý do chọn và kết quả triển khai
 
 ---
 
-## Buoc dau tien: Danh gia nhu cau
+## Bước đầu tiên: Đánh giá nhu cầu
 
-Truoc khi chon giai phap ky thuat, hay tu hoi nhung cau hoi nay:
+Trước khi chọn giải pháp kỹ thuật, hãy tự hỏi những câu hỏi này:
 
-### Cau hoi cot loi
+### Câu hỏi cốt lõi
 
 ```markdown
-❓ Nguoi dung co thuc su can nhin thay tat ca du lieu khong?
-→ Phan lon truong hop, nguoi dung chi quan tam 50-100 dong dau
-→ Co the thu hep pham vi qua loc, tim kiem, sap xep
+❓ Người dùng có thực sự cần nhìn thấy tất cả dữ liệu không?
+→ Phần lớn trường hợp, người dùng chỉ quan tâm 50-100 dòng đầu
+→ Có thể thu hẹp phạm vi qua lọc, tìm kiếm, sắp xếp
 
-❓ Du lieu co can cap nhat thoi gian thuc khong?
-→ WebSocket thoi gian thuc vs polling dinh ky vs chi tai lan dau
+❓ Dữ liệu có cần cập nhật thời gian thực không?
+→ WebSocket thời gian thực vs polling định kỳ vs chỉ tải lần đầu
 
-❓ Che do thao tac cua nguoi dung la gi?
-→ Duyet la chinh → Virtual Scrolling
-→ Tim du lieu cu the → tim kiem + phan trang
-→ Xem tung dong → cuon vo han
+❓ Chế độ thao tác của người dùng là gì?
+→ Duyệt là chính → Virtual Scrolling
+→ Tìm dữ liệu cụ thể → tìm kiếm + phân trang
+→ Xem từng dòng → cuộn vô hạn
 
-❓ Cau truc du lieu co co dinh khong?
-→ Chieu cao co dinh → Virtual Scrolling de trien khai
-→ Chieu cao khong co dinh → can tinh toan chieu cao dong
+❓ Cấu trúc dữ liệu có cố định không?
+→ Chiều cao cố định → Virtual Scrolling dễ triển khai
+→ Chiều cao không cố định → cần tính toán chiều cao dòng
 
-❓ Co can chon tat ca, in hoac xuat khong?
-→ Can → Virtual Scrolling co gioi han
-→ Khong can → Virtual Scrolling la lua chon tot nhat
+❓ Có cần chọn tất cả, in hoặc xuất không?
+→ Cần → Virtual Scrolling có giới hạn
+→ Không cần → Virtual Scrolling là lựa chọn tốt nhất
 ```
 
-### Phan tich truong hop thuc te
+### Phân tích trường hợp thực tế
 
 ```javascript
-// Truong hop 1: Lich su giao dich (10,000+ dong)
-Hanh vi nguoi dung: xem giao dich gan day, thinh thoang tim theo ngay
-Giai phap tot nhat: phan trang back-end + tim kiem
+// Trường hợp 1: Lịch sử giao dịch (10,000+ dòng)
+Hành vi người dùng: xem giao dịch gần đây, thỉnh thoảng tìm theo ngày
+Giải pháp tốt nhất: phân trang back-end + tìm kiếm
 
-// Truong hop 2: Danh sach game thoi gian thuc (3,000+ tua)
-Hanh vi nguoi dung: duyet, loc theo danh muc, cuon muot
-Giai phap tot nhat: Virtual Scrolling + loc front-end
+// Trường hợp 2: Danh sách game thời gian thực (3,000+ tựa)
+Hành vi người dùng: duyệt, lọc theo danh mục, cuộn mượt
+Giải pháp tốt nhất: Virtual Scrolling + lọc front-end
 
-// Truong hop 3: Feed mang xa hoi (tang truong vo han)
-Hanh vi nguoi dung: cuon lien tuc xuong, khong can chuyen trang
-Giai phap tot nhat: cuon vo han + tai theo lo
+// Trường hợp 3: Feed mạng xã hội (tăng trưởng vô hạn)
+Hành vi người dùng: cuộn liên tục xuống, không cần chuyển trang
+Giải pháp tốt nhất: cuộn vô hạn + tải theo lô
 
-// Truong hop 4: Bao cao du lieu (bang phuc tap)
-Hanh vi nguoi dung: xem, sap xep, xuat
-Giai phap tot nhat: phan trang back-end + API xuat
+// Trường hợp 4: Báo cáo dữ liệu (bảng phức tạp)
+Hành vi người dùng: xem, sắp xếp, xuất
+Giải pháp tốt nhất: phân trang back-end + API xuất
 ```
 
 ---
 
-## Tong quan cac giai phap toi uu
+## Tổng quan các giải pháp tối ưu
 
-### Bang so sanh giai phap
+### Bảng so sánh giải pháp
 
-| Giai phap        | Truong hop ap dung           | Uu diem                    | Nhuoc diem                 | Do kho     | Hieu nang  |
+| Giải pháp        | Trường hợp áp dụng           | Ưu điểm                    | Nhược điểm                 | Độ khó     | Hiệu năng  |
 | ---------------- | ---------------------------- | -------------------------- | -------------------------- | ---------- | ---------- |
-| **Phan trang back-end** | Phan lon truong hop    | Don gian, dang tin cay, SEO friendly | Can lat trang, gian doan trai nghiem | 1/5 Don gian | 3/5 Trung binh |
-| **Virtual Scrolling** | Du lieu lon chieu cao co dinh | Hieu nang toi da, cuon muot | Trien khai phuc tap, khong tim kiem goc | 4/5 Phuc tap | 5/5 Xuat sac |
-| **Cuon vo han**  | Mang xa hoi, tin tuc         | Trai nghiem lien tuc, trien khai don gian | Tich luy bo nho, khong nhay trang | 2/5 Don gian | 3/5 Trung binh |
-| **Tai theo lo**  | Toi uu tai lan dau           | Tai dan, ket hop skeleton screen | Can back-end phoi hop | 2/5 Don gian | 3/5 Trung binh |
-| **Web Worker**   | Tinh toan lon, sap xep, loc  | Khong chan thread chinh     | Chi phi giao tiep, debug kho | 3/5 Trung binh | 4/5 Tot |
-| **Giai phap ket hop** | Nhu cau phuc tap         | Ket hop uu diem nhieu giai phap | Do phuc tap cao          | 4/5 Phuc tap | 4/5 Tot |
+| **Phân trang back-end** | Phần lớn trường hợp    | Đơn giản, đáng tin cậy, SEO friendly | Cần lật trang, gián đoạn trải nghiệm | 1/5 Đơn giản | 3/5 Trung bình |
+| **Virtual Scrolling** | Dữ liệu lớn chiều cao cố định | Hiệu năng tối đa, cuộn mượt | Triển khai phức tạp, không tìm kiếm gốc | 4/5 Phức tạp | 5/5 Xuất sắc |
+| **Cuộn vô hạn**  | Mạng xã hội, tin tức         | Trải nghiệm liên tục, triển khai đơn giản | Tích lũy bộ nhớ, không nhảy trang | 2/5 Đơn giản | 3/5 Trung bình |
+| **Tải theo lô**  | Tối ưu tải lần đầu           | Tải dần, kết hợp skeleton screen | Cần back-end phối hợp | 2/5 Đơn giản | 3/5 Trung bình |
+| **Web Worker**   | Tính toán lớn, sắp xếp, lọc  | Không chặn thread chính     | Chi phí giao tiếp, debug khó | 3/5 Trung bình | 4/5 Tốt |
+| **Giải pháp kết hợp** | Nhu cầu phức tạp         | Kết hợp ưu điểm nhiều giải pháp | Độ phức tạp cao          | 4/5 Phức tạp | 4/5 Tốt |
 
 ---
 
-## Chi tiet giai phap
+## Chi tiết giải pháp
 
-### 1. Phan trang back-end (Pagination) - Giai phap uu tien
+### 1. Phân trang back-end (Pagination) - Giải pháp ưu tiên
 
-> **Diem khuyen nghi: 5/5 (khuyen nghi manh)**
-> Giai phap pho bien va dang tin cay nhat, phu hop 80% truong hop
+> **Điểm khuyên nghị: 5/5 (khuyên nghị mạnh)**
+> Giải pháp phổ biến và đáng tin cậy nhất, phù hợp 80% trường hợp
 
-#### Trien khai
+#### Triển khai
 
 ```javascript
 // Request front-end
@@ -101,7 +101,7 @@ async function fetchData(page = 1, pageSize = 20) {
   return response.json();
 }
 
-// API back-end (vi du Node.js + MongoDB)
+// API back-end (ví dụ Node.js + MongoDB)
 app.get('/api/data', async (req, res) => {
   const page = parseInt(req.query.page) || 1;
   const pageSize = parseInt(req.query.pageSize) || 20;
@@ -123,21 +123,21 @@ app.get('/api/data', async (req, res) => {
 });
 ```
 
-#### Meo toi uu
+#### Mẹo tối ưu
 
 ```javascript
-// 1. Phan trang theo con tro (Cursor-based Pagination)
-// Phu hop du lieu cap nhat thoi gian thuc, tranh trung lap hoac thieu sot
+// 1. Phân trang theo con trỏ (Cursor-based Pagination)
+// Phù hợp dữ liệu cập nhật thời gian thực, tránh trùng lặp hoặc thiếu sót
 const data = await Collection.find({ _id: { $gt: cursor } })
   .limit(20)
   .sort({ _id: 1 });
 
-// 2. Cache cac trang pho bien
+// 2. Cache các trang phổ biến
 const cacheKey = `data:page:${page}`;
 const cached = await redis.get(cacheKey);
 if (cached) return JSON.parse(cached);
 
-// 3. Chi tra ve cac truong can thiet
+// 3. Chỉ trả về các trường cần thiết
 const data = await Collection.find()
   .select('id name price status')
   .skip(skip)
@@ -146,15 +146,15 @@ const data = await Collection.find()
 
 ---
 
-### 2. Virtual Scrolling - Hieu nang toi da
+### 2. Virtual Scrolling - Hiệu năng tối đa
 
-> **Diem khuyen nghi: 4/5 (khuyen nghi)**
-> Hieu nang tot nhat, phu hop du lieu lon chieu cao co dinh
+> **Điểm khuyên nghị: 4/5 (khuyên nghị)**
+> Hiệu năng tốt nhất, phù hợp dữ liệu lớn chiều cao cố định
 
-#### Khai niem cot loi
+#### Khái niệm cốt lõi
 
 ```javascript
-// Chi render du lieu trong vung hien thi
+// Chỉ render dữ liệu trong vùng hiển thị
 const itemHeight = 50;
 const containerHeight = 600;
 const visibleCount = Math.ceil(containerHeight / itemHeight); // = 12
@@ -169,10 +169,10 @@ const paddingTop = startIndex * itemHeight;
 const paddingBottom = (allItems.length - endIndex) * itemHeight;
 ```
 
-#### Trien khai
+#### Triển khai
 
 ```vue
-<!-- Su dung vue-virtual-scroller -->
+<!-- Sử dụng vue-virtual-scroller -->
 <template>
   <RecycleScroller
     class="scroller"
@@ -198,24 +198,24 @@ const items = ref(
 </script>
 ```
 
-#### So sanh hieu nang
+#### So sánh hiệu năng
 
-| Chi so          | Render truyen thong | Virtual Scrolling | Cai thien  |
+| Chỉ số          | Render truyền thống | Virtual Scrolling | Cải thiện  |
 | --------------- | ------------------- | ----------------- | ---------- |
-| So node DOM     | 10,000+             | 20-30             | ↓ 99.7%   |
-| Su dung bo nho  | 150 MB              | 30 MB             | ↓ 80%     |
-| Render lan dau  | 3-5 giay            | 0.3 giay          | ↑ 90%     |
-| FPS cuon        | < 20                | 55-60             | ↑ 200%    |
+| Số node DOM     | 10,000+             | 20-30             | ↓ 99.7%   |
+| Sử dụng bộ nhớ  | 150 MB              | 30 MB             | ↓ 80%     |
+| Render lần đầu  | 3-5 giây            | 0.3 giây          | ↑ 90%     |
+| FPS cuộn        | < 20                | 55-60             | ↑ 200%    |
 
-Chi tiet: [Trien khai Virtual Scrolling day du ->](/docs/experience/performance/lv3-virtual-scroll)
+Chi tiết: [Triển khai Virtual Scrolling đầy đủ ->](/docs/experience/performance/lv3-virtual-scroll)
 
 ---
 
-### 3. Cuon vo han (Infinite Scroll) - Trai nghiem lien tuc
+### 3. Cuộn vô hạn (Infinite Scroll) - Trải nghiệm liên tục
 
-> **Diem khuyen nghi: 3/5 (co the can nhac)**
+> **Điểm khuyên nghị: 3/5 (có thể cân nhắc)**
 
-#### Trien khai
+#### Triển khai
 
 ```vue
 <template>
@@ -223,7 +223,7 @@ Chi tiet: [Trien khai Virtual Scrolling day du ->](/docs/experience/performance/
     <div v-for="item in displayedItems" :key="item.id">
       {{ item.name }}
     </div>
-    <div v-if="loading" class="loading">Dang tai...</div>
+    <div v-if="loading" class="loading">Đang tải...</div>
   </div>
 </template>
 
@@ -261,9 +261,9 @@ function handleScroll(e) {
 
 ---
 
-### 4. Tai theo lo (Progressive Loading)
+### 4. Tải theo lô (Progressive Loading)
 
-> **Diem khuyen nghi: 3/5 (co the can nhac)**
+> **Điểm khuyên nghị: 3/5 (có thể cân nhắc)**
 
 ```javascript
 async function loadDataInBatches() {
@@ -283,9 +283,9 @@ async function loadDataInBatches() {
 
 ---
 
-### 5. Xu ly bang Web Worker
+### 5. Xử lý bằng Web Worker
 
-> **Diem khuyen nghi: 4/5 (khuyen nghi)**
+> **Điểm khuyên nghị: 4/5 (khuyên nghị)**
 
 ```javascript
 // worker.js
@@ -308,13 +308,13 @@ function searchData(keyword) {
 }
 ```
 
-Chi tiet: [Ung dung Web Worker ->](/docs/experience/performance/lv3-web-worker)
+Chi tiết: [Ứng dụng Web Worker ->](/docs/experience/performance/lv3-web-worker)
 
 ---
 
-### 6. Giai phap ket hop (Hybrid Approach)
+### 6. Giải pháp kết hợp (Hybrid Approach)
 
-#### Phuong an A: Virtual Scrolling + phan trang back-end
+#### Phương án A: Virtual Scrolling + phân trang back-end
 
 ```javascript
 const pageSize = 500;
@@ -327,7 +327,7 @@ async function loadNextBatch() {
 }
 ```
 
-#### Phuong an B: Cuon vo han + giai phong ao
+#### Phương án B: Cuộn vô hạn + giải phóng ảo
 
 ```javascript
 function loadMore() {
@@ -338,7 +338,7 @@ function loadMore() {
 }
 ```
 
-#### Phuong an C: Toi uu tim kiem + Virtual Scrolling
+#### Phương án C: Tối ưu tìm kiếm + Virtual Scrolling
 
 ```javascript
 async function search(keyword) {
@@ -352,34 +352,34 @@ async function search(keyword) {
 
 ---
 
-## Cay quyet dinh
+## Cây quyết định
 
 ```
-Bat dau: hang van du lieu can hien thi
+Bắt đầu: hàng vạn dữ liệu cần hiển thị
     ↓
-Q1: Nguoi dung co can nhin tat ca du lieu khong?
-    ├─ Khong → Phan trang back-end + tim kiem/loc ✅
+Q1: Người dùng có cần nhìn tất cả dữ liệu không?
+    ├─ Không → Phân trang back-end + tìm kiếm/lọc ✅
     ↓
-    Co
+    Có
     ↓
-Q2: Chieu cao du lieu co co dinh khong?
-    ├─ Co → Virtual Scrolling ✅
-    ├─ Khong → Virtual Scrolling chieu cao dong (phuc tap) hoac cuon vo han ✅
+Q2: Chiều cao dữ liệu có cố định không?
+    ├─ Có → Virtual Scrolling ✅
+    ├─ Không → Virtual Scrolling chiều cao động (phức tạp) hoặc cuộn vô hạn ✅
     ↓
-Q3: Co can trai nghiem duyet lien tuc khong?
-    ├─ Co → Cuon vo han ✅
-    ├─ Khong → Phan trang back-end ✅
+Q3: Có cần trải nghiệm duyệt liên tục không?
+    ├─ Có → Cuộn vô hạn ✅
+    ├─ Không → Phân trang back-end ✅
     ↓
-Q4: Co nhu cau tinh toan lon (sap xep, loc) khong?
-    ├─ Co → Web Worker + Virtual Scrolling ✅
-    ├─ Khong → Virtual Scrolling ✅
+Q4: Có nhu cầu tính toán lớn (sắp xếp, lọc) không?
+    ├─ Có → Web Worker + Virtual Scrolling ✅
+    ├─ Không → Virtual Scrolling ✅
 ```
 
 ---
 
-## Chien luoc toi uu bo sung
+## Chiến lược tối ưu bổ sung
 
-### 1. Kiem soat tan suat cap nhat du lieu
+### 1. Kiểm soát tần suất cập nhật dữ liệu
 
 ```javascript
 let latestData = null;
@@ -429,7 +429,7 @@ socket.on('update', (data) => {
 </style>
 ```
 
-### 3. Danh muc va cache
+### 3. Danh mục và cache
 
 ```javascript
 const indexedData = new Map();
@@ -437,19 +437,19 @@ data.forEach((item) => {
   indexedData.set(item.id, item);
 });
 
-const item = indexedData.get(targetId); // O(1) thay vi O(n)
+const item = indexedData.get(targetId); // O(1) thay vì O(n)
 ```
 
-### 4. Toi uu API back-end
+### 4. Tối ưu API back-end
 
 ```javascript
-// 1. Chi tra ve truong can thiet
+// 1. Chỉ trả về trường cần thiết
 GET /api/items?fields=id,name,price
 
-// 2. Su dung nen (gzip/brotli)
+// 2. Sử dụng nén (gzip/brotli)
 app.use(compression());
 
-// 3. GraphQL (truy van chinh xac)
+// 3. GraphQL (truy vấn chính xác)
 query {
   items(first: 20) {
     id
@@ -461,73 +461,73 @@ query {
 
 ---
 
-## Chi so danh gia hieu nang
+## Chỉ số đánh giá hiệu năng
 
-### Chi so ky thuat
-
-```markdown
-1. Thoi gian hien thi dau tien (FCP): < 1 giay
-2. Thoi gian tuong tac (TTI): < 3 giay
-3. FPS cuon: > 50 (muc tieu 60)
-4. Su dung bo nho: < 50 MB
-5. So node DOM: < 1000
-```
-
-### Chi so trai nghiem nguoi dung
+### Chỉ số kỹ thuật
 
 ```markdown
-1. Ty le roi trang: giam 20%+
-2. Thoi gian o lai: tang 30%+
-3. So luong tuong tac: tang 40%+
-4. Ty le loi: < 0.1%
+1. Thời gian hiển thị đầu tiên (FCP): < 1 giây
+2. Thời gian tương tác (TTI): < 3 giây
+3. FPS cuộn: > 50 (mục tiêu 60)
+4. Sử dụng bộ nhớ: < 50 MB
+5. Số node DOM: < 1000
+```
+
+### Chỉ số trải nghiệm người dùng
+
+```markdown
+1. Tỷ lệ rời trang: giảm 20%+
+2. Thời gian ở lại: tăng 30%+
+3. Số lượng tương tác: tăng 40%+
+4. Tỷ lệ lỗi: < 0.1%
 ```
 
 ---
 
-## Mau tra loi phong van
+## Mẫu trả lời phỏng vấn
 
-**Nguoi phong van: Khi co hang van du lieu tren man hinh, toi uu nhu the nao?**
+**Người phỏng vấn: Khi có hàng vạn dữ liệu trên màn hình, tối ưu như thế nào?**
 
-> "Day la cau hoi rat hay. Truoc khi chon giai phap, toi se danh gia nhu cau thuc te truoc:
+> "Đây là câu hỏi rất hay. Trước khi chọn giải pháp, tôi sẽ đánh giá nhu cầu thực tế trước:
 >
-> **1. Phan tich nhu cau (30 giay)**
-> - Nguoi dung co can nhin tat ca du lieu khong? Phan lon la khong
-> - Chieu cao du lieu co co dinh khong? Dieu nay anh huong lua chon ky thuat
-> - Thao tac chinh cua nguoi dung la gi? Duyet, tim kiem hay tim muc cu the
+> **1. Phân tích nhu cầu (30 giây)**
+> - Người dùng có cần nhìn tất cả dữ liệu không? Phần lớn là không
+> - Chiều cao dữ liệu có cố định không? Điều này ảnh hưởng lựa chọn kỹ thuật
+> - Thao tác chính của người dùng là gì? Duyệt, tìm kiếm hay tìm mục cụ thể
 >
-> **2. Chon giai phap (1 phut)**
-> Theo tinh huong:
-> - **Back-office** → phan trang back-end (don gian, dang tin cay nhat)
-> - **Can cuon muot** → Virtual Scrolling (hieu nang tot nhat)
-> - **Kieu mang xa hoi** → cuon vo han (trai nghiem tot nhat)
-> - **Can tinh toan phuc tap** → Web Worker + Virtual Scrolling
+> **2. Chọn giải pháp (1 phút)**
+> Theo tình huống:
+> - **Back-office** → phân trang back-end (đơn giản, đáng tin cậy nhất)
+> - **Cần cuộn mượt** → Virtual Scrolling (hiệu năng tốt nhất)
+> - **Kiểu mạng xã hội** → cuộn vô hạn (trải nghiệm tốt nhất)
+> - **Cần tính toán phức tạp** → Web Worker + Virtual Scrolling
 >
-> **3. Truong hop thuc te (1 phut)**
-> Trong du an truoc, toi gap tinh huong can hien thi danh sach 3000+ game.
-> Toi chon Virtual Scrolling, ket qua:
-> - Node DOM tu 10,000+ giam xuong 20-30 (↓ 99.7%)
-> - Su dung bo nho giam 80% (150MB → 30MB)
-> - Thoi gian render dau tien tu 3-5 giay giam xuong 0.3 giay
-> - Do muot cuon dat 60 FPS"
+> **3. Trường hợp thực tế (1 phút)**
+> Trong dự án trước, tôi gặp tình huống cần hiển thị danh sách 3000+ game.
+> Tôi chọn Virtual Scrolling, kết quả:
+> - Node DOM từ 10,000+ giảm xuống 20-30 (↓ 99.7%)
+> - Sử dụng bộ nhớ giảm 80% (150MB → 30MB)
+> - Thời gian render đầu tiên từ 3-5 giây giảm xuống 0.3 giây
+> - Độ mượt cuộn đạt 60 FPS"
 
 ---
 
-## Ghi chu lien quan
+## Ghi chú liên quan
 
-- [Trien khai Virtual Scrolling day du ->](/docs/experience/performance/lv3-virtual-scroll)
-- [Tong quan toi uu hieu nang web ->](/docs/experience/performance)
-- [Ung dung Web Worker ->](/docs/experience/performance/lv3-web-worker)
+- [Triển khai Virtual Scrolling đầy đủ ->](/docs/experience/performance/lv3-virtual-scroll)
+- [Tổng quan tối ưu hiệu năng web ->](/docs/experience/performance)
+- [Ứng dụng Web Worker ->](/docs/experience/performance/lv3-web-worker)
 
 ---
 
-## Tong ket
+## Tổng kết
 
-Doi mat voi cau hoi "toi uu hang van du lieu":
+Đối mặt với câu hỏi "tối ưu hàng vạn dữ liệu":
 
-1. **Danh gia nhu cau truoc**: dung voi vang chon cong nghe
-2. **Hieu nhieu giai phap**: phan trang back-end, Virtual Scrolling, cuon vo han, v.v.
-3. **Can nhac danh doi**: hieu nang vs chi phi phat trien vs trai nghiem nguoi dung
-4. **Toi uu lien tuc**: su dung cong cu giam sat, cai thien khong ngung
-5. **De du lieu noi**: chung minh hieu qua toi uu bang du lieu hieu nang thuc te
+1. **Đánh giá nhu cầu trước**: đừng vội vàng chọn công nghệ
+2. **Hiểu nhiều giải pháp**: phân trang back-end, Virtual Scrolling, cuộn vô hạn, v.v.
+3. **Cân nhắc đánh đổi**: hiệu năng vs chi phí phát triển vs trải nghiệm người dùng
+4. **Tối ưu liên tục**: sử dụng công cụ giám sát, cải thiện không ngừng
+5. **Để dữ liệu nói**: chứng minh hiệu quả tối ưu bằng dữ liệu hiệu năng thực tế
 
-Nho rang: **khong co vien dan bac, chi co giai phap phu hop nhat voi tinh huong hien tai**.
+Nhớ rằng: **không có viên đạn bạc, chỉ có giải pháp phù hợp nhất với tình huống hiện tại**.

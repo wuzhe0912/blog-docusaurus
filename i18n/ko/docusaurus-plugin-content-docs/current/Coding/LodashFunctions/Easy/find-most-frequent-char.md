@@ -1,0 +1,45 @@
+---
+id: find-most-frequent-char
+title: 📄 Find Most Frequent Char
+slug: /find-most-frequent-char
+---
+
+## Question Description
+
+문자열을 받아서 해당 문자열에서 가장 많이 등장하는 문자를 반환하는 함수를 작성하세요.
+
+## 1. JavaScript Version
+
+```js
+function findMostFrequentChar(str) {
+  // init object to store char and count
+  const charCount = {};
+
+  // init record of max count and char variable
+  let maxCount = 0;
+  let maxChar = '';
+
+  // loop through string
+  for (let char of str) {
+    // if char is not in object, set count to 0
+    if (!charCount[char]) {
+      charCount[char] = 0;
+    }
+
+    // increment this char count + 1
+    charCount[char]++;
+
+    // if this char count is greater than max count
+    // update max count and max char
+    if (charCount[char] > maxCount) {
+      maxCount = charCount[char];
+      maxChar = char;
+    }
+  }
+
+  // return max char
+  return maxChar;
+}
+
+console.log(findMostFrequentChar('abcccccccd')); // c
+```

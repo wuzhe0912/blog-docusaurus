@@ -49,7 +49,7 @@ slug: /2025-11-interview-prep
 
 ## Framework
 
-- [**請闡述使用過的 Web Framework，並比較其優缺點**](/docs/framework#2-請闡述使用過的-web-framework並比較其優缺點)
+- [**請闡述使用過的 Web Framework，並比較其優缺點**](/docs/framework)
 
 ## Experience
 

@@ -112,13 +112,13 @@
 
 ## Batch 4: Knowledge / CSS（6 files, ~2,168 lines）
 
-- [ ] `docs/Knowledge/CSS-UI/CSS/css-box-model.md` (171 lines)
-- [ ] `docs/Knowledge/CSS-UI/CSS/css-pseudo-elements.md` (387 lines)
-- [ ] `docs/Knowledge/CSS-UI/CSS/css-units.md` (340 lines)
-- [ ] `docs/Knowledge/CSS-UI/CSS/element-properties.md` (41 lines)
-- [ ] `docs/Knowledge/CSS-UI/CSS/selector-weight.md` (57 lines)
-- [ ] `docs/Knowledge/CSS-UI/CSS/theme-switching.md` (1,172 lines)
-- [ ] Batch 4 build 驗證
+- [x] `docs/Knowledge/CSS-UI/CSS/css-box-model.md` (171 lines)
+- [x] `docs/Knowledge/CSS-UI/CSS/css-pseudo-elements.md` (387 lines)
+- [x] `docs/Knowledge/CSS-UI/CSS/css-units.md` (340 lines)
+- [x] `docs/Knowledge/CSS-UI/CSS/element-properties.md` (41 lines)
+- [x] `docs/Knowledge/CSS-UI/CSS/selector-weight.md` (57 lines)
+- [x] `docs/Knowledge/CSS-UI/CSS/theme-switching.md` (1,172 lines)
+- [x] Batch 4 build 驗證
 - [ ] Batch 4 commit
 
 ---

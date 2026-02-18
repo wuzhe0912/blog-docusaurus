@@ -6,7 +6,7 @@ slug: /find-most-frequent-char
 
 ## Question Description
 
-建立一個 function，接收一個字串，並回傳該字串中出現次數最多的字元。
+Create a function that takes a string and returns the character that appears most frequently.
 
 ## 1. JavaScript Version
 

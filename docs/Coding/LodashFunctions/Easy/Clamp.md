@@ -5,18 +5,18 @@ slug: /lodash-functions-easy-clamp
 tags: [Coding, Easy]
 ---
 
-## 問題描述
+## Question Description
 
-實現 `clamp` 函式，將數值限制在指定的範圍內。
+Implement a `clamp` function that restricts a number to a specified range.
 
-## 要求
+## Requirements
 
-- `clamp` 接受三個參數：`number`（數值）、`lower`（下限）和 `upper`（上限）。
-- 如果 `number` 小於 `lower`，則返回 `lower`。
-- 如果 `number` 大於 `upper`，則返回 `upper`。
-- 否則，返回 `number`。
+- `clamp` accepts three parameters: `number` (the value), `lower` (lower bound), and `upper` (upper bound).
+- If `number` is less than `lower`, return `lower`.
+- If `number` is greater than `upper`, return `upper`.
+- Otherwise, return `number`.
 
-## I. 暴力解，使用 `if` 條件判斷
+## I. Brute Force Using `if` Conditionals
 
 ```javascript
 function clamp(number, lower, upper) {
@@ -30,7 +30,7 @@ function clamp(number, lower, upper) {
 }
 ```
 
-## II. 使用 `Math.min` 和 `Math.max` 函式
+## II. Using `Math.min` and `Math.max`
 
 ```javascript
 function clamp(number, lower, upper) {

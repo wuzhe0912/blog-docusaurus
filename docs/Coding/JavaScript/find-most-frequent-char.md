@@ -7,11 +7,11 @@ tags: [JavaScript, Coding, Easy]
 
 ## 1. Question Description
 
-> 問題描述
+> Question Description
 
-實作一個函式，接收一個字串，並回傳該字串中出現次數最多的字元。
+Implement a function that takes a string and returns the character that appears most frequently.
 
-### 範例
+### Examples
 
 ```javascript
 findMostFrequentChar('abcccccccd'); // 'c'
@@ -21,64 +21,64 @@ findMostFrequentChar('javascript'); // 'a'
 
 ## 2. Implementation Methods
 
-> 實作方法
+> Implementation Methods
 
-### 方法 1：使用物件計數（基礎版）
+### Method 1: Object Counting (Basic)
 
-**思路**：遍歷字串，使用物件記錄每個字元的出現次數，然後找出出現次數最多的字元。
+**Approach**: Iterate through the string, use an object to record each character's count, then find the character with the highest count.
 
 ```javascript
 function findMostFrequentChar(str) {
-  // 初始化物件來儲存字元和計數
+  // Initialize object to store characters and counts
   const charCount = {};
 
-  // 初始化記錄最大計數和字元的變數
+  // Initialize variables for tracking max count and character
   let maxCount = 0;
   let maxChar = '';
 
-  // 遍歷字串
+  // Iterate through the string
   for (let char of str) {
-    // 如果字元不在物件中，設定計數為 0
+    // If the character is not in the object, set count to 0
     if (!charCount[char]) {
       charCount[char] = 0;
     }
 
-    // 增加這個字元的計數
+    // Increment this character's count
     charCount[char]++;
 
-    // 如果這個字元的計數大於最大計數
-    // 更新最大計數和最大字元
+    // If this character's count is greater than the max count,
+    // update the max count and max character
     if (charCount[char] > maxCount) {
       maxCount = charCount[char];
       maxChar = char;
     }
   }
 
-  // 回傳最大字元
+  // Return the most frequent character
   return maxChar;
 }
 
-// 測試
+// Test
 console.log(findMostFrequentChar('abcccccccd')); // 'c'
 console.log(findMostFrequentChar('hello world')); // 'l'
 ```
 
-**時間複雜度**：O(n)，其中 n 是字串長度  
-**空間複雜度**：O(k)，其中 k 是不同字元的數量
+**Time Complexity**: O(n), where n is the string length
+**Space Complexity**: O(k), where k is the number of distinct characters
 
-### 方法 2：先計數再找最大值（兩階段）
+### Method 2: Count First, Then Find Max (Two-phase)
 
-**思路**：先遍歷一次計算所有字元的出現次數，再遍歷一次找出最大值。
+**Approach**: First iterate once to count all characters, then iterate again to find the maximum.
 
 ```javascript
 function findMostFrequentChar(str) {
-  // 第一階段：計算每個字元的出現次數
+  // Phase 1: Count occurrences of each character
   const charCount = {};
   for (let char of str) {
     charCount[char] = (charCount[char] || 0) + 1;
   }
 
-  // 第二階段：找出出現次數最多的字元
+  // Phase 2: Find the character with the most occurrences
   let maxCount = 0;
   let maxChar = '';
 
@@ -92,16 +92,16 @@ function findMostFrequentChar(str) {
   return maxChar;
 }
 
-// 測試
+// Test
 console.log(findMostFrequentChar('abcccccccd')); // 'c'
 ```
 
-**優點**：邏輯更清晰，分階段處理  
-**缺點**：需要兩次遍歷
+**Pros**: Clearer logic, phased processing
+**Cons**: Requires two iterations
 
-### 方法 3：使用 Map（ES6）
+### Method 3: Using Map (ES6)
 
-**思路**：使用 Map 來儲存字元和計數的對應關係。
+**Approach**: Use a Map to store the mapping between characters and their counts.
 
 ```javascript
 function findMostFrequentChar(str) {
@@ -122,54 +122,54 @@ function findMostFrequentChar(str) {
   return maxChar;
 }
 
-// 測試
+// Test
 console.log(findMostFrequentChar('abcccccccd')); // 'c'
 ```
 
-**優點**：使用 Map 更符合現代 JavaScript 風格  
-**缺點**：對於簡單場景，物件可能更直觀
+**Pros**: Using Map is more idiomatic in modern JavaScript
+**Cons**: For simple cases, a plain object may be more intuitive
 
-### 方法 4：使用 reduce（函數式風格）
+### Method 4: Using reduce (Functional Style)
 
-**思路**：使用 `reduce` 和 `Object.entries` 來實作。
+**Approach**: Use `reduce` and `Object.entries` for implementation.
 
 ```javascript
 function findMostFrequentChar(str) {
-  // 計算每個字元的出現次數
+  // Count occurrences of each character
   const charCount = str.split('').reduce((acc, char) => {
     acc[char] = (acc[char] || 0) + 1;
     return acc;
   }, {});
 
-  // 找出出現次數最多的字元
+  // Find the character with the most occurrences
   return Object.entries(charCount).reduce((max, [char, count]) => {
     return count > max[1] ? [char, count] : max;
   }, ['', 0])[0];
 }
 
-// 測試
+// Test
 console.log(findMostFrequentChar('abcccccccd')); // 'c'
 ```
 
-**優點**：函數式風格，程式碼簡潔  
-**缺點**：可讀性較差，效能略低
+**Pros**: Functional style, concise code
+**Cons**: Less readable, slightly lower performance
 
-### 方法 5：處理多個相同最大值的情況
+### Method 5: Handling Multiple Characters with the Same Max Count
 
-**思路**：如果有多個字元出現次數相同且都是最大值，回傳陣列或第一個遇到的。
+**Approach**: If multiple characters have the same highest count, return an array or the first one encountered.
 
 ```javascript
 function findMostFrequentChar(str) {
   const charCount = {};
   let maxCount = 0;
 
-  // 計算每個字元的出現次數
+  // Count occurrences of each character
   for (let char of str) {
     charCount[char] = (charCount[char] || 0) + 1;
     maxCount = Math.max(maxCount, charCount[char]);
   }
 
-  // 找出所有出現次數等於最大值的字元
+  // Find all characters with the max count
   const mostFrequentChars = [];
   for (let char in charCount) {
     if (charCount[char] === maxCount) {
@@ -177,25 +177,25 @@ function findMostFrequentChar(str) {
     }
   }
 
-  // 回傳第一個遇到的（或回傳整個陣列）
+  // Return the first encountered (or return the entire array)
   return mostFrequentChars[0];
-  // 或回傳所有：return mostFrequentChars;
+  // Or return all: return mostFrequentChars;
 }
 
-// 測試
-console.log(findMostFrequentChar('aabbcc')); // 'a'（第一個遇到的）
+// Test
+console.log(findMostFrequentChar('aabbcc')); // 'a' (first encountered)
 ```
 
 ## 3. Edge Cases
 
-> 邊界情況處理
+> Edge Case Handling
 
-### 處理空字串
+### Handling Empty Strings
 
 ```javascript
 function findMostFrequentChar(str) {
   if (!str || str.length === 0) {
-    return ''; // 或 throw new Error('String cannot be empty')
+    return ''; // Or throw new Error('String cannot be empty')
   }
 
   const charCount = {};
@@ -214,7 +214,7 @@ function findMostFrequentChar(str) {
 }
 ```
 
-### 處理大小寫
+### Handling Case Sensitivity
 
 ```javascript
 function findMostFrequentChar(str, caseSensitive = true) {
@@ -234,12 +234,12 @@ function findMostFrequentChar(str, caseSensitive = true) {
   return maxChar;
 }
 
-// 測試
-console.log(findMostFrequentChar('Hello', false)); // 'l'（不區分大小寫）
-console.log(findMostFrequentChar('Hello', true)); // 'l'（區分大小寫）
+// Test
+console.log(findMostFrequentChar('Hello', false)); // 'l' (case-insensitive)
+console.log(findMostFrequentChar('Hello', true)); // 'l' (case-sensitive)
 ```
 
-### 處理空格和特殊字元
+### Handling Spaces and Special Characters
 
 ```javascript
 function findMostFrequentChar(str, ignoreSpaces = false) {
@@ -259,21 +259,21 @@ function findMostFrequentChar(str, ignoreSpaces = false) {
   return maxChar;
 }
 
-// 測試
-console.log(findMostFrequentChar('hello world', true)); // 'l'（忽略空格）
-console.log(findMostFrequentChar('hello world', false)); // ' '（空格）
+// Test
+console.log(findMostFrequentChar('hello world', true)); // 'l' (ignoring spaces)
+console.log(findMostFrequentChar('hello world', false)); // ' ' (space)
 ```
 
 ## 4. Common Interview Questions
 
-> 常見面試題目
+> Common Interview Questions
 
-### 題目 1：基本實作
+### Question 1: Basic Implementation
 
-請實作一個函式，找出字串中出現次數最多的字元。
+Implement a function that finds the most frequent character in a string.
 
 <details>
-<summary>點擊查看答案</summary>
+<summary>Click to reveal answer</summary>
 
 ```javascript
 function findMostFrequentChar(str) {
@@ -292,38 +292,38 @@ function findMostFrequentChar(str) {
   return maxChar;
 }
 
-// 測試
+// Test
 console.log(findMostFrequentChar('abcccccccd')); // 'c'
 console.log(findMostFrequentChar('hello world')); // 'l'
 ```
 
-**關鍵點**：
+**Key points**:
 
-- 使用物件或 Map 來記錄每個字元的出現次數
-- 在遍歷過程中同時更新最大值
-- 時間複雜度 O(n)，空間複雜度 O(k)
+- Use an object or Map to record each character's count
+- Update the maximum during iteration
+- Time complexity O(n), space complexity O(k)
 
 </details>
 
-### 題目 2：優化版本
+### Question 2: Optimized Version
 
-請優化上述函式，使其能夠處理多個相同最大值的情況。
+Optimize the above function to handle multiple characters with the same max count.
 
 <details>
-<summary>點擊查看答案</summary>
+<summary>Click to reveal answer</summary>
 
 ```javascript
 function findMostFrequentChar(str) {
   const charCount = {};
   let maxCount = 0;
 
-  // 第一階段：計算每個字元的出現次數
+  // Phase 1: Count occurrences of each character
   for (let char of str) {
     charCount[char] = (charCount[char] || 0) + 1;
     maxCount = Math.max(maxCount, charCount[char]);
   }
 
-  // 第二階段：找出所有出現次數等於最大值的字元
+  // Phase 2: Find all characters with the max count
   const mostFrequentChars = [];
   for (let char in charCount) {
     if (charCount[char] === maxCount) {
@@ -331,22 +331,22 @@ function findMostFrequentChar(str) {
     }
   }
 
-  // 根據需求回傳第一個或全部
-  return mostFrequentChars[0]; // 或回傳 mostFrequentChars
+  // Return first or all based on requirements
+  return mostFrequentChars[0]; // Or return mostFrequentChars
 }
 
-// 測試
+// Test
 console.log(findMostFrequentChar('aabbcc')); // 'a'
 ```
 
 </details>
 
-### 題目 3：使用 Map 實作
+### Question 3: Using Map
 
-請使用 ES6 的 Map 來實作這個函式。
+Implement this function using ES6 Map.
 
 <details>
-<summary>點擊查看答案</summary>
+<summary>Click to reveal answer</summary>
 
 ```javascript
 function findMostFrequentChar(str) {
@@ -367,33 +367,33 @@ function findMostFrequentChar(str) {
   return maxChar;
 }
 
-// 測試
+// Test
 console.log(findMostFrequentChar('abcccccccd')); // 'c'
 ```
 
-**Map vs Object**：
+**Map vs Object**:
 
-- **Map**：更適合動態鍵值對，鍵可以是任何型別
-- **Object**：更簡單直觀，適合字串鍵
+- **Map**: Better suited for dynamic key-value pairs; keys can be any type
+- **Object**: Simpler and more intuitive; suitable for string keys
 
 </details>
 
 ## 5. Best Practices
 
-> 最佳實踐
+> Best Practices
 
-### 推薦做法
+### Recommended Approaches
 
 ```javascript
-// 1. 使用清晰的變數命名
+// 1. Use clear variable names
 function findMostFrequentChar(str) {
-  const charCount = {}; // 清楚表達用途
+  const charCount = {}; // Clearly expresses purpose
   let maxCount = 0;
   let maxChar = '';
   // ...
 }
 
-// 2. 處理邊界情況
+// 2. Handle edge cases
 function findMostFrequentChar(str) {
   if (!str || str.length === 0) {
     return '';
@@ -401,7 +401,7 @@ function findMostFrequentChar(str) {
   // ...
 }
 
-// 3. 在遍歷時同時更新最大值（一次遍歷）
+// 3. Update max during iteration (single pass)
 function findMostFrequentChar(str) {
   const charCount = {};
   let maxCount = 0;
@@ -419,30 +419,30 @@ function findMostFrequentChar(str) {
 }
 ```
 
-### 避免的做法
+### Approaches to Avoid
 
 ```javascript
-// 1. 不要使用兩次遍歷（除非必要）
-// ❌ 效能較差
+// 1. Don't use two iterations (unless necessary)
+// ❌ Lower performance
 function findMostFrequentChar(str) {
   const charCount = {};
   for (let char of str) {
     charCount[char] = (charCount[char] || 0) + 1;
   }
-  // 第二次遍歷
+  // Second iteration
   return Object.entries(charCount).sort((a, b) => b[1] - a[1])[0][0];
 }
 
-// 2. 不要忘記處理空字串
-// ❌ 可能回傳 undefined
+// 2. Don't forget to handle empty strings
+// ❌ May return undefined
 function findMostFrequentChar(str) {
   const charCount = {};
   // ...
-  return maxChar; // 空字串時 maxChar 是 ''
+  return maxChar; // maxChar is '' for empty string
 }
 
-// 3. 不要使用過於複雜的函數式寫法（除非團隊習慣）
-// ❌ 可讀性較差
+// 3. Don't use overly complex functional patterns (unless team convention)
+// ❌ Less readable
 const findMostFrequentChar = (str) =>
   Object.entries(
     str.split('').reduce((acc, char) => {
@@ -454,33 +454,32 @@ const findMostFrequentChar = (str) =>
 
 ## 6. Interview Summary
 
-> 面試總結
+> Interview Summary
 
-### 快速記憶
+### Quick Reference
 
-**實作要點**：
+**Implementation Steps**:
 
-1. 使用物件或 Map 記錄每個字元的出現次數
-2. 在遍歷過程中同時更新最大值
-3. 時間複雜度 O(n)，空間複雜度 O(k)
-4. 處理邊界情況（空字串、大小寫等）
+1. Use an object or Map to record each character's count
+2. Update the maximum during iteration
+3. Time complexity O(n), space complexity O(k)
+4. Handle edge cases (empty string, case sensitivity, etc.)
 
-**優化方向**：
+**Optimization Directions**:
 
-- 一次遍歷完成（同時計數和找最大值）
-- 使用 Map 處理複雜場景
-- 處理多個相同最大值的情況
-- 考慮大小寫、空格等特殊情況
+- Complete in a single pass (count and find max simultaneously)
+- Use Map for complex scenarios
+- Handle multiple characters with the same max count
+- Consider case sensitivity, spaces, and other special cases
 
-### 面試回答範例
+### Interview Answer Example
 
-**Q: 請實作一個函式，找出字串中出現次數最多的字元。**
+**Q: Implement a function that finds the most frequent character in a string.**
 
-> "我會使用一個物件來記錄每個字元的出現次數，然後在遍歷字串的過程中同時更新最大值。具體實作是：初始化一個空物件 charCount 來儲存字元和計數，初始化 maxCount 和 maxChar 變數。然後遍歷字串，對每個字元，如果不在物件中就初始化為 0，然後增加計數。如果當前字元的計數大於 maxCount，就更新 maxCount 和 maxChar。最後回傳 maxChar。這個方法的時間複雜度是 O(n)，空間複雜度是 O(k)，其中 n 是字串長度，k 是不同字元的數量。"
+> "I would use an object to record each character's count, then update the maximum during string iteration. Specifically: initialize an empty object `charCount` to store characters and their counts, and initialize `maxCount` and `maxChar` variables. Then iterate through the string — for each character, initialize to 0 if not in the object, then increment the count. If the current character's count exceeds maxCount, update maxCount and maxChar. Finally, return maxChar. This approach has O(n) time complexity and O(k) space complexity, where n is the string length and k is the number of distinct characters."
 
 ## Reference
 
-- [MDN - String](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/String)
-- [MDN - Map](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Map)
-- [MDN - Object.entries()](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/entries)
-
+- [MDN - String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
+- [MDN - Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map)
+- [MDN - Object.entries()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries)

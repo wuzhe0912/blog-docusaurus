@@ -53,7 +53,7 @@
 | 6 | Knowledge / Browser-Network + Security + index | 10 | ~843 | ✅ |
 | 7 | Experience / SSR-SEO | 9 | ~3,094 | [ ] |
 | 8 | Experience / State-Management + misc | 11 | ~1,903 | [ ] |
-| 9 | Coding + LeetCode | 13 | ~2,632 | [ ] |
+| 9 | Coding + LeetCode | 13 | ~2,632 | ✅ |
 | — | **合計** | **89** | **~27,629** | |
 
 ---
@@ -190,23 +190,23 @@
 
 ---
 
-## Batch 9: Coding + LeetCode（13 files, ~2,632 lines）
+## Batch 9: Coding + LeetCode（13 files, ~2,632 lines）✅
 
-- [ ] `docs/Coding/coding.md` (13 lines)
-- [ ] `docs/Coding/JavaScript/deep-clone.md` (594 lines)
-- [ ] `docs/Coding/JavaScript/find-most-frequent-char.md` (486 lines)
-- [ ] `docs/Coding/JavaScript/object-path-parsing.md` (722 lines)
-- [ ] `docs/Coding/LodashFunctions/Easy/clamp.md` (39 lines)
-- [ ] `docs/Coding/LodashFunctions/Easy/counter-number.md` (86 lines)
-- [ ] `docs/Coding/LodashFunctions/Easy/find-most-frequent-char.md` (45 lines)
-- [ ] `docs/Coding/LodashFunctions/Easy/find-value-in-array.md` (173 lines)
-- [ ] `docs/Coding/LodashFunctions/Easy/random-number.md` (25 lines)
-- [ ] `docs/Coding/LodashFunctions/Easy/sort-array.md` (63 lines)
-- [ ] `docs/Coding/LodashFunctions/Easy/string-operation.md` (210 lines)
-- [ ] `docs/Coding/LodashFunctions/Medium/MultiDimensionalArray.md` (108 lines)
-- [ ] `docs/LeetCode/Easy/breadth-first-search.md` (68 lines)
-- [ ] Batch 9 build 驗證
-- [ ] Batch 9 commit
+- [x] `docs/Coding/coding.md` (13 lines)
+- [x] `docs/Coding/JavaScript/deep-clone.md` (594 lines)
+- [x] `docs/Coding/JavaScript/find-most-frequent-char.md` (486 lines)
+- [x] `docs/Coding/JavaScript/object-path-parsing.md` (722 lines)
+- [x] `docs/Coding/LodashFunctions/Easy/clamp.md` (39 lines)
+- [x] `docs/Coding/LodashFunctions/Easy/counter-number.md` (86 lines)
+- [x] `docs/Coding/LodashFunctions/Easy/find-most-frequent-char.md` (45 lines)
+- [x] `docs/Coding/LodashFunctions/Easy/find-value-in-array.md` (173 lines)
+- [x] `docs/Coding/LodashFunctions/Easy/random-number.md` (25 lines)
+- [x] `docs/Coding/LodashFunctions/Easy/sort-array.md` (63 lines)
+- [x] `docs/Coding/LodashFunctions/Easy/string-operation.md` (210 lines)
+- [x] `docs/Coding/LodashFunctions/Medium/MultiDimensionalArray.md` (108 lines)
+- [x] `docs/LeetCode/Easy/breadth-first-search.md` (68 lines)
+- [x] Batch 9 build 驗證
+- [x] Batch 9 commit
 
 ---
 

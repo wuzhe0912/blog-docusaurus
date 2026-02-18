@@ -6,17 +6,17 @@ slug: /sort-array
 
 ## Question Description
 
-給定一個若干數字的陣列，請使用 `sort` 函式，將陣列進行排序，並請將下列兩種狀況，都提供解法：
+Given an array of numbers, use the `sort` function to sort the array. Provide solutions for both scenarios:
 
-1. 由小到大排序(升冪)
-2. 由大到小排序(降冪)
+1. Ascending order (smallest to largest)
+2. Descending order (largest to smallest)
 
-### 升冪排序
+### Ascending Sort
 
 ```js
 const numbers = [10, 5, 50, 2, 200];
 
-// 使用比較函式
+// Using a comparison function
 numbers.sort(function (a, b) {
   return a - b;
 });
@@ -24,7 +24,7 @@ numbers.sort(function (a, b) {
 console.log(numbers); // [2, 5, 10, 50, 200]
 ```
 
-### 降冪排序
+### Descending Sort
 
 ```js
 const numbers = [10, 5, 50, 2, 200];
@@ -36,7 +36,7 @@ numbers.sort(function (a, b) {
 console.log(numbers); // [200, 50, 10, 5, 2]
 ```
 
-### 故意塞入 string
+### Intentionally Inserting Strings
 
 ```js
 const mixedNumbers = [10, '5', 50, '2', 200];
@@ -48,9 +48,9 @@ mixedNumbers.sort(function (a, b) {
 console.log(mixedNumbers); // ['2', '5', 10, 50, 200]
 ```
 
-但這個解法無法排除，無法轉換為數字的字串，例如 `'iphone'`, `'ipad'` 等等。這些字串會被轉換為 `NaN`，雖然可能排序上會在最後面，但也可能因為不同瀏覽器，產生不同結果。這種狀況下，只能考慮使用 `filter` 先進行排除重組陣列。
+However, this solution cannot handle strings that cannot be converted to numbers, such as `'iphone'`, `'ipad'`, etc. These strings are converted to `NaN`, and while they may end up at the end of the sorted array, different browsers may produce different results. In such cases, consider using `filter` first to remove and restructure the array.
 
-### Object 排序
+### Object Sorting
 
 ```js
 const mockArray = [

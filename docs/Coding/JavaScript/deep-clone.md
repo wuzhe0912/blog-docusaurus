@@ -7,16 +7,16 @@ tags: [JavaScript, Coding, Medium]
 
 ## 1. What is Deep Clone?
 
-> 什麼是 Deep Clone？
+> What is Deep Clone?
 
-**深拷貝（Deep Clone）**是指創建一個新物件，並且遞迴地複製原始物件及其所有巢狀物件和陣列的所有屬性。深拷貝後的物件與原始物件完全獨立，修改其中一個不會影響另一個。
+**Deep Clone** creates a new object and recursively copies all properties of the original object, including all nested objects and arrays. After a deep clone, the new object is completely independent from the original — modifying one does not affect the other.
 
-### 淺拷貝 vs 深拷貝
+### Shallow Clone vs Deep Clone
 
-**淺拷貝（Shallow Clone）**：只複製物件的第一層屬性，巢狀物件仍然共享引用。
+**Shallow Clone**: Only copies the first level of an object's properties. Nested objects still share references.
 
 ```javascript
-// 淺拷貝範例
+// Shallow clone example
 const original = {
   name: 'John',
   address: {
@@ -28,13 +28,13 @@ const original = {
 const shallowCopy = { ...original };
 shallowCopy.address.city = 'Kaohsiung';
 
-console.log(original.address.city); // 'Kaohsiung' ❌ 原始物件也被修改了
+console.log(original.address.city); // 'Kaohsiung' ❌ Original object was also modified
 ```
 
-**深拷貝（Deep Clone）**：遞迴複製所有層級的屬性，完全獨立。
+**Deep Clone**: Recursively copies all levels of properties, fully independent.
 
 ```javascript
-// 深拷貝範例
+// Deep clone example
 const original = {
   name: 'John',
   address: {
@@ -46,24 +46,24 @@ const original = {
 const deepCopy = deepClone(original);
 deepCopy.address.city = 'Kaohsiung';
 
-console.log(original.address.city); // 'Taipei' ✅ 原始物件不受影響
+console.log(original.address.city); // 'Taipei' ✅ Original object is unaffected
 ```
 
 ## 2. Implementation Methods
 
-> 實作方法
+> Implementation Methods
 
-### 方法 1：使用 JSON.parse 和 JSON.stringify
+### Method 1: Using JSON.parse and JSON.stringify
 
-**優點**：簡單快速  
-**缺點**：無法處理函式、undefined、Symbol、Date、RegExp、Map、Set 等特殊型別
+**Pros**: Simple and quick
+**Cons**: Cannot handle functions, undefined, Symbol, Date, RegExp, Map, Set, and other special types
 
 ```javascript
 function deepClone(obj) {
   return JSON.parse(JSON.stringify(obj));
 }
 
-// 測試
+// Test
 const original = {
   name: 'John',
   age: 30,
@@ -82,7 +82,7 @@ console.log(original.address.city); // 'Taipei' ✅
 console.log(original.hobbies); // ['reading', 'coding'] ✅
 ```
 
-**限制**：
+**Limitations**:
 
 ```javascript
 const obj = {
@@ -94,38 +94,38 @@ const obj = {
 };
 
 const cloned = deepClone(obj);
-console.log(cloned.date); // {} ❌ Date 變成空物件
-console.log(cloned.func); // undefined ❌ 函式遺失
-console.log(cloned.undefined); // undefined ✅ 但 JSON.stringify 會移除
-console.log(cloned.symbol); // undefined ❌ Symbol 遺失
-console.log(cloned.regex); // {} ❌ RegExp 變成空物件
+console.log(cloned.date); // {} ❌ Date becomes an empty object
+console.log(cloned.func); // undefined ❌ Function is lost
+console.log(cloned.undefined); // undefined ✅ But JSON.stringify removes it
+console.log(cloned.symbol); // undefined ❌ Symbol is lost
+console.log(cloned.regex); // {} ❌ RegExp becomes an empty object
 ```
 
-### 方法 2：遞迴實作（處理基本型別和物件）
+### Method 2: Recursive Implementation (handling basic types and objects)
 
 ```javascript
 function deepClone(obj) {
-  // 處理 null 和基本型別
+  // Handle null and primitive types
   if (obj === null || typeof obj !== 'object') {
     return obj;
   }
 
-  // 處理 Date
+  // Handle Date
   if (obj instanceof Date) {
     return new Date(obj.getTime());
   }
 
-  // 處理 RegExp
+  // Handle RegExp
   if (obj instanceof RegExp) {
     return new RegExp(obj);
   }
 
-  // 處理陣列
+  // Handle arrays
   if (Array.isArray(obj)) {
     return obj.map((item) => deepClone(item));
   }
 
-  // 處理物件
+  // Handle objects
   const cloned = {};
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
@@ -136,7 +136,7 @@ function deepClone(obj) {
   return cloned;
 }
 
-// 測試
+// Test
 const original = {
   name: 'John',
   date: new Date(),
@@ -151,35 +151,35 @@ const cloned = deepClone(original);
 cloned.date.setFullYear(2025);
 cloned.hobbies.push('swimming');
 
-console.log(original.date.getFullYear()); // 2024 ✅ 不受影響
+console.log(original.date.getFullYear()); // 2024 ✅ Unaffected
 console.log(original.hobbies); // ['reading', 'coding'] ✅
 ```
 
-### 方法 3：完整實作（處理 Map、Set、Symbol 等）
+### Method 3: Complete Implementation (handling Map, Set, Symbol, etc.)
 
 ```javascript
 function deepClone(obj, map = new WeakMap()) {
-  // 處理 null 和基本型別
+  // Handle null and primitive types
   if (obj === null || typeof obj !== 'object') {
     return obj;
   }
 
-  // 處理循環引用
+  // Handle circular references
   if (map.has(obj)) {
     return map.get(obj);
   }
 
-  // 處理 Date
+  // Handle Date
   if (obj instanceof Date) {
     return new Date(obj.getTime());
   }
 
-  // 處理 RegExp
+  // Handle RegExp
   if (obj instanceof RegExp) {
     return new RegExp(obj.source, obj.flags);
   }
 
-  // 處理 Map
+  // Handle Map
   if (obj instanceof Map) {
     const clonedMap = new Map();
     map.set(obj, clonedMap);
@@ -189,7 +189,7 @@ function deepClone(obj, map = new WeakMap()) {
     return clonedMap;
   }
 
-  // 處理 Set
+  // Handle Set
   if (obj instanceof Set) {
     const clonedSet = new Set();
     map.set(obj, clonedSet);
@@ -199,7 +199,7 @@ function deepClone(obj, map = new WeakMap()) {
     return clonedSet;
   }
 
-  // 處理陣列
+  // Handle arrays
   if (Array.isArray(obj)) {
     const clonedArray = [];
     map.set(obj, clonedArray);
@@ -209,20 +209,20 @@ function deepClone(obj, map = new WeakMap()) {
     return clonedArray;
   }
 
-  // 處理物件
+  // Handle objects
   const cloned = {};
   map.set(obj, cloned);
 
-  // 處理 Symbol 屬性
+  // Handle Symbol properties
   const symbolKeys = Object.getOwnPropertySymbols(obj);
   const stringKeys = Object.keys(obj);
 
-  // 複製一般屬性
+  // Copy regular properties
   stringKeys.forEach((key) => {
     cloned[key] = deepClone(obj[key], map);
   });
 
-  // 複製 Symbol 屬性
+  // Copy Symbol properties
   symbolKeys.forEach((symbolKey) => {
     cloned[symbolKey] = deepClone(obj[symbolKey], map);
   });
@@ -230,7 +230,7 @@ function deepClone(obj, map = new WeakMap()) {
   return cloned;
 }
 
-// 測試
+// Test
 const symbolKey = Symbol('test');
 const original = {
   name: 'John',
@@ -247,31 +247,31 @@ console.log(cloned.map.get('key')); // 'value' ✅
 console.log(cloned.set.has(1)); // true ✅
 ```
 
-### 方法 4：處理循環引用
+### Method 4: Handling Circular References
 
 ```javascript
 function deepClone(obj, map = new WeakMap()) {
-  // 處理 null 和基本型別
+  // Handle null and primitive types
   if (obj === null || typeof obj !== 'object') {
     return obj;
   }
 
-  // 處理循環引用
+  // Handle circular references
   if (map.has(obj)) {
     return map.get(obj);
   }
 
-  // 處理 Date
+  // Handle Date
   if (obj instanceof Date) {
     return new Date(obj.getTime());
   }
 
-  // 處理 RegExp
+  // Handle RegExp
   if (obj instanceof RegExp) {
     return new RegExp(obj.source, obj.flags);
   }
 
-  // 處理陣列
+  // Handle arrays
   if (Array.isArray(obj)) {
     const clonedArray = [];
     map.set(obj, clonedArray);
@@ -281,7 +281,7 @@ function deepClone(obj, map = new WeakMap()) {
     return clonedArray;
   }
 
-  // 處理物件
+  // Handle objects
   const cloned = {};
   map.set(obj, cloned);
 
@@ -294,51 +294,51 @@ function deepClone(obj, map = new WeakMap()) {
   return cloned;
 }
 
-// 測試循環引用
+// Test circular references
 const original = {
   name: 'John',
 };
-original.self = original; // 循環引用
+original.self = original; // Circular reference
 
 const cloned = deepClone(original);
-console.log(cloned.self === cloned); // true ✅ 正確處理循環引用
-console.log(cloned !== original); // true ✅ 是不同的物件
+console.log(cloned.self === cloned); // true ✅ Circular reference handled correctly
+console.log(cloned !== original); // true ✅ It's a different object
 ```
 
 ## 3. Common Interview Questions
 
-> 常見面試題目
+> Common Interview Questions
 
-### 題目 1：基本深拷貝實作
+### Question 1: Basic Deep Clone Implementation
 
-請實作一個 `deepClone` 函式，能夠深拷貝物件和陣列。
+Implement a `deepClone` function that can deep clone objects and arrays.
 
 <details>
-<summary>點擊查看答案</summary>
+<summary>Click to reveal answer</summary>
 
 ```javascript
 function deepClone(obj) {
-  // 處理 null 和基本型別
+  // Handle null and primitive types
   if (obj === null || typeof obj !== 'object') {
     return obj;
   }
 
-  // 處理 Date
+  // Handle Date
   if (obj instanceof Date) {
     return new Date(obj.getTime());
   }
 
-  // 處理 RegExp
+  // Handle RegExp
   if (obj instanceof RegExp) {
     return new RegExp(obj.source, obj.flags);
   }
 
-  // 處理陣列
+  // Handle arrays
   if (Array.isArray(obj)) {
     return obj.map((item) => deepClone(item));
   }
 
-  // 處理物件
+  // Handle objects
   const cloned = {};
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
@@ -349,7 +349,7 @@ function deepClone(obj) {
   return cloned;
 }
 
-// 測試
+// Test
 const original = {
   name: 'John',
   age: 30,
@@ -370,36 +370,36 @@ console.log(original.hobbies); // ['reading', 'coding'] ✅
 
 </details>
 
-### 題目 2：處理循環引用
+### Question 2: Handling Circular References
 
-請實作一個能夠處理循環引用的 `deepClone` 函式。
+Implement a `deepClone` function that can handle circular references.
 
 <details>
-<summary>點擊查看答案</summary>
+<summary>Click to reveal answer</summary>
 
 ```javascript
 function deepClone(obj, map = new WeakMap()) {
-  // 處理 null 和基本型別
+  // Handle null and primitive types
   if (obj === null || typeof obj !== 'object') {
     return obj;
   }
 
-  // 處理循環引用
+  // Handle circular references
   if (map.has(obj)) {
     return map.get(obj);
   }
 
-  // 處理 Date
+  // Handle Date
   if (obj instanceof Date) {
     return new Date(obj.getTime());
   }
 
-  // 處理 RegExp
+  // Handle RegExp
   if (obj instanceof RegExp) {
     return new RegExp(obj.source, obj.flags);
   }
 
-  // 處理陣列
+  // Handle arrays
   if (Array.isArray(obj)) {
     const clonedArray = [];
     map.set(obj, clonedArray);
@@ -409,7 +409,7 @@ function deepClone(obj, map = new WeakMap()) {
     return clonedArray;
   }
 
-  // 處理物件
+  // Handle objects
   const cloned = {};
   map.set(obj, cloned);
 
@@ -422,101 +422,101 @@ function deepClone(obj, map = new WeakMap()) {
   return cloned;
 }
 
-// 測試循環引用
+// Test circular references
 const original = {
   name: 'John',
 };
-original.self = original; // 循環引用
+original.self = original; // Circular reference
 
 const cloned = deepClone(original);
 console.log(cloned.self === cloned); // true ✅
 console.log(cloned !== original); // true ✅
 ```
 
-**關鍵點**：
+**Key points**:
 
-- 使用 `WeakMap` 來追蹤已經處理過的物件
-- 在建立新物件前先檢查是否已經存在於 map 中
-- 如果存在，直接返回 map 中的引用，避免無限遞迴
+- Use `WeakMap` to track already-processed objects
+- Check whether an object already exists in the map before creating a new one
+- If it exists, return the reference from the map to avoid infinite recursion
 
 </details>
 
-### 題目 3：JSON.parse 和 JSON.stringify 的限制
+### Question 3: Limitations of JSON.parse and JSON.stringify
 
-請說明使用 `JSON.parse(JSON.stringify())` 進行深拷貝的限制，並提供解決方案。
+Explain the limitations of using `JSON.parse(JSON.stringify())` for deep cloning, and provide solutions.
 
 <details>
-<summary>點擊查看答案</summary>
+<summary>Click to reveal answer</summary>
 
-**限制**：
+**Limitations**:
 
-1. **無法處理函式**
+1. **Cannot handle functions**
    ```javascript
    const obj = { func: function () {} };
    const cloned = JSON.parse(JSON.stringify(obj));
    console.log(cloned.func); // undefined ❌
    ```
 
-2. **無法處理 undefined**
+2. **Cannot handle undefined**
    ```javascript
    const obj = { value: undefined };
    const cloned = JSON.parse(JSON.stringify(obj));
-   console.log(cloned.value); // undefined（但屬性會被移除）❌
+   console.log(cloned.value); // undefined (but the property is removed) ❌
    ```
 
-3. **無法處理 Symbol**
+3. **Cannot handle Symbol**
    ```javascript
    const obj = { [Symbol('key')]: 'value' };
    const cloned = JSON.parse(JSON.stringify(obj));
-   console.log(cloned); // {} ❌ Symbol 屬性遺失
+   console.log(cloned); // {} ❌ Symbol property is lost
    ```
 
-4. **Date 變成字串**
+4. **Date becomes a string**
    ```javascript
    const obj = { date: new Date() };
    const cloned = JSON.parse(JSON.stringify(obj));
-   console.log(cloned.date); // "2024-01-01T00:00:00.000Z" ❌ 變成字串
+   console.log(cloned.date); // "2024-01-01T00:00:00.000Z" ❌ Becomes a string
    ```
 
-5. **RegExp 變成空物件**
+5. **RegExp becomes an empty object**
    ```javascript
    const obj = { regex: /test/g };
    const cloned = JSON.parse(JSON.stringify(obj));
-   console.log(cloned.regex); // {} ❌ 變成空物件
+   console.log(cloned.regex); // {} ❌ Becomes an empty object
    ```
 
-6. **無法處理 Map、Set**
+6. **Cannot handle Map, Set**
    ```javascript
    const obj = { map: new Map([['key', 'value']]) };
    const cloned = JSON.parse(JSON.stringify(obj));
-   console.log(cloned.map); // {} ❌ 變成空物件
+   console.log(cloned.map); // {} ❌ Becomes an empty object
    ```
 
-7. **無法處理循環引用**
+7. **Cannot handle circular references**
    ```javascript
    const obj = { name: 'John' };
    obj.self = obj;
-   JSON.parse(JSON.stringify(obj)); // ❌ 報錯：Converting circular structure to JSON
+   JSON.parse(JSON.stringify(obj)); // ❌ Error: Converting circular structure to JSON
    ```
 
-**解決方案**：使用遞迴實作，針對不同型別進行特殊處理。
+**Solution**: Use a recursive implementation with special handling for different types.
 
 </details>
 
 ## 4. Best Practices
 
-> 最佳實踐
+> Best Practices
 
-### 推薦做法
+### Recommended Approaches
 
 ```javascript
-// 1. 根據需求選擇合適的方法
-// 如果只需要處理基本物件和陣列，使用簡單的遞迴實作
+// 1. Choose the appropriate method based on requirements
+// For basic objects and arrays only, use a simple recursive implementation
 function simpleDeepClone(obj) {
   if (obj === null || typeof obj !== 'object') return obj;
   if (obj instanceof Date) return new Date(obj.getTime());
   if (Array.isArray(obj)) return obj.map((item) => simpleDeepClone(item));
-  
+
   const cloned = {};
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
@@ -526,69 +526,68 @@ function simpleDeepClone(obj) {
   return cloned;
 }
 
-// 2. 如果需要處理複雜型別，使用完整實作
+// 2. For complex types, use the complete implementation
 function completeDeepClone(obj, map = new WeakMap()) {
-  // ... 完整實作
+  // ... complete implementation
 }
 
-// 3. 使用 WeakMap 處理循環引用
-// WeakMap 不會阻止垃圾回收，適合用於追蹤物件引用
+// 3. Use WeakMap to handle circular references
+// WeakMap doesn't prevent garbage collection, making it suitable for tracking object references
 ```
 
-### 避免的做法
+### Approaches to Avoid
 
 ```javascript
-// 1. 不要過度使用 JSON.parse(JSON.stringify())
-// ❌ 會遺失函式、Symbol、Date 等特殊型別
+// 1. Don't overuse JSON.parse(JSON.stringify())
+// ❌ Loses functions, Symbol, Date, and other special types
 const cloned = JSON.parse(JSON.stringify(obj));
 
-// 2. 不要忘記處理循環引用
-// ❌ 會導致堆疊溢出
+// 2. Don't forget to handle circular references
+// ❌ Will cause stack overflow
 function deepClone(obj) {
   const cloned = {};
   for (let key in obj) {
-    cloned[key] = deepClone(obj[key]); // 無限遞迴
+    cloned[key] = deepClone(obj[key]); // Infinite recursion
   }
   return cloned;
 }
 
-// 3. 不要忘記處理 Date、RegExp 等特殊型別
-// ❌ 這些型別需要特殊處理
+// 3. Don't forget to handle Date, RegExp, and other special types
+// ❌ These types require special handling
 ```
 
 ## 5. Interview Summary
 
-> 面試總結
+> Interview Summary
 
-### 快速記憶
+### Quick Reference
 
-**深拷貝**：
+**Deep Clone**:
 
-- **定義**：遞迴複製物件及其所有巢狀屬性，完全獨立
-- **方法**：遞迴實作、JSON.parse(JSON.stringify())、structuredClone()
-- **關鍵**：處理特殊型別、循環引用、Symbol 屬性
+- **Definition**: Recursively copies an object and all its nested properties, creating a fully independent copy
+- **Methods**: Recursive implementation, JSON.parse(JSON.stringify()), structuredClone()
+- **Key points**: Handle special types, circular references, Symbol properties
 
-**實作要點**：
+**Implementation Steps**:
 
-1. 處理基本型別和 null
-2. 處理 Date、RegExp 等特殊物件
-3. 處理陣列和物件
-4. 處理循環引用（使用 WeakMap）
-5. 處理 Symbol 屬性
+1. Handle primitive types and null
+2. Handle Date, RegExp, and other special objects
+3. Handle arrays and objects
+4. Handle circular references (using WeakMap)
+5. Handle Symbol properties
 
-### 面試回答範例
+### Interview Answer Example
 
-**Q: 請實作一個 Deep Clone 函式。**
+**Q: Please implement a Deep Clone function.**
 
-> "深拷貝是指創建一個完全獨立的新物件，遞迴複製所有巢狀屬性。我的實作會先處理基本型別和 null，然後針對 Date、RegExp、陣列、物件等不同型別進行特殊處理。為了處理循環引用，我會使用 WeakMap 來追蹤已經處理過的物件。對於 Symbol 屬性，我會使用 Object.getOwnPropertySymbols 來獲取並複製。這樣可以確保深拷貝後的物件與原始物件完全獨立，修改其中一個不會影響另一個。"
+> "Deep clone creates a completely independent new object by recursively copying all nested properties. My implementation first handles primitive types and null, then applies special handling for different types like Date, RegExp, arrays, and objects. To handle circular references, I use a WeakMap to track already-processed objects. For Symbol properties, I use Object.getOwnPropertySymbols to retrieve and copy them. This ensures the deep-cloned object is fully independent from the original — modifying one won't affect the other."
 
-**Q: JSON.parse(JSON.stringify()) 有什麼限制？**
+**Q: What are the limitations of JSON.parse(JSON.stringify())?**
 
-> "這個方法的主要限制包括：1) 無法處理函式，函式會被移除；2) 無法處理 undefined 和 Symbol，這些屬性會被忽略；3) Date 物件會變成字串；4) RegExp 會變成空物件；5) 無法處理 Map、Set 等特殊資料結構；6) 無法處理循環引用，會報錯。如果需要處理這些特殊情況，應該使用遞迴實作的方式。"
+> "The main limitations include: 1) Cannot handle functions — they get removed; 2) Cannot handle undefined and Symbol — these properties are ignored; 3) Date objects become strings; 4) RegExp becomes an empty object; 5) Cannot handle Map, Set, and other special data structures; 6) Cannot handle circular references — it throws an error. For these special cases, a recursive implementation should be used instead."
 
 ## Reference
 
-- [MDN - structuredClone()](https://developer.mozilla.org/zh-TW/docs/Web/API/structuredClone)
-- [MDN - WeakMap](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/WeakMap)
-- [MDN - Object.getOwnPropertySymbols()](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols)
-
+- [MDN - structuredClone()](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone)
+- [MDN - WeakMap](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap)
+- [MDN - Object.getOwnPropertySymbols()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols)

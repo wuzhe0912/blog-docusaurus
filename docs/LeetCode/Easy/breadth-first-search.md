@@ -6,41 +6,41 @@ slug: /breadth-first-search
 
 ## Question Description
 
-> 廣度優先搜尋演算法
+> Breadth-First Search Algorithm
 
-請嘗試使用廣度優先搜尋法來遊歷英格蘭七國時代的城鎮
+Use Breadth-First Search to traverse the towns of the Anglo-Saxon Heptarchy in England.
 
 ```js
 const heptarchyTree = {
-  value: 'England', // 英格蘭
+  value: 'England',
   children: [
     {
-      value: 'Northumbria', // 諾森布里亞王國
+      value: 'Northumbria',
       children: [
         {
-          value: 'Bamburgh', // 班布勒城
+          value: 'Bamburgh',
           children: [
             {
-              value: 'Yeavering', // 耶瓦林莊園
+              value: 'Yeavering',
               children: [],
             },
           ],
         },
         {
-          value: 'Lindisfarne', // 林迪斯法恩
+          value: 'Lindisfarne',
           children: [],
         },
       ],
     },
     {
-      value: 'Mercia', // 麥西亞王國
+      value: 'Mercia',
       children: [
         {
-          value: 'Tamworth', // 塔姆沃斯
+          value: 'Tamworth',
           children: [],
         },
         {
-          value: 'Repton', // 雷普頓
+          value: 'Repton',
           children: [],
         },
       ],
@@ -49,20 +49,20 @@ const heptarchyTree = {
 };
 
 function travelThroughHeptarchy(heptarchyTree) {
-  const scroll = []; // 使用羊皮紙紀錄訪問各地的順序
-  scroll.push(heptarchyTree); // 將英格蘭作為起點加入羊皮紙
+  const scroll = []; // Use a scroll to record the order of visited locations
+  scroll.push(heptarchyTree); // Add England as the starting point to the scroll
 
-  // 當羊皮紙上還有城鎮時，繼續遊歷
+  // While there are still towns on the scroll, continue traveling
   while (scroll.length > 0) {
-    const kingdom = scroll.shift(); // 從羊皮紙上取下一個要訪問的王國或城鎮
-    console.log(kingdom.value); // 記錄訪問的王國或城鎮名稱
+    const kingdom = scroll.shift(); // Take the next kingdom or town from the scroll
+    console.log(kingdom.value); // Record the name of the visited kingdom or town
 
-    // 遊歷當前王國或城鎮的所有子區域，並將它們加入羊皮紙
+    // Visit all sub-regions of the current kingdom or town, adding them to the scroll
     for (const child of kingdom.children) {
       scroll.push(child);
     }
   }
 }
 
-travelThroughHeptarchy(heptarchyTree); // 開始遊歷英格蘭七國時代的城鎮
+travelThroughHeptarchy(heptarchyTree); // Begin traveling through the towns of the Anglo-Saxon Heptarchy
 ```

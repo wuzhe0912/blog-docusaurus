@@ -4,13 +4,13 @@ title: 📄 String Operation
 slug: /string-operation
 ---
 
-## 1. 操作 String 重複指定的次數
+## 1. Repeat a String a Specified Number of Times
 
-嘗試設計一個 function，允許將 string 重複指定的次數。
+Design a function that repeats a string a specified number of times.
 
-### I. 使用 `repeat()` solution(ES6+)
+### I. Using `repeat()` (ES6+)
 
-因為現在 String 已經支援 `repeat()`，所以可以直接使用。
+Since String now supports `repeat()`, you can use it directly.
 
 ```js
 const repeatedString = 'Pitt';
@@ -22,15 +22,15 @@ console.log(`Name Repeat : ${repeatedString.repeat(3)}`); // "Name Repeat : Pitt
 
 [String.prototype.repeat()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/repeat)
 
-### II. 使用迴圈
+### II. Using a Loop
 
-如果不使用 `repeat()`，也可以使用迴圈，透過傳參數的方式，約束在正整數的條件下達成。
+If you don't use `repeat()`, you can also use a loop with parameter validation, constrained to positive integers.
 
 ```js
 function repeatString(str, num) {
-  // 檢查是否為非正整數
+  // Check if not a positive integer
   if (num < 0 || !Number.isInteger(num)) {
-    throw new Error('請輸入正整數');
+    throw new Error('Please enter a positive integer');
   }
 
   let repeatedString = '';
@@ -41,9 +41,9 @@ function repeatString(str, num) {
 }
 ```
 
-## 2. 處理 string 中的檔案名或副檔名
+## 2. Extract File Name or Extension from a String
 
-嘗試設計一個 `getFileExtension()`，可以從參數中取得影片的副檔名格式，若沒有副檔名則回傳檔案名稱。
+Design a `getFileExtension()` that extracts the file extension from a parameter. If there is no extension, return the file name.
 
 ```js
 const fileName = 'video.mp4';
@@ -53,7 +53,7 @@ const fileNameWithoutExtension3 = 'movie.mov';
 const fileNameWithoutExtension4 = '.gitignore';
 ```
 
-### I. 使用 split 取得檔案名稱
+### I. Using split to Get the File Extension
 
 ```js
 const getFileExtension = (fileName) => {
@@ -68,9 +68,9 @@ console.log(getFileExtension(fileNameWithoutExtension3)); // "mov"
 console.log(getFileExtension(fileNameWithoutExtension4)); // ""
 ```
 
-## 3. 尋找陣列中的最長字串
+## 3. Find the Longest String in an Array
 
-### I. 使用 `sort()` 方法
+### I. Using the `sort()` Method
 
 ```js
 const stringArray = ['apple', 'banana', 'orange', 'kiwi', 'strawberry'];
@@ -82,7 +82,7 @@ const longestString = (stringArray) => {
 console.log(longestString(stringArray)); // "strawberry"
 ```
 
-### II. 使用 `reduce()` 方法
+### II. Using the `reduce()` Method
 
 ```js
 const stringArray = ['apple', 'banana', 'orange', 'kiwi', 'strawberry'];
@@ -97,11 +97,11 @@ const longestString = (stringArray) => {
 console.log(longestString(stringArray)); // "strawberry"
 ```
 
-## 4. 將字串轉換為駝峰式大小寫
+## 4. Convert a String to camelCase
 
-嘗試設計一個 function，可以將字串轉換為駝峰式大小寫。
+Design a function that converts a string to camelCase.
 
-### I. 使用 `replace()` 方法
+### I. Using the `replace()` Method
 
 ```js
 const camelCase = (str) => {
@@ -111,7 +111,7 @@ const camelCase = (str) => {
 console.log(camelCase('hello-world')); // "helloWorld"
 ```
 
-### II. 使用 `split()` 方法
+### II. Using the `split()` Method
 
 ```js
 const camelCase = (str) => {
@@ -126,9 +126,9 @@ const camelCase = (str) => {
 console.log(camelCase('hello-world')); // "helloWorld"
 ```
 
-## 5. 找出陣列中的重複字串次數
+## 5. Count Duplicate String Occurrences in an Array
 
-### I. 使用 `Map()` 方法
+### I. Using the `Map()` Method
 
 ```js
 const stringArray = [
@@ -151,7 +151,7 @@ const countDuplicateString = (stringArray) => {
 console.log(countDuplicateString(stringArray)); // { apple: 2, banana: 1, orange: 1, kiwi: 1, strawberry: 1 }
 ```
 
-### II. 使用 `reduce()` 方法找出重複字串次數
+### II. Using the `reduce()` Method
 
 ```js
 const stringArray = [
@@ -173,7 +173,7 @@ const countDuplicateString = (stringArray) => {
 console.log(countDuplicateString(stringArray)); // { apple: 2, banana: 1, orange: 1, kiwi: 1, strawberry: 1 }
 ```
 
-### III. 使用 `Object.groupBy()` 方法(ES2023+)
+### III. Using `Object.groupBy()` (ES2023+)
 
 ```js
 const stringArray = ['apple', 'banana', 'orange', 'kiwi', 'strawberry'];
@@ -185,9 +185,9 @@ const countDuplicateString = (stringArray) => {
 console.log(countDuplicateString(stringArray)); // { apple: 2, banana: 1, orange: 1, kiwi: 1, strawberry: 1 }
 ```
 
-## 6. 找出陣列中字串的副檔名，並過濾重複的副檔名
+## 6. Extract and Deduplicate File Extensions from an Array of Strings
 
-### I. 使用 `split()` 方法
+### I. Using the `split()` Method
 
 ```js
 const files = [

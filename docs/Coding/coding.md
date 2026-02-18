@@ -6,8 +6,8 @@ slug: /coding
 
 ## Lodash Functions
 
-實作各種 `Lodash` 函式和方法用以高效地操作和轉換資料，這在面試中是常見的考題，也能提升個人面試準備度。
+Implementing various `Lodash` functions and methods for efficient data manipulation and transformation — a common topic in interviews that also improves personal interview readiness.
 
 ## JavaScript
 
-實作 JavaScript 基礎功能，包括深拷貝、字串處理等常見面試題目。
+Implementing fundamental JavaScript features, including deep clone, string manipulation, and other common interview problems.

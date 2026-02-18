@@ -6,7 +6,7 @@ slug: /counter-number
 
 ## Question Description
 
-建立一個計數器，允許透過 `add()` 和 `minus()` 方法來增加或減少計數器的值。
+Create a counter that allows incrementing or decrementing the counter value through `add()` and `minus()` methods.
 
 ## 1. JavaScript Version
 
@@ -55,7 +55,7 @@ document.querySelector('#minusBtn').addEventListener('click', counter.minus);
 
 ## 2. TypeScript Version
 
-使用工廠函式 `createCounter` 來建立計數器物件，將 `add()` 和 `minus()` 方法回傳，並將 `count` 變數設定為私有變數，避免外部直接存取。
+Uses the factory function `createCounter` to create a counter object, returning `add()` and `minus()` methods while keeping the `count` variable private to prevent direct external access.
 
 ```ts
 type CounterType = {

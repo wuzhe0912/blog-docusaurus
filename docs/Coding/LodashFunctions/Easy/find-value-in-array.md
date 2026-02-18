@@ -4,9 +4,9 @@ title: 📄 Find Value in Array
 slug: /find-value-in-array
 ---
 
-## 1. 在陣列中找唯一值
+## 1. Find Unique Values in an Array
 
-### I. 使用 `Set(ES6)`
+### I. Using `Set` (ES6)
 
 ```js
 const array = [6, 4, 3, 2, 4, 1, 6, 3, 2];
@@ -19,7 +19,7 @@ const findUniqueValue = (arr) => {
 console.log(findUniqueValue(array)); // [6, 4, 3, 2, 1]
 ```
 
-### II. 使用 `filter`
+### II. Using `filter`
 
 ```js
 const array = [6, 4, 3, 2, 4, 1, 6, 3, 2];
@@ -31,9 +31,9 @@ const findUniqueValue = (arr) => {
 console.log(findUniqueValue(array)); // [6, 4, 3, 2, 1]
 ```
 
-## 2. 在陣列中找只出現一次的值
+## 2. Find Values That Appear Only Once in an Array
 
-### I. 比對 `indexOf` 和 `lastIndexOf`
+### I. Comparing `indexOf` and `lastIndexOf`
 
 ```js
 const array = [6, 4, 3, 2, 4, 1, 6, 3, 2];
@@ -45,7 +45,7 @@ const findSingleValue = (arr) => {
 console.log(findSingleValue(array)); // [1]
 ```
 
-### II. 使用 `reduce`
+### II. Using `reduce`
 
 ```js
 const array = [6, 4, 3, 2, 4, 1, 6, 3, 2, 8, 9];
@@ -62,9 +62,9 @@ const findSingleValue = (arr) => {
 console.log(findSingleValue(array)); // [1, 8, 9]
 ```
 
-### III. 使用 `Map` 來優化效能
+### III. Using `Map` for Performance Optimization
 
-> 達到只使用一次遍歷的目的
+> Achieves the goal with a single iteration
 
 ```js
 const arr = [6, 4, 3, 2, 4, 1, 6, 3, 2, 7, 8, 9];
@@ -88,9 +88,9 @@ const findUniqueValuesOptimized = (arr) => {
 console.log(findUniqueValuesOptimized(arr)); // [1, 7, 8, 9]
 ```
 
-## 3. 計算單一型別陣列的總和
+## 3. Sum a Single-type Number Array
 
-### I 快速使用 `for...of` 迴圈
+### I. Quick Solution Using `for...of` Loop
 
 ```js
 const numberArray = [1, 2, 3, 4, 5];
@@ -104,7 +104,7 @@ const sumArray = (arr) => {
 };
 ```
 
-### II. 使用 `for` 迴圈
+### II. Using `for` Loop
 
 ```js
 const numberArray = [1, 2, 3, 4, 5];
@@ -120,9 +120,9 @@ const sumArray = (arr) => {
 console.log(sumArray(numberArray)); // 15
 ```
 
-## 4. 計算多層嵌套陣列的總和
+## 4. Sum a Deeply Nested Array
 
-### I. 使用遞迴
+### I. Using Recursion
 
 ```js
 const nestedArray = [1, 2, [3, 4, [5, 6], 7], 8, [9, 10]];
@@ -136,9 +136,9 @@ const sumNestedArray = (arr) => {
 console.log(sumNestedArray(nestedArray)); // 55
 ```
 
-### II. 使用 `flat` 攤平陣列
+### II. Using `flat` to Flatten the Array
 
-> 如果陣列中包含物件，則無法使用 `flat` 方法
+> Cannot use `flat` if the array contains objects
 
 ```js
 const nestedArray = [1, 2, [3, 4, [5, 6], 7], 8, [9, 10]];
@@ -150,9 +150,9 @@ const sumNestedArray = (arr) => {
 console.log(sumNestedArray(nestedArray)); // 55
 ```
 
-## 5. 在多型別的陣列中，計算數字的總和
+## 5. Sum Only Numbers in a Mixed-type Array
 
-### I. 使用 reduce 計算數字總和
+### I. Using reduce to Sum Numbers
 
 ```js
 const mixedArray = [1, '2', 3, 'four', 5, true, [6], { num: 7 }, '8.5'];
@@ -162,7 +162,7 @@ const sumNumbers = (arr) => {
     if (typeof item === 'number') {
       return sum + item;
     } else if (typeof item === 'string' && !isNaN(Number(item))) {
-      // 如果需要轉換字串為數字，則做此處理，否則可移除此判斷
+      // If string-to-number conversion is needed, handle it here; otherwise remove this check
       return sum + Number(item);
     }
     return sum;

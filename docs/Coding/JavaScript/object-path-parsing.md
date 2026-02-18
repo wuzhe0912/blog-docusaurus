@@ -7,13 +7,13 @@ tags: [JavaScript, Coding, Medium]
 
 ## 1. Question Description
 
-> 問題描述
+> Question Description
 
-實作物件路徑解析函式，能夠根據路徑字串獲取和設置巢狀物件的值。
+Implement object path parsing functions that can get and set values of nested objects based on a path string.
 
-### 需求
+### Requirements
 
-1. **`get` 函式**：根據路徑獲取物件值
+1. **`get` function**: Retrieve a value from an object based on a path
 
 ```javascript
 const obj = { a: { b: { c: 1 } } };
@@ -21,7 +21,7 @@ get(obj, 'a.b.c'); // 1
 get(obj, 'a.b.d', 'default'); // 'default'
 ```
 
-2. **`set` 函式**：根據路徑設置物件值
+2. **`set` function**: Set a value on an object based on a path
 
 ```javascript
 const obj = {};
@@ -31,36 +31,36 @@ set(obj, 'a.b.c', 1);
 
 ## 2. Implementation: get Function
 
-> 實作 get 函式
+> Implementing the get function
 
-### 方法 1：使用 split 和 reduce
+### Method 1: Using split and reduce
 
-**思路**：將路徑字串分割成陣列，然後使用 `reduce` 逐層訪問物件。
+**Approach**: Split the path string into an array, then use `reduce` to access the object level by level.
 
 ```javascript
 function get(obj, path, defaultValue) {
-  // 處理邊界情況
+  // Handle edge cases
   if (!obj || typeof path !== 'string') {
     return defaultValue;
   }
 
-  // 將路徑字串分割成陣列
+  // Split the path string into an array
   const keys = path.split('.');
 
-  // 使用 reduce 逐層訪問
+  // Use reduce to access level by level
   const result = keys.reduce((current, key) => {
-    // 如果當前值為 null 或 undefined，返回 undefined
+    // If current value is null or undefined, return undefined
     if (current == null) {
       return undefined;
     }
     return current[key];
   }, obj);
 
-  // 如果結果為 undefined，返回預設值
+  // If result is undefined, return the default value
   return result !== undefined ? result : defaultValue;
 }
 
-// 測試
+// Test
 const obj = {
   a: {
     b: {
@@ -72,14 +72,14 @@ const obj = {
 };
 
 console.log(get(obj, 'a.b.c')); // 1
-console.log(get(obj, 'a.b.d[2].e')); // undefined（需要處理陣列索引）
+console.log(get(obj, 'a.b.d[2].e')); // undefined (need to handle array indices)
 console.log(get(obj, 'a.b.f', 'default')); // 'default'
 console.log(get(obj, 'x.y', 'default')); // 'default'
 ```
 
-### 方法 2：支援陣列索引
+### Method 2: Supporting Array Indices
 
-**思路**：處理路徑中的陣列索引，如 `'a.b[0].c'`。
+**Approach**: Handle array indices in the path, such as `'a.b[0].c'`.
 
 ```javascript
 function get(obj, path, defaultValue) {
@@ -87,8 +87,8 @@ function get(obj, path, defaultValue) {
     return defaultValue;
   }
 
-  // 正則表達式匹配：屬性名或陣列索引
-  // 匹配 'a', 'b', '[0]', 'c' 等
+  // Regex to match: property names or array indices
+  // Matches 'a', 'b', '[0]', 'c', etc.
   const keys = path.match(/[^.[\]]+|\[(\d+)\]/g) || [];
 
   const result = keys.reduce((current, key) => {
@@ -96,7 +96,7 @@ function get(obj, path, defaultValue) {
       return undefined;
     }
 
-    // 處理陣列索引 [0] -> 0
+    // Handle array index [0] -> 0
     if (key.startsWith('[') && key.endsWith(']')) {
       const index = parseInt(key.slice(1, -1), 10);
       return current[index];
@@ -108,7 +108,7 @@ function get(obj, path, defaultValue) {
   return result !== undefined ? result : defaultValue;
 }
 
-// 測試
+// Test
 const obj = {
   a: {
     b: {
@@ -123,11 +123,11 @@ console.log(get(obj, 'a.b.d[0]')); // 2
 console.log(get(obj, 'a.b.d[5]', 'not found')); // 'not found'
 ```
 
-### 方法 3：完整實作（處理邊界情況）
+### Method 3: Complete Implementation (handling edge cases)
 
 ```javascript
 function get(obj, path, defaultValue) {
-  // 處理邊界情況
+  // Handle edge cases
   if (obj == null) {
     return defaultValue;
   }
@@ -136,7 +136,7 @@ function get(obj, path, defaultValue) {
     return obj;
   }
 
-  // 解析路徑：支援 'a.b.c' 和 'a.b[0].c' 格式
+  // Parse path: supports 'a.b.c' and 'a.b[0].c' formats
   const keys = path.match(/[^.[\]]+|\[(\d+)\]/g) || [];
 
   let result = obj;
@@ -144,12 +144,12 @@ function get(obj, path, defaultValue) {
   for (let i = 0; i < keys.length; i++) {
     const key = keys[i];
 
-    // 如果當前值為 null 或 undefined，返回預設值
+    // If current value is null or undefined, return default value
     if (result == null) {
       return defaultValue;
     }
 
-    // 處理陣列索引
+    // Handle array index
     if (key.startsWith('[') && key.endsWith(']')) {
       const index = parseInt(key.slice(1, -1), 10);
       result = result[index];
@@ -161,7 +161,7 @@ function get(obj, path, defaultValue) {
   return result !== undefined ? result : defaultValue;
 }
 
-// 測試
+// Test
 const obj = {
   a: {
     b: {
@@ -179,16 +179,16 @@ console.log(get(obj, 'a.b.f', 'default')); // 'default'
 console.log(get(obj, 'x.y', 'default')); // 'default'
 console.log(get(obj, 'y.z', 'default')); // 'default'
 console.log(get(null, 'a.b', 'default')); // 'default'
-console.log(get(obj, '', obj)); // obj（空路徑返回原物件）
+console.log(get(obj, '', obj)); // obj (empty path returns original object)
 ```
 
 ## 3. Implementation: set Function
 
-> 實作 set 函式
+> Implementing the set function
 
-### 方法 1：基本實作
+### Method 1: Basic Implementation
 
-**思路**：根據路徑創建巢狀物件結構，然後設置值。
+**Approach**: Create nested object structure based on the path, then set the value.
 
 ```javascript
 function set(obj, path, value) {
@@ -196,16 +196,16 @@ function set(obj, path, value) {
     return obj;
   }
 
-  // 解析路徑
+  // Parse path
   const keys = path.match(/[^.[\]]+|\[(\d+)\]/g) || [];
 
-  // 創建巢狀結構
+  // Create nested structure
   let current = obj;
 
   for (let i = 0; i < keys.length - 1; i++) {
     const key = keys[i];
 
-    // 處理陣列索引
+    // Handle array index
     if (key.startsWith('[') && key.endsWith(']')) {
       const index = parseInt(key.slice(1, -1), 10);
       if (!Array.isArray(current[index])) {
@@ -213,7 +213,7 @@ function set(obj, path, value) {
       }
       current = current[index];
     } else {
-      // 如果鍵不存在或不是物件，創建新物件
+      // If key doesn't exist or isn't an object, create a new object
       if (!current[key] || typeof current[key] !== 'object') {
         current[key] = {};
       }
@@ -221,12 +221,12 @@ function set(obj, path, value) {
     }
   }
 
-  // 設置最後一個鍵的值
+  // Set the value for the last key
   const lastKey = keys[keys.length - 1];
   if (lastKey.startsWith('[') && lastKey.endsWith(']')) {
     const index = parseInt(lastKey.slice(1, -1), 10);
     if (!Array.isArray(current)) {
-      // 如果當前不是陣列，需要轉換
+      // If current is not an array, convert it
       const temp = { ...current };
       current = [];
       Object.keys(temp).forEach((k) => {
@@ -241,7 +241,7 @@ function set(obj, path, value) {
   return obj;
 }
 
-// 測試
+// Test
 const obj = {};
 set(obj, 'a.b.c', 1);
 console.log(obj); // { a: { b: { c: 1 } } }
@@ -250,7 +250,7 @@ set(obj, 'a.b.d[0]', 2);
 console.log(obj); // { a: { b: { c: 1, d: [2] } } }
 ```
 
-### 方法 2：完整實作（處理陣列和物件）
+### Method 2: Complete Implementation (handling arrays and objects)
 
 ```javascript
 function set(obj, path, value) {
@@ -266,17 +266,17 @@ function set(obj, path, value) {
 
   let current = obj;
 
-  // 遍歷到倒數第二個鍵，創建巢狀結構
+  // Iterate to the second-to-last key, creating nested structure
   for (let i = 0; i < keys.length - 1; i++) {
     const key = keys[i];
 
-    // 處理陣列索引
+    // Handle array index
     if (key.startsWith('[') && key.endsWith(']')) {
       const index = parseInt(key.slice(1, -1), 10);
 
-      // 確保是陣列
+      // Ensure it's an array
       if (!Array.isArray(current)) {
-        // 將物件轉換為陣列（保留現有索引）
+        // Convert object to array (preserving existing indices)
         const temp = current;
         current = [];
         Object.keys(temp).forEach((k) => {
@@ -284,22 +284,22 @@ function set(obj, path, value) {
         });
       }
 
-      // 確保索引存在
+      // Ensure index exists
       if (current[index] == null) {
-        // 判斷下一個鍵是陣列還是物件
+        // Determine if next key is array or object
         const nextKey = keys[i + 1];
         current[index] = nextKey.startsWith('[') ? [] : {};
       }
 
       current = current[index];
     } else {
-      // 處理物件鍵
+      // Handle object key
       if (current[key] == null) {
-        // 判斷下一個鍵是陣列還是物件
+        // Determine if next key is array or object
         const nextKey = keys[i + 1];
         current[key] = nextKey.startsWith('[') ? [] : {};
       } else if (typeof current[key] !== 'object') {
-        // 如果已存在但不是物件，需要轉換
+        // If exists but not an object, convert it
         const nextKey = keys[i + 1];
         current[key] = nextKey.startsWith('[') ? [] : {};
       }
@@ -308,7 +308,7 @@ function set(obj, path, value) {
     }
   }
 
-  // 設置最後一個鍵的值
+  // Set the value for the last key
   const lastKey = keys[keys.length - 1];
   if (lastKey.startsWith('[') && lastKey.endsWith(']')) {
     const index = parseInt(lastKey.slice(1, -1), 10);
@@ -329,7 +329,7 @@ function set(obj, path, value) {
   return obj;
 }
 
-// 測試
+// Test
 const obj = {};
 set(obj, 'a.b.c', 1);
 console.log(obj); // { a: { b: { c: 1 } } }
@@ -341,7 +341,7 @@ set(obj, 'x[0].y', 3);
 console.log(obj); // { a: { b: { c: 1, d: [2] } }, x: [{ y: 3 }] }
 ```
 
-### 方法 3：簡化版本（只處理物件，不處理陣列索引）
+### Method 3: Simplified Version (objects only, no array index handling)
 
 ```javascript
 function set(obj, path, value) {
@@ -352,7 +352,7 @@ function set(obj, path, value) {
   const keys = path.split('.');
   let current = obj;
 
-  // 創建巢狀結構（除了最後一個鍵）
+  // Create nested structure (except for the last key)
   for (let i = 0; i < keys.length - 1; i++) {
     const key = keys[i];
 
@@ -363,14 +363,14 @@ function set(obj, path, value) {
     current = current[key];
   }
 
-  // 設置最後一個鍵的值
+  // Set the value for the last key
   const lastKey = keys[keys.length - 1];
   current[lastKey] = value;
 
   return obj;
 }
 
-// 測試
+// Test
 const obj = {};
 set(obj, 'a.b.c', 1);
 console.log(obj); // { a: { b: { c: 1 } } }
@@ -381,14 +381,14 @@ console.log(obj); // { a: { b: { c: 1, d: 2 } } }
 
 ## 4. Common Interview Questions
 
-> 常見面試題目
+> Common Interview Questions
 
-### 題目 1：基本 get 函式實作
+### Question 1: Basic get Function
 
-請實作一個 `get` 函式，根據路徑字串獲取巢狀物件的值。
+Implement a `get` function that retrieves a nested object's value based on a path string.
 
 <details>
-<summary>點擊查看答案</summary>
+<summary>Click to reveal answer</summary>
 
 ```javascript
 function get(obj, path, defaultValue) {
@@ -409,27 +409,27 @@ function get(obj, path, defaultValue) {
   return result !== undefined ? result : defaultValue;
 }
 
-// 測試
+// Test
 const obj = { a: { b: { c: 1 } } };
 console.log(get(obj, 'a.b.c')); // 1
 console.log(get(obj, 'a.b.d', 'default')); // 'default'
 ```
 
-**關鍵點**：
+**Key points**:
 
-- 處理 null/undefined 的情況
-- 使用 split 分割路徑
-- 逐層訪問物件屬性
-- 返回預設值當路徑不存在時
+- Handle null/undefined cases
+- Use split to divide the path
+- Access object properties level by level
+- Return default value when path doesn't exist
 
 </details>
 
-### 題目 2：支援陣列索引的 get 函式
+### Question 2: get Function with Array Index Support
 
-請擴展 `get` 函式，使其支援陣列索引，如 `'a.b[0].c'`。
+Extend the `get` function to support array indices like `'a.b[0].c'`.
 
 <details>
-<summary>點擊查看答案</summary>
+<summary>Click to reveal answer</summary>
 
 ```javascript
 function get(obj, path, defaultValue) {
@@ -437,7 +437,7 @@ function get(obj, path, defaultValue) {
     return defaultValue;
   }
 
-  // 使用正則表達式解析路徑
+  // Use regex to parse the path
   const keys = path.match(/[^.[\]]+|\[(\d+)\]/g) || [];
   let result = obj;
 
@@ -446,7 +446,7 @@ function get(obj, path, defaultValue) {
       return defaultValue;
     }
 
-    // 處理陣列索引
+    // Handle array index
     if (key.startsWith('[') && key.endsWith(']')) {
       const index = parseInt(key.slice(1, -1), 10);
       result = result[index];
@@ -458,7 +458,7 @@ function get(obj, path, defaultValue) {
   return result !== undefined ? result : defaultValue;
 }
 
-// 測試
+// Test
 const obj = {
   a: {
     b: [2, 3, { c: 4 }],
@@ -470,20 +470,20 @@ console.log(get(obj, 'a.b[2].c')); // 4
 console.log(get(obj, 'a.b[5]', 'not found')); // 'not found'
 ```
 
-**關鍵點**：
+**Key points**:
 
-- 使用正則表達式 `/[^.[\]]+|\[(\d+)\]/g` 解析路徑
-- 處理 `[0]` 格式的陣列索引
-- 將字串索引轉換為數字
+- Use regex `/[^.[\]]+|\[(\d+)\]/g` to parse the path
+- Handle `[0]` format array indices
+- Convert string index to number
 
 </details>
 
-### 題目 3：set 函式實作
+### Question 3: set Function
 
-請實作一個 `set` 函式，根據路徑字串設置巢狀物件的值。
+Implement a `set` function that sets a nested object's value based on a path string.
 
 <details>
-<summary>點擊查看答案</summary>
+<summary>Click to reveal answer</summary>
 
 ```javascript
 function set(obj, path, value) {
@@ -494,7 +494,7 @@ function set(obj, path, value) {
   const keys = path.split('.');
   let current = obj;
 
-  // 創建巢狀結構（除了最後一個鍵）
+  // Create nested structure (except for the last key)
   for (let i = 0; i < keys.length - 1; i++) {
     const key = keys[i];
 
@@ -505,14 +505,14 @@ function set(obj, path, value) {
     current = current[key];
   }
 
-  // 設置最後一個鍵的值
+  // Set the value for the last key
   const lastKey = keys[keys.length - 1];
   current[lastKey] = value;
 
   return obj;
 }
 
-// 測試
+// Test
 const obj = {};
 set(obj, 'a.b.c', 1);
 console.log(obj); // { a: { b: { c: 1 } } }
@@ -521,23 +521,23 @@ set(obj, 'a.b.d', 2);
 console.log(obj); // { a: { b: { c: 1, d: 2 } } }
 ```
 
-**關鍵點**：
+**Key points**:
 
-- 逐層創建巢狀物件結構
-- 確保中間路徑的物件存在
-- 最後設置目標值
+- Create nested object structure level by level
+- Ensure intermediate path objects exist
+- Set the target value at the end
 
 </details>
 
-### 題目 4：完整實作 get 和 set
+### Question 4: Complete get and set Implementation
 
-請實作完整的 `get` 和 `set` 函式，支援陣列索引和處理各種邊界情況。
+Implement complete `get` and `set` functions with array index support and edge case handling.
 
 <details>
-<summary>點擊查看答案</summary>
+<summary>Click to reveal answer</summary>
 
 ```javascript
-// get 函式
+// get function
 function get(obj, path, defaultValue) {
   if (obj == null || typeof path !== 'string' || path === '') {
     return obj ?? defaultValue;
@@ -562,7 +562,7 @@ function get(obj, path, defaultValue) {
   return result !== undefined ? result : defaultValue;
 }
 
-// set 函式
+// set function
 function set(obj, path, value) {
   if (!obj || typeof path !== 'string' || path === '') {
     return obj;
@@ -576,7 +576,7 @@ function set(obj, path, value) {
 
   let current = obj;
 
-  // 創建巢狀結構
+  // Create nested structure
   for (let i = 0; i < keys.length - 1; i++) {
     const key = keys[i];
     const nextKey = keys[i + 1];
@@ -608,7 +608,7 @@ function set(obj, path, value) {
     }
   }
 
-  // 設置值
+  // Set value
   const lastKey = keys[keys.length - 1];
   if (lastKey.startsWith('[') && lastKey.endsWith(']')) {
     const index = parseInt(lastKey.slice(1, -1), 10);
@@ -629,7 +629,7 @@ function set(obj, path, value) {
   return obj;
 }
 
-// 測試
+// Test
 const obj = {};
 set(obj, 'a.b.c', 1);
 console.log(get(obj, 'a.b.c')); // 1
@@ -642,12 +642,12 @@ console.log(get(obj, 'a.b.d[0]')); // 2
 
 ## 5. Best Practices
 
-> 最佳實踐
+> Best Practices
 
-### 推薦做法
+### Recommended Approaches
 
 ```javascript
-// 1. 處理邊界情況
+// 1. Handle edge cases
 function get(obj, path, defaultValue) {
   if (obj == null || typeof path !== 'string') {
     return defaultValue;
@@ -655,68 +655,68 @@ function get(obj, path, defaultValue) {
   // ...
 }
 
-// 2. 使用正則表達式解析複雜路徑
+// 2. Use regex to parse complex paths
 const keys = path.match(/[^.[\]]+|\[(\d+)\]/g) || [];
 
-// 3. 在 set 中判斷下一個鍵的類型
+// 3. Determine the next key's type in set
 const nextKey = keys[i + 1];
 current[key] = nextKey.startsWith('[') ? [] : {};
 
-// 4. 使用 nullish coalescing 處理預設值
+// 4. Use nullish coalescing for default values
 return result ?? defaultValue;
 ```
 
-### 避免的做法
+### Approaches to Avoid
 
 ```javascript
-// 1. ❌ 不要忘記處理 null/undefined
+// 1. ❌ Don't forget to handle null/undefined
 function get(obj, path) {
   const keys = path.split('.');
-  return keys.reduce((acc, key) => acc[key], obj); // 可能出錯
+  return keys.reduce((acc, key) => acc[key], obj); // May throw
 }
 
-// 2. ❌ 不要直接修改原物件（除非明確要求）
+// 2. ❌ Don't directly mutate the original object (unless explicitly required)
 function set(obj, path, value) {
-  // 應該返回修改後的物件，而不是直接修改
+  // Should return the modified object, not just mutate directly
 }
 
-// 3. ❌ 不要忽略陣列和物件的區別
-// 需要判斷下一個鍵是陣列索引還是物件鍵
+// 3. ❌ Don't ignore the difference between arrays and objects
+// Need to determine if the next key is an array index or object key
 ```
 
 ## 6. Interview Summary
 
-> 面試總結
+> Interview Summary
 
-### 快速記憶
+### Quick Reference
 
-**物件路徑解析**：
+**Object Path Parsing**:
 
-- **get 函式**：根據路徑獲取值，處理 null/undefined，支援預設值
-- **set 函式**：根據路徑設置值，自動創建巢狀結構
-- **路徑解析**：使用正則表達式處理 `'a.b.c'` 和 `'a.b[0].c'` 格式
-- **邊界處理**：處理 null、undefined、空字串等情況
+- **get function**: Retrieve value by path, handle null/undefined, support default values
+- **set function**: Set value by path, auto-create nested structure
+- **Path parsing**: Use regex to handle `'a.b.c'` and `'a.b[0].c'` formats
+- **Edge case handling**: Handle null, undefined, empty strings, etc.
 
-**實作要點**：
+**Implementation Steps**:
 
-1. 路徑解析：`split('.')` 或正則表達式
-2. 逐層訪問：使用迴圈或 `reduce`
-3. 邊界處理：檢查 null/undefined
-4. 陣列支援：處理 `[0]` 格式的索引
+1. Path parsing: `split('.')` or regex
+2. Level-by-level access: Use loops or `reduce`
+3. Edge case handling: Check for null/undefined
+4. Array support: Handle `[0]` format indices
 
-### 面試回答範例
+### Interview Answer Example
 
-**Q: 請實作一個根據路徑獲取物件值的函式。**
+**Q: Implement a function that retrieves an object's value by path.**
 
-> "實作一個 `get` 函式，接收物件、路徑字串和預設值。首先處理邊界情況，如果物件為 null 或路徑不是字串，返回預設值。然後使用 `split('.')` 將路徑分割成鍵的陣列，使用迴圈逐層訪問物件屬性。在每次訪問時檢查當前值是否為 null 或 undefined，如果是則返回預設值。最後如果結果為 undefined，返回預設值，否則返回結果。如果需要支援陣列索引，可以使用正則表達式 `/[^.[\]]+|\[(\d+)\]/g` 來解析路徑，並處理 `[0]` 格式的索引。"
+> "I'd implement a `get` function that takes an object, a path string, and a default value. First, handle edge cases — if the object is null or the path isn't a string, return the default value. Then use `split('.')` to split the path into an array of keys, and use a loop to access object properties level by level. At each access, check if the current value is null or undefined — if so, return the default value. Finally, if the result is undefined, return the default value; otherwise return the result. To support array indices, use the regex `/[^.[\]]+|\[(\d+)\]/g` to parse the path and handle `[0]` format indices."
 
-**Q: 如何實作根據路徑設置物件值的函式？**
+**Q: How would you implement a function that sets an object's value by path?**
 
-> "實作一個 `set` 函式，接收物件、路徑字串和值。首先解析路徑成鍵的陣列，然後遍歷到倒數第二個鍵，逐層創建巢狀物件結構。對於每個中間鍵，如果不存在或不是物件，就創建一個新物件。如果下一個鍵是陣列索引格式，則創建陣列。最後設置最後一個鍵的值。這樣可以確保路徑中的所有中間物件都存在，然後正確設置目標值。"
+> "I'd implement a `set` function that takes an object, a path string, and a value. First, parse the path into an array of keys, then iterate to the second-to-last key, creating nested object structure level by level. For each intermediate key, if it doesn't exist or isn't an object, create a new object. If the next key is an array index format, create an array instead. Finally, set the value for the last key. This ensures all intermediate objects in the path exist before correctly setting the target value."
 
 ## Reference
 
 - [Lodash get](https://lodash.com/docs/4.17.15#get)
 - [Lodash set](https://lodash.com/docs/4.17.15#set)
-- [MDN - String.prototype.split()](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/String/split)
-- [MDN - RegExp](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/RegExp)
+- [MDN - String.prototype.split()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split)
+- [MDN - RegExp](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp)

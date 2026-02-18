@@ -15,7 +15,7 @@ The function should return a random integer between the min and max values.
 ```ts
 function createRandomNumber(min: number, max: number): number {
   if (min >= max) {
-    throw new Error('傳入的 min 參數不可大於或等於 max');
+    throw new Error('The min parameter must be less than max');
   }
 
   return Math.floor(Math.random() * (max - min) + min);

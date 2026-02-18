@@ -5,9 +5,9 @@ slug: /multi-dimensional-array
 tags: [Coding, Lodash Functions, Medium]
 ---
 
-## 操作陣列中包含多層陣列與物件
+## Working with Multi-level Arrays Containing Objects
 
-### 1. 使用遞迴解法
+### 1. Recursive Approach
 
 ```js
 const multiArray = [
@@ -21,14 +21,14 @@ const multiArray = [
 const findAgeById = (array, targetId) => {
   for (let item of array) {
     if (Array.isArray(item)) {
-      // 如果 item 是陣列，則遞迴呼叫 findAgeById 函式
+      // If item is an array, recursively call findAgeById
       const result = findAgeById(item, targetId);
-      // 如果子陣列中找到，則立即回傳
+      // If found in the sub-array, return immediately
       if (result !== undefined) {
         return result;
       }
     } else if (item.id === targetId) {
-      // 如果 item 是物件，則回傳對應的 age
+      // If item is an object, return the corresponding age
       return item.detail && item.detail.age !== undefined
         ? item.detail.age
         : 'No age';
@@ -43,7 +43,7 @@ console.log(findAgeById(multiArray, 3)); // 25
 console.log(findAgeById(multiArray, 1)); // No age
 ```
 
-### 2. 使用深度優先搜尋(DFS)
+### 2. Depth-First Search (DFS)
 
 ```js
 const multiArray = [
@@ -75,7 +75,7 @@ console.log(dfsFindAgeById(multiArray, 3)); // 25
 console.log(dfsFindAgeById(multiArray, 1)); // No age
 ```
 
-### 3. 使用廣度優先搜尋(BFS)
+### 3. Breadth-First Search (BFS)
 
 ```js
 const multiArray = [

@@ -60,7 +60,12 @@
       "Bash(do if grep '[^\\\\x00-\\\\x7F]' \"$f\")",
       "Bash(then echo \"NON-ASCII: $f\")",
       "Bash(git -C /Volumes/SSD/2026/blog-docusaurus config hooks.hooksPath)",
-      "Bash(git -C /Volumes/SSD/2026/blog-docusaurus config --list)"
+      "Bash(git -C /Volumes/SSD/2026/blog-docusaurus config --list)",
+      "Bash(git -C /Volumes/SSD/2026/blog-docusaurus status)",
+      "Bash(git -C /Volumes/SSD/2026/blog-docusaurus diff --stat)",
+      "Bash(git -C /Volumes/SSD/2026/blog-docusaurus log --oneline -5)",
+      "Bash(git -C /Volumes/SSD/2026/blog-docusaurus add .claude/settings.local.json blog/2026/02-18-rebuilding-blog-with-ai.md i18n/de/docusaurus-plugin-content-blog/2026/02-18-rebuilding-blog-with-ai.md i18n/es/docusaurus-plugin-content-blog/2026/02-18-rebuilding-blog-with-ai.md i18n/fr/docusaurus-plugin-content-blog/2026/02-18-rebuilding-blog-with-ai.md i18n/ja/docusaurus-plugin-content-blog/2026/02-18-rebuilding-blog-with-ai.md i18n/ko/docusaurus-plugin-content-blog/2026/02-18-rebuilding-blog-with-ai.md i18n/pt-BR/docusaurus-plugin-content-blog/2026/02-18-rebuilding-blog-with-ai.md i18n/vi/docusaurus-plugin-content-blog/2026/02-18-rebuilding-blog-with-ai.md i18n/zh-cn/docusaurus-plugin-content-blog/2026/02-18-rebuilding-blog-with-ai.md i18n/zh-tw/docusaurus-plugin-content-blog/2026/02-18-rebuilding-blog-with-ai.md)",
+      "Bash(git -C:*)"
     ]
   }
 }

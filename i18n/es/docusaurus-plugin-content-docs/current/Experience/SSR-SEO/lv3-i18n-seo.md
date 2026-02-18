@@ -20,7 +20,7 @@ tags: [Experience, Interview, SSR-SEO, Nuxt, Lv3, i18n]
 
 ### 2.1 Por qué elegir `@nuxtjs/i18n`?
 
-El modulo oficial `@nuxtjs/i18n` esta basado en `vue-i18n`, optimizado especificamente para Nuxt. Resuelve los problemas comunes de implementar i18n manualmente:
+El módulo oficial `@nuxtjs/i18n` esta basado en `vue-i18n`, optimizado especificamente para Nuxt. Resuelve los problemas comunes de implementar i18n manualmente:
 
 - Generación automática de rutas con prefijo de idioma (Auto-generated routes).
 - Manejo automático de SEO Meta Tags (hreflang, og:locale).
@@ -71,7 +71,7 @@ Esta es la clave para SEO. `@nuxtjs/i18n` ofrece varias estrategias:
 
 3.  **no_prefix** (no recomendado para SEO):
     - Todos los idiomas con la misma URL, cambio por Cookie.
-    - Desventaja: Los motores de busqueda no pueden indexar las diferentes versiones de idioma.
+    - Desventaja: Los motores de búsqueda no pueden indexar las diferentes versiones de idioma.
 
 ---
 
@@ -79,7 +79,7 @@ Esta es la clave para SEO. `@nuxtjs/i18n` ofrece varias estrategias:
 
 ### 3.1 Etiqueta hreflang
 
-Los motores de busqueda necesitan saber "qué versiones de idioma tiene esta página". `@nuxtjs/i18n` genera automáticamente en `<head>`:
+Los motores de búsqueda necesitan saber "qué versiones de idioma tiene esta página". `@nuxtjs/i18n` genera automáticamente en `<head>`:
 
 ```html
 <link rel="alternate" href="https://example.com/about" hreflang="zh-TW" />
@@ -160,8 +160,8 @@ const switchLocalePath = useSwitchLocalePath();
 >
 > Sobre **SEO**:
 >
-> 1.  **Estructura de URL**: Uso la estrategia de "subruta" (como `/en/`, `/tw/`), dando a cada idioma una URL independiente para que los motores de busqueda puedan indexar.
-> 2.  **hreflang**: Se debe configurar correctamente `<link rel="alternate" hreflang="..." />`, indicando a Google que estas páginas son versiones en diferentes idiomas del mismo contenido, evitando penalizaciones por contenido duplicado. Normalmente uso el modulo `@nuxtjs/i18n` para generar automáticamente estas etiquetas.
+> 1.  **Estructura de URL**: Uso la estrategia de "subruta" (como `/en/`, `/tw/`), dando a cada idioma una URL independiente para que los motores de búsqueda puedan indexar.
+> 2.  **hreflang**: Se debe configurar correctamente `<link rel="alternate" hreflang="..." />`, indicando a Google que estas páginas son versiones en diferentes idiomas del mismo contenido, evitando penalizaciones por contenido duplicado. Normalmente uso el módulo `@nuxtjs/i18n` para generar automáticamente estas etiquetas.
 >
 > Sobre **Hydration**:
 > Asegurar que el idioma renderizado por el Server y el idioma inicializado por el Client sean consistentes. Configuro la determinación del idioma desde el prefijo URL o Cookie, y agrego el locale correspondiente en el header de solicitudes API.
@@ -172,7 +172,7 @@ const switchLocalePath = useSwitchLocalePath();
 
 > **Ejemplo de respuesta:**
 > Uso el composable `useSwitchLocalePath` proporcionado por `@nuxtjs/i18n`.
-> Genera automáticamente la URL del idioma correspondiente basandose en la ruta actual (manteniendo query parameters), y maneja la conversión de prefijos de ruta. Esto evita errores de concatenacion manual de cadenas, y asegura que el usuario permanezca en el contenido de la página original al cambiar de idioma.
+> Genera automáticamente la URL del idioma correspondiente basándose en la ruta actual (manteniendo query parameters), y maneja la conversión de prefijos de ruta. Esto evita errores de concatenacion manual de cadenas, y asegura que el usuario permanezca en el contenido de la página original al cambiar de idioma.
 
 ---
 

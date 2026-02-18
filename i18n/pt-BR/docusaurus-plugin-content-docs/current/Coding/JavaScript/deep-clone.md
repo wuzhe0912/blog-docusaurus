@@ -28,7 +28,7 @@ const original = {
 const shallowCopy = { ...original };
 shallowCopy.address.city = 'Kaohsiung';
 
-console.log(original.address.city); // 'Kaohsiung' ❌ O objeto original tambem foi modificado
+console.log(original.address.city); // 'Kaohsiung' ❌ O objeto original também foi modificado
 ```
 
 **Deep Clone (Copia profunda)**: Copia recursivamente todas as camadas de propriedades, completamente independente.
@@ -46,7 +46,7 @@ const original = {
 const deepCopy = deepClone(original);
 deepCopy.address.city = 'Kaohsiung';
 
-console.log(original.address.city); // 'Taipei' ✅ O objeto original nao e afetado
+console.log(original.address.city); // 'Taipei' ✅ O objeto original não e afetado
 ```
 
 ## 2. Implementation Methods

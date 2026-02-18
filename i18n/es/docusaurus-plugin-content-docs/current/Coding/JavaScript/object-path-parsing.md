@@ -9,7 +9,7 @@ tags: [JavaScript, Coding, Medium]
 
 > Descripción del problema
 
-Implementar funciones de analisis de rutas de objetos que puedan obtener y establecer valores de objetos anidados basandose en cadenas de ruta.
+Implementar funciones de análisis de rutas de objetos que puedan obtener y establecer valores de objetos anidados basándose en cadenas de ruta.
 
 ### Requisitos
 
@@ -80,7 +80,7 @@ console.log(get(obj, 'a.b.d[0]')); // 2
 console.log(get(obj, 'a.b.d[5]', 'not found')); // 'not found'
 ```
 
-### Método 3: Implementación completa (manejo de casos limite)
+### Método 3: Implementación completa (manejo de casos límite)
 
 ```javascript
 function get(obj, path, defaultValue) {
@@ -106,7 +106,7 @@ console.log(get(obj, 'a.b.d[2].e')); // 4
 console.log(get(obj, 'a.b.f', 'default')); // 'default'
 console.log(get(obj, 'x.y', 'default')); // 'default'
 console.log(get(null, 'a.b', 'default')); // 'default'
-console.log(get(obj, '', obj)); // obj (ruta vacia devuelve el objeto original)
+console.log(get(obj, '', obj)); // obj (ruta vacía devuelve el objeto original)
 ```
 
 ## 3. Implementation: set Function
@@ -289,7 +289,7 @@ console.log(get(obj, 'a.b[2].c')); // 4
 console.log(get(obj, 'a.b[5]', 'not found')); // 'not found'
 ```
 
-**Puntos clave**: Usar expresion regular `/[^.[\]]+|\[(\d+)\]/g` para analizar la ruta, manejar índices de array en formato `[0]`, convertir índice de string a número.
+**Puntos clave**: Usar expresión regular `/[^.[\]]+|\[(\d+)\]/g` para analizar la ruta, manejar índices de array en formato `[0]`, convertir índice de string a número.
 
 </details>
 
@@ -325,7 +325,7 @@ console.log(obj); // { a: { b: { c: 1 } } }
 
 ### Pregunta 4: Implementación completa de get y set
 
-Implemente funciones `get` y `set` completas con soporte para índices de array y manejo de casos limite.
+Implemente funciones `get` y `set` completas con soporte para índices de array y manejo de casos límite.
 
 <details>
 <summary>Haga clic para ver la respuesta</summary>
@@ -385,7 +385,7 @@ set(obj, 'a.b.d[0]', 2); console.log(get(obj, 'a.b.d[0]')); // 2
 ### Prácticas recomendadas
 
 ```javascript
-// 1. Manejar casos limite
+// 1. Manejar casos límite
 function get(obj, path, defaultValue) {
   if (obj == null || typeof path !== 'string') return defaultValue;
 }
@@ -424,7 +424,7 @@ return result ?? defaultValue;
 
 **Puntos de implementación**:
 
-1. Analisis de ruta: `split('.')` o expresion regular
+1. Analisis de ruta: `split('.')` o expresión regular
 2. Acceso por niveles: Usar bucle o `reduce`
 3. Manejo de limites: Verificar null/undefined
 4. Soporte de arrays: Manejar índices en formato `[0]`
@@ -433,11 +433,11 @@ return result ?? defaultValue;
 
 **Q: Implemente una función que obtenga el valor de un objeto según una ruta.**
 
-> "Implemento una función `get` que recibe un objeto, una cadena de ruta y un valor por defecto. Primero manejo los casos limite: si el objeto es null o la ruta no es un string, devuelvo el valor por defecto. Luego divido la ruta en un array de claves con `split('.')` y accedo a las propiedades del objeto nivel por nivel usando un bucle. En cada acceso verifico si el valor actual es null o undefined, y en ese caso devuelvo el valor por defecto. Finalmente, si el resultado es undefined devuelvo el valor por defecto, de lo contrario el resultado. Para soportar índices de array, puedo usar la expresion regular `/[^.[\]]+|\[(\d+)\]/g` para analizar la ruta."
+> "Implemento una función `get` que recibe un objeto, una cadena de ruta y un valor por defecto. Primero manejo los casos límite: si el objeto es null o la ruta no es un string, devuelvo el valor por defecto. Luego divido la ruta en un array de claves con `split('.')` y accedo a las propiedades del objeto nivel por nivel usando un bucle. En cada acceso verifico si el valor actual es null o undefined, y en ese caso devuelvo el valor por defecto. Finalmente, si el resultado es undefined devuelvo el valor por defecto, de lo contrario el resultado. Para soportar índices de array, puedo usar la expresión regular `/[^.[\]]+|\[(\d+)\]/g` para analizar la ruta."
 
 **Q: Cómo implementar una función que establezca el valor de un objeto según una ruta?**
 
-> "Implemento una función `set` que recibe un objeto, una cadena de ruta y un valor. Primero analizo la ruta en un array de claves, luego recorro hasta la penultima clave, creando la estructura de objetos anidados nivel por nivel. Para cada clave intermedia que no existe o no es un objeto, creo un nuevo objeto. Si la siguiente clave tiene formato de índice de array, creo un array. Finalmente establezco el valor de la última clave."
+> "Implemento una función `set` que recibe un objeto, una cadena de ruta y un valor. Primero analizo la ruta en un array de claves, luego recorro hasta la penúltima clave, creando la estructura de objetos anidados nivel por nivel. Para cada clave intermedia que no existe o no es un objeto, creo un nuevo objeto. Si la siguiente clave tiene formato de índice de array, creo un array. Finalmente establezco el valor de la última clave."
 
 ## Reference
 

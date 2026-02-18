@@ -22,7 +22,7 @@ tags: [Experience, Interview, Performance]
 
 ### Lv3 Avançado
 
-- [Implementação de Virtual Scroll: lidando com renderizacao de grandes volumes de dados](/docs/experience/performance/lv3-virtual-scroll)
+- [Implementação de Virtual Scroll: lidando com renderização de grandes volumes de dados](/docs/experience/performance/lv3-virtual-scroll)
 - [Aplicação de Web Worker: computação em segundo plano sem bloquear a UI](/docs/experience/performance/lv3-web-worker)
 - [Estratégias de otimização para grandes volumes de dados: seleção e implementação de soluções](/docs/experience/performance/lv3-large-data-optimization)
 - [Otimização de performance no Nuxt 3: Bundle Size, velocidade SSR e otimização de imagens](/docs/experience/performance/lv3-nuxt-performance)

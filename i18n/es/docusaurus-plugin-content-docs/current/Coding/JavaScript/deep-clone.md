@@ -94,11 +94,11 @@ const obj = {
 };
 
 const cloned = deepClone(obj);
-console.log(cloned.date); // {} ❌ Date se convierte en objeto vacio
+console.log(cloned.date); // {} ❌ Date se convierte en objeto vacío
 console.log(cloned.func); // undefined ❌ La función se pierde
 console.log(cloned.undefined); // undefined ✅ Pero JSON.stringify lo elimina
 console.log(cloned.symbol); // undefined ❌ Symbol se pierde
-console.log(cloned.regex); // {} ❌ RegExp se convierte en objeto vacio
+console.log(cloned.regex); // {} ❌ RegExp se convierte en objeto vacío
 ```
 
 ### Método 2: Implementación recursiva (manejo de tipos básicos y objetos)
@@ -478,18 +478,18 @@ Explique las limitaciones de usar `JSON.parse(JSON.stringify())` para Deep Clone
    console.log(cloned.date); // "2024-01-01T00:00:00.000Z" ❌ Se convierte en string
    ```
 
-5. **RegExp se convierte en objeto vacio**
+5. **RegExp se convierte en objeto vacío**
    ```javascript
    const obj = { regex: /test/g };
    const cloned = JSON.parse(JSON.stringify(obj));
-   console.log(cloned.regex); // {} ❌ Se convierte en objeto vacio
+   console.log(cloned.regex); // {} ❌ Se convierte en objeto vacío
    ```
 
 6. **No puede manejar Map, Set**
    ```javascript
    const obj = { map: new Map([['key', 'value']]) };
    const cloned = JSON.parse(JSON.stringify(obj));
-   console.log(cloned.map); // {} ❌ Se convierte en objeto vacio
+   console.log(cloned.map); // {} ❌ Se convierte en objeto vacío
    ```
 
 7. **No puede manejar referencias circulares**
@@ -584,7 +584,7 @@ function deepClone(obj) {
 
 **Q: Cuáles son las limitaciones de JSON.parse(JSON.stringify())?**
 
-> "Las principales limitaciones de este método incluyen: 1) No puede manejar funciones, que se eliminan; 2) No puede manejar undefined y Symbol, estas propiedades se ignoran; 3) Los objetos Date se convierten en strings; 4) RegExp se convierte en objeto vacio; 5) No puede manejar Map, Set y otras estructuras de datos especiales; 6) No puede manejar referencias circulares, lo que causa un error. Si se necesita manejar estos casos especiales, se debe usar una implementación recursiva."
+> "Las principales limitaciones de este método incluyen: 1) No puede manejar funciones, que se eliminan; 2) No puede manejar undefined y Symbol, estas propiedades se ignoran; 3) Los objetos Date se convierten en strings; 4) RegExp se convierte en objeto vacío; 5) No puede manejar Map, Set y otras estructuras de datos especiales; 6) No puede manejar referencias circulares, lo que causa un error. Si se necesita manejar estos casos especiales, se debe usar una implementación recursiva."
 
 ## Reference
 

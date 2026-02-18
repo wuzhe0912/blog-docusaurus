@@ -154,7 +154,7 @@ console.log(findMostFrequentChar('abcccccccd')); // 'c'
 **Ventajas**: Estilo funcional, código conciso
 **Desventajas**: Menor legibilidad, rendimiento ligeramente inferior
 
-### Método 5: Manejo de múltiples valores maximos iguales
+### Método 5: Manejo de múltiples valores máximos iguales
 
 **Enfoque**: Si varios caracteres tienen la misma frecuencia maxima, devolver un array o el primero encontrado.
 
@@ -188,9 +188,9 @@ console.log(findMostFrequentChar('aabbcc')); // 'a' (el primero encontrado)
 
 ## 3. Edge Cases
 
-> Manejo de casos limite
+> Manejo de casos límite
 
-### Cadena vacia
+### Cadena vacía
 
 ```javascript
 function findMostFrequentChar(str) {
@@ -214,7 +214,7 @@ function findMostFrequentChar(str) {
 }
 ```
 
-### Mayusculas y minusculas
+### Mayusculas y minúsculas
 
 ```javascript
 function findMostFrequentChar(str, caseSensitive = true) {
@@ -235,8 +235,8 @@ function findMostFrequentChar(str, caseSensitive = true) {
 }
 
 // Prueba
-console.log(findMostFrequentChar('Hello', false)); // 'l' (sin distinguir mayusculas/minusculas)
-console.log(findMostFrequentChar('Hello', true)); // 'l' (distinguiendo mayusculas/minusculas)
+console.log(findMostFrequentChar('Hello', false)); // 'l' (sin distinguir mayúsculas/minúsculas)
+console.log(findMostFrequentChar('Hello', true)); // 'l' (distinguiendo mayúsculas/minúsculas)
 ```
 
 ### Espacios y caracteres especiales
@@ -307,7 +307,7 @@ console.log(findMostFrequentChar('hello world')); // 'l'
 
 ### Pregunta 2: Versión optimizada
 
-Optimice la función anterior para manejar múltiples valores maximos iguales.
+Optimice la función anterior para manejar múltiples valores máximos iguales.
 
 <details>
 <summary>Haga clic para ver la respuesta</summary>
@@ -393,7 +393,7 @@ function findMostFrequentChar(str) {
   // ...
 }
 
-// 2. Manejar casos limite
+// 2. Manejar casos límite
 function findMostFrequentChar(str) {
   if (!str || str.length === 0) {
     return '';
@@ -438,7 +438,7 @@ function findMostFrequentChar(str) {
 function findMostFrequentChar(str) {
   const charCount = {};
   // ...
-  return maxChar; // Con cadena vacia maxChar es ''
+  return maxChar; // Con cadena vacía maxChar es ''
 }
 
 // 3. No usar estilos funcionales demasiado complejos (a menos que sea convencion del equipo)
@@ -463,20 +463,20 @@ const findMostFrequentChar = (str) =>
 1. Usar un objeto o Map para registrar la frecuencia de cada carácter
 2. Actualizar el máximo durante el recorrido
 3. Complejidad temporal O(n), complejidad espacial O(k)
-4. Manejar casos limite (cadena vacia, mayusculas/minusculas, etc.)
+4. Manejar casos límite (cadena vacía, mayúsculas/minúsculas, etc.)
 
 **Direcciones de optimización**:
 
 - Completar en un solo recorrido (contar y encontrar el máximo simultaneamente)
 - Usar Map para escenarios complejos
-- Manejar múltiples valores maximos iguales
-- Considerar mayusculas/minusculas, espacios y otros casos especiales
+- Manejar múltiples valores máximos iguales
+- Considerar mayúsculas/minúsculas, espacios y otros casos especiales
 
 ### Ejemplo de respuesta en entrevista
 
 **Q: Implemente una función que encuentre el carácter más frecuente en una cadena.**
 
-> "Usaría un objeto para registrar la frecuencia de cada carácter, y actualizaria el máximo durante el recorrido de la cadena. La implementación concreta es: inicializar un objeto vacio charCount para almacenar caracteres y conteos, inicializar las variables maxCount y maxChar. Luego recorrer la cadena, para cada carácter, si no esta en el objeto inicializarlo en 0, luego incrementar el conteo. Si el conteo del carácter actual es mayor que maxCount, actualizar maxCount y maxChar. Finalmente devolver maxChar. La complejidad temporal de este método es O(n) y la complejidad espacial es O(k), dónde n es la longitud de la cadena y k es la cantidad de caracteres diferentes."
+> "Usaría un objeto para registrar la frecuencia de cada carácter, y actualizaría el máximo durante el recorrido de la cadena. La implementación concreta es: inicializar un objeto vacío charCount para almacenar caracteres y conteos, inicializar las variables maxCount y maxChar. Luego recorrer la cadena, para cada carácter, si no esta en el objeto inicializarlo en 0, luego incrementar el conteo. Si el conteo del carácter actual es mayor que maxCount, actualizar maxCount y maxChar. Finalmente devolver maxChar. La complejidad temporal de este método es O(n) y la complejidad espacial es O(k), dónde n es la longitud de la cadena y k es la cantidad de caracteres diferentes."
 
 ## Reference
 

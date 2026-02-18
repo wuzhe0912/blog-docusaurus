@@ -208,11 +208,11 @@ Tasa de rebote: 28% ↓ 33%
    // Mejora de rendimiento del 80%
    ```
 
-3. **P: De dónde viene el limite de 6 imágenes simultaneas?**
-   R: Esta basado en el **limite de conexiones simultaneas HTTP/1.1 del mismo origen** del navegador:
+3. **P: De dónde viene el límite de 6 imágenes simultaneas?**
+   R: Esta basado en el **límite de conexiones simultaneas HTTP/1.1 del mismo origen** del navegador:
 
    - Chrome/Firefox: Máximo 6 conexiones simultaneas por dominio
-   - Solicitudes que excedan el limite esperan en cola
+   - Solicitudes que excedan el límite esperan en cola
    - HTTP/2 permite más, pero por compatibilidad se controla en 6
    - Pruebas reales: 6 cargas simultaneas es el punto óptimo de equilibrio entre rendimiento y experiencia
 

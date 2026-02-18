@@ -45,7 +45,7 @@ Antes da otimizacao: digitando "slot game" (9 caracteres)
 
 - Aciona 9 buscas
 - Filtrando 3000 jogos x 9 vezes = 27.000 operacoes
-- Tempo: cerca de 1.8 segundo (pagina trava)
+- Tempo: cerca de 1.8 segundo (página trava)
 
 Apos otimizacao: digitando "slot game"
 
@@ -75,7 +75,7 @@ Antes da otimizacao:
 
 - Evento de rolagem dispara 60 vezes por segundo (60 FPS)
 - Cada disparo calcula a posicao de rolagem
-- Tempo: cerca de 600ms (pagina trava)
+- Tempo: cerca de 600ms (página trava)
 
 Apos otimizacao:
 
@@ -86,7 +86,7 @@ Apos otimizacao:
 
 ## Estratégia 3: Time Slicing - Processamento de grandes volumes de dados
 
-> Cenário de aplicação: nuvem de tags, combinações de menu, filtragem de 3000+ jogos, renderizacao de histórico de transacoes
+> Cenário de aplicação: nuvem de tags, combinações de menu, filtragem de 3000+ jogos, renderização de histórico de transações
 
 ```javascript
 // Funcao personalizada de time slicing
@@ -193,7 +193,7 @@ requestAnimationFrame(animateScroll);
 
 | Característica | Debounce                            | Throttle                            |
 | -------------- | ----------------------------------- | ----------------------------------- |
-| Momento de disparo | Após parar a acao, espera um período | Executa no máximo uma vez em intervalo fixo |
+| Momento de disparo | Após parar a ação, espera um período | Executa no máximo uma vez em intervalo fixo |
 | Cenário adequado | Entrada de busca, resize de janela | Eventos de rolagem, movimento do mouse |
 | Numero de execuções | Pode não executar (se continuar acionando) | Garante execução (frequência fixa) |
 | Atraso | Com atraso (espera parar) | Execucao imediata, limitação subsequente |
@@ -213,7 +213,7 @@ requestAnimationFrame(animateScroll);
 
 R: Depende do cenário de uso:
 
-- **Debounce**: adequado para cenários de "esperar o usuário completar a acao" (como entrada de busca)
+- **Debounce**: adequado para cenários de "esperar o usuário completar a ação" (como entrada de busca)
 - **Throttle**: adequado para cenários de "precisa atualizar continuamente mas não muito frequentemente" (como rastreamento de rolagem)
 
 **P: Como escolher entre time slicing e Web Worker?**

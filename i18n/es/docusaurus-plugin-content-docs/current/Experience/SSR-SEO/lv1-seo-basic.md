@@ -37,7 +37,7 @@ vueRouterMode: "history", // Usar modo history en lugar de modo hash
 **Diferencias clave:**
 
 - History Mode genera URLs limpias (ej: `/home` en lugar de `/#/home`)
-- Los motores de busqueda pueden indexar y rastrear más fácilmente
+- Los motores de búsqueda pueden indexar y rastrear más fácilmente
 - Mejor experiencia de usuario y al compartir
 - Requiere configuración del backend (para evitar errores 404)
 
@@ -63,7 +63,7 @@ Esto asegura que todas las rutas devuelvan `index.html`, y el Router del fronten
 **Ubicación del archivo:** `template/*/public/landingPage/index.html`
 
 ```html
-<!-- Meta Tags basicos -->
+<!-- Meta Tags básicos -->
 <meta charset="UTF-8" />
 <title>AMUSE VIP</title>
 <meta name="keywords" content="カジノ,Jackpot,オンカジ,VIP" />
@@ -75,9 +75,9 @@ Esto asegura que todas las rutas devuelvan `index.html`, y el Router del fronten
 
 **Explicacion:**
 
-- `title`: Titulo de la página, afecta la visualización en resultados de busqueda
+- `title`: Titulo de la página, afecta la visualización en resultados de búsqueda
 - `keywords`: Palabras clave (importancia menor en SEO moderno, pero se recomienda configurar)
-- `description`: Descripción de la página, se muestra en los resultados de busqueda
+- `description`: Descripción de la página, se muestra en los resultados de búsqueda
 
 ### 3.2 Open Graph Tags (compartir en redes sociales)
 
@@ -182,7 +182,7 @@ de Favicon
 **Por qué elegir History Mode?**
 
 - Proporciona URLs limpias, mejorando el efecto SEO
-- Los motores de busqueda pueden indexar más fácilmente
+- Los motores de búsqueda pueden indexar más fácilmente
 - Mejor experiencia de usuario
 
 **Qué hay que tener en cuenta?**
@@ -194,7 +194,7 @@ de Favicon
 
 **Meta Tags básicos:**
 
-- `title`: Afecta la visualización en resultados de busqueda
+- `title`: Afecta la visualización en resultados de búsqueda
 - `description`: Afecta la tasa de clics
 - `keywords`: Importancia menor en SEO moderno, pero se recomienda configurar
 
@@ -236,7 +236,7 @@ de Favicon
 
 **Puedes responder así:**
 
-> En el proyecto, elegi usar History Mode de Vue Router en lugar de Hash Mode, porque History Mode proporciona una estructura de URL limpia que es más amigable para SEO. Al mismo tiempo, implemente meta tags SEO completos para la Landing Page, incluyendo title, description, keywords básicos, así como Open Graph y Twitter Card tags, asegurando que la vista previa se muestre correctamente al compartir en redes sociales.
+> En el proyecto, elegí usar History Mode de Vue Router en lugar de Hash Mode, porque History Mode proporciona una estructura de URL limpia que es más amigable para SEO. Al mismo tiempo, implementé meta tags SEO completos para la Landing Page, incluyendo title, description, keywords básicos, así como Open Graph y Twitter Card tags, asegurando que la vista previa se muestre correctamente al compartir en redes sociales.
 
 **Puntos clave:**
 

@@ -11,7 +11,7 @@ tags: [Experience, Interview, Performance, Lv3]
 
 ## Pregunta de entrevista
 
-**P: Si la pantalla tiene más de una tabla, cada una con más de cien registros, y además hay eventos que actualizan el DOM frecuentemente, qué método usarias para optimizar el rendimiento de esta página?**
+**P: Si la pantalla tiene más de una tabla, cada una con más de cien registros, y además hay eventos que actualizan el DOM frecuentemente, qué método usarías para optimizar el rendimiento de esta página?**
 
 ---
 
@@ -148,7 +148,7 @@ const tableData = shallowRef([...])  // Solo rastrear el array, no los objetos i
 ### Preguntas de extensión frecuentes
 
 **P: Si no puedes usar bibliotecas de terceros?**
-R: Implementar la logica central de Virtual Scroll manualmente:
+R: Implementar la lógica central de Virtual Scroll manualmente:
 
 ```javascript
 const itemHeight = 50;

@@ -1,6 +1,6 @@
 ---
 id: performance-lv3-virtual-scroll
-title: '[Lv3] Implementação de Virtual Scroll: lidando com renderizacao de grandes volumes de dados'
+title: '[Lv3] Implementação de Virtual Scroll: lidando com renderização de grandes volumes de dados'
 slug: /experience/performance/lv3-virtual-scroll
 tags: [Experience, Interview, Performance, Lv3]
 ---
@@ -30,8 +30,8 @@ Pagina de historico de registros
 
 Problemas sem otimizacao
 - Nos de DOM: 1000 registros x 10 campos = 10.000+ nos
-- Uso de memoria: aproximadamente 150-200 MB
-- Tempo da primeira renderizacao: 3-5 segundos (tela branca)
+- Uso de memória: aproximadamente 150-200 MB
+- Tempo da primeira renderização: 3-5 segundos (tela branca)
 - Travamento na rolagem: FPS < 20
 - Atualizacao via WebSocket: tabela inteira re-renderizada (muito lento)
 ```
@@ -125,16 +125,16 @@ Existem syntactic sugars do Vue3 que oferecem otimização de performance, como 
 const staticData = Object.freeze(largeDataArray)
 
 // 3. shallowRef para arrays grandes
-const tableData = shallowRef([...])  // Rastrear apenas o array, nao os objetos internos
+const tableData = shallowRef([...])  // Rastrear apenas o array, não os objetos internos
 
 // 4. Usar key para otimizar algoritmo diff (usar ID único para rastrear cada item, limitando atualização DOM aos nos com mudancas)
-<tr v-for="row in data" :key="row.id">  // Key estavel
+<tr v-for="row in data" :key="row.id">  // Key estável
 ```
 
 RAF: acompanha atualização da tela (~16ms), adequado para animações, rolagem
 throttle: intervalo personalizado (ex: 100ms), adequado para busca, resize
 
-### Otimização de renderizacao DOM
+### Otimização de renderização DOM
 
 ```scss
 // Usar CSS transform em vez de top/left
@@ -143,7 +143,7 @@ throttle: intervalo personalizado (ex: 100ms), adequado para busca, resize
   will-change: transform; /* Dica ao navegador para otimizar */
 }
 
-// CSS containment para isolar escopo de renderizacao
+// CSS containment para isolar escopo de renderização
 .table-container {
   contain: layout style paint;
 }
@@ -159,7 +159,7 @@ throttle: intervalo personalizado (ex: 100ms), adequado para busca, resize
 | --------------- | ----------- | ------------ | -------- |
 | Nos de DOM      | 10.000+     | 20-30        | -99.7%   |
 | Uso de memória  | 150-200 MB  | 30-40 MB     | -80%     |
-| Primeira renderizacao | 3-5 s  | 0.3-0.5 s    | +90%     |
+| Primeira renderização | 3-5 s  | 0.3-0.5 s    | +90%     |
 | FPS de rolagem  | < 20        | 55-60        | +200%    |
 | Resposta de atualização | 500-800 ms | 16-33 ms | +95%     |
 
@@ -170,17 +170,17 @@ Virtual scroll
 - Renderiza apenas 20-30 registros visiveis
 - Atualiza dinamicamente o intervalo visivel durante rolagem
 - Imperceptivel para o usuario (experiencia fluida)
-- Memoria estavel (nao cresce com volume de dados)
+- Memoria estável (não cresce com volume de dados)
 
 Atualizacao de dados com RAF
 - WebSocket 100 atualizacoes/segundo -> maximo 60 renderizacoes
-- Acompanha taxa de atualizacao da tela (60 FPS)
+- Acompanha taxa de atualização da tela (60 FPS)
 - Uso de CPU reduzido em 60%
 
 Otimizacoes Vue3
 - v-memo: evita re-renderizacoes desnecessarias
 - shallowRef: reduz overhead reativo
-- :key estavel: otimiza algoritmo diff
+- :key estável: otimiza algoritmo diff
 ```
 
 ---
@@ -228,7 +228,7 @@ const baseDelay = 1000; // 1 segundo
 
 function reconnect() {
   if (retryCount >= maxRetries) {
-    showError('Nao foi possivel conectar, por favor recarregue a pagina');
+    showError('Nao foi possível conectar, por favor recarregue a página');
     return;
   }
 
@@ -269,8 +269,8 @@ function measureFPS() {
 }
 
 // 2. Memory Profiling (Chrome DevTools)
-// - Tirar snapshot antes da renderizacao
-// - Tirar snapshot após a renderizacao
+// - Tirar snapshot antes da renderização
+// - Tirar snapshot após a renderização
 // - Comparar diferença de memória
 
 // 3. Lighthouse / Performance Tab
@@ -284,10 +284,10 @@ const { test } = require('@playwright/test');
 test('virtual scroll performance', async ({ page }) => {
   await page.goto('/records');
 
-  // Medir tempo da primeira renderizacao
+  // Medir tempo da primeira renderização
   const renderTime = await page.evaluate(() => {
     const start = performance.now();
-    // Acionar renderizacao
+    // Acionar renderização
     const end = performance.now();
     return end - start;
   });
@@ -301,8 +301,8 @@ R: Trade-offs a considerar:
 
 ```markdown
 Desvantagens
-- Nao e possivel usar busca nativa do navegador (Ctrl+F)
-- Nao e possivel usar funcao "selecionar tudo" (requer tratamento especial)
+- Nao e possível usar busca nativa do navegador (Ctrl+F)
+- Nao e possível usar função "selecionar tudo" (requer tratamento especial)
 - Complexidade de implementacao mais alta
 - Requer altura fixa ou calculo previo de altura
 - Acessibilidade requer tratamento adicional
@@ -311,9 +311,9 @@ Cenarios adequados
 - Volume de dados > 100 registros
 - Estrutura de dados similar para cada registro (altura fixa)
 - Necessidade de rolagem de alta performance
-- Foco em visualizacao (nao edicao)
+- Foco em visualização (não edição)
 
-Cenarios nao adequados
+Cenarios não adequados
 - Volume de dados < 50 registros (over-engineering)
 - Altura variavel (implementacao dificil)
 - Necessidade de muita interacao (multi-selecao, drag and drop)
@@ -328,7 +328,7 @@ R: Usar virtual scroll com altura dinâmica:
 const estimatedHeight = 50; // Altura estimada
 const measuredHeights = {}; // Registrar alturas reais
 
-// Medir após renderizacao
+// Medir após renderização
 onMounted(() => {
   const elements = document.querySelectorAll('.list-item');
   elements.forEach((el, index) => {
@@ -353,8 +353,8 @@ onMounted(() => {
 
 | Criterio         | Virtual Scroll            | Paginacao tradicional    |
 | ---------------- | ------------------------- | ------------------------ |
-| Experiência do usuário | Rolagem contínua (melhor) | Necessita paginação (interrompida) |
-| Performance      | Sempre renderiza apenas area visível | Renderiza tudo por página |
+| Experiência do usuário | Rolagem contínua (melhor) | Necessita páginação (interrompida) |
+| Performance      | Sempre renderiza apenas área visível | Renderiza tudo por página |
 | Dificuldade de implementação | Mais complexa      | Simples                  |
 | SEO friendly     | Pior                      | Melhor                   |
 | Acessibilidade   | Requer tratamento especial | Suporte nativo          |

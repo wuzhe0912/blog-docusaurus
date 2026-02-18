@@ -85,7 +85,7 @@ if (needToken) {
 ```
 
 - Las APIs que requieren autorizacion incluyen automáticamente el Bearer Token.
-- Si la API esta marcada como `needToken: false` (login, registro, etc.), se omite el proceso de inclusion.
+- Si la API esta marcada como `needToken: false` (login, registro, etc.), se omite el proceso de inclusión.
 
 ### 4.3 Manejo de expiración y excepciones
 

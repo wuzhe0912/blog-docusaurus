@@ -35,7 +35,7 @@ No Nuxt 3 (Vue 3 SSR), diferentes Hooks são executados em diferentes ambientes:
 ### 2.2 Pergunta comum de entrevista: onMounted é executado no Server?
 
 **Resposta:**
-Não. `onMounted` so é executado no lado do Client (navegador). A renderizacao do lado do servidor so é responsável por gerar a string HTML, não realiza a montagem (Mounting) do DOM.
+Não. `onMounted` só é executado no lado do Client (navegador). A renderização do lado do servidor só é responsável por gerar a string HTML, não realiza a montagem (Mounting) do DOM.
 
 **Pergunta de acompanhamento: O que fazer se precisar executar lógica específica no Server?**
 - Usar `setup()` ou `useAsyncData` / `useFetch`.
@@ -158,9 +158,9 @@ onMounted(() => {
 
 **Você pode responder assim:**
 
-> A principal diferença entre Server-side e Client-side esta na execução dos Lifecycle Hooks. O Server executa principalmente `setup`, enquanto `onMounted` e outros Hooks relacionados ao DOM so são executados no Client. Isso leva ao conceito de Hydration, ou seja, o processo em que o Client assume o HTML do Server.
+> A principal diferença entre Server-side e Client-side esta na execução dos Lifecycle Hooks. O Server executa principalmente `setup`, enquanto `onMounted` e outros Hooks relacionados ao DOM só são executados no Client. Isso leva ao conceito de Hydration, ou seja, o processo em que o Client assume o HTML do Server.
 >
-> Para evitar Hydration Mismatch, devemos garantir que o conteúdo da renderizacao inicial do Server e do Client seja consistente. É por isso que o Nuxt fornece `useState`. Diferente do `ref` do Vue, `useState` serializa o estado e o envia ao Client, garantindo a sincronização do estado em ambos os lados. Se `ref` for usado para armazenar dados gerados no Server, uma inconsistência ocorrera quando o Client for reinicializado.
+> Para evitar Hydration Mismatch, devemos garantir que o conteúdo da renderização inicial do Server e do Client seja consistente. É por isso que o Nuxt fornece `useState`. Diferente do `ref` do Vue, `useState` serializa o estado e o envia ao Client, garantindo a sincronização do estado em ambos os lados. Se `ref` for usado para armazenar dados gerados no Server, uma inconsistência ocorrerá quando o Client for reinicializado.
 >
 > Mismatches comuns incluem números aleatorios, carimbos de data/hora ou estruturas HTML aninhadas invalidas. A solução e mover o conteúdo variável para `onMounted` ou usar o componente `<ClientOnly>`.
 

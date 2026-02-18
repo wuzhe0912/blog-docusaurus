@@ -10,8 +10,8 @@ tags: [Experience, Interview, SSR-SEO, Nuxt, Lv2]
 
 ## 1. Puntos clave de respuesta en entrevista
 
-1.  **Server Routes (API Routes)**: Usar `server/api` o `server/routes` para construir logica backend. Comumente usado para ocultar API Keys, manejar CORS, arquitectura BFF (Backend for Frontend).
-2.  **Sitemap dinámico**: Generar XML dinámicamente a través de Server Routes (`server/routes/sitemap.xml.ts`), asegurando que los motores de busqueda puedan indexar el contenido más reciente.
+1.  **Server Routes (API Routes)**: Usar `server/api` o `server/routes` para construir lógica backend. Comumente usado para ocultar API Keys, manejar CORS, arquitectura BFF (Backend for Frontend).
+2.  **Sitemap dinámico**: Generar XML dinámicamente a través de Server Routes (`server/routes/sitemap.xml.ts`), asegurando que los motores de búsqueda puedan indexar el contenido más reciente.
 3.  **Robots.txt**: Igualmente generado dinámicamente a través de Server Routes, o configurado via Nuxt Config, para controlar los permisos de acceso de los crawlers.
 
 ---
@@ -124,9 +124,9 @@ export default defineEventHandler(async (event) => {
 });
 ```
 
-### 3.3 Método de implementación: Usando modulo (`@nuxtjs/sitemap`)
+### 3.3 Método de implementación: Usando módulo (`@nuxtjs/sitemap`)
 
-Para requisitos estándar, se recomienda usar el modulo oficial:
+Para requisitos estándar, se recomienda usar el módulo oficial:
 
 ```typescript
 // nuxt.config.ts
@@ -198,7 +198,7 @@ Disallow: /`; // Prohibir indexación en entornos no productivos
 
 > **Ejemplo de respuesta:**
 > Usaría los Server Routes de Nuxt para implementarlos.
-> Para el **Sitemap**, crearia `server/routes/sitemap.xml.ts`, llamando a la API backend para obtener la lista más reciente de articulos o productos, luego usando el paquete `sitemap` para generar la cadena XML y devolverla. Esto asegura que los motores de busqueda obtengan los enlaces más recientes cada vez que rastrean.
+> Para el **Sitemap**, crearia `server/routes/sitemap.xml.ts`, llamando a la API backend para obtener la lista más reciente de artículos o productos, luego usando el paquete `sitemap` para generar la cadena XML y devolverla. Esto asegura que los motores de búsqueda obtengan los enlaces más recientes cada vez que rastrean.
 > Para **Robots.txt**, crearia `server/routes/robots.txt.ts`, devolviendo dinámicamente diferentes reglas según las variables de entorno (Production o Staging), por ejemplo, configurando `Disallow: /` en el entorno Staging para prevenir la indexación.
 
 ### 5.3 SEO Meta Tags (complemento)

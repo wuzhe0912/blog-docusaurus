@@ -12,7 +12,7 @@ tags: [Experience, Interview, State-Management, Vue]
 ## 1. Eixo principal da resposta em entrevista
 
 1. **Uso em componentes**: Use `storeToRefs` para manter a reatividade, Actions podem ser desestruturadas diretamente.
-2. **Composicao com Composables**: Combine múltiplas Stores em Composables para encapsular a lógica de negocios.
+2. **Composicao com Composables**: Combine múltiplas Stores em Composables para encapsular a lógica de negócios.
 3. **Comunicacao entre Stores**: Recomenda-se combinar em Composables, evitando dependências circulares.
 
 ---
@@ -114,7 +114,7 @@ export function useGame() {
 - Composables são o melhor lugar para combinar a lógica de Stores
 - Use `storeToRefs` para garantir a reatividade
 - Actions podem ser desestruturadas diretamente
-- Encapsule a lógica de negocios complexa em composables
+- Encapsule a lógica de negócios complexa em composables
 
 ---
 
@@ -193,7 +193,7 @@ useGame().initGameList()
      |
 gameStore armazena a lista de jogos
      |
-Redirecionar para a pagina inicial
+Redirecionar para a página inicial
 ```
 
 ### 5.2 Implementação do código
@@ -282,8 +282,8 @@ const onSubmit = async (formData: LoginForm) => {
 1. **Separacao de responsabilidades**
    - `authStore`: Gerencia apenas o estado de autenticação
    - `userInfoStore`: Gerencia apenas as informações do usuário
-   - `useAuth`: Encapsula a lógica de negocios de autenticação
-   - `useUserInfo`: Encapsula a lógica de negocios de informações do usuário
+   - `useAuth`: Encapsula a lógica de negócios de autenticação
+   - `useUserInfo`: Encapsula a lógica de negócios de informações do usuário
 
 2. **Fluxo de dados reativo**
    - Use `storeToRefs` para manter a reatividade
@@ -312,7 +312,7 @@ const onSubmit = async (formData: LoginForm) => {
 
 **Você pode responder assim:**
 
-> A comunicação entre Stores pode ser feita de duas formas: 1) Chamar outra Store dentro de uma Store, mas cuidado para evitar dependências circulares; 2) Combinar múltiplas Stores em um Composable, que é a forma recomendada. A melhor prática e manter o princípio de responsabilidade única da Store, encapsular a lógica de negocios complexa em Composables e evitar dependências diretas entre Stores.
+> A comunicação entre Stores pode ser feita de duas formas: 1) Chamar outra Store dentro de uma Store, mas cuidado para evitar dependências circulares; 2) Combinar múltiplas Stores em um Composable, que é a forma recomendada. A melhor prática e manter o princípio de responsabilidade única da Store, encapsular a lógica de negócios complexa em Composables e evitar dependências diretas entre Stores.
 
 **Pontos-chave:**
 - Duas formas de comunicação
@@ -325,7 +325,7 @@ const onSubmit = async (formData: LoginForm) => {
 
 **Você pode responder assim:**
 
-> Ao usar Pinia Store em projetos, existem algumas práticas-chave: 1) Usar `storeToRefs` para desestruturar state e getters em componentes, mantendo a reatividade; 2) Combinar múltiplas Stores em Composables para encapsular a lógica de negocios; 3) A comunicação entre Stores é recomendada ser feita em Composables, evitando dependências circulares; 4) Manter o princípio de responsabilidade única da Store, colocando lógica complexa em Composables.
+> Ao usar Pinia Store em projetos, existem algumas práticas-chave: 1) Usar `storeToRefs` para desestruturar state e getters em componentes, mantendo a reatividade; 2) Combinar múltiplas Stores em Composables para encapsular a lógica de negócios; 3) A comunicação entre Stores é recomendada ser feita em Composables, evitando dependências circulares; 4) Manter o princípio de responsabilidade única da Store, colocando lógica complexa em Composables.
 
 **Pontos-chave:**
 - Uso de `storeToRefs`

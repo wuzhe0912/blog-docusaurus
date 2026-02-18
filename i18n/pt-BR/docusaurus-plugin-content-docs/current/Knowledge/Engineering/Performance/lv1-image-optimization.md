@@ -16,7 +16,7 @@ tags: [Experience, Interview, Performance, Lv1]
 **Situação real do projeto:**
 
 ```markdown
-Estatisticas de uma pagina inicial
+Estatisticas de uma página inicial
 - 300+ miniaturas (150-300KB cada)
 - 50+ banners promocionais
 - Se tudo for carregado: 300 x 200KB = 60MB+ de dados de imagem
@@ -29,13 +29,13 @@ Problemas reais
 Impacto
 - Tempo do primeiro carregamento: 15-20 segundos
 - Consumo de trafego: 60MB+ (usuarios reclamando)
-- Travamento da pagina: rolagem nao fluida
+- Travamento da página: rolagem não fluida
 - Taxa de rejeicao: 42% (muito alta)
 ```
 
 ## Objetivo da otimização (Task)
 
-1. **Carregar apenas imagens na area visível**
+1. **Carregar apenas imagens na área visível**
 2. **Pre-carregar imagens prestes a entrar na viewport** (iniciar carregamento 50px antes)
 3. **Controlar concorrência** (evitar carregar muitas imagens simultaneamente)
 4. **Prevenir desperdício de recursos por troca rápida**
@@ -55,7 +55,7 @@ const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        // Imagem entrou na area visível
+        // Imagem entrou na área visível
         // Iniciar carregamento da imagem
       }
     });
@@ -121,12 +121,12 @@ Caso real:
 ```md
 Acoes do usuario:
 
-1. Clica na categoria "Noticias" -> aciona carregamento de 100 imagens (versao 1001)
-2. 0.5 segundo depois clica em "Promocoes" -> aciona carregamento de 80 imagens (versao 1002)
+1. Clica na categoria "Notícias" -> aciona carregamento de 100 imagens (versão 1001)
+2. 0.5 segundo depois clica em "Promoções" -> aciona carregamento de 80 imagens (versão 1002)
 3. As imagens de noticias terminam de carregar 1 segundo depois
 
-Sem controle de versao: exibe imagens de noticias (errado!)
-Com controle de versao: verifica versao inconsistente, descarta imagens de noticias (correto!)
+Sem controle de versão: exibe imagens de noticias (errado!)
+Com controle de versão: verifica versão inconsistente, descarta imagens de noticias (correto!)
 ```
 
 #### Quarta camada: estratégia de placeholder (imagem transparente Base64)

@@ -218,7 +218,7 @@ de Favicon
 
    - Controlar o comprimento entre 150-160 caracteres
    - Descrever o conteúdo da página de forma concisa
-   - Incluir chamada para acao (CTA)
+   - Incluir chamada para ação (CTA)
 
 3. **Imagem Open Graph**
 

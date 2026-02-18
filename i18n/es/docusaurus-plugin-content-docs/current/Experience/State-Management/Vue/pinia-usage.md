@@ -12,7 +12,7 @@ tags: [Experience, Interview, State-Management, Vue]
 ## 1. Eje principal de respuesta en entrevista
 
 1. **Uso en componentes**: Usar `storeToRefs` para mantener la reactividad, Actions se pueden desestructurar directamente.
-2. **Composicion con Composables**: Componer múltiples Stores en Composables, encapsulando la logica de negocio.
+2. **Composicion con Composables**: Componer múltiples Stores en Composables, encapsulando la lógica de negocio.
 3. **Comunicación entre Stores**: Se recomienda componer en Composable, evitando dependencias circulares.
 
 ---
@@ -72,7 +72,7 @@ const { setToptVerified } = authStore;
 
 ### 3.1 Caso real: useGame.ts
 
-Los Composables son el mejor lugar para componer la logica del Store.
+Los Composables son el mejor lugar para componer la lógica del Store.
 
 ```typescript
 import { useGameStore } from 'stores/gameStore';
@@ -91,7 +91,7 @@ export function useGame() {
   // 3. Desestructurar actions (desestructuración directa)
   const { initAllGameList, updateAllGameList } = gameStore;
 
-  // 4. Componer logica
+  // 4. Componer lógica
   async function initGameTypeList() {
     const { status, data } = await useApi(getGameTypes);
     if (status) {
@@ -111,10 +111,10 @@ export function useGame() {
 ```
 
 **Puntos clave de entrevista**:
-- Los Composables son el mejor lugar para componer la logica del Store
+- Los Composables son el mejor lugar para componer la lógica del Store
 - Usar `storeToRefs` para asegurar la reactividad
 - Las Actions se pueden desestructurar directamente
-- Encapsular la logica de negocio compleja en el composable
+- Encapsular la lógica de negocio compleja en el composable
 
 ---
 
@@ -224,7 +224,7 @@ export const useUserInfoStore = defineStore('useInfoStore', {
   persist: false, // No persistir (información sensible)
 });
 
-// 3. useAuth.ts - Componer la logica de autenticación
+// 3. useAuth.ts - Componer la lógica de autenticación
 export function useAuth() {
   const authStore = useAuthStore();
   const { access_token } = storeToRefs(authStore);
@@ -282,8 +282,8 @@ const onSubmit = async (formData: LoginForm) => {
 1. **Separación de responsabilidades**
    - `authStore`: Solo gestiona el estado de autenticación
    - `userInfoStore`: Solo gestiona la información del usuario
-   - `useAuth`: Encapsula la logica de negocio relacionada con la autenticación
-   - `useUserInfo`: Encapsula la logica de negocio relacionada con la información del usuario
+   - `useAuth`: Encapsula la lógica de negocio relacionada con la autenticación
+   - `useUserInfo`: Encapsula la lógica de negocio relacionada con la información del usuario
 
 2. **Flujo de datos reactivo**
    - Usar `storeToRefs` para mantener la reactividad
@@ -312,7 +312,7 @@ const onSubmit = async (formData: LoginForm) => {
 
 **Se puede responder así:**
 
-> La comunicación entre Stores tiene dos formas: 1) Llamar a otro Store dentro de un Store, pero hay que tener cuidado de evitar dependencias circulares; 2) Componer múltiples Stores en Composable, esta es la forma recomendada. La mejor práctica es mantener el principio de responsabilidad única del Store, encapsular la logica de negocio compleja en el Composable y evitar dependencias directas entre Stores.
+> La comunicación entre Stores tiene dos formas: 1) Llamar a otro Store dentro de un Store, pero hay que tener cuidado de evitar dependencias circulares; 2) Componer múltiples Stores en Composable, esta es la forma recomendada. La mejor práctica es mantener el principio de responsabilidad única del Store, encapsular la lógica de negocio compleja en el Composable y evitar dependencias directas entre Stores.
 
 **Puntos clave:**
 - Dos formas de comunicación
@@ -325,7 +325,7 @@ const onSubmit = async (formData: LoginForm) => {
 
 **Se puede responder así:**
 
-> Al usar Pinia Store en proyectos, hay varias prácticas clave: 1) Usar `storeToRefs` en componentes para desestructurar state y getters, manteniendo la reactividad; 2) Componer múltiples Stores en Composables, encapsulando la logica de negocio; 3) La comunicación entre Stores se recomienda componer en Composable, evitando dependencias circulares; 4) Mantener el principio de responsabilidad única del Store, colocando la logica compleja en el Composable.
+> Al usar Pinia Store en proyectos, hay varias prácticas clave: 1) Usar `storeToRefs` en componentes para desestructurar state y getters, manteniendo la reactividad; 2) Componer múltiples Stores en Composables, encapsulando la lógica de negocio; 3) La comunicación entre Stores se recomienda componer en Composable, evitando dependencias circulares; 4) Mantener el principio de responsabilidad única del Store, colocando la lógica compleja en el Composable.
 
 **Puntos clave:**
 - Uso de `storeToRefs`

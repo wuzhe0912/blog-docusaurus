@@ -37,7 +37,7 @@ En Nuxt 3 (Vue 3 SSR), diferentes Hooks se ejecutan en diferentes entornos:
 **Respuesta:**
 No. `onMounted` solo se ejecuta en el Client (navegador). El renderizado del lado del servidor solo se encarga de generar la cadena HTML, no realiza el montaje (Mounting) del DOM.
 
-**Pregunta de seguimiento: Qué hacer si necesitas ejecutar logica específica en el Server?**
+**Pregunta de seguimiento: Qué hacer si necesitas ejecutar lógica específica en el Server?**
 - Usar `setup()` o `useAsyncData` / `useFetch`.
 - Si necesitas distinguir el entorno, puedes usar `process.server` o `process.client` para determinar.
 
@@ -74,7 +74,7 @@ En aplicaciones SSR, después de que el Server renderiza el HTML, serializa el e
 
 | Característica | Vue `ref` / `reactive` | Nuxt `useState` |
 |----------------|------------------------|-----------------|
-| **Alcance** | Dentro del componente / modulo | Global (compartible a través de key en toda la App) |
+| **Alcance** | Dentro del componente / módulo | Global (compartible a través de key en toda la App) |
 | **Sincronizacion de estado SSR** | ❌ No se sincroniza | ✅ Serializa y sincroniza automáticamente al Client |
 | **Escenarios de uso** | Solo estado de interacción del Client, datos que no necesitan sincronización SSR | Estado entre componentes, datos que deben pasar del Server al Client (como User Info) |
 
@@ -129,7 +129,7 @@ El Server y el Client generan contenido diferente al ejecutarse.
 - **Ejemplo**: `new Date()`, `Math.random()`.
 - **Solución**:
     - Usar `useState` para fijar el valor.
-    - O mover esta logica a `onMounted` (solo renderizar en el Client, dejar en blanco o mostrar Placeholder en el Server).
+    - O mover esta lógica a `onMounted` (solo renderizar en el Client, dejar en blanco o mostrar Placeholder en el Server).
 
 ```typescript
 // Incorrecto

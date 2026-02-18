@@ -21,7 +21,7 @@ tags: [Experience, Interview, Login, Lv1]
 
 - **Estado salvo no cliente**: após login bem-sucedido, um Token é gerado (contendo informações e permissões do usuário) é armazenado pelo front-end.
 - **Cada requisição inclui o Token**: geralmente no `Authorization: Bearer <token>`; o servidor verifica a assinatura para obter as informações do usuário.
-- **Comum em SPA / microsservicos**: o back-end so precisa verificar o Token, sem precisar armazenar o estado do usuário.
+- **Comum em SPA / microsserviços**: o back-end só precisa verificar o Token, sem precisar armazenar o estado do usuário.
 
 ---
 
@@ -41,10 +41,10 @@ tags: [Experience, Interview, Login, Lv1]
 
 | Aspecto    | Session-based                                                                 | Token-based (JWT)                                                                 |
 | ---------- | ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| Vantagens  | - Cookie enviado automaticamente, simples no navegador<br />- Session pode armazenar grande volume de dados<br />- Facil revogação e logout forçado | - Stateless, escalável horizontalmente<br />- Adequado para SPA, dispositivos móveis, microsservicos<br />- Token pode ser usado entre domínios e dispositivos |
+| Vantagens  | - Cookie enviado automaticamente, simples no navegador<br />- Session pode armazenar grande volume de dados<br />- Facil revogação e logout forçado | - Stateless, escalável horizontalmente<br />- Adequado para SPA, dispositivos móveis, microsserviços<br />- Token pode ser usado entre domínios e dispositivos |
 | Desvantagens | - Servidor precisa manter Session Store, consome memória<br />- Deploy distribuído requer sincronização de Session | - Token tem tamanho maior, transmitido em cada requisição<br />- Dificil de revogar, requer blacklist / rotação de chaves |
 | Riscos de segurança | - Vulneravel a ataques CSRF (Cookie é enviado automaticamente)<br />- Se o Session ID vazar, deve ser limpo imediatamente | - Vulneravel a XSS (se armazenado em local acessível)<br />- Se Token for roubado antes de expirar, requisições podem ser repetidas |
-| Cenários de uso | - Web tradicional (SSR) + mesmo domínio<br />- Servidor responsável por renderizar páginas | - RESTful API / GraphQL<br />- Apps móveis, SPA, microsservicos |
+| Cenários de uso | - Web tradicional (SSR) + mesmo domínio<br />- Servidor responsável por renderizar páginas | - RESTful API / GraphQL<br />- Apps móveis, SPA, microsserviços |
 
 ---
 
@@ -56,7 +56,7 @@ tags: [Experience, Interview, Login, Lv1]
    - Sim -> Token-based é mais flexível.
    - Não -> Session-based é mais simples.
 
-2. **O deploy e em múltiplos servidores ou microsservicos?**
+2. **O deploy e em múltiplos servidores ou microsserviços?**
    - Sim -> Token-based reduz a necessidade de replicação ou centralizacao de Session.
    - Não -> Session-based é fácil e seguro.
 
@@ -75,8 +75,8 @@ tags: [Experience, Interview, Login, Lv1]
 ## 5. Modelo de resposta para entrevista
 
 > "Session tradicional armazena o estado no servidor, retorna um session id no Cookie, e o navegador envia automaticamente o Cookie em cada requisição, sendo ideal para Web Apps no mesmo domínio. A desvantagem é que o servidor precisa manter um Session Store, e com múltiplos servidores é necessário sincronizar.
-> Já o Token-based (como JWT) codifica as informações do usuário em um Token armazenado no cliente, e o front-end inclui manualmente no Header em cada requisição. Esse método é stateless, ideal para SPA e microsservicos, é mais fácil de escalar.
-> Em termos de segurança, Session deve se preocupar com CSRF, Token deve se preocupar com XSS. Se eu precisar de cross-domain, dispositivos móveis ou integração de múltiplos serviços, escolheria Token; se for um sistema corporativo tradicional com renderizacao no servidor, escolheria Session com httponly Cookie."
+> Já o Token-based (como JWT) codifica as informações do usuário em um Token armazenado no cliente, e o front-end inclui manualmente no Header em cada requisição. Esse método é stateless, ideal para SPA e microsserviços, é mais fácil de escalar.
+> Em termos de segurança, Session deve se preocupar com CSRF, Token deve se preocupar com XSS. Se eu precisar de cross-domain, dispositivos móveis ou integração de múltiplos serviços, escolheria Token; se for um sistema corporativo tradicional com renderização no servidor, escolheria Session com httponly Cookie."
 
 ---
 

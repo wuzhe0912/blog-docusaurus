@@ -34,9 +34,9 @@ O usuario realmente precisa ver todos os dados?
 Os dados precisam ser atualizados em tempo real?
 -> WebSocket em tempo real vs polling periodico vs apenas carregamento inicial
 
-Qual e o padrao de operacao do usuario?
+Qual e o padrão de operação do usuario?
 -> Navegacao principal -> virtual scroll
--> Buscar dados especificos -> busca + paginacao
+-> Buscar dados especificos -> busca + páginação
 -> Visualizar registro por registro -> scroll infinito
 
 A estrutura de dados e fixa?
@@ -51,21 +51,21 @@ E necessario selecionar tudo, imprimir ou exportar?
 ### Análise de casos reais
 
 ```javascript
-// Caso 1: Historico de transacoes (10.000+ registros)
-Comportamento do usuario: ver transacoes recentes, buscar datas especificas ocasionalmente
-Melhor solucao: paginacao no back-end + busca
+// Caso 1: Historico de transações (10.000+ registros)
+Comportamento do usuario: ver transações recentes, buscar datas especificas ocasionalmente
+Melhor solução: páginação no back-end + busca
 
 // Caso 2: Lista de jogos em tempo real (3.000+ jogos)
 Comportamento do usuario: navegar, filtrar por categoria, rolagem fluida
-Melhor solucao: virtual scroll + filtragem no front-end
+Melhor solução: virtual scroll + filtragem no front-end
 
 // Caso 3: Feed social (crescimento infinito)
 Comportamento do usuario: rolar continuamente para baixo, sem necessidade de pular paginas
-Melhor solucao: scroll infinito + carregamento em lotes
+Melhor solução: scroll infinito + carregamento em lotes
 
 // Caso 4: Relatorios de dados (tabelas complexas)
 Comportamento do usuario: visualizar, ordenar, exportar
-Melhor solucao: paginacao no back-end + API de exportacao
+Melhor solução: páginação no back-end + API de exportacao
 ```
 
 ---
@@ -76,9 +76,9 @@ Melhor solucao: paginacao no back-end + API de exportacao
 
 | Solução           | Cenário adequado          | Vantagens                | Desvantagens             | Dificuldade | Performance |
 | ----------------- | ------------------------- | ------------------------ | ------------------------ | ----------- | ----------- |
-| **Paginacao back-end** | Maioria dos cenários  | Simples é confiável, SEO friendly | Necessita paginação, experiência interrompida | 1/5 Simples | 3/5 Média |
+| **Paginacao back-end** | Maioria dos cenários  | Simples é confiável, SEO friendly | Necessita páginação, experiência interrompida | 1/5 Simples | 3/5 Média |
 | **Virtual scroll** | Grandes volumes com altura fixa | Performance máxima, rolagem fluida | Implementação complexa, sem busca nativa | 4/5 Complexa | 5/5 Excelente |
-| **Scroll infinito** | Redes sociais, feeds de notícias | Experiência contínua, implementação simples | Acúmulo de memória, sem paginação | 2/5 Simples | 3/5 Média |
+| **Scroll infinito** | Redes sociais, feeds de notícias | Experiência contínua, implementação simples | Acúmulo de memória, sem páginação | 2/5 Simples | 3/5 Média |
 | **Carregamento em lotes** | Otimização do carregamento inicial | Carregamento progressivo, combina com skeleton screen | Requer cooperacao do back-end | 2/5 Simples | 3/5 Média |
 | **Web Worker** | Computacao pesada, ordenação, filtragem | Não bloqueia thread principal | Custo de comunicação, debug difícil | 3/5 Média | 4/5 Boa |
 | **Solução híbrida** | Requisitos complexos | Combina vantagens de múltiplas soluções | Alta complexidade | 4/5 Complexa | 4/5 Boa |
@@ -155,7 +155,7 @@ Adequado
 
 Nao adequado
 - Necessidade de experiencia de rolagem fluida
-- Listas com atualizacao em tempo real (paginacao pode saltar)
+- Listas com atualização em tempo real (páginação pode saltar)
 - Aplicacoes tipo rede social
 ```
 
@@ -166,7 +166,7 @@ Nao adequado
 > **Índice de recomendação: 4/5 (recomendado)**
 > Melhor performance, adequado para grandes volumes de dados com altura fixa
 
-Virtual scroll é uma técnica que renderiza apenas a area visível, reduzindo nos de DOM de 10.000+ para 20-30, com redução de 80% no uso de memória.
+Virtual scroll é uma técnica que renderiza apenas a área visível, reduzindo nos de DOM de 10.000+ para 20-30, com redução de 80% no uso de memória.
 
 #### Conceito central
 
@@ -224,7 +224,7 @@ const items = ref(
 | --------------- | ------------------------ | -------------- | -------- |
 | Nos de DOM      | 10.000+                  | 20-30          | -99.7%   |
 | Uso de memória  | 150 MB                   | 30 MB          | -80%     |
-| Primeira renderizacao | 3-5 segundos        | 0.3 segundo    | +90%     |
+| Primeira renderização | 3-5 segundos        | 0.3 segundo    | +90%     |
 | FPS de rolagem  | < 20                     | 55-60          | +200%    |
 
 #### Saiba mais
@@ -402,8 +402,8 @@ Adequado
 - Calculos estatisticos (processamento de dados para graficos)
 
 Nao adequado
-- Necessidade de manipular DOM (Worker nao tem acesso)
-- Calculos simples (custo de comunicacao maior que o calculo)
+- Necessidade de manipular DOM (Worker não tem acesso)
+- Calculos simples (custo de comunicação maior que o calculo)
 - Interacoes que necessitam feedback imediato
 ```
 
@@ -444,11 +444,11 @@ Detalhes: [Aplicação de Web Worker ->](/docs/experience/performance/lv3-web-wo
 
 Para cenários complexos, combine múltiplas soluções:
 
-#### Opção A: Virtual scroll + paginação back-end
+#### Opção A: Virtual scroll + páginação back-end
 
 ```javascript
 // A cada vez, buscar 500 registros do back-end
-// Front-end usa virtual scroll para renderizacao
+// Front-end usa virtual scroll para renderização
 // Ao chegar ao final da rolagem, carregar próximos 500 registros
 
 const pageSize = 500;
@@ -645,10 +645,10 @@ Após escolher a solução, use estes indicadores para avaliar os resultados:
 ### Indicadores técnicos
 
 ```markdown
-1. Tempo da primeira renderizacao (FCP): < 1 segundo
+1. Tempo da primeira renderização (FCP): < 1 segundo
 2. Tempo ate interatividade (TTI): < 3 segundos
 3. FPS de rolagem: > 50 (meta 60)
-4. Uso de memoria: < 50 MB
+4. Uso de memória: < 50 MB
 5. Quantidade de nos DOM: < 1000
 ```
 
@@ -666,7 +666,7 @@ Após escolher a solução, use estes indicadores para avaliar os resultados:
 ```markdown
 1. Chrome DevTools
    - Performance: Long Task, FPS
-   - Memory: uso de memoria
+   - Memory: uso de memória
    - Network: quantidade e tamanho de requisicoes
 
 2. Lighthouse
@@ -714,7 +714,7 @@ Após escolher a solução, use estes indicadores para avaliar os resultados:
 >
 > - Nos de DOM de 10.000+ para 20-30 (-99.7%)
 > - Uso de memória reduzido em 80% (150MB -> 30MB)
-> - Tempo da primeira renderizacao de 3-5 segundos para 0.3 segundo
+> - Tempo da primeira renderização de 3-5 segundos para 0.3 segundo
 > - Fluidez de rolagem atingindo 60 FPS
 >
 > Combinado com filtragem no front-end, controle de atualização com RAF, skeleton screen e outras otimizações, a experiência do usuário melhorou significativamente.
@@ -769,7 +769,7 @@ R: Usando combinação de várias ferramentas:
 Ao enfrentar a questão "otimização de dezenas de milhares de dados":
 
 1. **Avalie os requisitos primeiro**: não se apresse em escolher a tecnologia
-2. **Conheca múltiplas soluções**: paginação back-end, virtual scroll, scroll infinito, etc.
+2. **Conheca múltiplas soluções**: páginação back-end, virtual scroll, scroll infinito, etc.
 3. **Pondere os trade-offs**: performance vs custo de desenvolvimento vs experiência do usuário
 4. **Otimize continuamente**: use ferramentas de monitoramento para melhorias continuas
 5. **Deixe os dados falarem**: comprove a eficacia da otimização com dados reais de performance

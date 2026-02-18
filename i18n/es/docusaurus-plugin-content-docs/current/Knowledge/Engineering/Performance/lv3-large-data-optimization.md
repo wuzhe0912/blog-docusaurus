@@ -36,7 +36,7 @@ Antes de elegir una solución técnica, hazte estas preguntas:
 
 ❓ Cual es el patrón de operacion del usuario?
 → Navegacion → Virtual Scroll
-→ Busqueda de datos especificos → Busqueda + paginacion
+→ Busqueda de datos especificos → Busqueda + paginación
 → Revision secuencial → Scroll infinito
 
 ❓ La estructura de datos es fija?
@@ -53,19 +53,19 @@ Antes de elegir una solución técnica, hazte estas preguntas:
 ```javascript
 // Caso 1: Historial de transacciones (10,000+ registros)
 Comportamiento del usuario: Ver transacciones recientes, ocasionalmente buscar por fecha
-Mejor solucion: Paginacion backend + busqueda
+Mejor solución: Paginacion backend + búsqueda
 
 // Caso 2: Lista de juegos en tiempo real (3,000+ juegos)
 Comportamiento del usuario: Navegar, filtrar por categoria, scroll fluido
-Mejor solucion: Virtual Scroll + filtrado frontend
+Mejor solución: Virtual Scroll + filtrado frontend
 
 // Caso 3: Feed social (crecimiento infinito)
 Comportamiento del usuario: Desplazarse continuamente, sin necesidad de cambio de pagina
-Mejor solucion: Scroll infinito + carga por lotes
+Mejor solución: Scroll infinito + carga por lotes
 
 // Caso 4: Reportes de datos (tabla compleja)
 Comportamiento del usuario: Consultar, ordenar, exportar
-Mejor solucion: Paginacion backend + API de exportacion
+Mejor solución: Paginacion backend + API de exportacion
 ```
 
 ---

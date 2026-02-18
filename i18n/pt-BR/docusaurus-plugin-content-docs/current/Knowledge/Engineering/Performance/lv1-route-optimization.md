@@ -94,7 +94,7 @@ Inclui todos os 27 templates + todas as paginas
 ```markdown
 Primeiro carregamento: main.js (850 KB) - 93%
 Tempo da primeira tela: 1.5-2.5 segundos + 70%
-Inclui apenas codigo central + pagina inicial atual
+Inclui apenas codigo central + página inicial atual
 ```
 
 **Dados concretos:**

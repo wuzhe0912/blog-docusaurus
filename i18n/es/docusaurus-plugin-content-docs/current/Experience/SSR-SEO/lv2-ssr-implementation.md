@@ -95,7 +95,7 @@ const { data: product } = await useFetch(`/api/products/${route.params.id}`, {
 // useFetch: centrado en API
 const { data } = await useFetch('/api/products/123');
 
-// useAsyncData: logica async personalizada
+// useAsyncData: lógica async personalizada
 const { data } = await useAsyncData('products', async () => {
   const result = await someAsyncOperation();
   return result;
@@ -340,7 +340,7 @@ export default defineCachedEventHandler(
 
 ## 8. Resumen para entrevista
 
-> En Nuxt 3 implemente data fetching SSR y gestión dinámica de SEO Meta para cubrir dos objetivos: indexación correcta y experiencia rápida. Para eso combine precarga en servidor, metadatos por ruta y optimizaciones como deduplication, cache y separación SSR/CSR.
+> En Nuxt 3 implementé data fetching SSR y gestión dinámica de SEO Meta para cubrir dos objetivos: indexación correcta y experiencia rápida. Para eso combine precarga en servidor, metadatos por ruta y optimizaciones como deduplication, cache y separación SSR/CSR.
 
 **Puntos clave:**
 - ✅ Uso correcto de `useFetch`/`useAsyncData`

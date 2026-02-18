@@ -22,7 +22,7 @@ Sin optimización, estas operaciones causan congelamiento de la página y alto u
 
 ---
 
-## Estrategia 1: Debounce - Optimización de entrada de busqueda
+## Estrategia 1: Debounce - Optimización de entrada de búsqueda
 
 ```javascript
 import { useDebounceFn } from '@vueuse/core';
@@ -194,7 +194,7 @@ requestAnimationFrame(animateScroll);
 | Característica | Debounce                       | Throttle                        |
 | -------------- | ------------------------------ | ------------------------------- |
 | Momento de activación | Espera un tiempo tras detener la operación | Solo se ejecuta 1 vez en un intervalo fijo |
-| Escenario de uso | Entrada de busqueda, resize de ventana | Eventos de scroll, movimiento del raton |
+| Escenario de uso | Entrada de búsqueda, resize de ventana | Eventos de scroll, movimiento del ratón |
 | Número de ejecuciones | Puede no ejecutarse (si se activa continuamente) | Ejecución garantizada (frecuencia fija) |
 | Latencia | Hay latencia (espera a que se detenga) | Ejecución inmediata, luego se limita |
 
@@ -203,7 +203,7 @@ requestAnimationFrame(animateScroll);
 | Característica | Time Slicing                   | Web Worker                      |
 | -------------- | ------------------------------ | ------------------------------- |
 | Entorno de ejecución | Hilo principal              | Hilo en segundo plano           |
-| Escenario de uso | Tareas que necesitan manipular DOM | Tareas de calculo puro         |
+| Escenario de uso | Tareas que necesitan manipular DOM | Tareas de cálculo puro         |
 | Complejidad de implementación | Relativamente simple | Relativamente complejo (requiere comunicación) |
 | Mejora de rendimiento | Evita bloquear hilo principal | Computo verdaderamente paralelo |
 
@@ -213,7 +213,7 @@ requestAnimationFrame(animateScroll);
 
 R: Según el escenario:
 
-- **Debounce**: Adecuado para escenarios de "esperar a que el usuario complete la operación" (como entrada de busqueda)
+- **Debounce**: Adecuado para escenarios de "esperar a que el usuario complete la operación" (como entrada de búsqueda)
 - **Throttle**: Adecuado para escenarios de "actualización continua pero no tan frecuente" (como seguimiento de scroll)
 
 **P: Cómo elegir entre Time Slicing y Web Worker?**

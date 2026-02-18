@@ -23,7 +23,7 @@ tags: [Experience, Interview, Login]
 
 ## Lv3 Questões de design de sistema
 
-- Por que arquiteturas de microsservicos preferem usar JWT? (a ser organizado)
+- Por que arquiteturas de microsserviços preferem usar JWT? (a ser organizado)
 - Quais são as desvantagens do JWT? Como lidar com logout ativo? (a ser organizado)
 - Como reduzir ou impedir o roubo de Token? (a ser organizado)
 

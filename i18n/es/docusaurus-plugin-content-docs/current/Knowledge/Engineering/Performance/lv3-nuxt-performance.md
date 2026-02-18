@@ -140,7 +140,7 @@ Nuxt 3 soporta HTML Streaming, permite renderizar y enviar al mismo tiempo para 
 ## 4. Optimización de imágenes en Nuxt 3
 
 ### 4.1 Uso de @nuxt/image
-El modulo oficial `@nuxt/image` es la mejor solución:
+El módulo oficial `@nuxt/image` es la mejor solución:
 - **Conversión automática de formato**: Conversión automática a WebP/AVIF.
 - **Escalado automático**: Genera imágenes del tamaño adecuado según la pantalla.
 - **Lazy Loading**: Lazy loading integrado.
@@ -183,7 +183,7 @@ Para grandes volúmenes de datos (como 10,000 productos), hay tres estrategias p
 
 | Estrategia | Escenario adecuado | Compatibilidad SEO |
 | :--- | :--- | :--- |
-| **Paginación tradicional** | Listas de e-commerce, articulos | La mejor |
+| **Paginación tradicional** | Listas de e-commerce, artículos | La mejor |
 | **Scroll infinito** | Feeds sociales, galerias de fotos | Requiere tratamiento especial |
 | **Virtual Scroll** | Reportes complejos, listas muy largas | Contenido no esta en el DOM |
 
@@ -299,7 +299,7 @@ export default defineEventHandler((event) => {
 > La clave es reducir TTFB. Configuro Server-side caching (SWR) con `routeRules` de Nitro. Las solicitudes API se paralelizan con `Promise.all`. Los datos no criticos se mueven al cliente con `lazy: true`.
 
 **P: Cómo se optimizan las imágenes?**
-> Uso el modulo `@nuxt/image`, que convierte automáticamente a WebP, escala automáticamente y soporta Lazy Loading.
+> Uso el módulo `@nuxt/image`, que convierte automáticamente a WebP, escala automáticamente y soporta Lazy Loading.
 
 **P: Cómo mantener el SEO con scroll infinito?**
 > El scroll infinito no es amigable con SEO. Para sitios de contenido, prefiero paginación tradicional. Si es necesario el scroll infinito, renderizo la primera página con SSR y uso Meta Tags (`rel="next"`) para indicar la estructura de paginación a los crawlers.

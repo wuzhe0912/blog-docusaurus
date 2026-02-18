@@ -100,7 +100,7 @@ export default defineNuxtConfig({
 // uso
 const config = useRuntimeConfig();
 const apiBase = config.public.apiBase; // cliente + servidor
-const secret = config.apiSecret; // so servidor
+const secret = config.apiSecret; // só servidor
 ```
 
 **Mensagem-chave:** segredo fica no servidor; configuração pública fica no bloco `public`.
@@ -166,7 +166,7 @@ const { data } = await useFetch('/api/me', {
 
 - Definir keys únicos para deduplication
 - Centralizar acesso em composables compartilhados
-- Separar carga inicial de acao do usuário
+- Separar carga inicial de ação do usuário
 
 ```ts
 const { data, refresh } = await useFetch('/api/products', {
@@ -201,7 +201,7 @@ export default defineCachedEventHandler(
 );
 ```
 
-**Mensagem-chave:** performance e decisão de arquitetura, não so detalhe de frontend.
+**Mensagem-chave:** performance e decisão de arquitetura, não só detalhe de frontend.
 
 ---
 
@@ -330,7 +330,7 @@ useHead({
 3. Staging com teste de carga antes de produção
 4. Definir error budget e alerting
 
-**Mensagem-chave:** SSR não é so renderizacao; também é arquitetura operacional.
+**Mensagem-chave:** SSR não é só renderização; também é arquitetura operacional.
 
 ---
 

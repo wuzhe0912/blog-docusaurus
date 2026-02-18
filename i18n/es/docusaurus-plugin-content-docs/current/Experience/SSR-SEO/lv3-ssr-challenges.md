@@ -69,7 +69,7 @@ onMounted(() => {
 </script>
 ```
 
-**Idea clave de entrevista:** salida SSR determinista; toda logica browser-only aislada en cliente.
+**Idea clave de entrevista:** salida SSR determinista; toda lógica browser-only aislada en cliente.
 
 ---
 

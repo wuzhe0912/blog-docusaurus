@@ -62,7 +62,7 @@ O frontend não pode armazenar Private API Keys com segurança. Usando Server Ro
 // server/api/weather.ts
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
-  // API Key so e usada no Server, não é exposta ao Client
+  // API Key só e usada no Server, não é exposta ao Client
   const data = await $fetch(
     `https://api.weather.com/v1?key=${config.weatherApiKey}`
   );
@@ -162,7 +162,7 @@ Disallow: /admin
 Disallow: /private
 Sitemap: https://example.com/sitemap.xml`
     : `User-agent: *
-Disallow: /`; // Proibir indexacao em ambientes nao-producao
+Disallow: /`; // Proibir indexação em ambientes não-producao
 
   setHeader(event, 'content-type', 'text/plain');
   return robots;

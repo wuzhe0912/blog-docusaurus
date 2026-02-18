@@ -83,7 +83,7 @@ Procesamiento de filtros, compresion y operaciones de pixeles sin congelar la UI
 
 ## Escenario 3: Calculos complejos
 
-Operaciones matematicas (calculo de números primos, cifrado/descifrado)
+Operaciones matemáticas (cálculo de números primos, cifrado/descifrado)
 Calculo de hash de archivos grandes
 Analisis de datos y estadísticas
 
@@ -403,7 +403,7 @@ console.log(result); // 3
 
 **Consejos practicos:**
 
-- Comenzar con casos simples (como calculo de primos)
+- Comenzar con casos simples (como cálculo de primos)
 - Usar Chrome DevTools para depurar
 - Medir diferencias de rendimiento
 - Considerar herramientas como Comlink

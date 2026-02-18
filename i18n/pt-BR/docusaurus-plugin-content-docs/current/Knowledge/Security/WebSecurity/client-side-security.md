@@ -12,7 +12,7 @@ Basicamente, CSP é um mecanismo para melhorar a segurança de páginas web. Atr
 
 Do ponto de vista do front-end, para prevenir ataques XSS (Cross-site scripting), frameworks modernos são geralmente adotados no desenvolvimento, pois eles fornecem mecanismos básicos de proteção. Por exemplo, o JSX do React realiza automaticamente o escape de HTML, e o Vue faz o escape automático de tags HTML ao vincular dados com `{{ data }}`.
 
-Embora o front-end tenha opções limitadas nessa area, ainda existem algumas otimizações de detalhe que podem ser feitas:
+Embora o front-end tenha opções limitadas nessa área, ainda existem algumas otimizações de detalhe que podem ser feitas:
 
 1. Para formularios que exigem entrada de conteúdo, você pode validar caracteres especiais para evitar ataques (mas é difícil prever todos os cenários), então geralmente se adota limitação de comprimento para controlar o conteúdo de entrada no client, ou limitar o tipo de entrada.
 2. Ao referenciar links externos, evite URLs http e utilize URLs https.

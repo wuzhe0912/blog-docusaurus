@@ -321,7 +321,7 @@ modules: {
   product: productModule,
 }
 
-// Pinia: Cada modulo se convierte en un store independiente
+// Pinia: Cada módulo se convierte en un store independiente
 // stores/user.ts
 export const useUserStore = defineStore('user', { ... });
 

@@ -5,7 +5,7 @@ slug: /experience/performance/lv3-web-worker
 tags: [Experience, Interview, Performance, Lv3]
 ---
 
-> **Web Worker** é uma API que executa JavaScript em uma thread de segundo plano no navegador, permitindo realizar computacoes demoradas sem bloquear a thread principal (thread da UI).
+> **Web Worker** é uma API que executa JavaScript em uma thread de segundo plano no navegador, permitindo realizar computações demoradas sem bloquear a thread principal (thread da UI).
 
 ## Conceito central
 
@@ -23,7 +23,7 @@ function heavyComputation() {
 }
 
 // A página inteira congela durante a execução
-const result = heavyComputation(); // UI nao pode interagir
+const result = heavyComputation(); // UI não pode interagir
 ```
 
 **Problema:**
@@ -276,8 +276,8 @@ E computacao demorada (> 50ms)?
     |   |- Sim -> Nao pode usar Worker (considere requestIdleCallback)
     |   |- Nao -> Continuar avaliando
     |
-    |- Frequencia de comunicacao e alta (> 60 vezes/segundo)?
-        |- Sim -> Provavelmente nao adequado (overhead de comunicacao)
+    |- Frequencia de comunicação e alta (> 60 vezes/segundo)?
+        |- Sim -> Provavelmente não adequado (overhead de comunicação)
         |- Nao -> Adequado para usar Worker
 ```
 

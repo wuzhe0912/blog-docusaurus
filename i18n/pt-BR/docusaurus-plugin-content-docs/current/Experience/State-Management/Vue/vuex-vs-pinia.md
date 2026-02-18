@@ -34,7 +34,7 @@ tags: [Experience, Interview, State-Management, Vue]
 
 ### 3.1 Mutations vs Actions
 
-**Vuex**: Requer `mutations` para modificar o state de forma sincrona
+**Vuex**: Requer `mutations` para modificar o state de forma síncrona
 
 ```javascript
 // Vuex
@@ -68,8 +68,8 @@ export const useCounterStore = defineStore('counter', {
 ```
 
 **Diferencas-chave**:
-- **Vuex**: Deve modificar o state de forma sincrona através de `mutations`, `actions` chamam `mutations` via `commit`
-- **Pinia**: Não requer `mutations`, `actions` podem modificar o state diretamente (sincrona ou assincronamente)
+- **Vuex**: Deve modificar o state de forma síncrona através de `mutations`, `actions` chamam `mutations` via `commit`
+- **Pinia**: Não requer `mutations`, `actions` podem modificar o state diretamente (síncrona ou assincronamente)
 
 ### 3.2 Definicao do State
 
@@ -352,7 +352,7 @@ userStore.setName('John');
 
 2. **Simplificacao da API**
    - Remover mutations simplifica a API e reduz o código boilerplate
-   - Actions podem modificar o state diretamente, seja sincrona ou assincronamente
+   - Actions podem modificar o state diretamente, seja síncrona ou assincronamente
 
 3. **Experiência de desenvolvimento**
    - Reduz uma camada de abstração, facilitando a compreensão e uso pelos desenvolvedores
@@ -401,7 +401,7 @@ actions: { setCount(count) { this.count = count; } },
 
 **Você pode responder assim:**
 
-> Vuex e Pinia são ambas ferramentas de gerenciamento de estado do Vue, as principais diferenças incluem: 1) Complexidade da API: Vuex requer mutations para modificar o state de forma sincrona, Pinia não requer mutations, actions podem modificar o state diretamente; 2) Suporte TypeScript: Vuex requer configuração adicional, inferência de tipos incompleta, Pinia tem suporte nativo completo, inferência automática de tipos; 3) Modularizacao: Vuex usa módulos aninhados, requer namespaced, Pinia cada store e independente, sem namespace; 4) Experiência de desenvolvimento: Pinia é menor, suporta HMR, melhor suporte a Devtools; 5) Versao do Vue: Vuex é principalmente para Vue 2, Pinia é a recomendação oficial do Vue 3. Para novos projetos Vue 3, eu recomendo usar Pinia.
+> Vuex e Pinia são ambas ferramentas de gerenciamento de estado do Vue, as principais diferenças incluem: 1) Complexidade da API: Vuex requer mutations para modificar o state de forma síncrona, Pinia não requer mutations, actions podem modificar o state diretamente; 2) Suporte TypeScript: Vuex requer configuração adicional, inferência de tipos incompleta, Pinia tem suporte nativo completo, inferência automática de tipos; 3) Modularizacao: Vuex usa módulos aninhados, requer namespaced, Pinia cada store e independente, sem namespace; 4) Experiência de desenvolvimento: Pinia é menor, suporta HMR, melhor suporte a Devtools; 5) Versao do Vue: Vuex é principalmente para Vue 2, Pinia é a recomendação oficial do Vue 3. Para novos projetos Vue 3, eu recomendo usar Pinia.
 
 **Pontos-chave:**
 - Diferencas de complexidade de API
@@ -413,7 +413,7 @@ actions: { setCount(count) { this.count = count; } },
 
 **Você pode responder assim:**
 
-> Pinia não precisa de mutations por três razoes principais: 1) Vue 3 usa Proxy como sistema reativo, podendo rastrear diretamente as modificacoes de objetos, sem necessidade de rastrear mudancas de estado através de mutations como no Vue 2; 2) Simplificacao da API, remover mutations reduz o código boilerplate, actions podem modificar o state diretamente, seja sincrona ou assincronamente; 3) Melhoria da experiência de desenvolvimento, reduzindo uma camada de abstração, facilitando a compreensão e uso pelos desenvolvedores, sem necessidade de lembrar a diferença entre commit e dispatch.
+> Pinia não precisa de mutations por três razoes principais: 1) Vue 3 usa Proxy como sistema reativo, podendo rastrear diretamente as modificacoes de objetos, sem necessidade de rastrear mudancas de estado através de mutations como no Vue 2; 2) Simplificacao da API, remover mutations reduz o código boilerplate, actions podem modificar o state diretamente, seja síncrona ou assincronamente; 3) Melhoria da experiência de desenvolvimento, reduzindo uma camada de abstração, facilitando a compreensão e uso pelos desenvolvedores, sem necessidade de lembrar a diferença entre commit e dispatch.
 
 **Pontos-chave:**
 - Sistema reativo do Vue 3
@@ -426,7 +426,7 @@ actions: { setCount(count) { this.count = count; } },
 
 **Você pode responder assim:**
 
-> As principais diferenças entre Vuex e Pinia estao no design da API, suporte a TypeScript e forma de modularização. Vuex requer mutations, Pinia não; Pinia tem melhor suporte a TypeScript; Vuex usa módulos aninhados, Pinia usa design flat. Para novos projetos Vue 3, eu recomendo usar Pinia, pois oferece melhor experiência de desenvolvimento e API mais simples. Se o projeto precisa migrar de Vuex para Pinia, os passos principais são remover mutations, converter modules em stores independentes e atualizar o modo de uso nos componentes.
+> As principais diferenças entre Vuex e Pinia estão no design da API, suporte a TypeScript e forma de modularização. Vuex requer mutations, Pinia não; Pinia tem melhor suporte a TypeScript; Vuex usa módulos aninhados, Pinia usa design flat. Para novos projetos Vue 3, eu recomendo usar Pinia, pois oferece melhor experiência de desenvolvimento e API mais simples. Se o projeto precisa migrar de Vuex para Pinia, os passos principais são remover mutations, converter modules em stores independentes e atualizar o modo de uso nos componentes.
 
 **Pontos-chave:**
 - Resumo das diferenças fundamentais

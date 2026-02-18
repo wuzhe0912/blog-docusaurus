@@ -106,7 +106,7 @@ const { data } = await useAsyncData('products', async () => {
 
 **Regra curta para entrevista:**
 
-- **`$fetch`** para acao do usuário (click, submit, refresh).
+- **`$fetch`** para ação do usuário (click, submit, refresh).
 - **`useFetch`** para carga inicial com sincronização SSR/Hydration.
 
 **`$fetch` características:**
@@ -133,7 +133,7 @@ const { data } = await useAsyncData('products', async () => {
 // correto: carga inicial
 const { data } = await useFetch('/api/user');
 
-// correto: acao de usuário
+// correto: ação de usuário
 const submitForm = async () => {
   await $fetch('/api/submit', { method: 'POST', body: form });
 };

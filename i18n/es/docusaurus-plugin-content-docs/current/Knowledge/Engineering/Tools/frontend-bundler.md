@@ -10,7 +10,7 @@ slug: /frontend-bundler
 
 ### Gestión de modulos y plugins
 
-En el pasado, antes de las herramientas de empaquetado frontend, usabamos CDN o etiquetas `<script>` para cargar nuestros archivos (que podian incluir js, css, html). Sin embargo, este enfoque además del desperdicio de rendimiento (HTTP podría requerir múltiples solicitudes), también era propenso a errores frecuentes por diferencias en el orden de carga, o dificultades para depurar. El Bundler ayuda a los desarrolladores a combinar múltiples archivos en uno solo o unos pocos, y esta gestión modular no solo facilita el mantenimiento durante el desarrollo, sino que también hace más conveniente la expansion futura. Por otro lado, la combinación de archivos también reduce el número de solicitudes HTTP, mejorando naturalmente el rendimiento.
+En el pasado, antes de las herramientas de empaquetado frontend, usabamos CDN o etiquetas `<script>` para cargar nuestros archivos (que podían incluir js, css, html). Sin embargo, este enfoque además del desperdicio de rendimiento (HTTP podría requerir múltiples solicitudes), también era propenso a errores frecuentes por diferencias en el orden de carga, o dificultades para depurar. El Bundler ayuda a los desarrolladores a combinar múltiples archivos en uno solo o unos pocos, y esta gestión modular no solo facilita el mantenimiento durante el desarrollo, sino que también hace más conveniente la expansión futura. Por otro lado, la combinación de archivos también reduce el número de solicitudes HTTP, mejorando naturalmente el rendimiento.
 
 ### Traduccion y compatibilidad
 

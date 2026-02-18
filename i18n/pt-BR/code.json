@@ -27,10 +27,10 @@
     "message": "Work With Me"
   },
   "about.workWithMe.intro": {
-    "message": "我目前對以下機會保持開放："
+    "message": "Atualmente estou aberto às seguintes oportunidades:"
   },
   "about.workWithMe.contact": {
-    "message": "如果你覺得我們可能有合作的空間，歡迎透過 {linkedinLink} 聯繫我。"
+    "message": "Se você acha que pode haver espaço para colaboração, fique à vontade para entrar em contato pelo {linkedinLink}."
   },
   "about.meta.title": {
     "message": "About"
@@ -236,7 +236,7 @@
     "description": "The ARIA label to collapse the sidebar category"
   },
   "theme.IconExternalLink.ariaLabel": {
-    "message": "(opens in new tab)",
+    "message": "(abre em nova aba)",
     "description": "The ARIA label for the external link icon"
   },
   "theme.NavBar.navAriaLabel": {
@@ -379,35 +379,35 @@
     "description": "The label and ARIA label for search box cancel button"
   },
   "theme.SearchModal.searchBox.placeholderText": {
-    "message": "Search docs",
+    "message": "Pesquisar documentação",
     "description": "The placeholder text for the main search input field"
   },
   "theme.SearchModal.searchBox.placeholderTextAskAi": {
-    "message": "Ask another question...",
+    "message": "Faça outra pergunta...",
     "description": "The placeholder text when in AI question mode"
   },
   "theme.SearchModal.searchBox.placeholderTextAskAiStreaming": {
-    "message": "Answering...",
+    "message": "Respondendo...",
     "description": "The placeholder text for search box when AI is streaming an answer"
   },
   "theme.SearchModal.searchBox.enterKeyHint": {
-    "message": "search",
+    "message": "pesquisar",
     "description": "The hint for the search box enter key text"
   },
   "theme.SearchModal.searchBox.enterKeyHintAskAi": {
-    "message": "enter",
+    "message": "enviar",
     "description": "The hint for the Ask AI search box enter key text"
   },
   "theme.SearchModal.searchBox.searchInputLabel": {
-    "message": "Search",
+    "message": "Pesquisar",
     "description": "The ARIA label for search input"
   },
   "theme.SearchModal.searchBox.backToKeywordSearchButtonText": {
-    "message": "Back to keyword search",
+    "message": "Voltar à pesquisa por palavras-chave",
     "description": "The text for back to keyword search button"
   },
   "theme.SearchModal.searchBox.backToKeywordSearchButtonAriaLabel": {
-    "message": "Back to keyword search",
+    "message": "Voltar à pesquisa por palavras-chave",
     "description": "The ARIA label for back to keyword search button"
   },
   "theme.SearchModal.startScreen.recentSearchesTitle": {
@@ -435,11 +435,11 @@
     "description": "The title for remove favorite search button"
   },
   "theme.SearchModal.startScreen.recentConversationsTitle": {
-    "message": "Recent conversations",
+    "message": "Conversas recentes",
     "description": "The title for recent conversations"
   },
   "theme.SearchModal.startScreen.removeRecentConversationButtonTitle": {
-    "message": "Remove this conversation from history",
+    "message": "Remover esta conversa do histórico",
     "description": "The title for remove recent conversation button"
   },
   "theme.SearchModal.errorScreen.titleText": {
@@ -451,55 +451,55 @@
     "description": "The help text for error screen"
   },
   "theme.SearchModal.resultsScreen.askAiPlaceholder": {
-    "message": "Ask AI: ",
+    "message": "Perguntar à IA: ",
     "description": "The placeholder text for Ask AI input"
   },
   "theme.SearchModal.askAiScreen.disclaimerText": {
-    "message": "Answers are generated with AI which can make mistakes. Verify responses.",
+    "message": "As respostas são geradas por IA, que pode cometer erros. Verifique as respostas.",
     "description": "The disclaimer text for AI answers"
   },
   "theme.SearchModal.askAiScreen.relatedSourcesText": {
-    "message": "Related sources",
+    "message": "Fontes relacionadas",
     "description": "The text for related sources"
   },
   "theme.SearchModal.askAiScreen.thinkingText": {
-    "message": "Thinking...",
+    "message": "Pensando...",
     "description": "The text when AI is thinking"
   },
   "theme.SearchModal.askAiScreen.copyButtonText": {
-    "message": "Copy",
+    "message": "Copiar",
     "description": "The text for copy button"
   },
   "theme.SearchModal.askAiScreen.copyButtonCopiedText": {
-    "message": "Copied!",
+    "message": "Copiado!",
     "description": "The text for copy button when copied"
   },
   "theme.SearchModal.askAiScreen.copyButtonTitle": {
-    "message": "Copy",
+    "message": "Copiar",
     "description": "The title for copy button"
   },
   "theme.SearchModal.askAiScreen.likeButtonTitle": {
-    "message": "Like",
+    "message": "Curtir",
     "description": "The title for like button"
   },
   "theme.SearchModal.askAiScreen.dislikeButtonTitle": {
-    "message": "Dislike",
+    "message": "Não curtir",
     "description": "The title for dislike button"
   },
   "theme.SearchModal.askAiScreen.thanksForFeedbackText": {
-    "message": "Thanks for your feedback!",
+    "message": "Obrigado pelo seu feedback!",
     "description": "The text for thanks for feedback"
   },
   "theme.SearchModal.askAiScreen.preToolCallText": {
-    "message": "Searching...",
+    "message": "Pesquisando...",
     "description": "The text before tool call"
   },
   "theme.SearchModal.askAiScreen.duringToolCallText": {
-    "message": "Searching for ",
+    "message": "Pesquisando por ",
     "description": "The text during tool call"
   },
   "theme.SearchModal.askAiScreen.afterToolCallText": {
-    "message": "Searched for",
+    "message": "Pesquisou por",
     "description": "The text after tool call"
   },
   "theme.SearchModal.footer.selectText": {
@@ -507,7 +507,7 @@
     "description": "The select text for footer"
   },
   "theme.SearchModal.footer.submitQuestionText": {
-    "message": "Submit question",
+    "message": "Enviar pergunta",
     "description": "The submit question text for footer"
   },
   "theme.SearchModal.footer.selectKeyAriaLabel": {
@@ -539,7 +539,7 @@
     "description": "The 'Powered by' text for footer"
   },
   "theme.SearchModal.footer.backToSearchText": {
-    "message": "Back to search",
+    "message": "Voltar à pesquisa",
     "description": "The back to search text for footer"
   },
   "theme.SearchModal.noResultsScreen.noResultsText": {
@@ -733,5 +733,13 @@
   },
   "projects.noResults": {
     "message": "Nenhum projeto corresponde aos filtros."
+  },
+  "theme.unlistedContent.title": {
+    "message": "Página não listada",
+    "description": "The unlisted content banner title"
+  },
+  "theme.unlistedContent.message": {
+    "message": "Esta página não está listada. Mecanismos de busca não a indexarão, e apenas usuários com um link direto podem acessá-la.",
+    "description": "The unlisted content banner message"
   }
 }

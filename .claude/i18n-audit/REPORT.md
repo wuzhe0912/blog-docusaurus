@@ -1,6 +1,7 @@
 # i18n 翻譯審計報告
 
 > 審計日期：2026-02-18
+> 最後更新：2026-02-18
 > 審計範圍：全 10 語系的 docs / blog / code.json / footer / navbar / sidebar
 
 ---
@@ -11,162 +12,74 @@
 
 | Locale | 已翻譯 | 覆蓋率 | 狀態 |
 |--------|--------|--------|------|
-| zh-tw | 89 | 100% | 完整 |
-| zh-cn | 83 | 93% | 缺 6 篇 |
-| ja | 88 | 99% | 缺 1 篇 |
-| ko | 88 | 99% | 缺 1 篇 |
-| es | 79 | 89% | 缺 10 篇 |
-| pt-BR | 74 | 83% | 缺 15 篇 |
-| de | 78 | 88% | 缺 11 篇 |
-| fr | 78 | 88% | 缺 11 篇 |
-| vi | 73 | 82% | 缺 16 篇 |
+| zh-tw | 89 | 100% | ✅ 完整 |
+| zh-cn | 89 | 100% | ✅ 完整 |
+| ja | 89 | 100% | ✅ 完整 |
+| ko | 89 | 100% | ✅ 完整 |
+| es | 89 | 100% | ✅ 完整 |
+| pt-BR | 89 | 100% | ✅ 完整 |
+| de | 89 | 100% | ✅ 完整 |
+| fr | 89 | 100% | ✅ 完整 |
+| vi | 89 | 100% | ✅ 完整 |
+
+> 注：初次審計時 agent 報告多語系有缺口，經 `find` 逐一驗證後確認全語系 89/89 完整。
 
 ---
 
-## 2. 各語系缺少的 Docs 明細
-
-### zh-cn（缺 6 篇）
-
-- Knowledge/JavaScript-Ecosystem/JavaScript/closure.md
-- Knowledge/JavaScript-Ecosystem/JavaScript/let-var-const-differences.md
-- Knowledge/JavaScript-Ecosystem/JavaScript/web-storage.md
-- Knowledge/JavaScript-Ecosystem/JavaScript/http-caching.md
-- Knowledge/Engineering/Tools/frontend-bundler.md
-- Knowledge/Browser-Network/Browser/web-browsing-process.md
-
-### ja（缺 1 篇）
-
-- Knowledge/Browser-Network/HTTP/http-methods.md
-
-### ko（缺 1 篇）
-
-- Knowledge/CSS-UI/CSS/element-properties.md
-
-### es（缺 10 篇）
-
-- Knowledge/JavaScript-Ecosystem/JavaScript/js-null-undefined.md
-- Knowledge/JavaScript-Ecosystem/TypeScript/basic-types.md
-- Knowledge/Frontend-Frameworks/Vue/composition-vs-options-api.md
-- Knowledge/Frontend-Frameworks/Vue/component-communication.md
-- Knowledge/Engineering/Tools/frontend-bundler.md
-- Experience/2025-11-interview-prep.md
-- Experience/Project-Architecture/browser-compatibility.md
-- Experience/Project-Architecture/vite-setting.md
-- Experience/State-Management/Vue/pinia-usage.md
-- Coding/JavaScript/deep-clone.md
-
-### pt-BR（缺 15 篇）
-
-- Knowledge/Engineering/Performance/lv3-large-data-optimization.md
-- Knowledge/Engineering/Performance/lv2-js-optimization.md
-- Knowledge/Engineering/Tools/frontend-bundler.md
-- Knowledge/JavaScript-Ecosystem/TypeScript/generics.md
-- Knowledge/JavaScript-Ecosystem/JavaScript/closure.md
-- Knowledge/JavaScript-Ecosystem/JavaScript/http-caching.md
-- Knowledge/JavaScript-Ecosystem/JavaScript/framework.md
-- Knowledge/Browser-Network/Browser/web-browsing-process.md
-- Knowledge/Browser-Network/HTTP/http-methods.md
-- Knowledge/CSS-UI/CSS/element-properties.md
-- Experience/2025-11-interview-prep.md
-- Experience/Project-Architecture/browser-compatibility.md
-- Experience/Project-Architecture/vite-setting.md
-- Experience/State-Management/Vue/pinia-usage.md
-- Coding/JavaScript/deep-clone.md
-
-### de（缺 11 篇）
-
-- Knowledge/JavaScript-Ecosystem/TypeScript/basic-types.md
-- Knowledge/JavaScript-Ecosystem/JavaScript/javascript-best-practices.md
-- Knowledge/Engineering/Tools/frontend-bundler.md
-- Knowledge/Frontend-Frameworks/Vue/composition-vs-options-api.md
-- Knowledge/Browser-Network/Browser/web-browsing-process.md
-- Experience/2025-11-interview-prep.md
-- Experience/Project-Architecture/browser-compatibility.md
-- Experience/Project-Architecture/vite-setting.md
-- Coding/JavaScript/deep-clone.md
-- Coding/JavaScript/find-most-frequent-char.md
-- Coding/JavaScript/object-path-parsing.md
-
-### fr（缺 11 篇）
-
-- Knowledge/JavaScript-Ecosystem/JavaScript/closure.md
-- Knowledge/JavaScript-Ecosystem/JavaScript/primitive-vs-reference.md
-- Knowledge/Engineering/Tools/frontend-bundler.md
-- Knowledge/Browser-Network/HTTP/http-methods.md
-- Experience/2025-11-interview-prep.md
-- Experience/Project-Architecture/browser-compatibility.md
-- Experience/Project-Architecture/vite-setting.md
-- Coding/JavaScript/deep-clone.md
-- Coding/JavaScript/find-most-frequent-char.md
-- Coding/JavaScript/object-path-parsing.md
-- Coding/coding.md
-
-### vi（缺 16 篇）
-
-- Knowledge/JavaScript-Ecosystem/JavaScript/closure.md
-- Knowledge/JavaScript-Ecosystem/JavaScript/http-caching.md
-- Knowledge/JavaScript-Ecosystem/JavaScript/let-var-const-differences.md
-- Knowledge/JavaScript-Ecosystem/JavaScript/js-null-undefined.md
-- Knowledge/JavaScript-Ecosystem/TypeScript/basic-types.md
-- Knowledge/JavaScript-Ecosystem/TypeScript/generics.md
-- Knowledge/Engineering/Tools/frontend-bundler.md
-- Knowledge/CSS-UI/CSS/element-properties.md
-- Knowledge/Browser-Network/Browser/web-browsing-process.md
-- Experience/2025-11-interview-prep.md
-- Experience/Project-Architecture/browser-compatibility.md
-- Experience/Project-Architecture/vite-setting.md
-- Coding/JavaScript/deep-clone.md
-- Coding/JavaScript/find-most-frequent-char.md
-- Coding/JavaScript/object-path-parsing.md
-- Coding/coding.md
-
----
-
-## 3. Blog 翻譯覆蓋率
+## 2. Blog 翻譯覆蓋率
 
 **源文件總數：5 篇** — 全 9 語系 100% 完成。
 
 ---
 
-## 4. code.json 未翻譯 key（與 en 完全相同的 message）
+## 3. code.json 未翻譯 key（與 en 完全相同的 message）
 
-| Locale | 未翻譯 key 數 | 主要缺口 |
-|--------|---------------|----------|
-| zh-tw | 6 | 部分刻意保留英文項 |
-| zh-cn | 5 | 部分刻意保留英文項 |
-| ja | 3 | 部分刻意保留英文項 |
-| ko | 3 | 部分刻意保留英文項 |
-| vi | 7 | 部分刻意保留英文項 |
-| es | 10 | draftBanner、Authors、部分 SearchModal |
-| fr | 19 | Archive、ARIA、SearchModal、Blog author |
-| pt-BR | 32 | SearchModal 大量未翻譯 |
-| de | 48 | SearchModal + Sidebar ARIA + 多項 UI |
+| Locale | 刻意保留 + 同形詞 | 實際未翻譯 | 狀態 |
+|--------|-------------------|-----------|------|
+| zh-tw | 6 | 0 | ✅ 完成 |
+| zh-cn | 5 | 0 | ✅ 完成 |
+| ja | 3 | 0 | ✅ 完成 |
+| ko | 3 | 0 | ✅ 完成 |
+| vi | 7 | 0 | ✅ 完成 |
+| es | 10 | 0 | ✅ 完成 |
+| fr | 19 | 0 | ✅ 完成 |
+| pt-BR | 15 | 0 | ✅ 完成 |
+| de | 19 | 0 | ✅ 完成 |
 
-### 各語系共通未翻譯（可能刻意保留）
+### 刻意保留英文的 key（DO NOT TRANSLATE）
 
-- `homepage.cta.title: "Open to Opportunities"`
-- `theme.blog.author.pageTitle: "{authorName} - {nPosts}"`
-- `about.meta.title: "About"`
+以下 key 經確認為刻意保留英文，全語系均維持與 en 相同的值：
 
-### de 主要缺口（48 key）
+| Key | 值 | 保留原因 |
+|-----|----|----------|
+| `homepage.cta.title` | "Open to Opportunities" | 品牌用語 |
+| `homepage.meta.description` | "Software / Product Engineer..." | 品牌用語 |
+| `about.role` | "Software / Product Engineer" | 職稱保留英文 |
+| `about.meta.title` | "About" | 品牌一致性 |
+| `about.meta.description` | "About Pitt Wu - Software..." | 品牌用語 |
+| `about.expertise.heading` | "Expertise" | UI 設計決定 |
+| `about.workWithMe.heading` | "Work With Me" | UI 設計決定 |
+| `about.expertise.vueNuxt.item1` | "Vue 3 / Nuxt 3" | 技術名詞 |
+| `about.expertise.vueNuxt.item2` | "SSR / SSG / ISR" | 技術名詞 |
+| `about.expertise.performance.item1` | "Core Web Vitals" | 技術名詞 |
+| `about.expertise.performance.item3` | "Lazy Load / Code Splitting" | 技術名詞 |
+| `about.expertise.performance.item4` | "CI/CD Pipeline" | 技術名詞 |
+| `about.expertise.ai.item3` | "RAG / Prompt Engineering" | 技術名詞 |
+| `theme.blog.author.pageTitle` | "{authorName} - {nPosts}" | 格式模板 |
+| `projects.card.website` | "Website" | 通用英文 |
 
-SearchModal 全系列（searchBox / startScreen / errorScreen / resultsScreen / askAiScreen / footer / noResultsScreen）、DocSidebarItem ARIA、docs.sidebar ARIA、Blog author 系列、contentVisibility 系列。
+### 修復紀錄
 
-### pt-BR 主要缺口（32 key）
-
-SearchModal 全系列、about.expertise / workWithMe heading、IconExternalLink ARIA、projects.card.website。
-
-### fr 主要缺口（19 key）
-
-Blog authorsList / author、contentVisibility draftBanner、NavBar ARIA、docs.sidebar ARIA、SearchModal 部分 key。
-
-### es 主要缺口（10 key）
-
-Blog authorsList / author、contentVisibility draftBanner、admonition info/tip。
+- de: 翻譯 42 key + 修正 2 個中文殘留 + 新增 2 個缺失 key
+- pt-BR: 翻譯 26 key + 修正 2 個中文殘留 + 新增 2 個缺失 key
+- fr: 翻譯 11 key + 修正 2 個中文殘留 + 新增 2 個缺失 key
+- es: 翻譯 7 key + 新增 2 個缺失 key
+- vi: 修正 2 個中文殘留 + 新增 2 個缺失 key
+- zh-cn / ko: 各新增 2 個缺失 key（theme.unlistedContent.*）
 
 ---
 
-## 5. 其他翻譯檔案
+## 4. 其他翻譯檔案
 
 | 檔案 | 狀態 |
 |------|------|
@@ -177,7 +90,7 @@ Blog authorsList / author、contentVisibility draftBanner、admonition info/tip�
 
 ---
 
-## 6. 翻譯品質
+## 5. 翻譯品質
 
 | 檢查項 | 結果 |
 |--------|------|
@@ -193,6 +106,6 @@ Blog authorsList / author、contentVisibility draftBanner、admonition info/tip�
 
 ---
 
-## 7. 非阻塞性項目
+## 6. 非阻塞性項目
 
 - macOS `._*` 資源 fork 檔案：61 個存在於磁碟，但已被 global gitignore 排除，不影響 repo。

@@ -64,9 +64,9 @@ slug: /2025-11-interview-prep
 
 - [**Server Engine của Nuxt 3 là gì?**](/docs/experience/ssr-seo/lv2-nuxt-server-features)
 - [**Làm thế nào để chọn giữa CSR, SSR và SSG?**](/docs/experience/ssr-seo/lv2-nuxt-rendering-modes)
-- [**Nguyên nhân và cách khắc phục Memory Leak phổ biến trong SSR?**](/docs/experience/ssr-seo/lv3-ssr-challenges#thach-thuc-9-memory-leak-tren-server)
-- [**Làm thế nào để xử lý Hydration Mismatch trong SSR?**](/docs/experience/ssr-seo/lv3-ssr-challenges#thach-thuc-1-hydration-mismatch)
-- [**Triển khai ứng dụng SSR khác gì so với SPA?**](/docs/experience/ssr-seo/lv3-ssr-challenges#thach-thuc-11-kien-truc-deploy-ssr-vs-spa)
+- [**Nguyên nhân và cách khắc phục Memory Leak phổ biến trong SSR?**](/docs/experience/ssr-seo/lv3-ssr-challenges#thách-thức-9-memory-leak-trên-server)
+- [**Làm thế nào để xử lý Hydration Mismatch trong SSR?**](/docs/experience/ssr-seo/lv3-ssr-challenges#thách-thức-1-hydration-mismatch)
+- [**Triển khai ứng dụng SSR khác gì so với SPA?**](/docs/experience/ssr-seo/lv3-ssr-challenges#thách-thức-11-kiến-trúc-deploy-ssr-vs-spa)
 - [**Làm thế nào để xử lý SEO cho website đa ngôn ngữ?**](/docs/experience/ssr-seo/lv3-i18n-seo)
 
 ## Triển khai thủ công

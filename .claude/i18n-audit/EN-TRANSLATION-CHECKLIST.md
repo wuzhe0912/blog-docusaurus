@@ -168,7 +168,7 @@
 - [x] `docs/Experience/SSR-SEO/lv3-i18n-seo.md` (182 lines)
 - [x] `docs/Experience/SSR-SEO/lv3-ssr-challenges.md` (781 lines)
 - [x] Batch 7 build 驗證
-- [ ] Batch 7 commit
+- [x] Batch 7 commit (6a48e7a)
 
 ---
 

@@ -6,6 +6,30 @@
 
 ---
 
+## 0. docs/en 英文化修復狀態（2026-02-18）
+
+defaultLocale `en` 的 `docs/` 已完成 89/89 英文化修復，並依 batch 全數完成：
+
+| Batch | 範圍 | 狀態 | commit |
+|------|------|------|--------|
+| 1 | Knowledge / JavaScript | ✅ | `f83e514` |
+| 2 | Knowledge / Vue | ✅ | `fd7ebdd` |
+| 3 | Knowledge / TypeScript + React | ✅ | `e04a843` |
+| 4 | Knowledge / CSS | ✅ | `99bbf2e` |
+| 5 | Knowledge / Engineering | ✅ | `3ca83a0` |
+| 6 | Knowledge / Browser-Network + Security + index | ✅ | （既有完成） |
+| 7 | Experience / SSR-SEO | ✅ | `6a48e7a` |
+| 8 | Experience / State-Management + misc | ✅ | `899e045` |
+| 9 | Coding + LeetCode | ✅ | （既有完成） |
+
+驗證結果：
+
+- 全 10 語系 `bun run build` 成功
+- en 抽查 6 頁確認為英文（無中文殘留）
+- zh-tw 抽查仍為繁中，其他語系（ja/de/es）抽查未受影響
+
+---
+
 ## 1. Docs 翻譯覆蓋率
 
 **源文件總數（en/default）：89 個**

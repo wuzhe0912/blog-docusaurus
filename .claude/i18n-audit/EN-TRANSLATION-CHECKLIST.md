@@ -45,14 +45,14 @@
 
 | Batch | 範圍 | 檔案數 | 行數 | 狀態 |
 |-------|------|--------|------|------|
-| 1 | Knowledge / JavaScript | 17 | ~5,580 | [ ] |
-| 2 | Knowledge / Vue | 9 | ~6,505 | [ ] |
-| 3 | Knowledge / TypeScript + React | 5 | ~2,270 | [ ] |
-| 4 | Knowledge / CSS | 6 | ~2,168 | [ ] |
-| 5 | Knowledge / Engineering | 9 | ~2,634 | [ ] |
+| 1 | Knowledge / JavaScript | 17 | ~5,580 | ✅ |
+| 2 | Knowledge / Vue | 9 | ~6,505 | ✅ |
+| 3 | Knowledge / TypeScript + React | 5 | ~2,270 | ✅ |
+| 4 | Knowledge / CSS | 6 | ~2,168 | ✅ |
+| 5 | Knowledge / Engineering | 9 | ~2,634 | ✅ |
 | 6 | Knowledge / Browser-Network + Security + index | 10 | ~843 | ✅ |
-| 7 | Experience / SSR-SEO | 9 | ~3,094 | [ ] |
-| 8 | Experience / State-Management + misc | 11 | ~1,903 | [ ] |
+| 7 | Experience / SSR-SEO | 9 | ~3,094 | ✅ |
+| 8 | Experience / State-Management + misc | 11 | ~1,903 | ✅ |
 | 9 | Coding + LeetCode | 13 | ~2,632 | ✅ |
 | — | **合計** | **89** | **~27,629** | |
 
@@ -212,9 +212,9 @@
 
 ## 最終驗證
 
-- [ ] 全 10 語系 `bun run build` 成功
-- [ ] en 語系抽查 5+ 頁面確認為英文
-- [ ] zh-tw 語系抽查確認仍為繁中（`i18n/zh-tw/` 未受影響）
-- [ ] 其他語系抽查確認未受影響
-- [ ] 更新 CLAUDE.md Current Status
-- [ ] 更新 `.claude/i18n-audit/REPORT.md`
+- [x] 全 10 語系 `bun run build` 成功
+- [x] en 語系抽查 5+ 頁面確認為英文
+- [x] zh-tw 語系抽查確認仍為繁中（`i18n/zh-tw/` 未受影響）
+- [x] 其他語系抽查確認未受影響
+- [x] 更新 CLAUDE.md Current Status
+- [x] 更新 `.claude/i18n-audit/REPORT.md`

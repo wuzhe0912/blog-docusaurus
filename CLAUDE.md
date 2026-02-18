@@ -104,4 +104,5 @@ Ex.
 - Sidebar 翻譯：已完成，category label 全 10 語系翻譯 + 清除 206 個歷史殘留 key
 - Theme 翻譯：已補齊全 10 語系的 `code.json`、`current.json`、`footer.json`
 - i18n 審計（2026/02/18）：全 9 語系 docs 89/89 = 100%、code.json 全數翻譯完成、修正中文殘留 bug
+- docs/en 英文化修復（2026/02/18）：Batch 1-9 全數完成（89/89），defaultLocale `en` 已改為英文內容，並完成全語系 build 驗證與抽查
 - Blog：layoff-negotiation-playbook 已完成全 10 語系（2025/12/25）

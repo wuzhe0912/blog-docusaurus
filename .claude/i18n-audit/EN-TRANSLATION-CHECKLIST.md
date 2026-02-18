@@ -186,7 +186,7 @@
 - [x] `docs/Experience/Project-Architecture/browser-compatibility.md` (30 lines)
 - [x] `docs/Experience/Project-Architecture/vite-setting.md` (64 lines)
 - [x] Batch 8 build 驗證
-- [ ] Batch 8 commit
+- [x] Batch 8 commit (899e045)
 
 ---
 

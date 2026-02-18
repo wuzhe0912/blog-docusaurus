@@ -1,30 +1,45 @@
 ---
 id: project-architecture-browser-compatibility
-title: '瀏覽器兼容性處理'
+title: 'Browser Compatibility Handling'
 slug: /experience/project-architecture/browser-compatibility
 tags: [Experience, Interview, Project-Architecture]
 ---
 
-> 處理跨瀏覽器兼容性問題，特別是 Safari 和移動端的特殊處理。
+> Practical browser-compatibility strategies, with focus on Safari and mobile viewport behavior.
 
 ---
 
-## 瀏覽器兼容
+## 1. Viewport unit compatibility
 
-> 小型可視區域 (Small Viewport Units)：svh
-> 大型可視區域 (Large Viewport Units)：lvh
-> 動態可視區域 (Dynamic Viewport Units)：dvh
+Modern viewport units:
 
-特定情境下，允許使用新的語法 dvh 來解決 safari 設計不良的浮動 bar 問題。如果需要被迫兼容冷門或舊的瀏覽器，則轉使用 JS 來偵測高度。
+- `svh`: small viewport height
+- `lvh`: large viewport height
+- `dvh`: dynamic viewport height
 
-## 防止 iOS Safari 自動調整文字大小
+When supported, `dvh` helps fix mobile Safari address-bar jump issues.
+
+For legacy browser support, fallback to JavaScript-driven height calculation.
+
+## 2. Prevent iOS Safari auto text resizing
 
 ```css
 -webkit-text-size-adjust: none;
 text-size-adjust: none;
 ```
 
-## 前綴詞
+Use carefully and validate accessibility impact.
 
-透過手動 + 自動設定 Autoprefixer 來處理前綴詞。
+## 3. Vendor prefix strategy
 
+Use Autoprefixer as default and add manual prefixes only for special edge cases.
+
+Recommended:
+
+- Define browser targets in one place
+- Keep polyfill strategy explicit
+- Verify critical flows in Safari and Android WebView
+
+## Interview-ready summary
+
+> I handle compatibility with layered fallbacks: modern CSS first, targeted prefixes and polyfills second, and JS fallback only when platform behavior is unreliable.

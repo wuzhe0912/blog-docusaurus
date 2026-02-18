@@ -1,64 +1,63 @@
 ---
 id: project-architecture-vite-setting
-title: 'Vite 配置與多租戶系統'
+title: 'Vite Configuration in a Multi-tenant System'
 slug: /experience/project-architecture/vite-setting
 tags: [Experience, Interview, Project-Architecture]
 ---
 
-> 如何用 Vite 管理 27 個品牌版型的多租戶系統，實現動態編譯與環境隔離。
+> How to use Vite to support many brand templates in one repository with dynamic build routing and environment isolation.
 
 ---
 
-## 1. 透過 SiteKey 動態載入對應的版型路由
+## 1. Dynamic route template selection by `SITE_KEY`
 
-```typescript
-function writeBuildRouter() {
-  const sourceFile = path.resolve(
-    __dirname,
-    `../../template/${siteKey}/router/routes.ts`
-  );
+At build time, resolve the matching tenant route file and generate the active router entry.
+
+```ts
+function writeBuildRouter(siteKey: string) {
+  const sourceFile = path.resolve(__dirname, `../../template/${siteKey}/router/routes.ts`);
   const destinationFile = path.resolve(__dirname, '../../src/router/build.ts');
 
-  fs.readFile(sourceFile, 'utf8', (err, data) => {
-    if (err) {
-      console.error(`Error reading file: ${err}`);
-      return;
-    }
-
-    fs.writeFile(destinationFile, data, 'utf8', (err) => {
-      if (err) {
-        console.error(`Error writing file: ${err}`);
-        return;
-      }
-      console.log(
-        `File copied successfully from ${sourceFile} to ${destinationFile}`
-      );
-      buildFile(siteKey);
-    });
-  });
+  const data = fs.readFileSync(sourceFile, 'utf8');
+  fs.writeFileSync(destinationFile, data, 'utf8');
 }
 ```
 
-- Build 時，透過 SiteKey 動態載入對應的版型路由
-- 利用 `SITE_KEY` 環境變數來選擇要編譯的版型
-- 單一 Repo 管理多個版型，避免重複的程式碼
+Benefits:
 
-## 2. 自定義環境變數注入系統
+- One repo for many tenant templates
+- Lower code duplication
+- Build output tailored to one tenant at a time
 
-## 3. 集成 TailwindCSS & RWD 斷點設計
+## 2. Environment variable strategy
 
-## 4. 開發環境 Proxy 設定
+Use explicit environment files and runtime validation.
 
-## 5. Vue i18n Vite 插件整合
+- `.env.development`
+- `.env.staging`
+- `.env.production`
 
-## 6. 兼容設定
+Expose only necessary client-safe vars with prefix policy.
+
+## 3. Development proxy configuration
+
+Use Vite proxy for API domains in local development to avoid CORS friction.
+
+## 4. i18n and plugin integration
+
+Integrate Vue i18n and related plugins in a centralized Vite plugin pipeline to keep environment behavior consistent.
+
+## 5. Browser target configuration
 
 ```js
-      target: {
-        browser: ["es2019", "edge88", "firefox78", "chrome87", "safari13.1"],
-        node: "node16"
-      },
+target: {
+  browser: ['es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1'],
+  node: 'node16',
+}
 ```
 
-- 精確的瀏覽器兼容性控制
-- 平衡現代特性與兼容性
+This balances modern syntax and practical compatibility.
+
+## Interview-ready summary
+
+> In multi-tenant systems, I use `SITE_KEY`-driven build composition, strict env isolation, and explicit browser target policy so each tenant build stays predictable and maintainable.

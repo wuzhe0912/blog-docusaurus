@@ -1,23 +1,23 @@
 ---
 id: state-management-interview-index
-title: '狀態管理實作總覽'
+title: 'State Management Implementation Overview'
 slug: /experience/state-management
 tags: [Experience, Interview, State-Management]
 ---
 
-> 持續累積狀態管理相關的實作經驗與面試重點，依框架分類整理。
+> Practical state-management notes for interviews and production projects, organized by framework.
 
 ---
 
 ## Vue
 
-- [Pinia 初始化與配置](/docs/experience/state-management/vue/pinia-setup)
-- [Pinia Store 實作模式](/docs/experience/state-management/vue/pinia-store-patterns)
-- [Pinia 使用實踐](/docs/experience/state-management/vue/pinia-usage)
-- [Pinia 持久化策略](/docs/experience/state-management/vue/pinia-persistence)
-- [Pinia 最佳實踐與常見錯誤](/docs/experience/state-management/vue/pinia-best-practices)
-- [Vuex vs Pinia 差異比較](/docs/experience/state-management/vue/vuex-vs-pinia)
+- [Pinia setup and project integration](/docs/experience/state-management/vue/pinia-setup)
+- [Pinia store implementation patterns](/docs/experience/state-management/vue/pinia-store-patterns)
+- [Pinia usage in components and composables](/docs/experience/state-management/vue/pinia-usage)
+- [Pinia persistence strategies](/docs/experience/state-management/vue/pinia-persistence)
+- [Pinia best practices and common mistakes](/docs/experience/state-management/vue/pinia-best-practices)
+- [Vuex vs Pinia comparison](/docs/experience/state-management/vue/vuex-vs-pinia)
 
 ## React
 
-- （待整理）
+- To be organized.

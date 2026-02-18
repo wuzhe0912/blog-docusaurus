@@ -174,18 +174,18 @@
 
 ## Batch 8: Experience / State-Management + misc（11 files, ~1,903 lines）
 
-- [ ] `docs/Experience/State-Management/index.md` (23 lines)
-- [ ] `docs/Experience/State-Management/Vue/pinia-best-practices.md` (254 lines)
-- [ ] `docs/Experience/State-Management/Vue/pinia-persistence.md` (217 lines)
-- [ ] `docs/Experience/State-Management/Vue/pinia-setup.md` (162 lines)
-- [ ] `docs/Experience/State-Management/Vue/pinia-store-patterns.md` (280 lines)
-- [ ] `docs/Experience/State-Management/Vue/pinia-usage.md` (335 lines)
-- [ ] `docs/Experience/State-Management/Vue/vuex-vs-pinia.md` (442 lines)
-- [ ] `docs/Experience/2023-experience.md` (20 lines)
-- [ ] `docs/Experience/2025-11-interview-prep.md` (76 lines)
-- [ ] `docs/Experience/Project-Architecture/browser-compatibility.md` (30 lines)
-- [ ] `docs/Experience/Project-Architecture/vite-setting.md` (64 lines)
-- [ ] Batch 8 build 驗證
+- [x] `docs/Experience/State-Management/index.md` (23 lines)
+- [x] `docs/Experience/State-Management/Vue/pinia-best-practices.md` (254 lines)
+- [x] `docs/Experience/State-Management/Vue/pinia-persistence.md` (217 lines)
+- [x] `docs/Experience/State-Management/Vue/pinia-setup.md` (162 lines)
+- [x] `docs/Experience/State-Management/Vue/pinia-store-patterns.md` (280 lines)
+- [x] `docs/Experience/State-Management/Vue/pinia-usage.md` (335 lines)
+- [x] `docs/Experience/State-Management/Vue/vuex-vs-pinia.md` (442 lines)
+- [x] `docs/Experience/2023-experience.md` (20 lines)
+- [x] `docs/Experience/2025-11-interview-prep.md` (76 lines)
+- [x] `docs/Experience/Project-Architecture/browser-compatibility.md` (30 lines)
+- [x] `docs/Experience/Project-Architecture/vite-setting.md` (64 lines)
+- [x] Batch 8 build 驗證
 - [ ] Batch 8 commit
 
 ---

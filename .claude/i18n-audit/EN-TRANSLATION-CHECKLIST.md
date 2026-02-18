@@ -158,16 +158,16 @@
 
 ## Batch 7: Experience / SSR-SEO（9 files, ~3,094 lines）
 
-- [ ] `docs/Experience/SSR-SEO/index.md` (30 lines)
-- [ ] `docs/Experience/SSR-SEO/lv1-seo-basic.md` (246 lines)
-- [ ] `docs/Experience/SSR-SEO/lv2-nuxt-lifecycle-hydration.md` (171 lines)
-- [ ] `docs/Experience/SSR-SEO/lv2-nuxt-rendering-modes.md` (411 lines)
-- [ ] `docs/Experience/SSR-SEO/lv2-nuxt-server-features.md` (218 lines)
-- [ ] `docs/Experience/SSR-SEO/lv2-seo-optimization.md` (369 lines)
-- [ ] `docs/Experience/SSR-SEO/lv2-ssr-implementation.md` (686 lines)
-- [ ] `docs/Experience/SSR-SEO/lv3-i18n-seo.md` (182 lines)
-- [ ] `docs/Experience/SSR-SEO/lv3-ssr-challenges.md` (781 lines)
-- [ ] Batch 7 build 驗證
+- [x] `docs/Experience/SSR-SEO/index.md` (30 lines)
+- [x] `docs/Experience/SSR-SEO/lv1-seo-basic.md` (246 lines)
+- [x] `docs/Experience/SSR-SEO/lv2-nuxt-lifecycle-hydration.md` (171 lines)
+- [x] `docs/Experience/SSR-SEO/lv2-nuxt-rendering-modes.md` (411 lines)
+- [x] `docs/Experience/SSR-SEO/lv2-nuxt-server-features.md` (218 lines)
+- [x] `docs/Experience/SSR-SEO/lv2-seo-optimization.md` (369 lines)
+- [x] `docs/Experience/SSR-SEO/lv2-ssr-implementation.md` (686 lines)
+- [x] `docs/Experience/SSR-SEO/lv3-i18n-seo.md` (182 lines)
+- [x] `docs/Experience/SSR-SEO/lv3-ssr-challenges.md` (781 lines)
+- [x] Batch 7 build 驗證
 - [ ] Batch 7 commit
 
 ---

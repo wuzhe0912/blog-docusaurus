@@ -64,9 +64,9 @@ slug: /2025-11-interview-prep
 
 - [**Nuxt 3 的 Server Engine 是什麼？**](/docs/experience/ssr-seo/lv2-nuxt-server-features)
 - [**如何選擇 CSR、SSR 與 SSG？**](/docs/experience/ssr-seo/lv2-nuxt-rendering-modes)
-- [**SSR 常見的 Memory Leak 原因與解法？**](/docs/experience/ssr-seo/lv3-ssr-challenges#難題-9server-side-memory-leak)
-- [**如何處理 SSR 中的 Hydration Mismatch？**](/docs/experience/ssr-seo/lv3-ssr-challenges#難題-1hydration-mismatch-錯誤)
-- [**部署 SSR 應用與 SPA 有何不同？**](/docs/experience/ssr-seo/lv3-ssr-challenges#難題-11部署架構-ssr-vs-spa)
+- [**SSR 常見的 Memory Leak 原因與解法？**](/docs/experience/ssr-seo/lv3-ssr-challenges#challenge-9-server-side-memory-leak)
+- [**如何處理 SSR 中的 Hydration Mismatch？**](/docs/experience/ssr-seo/lv3-ssr-challenges#challenge-1-hydration-mismatch)
+- [**部署 SSR 應用與 SPA 有何不同？**](/docs/experience/ssr-seo/lv3-ssr-challenges#challenge-11-deployment-architecture-ssr-vs-spa)
 - [**多語系網站的 SEO 該如何處理？**](/docs/experience/ssr-seo/lv3-i18n-seo)
 
 ## 手寫實作

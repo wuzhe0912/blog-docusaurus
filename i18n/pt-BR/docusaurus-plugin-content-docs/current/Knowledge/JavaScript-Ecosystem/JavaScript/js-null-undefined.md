@@ -5,40 +5,40 @@ slug: /js-null-undefined
 tags: [JavaScript, Quiz, Easy]
 ---
 
-## Comparacao das diferencas
+## Comparação das diferenças
 
 - **`undefined`**：
-  - Indica que uma variavel foi declarada, mas ainda nao recebeu um valor.
-  - E o valor padrao de variaveis nao inicializadas.
-  - Se uma funcao nao possui um valor de retorno explicito, retorna `undefined` por padrao.
+  - Indica que uma variável foi declarada, mas ainda não recebeu um valor.
+  - É o valor padrão de variáveis não inicializadas.
+  - Se uma função não possui um valor de retorno explícito, retorna `undefined` por padrão.
 - **`null`**：
-  - Representa um valor vazio ou a ausencia de valor.
-  - Geralmente deve ser explicitamente atribuido como `null`.
-  - Usado para indicar que uma variavel intencionalmente nao aponta para nenhum objeto ou valor.
+  - Representa um valor vazio ou a ausência de valor.
+  - Geralmente deve ser explicitamente atribuído como `null`.
+  - Usado para indicar que uma variável intencionalmente não aponta para nenhum objeto ou valor.
 
 ## Exemplo
 
 ```js
 let x;
-console.log(x); // Saida: undefined
+console.log(x); // Saída: undefined
 
 function foo() {}
-console.log(foo()); // Saida: undefined
+console.log(foo()); // Saída: undefined
 
 let y = null;
-console.log(y); // Saida: null
+console.log(y); // Saída: null
 
 let obj = { x: 5 };
 obj.x = null;
-console.log(obj.x); // Saida: null
+console.log(obj.x); // Saída: null
 ```
 
-## Verificacao com typeof
+## Verificação com typeof
 
 ```js
-console.log(typeof undefined); // Saida: "undefined"
-console.log(typeof null); // Saida: "object"
+console.log(typeof undefined); // Saída: "undefined"
+console.log(typeof null); // Saída: "object"
 
-console.log(null == undefined); // Saida: true
-console.log(null === undefined); // Saida: false
+console.log(null == undefined); // Saída: true
+console.log(null === undefined); // Saída: false
 ```

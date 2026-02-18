@@ -1,41 +1,41 @@
 ---
 id: css-units
-title: '[Medium] \U0001F3F7️ Unidades CSS'
+title: '[Medium] 🏷️ Unidades CSS'
 slug: /css-units
 tags: [CSS, Quiz, Medium]
 ---
 
 ## 1. Explique la diferencia entre `px`, `em`, `rem`, `vw`, `vh`
 
-### Tabla de comparacion rapida
+### Tabla de comparación rápida
 
 | Unidad | Tipo     | Relativo a                  | Afectado por padre | Usos comunes                         |
 | ------ | -------- | --------------------------- | ------------------ | ------------------------------------ |
-| `px`   | Absoluta | Pixeles de pantalla         | ❌                 | Bordes, sombras, detalles pequenos   |
+| `px`   | Absoluta | Píxeles de pantalla         | ❌                 | Bordes, sombras, detalles pequeños   |
 | `em`   | Relativa | font-size del **padre**     | ✅                 | Padding, margin (seguir fuente)      |
-| `rem`  | Relativa | font-size del **root**      | ❌                 | Fuentes, espaciado, tamano general   |
+| `rem`  | Relativa | font-size del **root**      | ❌                 | Fuentes, espaciado, tamaño general   |
 | `vw`   | Relativa | 1% del ancho del viewport   | ❌                 | Ancho responsivo, elementos de ancho completo |
 | `vh`   | Relativa | 1% del alto del viewport    | ❌                 | Alto responsivo, secciones de pantalla completa |
 
-### Explicacion detallada
+### Explicación detallada
 
 #### `px` (Pixels)
 
-**Definicion**: Unidad absoluta, 1px = un punto de pixel en la pantalla
+**Definición**: Unidad absoluta, 1px = un punto de píxel en la pantalla
 
-**Caracteristicas**:
+**Características**:
 
-- Tamano fijo, no cambia por ninguna configuracion
+- Tamaño fijo, no cambia por ninguna configuración
 - Control preciso, pero carece de flexibilidad
-- No es favorable para diseno responsivo ni accesibilidad
+- No es favorable para diseño responsivo ni accesibilidad
 
-**Cuando usar**:
+**Cuándo usar**:
 
 ```css
 /* ✅ Adecuado para */
 border: 1px solid #000; /* Bordes */
 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombras */
-border-radius: 4px; /* Bordes redondeados pequenos */
+border-radius: 4px; /* Bordes redondeados pequeños */
 
 /* ❌ No recomendado para */
 font-size: 16px; /* Para fuentes se recomienda rem */
@@ -44,15 +44,15 @@ width: 1200px; /* Para ancho se recomienda % o vw */
 
 #### `em`
 
-**Definicion**: Multiplo del font-size del **elemento padre**
+**Definición**: Múltiplo del font-size del **elemento padre**
 
-**Caracteristicas**:
+**Características**:
 
 - Se acumula por herencia (las estructuras anidadas se apilan)
-- Alta flexibilidad pero puede descontrolarse facilmente
+- Alta flexibilidad pero puede descontrolarse fácilmente
 - Adecuado para escenarios que necesitan escalar con el padre
 
-**Ejemplo de calculo**:
+**Ejemplo de cálculo**:
 
 ```css
 .parent {
@@ -69,35 +69,35 @@ width: 1200px; /* Para ancho se recomienda % o vw */
 }
 ```
 
-**Cuando usar**:
+**Cuándo usar**:
 
 ```css
 /* ✅ Adecuado para */
 .button {
   font-size: 1rem;
-  padding: 0.5em 1em; /* Padding sigue el tamano de fuente del boton */
+  padding: 0.5em 1em; /* Padding sigue el tamaño de fuente del botón */
 }
 
 .card-title {
   font-size: 1.2em; /* Relativo a la fuente base de la tarjeta */
-  margin-bottom: 0.5em; /* Espaciado sigue el tamano del titulo */
+  margin-bottom: 0.5em; /* Espaciado sigue el tamaño del título */
 }
 
-/* ⚠️ Cuidado con la acumulacion por anidamiento */
+/* ⚠️ Cuidado con la acumulación por anidamiento */
 ```
 
 #### `rem` (Root em)
 
-**Definicion**: Multiplo del font-size del **elemento raiz** (`<html>`)
+**Definición**: Múltiplo del font-size del **elemento raíz** (`<html>`)
 
-**Caracteristicas**:
+**Características**:
 
 - No se acumula por herencia (siempre relativo al root)
-- Facil de gestionar y mantener
+- Fácil de gestionar y mantener
 - Conveniente para implementar escalado global
-- Una de las unidades mas recomendadas
+- Una de las unidades más recomendadas
 
-**Ejemplo de calculo**:
+**Ejemplo de cálculo**:
 
 ```css
 html {
@@ -115,10 +115,10 @@ html {
 }
 ```
 
-**Cuando usar**:
+**Cuándo usar**:
 
 ```css
-/* ✅ Mas recomendado para */
+/* ✅ Más recomendado para */
 html {
   font-size: 16px; /* Establecer base */
 }
@@ -144,22 +144,22 @@ p {
 /* ✅ Conveniente para modo oscuro o ajustes de accesibilidad */
 @media (prefers-reduced-motion: reduce) {
   html {
-    font-size: 18px; /* Todas las unidades rem se amplian automaticamente */
+    font-size: 18px; /* Todas las unidades rem se amplían automáticamente */
   }
 }
 ```
 
 #### `vw` (Viewport Width)
 
-**Definicion**: 1% del ancho del viewport (100vw = ancho del viewport)
+**Definición**: 1% del ancho del viewport (100vw = ancho del viewport)
 
-**Caracteristicas**:
+**Características**:
 
 - Verdadera unidad responsiva
-- Cambia en tiempo real con el tamano del viewport del navegador
+- Cambia en tiempo real con el tamaño del viewport del navegador
 - Nota: 100vw incluye el ancho de la barra de desplazamiento
 
-**Ejemplo de calculo**:
+**Ejemplo de cálculo**:
 
 ```css
 /* Asumiendo ancho de viewport 1920px */
@@ -168,20 +168,20 @@ p {
   font-size: 5vw; /* 1920px × 5% = 96px */
 }
 
-/* Asumiendo ancho de viewport 375px (movil) */
+/* Asumiendo ancho de viewport 375px (móvil) */
 .element {
   width: 50vw; /* 375px × 50% = 187.5px */
   font-size: 5vw; /* 375px × 5% = 18.75px */
 }
 ```
 
-**Cuando usar**:
+**Cuándo usar**:
 
 ```css
 /* ✅ Adecuado para */
 .hero {
   width: 100vw; /* Banner de ancho completo */
-  margin-left: calc(-50vw + 50%); /* Romper limite del contenedor */
+  margin-left: calc(-50vw + 50%); /* Romper límite del contenedor */
 }
 
 .hero-title {
@@ -190,31 +190,31 @@ p {
 
 .responsive-box {
   width: 80vw;
-  max-width: 1200px; /* Agregar limite maximo */
+  max-width: 1200px; /* Agregar límite máximo */
 }
 
 /* ❌ Evitar */
 body {
-  width: 100vw; /* Causara barra de desplazamiento horizontal (incluye barra de desplazamiento) */
+  width: 100vw; /* Causará barra de desplazamiento horizontal (incluye barra de desplazamiento) */
 }
 ```
 
 #### `vh` (Viewport Height)
 
-**Definicion**: 1% del alto del viewport (100vh = alto del viewport)
+**Definición**: 1% del alto del viewport (100vh = alto del viewport)
 
-**Caracteristicas**:
+**Características**:
 
 - Adecuado para crear efectos de pantalla completa
-- En dispositivos moviles hay que tener en cuenta el problema de la barra de direcciones
-- Puede verse afectado por la aparicion del teclado
+- En dispositivos móviles hay que tener en cuenta el problema de la barra de direcciones
+- Puede verse afectado por la aparición del teclado
 
-**Cuando usar**:
+**Cuándo usar**:
 
 ```css
 /* ✅ Adecuado para */
 .hero-section {
-  height: 100vh; /* Pagina principal de pantalla completa */
+  height: 100vh; /* Página principal de pantalla completa */
 }
 
 .fullscreen-modal {
@@ -228,10 +228,10 @@ body {
   top: 0;
 }
 
-/* ⚠️ Alternativa para dispositivos moviles */
+/* ⚠️ Alternativa para dispositivos móviles */
 .hero-section {
   height: 100vh;
-  height: 100dvh; /* Alto dinamico del viewport (unidad mas nueva) */
+  height: 100dvh; /* Alto dinámico del viewport (unidad más nueva) */
 }
 
 /* ✅ Centrado vertical */
@@ -243,7 +243,7 @@ body {
 }
 ```
 
-### Consejos practicos y mejores practicas
+### Consejos prácticos y mejores prácticas
 
 #### 1. Construir sistema de fuentes responsivo
 
@@ -261,17 +261,17 @@ html {
 
 @media (max-width: 480px) {
   html {
-    font-size: 12px; /* Movil */
+    font-size: 12px; /* Móvil */
   }
 }
 
-/* Todos los elementos que usan rem se escalan automaticamente */
+/* Todos los elementos que usan rem se escalan automáticamente */
 h1 {
   font-size: 2.5rem;
-} /* Escritorio 40px, movil 30px */
+} /* Escritorio 40px, móvil 30px */
 p {
   font-size: 1rem;
-} /* Escritorio 16px, movil 12px */
+} /* Escritorio 16px, móvil 12px */
 ```
 
 #### 2. Uso mixto de diferentes unidades
@@ -293,7 +293,7 @@ p {
 }
 
 .card-title {
-  /* clamp combina multiples unidades, escalado fluido */
+  /* clamp combina múltiples unidades, escalado fluido */
   font-size: clamp(1.25rem, 3vw, 2rem);
 }
 ```
@@ -303,35 +303,35 @@ p {
 **Estructura de respuesta**:
 
 ```markdown
-1. **px**: Detalles en pixeles → bordes, sombras, bordes redondeados
-2. **rem**: Base estable desde la raiz → fuentes, espaciado, tamanos principales
+1. **px**: Detalles en píxeles → bordes, sombras, bordes redondeados
+2. **rem**: Base estable desde la raíz → fuentes, espaciado, tamaños principales
 3. **em**: Sigue al padre
 4. **vw**: Cambia con el ancho del viewport → ancho responsivo
 5. **vh**: Llena el alto del viewport → secciones de pantalla completa
 ```
 
-1. **Definicion rapida**
+1. **Definición rápida**
 
-   - px es unidad absoluta, las demas son relativas
+   - px es unidad absoluta, las demás son relativas
    - em es relativo al padre, rem es relativo al root
-   - vw/vh son relativos al tamano del viewport
+   - vw/vh son relativos al tamaño del viewport
 
 2. **Diferencia clave**
 
-   - rem no se acumula, em si (esta es la diferencia principal)
+   - rem no se acumula, em sí (esta es la diferencia principal)
    - vw/vh son verdaderamente responsivos, pero hay que tener cuidado con la barra de desplazamiento
 
-3. **Aplicacion practica**
+3. **Aplicación práctica**
 
    - **px**: Bordes de 1px, sombras y otros detalles
-   - **rem**: Fuentes, espaciado, contenedores (el mas usado, facil de mantener)
+   - **rem**: Fuentes, espaciado, contenedores (el más usado, fácil de mantener)
    - **em**: Padding de botones (cuando necesita escalar con la fuente)
    - **vw/vh**: Banners de ancho completo, secciones de pantalla completa, fuentes responsivas con clamp
 
-4. **Mejores practicas**
+4. **Mejores prácticas**
    - Establecer html font-size como base
    - Usar clamp() para combinar diferentes unidades
-   - Tener cuidado con el problema de vh en dispositivos moviles (se puede usar dvh)
+   - Tener cuidado con el problema de vh en dispositivos móviles (se puede usar dvh)
 
 ### Reference
 

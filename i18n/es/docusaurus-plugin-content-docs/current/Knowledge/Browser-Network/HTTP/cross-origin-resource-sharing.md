@@ -1,16 +1,16 @@
 ---
 id: cross-origin-resource-sharing
-title: "\U0001F4C4 CORS"
+title: "📄 CORS"
 slug: /cross-origin-resource-sharing
 ---
 
-## 1. Cual es la diferencia entre JSONP y CORS?
+## 1. Cuál es la diferencia entre JSONP y CORS?
 
-JSONP (JSON with Padding) y CORS (Cross-Origin Resource Sharing) son dos tecnicas para implementar solicitudes de origen cruzado, que permiten a las paginas web solicitar datos desde diferentes dominios (sitios web).
+JSONP (JSON with Padding) y CORS (Cross-Origin Resource Sharing) son dos técnicas para implementar solicitudes de origen cruzado, que permiten a las páginas web solicitar datos desde diferentes dominios (sitios web).
 
 ### JSONP
 
-JSONP es una tecnica relativamente antigua utilizada para resolver las restricciones de la politica del mismo origen en sus inicios, permitiendo a las paginas web solicitar datos desde diferentes origenes (dominio, protocolo o puerto). Dado que la carga de etiquetas `<script>` no esta restringida por la politica del mismo origen, JSONP funciona agregando dinamicamente una etiqueta `<script>` que apunta a una URL que devuelve datos JSON. La respuesta de esa URL esta envuelta en una llamada a funcion, y el JavaScript de la pagina web define previamente esta funcion para recibir los datos.
+JSONP es una técnica relativamente antigua utilizada para resolver las restricciones de la política del mismo origen en sus inicios, permitiendo a las páginas web solicitar datos desde diferentes orígenes (dominio, protocolo o puerto). Dado que la carga de etiquetas `<script>` no está restringida por la política del mismo origen, JSONP funciona agregando dinámicamente una etiqueta `<script>` que apunta a una URL que devuelve datos JSON. La respuesta de esa URL está envuelta en una llamada a función, y el JavaScript de la página web define previamente esta función para recibir los datos.
 
 ```javascript
 // client-side
@@ -32,7 +32,7 @@ Las desventajas son que tiene un mayor riesgo de seguridad (ya que puede ejecuta
 
 ### CORS
 
-CORS es una tecnica mas segura y moderna que JSONP. Utiliza el encabezado HTTP `Access-Control-Allow-Origin` para informar al navegador que la solicitud esta permitida. El servidor configura los encabezados CORS correspondientes para determinar que origenes pueden acceder a sus recursos.
+CORS es una técnica más segura y moderna que JSONP. Utiliza el encabezado HTTP `Access-Control-Allow-Origin` para informar al navegador que la solicitud está permitida. El servidor configura los encabezados CORS correspondientes para determinar qué orígenes pueden acceder a sus recursos.
 
 Si el frontend de `http://client.com` quiere acceder a los recursos de `http://api.example.com`, `api.example.com` necesita incluir el siguiente HTTP header en su respuesta:
 

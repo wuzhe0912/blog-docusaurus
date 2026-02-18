@@ -7,21 +7,21 @@ tags: [Vue, Quiz, Medium]
 
 ## 1. What is Static Hoisting in Vue 3?
 
-> O que e Static Hoisting no Vue3?
+> O que é Static Hoisting no Vue3?
 
-No Vue3, o chamado **Static Hoisting (Elevacao Estatica)** e uma tecnica de otimizacao na fase de compilacao.
+No Vue3, o chamado **Static Hoisting (Elevação Estática)** é uma técnica de otimização na fase de compilação.
 
-### Definicao
+### Definição
 
-**Static Hoisting** e quando o compilador do Vue 3, ao compilar o template, analisa quais nos nao dependem de estado reativo e nunca mudarao, e entao os extrai como constantes no topo do arquivo. Eles sao criados apenas na primeira renderizacao e reutilizados diretamente nas re-renderizacoes seguintes, reduzindo o custo de criacao de VNode e de diff.
+**Static Hoisting** é quando o compilador do Vue 3, ao compilar o template, analisa quais nós não dependem de estado reativo e nunca mudarão, e então os extrai como constantes no topo do arquivo. Eles são criados apenas na primeira renderização e reutilizados diretamente nas re-renderizações seguintes, reduzindo o custo de criação de VNode e de diff.
 
 ### Como Funciona
 
-O compilador analisa o template e extrai nos que sao completamente independentes do estado reativo e nunca mudam, transformando-os em constantes no topo do arquivo, criados apenas uma vez na primeira renderizacao e reutilizados diretamente nas renderizacoes seguintes.
+O compilador analisa o template e extrai nós que são completamente independentes do estado reativo e nunca mudam, transformando-os em constantes no topo do arquivo, criados apenas uma vez na primeira renderização e reutilizados diretamente nas renderizações seguintes.
 
-### Comparacao Antes e Depois da Compilacao
+### Comparação Antes e Depois da Compilação
 
-**Template Antes da Compilacao**:
+**Template Antes da Compilação**:
 
 <details>
 <summary>Clique para expandir o exemplo de Template</summary>
@@ -29,8 +29,8 @@ O compilador analisa o template e extrai nos que sao completamente independentes
 ```vue
 <template>
   <div>
-    <h1>Titulo Estatico</h1>
-    <p>Conteudo Estatico</p>
+    <h1>Título Estático</h1>
+    <p>Conteúdo Estático</p>
     <div>{{ dynamicContent }}</div>
   </div>
 </template>
@@ -38,21 +38,21 @@ O compilador analisa o template e extrai nos que sao completamente independentes
 
 </details>
 
-**JavaScript Apos Compilacao** (versao simplificada):
+**JavaScript Após Compilação** (versão simplificada):
 
 <details>
 <summary>Clique para expandir o JavaScript compilado</summary>
 
 ```js
-// Nos estaticos elevados ao topo, criados apenas uma vez
-const _hoisted_1 = /*#__PURE__*/ h('h1', null, 'Titulo Estatico');
-const _hoisted_2 = /*#__PURE__*/ h('p', null, 'Conteudo Estatico');
+// nós estáticos elevados ao topo, criados apenas uma vez
+const _hoisted_1 = /*#__PURE__*/ h('h1', null, 'Título Estático');
+const _hoisted_2 = /*#__PURE__*/ h('p', null, 'Conteúdo Estático');
 
 function render() {
   return h('div', null, [
-    _hoisted_1, // Reutilizado diretamente, sem recriacao
-    _hoisted_2, // Reutilizado diretamente, sem recriacao
-    h('div', null, dynamicContent.value), // Conteudo dinamico precisa ser recriado
+    _hoisted_1, // Reutilizado diretamente, sem recriação
+    _hoisted_2, // Reutilizado diretamente, sem recriação
+    h('div', null, dynamicContent.value), // Conteúdo dinâmico precisa ser recriado
   ]);
 }
 ```
@@ -61,59 +61,59 @@ function render() {
 
 ### Vantagens
 
-1. **Reduz custo de criacao de VNode**: Nos estaticos criados apenas uma vez, reutilizados depois
-2. **Reduz custo de diff**: Nos estaticos nao participam da comparacao diff
-3. **Melhora performance de renderizacao**: Efeito especialmente notavel em componentes com muito conteudo estatico
-4. **Otimizacao automatica**: Desenvolvedores nao precisam fazer nada especial para aproveitar esta otimizacao
+1. **Reduz custo de criação de VNode**: Nós estáticos criados apenas uma vez, reutilizados depois
+2. **Reduz custo de diff**: Nós estáticos não participam da comparação diff
+3. **Melhora performance de renderização**: Efeito especialmente notável em componentes com muito conteúdo estático
+4. **Otimização automática**: Desenvolvedores não precisam fazer nada especial para aproveitar esta otimização
 
 ## 2. How Static Hoisting Works
 
 > Como funciona o Static Hoisting?
 
-### Processo de Analise do Compilador
+### Processo de Análise do Compilador
 
-O compilador analisa cada no do template:
+O compilador analisa cada nó do template:
 
-1. **Verifica se o no contem ligacoes dinamicas**
+1. **Verifica se o no contém ligações dinâmicas**
 
-   - Verifica se ha `{{ }}`, `v-bind`, `v-if`, `v-for` e outras diretivas dinamicas
-   - Verifica se valores de atributos contem variaveis
+   - Verifica se há `{{ }}`, `v-bind`, `v-if`, `v-for` e outras diretivas dinâmicas
+   - Verifica se valores de atributos contém variáveis
 
-2. **Marca nos estaticos**
+2. **Marca nós estáticos**
 
-   - Se o no e seus filhos nao tiverem ligacoes dinamicas, marca como no estatico
+   - Se o no e seus filhos não tiverem ligações dinâmicas, marca como no estático
 
-3. **Eleva nos estaticos**
-   - Extrai nos estaticos para fora da funcao render
-   - Define como constantes no topo do modulo
+3. **Eleva nós estáticos**
+   - Extrai nós estáticos para fora da função render
+   - Define como constantes no topo do módulo
 
-### Exemplo 1: Static Hoisting Basico
+### Exemplo 1: Static Hoisting Básico
 
 <details>
-<summary>Clique para expandir o exemplo basico</summary>
+<summary>Clique para expandir o exemplo básico</summary>
 
 ```vue
 <template>
   <div>
-    <h1>Titulo</h1>
-    <p>Este e conteudo estatico</p>
-    <div>Bloco estatico</div>
+    <h1>Título</h1>
+    <p>Este e conteúdo estático</p>
+    <div>Bloco estático</div>
   </div>
 </template>
 ```
 
 </details>
 
-**Apos compilacao**:
+**Após compilação**:
 
 <details>
 <summary>Clique para expandir o resultado compilado</summary>
 
 ```js
-// Todos os nos estaticos sao elevados
-const _hoisted_1 = h('h1', null, 'Titulo');
-const _hoisted_2 = h('p', null, 'Este e conteudo estatico');
-const _hoisted_3 = h('div', null, 'Bloco estatico');
+// Todos os nós estáticos são elevados
+const _hoisted_1 = h('h1', null, 'Título');
+const _hoisted_2 = h('p', null, 'Este e conteúdo estático');
+const _hoisted_3 = h('div', null, 'Bloco estático');
 
 function render() {
   return h('div', null, [_hoisted_1, _hoisted_2, _hoisted_3]);
@@ -122,74 +122,74 @@ function render() {
 
 </details>
 
-### Exemplo 2: Conteudo Misto Estatico e Dinamico
+### Exemplo 2: Conteúdo Misto Estático e Dinâmico
 
 <details>
-<summary>Clique para expandir o exemplo de conteudo misto</summary>
+<summary>Clique para expandir o exemplo de conteúdo misto</summary>
 
 ```vue
 <template>
   <div>
-    <h1>Titulo Estatico</h1>
+    <h1>Título Estático</h1>
     <p>{{ message }}</p>
-    <div class="static-class">Conteudo Estatico</div>
-    <span :class="dynamicClass">Conteudo Dinamico</span>
+    <div class="static-class">Conteúdo Estático</div>
+    <span :class="dynamicClass">Conteúdo Dinâmico</span>
   </div>
 </template>
 ```
 
 </details>
 
-**Apos compilacao**:
+**Após compilação**:
 
 <details>
 <summary>Clique para expandir o resultado compilado</summary>
 
 ```js
-// Apenas nos completamente estaticos sao elevados
-const _hoisted_1 = h('h1', null, 'Titulo Estatico');
+// Apenas nós completamente estáticos são elevados
+const _hoisted_1 = h('h1', null, 'Título Estático');
 const _hoisted_2 = { class: 'static-class' };
-const _hoisted_3 = h('div', _hoisted_2, 'Conteudo Estatico');
+const _hoisted_3 = h('div', _hoisted_2, 'Conteúdo Estático');
 
 function render() {
   return h('div', null, [
-    _hoisted_1, // No estatico, reutilizado
-    h('p', null, message.value), // Conteudo dinamico, precisa ser recriado
-    _hoisted_3, // No estatico, reutilizado
-    h('span', { class: dynamicClass.value }, 'Conteudo Dinamico'), // Atributo dinamico, precisa ser recriado
+    _hoisted_1, // No estático, reutilizado
+    h('p', null, message.value), // Conteúdo dinâmico, precisa ser recriado
+    _hoisted_3, // No estático, reutilizado
+    h('span', { class: dynamicClass.value }, 'Conteúdo Dinâmico'), // Atributo dinâmico, precisa ser recriado
   ]);
 }
 ```
 
 </details>
 
-### Exemplo 3: Elevacao de Atributos Estaticos
+### Exemplo 3: Elevação de Atributos Estáticos
 
 <details>
-<summary>Clique para expandir o exemplo de atributos estaticos</summary>
+<summary>Clique para expandir o exemplo de atributos estáticos</summary>
 
 ```vue
 <template>
   <div>
-    <div class="container" id="main">Conteudo</div>
-    <button disabled>Botao</button>
+    <div class="container" id="main">Conteúdo</div>
+    <button disabled>Botão</button>
   </div>
 </template>
 ```
 
 </details>
 
-**Apos compilacao**:
+**Após compilação**:
 
 <details>
 <summary>Clique para expandir o resultado compilado</summary>
 
 ```js
-// Objetos de atributos estaticos tambem sao elevados
+// Objetos de atributos estáticos também são elevados
 const _hoisted_1 = { class: 'container', id: 'main' };
 const _hoisted_2 = { disabled: true };
-const _hoisted_3 = h('div', _hoisted_1, 'Conteudo');
-const _hoisted_4 = h('button', _hoisted_2, 'Botao');
+const _hoisted_3 = h('div', _hoisted_1, 'Conteúdo');
+const _hoisted_4 = h('button', _hoisted_2, 'Botão');
 
 function render() {
   return h('div', null, [_hoisted_3, _hoisted_4]);
@@ -202,21 +202,21 @@ function render() {
 
 > Diretiva v-once
 
-Se o desenvolvedor quiser marcar manualmente um grande bloco de conteudo que nunca mudara, pode usar a diretiva `v-once`.
+Se o desenvolvedor quiser marcar manualmente um grande bloco de conteúdo que nunca mudara, pode usar a diretiva `v-once`.
 
-### Funcao do v-once
+### Função do v-once
 
-`v-once` diz ao compilador que este elemento e seus filhos devem ser renderizados apenas uma vez, mesmo que contenham ligacoes dinamicas, serao calculados apenas na primeira renderizacao e nao serao atualizados depois.
+`v-once` diz ao compilador que este elemento e seus filhos devem ser renderizados apenas uma vez, mesmo que contenham ligações dinâmicas, serão calculados apenas na primeira renderização e não serão atualizados depois.
 
-### Uso Basico
+### Uso Básico
 
 <details>
-<summary>Clique para expandir o exemplo basico de v-once</summary>
+<summary>Clique para expandir o exemplo básico de v-once</summary>
 
 ```vue
 <template>
   <div>
-    <!-- Usa v-once para marcar conteudo estatico -->
+    <!-- Usa v-once para marcar conteúdo estático -->
     <div v-once>
       <h1>{{ title }}</h1>
       <p>{{ content }}</p>
@@ -233,13 +233,13 @@ Se o desenvolvedor quiser marcar manualmente um grande bloco de conteudo que nun
 <script setup>
 import { ref } from 'vue';
 
-const title = ref('Titulo Inicial');
-const content = ref('Conteudo Inicial');
+const title = ref('Título Inicial');
+const content = ref('Conteúdo Inicial');
 
-// Mesmo alterando estes valores, o bloco v-once nao atualiza
+// Mesmo alterando estes valores, o bloco v-once não atualiza
 setTimeout(() => {
-  title.value = 'Novo Titulo';
-  content.value = 'Novo Conteudo';
+  title.value = 'Novo Título';
+  content.value = 'Novo Conteúdo';
 }, 1000);
 </script>
 ```
@@ -248,32 +248,32 @@ setTimeout(() => {
 
 ### v-once vs Static Hoisting
 
-| Caracteristica | Static Hoisting | v-once |
+| Característica | Static Hoisting | v-once |
 | ------------ | ------------------- | ------------------------ |
-| **Acionamento** | Automatico (analise do compilador) | Manual (marcacao do desenvolvedor) |
-| **Cenario** | Conteudo completamente estatico | Contem ligacoes dinamicas mas renderiza uma vez |
-| **Performance** | Otima (nao participa do diff) | Boa (renderiza apenas uma vez) |
-| **Momento de uso** | Compilador decide automaticamente | Desenvolvedor sabe que nao mudara |
+| **Acionamento** | Automático (análise do compilador) | Manual (marcação do desenvolvedor) |
+| **Cenário** | Conteúdo completamente estático | Contém ligações dinâmicas mas renderiza uma vez |
+| **Performance** | Ótima (não participa do diff) | Boa (renderiza apenas uma vez) |
+| **Momento de uso** | Compilador decide automaticamente | Desenvolvedor sabe que não mudara |
 
-### Cenarios de Uso
+### Cenários de Uso
 
 ```vue
 <template>
-  <!-- Cenario 1: Dados exibidos uma unica vez -->
+  <!-- Cenário 1: Dados exibidos uma única vez -->
   <div v-once>
-    <p>Data de criacao: {{ createdAt }}</p>
+    <p>Data de criação: {{ createdAt }}</p>
     <p>Criador: {{ creator }}</p>
   </div>
 
-  <!-- Cenario 2: Estrutura estatica complexa -->
+  <!-- Cenário 2: Estrutura estática complexa -->
   <div v-once>
     <div class="header">
-      <h1>Titulo</h1>
-      <nav>Navegacao</nav>
+      <h1>Título</h1>
+      <nav>Navegação</nav>
     </div>
   </div>
 
-  <!-- Cenario 3: Itens estaticos em lista -->
+  <!-- Cenário 3: Itens estáticos em lista -->
   <div v-for="item in items" :key="item.id">
     <div v-once>
       <h2>{{ item.title }}</h2>
@@ -287,104 +287,104 @@ setTimeout(() => {
 
 > Perguntas comuns de entrevista
 
-### Pergunta 1: Principio do Static Hoisting
+### Pergunta 1: Princípio do Static Hoisting
 
-Explique o principio de funcionamento do Static Hoisting no Vue3 e como ele melhora a performance.
+Explique o princípio de funcionamento do Static Hoisting no Vue3 é como ele melhora a performance.
 
 <details>
 <summary>Clique para ver a resposta</summary>
 
-**Principio de funcionamento do Static Hoisting**:
+**Princípio de funcionamento do Static Hoisting**:
 
-1. **Analise na fase de compilacao**: O compilador analisa cada no do template, verifica se contem ligacoes dinamicas, e marca como estaticos os nos sem ligacoes dinamicas
-2. **Elevacao de nos**: Extrai nos estaticos para fora da funcao render, define como constantes no topo do modulo, cria apenas uma vez na primeira renderizacao
-3. **Mecanismo de reutilizacao**: Re-renderizacoes seguintes reutilizam diretamente estes nos estaticos, sem recriacao de VNode, sem participacao em comparacao diff
+1. **Análise na fase de compilação**: O compilador analisa cada nó do template, verifica se contém ligações dinâmicas, e marca como estáticos os nós sem ligações dinâmicas
+2. **Elevação de nós**: Extrai nós estáticos para fora da função render, define como constantes no topo do módulo, cria apenas uma vez na primeira renderização
+3. **Mecanismo de reutilização**: Re-renderizações seguintes reutilizam diretamente estes nós estáticos, sem recriação de VNode, sem participacao em comparação diff
 
 **Melhoria de performance**:
 
-- **Reduz custo de criacao de VNode**: Nos estaticos criados apenas uma vez
-- **Reduz custo de diff**: Nos estaticos pulam comparacao diff
-- **Reduz uso de memoria**: Multiplas instancias do componente compartilham nos estaticos
-- **Aumenta velocidade de renderizacao**: Efeito especialmente notavel em componentes com muito conteudo estatico
+- **Reduz custo de criação de VNode**: Nós estáticos criados apenas uma vez
+- **Reduz custo de diff**: Nós estáticos pulam comparação diff
+- **Reduz uso de memória**: Múltiplas instâncias do componente compartilham nós estáticos
+- **Aumenta velocidade de renderização**: Efeito especialmente notável em componentes com muito conteúdo estático
 
 </details>
 
-### Pergunta 2: Diferenca entre Static Hoisting e v-once
+### Pergunta 2: Diferença entre Static Hoisting e v-once
 
-Explique a diferenca entre Static Hoisting e `v-once`, e seus respectivos cenarios de uso.
+Explique a diferença entre Static Hoisting e `v-once`, e seus respectivos cenários de uso.
 
 <details>
 <summary>Clique para ver a resposta</summary>
 
-**Principais diferencas**:
+**Principais diferenças**:
 
-| Caracteristica | Static Hoisting | v-once |
+| Característica | Static Hoisting | v-once |
 | ------------ | ------------------- | ------------------------ |
-| **Acionamento** | Automatico (analise do compilador) | Manual (marcacao do desenvolvedor) |
-| **Conteudo aplicavel** | Conteudo completamente estatico | Contem ligacoes dinamicas mas renderiza uma vez |
-| **Momento de compilacao** | Compilador decide automaticamente | Desenvolvedor marca explicitamente |
-| **Performance** | Otima (nao participa do diff) | Boa (renderiza apenas uma vez) |
-| **Comportamento de atualizacao** | Nunca atualiza | Nao atualiza apos primeira renderizacao |
+| **Acionamento** | Automático (análise do compilador) | Manual (marcação do desenvolvedor) |
+| **Conteúdo Aplicável** | Conteúdo completamente estático | Contém ligações dinâmicas mas renderiza uma vez |
+| **Momento de compilação** | Compilador decide automaticamente | Desenvolvedor marca explicitamente |
+| **Performance** | Ótima (não participa do diff) | Boa (renderiza apenas uma vez) |
+| **Comportamento de atualização** | Nunca atualiza | Não atualiza após primeira renderização |
 
-**Recomendacao de escolha**:
+**Recomendação de escolha**:
 
-- Se o conteudo e completamente estatico -> Deixar o compilador tratar automaticamente (Static Hoisting)
-- Se o conteudo tem ligacoes dinamicas mas renderiza uma vez -> Usar `v-once`
-- Se o conteudo precisa de atualizacao reativa -> Nao usar `v-once`
+- Se o conteúdo e completamente estático -> Deixar o compilador tratar automaticamente (Static Hoisting)
+- Se o conteúdo tem ligações dinâmicas mas renderiza uma vez -> Usar `v-once`
+- Se o conteúdo precisa de atualização reativa -> Não usar `v-once`
 
 </details>
 
 ## 5. Best Practices
 
-> Melhores Praticas
+> Melhores Práticas
 
-### Praticas Recomendadas
+### Práticas Recomendadas
 
 ```vue
-<!-- 1. Deixar o compilador tratar automaticamente conteudo estatico -->
+<!-- 1. Deixar o compilador tratar automaticamente conteúdo estático -->
 <template>
   <div>
-    <h1>Titulo</h1>
-    <p>Conteudo estatico</p>
+    <h1>Título</h1>
+    <p>Conteúdo estático</p>
     <div>{{ dynamicContent }}</div>
   </div>
 </template>
 
-<!-- 2. Usar v-once explicitamente para conteudo que renderiza uma vez -->
+<!-- 2. Usar v-once explicitamente para conteúdo que renderiza uma vez -->
 <template>
   <div v-once>
-    <p>Data de criacao: {{ createdAt }}</p>
+    <p>Data de criação: {{ createdAt }}</p>
     <p>Criador: {{ creator }}</p>
   </div>
 </template>
 
-<!-- 3. Separar estrutura estatica de conteudo dinamico -->
+<!-- 3. Separar estrutura estática de conteúdo dinâmico -->
 <template>
   <div>
-    <!-- Estrutura estatica -->
+    <!-- Estrutura estática -->
     <div class="container">
-      <header>Titulo</header>
-      <!-- Conteudo dinamico -->
+      <header>Título</header>
+      <!-- Conteúdo dinâmico -->
       <main>{{ content }}</main>
     </div>
   </div>
 </template>
 ```
 
-### Praticas a Evitar
+### Práticas a Evitar
 
 ```vue
-<!-- 1. Nao usar v-once em excesso -->
+<!-- 1. Não usar v-once em excesso -->
 <template>
-  <!-- Se o conteudo precisa atualizar, nao usar v-once -->
+  <!-- Se o conteúdo precisa atualizar, não usar v-once -->
   <div v-once>
     <p>{{ shouldUpdateContent }}</p>
   </div>
 </template>
 
-<!-- 2. Nao usar v-once em conteudo dinamico -->
+<!-- 2. Não usar v-once em conteúdo dinâmico -->
 <template>
-  <!-- Se itens da lista precisam atualizar, nao usar v-once -->
+  <!-- Se itens da lista precisam atualizar, não usar v-once -->
   <div v-for="item in items" :key="item.id" v-once>
     <p>{{ item.content }}</p>
   </div>
@@ -395,26 +395,26 @@ Explique a diferenca entre Static Hoisting e `v-once`, e seus respectivos cenari
 
 > Resumo para Entrevistas
 
-### Memorizacao Rapida
+### Memorização Rápida
 
 **Static Hoisting**:
 
-- **Definicao**: Na fase de compilacao, eleva nos estaticos como constantes, cria apenas uma vez
-- **Vantagem**: Reduz custo de criacao de VNode e de diff
-- **Automatico**: Compilador processa automaticamente, desenvolvedor nao percebe
-- **Aplicavel**: Nos que nao dependem de estado reativo
+- **Definição**: Na fase de compilação, eleva nós estáticos como constantes, cria apenas uma vez
+- **Vantagem**: Reduz custo de criação de VNode e de diff
+- **Automático**: Compilador processa automaticamente, desenvolvedor não percebe
+- **Aplicável**: Nós que não dependem de estado reativo
 
 **v-once**:
 
-- **Definicao**: Marca manualmente conteudo que renderiza apenas uma vez
-- **Aplicavel**: Blocos com ligacoes dinamicas mas que renderizam apenas uma vez
-- **Performance**: Reduz atualizacoes desnecessarias
+- **Definição**: Marca manualmente conteúdo que renderiza apenas uma vez
+- **Aplicável**: Blocos com ligações dinâmicas mas que renderizam apenas uma vez
+- **Performance**: Reduz atualizações desnecessárias
 
 ### Exemplo de Resposta para Entrevista
 
-**P: O que e Static Hoisting no Vue3?**
+**P: O que é Static Hoisting no Vue3?**
 
-> "No Vue3, Static Hoisting e uma otimizacao na fase de compilacao. O compilador analisa o template e extrai nos que nao dependem de estado reativo e nunca mudam, transformando-os em constantes no topo do arquivo, criados apenas uma vez na primeira renderizacao e reutilizados nas renderizacoes seguintes, reduzindo o custo de criacao de VNode e de diff. O desenvolvedor nao precisa fazer nada especial para aproveitar esta otimizacao, basta escrever o template normalmente e o compilador decide automaticamente quais nos podem ser elevados. Se quiser marcar manualmente um grande bloco que nunca muda, pode usar v-once."
+> "No Vue3, Static Hoisting é uma otimização na fase de compilação. O compilador analisa o template e extrai nós que não dependem de estado reativo e nunca mudam, transformando-os em constantes no topo do arquivo, criados apenas uma vez na primeira renderização e reutilizados nas renderizações seguintes, reduzindo o custo de criação de VNode e de diff. O desenvolvedor não precisa fazer nada especial para aproveitar esta otimização, basta escrever o template normalmente é o compilador decide automaticamente quais nós podem ser elevados. Se quiser marcar manualmente um grande bloco que nunca muda, pode usar v-once."
 
 ## Reference
 

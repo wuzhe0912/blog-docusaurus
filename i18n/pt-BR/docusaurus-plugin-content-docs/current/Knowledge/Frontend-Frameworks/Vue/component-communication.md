@@ -1,17 +1,17 @@
 ---
-id: vue-component-communication
-title: '[Medium] Comunicacao entre Componentes'
-slug: /vue-component-communication
+id: vue-component-commúnication
+title: '[Medium] Comúnicação entre Componentes'
+slug: /vue-component-commúnication
 tags: [Vue, Quiz, Medium]
 ---
 
-## 1. What are the ways for Vue components to communicate with each other?
+## 1. What are the ways for Vue components to commúnicate with each other?
 
-> Quais sao as formas de comunicacao entre componentes Vue?
+> Quais são as formas de comúnicação entre componentes Vue?
 
-A transferencia de dados entre componentes Vue e uma necessidade muito comum no desenvolvimento. Dependendo da relacao entre os componentes, existem varias formas de comunicacao disponiveis.
+A transferência de dados entre componentes Vue é uma necessidade muito comum no desenvolvimento. Dependendo da relação entre os componentes, existem varias formas de comúnicação disponíveis.
 
-### Classificacao de Relacoes entre Componentes
+### Classificação de Relacoes entre Componentes
 
 ```text
 Pai-filho: props / $emit
@@ -62,24 +62,24 @@ const counter = ref(0);
 </template>
 
 <script setup>
-// Validacao de tipos basicos
+// Validação de tipos básicos
 defineProps({
   message: {
     type: String,
     required: true,
     default: '',
   },
-  // Validacao de tipo objeto
+  // Validação de tipo objeto
   user: {
     type: Object,
     required: true,
     default: () => ({}),
   },
-  // Validacao de tipo numerico
+  // Validação de tipo numerico
   count: {
     type: Number,
     default: 0,
-    validator: (value) => value >= 0, // Validacao customizada: deve ser >= 0
+    validator: (value) => value >= 0, // Validação customizada: deve ser >= 0
   },
 });
 </script>
@@ -99,10 +99,10 @@ const props = defineProps({
 const localMessage = ref(props.message);
 
 onMounted(() => {
-  // Errado: nao se deve modificar props diretamente
+  // Errado: não se deve modificar props diretamente
   // props.message = 'new value'; // Gera um aviso
 
-  // Correto: ja copiamos a prop para um ref acima
+  // Correto: já copiamos a prop para um ref acima
   localMessage.value = props.message;
 });
 </script>
@@ -176,16 +176,16 @@ const handleUpdate = (value) => {
 </script>
 ```
 
-#### Opcao emits no Vue 3
+#### Opção emits no Vue 3
 
 ```vue
 <!-- Escrita Vue 3 <script setup> -->
 <script setup>
 const emit = defineEmits({
-  // Declara eventos que serao emitidos
+  // Declara eventos que serão emitidos
   'custom-event': null,
 
-  // Evento com validacao
+  // Evento com validação
   'update:modelValue': (value) => {
     if (typeof value !== 'string') {
       console.warn('modelValue deve ser uma string');
@@ -201,9 +201,9 @@ const sendEvent = () => {
 </script>
 ```
 
-### 3. v-model (Ligacao Bidirecional)
+### 3. v-model (Ligação Bidirecional)
 
-**Uso**: Ligacao bidirecional de dados entre componentes pai e filho
+**Uso**: Ligação bidirecional de dados entre componentes pai e filho
 
 #### v-model no Vue 2
 
@@ -266,7 +266,7 @@ const updateValue = (event) => {
 </script>
 ```
 
-#### Multiplos v-model no Vue 3
+#### Múltiplos v-model no Vue 3
 
 ```vue
 <!-- ParentComponent.vue - Vue 3 <script setup> -->
@@ -312,7 +312,7 @@ defineEmits(['update:name', 'update:email']);
 
 ### 4. Provide / Inject (Componentes Avo-Neto)
 
-**Uso**: Comunicacao entre componentes de niveis diferentes, evitando passar props camada por camada
+**Uso**: Comúnicação entre componentes de níveis diferentes, evitando passar props camada por camada
 
 ```vue
 <!-- GrandparentComponent.vue -->
@@ -340,7 +340,7 @@ export default {
       userInfo.value = { ...userInfo.value, ...newInfo };
     };
 
-    // Fornece dados e metodos para componentes descendentes
+    // Fornece dados é métodos para componentes descendentes
     provide('userInfo', userInfo);
     provide('updateUser', updateUser);
 
@@ -354,7 +354,7 @@ export default {
 <!-- ParentComponent.vue -->
 <template>
   <div>
-    <h2>Componente Pai (nao usa inject)</h2>
+    <h2>Componente Pai (não usa inject)</h2>
     <child-component />
   </div>
 </template>
@@ -374,7 +374,7 @@ export default {
   <div>
     <h3>Componente Filho</h3>
     <p>Usuario: {{ userInfo.name }}</p>
-    <p>Funcao: {{ userInfo.role }}</p>
+    <p>Função: {{ userInfo.role }}</p>
     <button @click="changeUser">Modificar usuario</button>
   </div>
 </template>
@@ -414,7 +414,7 @@ export default {
     // Errado: componentes descendentes podem modificar diretamente
     provide('state', state);
 
-    // Correto: fornecer dados somente leitura e metodos de modificacao
+    // Correto: fornecer dados somente leitura é métodos de modificacao
     provide('state', readonly(state));
     provide('updateState', (newState) => {
       state.value = newState;
@@ -426,7 +426,7 @@ export default {
 
 ### 5. $refs (Pai acessa Filho)
 
-**Uso**: Componente pai acessa diretamente propriedades e metodos do componente filho
+**Uso**: Componente pai acessa diretamente propriedades e métodos do componente filho
 
 ```vue
 <!-- ParentComponent.vue -->
@@ -445,7 +445,7 @@ export default {
 
   methods: {
     callChildMethod() {
-      // Chama diretamente o metodo do componente filho
+      // Chama diretamente o método do componente filho
       this.$refs.childRef.someMethod();
 
       // Acessa dados do componente filho
@@ -454,7 +454,7 @@ export default {
   },
 
   mounted() {
-    // Acessa $refs somente apos o mounted
+    // Acessa $refs somente após o mounted
     console.log(this.$refs.childRef);
   },
 };
@@ -502,7 +502,7 @@ const callChild = () => {
 
 ### 6. $parent / $root (Filho acessa Pai)
 
-**Uso**: Componente filho acessa o componente pai ou o componente raiz (nao recomendado)
+**Uso**: Componente filho acessa o componente pai ou o componente raiz (não recomendado)
 
 ```vue
 <!-- ChildComponent.vue -->
@@ -520,16 +520,16 @@ export default {
 </script>
 ```
 
-**Razoes para nao recomendar**:
+**Razoes para não recomendar**:
 
 - Aumenta o acoplamento entre componentes
-- Dificil rastrear o fluxo de dados
-- Desfavoravel para reutilizacao de componentes
+- Difícil rastrear o fluxo de dados
+- Desfavoravel para reutilização de componentes
 - Recomenda-se usar props, $emit ou provide/inject
 
 ### 7. Event Bus (Qualquer Componente)
 
-**Uso**: Comunicacao entre quaisquer componentes (comum no Vue 2, nao recomendado no Vue 3)
+**Uso**: Comúnicação entre quaisquer componentes (comum no Vue 2, não recomendado no Vue 3)
 
 #### Event Bus no Vue 2
 
@@ -690,22 +690,22 @@ const userStore = useUserStore();
 </template>
 ```
 
-### 9. Slots (Distribuicao de Conteudo)
+### 9. Slots (Distribuição de Conteúdo)
 
-**Uso**: Componente pai passa conteudo de template para o componente filho
+**Uso**: Componente pai passa conteúdo de template para o componente filho
 
-#### Slot Basico
+#### Slot Básico
 
 ```vue
 <!-- ChildComponent.vue -->
 <template>
   <div class="card">
     <header>
-      <slot name="header">Titulo padrao</slot>
+      <slot name="header">Título padrão</slot>
     </header>
 
     <main>
-      <slot>Conteudo padrao</slot>
+      <slot>Conteúdo padrão</slot>
     </main>
 
     <footer>
@@ -720,10 +720,10 @@ const userStore = useUserStore();
 <template>
   <child-component>
     <template #header>
-      <h1>Titulo personalizado</h1>
+      <h1>Título personalizado</h1>
     </template>
 
-    <p>Este e o conteudo principal</p>
+    <p>Este é o conteúdo principal</p>
 
     <template #footer>
       <button>Confirmar</button>
@@ -764,20 +764,20 @@ export default {
 </template>
 ```
 
-### Guia de Escolha de Comunicacao entre Componentes
+### Guia de Escolha de Comúnicação entre Componentes
 
-| Relacao | Metodo Recomendado | Quando Usar |
+| Relação | Método Recomendado | Quando Usar |
 | -------- | -------------- | -------------------------- |
 | Pai -> Filho | Props | Passar dados para o filho |
 | Filho -> Pai | $emit | Notificar o pai sobre eventos |
-| Pai ↔ Filho | v-model | Ligacao bidirecional de formularios |
-| Avo -> Neto | Provide/Inject | Transferir dados entre niveis |
-| Pai -> Filho | $refs | Chamar metodos do filho diretamente (pouco usado) |
+| Pai ↔ Filho | v-model | Ligação bidirecional de formulários |
+| Avo -> Neto | Provide/Inject | Transferir dados entre níveis |
+| Pai -> Filho | $refs | Chamar métodos do filho diretamente (pouco usado) |
 | Qualquer | Pinia/Vuex | Gerenciamento de estado global |
-| Qualquer | Event Bus | Comunicacao simples de eventos (nao recomendado) |
-| Pai -> Filho | Slots | Passar conteudo de template |
+| Qualquer | Event Bus | Comúnicação simples de eventos (não recomendado) |
+| Pai -> Filho | Slots | Passar conteúdo de template |
 
-### Caso Pratico: Funcionalidade de Carrinho de Compras
+### Caso Prático: Funcionalidade de Carrinho de Compras
 
 ```vue
 <!-- App.vue -->
@@ -878,16 +878,16 @@ const cartStore = useCartStore();
 
 ## 2. What's the difference between Props and Provide/Inject?
 
-> Qual e a diferenca entre Props e Provide/Inject?
+> Qual é a diferença entre Props e Provide/Inject?
 
 ### Props
 
-**Caracteristicas**:
+**Características**:
 
-- Adequado para comunicacao direta pai-filho
+- Adequado para comúnicação direta pai-filho
 - Fluxo de dados claro
-- Verificacao de tipo completa
-- Necessita passagem camada por camada em niveis profundos (props drilling)
+- Verificação de tipo completa
+- Necessita passagem camada por camada em níveis profundos (props drilling)
 
 ```vue
 <!-- Necessita passagem camada por camada -->
@@ -902,32 +902,32 @@ const cartStore = useCartStore();
 
 ### Provide/Inject
 
-**Caracteristicas**:
+**Características**:
 
-- Adequado para comunicacao entre componentes avo-neto
-- Nao necessita passagem camada por camada
-- Origem dos dados nao e obvia
-- Verificacao de tipo mais fraca
+- Adequado para comúnicação entre componentes avo-neto
+- Não necessita passagem camada por camada
+- Origem dos dados não é óbvia
+- Verificação de tipo mais fraca
 
 ```vue
-<!-- Transferencia entre niveis, camadas intermediarias nao precisam receber -->
+<!-- Transferência entre níveis, camadas intermediárias não precisam receber -->
 <grandparent> <!-- provide -->
-  <parent> <!-- nao precisa tratar -->
-    <child> <!-- nao precisa tratar -->
+  <parent> <!-- não precisa tratar -->
+    <child> <!-- não precisa tratar -->
       <grandchild /> <!-- inject -->
     </child>
   </parent>
 </grandparent>
 ```
 
-### Recomendacoes de Uso
+### Recomendações de Uso
 
-- **Usar Props**: comunicacao pai-filho, quando o fluxo de dados precisa ser claro
-- **Usar Provide/Inject**: aninhamento profundo, tema, idioma, informacoes de autenticacao e outras configuracoes globais
+- **Usar Props**: comúnicação pai-filho, quando o fluxo de dados precisa ser claro
+- **Usar Provide/Inject**: aninhamento profundo, tema, idioma, informações de autenticação e outras configurações globais
 
 ## Reference
 
-- [Vue 3 Component Communication](https://vuejs.org/guide/components/provide-inject.html)
+- [Vue 3 Component Commúnication](https://vuejs.org/guide/components/provide-inject.html)
 - [Vue 3 Props](https://vuejs.org/guide/components/props.html)
 - [Vue 3 Events](https://vuejs.org/guide/components/events.html)
 - [Pinia Documentation](https://pinia.vuejs.org/)

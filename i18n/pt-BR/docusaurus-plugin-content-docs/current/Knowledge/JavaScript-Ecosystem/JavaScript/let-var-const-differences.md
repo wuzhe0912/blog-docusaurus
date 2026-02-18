@@ -5,25 +5,25 @@ slug: /let-var-const-differences
 tags: [JavaScript, Quiz, Medium]
 ---
 
-## Visao geral
+## Visão geral
 
-Em JavaScript, existem tres palavras-chave para declarar variaveis: `var`, `let` e `const`. Embora todas sejam usadas para declarar variaveis, elas diferem em escopo, inicializacao, redeclaracao, reatribuicao e momento de acesso.
+Em JavaScript, existem três palavras-chave para declarar variáveis: `var`, `let` e `const`. Embora todas sejam usadas para declarar variáveis, elas diferem em escopo, inicialização, redeclaração, reatribuição e momento de acesso.
 
-## Principais diferencas
+## Principais diferenças
 
 | Comportamento           | `var`                        | `let`                | `const`              |
 | ----------------------- | ---------------------------- | -------------------- | -------------------- |
-| Escopo                  | Funcao ou global             | Bloco                | Bloco                |
-| Inicializacao           | Opcional                     | Opcional             | Obrigatoria          |
-| Redeclaracao            | Permitida                    | Nao permitida        | Nao permitida        |
-| Reatribuicao            | Permitida                    | Permitida            | Nao permitida        |
-| Acesso antes da declaracao | Retorna undefined         | Lanca ReferenceError | Lanca ReferenceError |
+| Escopo                  | Função ou global             | Bloco                | Bloco                |
+| Inicialização           | Opcional                     | Opcional             | Obrigatória          |
+| Redeclaração            | Permitida                    | Não permitida        | Não permitida        |
+| Reatribuição            | Permitida                    | Permitida            | Não permitida        |
+| Acesso antes da declaração | Retorna undefined         | Lança ReferenceError | Lança ReferenceError |
 
-## Explicacao detalhada
+## Explicação detalhada
 
 ### Escopo
 
-O escopo de `var` e de funcao ou global, enquanto `let` e `const` tem escopo de bloco (incluindo funcoes, blocos if-else ou loops for).
+O escopo de `var` é de função ou global, enquanto `let` e `const` têm escopo de bloco (incluindo funções, blocos if-else ou loops for).
 
 ```javascript
 function scopeExample() {
@@ -53,23 +53,23 @@ console.log(letInBlock); // ReferenceError: letInBlock is not defined
 console.log(constInBlock); // ReferenceError: constInBlock is not defined
 ```
 
-### Inicializacao
+### Inicialização
 
-`var` e `let` podem ser declarados sem inicializacao, enquanto `const` deve ser inicializado no momento da declaracao.
+`var` e `let` podem ser declarados sem inicialização, enquanto `const` deve ser inicializado no momento da declaração.
 
 ```javascript
-var varVariable;  // Valido
-let letVariable;  // Valido
+var varVariable;  // Válido
+let letVariable;  // Válido
 const constVariable;  // SyntaxError: Missing initializer in const declaration
 ```
 
-### Redeclaracao
+### Redeclaração
 
-Dentro do mesmo escopo, `var` permite a redeclaracao da mesma variavel, enquanto `let` e `const` nao permitem.
+Dentro do mesmo escopo, `var` permite a redeclaração da mesma variável, enquanto `let` e `const` não permitem.
 
 ```javascript
 var x = 1;
-var x = 2; // Valido, x agora e 2
+var x = 2; // Válido, x agora é 2
 
 let y = 1;
 let y = 2; // SyntaxError: Identifier 'y' has already been declared
@@ -78,36 +78,36 @@ const z = 1;
 const z = 2; // SyntaxError: Identifier 'z' has already been declared
 ```
 
-### Reatribuicao
+### Reatribuição
 
-Variaveis declaradas com `var` e `let` podem ser reatribuidas, mas variaveis declaradas com `const` nao podem.
+Variáveis declaradas com `var` e `let` podem ser reatribuídas, mas variáveis declaradas com `const` não podem.
 
 ```javascript
 var x = 1;
-x = 2; // Valido
+x = 2; // Válido
 
 let y = 1;
-y = 2; // Valido
+y = 2; // Válido
 
 const z = 1;
 z = 2; // TypeError: Assignment to a constant variable
 ```
 
-Observacao: Embora uma variavel declarada com `const` nao possa ser reatribuida, se for um objeto ou array, seu conteudo ainda pode ser modificado.
+Observação: Embora uma variável declarada com `const` não possa ser reatribuída, se for um objeto ou array, seu conteúdo ainda pode ser modificado.
 
 ```javascript
 const obj = { key: 'value' };
-obj.key = 'new value'; // Valido
+obj.key = 'new value'; // Válido
 console.log(obj); // { key: 'new value' }
 
 const arr = [1, 2, 3];
-arr.push(4); // Valido
+arr.push(4); // Válido
 console.log(arr); // [1, 2, 3, 4]
 ```
 
-### Acesso antes da declaracao (Temporal Dead Zone)
+### Acesso antes da declaração (Temporal Dead Zone)
 
-Variaveis declaradas com `var` sao elevadas e automaticamente inicializadas como `undefined`. Variaveis declaradas com `let` e `const` tambem sao elevadas, mas nao sao inicializadas. Acessar antes da declaracao lanca um `ReferenceError`.
+Variáveis declaradas com `var` são elevadas e automaticamente inicializadas como `undefined`. Variáveis declaradas com `let` e `const` também são elevadas, mas não são inicializadas. Acessar antes da declaração lança um `ReferenceError`.
 
 ```javascript
 console.log(x); // undefined
@@ -122,9 +122,9 @@ const z = 5;
 
 ## Perguntas de entrevista
 
-### Pergunta: A armadilha classica do setTimeout + var
+### Pergunta: A armadilha clássica do setTimeout + var
 
-Determine o resultado de saida do seguinte codigo:
+Determine o resultado de saída do seguinte código:
 
 ```javascript
 for (var i = 1; i <= 5; i++) {
@@ -134,11 +134,11 @@ for (var i = 1; i <= 5; i++) {
 }
 ```
 
-#### Resposta incorreta (equivoco comum)
+#### Resposta incorreta (equívoco comum)
 
-Muitas pessoas pensam que a saida e: `1 2 3 4 5`
+Muitas pessoas pensam que a saída é: `1 2 3 4 5`
 
-#### Saida real
+#### Saída real
 
 ```
 6
@@ -148,18 +148,18 @@ Muitas pessoas pensam que a saida e: `1 2 3 4 5`
 6
 ```
 
-#### Por que?
+#### Por quê?
 
-Este problema envolve tres conceitos fundamentais:
+Este problema envolve três conceitos fundamentais:
 
-**1. O escopo de funcao do var**
+**1. O escopo de função do var**
 
 ```javascript
-// var nao cria um escopo de bloco dentro do loop
+// var não cria um escopo de bloco dentro do loop
 for (var i = 1; i <= 5; i++) {
-  // i esta no escopo externo, todas as iteracoes compartilham o mesmo i
+  // i está no escopo externo, todas as iterações compartilham o mesmo i
 }
-console.log(i); // 6 (valor de i apos o fim do loop)
+console.log(i); // 6 (valor de i após o fim do loop)
 
 // No caso do var
 {
@@ -171,29 +171,29 @@ console.log(i); // 6 (valor de i apos o fim do loop)
 }
 ```
 
-**2. A execucao assincrona do setTimeout**
+**2. A execução assíncrona do setTimeout**
 
 ```javascript
-// setTimeout e assincrono, executa apos o codigo sincrono atual terminar
+// setTimeout é assíncrono, executa após o código síncrono atual terminar
 for (var i = 1; i <= 5; i++) {
   setTimeout(function () {
-    // Este codigo e colocado na fila de tarefas do Event Loop
+    // Este código é colocado na fila de tarefas do Event Loop
     console.log(i);
   }, 0);
 }
-// O loop executa primeiro (i se torna 6), depois os callbacks do setTimeout comecam a executar
+// O loop executa primeiro (i se torna 6), depois os callbacks do setTimeout começam a executar
 ```
 
-**3. Referencia do Closure**
+**3. Referência do Closure**
 
 ```javascript
-// Todas as funcoes callback do setTimeout referenciam o mesmo i
-// Quando os callbacks executam, i ja e 6
+// Todas as funções callback do setTimeout referenciam o mesmo i
+// Quando os callbacks executam, i já é 6
 ```
 
-#### Solucoes
+#### Soluções
 
-**Solucao 1: Usar let (recomendado) ★**
+**Solução 1: Usar let (recomendado) ★**
 
 ```javascript
 for (let i = 1; i <= 5; i++) {
@@ -201,21 +201,21 @@ for (let i = 1; i <= 5; i++) {
     console.log(i);
   }, 0);
 }
-// Saida: 1 2 3 4 5
+// Saída: 1 2 3 4 5
 
 // No caso do let
 {
-  let i = 1; // i da primeira iteracao
+  let i = 1; // i da primeira iteração
 }
 {
-  let i = 2; // i da segunda iteracao
+  let i = 2; // i da segunda iteração
 }
 {
-  let i = 3; // i da terceira iteracao
+  let i = 3; // i da terceira iteração
 }
 ```
 
-**Principio**: `let` cria um novo escopo de bloco a cada iteracao, e cada callback `setTimeout` captura o valor de `i` da iteracao atual.
+**Princípio**: `let` cria um novo escopo de bloco a cada iteração, e cada callback `setTimeout` captura o valor de `i` da iteração atual.
 
 ```javascript
 // Equivalente a
@@ -234,7 +234,7 @@ for (let i = 1; i <= 5; i++) {
 // ... e assim por diante
 ```
 
-**Solucao 2: Usar IIFE (Expressao de Funcao Imediatamente Invocada)**
+**Solução 2: Usar IIFE (Expressão de Função Imediatamente Invocada)**
 
 ```javascript
 for (var i = 1; i <= 5; i++) {
@@ -244,12 +244,12 @@ for (var i = 1; i <= 5; i++) {
     }, 0);
   })(i);
 }
-// Saida: 1 2 3 4 5
+// Saída: 1 2 3 4 5
 ```
 
-**Principio**: A IIFE cria um novo escopo de funcao, e em cada iteracao, o valor atual de `i` e passado como parametro `j`, formando um Closure.
+**Princípio**: A IIFE cria um novo escopo de função, e em cada iteração, o valor atual de `i` é passado como parâmetro `j`, formando um Closure.
 
-**Solucao 3: Usar o terceiro parametro do setTimeout**
+**Solução 3: Usar o terceiro parâmetro do setTimeout**
 
 ```javascript
 for (var i = 1; i <= 5; i++) {
@@ -259,14 +259,14 @@ for (var i = 1; i <= 5; i++) {
     },
     0,
     i
-  ); // O terceiro parametro e passado para a funcao callback
+  ); // O terceiro parâmetro é passado para a função callback
 }
-// Saida: 1 2 3 4 5
+// Saída: 1 2 3 4 5
 ```
 
-**Principio**: O terceiro parametro e os seguintes do `setTimeout` sao passados como argumentos para a funcao callback.
+**Princípio**: O terceiro parâmetro é os seguintes do `setTimeout` são passados como argumentos para a função callback.
 
-**Solucao 4: Usar bind**
+**Solução 4: Usar bind**
 
 ```javascript
 for (var i = 1; i <= 5; i++) {
@@ -277,18 +277,18 @@ for (var i = 1; i <= 5; i++) {
     0
   );
 }
-// Saida: 1 2 3 4 5
+// Saída: 1 2 3 4 5
 ```
 
-**Principio**: `bind` cria uma nova funcao e vincula o valor atual de `i` como parametro.
+**Princípio**: `bind` cria uma nova função e vincula o valor atual de `i` como parâmetro.
 
-#### Comparacao de solucoes
+#### Comparação de soluções
 
-| Solucao             | Vantagens                        | Desvantagens            | Recomendacao               |
+| Solução             | Vantagens                        | Desvantagens            | Recomendação               |
 | ------------------- | -------------------------------- | ----------------------- | -------------------------- |
-| `let`               | Conciso, moderno, facil de entender | ES6+                 | 5/5 Altamente recomendado  |
+| `let`               | Conciso, moderno, fácil de entender | ES6+                 | 5/5 Altamente recomendado  |
 | IIFE                | Boa compatibilidade              | Sintaxe complexa        | 3/5 Pode ser considerado   |
-| Parametro setTimeout | Simples e direto                | Pouco conhecido         | 4/5 Recomendado            |
+| Parâmetro setTimeout | Simples e direto                | Pouco conhecido         | 4/5 Recomendado            |
 | `bind`              | Estilo funcional                 | Legibilidade um pouco menor | 3/5 Pode ser considerado |
 
 #### Perguntas adicionais
@@ -303,7 +303,7 @@ for (var i = 1; i <= 5; i++) {
 }
 ```
 
-**Resposta**: `6` e impresso uma vez por segundo, totalizando 5 vezes (respectivamente a 1, 2, 3, 4 e 5 segundos).
+**Resposta**: `6` é impresso uma vez por segundo, totalizando 5 vezes (respectivamente a 1, 2, 3, 4 e 5 segundos).
 
 **Q2: Como imprimir sequencialmente 1, 2, 3, 4, 5 a cada segundo?**
 
@@ -313,37 +313,37 @@ for (let i = 1; i <= 5; i++) {
     console.log(i);
   }, i * 1000);
 }
-// Apos 1 segundo: 1
-// Apos 2 segundos: 2
-// Apos 3 segundos: 3
-// Apos 4 segundos: 4
-// Apos 5 segundos: 5
+// Após 1 segundo: 1
+// Após 2 segundos: 2
+// Após 3 segundos: 3
+// Após 4 segundos: 4
+// Após 5 segundos: 5
 ```
 
 #### Pontos-chave em entrevistas
 
 Esta pergunta avalia:
 
-1. **Escopo de var**: Escopo de funcao vs escopo de bloco
-2. **Event Loop**: Execucao sincrona vs assincrona
-3. **Closure**: Como as funcoes capturam variaveis externas
-4. **Solucoes**: Multiplas abordagens com vantagens e desvantagens
+1. **Escopo de var**: Escopo de função vs escopo de bloco
+2. **Event Loop**: Execução síncrona vs assíncrona
+3. **Closure**: Como as funções capturam variáveis externas
+4. **Soluções**: Múltiplas abordagens com vantagens e desvantagens
 
-Ao responder, e recomendado:
+Ao responder, é recomendado:
 
 - Primeiro dar a resposta correta (6 6 6 6 6)
-- Explicar a razao (escopo do var + setTimeout assincrono)
-- Fornecer solucoes (preferir let e explicar outras opcoes)
-- Demonstrar compreensao dos mecanismos internos do JavaScript
+- Explicar a razão (escopo do var + setTimeout assíncrono)
+- Fornecer soluções (preferir let e explicar outras opções)
+- Demonstrar compreensão dos mecanismos internos do JavaScript
 
-## Melhores praticas
+## Melhores práticas
 
-1. Priorizar `const`: Para variaveis que nao precisam ser reatribuidas, `const` melhora a legibilidade e a manutenibilidade do codigo.
-2. Em seguida usar `let`: Quando a reatribuicao e necessaria, usar `let`.
-3. Evitar `var`: Como o escopo e o comportamento de Hoisting do `var` podem causar problemas inesperados, e recomendado evita-lo no desenvolvimento JavaScript moderno.
-4. Atencao a compatibilidade do navegador: Se for necessario suportar navegadores antigos, ferramentas como Babel podem transpilar `let` e `const` para `var`.
+1. Priorizar `const`: Para variáveis que não precisam ser reatribuídas, `const` melhora a legibilidade é a manutenibilidade do código.
+2. Em seguida usar `let`: Quando a reatribuição é necessária, usar `let`.
+3. Evitar `var`: Como o escopo é o comportamento de Hoisting do `var` podem causar problemas inesperados, é recomendado evitá-lo no desenvolvimento JavaScript moderno.
+4. Atenção à compatibilidade do navegador: Se for necessário suportar navegadores antigos, ferramentas como Babel podem transpilar `let` e `const` para `var`.
 
-## Topicos relacionados
+## Tópicos relacionados
 
 - [Closure](/docs/closure)
 - [Event Loop](/docs/event-loop)

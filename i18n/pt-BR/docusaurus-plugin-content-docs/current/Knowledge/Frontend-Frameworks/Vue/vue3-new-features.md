@@ -7,29 +7,29 @@ tags: [Vue, Quiz, Easy]
 
 ## 1. What are the new features in Vue 3?
 
-> Quais sao os novos recursos do Vue 3?
+> Quais são os novos recursos do Vue 3?
 
-O Vue 3 introduziu muitos novos recursos e melhorias, incluindo principalmente:
+O Vue 3 introduziu muitos novos recursos é melhorias, incluindo principalmente:
 
 ### Principais Novos Recursos
 
 1. **Composition API**: Nova forma de escrever componentes
-2. **Teleport**: Renderizar componentes em outras posicoes do DOM
-3. **Fragment**: Componentes podem ter multiplos nos raiz
-4. **Suspense**: Tratar carregamento de componentes assincronos
-5. **Multiplos v-model**: Suporte a multiplos v-model
+2. **Teleport**: Renderizar componentes em outras posições do DOM
+3. **Fragment**: Componentes podem ter múltiplos nós raiz
+4. **Suspense**: Tratar carregamento de componentes assíncronos
+5. **Múltiplos v-model**: Suporte a múltiplos v-model
 6. **Melhor suporte a TypeScript**
-7. **Otimizacao de performance**: Bundle menor, renderizacao mais rapida
+7. **Otimização de performance**: Bundle menor, renderização mais rápida
 
 ## 2. Teleport
 
-> O que e Teleport?
+> O que é Teleport?
 
-**Definicao**: `Teleport` permite renderizar o conteudo de um componente em outra posicao da arvore DOM, sem alterar a estrutura logica do componente.
+**Definição**: `Teleport` permite renderizar o conteúdo de um componente em outra posição da árvore DOM, sem alterar a estrutura lógica do componente.
 
-### Cenarios de Uso
+### Cenários de Uso
 
-**Cenarios comuns**: Modal, Tooltip, Notification e outros componentes que precisam ser renderizados no body
+**Cenários comuns**: Modal, Tooltip, Notification e outros componentes que precisam ser renderizados no body
 
 <details>
 <summary>Clique para expandir o exemplo de Teleport</summary>
@@ -43,8 +43,8 @@ O Vue 3 introduziu muitos novos recursos e melhorias, incluindo principalmente:
     <Teleport to="body">
       <div v-if="showModal" class="modal">
         <div class="modal-content">
-          <h2>Titulo do Modal</h2>
-          <p>Conteudo do Modal</p>
+          <h2>Título do Modal</h2>
+          <p>Conteúdo do Modal</p>
           <button @click="showModal = false">Fechar</button>
         </div>
       </div>
@@ -63,60 +63,60 @@ const showModal = ref(false);
 
 ### Vantagens
 
-1. **Resolve problemas de z-index**: Modal renderizado no body, nao e afetado pelos estilos do componente pai
-2. **Mantem a estrutura logica**: A logica do componente permanece no local original, apenas a posicao do DOM e diferente
-3. **Melhor manutenibilidade**: Codigo relacionado ao Modal centralizado no componente
+1. **Resolve problemas de z-index**: Modal renderizado no body, não é afetado pelos estilos do componente pai
+2. **Mantém a estrutura lógica**: A lógica do componente permanece no local original, apenas a posição do DOM é diferente
+3. **Melhor manutenibilidade**: Código relacionado ao Modal centralizado no componente
 
-## 3. Fragment (Multiplos Nos Raiz)
+## 3. Fragment (Múltiplos Nós Raiz)
 
-> O que e Fragment?
+> O que é Fragment?
 
-**Definicao**: O Vue 3 permite que componentes tenham multiplos nos raiz, sem necessidade de envolve-los em um unico elemento. Este e um Fragment implicito, nao necessitando de uma tag `<Fragment>` como no React.
+**Definição**: O Vue 3 permite que componentes tenham múltiplos nós raiz, sem necessidade de envolve-los em um único elemento. Este é um Fragment implícito, não necessitando de uma tag `<Fragment>` como no React.
 
 ### Vue 2 vs Vue 3
 
-**Vue 2**: Obrigatorio ter um unico no raiz
+**Vue 2**: Obrigatório ter um único nó raiz
 
 ```vue
-<!-- Vue 2: obrigatorio envolver em um unico elemento -->
+<!-- Vue 2: obrigatório envolver em um único elemento -->
 <template>
   <div>
-    <h1>Titulo</h1>
-    <p>Conteudo</p>
+    <h1>Título</h1>
+    <p>Conteúdo</p>
   </div>
 </template>
 ```
 
-**Vue 3**: Pode ter multiplos nos raiz
+**Vue 3**: Pode ter múltiplos nós raiz
 
 ```vue
-<!-- Vue 3: pode ter multiplos nos raiz -->
+<!-- Vue 3: pode ter múltiplos nós raiz -->
 <template>
-  <h1>Titulo</h1>
-  <p>Conteudo</p>
+  <h1>Título</h1>
+  <p>Conteúdo</p>
 </template>
 ```
 
 ### Por que precisamos de Fragment?
 
-No Vue 2, componentes deviam ter um unico no raiz, o que frequentemente obrigava os desenvolvedores a adicionar elementos wrapper extras (como `<div>`), que:
+No Vue 2, componentes deviam ter um único nó raiz, o que frequentemente obrigava os desenvolvedores a adicionar elementos wrapper extras (como `<div>`), que:
 
-1. **Quebram HTML semantico**: Adicionam elementos wrapper sem significado
-2. **Aumentam niveis do DOM**: Afetam seletores de estilo e performance
+1. **Quebram HTML semântico**: Adicionam elementos wrapper sem significado
+2. **Aumentam níveis do DOM**: Afetam seletores de estilo e performance
 3. **Dificultam controle de estilos**: Necessitam tratar estilos do elemento wrapper extra
 
-### Cenarios de Uso
+### Cenários de Uso
 
-#### Cenario 1: Estrutura HTML Semantica
+#### Cenário 1: Estrutura HTML Semântica
 
 ```vue
 <template>
   <!-- Sem necessidade de elemento wrapper extra -->
   <header>
-    <h1>Titulo do Site</h1>
+    <h1>Título do Site</h1>
   </header>
   <main>
-    <p>Conteudo Principal</p>
+    <p>Conteúdo Principal</p>
   </main>
   <footer>
     <p>Rodape</p>
@@ -124,7 +124,7 @@ No Vue 2, componentes deviam ter um unico no raiz, o que frequentemente obrigava
 </template>
 ```
 
-#### Cenario 2: Componente de Item de Lista
+#### Cenário 2: Componente de Item de Lista
 
 ```vue
 <!-- ListItem.vue -->
@@ -141,53 +141,53 @@ defineProps({
 </script>
 ```
 
-#### Cenario 3: Renderizacao Condicional de Multiplos Elementos
+#### Cenário 3: Renderização Condicional de Múltiplos Elementos
 
 ```vue
 <template>
-  <div v-if="showHeader" class="header">Titulo</div>
-  <div v-if="showContent" class="content">Conteudo</div>
+  <div v-if="showHeader" class="header">Título</div>
+  <div v-if="showContent" class="content">Conteúdo</div>
   <div v-if="showFooter" class="footer">Rodape</div>
 </template>
 ```
 
-### Heranca de Atributos (Attribute Inheritance)
+### Herança de Atributos (Attribute Inheritance)
 
-Quando um componente tem multiplos nos raiz, o comportamento de heranca de atributos e diferente.
+Quando um componente tem múltiplos nós raiz, o comportamento de herança de atributos é diferente.
 
-**No raiz unico**: Atributos sao herdados automaticamente pelo elemento raiz
+**Nó raiz único**: Atributos são herdados automaticamente pelo elemento raiz
 
 ```vue
 <!-- Componente pai -->
 <MyComponent class="custom-class" id="my-id" />
 
-<!-- Componente filho (raiz unico) -->
+<!-- Componente filho (raiz único) -->
 <template>
-  <div>Conteudo</div>
+  <div>Conteúdo</div>
 </template>
 
 <!-- Resultado renderizado -->
-<div class="custom-class" id="my-id">Conteudo</div>
+<div class="custom-class" id="my-id">Conteúdo</div>
 ```
 
-**Multiplos nos raiz**: Atributos nao sao herdados automaticamente, necessita tratamento manual
+**Múltiplos nós raiz**: Atributos não são herdados automaticamente, necessita tratamento manual
 
 ```vue
 <!-- Componente pai -->
 <MyComponent class="custom-class" id="my-id" />
 
-<!-- Componente filho (multiplos raiz) -->
+<!-- Componente filho (múltiplos raiz) -->
 <template>
   <div>Primeiro raiz</div>
   <div>Segundo raiz</div>
 </template>
 
-<!-- Resultado renderizado: atributos nao sao herdados automaticamente -->
+<!-- Resultado renderizado: atributos não são herdados automaticamente -->
 <div>Primeiro raiz</div>
 <div>Segundo raiz</div>
 ```
 
-**Solucao**: Usar `$attrs` para vincular atributos manualmente
+**Solução**: Usar `$attrs` para vincular atributos manualmente
 
 ```vue
 <!-- Componente filho -->
@@ -201,12 +201,12 @@ Quando um componente tem multiplos nos raiz, o comportamento de heranca de atrib
 <div>Segundo raiz</div>
 ```
 
-**Usar `inheritAttrs: false` para controlar o comportamento de heranca**:
+**Usar `inheritAttrs: false` para controlar o comportamento de herança**:
 
 ```vue
 <script setup>
 defineOptions({
-  inheritAttrs: false, // Desabilitar heranca automatica
+  inheritAttrs: false, // Desabilitar herança automática
 });
 </script>
 
@@ -218,31 +218,31 @@ defineOptions({
 
 ### Fragment vs React Fragment
 
-| Caracteristica      | Vue 3 Fragment             | React Fragment                    |
+| Característica      | Vue 3 Fragment             | React Fragment                    |
 | ------------------- | -------------------------- | --------------------------------- |
-| **Sintaxe**         | Implicito (sem tag)        | Explicito (necessita `<Fragment>` ou `<>`) |
-| **Atributo Key**    | Nao necessario             | Quando necessario usa `<Fragment key={...}>` |
-| **Heranca de atributos** | Necessita tratamento manual | Nao suporta atributos        |
+| **Sintaxe**         | Implícito (sem tag)        | Explícito (necessita `<Fragment>` ou `<>`) |
+| **Atributo Key**    | Não necessário             | Quando necessário usa `<Fragment key={...}>` |
+| **Herança de atributos** | Necessita tratamento manual | Não suporta atributos        |
 
 **Vue 3**:
 
 ```vue
-<!-- Vue 3: Fragment implicito -->
+<!-- Vue 3: Fragment implícito -->
 <template>
-  <h1>Titulo</h1>
-  <p>Conteudo</p>
+  <h1>Título</h1>
+  <p>Conteúdo</p>
 </template>
 ```
 
 **React**:
 
 ```jsx
-// React: Fragment explicito
+// React: Fragment explícito
 function Component() {
   return (
     <>
-      <h1>Titulo</h1>
-      <p>Conteudo</p>
+      <h1>Título</h1>
+      <p>Conteúdo</p>
     </>
   );
 }
@@ -250,34 +250,34 @@ function Component() {
 
 ### Observacoes
 
-1. **Heranca de atributos**: Com multiplos nos raiz, atributos nao sao herdados automaticamente, necessita vincular manualmente com `$attrs`
-2. **Escopo de estilos**: Com multiplos nos raiz, estilos `scoped` sao aplicados a todos os nos raiz
-3. **Wrapper logico**: Se logicamente precisa de wrapper, ainda deve usar no raiz unico
+1. **Herança de atributos**: Com múltiplos nós raiz, atributos não são herdados automaticamente, necessita vincular manualmente com `$attrs`
+2. **Escopo de estilos**: Com múltiplos nós raiz, estilos `scoped` são aplicados a todos os nós raiz
+3. **Wrapper lógico**: Se logicamente precisa de wrapper, ainda deve usar nó raiz único
 
 ```vue
-<!-- ✅ Boa pratica: logicamente necessita wrapper -->
+<!-- ✅ Boa prática: logicamente necessita wrapper -->
 <template>
   <div class="card">
-    <h2>Titulo</h2>
-    <p>Conteudo</p>
+    <h2>Título</h2>
+    <p>Conteúdo</p>
   </div>
 </template>
 
-<!-- ⚠️ Evitar: multiplos raiz sem necessidade -->
+<!-- ⚠️ Evitar: múltiplos raiz sem necessidade -->
 <template>
-  <h2>Titulo</h2>
-  <p>Conteudo</p>
+  <h2>Título</h2>
+  <p>Conteúdo</p>
   <!-- Se estes elementos logicamente devem ser um grupo, devem ser envolvidos -->
 </template>
 ```
 
 ## 4. Suspense
 
-> O que e Suspense?
+> O que é Suspense?
 
-**Definicao**: `Suspense` e um componente built-in usado para tratar o estado de carregamento de componentes assincronos.
+**Definição**: `Suspense` é um componente built-in usado para tratar o estado de carregamento de componentes assíncronos.
 
-### Uso Basico
+### Uso Básico
 
 ```vue
 <template>
@@ -300,9 +300,9 @@ const AsyncComponent = defineAsyncComponent(() =>
 </script>
 ```
 
-### Cenarios de Uso
+### Cenários de Uso
 
-1. **Carregamento de componentes assincronos**
+1. **Carregamento de componentes assíncronos**
 
    ```vue
    <Suspense>
@@ -313,7 +313,7 @@ const AsyncComponent = defineAsyncComponent(() =>
    </Suspense>
    ```
 
-2. **Carregamento assincrono de dados**
+2. **Carregamento assíncrono de dados**
    ```vue
    <script setup>
    const data = await fetchData(); // Usar await no setup
@@ -322,9 +322,9 @@ const AsyncComponent = defineAsyncComponent(() =>
 
 ## 5. Multiple v-model
 
-> Multiplos v-model
+> Múltiplos v-model
 
-**Definicao**: O Vue 3 permite que componentes usem multiplos `v-model`, cada um correspondendo a um prop diferente.
+**Definição**: O Vue 3 permite que componentes usem múltiplos `v-model`, cada um correspondendo a um prop diferente.
 
 ### Vue 2 vs Vue 3
 
@@ -335,10 +335,10 @@ const AsyncComponent = defineAsyncComponent(() =>
 <CustomInput v-model="value" />
 ```
 
-**Vue 3**: Pode ter multiplos `v-model`
+**Vue 3**: Pode ter múltiplos `v-model`
 
 ```vue
-<!-- Vue 3: pode ter multiplos v-model -->
+<!-- Vue 3: pode ter múltiplos v-model -->
 <CustomForm
   v-model:username="username"
   v-model:email="email"
@@ -346,7 +346,7 @@ const AsyncComponent = defineAsyncComponent(() =>
 />
 ```
 
-### Exemplo de Implementacao
+### Exemplo de Implementação
 
 ```vue
 <!-- CustomForm.vue -->
@@ -374,14 +374,14 @@ defineEmits(['update:username', 'update:email', 'update:password']);
 
 > Perguntas Comuns de Entrevista
 
-### Pergunta 1: Cenarios de Uso do Teleport
+### Pergunta 1: Cenários de Uso do Teleport
 
 Explique quando devemos usar `Teleport`.
 
 <details>
 <summary>Clique para ver a resposta</summary>
 
-**Cenarios para usar Teleport**:
+**Cenários para usar Teleport**:
 
 1. **Modal (Dialogo)**
 
@@ -392,7 +392,7 @@ Explique quando devemos usar `Teleport`.
    ```
 
    - Resolve problemas de z-index
-   - Nao e afetado pelos estilos do componente pai
+   - Não é afetado pelos estilos do componente pai
 
 2. **Tooltip**
 
@@ -410,25 +410,25 @@ Explique quando devemos usar `Teleport`.
      <Notification v-for="msg in messages" :key="msg.id" />
    </Teleport>
    ```
-   - Gerenciamento unificado da posicao das notificacoes
+   - Gerenciamento unificado da posição das notificações
 
-**Quando nao usar Teleport**:
+**Quando não usar Teleport**:
 
-- Conteudo geral nao necessita
-- Componentes que nao precisam de posicao especial no DOM
+- Conteúdo geral não necessita
+- Componentes que não precisam de posição especial no DOM
 
 </details>
 
 ### Pergunta 2: Vantagens do Fragment
 
-Explique as vantagens de permitir multiplos nos raiz no Vue 3.
+Explique as vantagens de permitir múltiplos nós raiz no Vue 3.
 
 <details>
 <summary>Clique para ver a resposta</summary>
 
 **Vantagens**:
 
-1. **Reduz elementos DOM desnecessarios**
+1. **Reduz elementos DOM desnecessários**
 
    ```vue
    <!-- Vue 2: necessita div extra -->
@@ -446,37 +446,37 @@ Explique as vantagens de permitir multiplos nos raiz no Vue 3.
    </template>
    ```
 
-2. **Melhor HTML semantico**
+2. **Melhor HTML semântico**
 
-   - Nao necessita adicionar elementos wrapper sem significado por limitacao do Vue
-   - Mantem a semantica da estrutura HTML
+   - Não necessita adicionar elementos wrapper sem significado por limitação do Vue
+   - Mantém a semântica da estrutura HTML
 
-3. **Controle de estilos mais flexivel**
+3. **Controle de estilos mais flexível**
 
-   - Nao necessita tratar estilos de elementos wrapper extras
+   - Não necessita tratar estilos de elementos wrapper extras
    - Reduz complexidade dos seletores CSS
 
-4. **Reduz niveis do DOM**
+4. **Reduz níveis do DOM**
 
-   - Arvore DOM mais rasa, melhor performance
-   - Reduz custo de renderizacao do navegador
+   - Árvore DOM mais rasa, melhor performance
+   - Reduz custo de renderização do navegador
 
 5. **Melhor manutenibilidade**
-   - Codigo mais limpo, sem necessidade de elementos wrapper extras
+   - Código mais limpo, sem necessidade de elementos wrapper extras
    - Estrutura do componente mais clara
 
 </details>
 
-### Pergunta 3: Problema de Heranca de Atributos do Fragment
+### Pergunta 3: Problema de Herança de Atributos do Fragment
 
-Explique o comportamento de heranca de atributos quando um componente tem multiplos nos raiz. Como resolver?
+Explique o comportamento de herança de atributos quando um componente tem múltiplos nós raiz. Como resolver?
 
 <details>
 <summary>Clique para ver a resposta</summary>
 
 **Problema**:
 
-Quando um componente tem multiplos nos raiz, atributos passados pelo componente pai (como `class`, `id`, etc.) nao sao herdados automaticamente por nenhum no raiz.
+Quando um componente tem múltiplos nós raiz, atributos passados pelo componente pai (como `class`, `id`, etc.) não são herdados automaticamente por nenhum nó raiz.
 
 **Exemplo**:
 
@@ -484,18 +484,18 @@ Quando um componente tem multiplos nos raiz, atributos passados pelo componente 
 <!-- Componente pai -->
 <MyComponent class="custom-class" id="my-id" />
 
-<!-- Componente filho (multiplos raiz) -->
+<!-- Componente filho (múltiplos raiz) -->
 <template>
   <div>Primeiro raiz</div>
   <div>Segundo raiz</div>
 </template>
 
-<!-- Resultado renderizado: atributos nao herdados automaticamente -->
+<!-- Resultado renderizado: atributos não herdados automaticamente -->
 <div>Primeiro raiz</div>
 <div>Segundo raiz</div>
 ```
 
-**Solucoes**:
+**Soluções**:
 
 1. **Usar `$attrs` para vincular atributos manualmente**
 
@@ -511,12 +511,12 @@ Quando um componente tem multiplos nos raiz, atributos passados pelo componente 
 <div>Segundo raiz</div>
 ```
 
-2. **Usar `inheritAttrs: false` para controlar comportamento de heranca**
+2. **Usar `inheritAttrs: false` para controlar comportamento de herança**
 
 ```vue
 <script setup>
 defineOptions({
-  inheritAttrs: false, // Desabilitar heranca automatica
+  inheritAttrs: false, // Desabilitar herança automática
 });
 </script>
 
@@ -526,7 +526,7 @@ defineOptions({
 </template>
 ```
 
-3. **Vincular atributos especificos seletivamente**
+3. **Vincular atributos específicos seletivamente**
 
 ```vue
 <template>
@@ -537,46 +537,46 @@ defineOptions({
 
 **Pontos-chave**:
 
-- No raiz unico: atributos sao herdados automaticamente
-- Multiplos nos raiz: atributos nao sao herdados automaticamente, necessita tratamento manual
-- Usar `$attrs` pode acessar todos os atributos nao definidos em `props`
+- Nó raiz único: atributos são herdados automaticamente
+- Múltiplos nós raiz: atributos não são herdados automaticamente, necessita tratamento manual
+- Usar `$attrs` pode acessar todos os atributos não definidos em `props`
 
 </details>
 
 ### Pergunta 4: Fragment vs React Fragment
 
-Compare as diferencas entre Vue 3 Fragment e React Fragment.
+Compare as diferenças entre Vue 3 Fragment e React Fragment.
 
 <details>
 <summary>Clique para ver a resposta</summary>
 
-**Principais diferencas**:
+**Principais diferenças**:
 
-| Caracteristica      | Vue 3 Fragment               | React Fragment                    |
+| Característica      | Vue 3 Fragment               | React Fragment                    |
 | ------------------- | ---------------------------- | --------------------------------- |
-| **Sintaxe**         | Implicito (sem tag)          | Explicito (necessita `<Fragment>` ou `<>`) |
-| **Atributo Key**    | Nao necessario               | Quando necessario usa `<Fragment key={...}>` |
-| **Heranca de atributos** | Necessita tratamento manual (`$attrs`) | Nao suporta atributos   |
+| **Sintaxe**         | Implícito (sem tag)          | Explícito (necessita `<Fragment>` ou `<>`) |
+| **Atributo Key**    | Não necessário               | Quando necessário usa `<Fragment key={...}>` |
+| **Herança de atributos** | Necessita tratamento manual (`$attrs`) | Não suporta atributos   |
 
 **Vue 3**:
 
 ```vue
-<!-- Vue 3: Fragment implicito, escreva multiplos nos raiz diretamente -->
+<!-- Vue 3: Fragment implícito, escreva múltiplos nós raiz diretamente -->
 <template>
-  <h1>Titulo</h1>
-  <p>Conteudo</p>
+  <h1>Título</h1>
+  <p>Conteúdo</p>
 </template>
 ```
 
 **React**:
 
 ```jsx
-// React: Fragment explicito, necessita usar tags
+// React: Fragment explícito, necessita usar tags
 function Component() {
   return (
     <>
-      <h1>Titulo</h1>
-      <p>Conteudo</p>
+      <h1>Título</h1>
+      <p>Conteúdo</p>
     </>
   );
 }
@@ -586,23 +586,23 @@ import { Fragment } from 'react';
 function Component() {
   return (
     <Fragment>
-      <h1>Titulo</h1>
-      <p>Conteudo</p>
+      <h1>Título</h1>
+      <p>Conteúdo</p>
     </Fragment>
   );
 }
 ```
 
-**Comparacao de vantagens**:
+**Comparação de vantagens**:
 
 - **Vue 3**: Sintaxe mais concisa, sem tags extras
-- **React**: Mais explicito, pode adicionar atributo key
+- **React**: Mais explícito, pode adicionar atributo key
 
 </details>
 
 ### Pergunta 5: Uso do Suspense
 
-Implemente um exemplo usando `Suspense` para carregar um componente assincrono.
+Implemente um exemplo usando `Suspense` para carregar um componente assíncrono.
 
 <details>
 <summary>Clique para ver a resposta</summary>
@@ -629,7 +629,7 @@ import Spinner from './Spinner.vue';
 
 const userId = ref(1);
 
-// Definir componente assincrono
+// Definir componente assíncrono
 const AsyncUserProfile = defineAsyncComponent(() =>
   import('./UserProfile.vue')
 );
@@ -665,9 +665,9 @@ const onReject = (error) => {
 
 ## 7. Best Practices
 
-> Melhores Praticas
+> Melhores Práticas
 
-### Praticas Recomendadas
+### Práticas Recomendadas
 
 ```vue
 <!-- 1. Modal usando Teleport -->
@@ -675,14 +675,14 @@ const onReject = (error) => {
   <Modal v-if="showModal" />
 </Teleport>
 
-<!-- 2. Multiplos nos raiz mantendo semantica -->
+<!-- 2. Múltiplos nós raiz mantendo semântica -->
 <template>
   <header>...</header>
   <main>...</main>
   <footer>...</footer>
 </template>
 
-<!-- 3. Componentes assincronos usando Suspense -->
+<!-- 3. Componentes assíncronos usando Suspense -->
 <Suspense>
   <AsyncComponent />
   <template #fallback>
@@ -690,29 +690,29 @@ const onReject = (error) => {
   </template>
 </Suspense>
 
-<!-- 4. Multiplos v-model com nomes explicitos -->
+<!-- 4. Múltiplos v-model com nomes explicitos -->
 <CustomForm v-model:username="username" v-model:email="email" />
 ```
 
-### Praticas a Evitar
+### Práticas a Evitar
 
 ```vue
-<!-- 1. Nao usar Teleport excessivamente -->
+<!-- 1. Não usar Teleport excessivamente -->
 <Teleport to="body">
-  <div>Conteudo geral</div> <!-- ❌ Nao necessario -->
+  <div>Conteúdo geral</div> <!-- ❌ Não necessário -->
 </Teleport>
 
-<!-- 2. Nao quebrar a estrutura para ter multiplos raiz -->
+<!-- 2. Não quebrar a estrutura para ter múltiplos raiz -->
 <template>
-  <h1>Titulo</h1>
-  <p>Conteudo</p>
-  <!-- ⚠️ Se logicamente precisa de wrapper, use no raiz unico -->
+  <h1>Título</h1>
+  <p>Conteúdo</p>
+  <!-- ⚠️ Se logicamente precisa de wrapper, use nó raiz único -->
 </template>
 
-<!-- 3. Nao ignorar tratamento de erros do Suspense -->
+<!-- 3. Não ignorar tratamento de erros do Suspense -->
 <Suspense>
   <AsyncComponent />
-  <!-- ⚠️ Deve tratar situacoes de falha de carregamento -->
+  <!-- ⚠️ Deve tratar situações de falha de carregamento -->
 </Suspense>
 ```
 
@@ -720,32 +720,32 @@ const onReject = (error) => {
 
 > Resumo para Entrevista
 
-### Memorizacao Rapida
+### Memorização Rápida
 
 **Principais novos recursos do Vue 3**:
 
 - **Composition API**: Nova forma de escrever componentes
-- **Teleport**: Renderizar componentes em outras posicoes do DOM
-- **Fragment**: Suporte a multiplos nos raiz
-- **Suspense**: Tratar carregamento de componentes assincronos
-- **Multiplos v-model**: Suporte a multiplas ligacoes v-model
+- **Teleport**: Renderizar componentes em outras posições do DOM
+- **Fragment**: Suporte a múltiplos nós raiz
+- **Suspense**: Tratar carregamento de componentes assíncronos
+- **Múltiplos v-model**: Suporte a múltiplas ligações v-model
 
-**Cenarios de uso**:
+**Cenários de uso**:
 
 - Modal/Tooltip → `Teleport`
-- HTML semantico → `Fragment`
-- Componentes assincronos → `Suspense`
-- Componentes de formulario → Multiplos `v-model`
+- HTML semântico → `Fragment`
+- Componentes assíncronos → `Suspense`
+- Componentes de formulário → Múltiplos `v-model`
 
 ### Exemplo de Resposta para Entrevista
 
-**P: Quais sao os principais novos recursos do Vue 3?**
+**P: Quais são os principais novos recursos do Vue 3?**
 
-> "O Vue 3 introduziu muitos novos recursos, incluindo principalmente: 1) Composition API, oferecendo nova forma de escrever componentes com melhor organizacao logica e reutilizacao de codigo; 2) Teleport, permitindo renderizar conteudo de componentes em outras posicoes da arvore DOM, comumente usado para Modal, Tooltip, etc.; 3) Fragment, componentes podem ter multiplos nos raiz sem necessidade de elementos wrapper extras; 4) Suspense, trata o estado de carregamento de componentes assincronos; 5) Multiplos v-model, suporte a multiplas ligacoes v-model em componentes; 6) Melhor suporte a TypeScript e otimizacao de performance. Esses novos recursos tornam o Vue 3 mais poderoso e flexivel, mantendo a compatibilidade."
+> "O Vue 3 introduziu muitos novos recursos, incluindo principalmente: 1) Composition API, oferecendo nova forma de escrever componentes com melhor organização lógica e reutilização de código; 2) Teleport, permitindo renderizar conteúdo de componentes em outras posições da árvore DOM, comumente usado para Modal, Tooltip, etc.; 3) Fragment, componentes podem ter múltiplos nós raiz sem necessidade de elementos wrapper extras; 4) Suspense, trata o estado de carregamento de componentes assíncronos; 5) Múltiplos v-model, suporte a múltiplas ligações v-model em componentes; 6) Melhor suporte a TypeScript e otimização de performance. Esses novos recursos tornam o Vue 3 mais poderoso e flexível, mantendo a compatibilidade."
 
-**P: Quais sao os cenarios de uso do Teleport?**
+**P: Quais são os cenários de uso do Teleport?**
 
-> "O Teleport e usado principalmente em cenarios onde o componente precisa ser renderizado em outra posicao da arvore DOM. Cenarios comuns incluem: 1) Modal (dialogos), renderizado no body para evitar problemas de z-index; 2) Tooltip, evitando ser oculto pelo overflow do componente pai; 3) Notification, gerenciamento unificado da posicao. A vantagem do Teleport e manter a estrutura logica do componente inalterada, apenas alterando a posicao de renderizacao do DOM, resolvendo problemas de estilo e mantendo a manutenibilidade do codigo."
+> "O Teleport é usado principalmente em cenários onde o componente precisa ser renderizado em outra posição da árvore DOM. Cenários comuns incluem: 1) Modal (dialogos), renderizado no body para evitar problemas de z-index; 2) Tooltip, evitando ser oculto pelo overflow do componente pai; 3) Notification, gerenciamento unificado da posição. A vantagem do Teleport e manter a estrutura lógica do componente inalterada, apenas alterando a posição de renderização do DOM, resolvendo problemas de estilo e mantendo a manutenibilidade do código."
 
 ## Reference
 

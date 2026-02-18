@@ -1,6 +1,6 @@
 ---
 id: knowledge
-title: Notas Tecnicas
+title: Notas Técnicas
 slug: /knowledge
 ---
 
@@ -8,7 +8,7 @@ slug: /knowledge
 >
 > _It's never too late to learn._
 
-Aqui estao reunidas as notas tecnicas e perguntas/respostas que organizei durante meu desenvolvimento frontend. Se voce quiser ver a linha de raciocinio completa e as historias de carreira, visite o [Blog](/blog).
+Aqui estão reunidas as notas técnicas e perguntas/respostas que organizei durante meu desenvolvimento frontend. Se você quiser ver a linha de raciocínio completa é as histórias de carreira, visite o [Blog](/blog).
 
 ---
 
@@ -16,15 +16,15 @@ Aqui estao reunidas as notas tecnicas e perguntas/respostas que organizei durant
 
 ### 🌐 Browser & Network
 
-Exploracao dos principios de renderizacao do navegador, protocolos HTTP e mecanismos de transmissao de rede.
+Exploração dos princípios de renderização do navegador, protocolos HTTP e mecanismos de transmissão de rede.
 
 ### 📒 JavaScript Ecosystem
 
-Conceitos fundamentais de JavaScript e TypeScript, closures, cadeia de prototipos e analises aprofundadas.
+Conceitos fundamentais de JavaScript e TypeScript, closures, cadeia de protótipos e análises aprofundadas.
 
 ### ⚛️ Frontend Frameworks
 
-Principios de frameworks, ciclo de vida, gerenciamento de estado e melhores praticas do React e Vue.
+Princípios de frameworks, ciclo de vida, gerenciamento de estado é melhores práticas do React e Vue.
 
 ### 🎨 CSS & UI
 
@@ -32,28 +32,28 @@ Processamento de estilos, layout e recursos modernos do CSS.
 
 ### 🛡️ Web Security
 
-Dos principios de ataques CSRF/XSS a analise completa da implementacao de mecanismos de autenticacao JWT/Session.
+Dos princípios de ataques CSRF/XSS à análise completa da implementação de mecanismos de autenticação JWT/Session.
 
 ### 🛠️ Engineering & Tools
 
-Ferramentas de engenharia frontend, estrategias de empacotamento e tecnicas avancadas de otimizacao de Performance.
+Ferramentas de engenharia frontend, estratégias de empacotamento e técnicas avançadas de otimização de Performance.
 
 ### 💼 Experience
 
-Preparacao para entrevistas e compartilhamento de experiencias praticas.
+Preparação para entrevistas e compartilhamento de experiências práticas.
 
 ### ⌨️ Coding
 
-Implementacao manual de funcoes Lodash e exercicios avancados de JavaScript.
+Implementação manual de funções Lodash e exercícios avançados de JavaScript.
 
 ### 📊 LeetCode
 
-Solucoes de algoritmos e notas de raciocinio.
+Soluções de algoritmos e notas de raciocínio.
 
 ### 🤖 AI
 
-Notas sobre AI Prompts e aplicacao de ferramentas.
+Notas sobre AI Prompts e aplicação de ferramentas.
 
 ---
 
-> Quando perceber que nao consegue explicar fluentemente o conteudo das notas, isso significa que ainda nao estao claras e simples o suficiente. Adicione exemplos sempre que possivel para reforcar a memorizacao.
+> Quando perceber que não consegue explicar fluentemente o conteúdo das notas, isso significa que ainda não estão claras e simples o suficiente. Adicione exemplos sempre que possível para reforçar a memorização.

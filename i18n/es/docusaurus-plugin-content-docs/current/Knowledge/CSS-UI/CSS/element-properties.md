@@ -1,19 +1,19 @@
 ---
 id: element-properties
-title: '[Easy] \U0001F3F7️ Propiedades de elementos'
+title: '[Easy] 🏷️ Propiedades de elementos'
 slug: /element-properties
 tags: [CSS, Quiz, Easy]
 ---
 
-## 1. Que son los elementos inline y block? Cual es la diferencia entre ellos?
+## 1. Qué son los elementos inline y block? Cuál es la diferencia entre ellos?
 
-> Que son los elementos en linea (inline) y de bloque (block)? Cuales son las diferencias?
+> Qué son los elementos en línea (inline) y de bloque (block)? Cuáles son las diferencias?
 
 ### Block Elements
 
-> Los siguientes elementos inline o block solo listan las etiquetas mas usadas; las menos comunes se buscan cuando es necesario
+> Los siguientes elementos inline o block solo listan las etiquetas más usadas; las menos comunes se buscan cuando es necesario
 
-Los elementos de nivel de bloque ocupan una linea completa por defecto. Por lo tanto, si hay varios elementos de bloque, sin aplicar CSS para el layout, se alinearan verticalmente de arriba hacia abajo por defecto. Los elementos de bloque solo pueden escribirse dentro de `<body></body>`.
+Los elementos de nivel de bloque ocupan una línea completa por defecto. Por lo tanto, si hay varios elementos de bloque, sin aplicar CSS para el layout, se alinearán verticalmente de arriba hacia abajo por defecto. Los elementos de bloque solo pueden escribirse dentro de `<body></body>`.
 
 #### Lista de elementos de bloque comunes
 
@@ -21,15 +21,15 @@ div, article, aside, footer, header, footer, main, nav, section, ul, li, ol, vid
 
 ### Inline Elements
 
-Los elementos en linea no ocupan toda la linea, por lo que si hay varios elementos en linea adyacentes, se presentaran en disposicion horizontal. Los elementos de bloque no se pueden colocar dentro de elementos en linea; estos solo se usan para presentar datos o informacion. Sin embargo, se pueden cambiar las propiedades de los elementos en linea a traves de `CSS`, por ejemplo, agregar `display: block;` a un `span`.
+Los elementos en línea no ocupan toda la línea, por lo que si hay varios elementos en línea adyacentes, se presentarán en disposición horizontal. Los elementos de bloque no se pueden colocar dentro de elementos en línea; estos solo se usan para presentar datos o información. Sin embargo, se pueden cambiar las propiedades de los elementos en línea a través de `CSS`, por ejemplo, agregar `display: block;` a un `span`.
 
-#### Lista de elementos en linea comunes
+#### Lista de elementos en línea comunes
 
 a, br, button, br, code, img, input, span, strong, svg, textarea, label.
 
 ### inline-block
 
-En display existe una propiedad llamada `inline-block`, que puede convertir un elemento de bloque en un elemento en linea pero manteniendo las caracteristicas del elemento de bloque, como poder establecer ancho, alto, margin, padding y otras propiedades. Esto significa que este elemento se alineara horizontalmente como un elemento en linea en el layout, pero puede usar propiedades de block para empujar a otros elementos en el diseno.
+En display existe una propiedad llamada `inline-block`, que puede convertir un elemento de bloque en un elemento en línea pero manteniendo las características del elemento de bloque, como poder establecer ancho, alto, margin, padding y otras propiedades. Esto significa que este elemento se alineará horizontalmente como un elemento en línea en el layout, pero puede usar propiedades de block para empujar a otros elementos en el diseño.
 
 ### Reference
 
@@ -37,5 +37,4 @@ En display existe una propiedad llamada `inline-block`, que puede convertir un e
 - [Block-level elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Block-level_elements)
 - [Tutorial CSS - Diferencias entre display: inline, block e inline-block](https://ytclion.medium.com/css%E6%95%99%E5%AD%B8-%E9%97%9C%E6%96%BCdisplay-inline-inline-block-block%E7%9A%84%E5%B7%AE%E5%88%A5-1034f38eda82)
 
-## 2. Que hace `* { box-sizing: border-box; }`?
-
+## 2. Qué hace `* { box-sizing: border-box; }`?

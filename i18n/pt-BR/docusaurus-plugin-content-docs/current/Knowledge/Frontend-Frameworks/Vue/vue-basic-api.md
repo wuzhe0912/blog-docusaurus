@@ -1,21 +1,21 @@
 ---
 id: vue-basic-api
-title: '[Medium] Vue Basico e API'
+title: '[Medium] Vue Básico e API'
 slug: /vue-basic-api
 tags: [Vue, Quiz, Medium]
 ---
 
 ## 1. Can you describe the core principles and advantages of the framework Vue?
 
-> Descreva os principios centrais e vantagens do framework Vue
+> Descreva os princípios centrais e vantagens do framework Vue
 
-### Principios Centrais
+### Princípios Centrais
 
-Vue e um framework JavaScript progressivo, cujos principios centrais incluem os seguintes conceitos importantes:
+Vue é um framework JavaScript progressivo, cujos princípios centrais incluem os seguintes conceitos importantes:
 
 #### 1. Virtual DOM
 
-Usa Virtual DOM para melhorar a performance. Atualiza apenas os nos do DOM que mudaram, em vez de re-renderizar toda a arvore DOM. Atraves do algoritmo diff, compara as diferencas entre o Virtual DOM antigo e o novo, realizando operacoes reais no DOM apenas nas partes diferentes.
+Usa Virtual DOM para melhorar a performance. Atualiza apenas os nós do DOM que mudaram, em vez de re-renderizar toda a árvore DOM. Através do algoritmo diff, compara as diferenças entre o Virtual DOM antigo é o novo, realizando operações reais no DOM apenas nas partes diferentes.
 
 ```js
 // Conceito ilustrativo do Virtual DOM
@@ -29,9 +29,9 @@ const vnode = {
 };
 ```
 
-#### 2. Ligacao Bidirecional de Dados (Two-way Data Binding)
+#### 2. Ligação Bidirecional de Dados (Two-way Data Binding)
 
-Quando o Model muda, a View atualiza automaticamente, e vice-versa. Desenvolvedores nao precisam manipular o DOM manualmente.
+Quando o Model muda, a View atualiza automaticamente, e vice-versa. Desenvolvedores não precisam manipular o DOM manualmente.
 
 ```vue
 <!-- Escrita recomendada Vue 3: <script setup> -->
@@ -48,56 +48,56 @@ const message = ref('Hello Vue');
 
 #### 3. Baseado em Componentes (Component-based)
 
-Divide a aplicacao inteira em componentes individuais, aumentando a reutilizacao. Cada componente tem seu proprio estado, estilo e logica.
+Divide a aplicação inteira em componentes individuais, aumentando a reutilização. Cada componente tem seu próprio estado, estilo e lógica.
 
 #### 4. Lifecycle Hooks
 
-Possui seu proprio ciclo de vida. Quando os dados mudam, hooks especificos sao acionados para executar operacoes correspondentes.
+Possui seu próprio ciclo de vida. Quando os dados mudam, hooks específicos são acionados para executar operações correspondentes.
 
 #### 5. Sistema de Diretivas
 
-Fornece diretivas comuns como `v-if`, `v-for`, `v-bind`, `v-model`, permitindo desenvolvimento mais rapido.
+Fornece diretivas comuns como `v-if`, `v-for`, `v-bind`, `v-model`, permitindo desenvolvimento mais rápido.
 
 #### 6. Sintaxe de Template
 
-Usa templates para escrever HTML, permitindo renderizar dados diretamente no template atraves de interpolacao.
+Usa templates para escrever HTML, permitindo renderizar dados diretamente no template através de interpolação.
 
 ### Vantagens Exclusivas do Vue (comparado ao React)
 
 #### 1. Curva de Aprendizado Mais Baixa
 
-A diferenca de nivel entre membros da equipe nao sera grande, e o estilo de escrita e unificado oficialmente.
+A diferença de nível entre membros da equipe não será grande, é o estilo de escrita e unificado oficialmente.
 
-#### 2. Sintaxe de Diretivas Propria
+#### 2. Sintaxe de Diretivas Própria
 
-O sistema de diretivas do Vue oferece formas mais intuitivas de lidar com logica de UI comum.
+O sistema de diretivas do Vue oferece formas mais intuitivas de lidar com lógica de UI comum.
 
-#### 3. Ligacao Bidirecional de Dados Mais Facil
+#### 3. Ligação Bidirecional de Dados Mais Fácil
 
-Com `v-model`, a ligacao bidirecional e muito simples, enquanto React requer tratamento manual.
+Com `v-model`, a ligação bidirecional é muito simples, enquanto React requer tratamento manual.
 
-#### 4. Separacao de Template e Logica
+#### 4. Separação de Template e Lógica
 
-Separar logica e UI torna a leitura e manutencao mais faceis.
+Separar lógica e UI torna a leitura e manutenção mais fáceis.
 
 #### 5. Ecossistema Oficial Completo
 
-Vue fornece solucoes oficiais completas (Vue Router, Vuex/Pinia, Vue CLI).
+Vue fornece soluções oficiais completas (Vue Router, Vuex/Pinia, Vue CLI).
 
 ## 2. Please explain the usage of `v-model`, `v-bind` and `v-html`
 
 > Explique o uso de `v-model`, `v-bind` e `v-html`
 
-### `v-model`: Ligacao Bidirecional de Dados
+### `v-model`: Ligação Bidirecional de Dados
 
-Ao alterar dados, o conteudo renderizado no template muda automaticamente, e vice-versa.
+Ao alterar dados, o conteúdo renderizado no template muda automaticamente, e vice-versa.
 
 ```vue
 <template>
   <div>
     <!-- Caixa de texto -->
     <input v-model="message" />
-    <p>Conteudo digitado: {{ message }}</p>
+    <p>Conteúdo digitado: {{ message }}</p>
 
     <!-- Checkbox -->
     <input type="checkbox" v-model="checked" />
@@ -128,17 +128,17 @@ export default {
 #### Modificadores do `v-model`
 
 ```vue
-<!-- .lazy: Atualiza apos o evento change -->
+<!-- .lazy: Atualiza após o evento change -->
 <input v-model.lazy="msg" />
 
-<!-- .number: Converte automaticamente para numero -->
+<!-- .number: Converte automaticamente para número -->
 <input v-model.number="age" type="number" />
 
 <!-- .trim: Remove espacos em branco automaticamente -->
 <input v-model.trim="msg" />
 ```
 
-### `v-bind`: Ligacao Dinamica de Atributos
+### `v-bind`: Ligação Dinâmica de Atributos
 
 Comumente usado para vincular classes, links, imagens, etc.
 
@@ -149,7 +149,7 @@ Comumente usado para vincular classes, links, imagens, etc.
     <div :class="{ active: isActive, 'text-danger': hasError }">Class dinamica</div>
 
     <!-- Vincular style -->
-    <div :style="{ color: textColor, fontSize: fontSize + 'px' }">Estilo dinamico</div>
+    <div :style="{ color: textColor, fontSize: fontSize + 'px' }">Estilo dinâmico</div>
 
     <!-- Vincular caminho de imagem -->
     <img :src="imageUrl" :alt="imageAlt" />
@@ -162,12 +162,12 @@ Comumente usado para vincular classes, links, imagens, etc.
 
 ### `v-html`: Renderizar String HTML
 
-Usado quando o conteudo retornado contem tags HTML, como exibir Markdown ou imagens com tags `<img>`.
+Usado quando o conteúdo retornado contém tags HTML, como exibir Markdown ou imagens com tags `<img>`.
 
 ```vue
 <template>
   <div>
-    <!-- Interpolacao normal: exibe tags HTML como texto -->
+    <!-- Interpolação normal: exibe tags HTML como texto -->
     <p>{{ rawHtml }}</p>
 
     <!-- v-html: renderiza o HTML -->
@@ -176,21 +176,21 @@ Usado quando o conteudo retornado contem tags HTML, como exibir Markdown ou imag
 </template>
 ```
 
-**Aviso de seguranca**: Nunca use `v-html` com conteudo fornecido pelo usuario para evitar vulnerabilidades XSS!
+**Aviso de segurança**: Nunca use `v-html` com conteúdo fornecido pelo usuario para evitar vulnerabilidades XSS!
 
 ### Resumo Comparativo
 
 | Diretiva | Uso | Abreviacao | Exemplo |
 | --------- | ---------------- | ---- | --------------------------- |
-| `v-model` | Ligacao bidirecional de formularios | Nenhuma | `<input v-model="msg">` |
-| `v-bind` | Ligacao unidirecional de atributos | `:` | `<img :src="url">` |
+| `v-model` | Ligação bidirecional de formulários | Nenhuma | `<input v-model="msg">` |
+| `v-bind` | Ligação unidirecional de atributos | `:` | `<img :src="url">` |
 | `v-html` | Renderizar string HTML | Nenhuma | `<div v-html="html"></div>` |
 
 ## 3. How to access HTML elements (Template Refs)?
 
 > Como acessar elementos HTML no Vue?
 
-No Vue, nao e recomendado usar `document.querySelector`. Em vez disso, use **Template Refs**.
+No Vue, não é recomendado usar `document.querySelector`. Em vez disso, use **Template Refs**.
 
 ### Composition API (Vue 3)
 
@@ -217,83 +217,83 @@ onMounted(() => {
 </script>
 ```
 
-**Observacoes**: O nome da variavel deve ser identico ao valor do atributo `ref` no template. Acesse o elemento DOM somente apos `onMounted`.
+**Observacoes**: O nome da variável deve ser identico ao valor do atributo `ref` no template. Acesse o elemento DOM somente após `onMounted`.
 
 ## 4. Please explain the difference between `v-show` and `v-if`
 
-> Explique a diferenca entre `v-show` e `v-if`
+> Explique a diferença entre `v-show` e `v-if`
 
-### Semelhancas
+### Semelhanças
 
-Ambos controlam a exibicao e ocultacao de elementos DOM baseado em condicoes.
+Ambos controlam a exibição e ocultacao de elementos DOM baseado em condições.
 
-### Diferencas
+### Diferenças
 
-#### 1. Forma de Manipulacao do DOM
+#### 1. Forma de Manipulação do DOM
 
-- **`v-show`**: Controla atraves da propriedade CSS `display`. O elemento permanece no DOM.
+- **`v-show`**: Controla através da propriedade CSS `display`. O elemento permanece no DOM.
 - **`v-if`**: Remove ou adiciona o elemento diretamente do DOM.
 
-#### 2. Diferencas de Performance
+#### 2. Diferenças de Performance
 
-- **`v-show`**: Custo inicial maior (elemento sempre e criado), custo de alternancia menor (apenas CSS). Adequado para **alternancia frequente**.
-- **`v-if`**: Custo inicial menor (nao renderiza quando false), custo de alternancia maior (destroi/recria). Adequado para **condicoes que raramente mudam**.
+- **`v-show`**: Custo inicial maior (elemento sempre e criado), custo de alternância menor (apenas CSS). Adequado para **alternância frequente**.
+- **`v-if`**: Custo inicial menor (não renderiza quando false), custo de alternância maior (destroi/recria). Adequado para **condições que raramente mudam**.
 
 #### 3. Acionamento de Lifecycle
 
 - **`v-if`**: Aciona o ciclo de vida completo do componente
-- **`v-show`**: Nao aciona o ciclo de vida do componente
+- **`v-show`**: Não aciona o ciclo de vida do componente
 
 ### Tabela Comparativa
 
-| Caracteristica | v-if | v-show |
+| Característica | v-if | v-show |
 | ------------ | ------------------------- | ---------------- |
-| Custo inicial | Baixo (nao renderiza se false) | Alto (sempre renderiza) |
-| Custo de alternancia | Alto (destroi/recria) | Baixo (apenas CSS) |
-| Cenario | Condicoes que raramente mudam | Alternancia frequente |
-| Lifecycle | Aciona | Nao aciona |
+| Custo inicial | Baixo (não renderiza se false) | Alto (sempre renderiza) |
+| Custo de alternância | Alto (destroi/recria) | Baixo (apenas CSS) |
+| Cenário | Condições que raramente mudam | Alternância frequente |
+| Lifecycle | Aciona | Não aciona |
 | Uso combinado | v-else-if, v-else | Nenhum |
 
-### Ponto de Memorizacao
+### Ponto de Memorização
 
-> - `v-if`: Nao renderiza quando nao exibe, adequado para condicoes que raramente mudam
-> - `v-show`: Renderiza desde o inicio, pronto para exibir, adequado para alternancia frequente
+> - `v-if`: Não renderiza quando não exibe, adequado para condições que raramente mudam
+> - `v-show`: Renderiza desde o início, pronto para exibir, adequado para alternância frequente
 
 ## 5. What's the difference between `computed` and `watch`?
 
-> Qual e a diferenca entre `computed` e `watch`?
+> Qual é a diferença entre `computed` e `watch`?
 
 ### `computed` (Propriedades Computadas)
 
-- **Mecanismo de cache**: O resultado e armazenado em cache e so e recalculado quando as dependencias mudam
-- **Rastreamento automatico**: Rastreia automaticamente os dados reativos usados
-- **Calculo sincrono**: Deve ser sincrono e ter valor de retorno
+- **Mecanismo de cache**: O resultado e armazenado em cache e só e recalculado quando as dependências mudam
+- **Rastreamento automático**: Rastreia automaticamente os dados reativos usados
+- **Calculo síncrono**: Deve ser síncrono e ter valor de retorno
 - Adequado para: formatacao, filtragem, soma de dados
 
-### `watch` (Propriedades de Observacao)
+### `watch` (Propriedades de Observação)
 
 - **Rastreamento manual**: Necessita especificar explicitamente quais dados observar
-- **Operacoes assincronas**: Adequado para chamadas de API, timers, etc.
+- **Operações assíncronas**: Adequado para chamadas de API, timers, etc.
 - **Sem valor de retorno**: Usado principalmente para efeitos colaterais
-- **Valores antigo e novo**: Pode acessar valores antes e depois da mudanca
+- **Valores antigo e novo**: Pode acessar valores antes e depois da mudança
 
 ### Tabela Comparativa
 
-| Caracteristica | computed | watch |
+| Característica | computed | watch |
 | ----------------- | ---------------------- | ---------------------- |
-| **Uso principal** | Calcular novos dados a partir de existentes | Observar mudancas e executar efeitos |
-| **Valor de retorno** | Obrigatorio | Nao necessario |
-| **Cache** | Sim | Nao |
-| **Rastreamento** | Automatico | Manual |
-| **Operacoes assincronas** | Nao suporta | Suporta |
-| **Valores antigo/novo** | Nao disponivel | Disponivel |
+| **Uso principal** | Calcular novos dados a partir de existentes | Observar mudanças e executar efeitos |
+| **Valor de retorno** | Obrigatório | Não necessário |
+| **Cache** | Sim | Não |
+| **Rastreamento** | Automático | Manual |
+| **Operações assíncronas** | Não suporta | Suporta |
+| **Valores antigo/novo** | Não disponível | Disponível |
 
-### Ponto de Memorizacao
+### Ponto de Memorização
 
-> **"`computed` calcula dados, `watch` executa acoes"**
+> **"`computed` calcula dados, `watch` executa ações"**
 >
 > - `computed`: Para **calcular novos dados** (formatacao, filtragem, soma)
-> - `watch`: Para **executar acoes** (requisicoes API, salvar dados, exibir notificacoes)
+> - `watch`: Para **executar ações** (requisições API, salvar dados, exibir notificações)
 
 ## Reference
 

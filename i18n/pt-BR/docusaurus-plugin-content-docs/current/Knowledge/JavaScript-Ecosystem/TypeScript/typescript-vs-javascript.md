@@ -7,64 +7,64 @@ tags: [TypeScript, Quiz, Easy]
 
 ## 1. What is TypeScript?
 
-> O que e TypeScript?
+> O que é TypeScript?
 
-TypeScript e uma linguagem de programacao de codigo aberto desenvolvida pela Microsoft, e e um **superconjunto (Superset)** de JavaScript. Isso significa que todo codigo JavaScript valido tambem e codigo TypeScript valido.
+TypeScript é uma linguagem de programação de código aberto desenvolvida pela Microsoft, e é um **superconjunto (Superset)** de JavaScript. Isso significa que todo código JavaScript válido também é código TypeScript válido.
 
-**Caracteristicas principais**:
+**Características principais**:
 
-- Adiciona um **sistema de tipos estaticos** sobre o JavaScript
-- Realiza verificacao de tipos em tempo de compilacao
-- Converte-se em JavaScript puro apos a compilacao
-- Proporciona melhor experiencia de desenvolvimento e suporte de ferramentas
+- Adiciona um **sistema de tipos estáticos** sobre o JavaScript
+- Realiza verificação de tipos em tempo de compilação
+- Converte-se em JavaScript puro após a compilação
+- Proporciona melhor experiência de desenvolvimento e suporte de ferramentas
 
 ## 2. What are the differences between TypeScript and JavaScript?
 
-> Quais sao as diferencas entre TypeScript e JavaScript?
+> Quais são as diferenças entre TypeScript e JavaScript?
 
-### Diferencas principais
+### Diferenças principais
 
-| Caracteristica | JavaScript              | TypeScript              |
+| Característica | JavaScript              | TypeScript              |
 | -------------- | ----------------------- | ----------------------- |
-| Sistema de tipos | Dinamico (verificacao em execucao) | Estatico (verificacao em compilacao) |
-| Compilacao     | Nao necessaria          | Requer compilacao para JavaScript |
-| Anotacoes      | Nao suportadas          | Suporta anotacoes de tipo |
-| Deteccao de erros | Em tempo de execucao | Em tempo de compilacao |
-| Suporte IDE    | Basico                  | Autocompletar e refatoracao potentes |
+| Sistema de tipos | Dinâmico (verificação em execução) | Estático (verificação em compilação) |
+| Compilação     | Não necessária          | Requer compilação para JavaScript |
+| Anotações      | Não suportadas          | Suporta anotações de tipo |
+| Detecção de erros | Em tempo de execução | Em tempo de compilação |
+| Suporte IDE    | Básico                  | Autocompletar e refatoração potentes |
 | Curva de aprendizado | Baixa              | Alta                    |
 
-### Diferencas do sistema de tipos
+### Diferenças do sistema de tipos
 
-**JavaScript (tipos dinamicos)**:
+**JavaScript (tipos dinâmicos)**:
 
 ```javascript
 let value = 10;
 value = 'hello'; // Pode mudar de tipo
 function add(a, b) { return a + b; }
 add(1, 2); // 3
-add('1', '2'); // '12' (concatenacao de strings)
-add(1, '2'); // '12' (conversao de tipo)
+add('1', '2'); // '12' (concatenação de strings)
+add(1, '2'); // '12' (conversão de tipo)
 ```
 
-**TypeScript (tipos estaticos)**:
+**TypeScript (tipos estáticos)**:
 
 ```typescript
 let value: number = 10;
-value = 'hello'; // ❌ Erro de compilacao
+value = 'hello'; // ❌ Erro de compilação
 
 function add(a: number, b: number): number { return a + b; }
 add(1, 2); // ✅ 3
-add('1', '2'); // ❌ Erro de compilacao
+add('1', '2'); // ❌ Erro de compilação
 ```
 
-### Processo de compilacao
+### Processo de compilação
 
 ```typescript
-// Codigo fonte TypeScript
+// Código fonte TypeScript
 let message: string = 'Hello World';
 console.log(message);
 
-// ↓ Apos compilacao, convertido em JavaScript
+// ↓ Após compilação, convertido em JavaScript
 let message = 'Hello World';
 console.log(message);
 ```
@@ -75,72 +75,72 @@ console.log(message);
 
 ### Vantagens
 
-1. **Deteccao precoce de erros** - Detectar erros de tipo em compilacao
-2. **Melhor suporte IDE** - Autocompletar e refatoracao
-3. **Legibilidade do codigo** - Anotacoes de tipo esclarecem a intencao das funcoes
-4. **Refatoracao mais segura** - Deteccao automatica de locais que precisam de atualizacao
+1. **Detecção precoce de erros** - Detectar erros de tipo em compilação
+2. **Melhor suporte IDE** - Autocompletar e refatoração
+3. **Legibilidade do código** - Anotações de tipo esclarecem a intenção das funções
+4. **Refatoração mais segura** - Detecção automática de locais que precisam de atualização
 
 ### Desvantagens
 
-1. **Requer etapa de compilacao** - Aumenta a complexidade do fluxo de desenvolvimento
+1. **Requer etapa de compilação** - Aumenta a complexidade do fluxo de desenvolvimento
 2. **Curva de aprendizado** - Precisa aprender o sistema de tipos
-3. **Tamanho do arquivo** - Informacoes de tipo aumentam o tamanho do codigo fonte (sem efeito apos compilar)
-4. **Configuracao complexa** - Precisa configurar `tsconfig.json`
+3. **Tamanho do arquivo** - Informações de tipo aumentam o tamanho do código fonte (sem efeito após compilar)
+4. **Configuração complexa** - Precisa configurar `tsconfig.json`
 
 ## 4. Common Interview Questions
 
 > Perguntas comuns em entrevistas
 
-### Pergunta 1: Momento da verificacao de tipos
+### Pergunta 1: Momento da verificação de tipos
 
 <details>
 <summary>Clique para ver a resposta</summary>
 
-- JavaScript realiza conversoes de tipo em **tempo de execucao**, o que pode produzir resultados inesperados
-- TypeScript verifica tipos em **tempo de compilacao**, detectando erros antecipadamente
+- JavaScript realiza conversões de tipo em **tempo de execução**, o que pode produzir resultados inesperados
+- TypeScript verifica tipos em **tempo de compilação**, detectando erros antecipadamente
 
 </details>
 
-### Pergunta 2: Inferencia de tipos
+### Pergunta 2: Inferência de tipos
 
 <details>
 <summary>Clique para ver a resposta</summary>
 
-TypeScript infere automaticamente o tipo a partir do valor inicial. Apos a inferencia, o tipo nao pode ser alterado (a menos que declarado explicitamente como `any` ou tipo `union`).
+TypeScript infere automaticamente o tipo a partir do valor inicial. Após a inferência, o tipo não pode ser alterado (a menos que declarado explicitamente como `any` ou tipo `union`).
 
 </details>
 
-### Pergunta 3: Comportamento em tempo de execucao
+### Pergunta 3: Comportamento em tempo de execução
 
 <details>
 <summary>Clique para ver a resposta</summary>
 
-- As **anotacoes de tipo do TypeScript desaparecem completamente apos a compilacao**
-- O JavaScript compilado e identico ao JavaScript puro
-- TypeScript so fornece verificacao de tipos na **fase de desenvolvimento**, sem afetar o desempenho em execucao
+- As **anotações de tipo do TypeScript desaparecem completamente após a compilação**
+- O JavaScript compilado é idêntico ao JavaScript puro
+- TypeScript só fornece verificação de tipos na **fase de desenvolvimento**, sem afetar o desempenho em execução
 
 </details>
 
-### Pergunta 4: Erros de tipo vs Erros de execucao
+### Pergunta 4: Erros de tipo vs Erros de execução
 
 <details>
 <summary>Clique para ver a resposta</summary>
 
-- **Erro de compilacao TypeScript**: Detectado na fase de desenvolvimento, programa nao pode ser executado
-- **Erro de execucao JavaScript**: Detectado durante o uso, causa travamento do programa
+- **Erro de compilação TypeScript**: Detectado na fase de desenvolvimento, programa não pode ser executado
+- **Erro de execução JavaScript**: Detectado durante o uso, causa travamento do programa
 
-TypeScript pode prevenir muitos erros de execucao atraves da verificacao de tipos.
+TypeScript pode prevenir muitos erros de execução através da verificação de tipos.
 
 </details>
 
 ## 5. Best Practices
 
-> Melhores praticas
+> Melhores práticas
 
-### Praticas recomendadas
+### Práticas recomendadas
 
 ```typescript
-// 1. Especificar explicitamente o tipo de retorno das funcoes
+// 1. Especificar explicitamente o tipo de retorno das funções
 function add(a: number, b: number): number { return a + b; }
 
 // 2. Usar interface para estruturas de objetos complexos
@@ -159,15 +159,15 @@ type UserID = string;
 
 > Resumo para entrevistas
 
-**Q: Quais sao as principais diferencas entre TypeScript e JavaScript?**
+**Q: Quais são as principais diferenças entre TypeScript e JavaScript?**
 
-> "TypeScript e um superconjunto de JavaScript, a principal diferenca e que adiciona um sistema de tipos estaticos. JavaScript e uma linguagem de tipos dinamicos com verificacao em tempo de execucao; TypeScript e uma linguagem de tipos estaticos com verificacao em tempo de compilacao. Isso permite detectar erros relacionados a tipos ja na fase de desenvolvimento. Apos a compilacao, TypeScript se converte em JavaScript puro, portanto o comportamento em execucao e identico ao do JavaScript."
+> "TypeScript é um superconjunto de JavaScript, a principal diferença é que adiciona um sistema de tipos estáticos. JavaScript é uma linguagem de tipos dinâmicos com verificação em tempo de execução; TypeScript é uma linguagem de tipos estáticos com verificação em tempo de compilação. Isso permite detectar erros relacionados a tipos já na fase de desenvolvimento. Após a compilação, TypeScript se converte em JavaScript puro, portanto o comportamento em execução é idêntico ao do JavaScript."
 
 **Q: Por que usar TypeScript?**
 
-> "As principais vantagens sao: 1) Deteccao precoce de erros em tempo de compilacao; 2) Melhor suporte IDE com autocompletar e refatoracao; 3) Melhor legibilidade do codigo com anotacoes de tipo; 4) Refatoracao mais segura com deteccao automatica de locais a atualizar. Porem, e preciso considerar a curva de aprendizado e o custo adicional da etapa de compilacao."
+> "As principais vantagens são: 1) Detecção precoce de erros em tempo de compilação; 2) Melhor suporte IDE com autocompletar e refatoração; 3) Melhor legibilidade do código com anotações de tipo; 4) Refatoração mais segura com detecção automática de locais a atualizar. Porém, é preciso considerar a curva de aprendizado é o custo adicional da etapa de compilação."
 
 ## Reference
 
-- [Documentacao oficial do TypeScript](https://www.typescriptlang.org/docs/)
+- [Documentação oficial do TypeScript](https://www.typescriptlang.org/docs/)
 - [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)

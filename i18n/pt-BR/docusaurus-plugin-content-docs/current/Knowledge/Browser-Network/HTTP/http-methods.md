@@ -11,7 +11,7 @@ Escrever uma RESTful API adota um conjunto padronizado de estilos de design para
 - **Caminho da URL (URL path)**: Determina o escopo da requisição do cliente, por exemplo:
   - `/products`: Pode retornar uma lista de produtos
   - `/products/abc`: Fornece detalhes do produto com ID abc
-- **Métodos HTTP**: Definem a forma específica de execução:
+- **Métodos HTTP**: Definem a forma especifica de execução:
   - `GET`: Usado para obter dados
   - `POST`: Usado para criar novos dados
   - `PUT`: Usado para atualizar dados existentes

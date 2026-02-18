@@ -1,23 +1,23 @@
 ---
 id: css-pseudo-elements
-title: '[Easy] \U0001F3F7️ Pseudoelementos (Pseudo-elements)'
+title: '[Easy] 🏷️ Pseudoelementos (Pseudo-elements)'
 slug: /css-pseudo-elements
 tags: [CSS, Quiz, Easy]
 ---
 
-## Que son los pseudoelementos
+## Qué son los pseudoelementos
 
-Los pseudoelementos (Pseudo-elements) son palabras clave de CSS que se utilizan para seleccionar partes especificas de un elemento o insertar contenido antes o despues de un elemento. Utilizan la sintaxis de **doble dos puntos** `::` (estandar CSS3), para distinguirlos de las pseudoclases (pseudo-classes) que usan un solo dos puntos `:`.
+Los pseudoelementos (Pseudo-elements) son palabras clave de CSS que se utilizan para seleccionar partes específicas de un elemento o insertar contenido antes o después de un elemento. Utilizan la sintaxis de **doble dos puntos** `::` (estándar CSS3), para distinguirlos de las pseudoclases (pseudo-classes) que usan un solo dos puntos `:`.
 
 ## Pseudoelementos comunes
 
 ### 1. ::before y ::after
 
-Los pseudoelementos mas utilizados, se usan para insertar contenido antes o despues del contenido de un elemento.
+Los pseudoelementos más utilizados, se usan para insertar contenido antes o después del contenido de un elemento.
 
 ```css
 .icon::before {
-  content: '\U0001F4CC';
+  content: '📌';
   margin-right: 8px;
 }
 
@@ -27,15 +27,15 @@ Los pseudoelementos mas utilizados, se usan para insertar contenido antes o desp
 }
 ```
 
-**Caracteristicas**:
+**Características**:
 
-- Debe incluir la propiedad `content` (incluso si es una cadena vacia)
+- Debe incluir la propiedad `content` (incluso si es una cadena vacía)
 - Por defecto son elementos `inline`
 - No aparecen en el DOM, no se pueden seleccionar con JavaScript
 
 ### 2. ::first-letter
 
-Selecciona la primera letra del elemento, comumente usado para el efecto de letra capital estilo revista.
+Selecciona la primera letra del elemento, comúnmente usado para el efecto de letra capital estilo revista.
 
 ```css
 .article::first-letter {
@@ -49,7 +49,7 @@ Selecciona la primera letra del elemento, comumente usado para el efecto de letr
 
 ### 3. ::first-line
 
-Selecciona la primera linea de texto del elemento.
+Selecciona la primera línea de texto del elemento.
 
 ```css
 .intro::first-line {
@@ -112,11 +112,11 @@ dialog::backdrop {
 }
 ```
 
-## Escenarios de aplicacion practica
+## Escenarios de aplicación práctica
 
 ### 1. Iconos decorativos
 
-Implementacion pura con CSS sin necesidad de elementos HTML adicionales:
+Implementación pura con CSS sin necesidad de elementos HTML adicionales:
 
 ```css
 .success::before {
@@ -132,11 +132,11 @@ Implementacion pura con CSS sin necesidad de elementos HTML adicionales:
 }
 ```
 
-**Cuando usar**: Cuando no se quiere agregar elementos puramente decorativos en el HTML.
+**Cuándo usar**: Cuando no se quiere agregar elementos puramente decorativos en el HTML.
 
 ### 2. Limpiar flotaciones (Clearfix)
 
-Tecnica clasica de limpieza de flotaciones:
+Técnica clásica de limpieza de flotaciones:
 
 ```css
 .clearfix::after {
@@ -146,11 +146,11 @@ Tecnica clasica de limpieza de flotaciones:
 }
 ```
 
-**Cuando usar**: Cuando el elemento padre tiene hijos flotantes y necesita expandir la altura del padre.
+**Cuándo usar**: Cuando el elemento padre tiene hijos flotantes y necesita expandir la altura del padre.
 
-### 3. Decoracion de citas
+### 3. Decoración de citas
 
-Agregar comillas automaticamente al texto citado:
+Agregar comillas automáticamente al texto citado:
 
 ```css
 blockquote::before {
@@ -170,11 +170,11 @@ blockquote {
 }
 ```
 
-**Cuando usar**: Para embellecer bloques de citas sin ingresar comillas manualmente.
+**Cuándo usar**: Para embellecer bloques de citas sin ingresar comillas manualmente.
 
-### 4. Figuras geometricas puras con CSS
+### 4. Figuras geométricas puras con CSS
 
-Crear formas geometricas usando pseudoelementos:
+Crear formas geométricas usando pseudoelementos:
 
 ```css
 .arrow {
@@ -197,7 +197,7 @@ Crear formas geometricas usando pseudoelementos:
 }
 ```
 
-**Cuando usar**: Para crear flechas, triangulos y otras figuras simples, sin necesidad de imagenes o SVG.
+**Cuándo usar**: Para crear flechas, triángulos y otras figuras simples, sin necesidad de imágenes o SVG.
 
 ### 5. Marcador de campo obligatorio
 
@@ -211,11 +211,11 @@ Agregar un asterisco rojo a los campos de formulario obligatorios:
 }
 ```
 
-**Cuando usar**: Para marcar campos obligatorios manteniendo la semantica del HTML limpia.
+**Cuándo usar**: Para marcar campos obligatorios manteniendo la semántica del HTML limpia.
 
 ### 6. Indicador de enlace externo
 
-Agregar automaticamente un icono a los enlaces externos:
+Agregar automáticamente un icono a los enlaces externos:
 
 ```css
 a[href^='http']::after {
@@ -232,11 +232,11 @@ a[target='_blank']::after {
 }
 ```
 
-**Cuando usar**: Para mejorar la experiencia del usuario, informandole que se abrira una nueva pestana.
+**Cuándo usar**: Para mejorar la experiencia del usuario, informándole que se abrirá una nueva pestaña.
 
-### 7. Numeracion con contadores
+### 7. Numeración con contadores
 
-Numeracion automatica usando contadores CSS:
+Numeración automática usando contadores CSS:
 
 ```css
 .faq-list {
@@ -251,11 +251,11 @@ Numeracion automatica usando contadores CSS:
 }
 ```
 
-**Cuando usar**: Para generar numeracion automatica sin mantenimiento manual.
+**Cuándo usar**: Para generar numeración automática sin mantenimiento manual.
 
-### 8. Efecto de superposicion
+### 8. Efecto de superposición
 
-Agregar una superposicion hover a imagenes:
+Agregar una superposición hover a imágenes:
 
 ```css
 .image-card {
@@ -278,14 +278,14 @@ Agregar una superposicion hover a imagenes:
 }
 ```
 
-**Cuando usar**: Cuando no se quiere agregar elementos HTML adicionales para implementar el efecto de superposicion.
+**Cuándo usar**: Cuando no se quiere agregar elementos HTML adicionales para implementar el efecto de superposición.
 
 ## Pseudoelementos vs Pseudoclases
 
-| Caracteristica | Pseudoelementos (::)                    | Pseudoclases (:)                      |
+| Característica | Pseudoelementos (::)                    | Pseudoclases (:)                      |
 | -------------- | --------------------------------------- | ------------------------------------- |
 | **Sintaxis**   | Doble dos puntos `::before`             | Un solo dos puntos `:hover`           |
-| **Funcion**    | Crear/seleccionar partes del elemento   | Seleccionar estados del elemento      |
+| **Función**    | Crear/seleccionar partes del elemento   | Seleccionar estados del elemento      |
 | **Ejemplos**   | `::before`, `::after`, `::first-letter` | `:hover`, `:active`, `:nth-child()`   |
 | **DOM**        | No existe en el DOM                     | Selecciona elementos reales del DOM   |
 
@@ -293,10 +293,10 @@ Agregar una superposicion hover a imagenes:
 
 ### 1. La propiedad content debe existir
 
-`::before` y `::after` deben tener la propiedad `content`, de lo contrario no se mostraran:
+`::before` y `::after` deben tener la propiedad `content`, de lo contrario no se mostrarán:
 
 ```css
-/* ❌ No se mostrara */
+/* ❌ No se mostrará */
 .box::before {
   width: 20px;
   height: 20px;
@@ -305,7 +305,7 @@ Agregar una superposicion hover a imagenes:
 
 /* ✅ Correcto */
 .box::before {
-  content: ''; /* Incluso una cadena vacia es necesaria */
+  content: ''; /* Incluso una cadena vacía es necesaria */
   display: block;
   width: 20px;
   height: 20px;
@@ -318,7 +318,7 @@ Agregar una superposicion hover a imagenes:
 Algunos elementos (como `<img>`, `<input>`, `<iframe>`) no pueden usar `::before` y `::after`:
 
 ```css
-/* ❌ Invalido */
+/* ❌ Inválido */
 img::before {
   content: 'Photo:';
 }
@@ -354,20 +354,20 @@ El `z-index` de los pseudoelementos es relativo al elemento padre:
 .parent::before {
   content: '';
   position: absolute;
-  z-index: -1; /* Estara debajo del padre, pero encima del fondo del padre */
+  z-index: -1; /* Estará debajo del padre, pero encima del fondo del padre */
 }
 ```
 
 ### 5. Compatibilidad con un solo dos puntos
 
-La especificacion CSS3 usa doble dos puntos `::` para distinguir pseudoelementos de pseudoclases, pero un solo dos puntos `:` todavia funciona (compatibilidad con CSS2):
+La especificación CSS3 usa doble dos puntos `::` para distinguir pseudoelementos de pseudoclases, pero un solo dos puntos `:` todavía funciona (compatibilidad con CSS2):
 
 ```css
-/* Notacion estandar CSS3 (recomendada) */
+/* Notación estándar CSS3 (recomendada) */
 .box::before {
 }
 
-/* Notacion CSS2 (todavia funciona) */
+/* Notación CSS2 (todavía funciona) */
 .box:before {
 }
 ```
@@ -376,9 +376,9 @@ La especificacion CSS3 usa doble dos puntos `::` para distinguir pseudoelementos
 
 1. **Sintaxis de doble dos puntos para pseudoelementos**: Distinguir pseudoelementos `::` de pseudoclases `:`
 2. **La propiedad content debe existir**: La clave de `::before` y `::after`
-3. **No estan en el DOM**: No se pueden seleccionar ni manipular directamente con JavaScript
-4. **No se pueden usar en elementos reemplazados**: Invalido para `<img>`, `<input>`, etc.
-5. **Escenarios de aplicacion practica**: Iconos decorativos, limpieza de flotaciones, dibujo de figuras, etc.
+3. **No están en el DOM**: No se pueden seleccionar ni manipular directamente con JavaScript
+4. **No se pueden usar en elementos reemplazados**: Inválido para `<img>`, `<input>`, etc.
+5. **Escenarios de aplicación práctica**: Iconos decorativos, limpieza de flotaciones, dibujo de figuras, etc.
 
 ## Reference
 

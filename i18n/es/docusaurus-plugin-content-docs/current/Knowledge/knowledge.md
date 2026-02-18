@@ -1,6 +1,6 @@
 ---
 id: knowledge
-title: Notas Tecnicas
+title: Notas Técnicas
 slug: /knowledge
 ---
 
@@ -8,7 +8,7 @@ slug: /knowledge
 >
 > _It's never too late to learn._
 
-Aqui se recopilan las notas tecnicas y preguntas/respuestas que he organizado durante mi desarrollo frontend. Si quieres ver la linea de pensamiento completa y las historias de carrera, visita el [Blog](/blog).
+Aquí se recopilan las notas técnicas y preguntas/respuestas que he organizado durante mi desarrollo frontend. Si quieres ver la línea de pensamiento completa y las historias de carrera, visita el [Blog](/blog).
 
 ---
 
@@ -16,35 +16,35 @@ Aqui se recopilan las notas tecnicas y preguntas/respuestas que he organizado du
 
 ### 🌐 Browser & Network
 
-Exploracion de los principios de renderizado del navegador, protocolos HTTP y mecanismos de transmision de red.
+Exploración de los principios de renderizado del navegador, protocolos HTTP y mecanismos de transmisión de red.
 
 ### 📒 JavaScript Ecosystem
 
-Conceptos fundamentales de JavaScript y TypeScript, closures, cadena de prototipos y analisis en profundidad.
+Conceptos fundamentales de JavaScript y TypeScript, closures, cadena de prototipos y análisis en profundidad.
 
 ### ⚛️ Frontend Frameworks
 
-Principios de frameworks, ciclo de vida, gestion de estado y mejores practicas de React y Vue.
+Principios de frameworks, ciclo de vida, gestión de estado y mejores prácticas de React y Vue.
 
 ### 🎨 CSS & UI
 
-Procesamiento de estilos, maquetacion y caracteristicas modernas de CSS.
+Procesamiento de estilos, maquetación y características modernas de CSS.
 
 ### 🛡️ Web Security
 
-Desde los principios de ataques CSRF/XSS hasta el analisis completo de implementacion de mecanismos de autenticacion JWT/Session.
+Desde los principios de ataques CSRF/XSS hasta el análisis completo de implementación de mecanismos de autenticación JWT/Session.
 
 ### 🛠️ Engineering & Tools
 
-Herramientas de ingenieria frontend, estrategias de empaquetado y tecnicas avanzadas de optimizacion de Performance.
+Herramientas de ingeniería frontend, estrategias de empaquetado y técnicas avanzadas de optimización de Performance.
 
 ### 💼 Experience
 
-Preparacion para entrevistas y experiencias practicas compartidas.
+Preparación para entrevistas y experiencias prácticas compartidas.
 
 ### ⌨️ Coding
 
-Implementacion manual de funciones Lodash y ejercicios avanzados de JavaScript.
+Implementación manual de funciones Lodash y ejercicios avanzados de JavaScript.
 
 ### 📊 LeetCode
 
@@ -52,7 +52,7 @@ Soluciones de algoritmos y notas de razonamiento.
 
 ### 🤖 AI
 
-Notas sobre AI Prompts y aplicacion de herramientas.
+Notas sobre AI Prompts y aplicación de herramientas.
 
 ---
 

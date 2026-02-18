@@ -74,7 +74,8 @@
       "Bash(do ls \"/Users/pitt.wu/Documents/personal/blog-docusaurus/i18n/$locale/docusaurus-plugin-content-docs/current/Coding/JavaScript/\")",
       "Bash(do echo \"Missing pinia-usage.md for: $locale\")",
       "Bash(else echo \"\\(directory does not exist\\)\")",
-      "Bash(fi)"
+      "Bash(fi)",
+      "Bash(do echo \"=== $f ===\")"
     ]
   }
 }

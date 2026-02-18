@@ -7,13 +7,13 @@ tags: [Vue, Quiz, Medium]
 
 ## 1. What are watch and watchEffect?
 
-> O que sao watch e watchEffect?
+> O que são watch e watchEffect?
 
-`watch` e `watchEffect` sao duas APIs da Composition API do Vue 3 usadas para observar mudancas em dados reativos.
+`watch` e `watchEffect` são duas APIs da Composition API do Vue 3 usadas para observar mudanças em dados reativos.
 
 ### watch
 
-**Definicao**: Especifica explicitamente a fonte de dados a ser observada, executando uma funcao callback quando os dados mudam.
+**Definição**: Específica explicitamente a fonte de dados a ser observada, executando uma função callback quando os dados mudam.
 
 ```vue
 <script setup>
@@ -22,12 +22,12 @@ import { ref, watch } from 'vue';
 const count = ref(0);
 const message = ref('Hello');
 
-// Observar uma unica fonte de dados
+// Observar uma única fonte de dados
 watch(count, (newValue, oldValue) => {
   console.log(`count mudou de ${oldValue} para ${newValue}`);
 });
 
-// Observar multiplas fontes de dados
+// Observar múltiplas fontes de dados
 watch([count, message], ([newCount, newMessage], [oldCount, oldMessage]) => {
   console.log('count ou message mudou');
 });
@@ -36,7 +36,7 @@ watch([count, message], ([newCount, newMessage], [oldCount, oldMessage]) => {
 
 ### watchEffect
 
-**Definicao**: Rastreia automaticamente os dados reativos usados na funcao callback, executando automaticamente quando esses dados mudam.
+**Definição**: Rastreia automaticamente os dados reativos usados na função callback, executando automaticamente quando esses dados mudam.
 
 ```vue
 <script setup>
@@ -45,7 +45,7 @@ import { ref, watchEffect } from 'vue';
 const count = ref(0);
 const message = ref('Hello');
 
-// Rastreia automaticamente count e message
+// Rastreia automaticamente count é message
 watchEffect(() => {
   console.log(`count: ${count.value}, message: ${message.value}`);
   // Quando count ou message muda, executa automaticamente
@@ -55,22 +55,22 @@ watchEffect(() => {
 
 ## 2. watch vs watchEffect: Key Differences
 
-> Principais diferencas entre watch e watchEffect
+> Principais diferenças entre watch e watchEffect
 
-### 1. Especificacao da Fonte de Dados
+### 1. Específicacao da Fonte de Dados
 
-**watch**: Especifica explicitamente os dados a observar
+**watch**: Específica explicitamente os dados a observar
 
 ```typescript
 const count = ref(0);
 const message = ref('Hello');
 
-// Especifica explicitamente observar count
+// Específica explicitamente observar count
 watch(count, (newVal, oldVal) => {
   console.log('count mudou');
 });
 
-// Especifica explicitamente observar multiplos dados
+// Específica explicitamente observar múltiplos dados
 watch([count, message], ([newCount, newMessage]) => {
   console.log('count ou message mudou');
 });
@@ -82,16 +82,16 @@ watch([count, message], ([newCount, newMessage]) => {
 const count = ref(0);
 const message = ref('Hello');
 
-// Rastreia automaticamente count e message (pois sao usados no callback)
+// Rastreia automaticamente count é message (pois são usados no callback)
 watchEffect(() => {
   console.log(count.value); // Rastreia count automaticamente
   console.log(message.value); // Rastreia message automaticamente
 });
 ```
 
-### 2. Momento de Execucao
+### 2. Momento de Execução
 
-**watch**: Execucao lazy por padrao, executa apenas quando os dados mudam
+**watch**: Execução lazy por padrão, executa apenas quando os dados mudam
 
 ```typescript
 const count = ref(0);
@@ -100,10 +100,10 @@ watch(count, (newVal) => {
   console.log('Executou'); // Executa apenas quando count muda
 });
 
-count.value = 1; // Dispara execucao
+count.value = 1; // Dispara execução
 ```
 
-**watchEffect**: Executa imediatamente, depois rastreia mudancas
+**watchEffect**: Executa imediatamente, depois rastreia mudanças
 
 ```typescript
 const count = ref(0);
@@ -128,20 +128,20 @@ watch(count, (newVal, oldVal) => {
 });
 ```
 
-**watchEffect**: Nao pode acessar o valor antigo
+**watchEffect**: Não pode acessar o valor antigo
 
 ```typescript
 const count = ref(0);
 
 watchEffect(() => {
-  console.log(count.value); // So pode acessar o valor atual
-  // Nao e possivel obter o valor antigo
+  console.log(count.value); // só pode acessar o valor atual
+  // Não é possível obter o valor antigo
 });
 ```
 
 ### 4. Parar de Observar
 
-**watch**: Retorna funcao de parada
+**watch**: Retorna função de parada
 
 ```typescript
 const count = ref(0);
@@ -154,7 +154,7 @@ const stopWatch = watch(count, (newVal) => {
 stopWatch();
 ```
 
-**watchEffect**: Retorna funcao de parada
+**watchEffect**: Retorna função de parada
 
 ```typescript
 const count = ref(0);
@@ -187,7 +187,7 @@ stopEffect();
    });
    ```
 
-3. **Necessidade de execucao lazy (apenas quando muda)**
+3. **Necessidade de execução lazy (apenas quando muda)**
    ```typescript
    watch(searchQuery, (newQuery) => {
      if (newQuery.length > 2) {
@@ -209,7 +209,7 @@ stopEffect();
 
 ### Quando Usar watchEffect
 
-1. **Rastreamento automatico de multiplos dados relacionados**
+1. **Rastreamento automático de múltiplos dados relacionados**
    ```typescript
    watchEffect(() => {
      // Rastreia automaticamente todos os dados reativos usados
@@ -219,17 +219,17 @@ stopEffect();
    });
    ```
 
-2. **Nao necessita do valor antigo**
+2. **Não necessita do valor antigo**
    ```typescript
    watchEffect(() => {
      console.log(`Contagem atual: ${count.value}`);
    });
    ```
 
-3. **Necessidade de execucao imediata**
+3. **Necessidade de execução imediata**
    ```typescript
    watchEffect(() => {
-     // Executa imediatamente, depois rastreia mudancas
+     // Executa imediatamente, depois rastreia mudanças
      updateChart(count.value, message.value);
    });
    ```
@@ -238,9 +238,9 @@ stopEffect();
 
 > Perguntas Comuns de Entrevista
 
-### Pergunta 1: Diferenca Basica
+### Pergunta 1: Diferença Básica
 
-Explique a ordem de execucao e resultado do seguinte codigo.
+Explique a ordem de execução e resultado do seguinte código.
 
 ```typescript
 const count = ref(0);
@@ -267,7 +267,7 @@ message.value = 'World';
 const count = ref(0);
 const message = ref('Hello');
 
-// watch: execucao lazy, nao executa imediatamente
+// watch: execução lazy, não executa imediatamente
 watch(count, (newVal) => {
   console.log('watch:', newVal);
 });
@@ -275,7 +275,7 @@ watch(count, (newVal) => {
 // watchEffect: executa imediatamente
 watchEffect(() => {
   console.log('watchEffect:', count.value, message.value);
-  // Saida imediata: watchEffect: 0 Hello
+  // Saída imediata: watchEffect: 0 Hello
 });
 
 count.value = 1;
@@ -283,18 +283,18 @@ count.value = 1;
 // Dispara watchEffect: watchEffect: 1 Hello
 
 message.value = 'World';
-// watch nao observa message, nao executa
+// watch não observa message, não executa
 // watchEffect observa message, executa: watchEffect: 1 World
 ```
 
-**Ordem de saida**:
-1. `watchEffect: 0 Hello` (execucao imediata)
+**Ordem de saída**:
+1. `watchEffect: 0 Hello` (execução imediata)
 2. `watch: 1` (count mudou)
 3. `watchEffect: 1 Hello` (count mudou)
 4. `watchEffect: 1 World` (message mudou)
 
-**Diferencas-chave**:
-- `watch` execucao lazy, executa apenas quando os dados observados mudam
+**Diferenças-chave**:
+- `watch` execução lazy, executa apenas quando os dados observados mudam
 - `watchEffect` executa imediatamente, depois rastreia todos os dados usados
 
 </details>
@@ -306,18 +306,18 @@ Explique como obter o valor antigo ao usar `watchEffect`.
 <details>
 <summary>Clique para ver a resposta</summary>
 
-**Problema**: `watchEffect` nao pode acessar o valor antigo diretamente
+**Problema**: `watchEffect` não pode acessar o valor antigo diretamente
 
 ```typescript
 const count = ref(0);
 
 watchEffect(() => {
-  console.log(count.value); // So pode acessar o valor atual
-  // Nao e possivel obter o valor antigo
+  console.log(count.value); // só pode acessar o valor atual
+  // Não é possível obter o valor antigo
 });
 ```
 
-**Solucao 1: Usar ref para armazenar o valor antigo**
+**Solução 1: Usar ref para armazenar o valor antigo**
 
 ```typescript
 const count = ref(0);
@@ -329,7 +329,7 @@ watchEffect(() => {
 });
 ```
 
-**Solucao 2: Usar watch (se precisar do valor antigo)**
+**Solução 2: Usar watch (se precisar do valor antigo)**
 
 ```typescript
 const count = ref(0);
@@ -339,27 +339,27 @@ watch(count, (newVal, oldVal) => {
 });
 ```
 
-**Recomendacao**:
+**Recomendação**:
 - Se precisar do valor antigo, prefira usar `watch`
-- `watchEffect` e adequado para cenarios que nao necessitam do valor antigo
+- `watchEffect` é adequado para cenários que não necessitam do valor antigo
 
 </details>
 
 ### Pergunta 3: Escolher watch ou watchEffect?
 
-Explique qual deve ser usado nos seguintes cenarios: `watch` ou `watchEffect`.
+Explique qual deve ser usado nós seguintes cenários: `watch` ou `watchEffect`.
 
 ```typescript
-// Cenario 1: Observar mudanca de ID do usuario, recarregar dados
+// Cenário 1: Observar mudança de ID do usuario, recarregar dados
 const userId = ref(1);
 // ?
 
-// Cenario 2: Quando validacao do formulario passa, habilitar botao de envio automaticamente
+// Cenário 2: Quando validação do formulário passa, habilitar botão de envio automaticamente
 const form = reactive({ username: '', password: '' });
 const isValid = computed(() => form.username && form.password);
 // ?
 
-// Cenario 3: Observar palavra-chave de busca, executar busca (com debounce)
+// Cenário 3: Observar palavra-chave de busca, executar busca (com debounce)
 const searchQuery = ref('');
 // ?
 ```
@@ -367,18 +367,18 @@ const searchQuery = ref('');
 <details>
 <summary>Clique para ver a resposta</summary>
 
-**Cenario 1: Observar ID do Usuario**
+**Cenário 1: Observar ID do Usuario**
 
 ```typescript
 const userId = ref(1);
 
-// ✅ Usar watch: especifica explicitamente os dados a observar
+// ✅ Usar watch: específica explicitamente os dados a observar
 watch(userId, (newId) => {
   fetchUser(newId);
 });
 ```
 
-**Cenario 2: Validacao de Formulario**
+**Cenário 2: Validação de Formulário**
 
 ```typescript
 const form = reactive({ username: '', password: '' });
@@ -390,7 +390,7 @@ watchEffect(() => {
 });
 ```
 
-**Cenario 3: Busca (com debounce)**
+**Cenário 3: Busca (com debounce)**
 
 ```typescript
 const searchQuery = ref('');
@@ -405,19 +405,19 @@ watch(searchQuery, (newQuery) => {
 });
 ```
 
-**Principios de escolha**:
+**Princípios de escolha**:
 - Especificar explicitamente dados a observar → `watch`
-- Rastrear automaticamente multiplos dados relacionados → `watchEffect`
+- Rastrear automaticamente múltiplos dados relacionados → `watchEffect`
 - Necessita valor antigo ou controle fino → `watch`
-- Necessita execucao imediata → `watchEffect`
+- Necessita execução imediata → `watchEffect`
 
 </details>
 
 ## 5. Best Practices
 
-> Melhores Praticas
+> Melhores Práticas
 
-### Praticas Recomendadas
+### Práticas Recomendadas
 
 ```typescript
 // 1. Usar watch ao especificar explicitamente dados a observar
@@ -425,7 +425,7 @@ watch(userId, (newId) => {
   fetchUser(newId);
 });
 
-// 2. Usar watchEffect ao rastrear automaticamente multiplos dados relacionados
+// 2. Usar watchEffect ao rastrear automaticamente múltiplos dados relacionados
 watchEffect(() => {
   if (user.value && permissions.value.includes('admin')) {
     loadAdminData();
@@ -444,22 +444,22 @@ onUnmounted(() => {
 });
 ```
 
-### Praticas a Evitar
+### Práticas a Evitar
 
 ```typescript
-// 1. Nao realizar operacoes assincronas no watchEffect sem tratar limpeza
+// 1. Não realizar operações assíncronas no watchEffect sem tratar limpeza
 watchEffect(async () => {
-  const data = await fetchData(); // ❌ Pode causar vazamento de memoria
+  const data = await fetchData(); // ❌ Pode causar vazamento de memória
   // ...
 });
 
-// 2. Nao usar watchEffect excessivamente
-// Se so precisa observar dados especificos, watch e mais explicito
+// 2. Não usar watchEffect excessivamente
+// Se só precisa observar dados específicos, watch é mais explícito
 watchEffect(() => {
-  console.log(count.value); // ⚠️ Se so precisa observar count, watch e mais adequado
+  console.log(count.value); // ⚠️ Se só precisa observar count, watch é mais adequado
 });
 
-// 3. Nao modificar dados observados no watchEffect (pode causar loop infinito)
+// 3. Não modificar dados observados no watchEffect (pode causar loop infinito)
 watchEffect(() => {
   count.value++; // ❌ Pode causar loop infinito
 });
@@ -469,35 +469,35 @@ watchEffect(() => {
 
 > Resumo para Entrevista
 
-### Memorizacao Rapida
+### Memorização Rápida
 
 **watch**:
-- Especifica explicitamente dados a observar
-- Execucao lazy (padrao)
+- Específica explicitamente dados a observar
+- Execução lazy (padrão)
 - Pode acessar valor antigo
-- Adequado para cenarios que necessitam controle fino
+- Adequado para cenários que necessitam controle fino
 
 **watchEffect**:
 - Rastreia automaticamente dados usados
 - Executa imediatamente
-- Nao pode acessar valor antigo
-- Adequado para rastrear automaticamente multiplos dados relacionados
+- Não pode acessar valor antigo
+- Adequado para rastrear automaticamente múltiplos dados relacionados
 
-**Principios de escolha**:
-- Especificar observacao explicitamente → `watch`
-- Rastreamento automatico → `watchEffect`
+**Princípios de escolha**:
+- Especificar observação explicitamente → `watch`
+- Rastreamento automático → `watchEffect`
 - Necessita valor antigo → `watch`
-- Necessita execucao imediata → `watchEffect`
+- Necessita execução imediata → `watchEffect`
 
 ### Exemplo de Resposta para Entrevista
 
-**P: Qual e a diferenca entre watch e watchEffect?**
+**P: Qual é a diferença entre watch e watchEffect?**
 
-> "watch e watchEffect sao ambas APIs do Vue 3 para observar mudancas em dados reativos. As principais diferencas incluem: 1) Fonte de dados: watch necessita especificar explicitamente os dados a observar, watchEffect rastreia automaticamente dados reativos usados no callback; 2) Momento de execucao: watch executa lazy por padrao, apenas quando os dados mudam, watchEffect executa imediatamente e depois rastreia mudancas; 3) Acesso ao valor antigo: watch pode acessar o valor antigo, watchEffect nao; 4) Cenarios de uso: watch e adequado para cenarios que necessitam especificar dados ou valor antigo, watchEffect e adequado para rastrear automaticamente multiplos dados relacionados."
+> "watch e watchEffect são ambas APIs do Vue 3 para observar mudanças em dados reativos. As principais diferenças incluem: 1) Fonte de dados: watch necessita especificar explicitamente os dados a observar, watchEffect rastreia automaticamente dados reativos usados no callback; 2) Momento de execução: watch executa lazy por padrão, apenas quando os dados mudam, watchEffect executa imediatamente e depois rastreia mudanças; 3) Acesso ao valor antigo: watch pode acessar o valor antigo, watchEffect não; 4) Cenários de uso: watch é adequado para cenários que necessitam especificar dados ou valor antigo, watchEffect é adequado para rastrear automaticamente múltiplos dados relacionados."
 
 **P: Quando usar watch? Quando usar watchEffect?**
 
-> "Usar watch quando: 1) Necessita especificar explicitamente dados a observar; 2) Necessita acessar valor antigo; 3) Necessita execucao lazy; 4) Necessita controle mais fino (como opcoes immediate, deep). Usar watchEffect quando: 1) Rastrear automaticamente multiplos dados relacionados; 2) Nao necessita valor antigo; 3) Necessita execucao imediata. Em geral, se so precisa observar dados especificos, watch e mais explicito; se precisa rastrear automaticamente multiplos dados, watchEffect e mais conveniente."
+> "Usar watch quando: 1) Necessita especificar explicitamente dados a observar; 2) Necessita acessar valor antigo; 3) Necessita execução lazy; 4) Necessita controle mais fino (como opções immediate, deep). Usar watchEffect quando: 1) Rastrear automaticamente múltiplos dados relacionados; 2) Não necessita valor antigo; 3) Necessita execução imediata. Em geral, se só precisa observar dados específicos, watch é mais explícito; se precisa rastrear automaticamente múltiplos dados, watchEffect é mais conveniente."
 
 ## Reference
 

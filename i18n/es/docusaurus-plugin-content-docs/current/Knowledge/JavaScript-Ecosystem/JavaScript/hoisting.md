@@ -155,19 +155,19 @@ Esta pregunta examina las **reglas de prioridad** del Hoisting:
 **Prioridad de Hoisting: Declaración de función > Declaración de variable**
 
 ```js
-// Codigo original
+// Código original
 console.log(foo);
 var foo = '1';
 function foo() {}
 
-// Equivalente a (despues del Hoisting)
-// Fase 1: Fase de creacion (Hoisting)
-function foo() {} // 1. La declaracion de funcion se eleva primero
-var foo; // 2. La declaracion de variable se eleva (pero no sobrescribe la funcion existente)
+// Equivalente a (después del Hoisting)
+// Fase 1: Fase de creación (Hoisting)
+function foo() {} // 1. La declaración de función se eleva primero
+var foo; // 2. La declaración de variable se eleva (pero no sobrescribe la función existente)
 
-// Fase 2: Fase de ejecucion
-console.log(foo); // En este momento foo es una funcion, salida [Function: foo]
-foo = '1'; // 3. Asignacion de variable (sobrescribe la funcion)
+// Fase 2: Fase de ejecución
+console.log(foo); // En este momento foo es una función, salida [Function: foo]
+foo = '1'; // 3. Asignación de variable (sobrescribe la función)
 ```
 
 ### Conceptos clave
@@ -193,18 +193,18 @@ var myVar = 'Hello';
 **3. Cuando la declaración de función y la declaración de variable tienen el mismo nombre**
 
 ```js
-// Orden despues del hoisting
-function foo() {} // La funcion se eleva y se asigna primero
-var foo; // La declaracion de variable se eleva, pero no sobrescribe la funcion existente
+// Orden después del hoisting
+function foo() {} // La función se eleva y se asigna primero
+var foo; // La declaración de variable se eleva, pero no sobrescribe la función existente
 
-// Por lo tanto foo es una funcion
+// Por lo tanto foo es una función
 console.log(foo); // [Function: foo]
 ```
 
 ### Flujo de ejecución completo
 
 ```js
-// Codigo original
+// Código original
 console.log(foo); // ?
 var foo = '1';
 function foo() {}
@@ -212,13 +212,13 @@ console.log(foo); // ?
 
 // ======== Equivalente a ========
 
-// Fase de creacion (Hoisting)
-function foo() {} // 1. Elevacion de declaracion de funcion (elevacion completa, incluyendo el cuerpo)
-var foo; // 2. Elevacion de declaracion de variable (pero no sobrescribe foo, porque ya es una funcion)
+// Fase de creación (Hoisting)
+function foo() {} // 1. Elevación de declaración de función (elevación completa, incluyendo el cuerpo)
+var foo; // 2. Elevación de declaración de variable (pero no sobrescribe foo, porque ya es una función)
 
-// Fase de ejecucion
-console.log(foo); // [Function: foo] - foo es una funcion
-foo = '1'; // 3. Asignacion de variable (ahora si sobrescribe la funcion)
+// Fase de ejecución
+console.log(foo); // [Function: foo] - foo es una función
+foo = '1'; // 3. Asignación de variable (ahora sí sobrescribe la función)
 console.log(foo); // '1' - foo se convierte en string
 ```
 
@@ -263,26 +263,26 @@ console.log(foo); // ?
 **Respuesta:**
 
 ```js
-[Function: foo] { return 2; } // Primera salida (la funcion posterior sobrescribe la anterior)
-'1' // Segunda salida (la asignacion de variable sobrescribe la funcion)
+[Function: foo] { return 2; } // Primera salida (la función posterior sobrescribe la anterior)
+'1' // Segunda salida (la asignación de variable sobrescribe la función)
 ```
 
 **Razón:**
 
 ```js
-// Despues del hoisting
+// Después del hoisting
 function foo() {
   return 1;
-} // Primera funcion
+} // Primera función
 
 function foo() {
   return 2;
-} // La segunda funcion sobrescribe la primera
+} // La segunda función sobrescribe la primera
 
-var foo; // Declaracion de variable (no sobrescribe la funcion)
+var foo; // Declaración de variable (no sobrescribe la función)
 
 console.log(foo); // [Function: foo] { return 2; }
-foo = '1'; // Asignacion de variable (sobrescribe la funcion)
+foo = '1'; // Asignación de variable (sobrescribe la función)
 console.log(foo); // '1'
 ```
 
@@ -305,24 +305,24 @@ function bar() {
 
 ```js
 undefined; // foo es undefined
-[Function: bar] // bar es una funcion
+[Function: bar] // bar es una función
 ```
 
 **Razón:**
 
 ```js
-// Despues del hoisting
-var foo; // Elevacion de declaracion de variable (la expresion de funcion solo eleva el nombre de variable)
+// Después del hoisting
+var foo; // Elevación de declaración de variable (la expresión de función solo eleva el nombre de variable)
 function bar() {
   return 2;
-} // Elevacion completa de declaracion de funcion
+} // Elevación completa de declaración de función
 
 console.log(foo); // undefined
 console.log(bar); // [Function: bar]
 
 foo = function () {
   return 1;
-}; // Asignacion de expresion de funcion
+}; // Asignación de expresión de función
 ```
 
 **Diferencia clave:**
@@ -341,7 +341,7 @@ var foo = '1';
 console.log(bar); // ReferenceError: Cannot access 'bar' before initialization
 let bar = '1';
 
-// let/const con el mismo nombre que una funcion genera error
+// let/const con el mismo nombre que una función genera error
 function baz() {} // SyntaxError: Identifier 'baz' has already been declared
 let baz = '1';
 ```

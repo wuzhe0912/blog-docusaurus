@@ -1,20 +1,20 @@
 ---
 id: basic-types
-title: '[Easy] Tipos basicos y anotaciones de tipo'
+title: '[Easy] Tipos básicos y anotaciones de tipo'
 slug: /basic-types
 tags: [TypeScript, Quiz, Easy]
 ---
 
 ## 1. What are TypeScript Basic Types?
 
-> Cuales son los tipos basicos de TypeScript?
+> Cuáles son los tipos básicos de TypeScript?
 
-TypeScript proporciona una variedad de tipos basicos para definir los tipos de variables, parametros de funciones y valores de retorno.
+TypeScript proporciona una variedad de tipos básicos para definir los tipos de variables, parámetros de funciones y valores de retorno.
 
-### Tipos basicos
+### Tipos básicos
 
 ```typescript
-// 1. number: numeros (enteros, punto flotante)
+// 1. number: números (enteros, punto flotante)
 let age: number = 30;
 let price: number = 99.99;
 
@@ -42,7 +42,7 @@ let anything: any = 'hello';
 anything = 42;
 anything = true;
 
-// 8. unknown: tipo desconocido (mas seguro que any)
+// 8. unknown: tipo desconocido (más seguro que any)
 let userInput: unknown = 'hello';
 // userInput.toUpperCase(); // ❌ Error: se debe verificar el tipo primero
 
@@ -68,15 +68,15 @@ let person: [string, number] = ['John', 30];
 
 ### Anotaciones de tipo (Type Annotations)
 
-**Definicion**: Especificar explicitamente el tipo de una variable.
+**Definición**: Especificar explícitamente el tipo de una variable.
 
 ```typescript
-// Especificar el tipo explicitamente
+// Especificar el tipo explícitamente
 let age: number = 30;
 let name: string = 'John';
 let isActive: boolean = true;
 
-// Parametros de funcion y valores de retorno
+// Parámetros de función y valores de retorno
 function add(a: number, b: number): number {
   return a + b;
 }
@@ -84,39 +84,39 @@ function add(a: number, b: number): number {
 
 ### Inferencia de tipo (Type Inference)
 
-**Definicion**: TypeScript infiere automaticamente el tipo basado en el valor inicial.
+**Definición**: TypeScript infiere automáticamente el tipo basado en el valor inicial.
 
 ```typescript
-// TypeScript infiere automaticamente como number
+// TypeScript infiere automáticamente como number
 let age = 30;        // age: number
 
-// TypeScript infiere automaticamente como string
+// TypeScript infiere automáticamente como string
 let name = 'John';   // name: string
 
-// TypeScript infiere automaticamente como boolean
+// TypeScript infiere automáticamente como boolean
 let isActive = true;  // isActive: boolean
 
-// Los valores de retorno de funciones tambien se infieren automaticamente
+// Los valores de retorno de funciones también se infieren automáticamente
 function add(a: number, b: number) {
-  return a + b;  // El valor de retorno se infiere automaticamente como number
+  return a + b;  // El valor de retorno se infiere automáticamente como number
 }
 ```
 
-### Cuando usar anotaciones de tipo
+### Cuándo usar anotaciones de tipo
 
-**Situaciones en las que se debe especificar el tipo explicitamente**:
+**Situaciones en las que se debe especificar el tipo explícitamente**:
 
 ```typescript
-// 1. Declaracion de variable sin valor inicial
+// 1. Declaración de variable sin valor inicial
 let value: number;
 value = 10;
 
-// 2. Parametros de funcion (obligatorio)
+// 2. Parámetros de función (obligatorio)
 function greet(name: string): void {
   console.log(`Hello, ${name}!`);
 }
 
-// 3. Valor de retorno de funcion (se recomienda especificar explicitamente)
+// 3. Valor de retorno de función (se recomienda especificar explícitamente)
 function calculate(): number {
   return 42;
 }
@@ -134,7 +134,7 @@ let data: { name: string; age: number } = {
 
 ### Pregunta 1: Inferencia de tipo
 
-Explique el tipo de cada variable en el siguiente codigo.
+Explique el tipo de cada variable en el siguiente código.
 
 ```typescript
 let value1 = 10;
@@ -155,8 +155,8 @@ let value4 = [1, 2, 3];             // number[]
 let value5 = { name: 'John', age: 30 }; // { name: string; age: number }
 ```
 
-**Explicacion**:
-- TypeScript infiere automaticamente el tipo basado en el valor inicial
+**Explicación**:
+- TypeScript infiere automáticamente el tipo basado en el valor inicial
 - Los arreglos se infieren como arreglo del tipo de sus elementos
 - Los objetos se infieren como el tipo estructural del objeto
 
@@ -164,7 +164,7 @@ let value5 = { name: 'John', age: 30 }; // { name: string; age: number }
 
 ### Pregunta 2: Errores de tipo
 
-Encuentre los errores de tipo en el siguiente codigo.
+Encuentre los errores de tipo en el siguiente código.
 
 ```typescript
 let age: number = 30;
@@ -216,7 +216,7 @@ numbers.push(4); // ✅
 
 ### Pregunta 3: any vs unknown
 
-Explique la diferencia entre `any` y `unknown`, e indique cual deberia usarse.
+Explique la diferencia entre `any` y `unknown`, e indique cuál debería usarse.
 
 ```typescript
 // Caso 1: usando any
@@ -236,17 +236,17 @@ function processUnknown(value: unknown): void {
 **Caso 1: usando any**
 ```typescript
 function processAny(value: any): void {
-  console.log(value.toUpperCase()); // ⚠️ Compila correctamente, pero puede fallar en tiempo de ejecucion
+  console.log(value.toUpperCase()); // ⚠️ Compila correctamente, pero puede fallar en tiempo de ejecución
 }
 
-processAny('hello');  // ✅ Ejecucion normal
-processAny(42);       // ❌ Error en tiempo de ejecucion: value.toUpperCase is not a function
+processAny('hello');  // ✅ Ejecución normal
+processAny(42);       // ❌ Error en tiempo de ejecución: value.toUpperCase is not a function
 ```
 
 **Caso 2: usando unknown**
 ```typescript
 function processUnknown(value: unknown): void {
-  // console.log(value.toUpperCase()); // ❌ Error de compilacion: Object is of type 'unknown'
+  // console.log(value.toUpperCase()); // ❌ Error de compilación: Object is of type 'unknown'
 
   // Se debe verificar el tipo primero
   if (typeof value === 'string') {
@@ -255,15 +255,15 @@ function processUnknown(value: unknown): void {
 }
 ```
 
-**Comparacion de diferencias**:
+**Comparación de diferencias**:
 
-| Caracteristica | any | unknown |
+| Característica | any | unknown |
 | --- | --- | --- |
-| Verificacion de tipos | Completamente desactivada | Requiere verificacion antes de usar |
+| Verificación de tipos | Completamente desactivada | Requiere verificación antes de usar |
 | Seguridad | Inseguro | Seguro |
-| Recomendacion | Evitar su uso | Recomendado |
+| Recomendación | Evitar su uso | Recomendado |
 
-**Mejores practicas**:
+**Mejores prácticas**:
 ```typescript
 // ✅ Recomendado: usar unknown y verificar el tipo
 function processValue(value: unknown): void {
@@ -297,12 +297,12 @@ let arr4: any[];
 <summary>Haga clic para ver la respuesta</summary>
 
 ```typescript
-// 1. number[]: arreglo de numeros (escritura recomendada)
+// 1. number[]: arreglo de números (escritura recomendada)
 let arr1: number[] = [1, 2, 3];
 arr1.push(4);        // ✅
 arr1.push('4');     // ❌ Error
 
-// 2. Array<number>: arreglo generico (equivalente a number[])
+// 2. Array<number>: arreglo genérico (equivalente a number[])
 let arr2: Array<number> = [1, 2, 3];
 arr2.push(4);        // ✅
 arr2.push('4');      // ❌ Error
@@ -318,7 +318,7 @@ arr3.push('test');   // ⚠️ TypeScript lo permite, pero no se recomienda
 let arr4: any[] = [1, 'hello', true];
 arr4.push(42);       // ✅
 arr4.push('world');  // ✅
-arr4.push(false);    // ✅ (pero se pierde la verificacion de tipos)
+arr4.push(false);    // ✅ (pero se pierde la verificación de tipos)
 ```
 
 **Recomendaciones de uso**:
@@ -354,14 +354,14 @@ function infiniteLoop(): never {
 <summary>Haga clic para ver la respuesta</summary>
 
 **void**:
-- **Uso**: Indica que una funcion no retorna un valor
-- **Caracteristica**: La funcion termina normalmente, simplemente no retorna un valor
+- **Uso**: Indica que una función no retorna un valor
+- **Característica**: La función termina normalmente, simplemente no retorna un valor
 - **Casos de uso**: Manejadores de eventos, funciones con efectos secundarios
 
 ```typescript
 function logMessage(): void {
   console.log('Hello');
-  // La funcion termina normalmente, no retorna un valor
+  // La función termina normalmente, no retorna un valor
 }
 
 function onClick(): void {
@@ -370,14 +370,14 @@ function onClick(): void {
 ```
 
 **never**:
-- **Uso**: Indica que una funcion nunca termina normalmente
-- **Caracteristica**: La funcion lanza un error o entra en un bucle infinito
+- **Uso**: Indica que una función nunca termina normalmente
+- **Característica**: La función lanza un error o entra en un bucle infinito
 - **Casos de uso**: Manejo de errores, bucles infinitos, type guards
 
 ```typescript
 function throwError(): never {
   throw new Error('Error');
-  // Nunca se llega aqui
+  // Nunca se llega aquí
 }
 
 function infiniteLoop(): never {
@@ -392,11 +392,11 @@ function assertNever(value: never): never {
 }
 ```
 
-**Comparacion de diferencias**:
+**Comparación de diferencias**:
 
-| Caracteristica | void | never |
+| Característica | void | never |
 | --- | --- | --- |
-| Fin de funcion | Termina normalmente | Nunca termina |
+| Fin de función | Termina normalmente | Nunca termina |
 | Valor de retorno | undefined | Sin valor de retorno |
 | Casos de uso | Funciones sin valor de retorno | Manejo de errores, bucles infinitos |
 
@@ -404,16 +404,16 @@ function assertNever(value: never): never {
 
 ## 4. Best Practices
 
-> Mejores practicas
+> Mejores prácticas
 
-### Practicas recomendadas
+### Prácticas recomendadas
 
 ```typescript
 // 1. Preferir la inferencia de tipo
 let age = 30;  // ✅ Dejar que TypeScript infiera
 let name = 'John';  // ✅
 
-// 2. Especificar explicitamente el tipo de parametros y retorno de funciones
+// 2. Especificar explícitamente el tipo de parámetros y retorno de funciones
 function calculate(a: number, b: number): number {
   return a + b;
 }
@@ -425,7 +425,7 @@ function processValue(value: unknown): void {
   }
 }
 
-// 4. Usar tipos de arreglo especificos
+// 4. Usar tipos de arreglo específicos
 let numbers: number[] = [1, 2, 3];  // ✅
 let names: Array<string> = ['John', 'Jane'];  // ✅
 
@@ -433,7 +433,7 @@ let names: Array<string> = ['John', 'Jane'];  // ✅
 let person: [string, number] = ['John', 30];  // ✅
 ```
 
-### Practicas a evitar
+### Prácticas a evitar
 
 ```typescript
 // 1. Evitar el uso de any
@@ -453,16 +453,16 @@ let mixed: (string | number)[] = ['hello', 42];  // ⚠️ Considerar si realmen
 
 > Resumen para entrevistas
 
-### Referencia rapida
+### Referencia rápida
 
-**Tipos basicos**:
+**Tipos básicos**:
 - `number`, `string`, `boolean`, `null`, `undefined`
 - `void` (sin valor de retorno), `never` (nunca retorna)
 - `any` (cualquier tipo, evitar su uso), `unknown` (tipo desconocido, uso recomendado)
 
 **Anotaciones de tipo vs Inferencia**:
-- Anotacion de tipo: especificar explicitamente `let age: number = 30`
-- Inferencia de tipo: inferencia automatica `let age = 30`
+- Anotación de tipo: especificar explícitamente `let age: number = 30`
+- Inferencia de tipo: inferencia automática `let age = 30`
 
 **Tipos de arreglo**:
 - `number[]` o `Array<number>`: arreglo general
@@ -470,13 +470,13 @@ let mixed: (string | number)[] = ['hello', 42];  // ⚠️ Considerar si realmen
 
 ### Ejemplos de respuestas para entrevistas
 
-**Q: Cuales son los tipos basicos de TypeScript?**
+**Q: Cuáles son los tipos básicos de TypeScript?**
 
-> "TypeScript proporciona muchos tipos basicos, incluyendo number, string, boolean, null, undefined. Tambien hay algunos tipos especiales: void indica que no hay valor de retorno, usado principalmente en funciones; never indica un valor que nunca ocurre, usado para funciones que nunca retornan; any es cualquier tipo, pero debe evitarse; unknown es un tipo desconocido, mas seguro que any, requiere verificacion de tipo antes de usarse. Ademas, existen el tipo de arreglo number[] y el tipo de tupla [number, string]."
+> "TypeScript proporciona muchos tipos básicos, incluyendo number, string, boolean, null, undefined. También hay algunos tipos especiales: void indica que no hay valor de retorno, usado principalmente en funciones; never indica un valor que nunca ocurre, usado para funciones que nunca retornan; any es cualquier tipo, pero debe evitarse; unknown es un tipo desconocido, más seguro que any, requiere verificación de tipo antes de usarse. Además, existen el tipo de arreglo number[] y el tipo de tupla [number, string]."
 
-**Q: Cual es la diferencia entre any y unknown?**
+**Q: Cuál es la diferencia entre any y unknown?**
 
-> "any desactiva completamente la verificacion de tipos, permitiendo usar directamente cualquier propiedad o metodo, lo cual es inseguro. unknown requiere una verificacion de tipo antes de su uso, siendo mas seguro. Por ejemplo, al usar unknown, se debe verificar primero con typeof el tipo y luego se pueden llamar los metodos correspondientes. Se recomienda preferir unknown sobre any."
+> "any desactiva completamente la verificación de tipos, permitiendo usar directamente cualquier propiedad o método, lo cual es inseguro. unknown requiere una verificación de tipo antes de su uso, siendo más seguro. Por ejemplo, al usar unknown, se debe verificar primero con typeof el tipo y luego se pueden llamar los métodos correspondientes. Se recomienda preferir unknown sobre any."
 
 ## Reference
 

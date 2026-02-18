@@ -7,7 +7,7 @@ tags: [JavaScript, Quiz, Medium]
 
 ## 1. What's Hoisting ?
 
-A execução do JS pode ser dividida em duas fases: a fase de criação e a fase de execução:
+A execução do JS pode ser dividida em duas fases: a fase de criação é a fase de execução:
 
 ```js
 var name = 'Pitt';
@@ -118,7 +118,7 @@ console.log(name); // print Pitt
 
 name em `whoseName()` recebe undefined, portanto a condição não é atendida.
 
-Porém, como há outra atribuição abaixo da declaração de função, mesmo que a condição dentro da function fosse atendida, o resultado final seria a impressão de Pitt.
+Porém, como há outra atribuição abaixo da declaração de função, mesmo que a condição dentro da function fosse atendida, o resultado final séria a impressão de Pitt.
 
 ---
 
@@ -155,19 +155,19 @@ Esta questão examina as **regras de prioridade** do Hoisting:
 **Prioridade do Hoisting: Declaração de função > Declaração de variável**
 
 ```js
-// Codigo original
+// Código original
 console.log(foo);
 var foo = '1';
 function foo() {}
 
-// Equivalente a (apos Hoisting)
-// Fase 1: Fase de criacao (Hoisting)
-function foo() {} // 1. Declaracao de funcao elevada primeiro
-var foo; // 2. Declaracao de variavel elevada (mas nao sobrescreve a funcao existente)
+// Equivalente a (após Hoisting)
+// Fase 1: Fase de criação (Hoisting)
+function foo() {} // 1. Declaração de função elevada primeiro
+var foo; // 2. Declaração de variável elevada (mas não sobrescreve a função existente)
 
-// Fase 2: Fase de execucao
-console.log(foo); // Neste momento foo e uma funcao, saida [Function: foo]
-foo = '1'; // 3. Atribuicao de variavel (sobrescreve a funcao)
+// Fase 2: Fase de execução
+console.log(foo); // Neste momento foo é uma função, saída [Function: foo]
+foo = '1'; // 3. Atribuição de variável (sobrescreve a função)
 ```
 
 ### Conceitos-chave
@@ -193,18 +193,18 @@ var myVar = 'Hello';
 **3. Quando declaração de função e declaração de variável têm o mesmo nome**
 
 ```js
-// Ordem apos a elevacao
-function foo() {} // Funcao elevada primeiro e atribuida
-var foo; // Declaracao de variavel elevada, mas nao sobrescreve a funcao existente
+// Ordem após a elevação
+function foo() {} // Função elevada primeiro é atribuída
+var foo; // Declaração de variável elevada, mas não sobrescreve a função existente
 
-// Portanto foo e uma funcao
+// Portanto foo é uma função
 console.log(foo); // [Function: foo]
 ```
 
 ### Fluxo de execução completo
 
 ```js
-// Codigo original
+// Código original
 console.log(foo); // ?
 var foo = '1';
 function foo() {}
@@ -212,13 +212,13 @@ console.log(foo); // ?
 
 // ======== Equivalente a ========
 
-// Fase de criacao (Hoisting)
-function foo() {} // 1. Declaracao de funcao elevada (elevacao completa, incluindo o corpo da funcao)
-var foo; // 2. Declaracao de variavel elevada (mas nao sobrescreve foo, pois ja e uma funcao)
+// Fase de criação (Hoisting)
+function foo() {} // 1. Declaração de função elevada (elevação completa, incluindo o corpo da função)
+var foo; // 2. Declaração de variável elevada (mas não sobrescreve foo, pois já é uma função)
 
-// Fase de execucao
-console.log(foo); // [Function: foo] - foo e uma funcao
-foo = '1'; // 3. Atribuicao de variavel (somente agora sobrescreve a funcao)
+// Fase de execução
+console.log(foo); // [Function: foo] - foo é uma função
+foo = '1'; // 3. Atribuição de variável (somente agora sobrescreve a função)
 console.log(foo); // '1' - foo se torna uma string
 ```
 
@@ -236,8 +236,8 @@ console.log(foo); // ?
 **Resposta:**
 
 ```js
-[Function: foo] // Primeira saida
-'1' // Segunda saida
+[Function: foo] // Primeira saída
+'1' // Segunda saída
 ```
 
 **Razão:** A ordem do código não afeta o resultado do Hoisting. A prioridade de elevação continua sendo: função > variável.
@@ -263,26 +263,26 @@ console.log(foo); // ?
 **Resposta:**
 
 ```js
-[Function: foo] { return 2; } // Primeira saida (a funcao posterior sobrescreve a anterior)
-'1' // Segunda saida (atribuicao de variavel sobrescreve a funcao)
+[Function: foo] { return 2; } // Primeira saída (a função posterior sobrescreve a anterior)
+'1' // Segunda saída (atribuição de variável sobrescreve a função)
 ```
 
 **Razão:**
 
 ```js
-// Apos a elevacao
+// Após a elevação
 function foo() {
   return 1;
-} // Primeira funcao
+} // Primeira função
 
 function foo() {
   return 2;
-} // Segunda funcao sobrescreve a primeira
+} // Segunda função sobrescreve a primeira
 
-var foo; // Declaracao de variavel (nao sobrescreve a funcao)
+var foo; // Declaração de variável (não sobrescreve a função)
 
 console.log(foo); // [Function: foo] { return 2; }
-foo = '1'; // Atribuicao de variavel (sobrescreve a funcao)
+foo = '1'; // Atribuição de variável (sobrescreve a função)
 console.log(foo); // '1'
 ```
 
@@ -304,25 +304,25 @@ function bar() {
 **Resposta:**
 
 ```js
-undefined; // foo e undefined
-[Function: bar] // bar e uma funcao
+undefined; // foo é undefined
+[Function: bar] // bar é uma função
 ```
 
 **Razão:**
 
 ```js
-// Apos a elevacao
-var foo; // Declaracao de variavel elevada (expressao de funcao so eleva o nome da variavel)
+// Após a elevação
+var foo; // Declaração de variável elevada (expressão de função só eleva o nome da variável)
 function bar() {
   return 2;
-} // Declaracao de funcao elevada completamente
+} // Declaração de função elevada completamente
 
 console.log(foo); // undefined
 console.log(bar); // [Function: bar]
 
 foo = function () {
   return 1;
-}; // Atribuicao da expressao de funcao
+}; // Atribuição da expressão de função
 ```
 
 **Diferença fundamental:**
@@ -333,15 +333,15 @@ foo = function () {
 ### let/const não têm esse problema
 
 ```js
-// var tem problemas de elevacao
+// var tem problemas de elevação
 console.log(foo); // undefined
 var foo = '1';
 
-// let/const tem Zona Morta Temporal (TDZ)
+// let/const têm Zona Morta Temporal (TDZ)
 console.log(bar); // ReferenceError: Cannot access 'bar' before initialization
 let bar = '1';
 
-// let/const com mesmo nome de funcao causa erro
+// let/const com mesmo nome de função causa erro
 function baz() {} // SyntaxError: Identifier 'baz' has already been declared
 let baz = '1';
 ```

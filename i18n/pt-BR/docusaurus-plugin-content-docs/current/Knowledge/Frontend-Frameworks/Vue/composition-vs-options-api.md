@@ -7,9 +7,9 @@ tags: [Vue, Quiz, Medium]
 
 ## 1. What is Composition API?
 
-> O que e Composition API?
+> O que é Composition API?
 
-Composition API e uma nova forma de escrever componentes introduzida no Vue 3, oferecendo uma maneira mais flexivel de organizar a logica dos componentes. Diferente da tradicional Options API, a Composition API permite organizar logicas relacionadas juntas, em vez de dispersa-las em diferentes opcoes.
+Composition API é uma nova forma de escrever componentes introduzida no Vue 3, oferecendo uma maneira mais flexível de organizar a lógica dos componentes. Diferente da tradicional Options API, a Composition API permite organizar lógicas relacionadas juntas, em vez de dispersa-las em diferentes opções.
 
 ### Options API (Escrita Tradicional)
 
@@ -60,7 +60,7 @@ export default {
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 
-// Logicas relacionadas organizadas juntas
+// Lógicas relacionadas organizadas juntas
 const firstName = ref('John');
 const lastName = ref('Doe');
 const fullName = computed(() => `${firstName.value} ${lastName.value}`);
@@ -78,11 +78,11 @@ onMounted(() => {
 
 ## 2. Composition API vs Options API: Key Differences
 
-> Principais diferencas entre Composition API e Options API
+> Principais diferenças entre Composition API e Options API
 
-### 1. Organizacao da Logica
+### 1. Organização da Lógica
 
-**Options API**: Logica dispersa em diferentes opcoes
+**Options API**: Lógica dispersa em diferentes opções
 
 ```vue
 <script>
@@ -105,7 +105,7 @@ export default {
     },
   },
   methods: {
-    // Metodos dispersos
+    // Métodos dispersos
     fetchUser() {
       /* ... */
     },
@@ -125,27 +125,27 @@ export default {
 </script>
 ```
 
-**Composition API**: Logicas relacionadas organizadas juntas
+**Composition API**: Lógicas relacionadas organizadas juntas
 
 ```vue
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 
-// Logica relacionada ao usuario
+// Lógica relacionada ao usuario
 const user = ref(null);
 const userName = computed(() => user.value?.name);
 const fetchUser = async () => {
   // ...
 };
 
-// Logica relacionada a posts
+// Lógica relacionada a posts
 const posts = ref([]);
 const postCount = computed(() => posts.value.length);
 const fetchPosts = async () => {
   // ...
 };
 
-// Logica relacionada a comentarios
+// Lógica relacionada a comentários
 const comments = ref([]);
 const fetchComments = async () => {
   // ...
@@ -159,7 +159,7 @@ onMounted(() => {
 </script>
 ```
 
-### 2. Reutilizacao de Codigo
+### 2. Reutilização de Código
 
 **Options API**: Usa Mixins (propenso a conflitos de nomes)
 
@@ -183,12 +183,12 @@ export default {
 import UserMixin from './UserMixin';
 export default {
   mixins: [UserMixin],
-  // Com multiplos mixins, conflitos de nomes podem ocorrer facilmente
+  // Com múltiplos mixins, conflitos de nomes podem ocorrer facilmente
 };
 </script>
 ```
 
-**Composition API**: Usa Composables (mais flexivel)
+**Composition API**: Usa Composables (mais flexível)
 
 ```vue
 <script setup>
@@ -221,7 +221,7 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   data() {
     return {
-      count: 0, // Inferencia de tipo pode ser imprecisa
+      count: 0, // Inferência de tipo pode ser imprecisa
     };
   },
   methods: {
@@ -239,7 +239,7 @@ export default defineComponent({
 <script setup lang="ts">
 import { ref } from 'vue';
 
-const count = ref<number>(0); // Tipo explicito
+const count = ref<number>(0); // Tipo explícito
 const increment = (): void => {
   count.value++;
 };
@@ -248,13 +248,13 @@ const increment = (): void => {
 
 ### 3. Tabela Comparativa
 
-| Caracteristica | Options API | Composition API |
+| Característica | Options API | Composition API |
 | --------------- | ------------------ | ------------------- |
 | Curva de aprendizado | Mais baixa | Mais alta |
-| Organizacao da logica | Dispersa em opcoes | Logicas relacionadas juntas |
-| Reutilizacao de codigo | Mixins (propenso a conflitos) | Composables (flexivel) |
+| Organização da lógica | Dispersa em opções | Lógicas relacionadas juntas |
+| Reutilização de código | Mixins (propenso a conflitos) | Composables (flexível) |
 | Suporte TypeScript | Limitado | Suporte completo |
-| Cenario de uso | Componentes simples | Componentes complexos, projetos grandes |
+| Cenário de uso | Componentes simples | Componentes complexos, projetos grandes |
 | Compatibilidade | Vue 2/3 suportam | Exclusivo do Vue 3 |
 
 ## 4. Common Interview Questions
@@ -263,29 +263,29 @@ const increment = (): void => {
 
 ### Pergunta 1: Escolhendo o estilo de API
 
-Explique em quais situacoes deve-se usar Composition API e em quais usar Options API?
+Explique em quais situações deve-se usar Composition API e em quais usar Options API?
 
 <details>
 <summary>Clique para ver a resposta</summary>
 
-**Situacoes para usar Composition API**:
+**Situações para usar Composition API**:
 
-1. **Componentes complexos**: Logica complexa que precisa de melhor organizacao
+1. **Componentes complexos**: Lógica complexa que precisa de melhor organização
 
    ```vue
    <script setup>
-   // Multiplos modulos funcionais, Composition API e mais clara
+   // Múltiplos módulos funcionais, Composition API é mais clara
    const { user, fetchUser } = useUser();
    const { posts, fetchPosts } = usePosts();
    const { comments, fetchComments } = useComments();
    </script>
    ```
 
-2. **Necessidade de reutilizacao de codigo**: Varios componentes compartilhando logica
+2. **Necessidade de reutilização de código**: Varios componentes compartilhando lógica
 
    ```vue
    <script setup>
-   // Funcoes composable, faceis de reutilizar
+   // Funções composable, fáceis de reutilizar
    const { count, increment, decrement } = useCounter();
    </script>
    ```
@@ -299,11 +299,11 @@ Explique em quais situacoes deve-se usar Composition API e em quais usar Options
    </script>
    ```
 
-4. **Projetos grandes**: Necessidade de melhor organizacao logica e manutencao
+4. **Projetos grandes**: Necessidade de melhor organização lógica e manutenção
 
-**Situacoes para usar Options API**:
+**Situações para usar Options API**:
 
-1. **Componentes simples**: Logica simples, sem necessidade de organizacao complexa
+1. **Componentes simples**: Lógica simples, sem necessidade de organização complexa
 
    ```vue
    <script>
@@ -323,7 +323,7 @@ Explique em quais situacoes deve-se usar Composition API e em quais usar Options
 2. **Projetos Vue 2**: Necessidade de compatibilidade retroativa
 3. **Familiaridade da equipe**: Equipe mais familiarizada com Options API
 
-**Recomendacao**:
+**Recomendação**:
 
 - Novos projetos: priorizar Composition API
 - Componentes simples: podem continuar usando Options API
@@ -331,9 +331,9 @@ Explique em quais situacoes deve-se usar Composition API e em quais usar Options
 
 </details>
 
-### Pergunta 2: Organizacao de Logica
+### Pergunta 2: Organização de Lógica
 
-Reescreva o codigo Options API abaixo para Composition API.
+Reescreva o código Options API abaixo para Composition API.
 
 ```vue
 <script>
@@ -398,7 +398,7 @@ export default {
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue';
 
-// Logicas relacionadas organizadas juntas
+// Lógicas relacionadas organizadas juntas
 const searchQuery = ref('');
 const results = ref([]);
 const isLoading = ref(false);
@@ -485,9 +485,9 @@ export function useSearch() {
 
 </details>
 
-### Pergunta 3: Reutilizacao de Codigo
+### Pergunta 3: Reutilização de Código
 
-Explique como usar Composition API para reutilizacao de codigo e compare com Mixins.
+Explique como usar Composition API para reutilização de código e compare com Mixins.
 
 <details>
 <summary>Clique para ver a resposta</summary>
@@ -532,13 +532,13 @@ export default {
   mixins: [UserMixin, PostMixin],
   // Problemas:
   // 1. Conflito de nomes: se dois mixins tiverem propriedades com o mesmo nome
-  // 2. Origem dos dados obscura: nao se sabe de qual mixin vem o user
-  // 3. Dificil de rastrear: nao e possivel ver claramente todas as propriedades e metodos disponiveis
+  // 2. Origem dos dados obscura: não se sabe de qual mixin vem o user
+  // 3. difícil de rastrear: não é possível ver claramente todas as propriedades é métodos disponíveis
 };
 </script>
 ```
 
-**Solucao com Composition API**:
+**Solução com Composition API**:
 
 ```vue
 <script setup>
@@ -569,57 +569,57 @@ import { useUser } from './composables/useUser';
 import { usePosts } from './composables/usePosts';
 
 // Vantagens:
-// 1. Nomes explicitos: sabe-se claramente a origem dos dados
+// 1. Nomes explícitos: sabe-se claramente a origem dos dados
 // 2. Uso seletivo: usa apenas o que precisa
-// 3. Facil de rastrear: IDE pode fazer autocomplete
+// 3. Fácil de rastrear: IDE pode fazer autocomplete
 const { user, fetchUser } = useUser();
 const { posts, fetchPosts } = usePosts();
 </script>
 ```
 
-**Comparacao de diferencas**:
+**Comparação de diferenças**:
 
-| Caracteristica | Mixins | Composables |
+| Característica | Mixins | Composables |
 | --------------- | -------- | ----------- |
 | Conflito de nomes | Frequente | Evitavel |
 | Rastreabilidade | Baixa | Alta |
 | Seletividade | Nenhuma | Presente |
 | Suporte TypeScript | Limitado | Completo |
-| Cenario de uso | Vue 2 | Vue 3 |
+| Cenário de uso | Vue 2 | Vue 3 |
 
 </details>
 
 ## 5. Best Practices
 
-> Melhores Praticas
+> Melhores Práticas
 
-### Praticas Recomendadas
+### Práticas Recomendadas
 
 ```vue
 <script setup>
 // 1. Usar sintaxe <script setup>
 import { ref, computed } from 'vue';
 
-// 2. Organizar logicas relacionadas juntas
+// 2. Organizar lógicas relacionadas juntas
 const count = ref(0);
 const doubleCount = computed(() => count.value * 2);
 const increment = () => count.value++;
 
-// 3. Extrair logica complexa em composables
+// 3. Extrair lógica complexa em composables
 import { useCounter } from './composables/useCounter';
 const { count, increment } = useCounter();
 
 // 4. Nomeacao clara
 const userName = ref(''); // Claro
-const u = ref(''); // Nao claro
+const u = ref(''); // Não claro
 </script>
 ```
 
-### Praticas a Evitar
+### Práticas a Evitar
 
 ```vue
 <script setup>
-// 1. Nao misturar Options API e Composition API (a menos que necessario)
+// 1. Não misturar Options API é Composition API (a menos que necessário)
 export default {
   setup() {
     // ...
@@ -629,11 +629,11 @@ export default {
   },
 };
 
-// 2. Nao extrair composables em excesso
-// Logica simples nao precisa ser extraida
-const count = ref(0); // Simples, nao precisa extrair
+// 2. Não extrair composables em excesso
+// Lógica simples não precisa ser extraida
+const count = ref(0); // Simples, não precisa extrair
 
-// 3. Nao manipular o DOM diretamente em composables
+// 3. Não manipular o DOM diretamente em composables
 function useCounter() {
   const count = ref(0);
   document.getElementById('counter').textContent = count.value; // Errado
@@ -646,16 +646,16 @@ function useCounter() {
 
 > Resumo para Entrevistas
 
-### Memorizacao Rapida
+### Memorização Rápida
 
 **Conceitos centrais da Composition API**:
 
-- Logicas relacionadas organizadas juntas
-- Reutilizacao de codigo com Composables
+- Lógicas relacionadas organizadas juntas
+- Reutilização de código com Composables
 - Melhor suporte a TypeScript
 - Adequado para componentes complexos e projetos grandes
 
-**Recomendacoes de escolha**:
+**Recomendações de escolha**:
 
 - Novos projetos: priorizar Composition API
 - Componentes simples: podem usar Options API
@@ -664,13 +664,13 @@ function useCounter() {
 
 ### Exemplo de Resposta para Entrevista
 
-**P: Qual e a diferenca entre Composition API e Options API?**
+**P: Qual é a diferença entre Composition API e Options API?**
 
-> "Composition API e uma nova escrita introduzida no Vue 3, a principal diferenca esta na organizacao da logica. Options API dispersa a logica em data, computed, methods e outras opcoes, enquanto Composition API permite organizar logicas relacionadas juntas. As vantagens da Composition API incluem: 1) Melhor organizacao logica, codigo relacionado concentrado; 2) Reutilizacao de codigo mais facil com composables em vez de mixins; 3) Suporte completo a TypeScript; 4) Adequado para componentes complexos e projetos grandes. A vantagem da Options API e a curva de aprendizado mais baixa, adequada para componentes simples. Ambas podem coexistir, o Vue 3 suporta ambas as escritas."
+> "Composition API é uma nova escrita introduzida no Vue 3, a principal diferença está na organização da lógica. Options API dispersa a lógica em data, computed, methods e outras opções, enquanto Composition API permite organizar lógicas relacionadas juntas. As vantagens da Composition API incluem: 1) Melhor organização lógica, código relacionado concentrado; 2) Reutilização de código mais fácil com composables em vez de mixins; 3) Suporte completo a TypeScript; 4) Adequado para componentes complexos e projetos grandes. A vantagem da Options API é a curva de aprendizado mais baixa, adequada para componentes simples. Ambas podem coexistir, o Vue 3 suporta ambas as escritas."
 
 **P: Quando se deve usar Composition API?**
 
-> "Recomenda-se usar Composition API nas seguintes situacoes: 1) Componentes complexos que precisam de melhor organizacao logica; 2) Necessidade de reutilizacao de codigo compartilhando logica entre multiplos componentes; 3) Projetos TypeScript que precisam de suporte completo de tipos; 4) Projetos grandes que precisam de melhor manutencao. Para componentes simples ou equipes mais familiarizadas com Options API, pode-se continuar usando Options API. O Vue 3 suporta ambas as escritas, pode-se escolher conforme as necessidades do projeto."
+> "Recomenda-se usar Composition API nas seguintes situações: 1) Componentes complexos que precisam de melhor organização lógica; 2) Necessidade de reutilização de código compartilhando lógica entre múltiplos componentes; 3) Projetos TypeScript que precisam de suporte completo de tipos; 4) Projetos grandes que precisam de melhor manutenção. Para componentes simples ou equipes mais familiarizadas com Options API, pode-se continuar usando Options API. O Vue 3 suporta ambas as escritas, pode-se escolher conforme as necessidades do projeto."
 
 ## Reference
 

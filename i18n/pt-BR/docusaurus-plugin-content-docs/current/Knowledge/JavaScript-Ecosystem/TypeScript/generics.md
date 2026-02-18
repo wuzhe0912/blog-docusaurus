@@ -1,24 +1,24 @@
 ---
 id: generics
-title: '[Medium] Genericos (Generics)'
+title: '[Medium] Genéricos (Generics)'
 slug: /generics
 tags: [TypeScript, Quiz, Medium]
 ---
 
 ## 1. What are Generics?
 
-> O que sao genericos?
+> O que são genéricos?
 
-Genericos (Generics) sao uma funcionalidade poderosa do TypeScript que permite criar componentes reutilizaveis capazes de lidar com multiplos tipos em vez de apenas um unico tipo.
+Genéricos (Generics) são uma funcionalidade poderosa do TypeScript que permite criar componentes reutilizáveis capazes de lidar com múltiplos tipos em vez de apenas um único tipo.
 
-**Conceito central**: Ao definir funcoes, interfaces ou classes, nao se especifica um tipo concreto previamente, mas sim no momento do uso.
+**Conceito central**: Ao definir funções, interfaces ou classes, não se específica um tipo concreto previamente, mas sim no momento do uso.
 
-### Por que genericos sao necessarios?
+### Por que genéricos são necessários?
 
-**Problema sem genericos**:
+**Problema sem genéricos**:
 
 ```typescript
-// Problema: precisa escrever uma funcao para cada tipo
+// Problema: precisa escrever uma função para cada tipo
 function getStringItem(arr: string[]): string {
   return arr[0];
 }
@@ -32,10 +32,10 @@ function getBooleanItem(arr: boolean[]): boolean {
 }
 ```
 
-**Solucao com genericos**:
+**Solução com genéricos**:
 
 ```typescript
-// Uma funcao para todos os tipos
+// Uma função para todos os tipos
 function getItem<T>(arr: T[]): T {
   return arr[0];
 }
@@ -47,12 +47,12 @@ getItem<boolean>([true, false]);  // boolean
 
 ## 2. Basic Generic Syntax
 
-> Sintaxe basica de genericos
+> Sintaxe básica de genéricos
 
-### Funcoes genericas
+### Funções genéricas
 
 ```typescript
-// Sintaxe: <T> representa o parametro de tipo
+// Sintaxe: <T> representa o parâmetro de tipo
 function identity<T>(arg: T): T {
   return arg;
 }
@@ -61,10 +61,10 @@ function identity<T>(arg: T): T {
 let output1 = identity<string>('hello');  // output1: string
 
 // Uso 2: deixar o TypeScript inferir o tipo
-let output2 = identity('hello');  // output2: string (inferencia automatica)
+let output2 = identity('hello');  // output2: string (inferência automática)
 ```
 
-### Interfaces genericas
+### Interfaces genéricas
 
 ```typescript
 interface Box<T> {
@@ -80,7 +80,7 @@ const numberBox: Box<number> = {
 };
 ```
 
-### Classes genericas
+### Classes genéricas
 
 ```typescript
 class Container<T> {
@@ -106,11 +106,11 @@ numberContainer.add(2);
 
 ## 3. Generic Constraints
 
-> Restricoes genericas
+> Restrições genéricas
 
-### Restricoes basicas
+### Restrições básicas
 
-**Sintaxe**: Uso da palavra-chave `extends` para restringir o tipo generico.
+**Sintaxe**: Uso da palavra-chave `extends` para restringir o tipo genérico.
 
 ```typescript
 // T deve ter a propriedade length
@@ -121,10 +121,10 @@ function getLength<T extends { length: number }>(arg: T): number {
 getLength('hello');        // ✅ 5
 getLength([1, 2, 3]);      // ✅ 3
 getLength({ length: 10 }); // ✅ 10
-getLength(42);             // ❌ Erro: number nao tem a propriedade length
+getLength(42);             // ❌ Erro: number não tem a propriedade length
 ```
 
-### Restricao com keyof
+### Restrição com keyof
 
 ```typescript
 // K deve ser uma chave de T
@@ -140,33 +140,33 @@ const user = {
 
 getProperty(user, 'name');  // ✅ 'John'
 getProperty(user, 'age');   // ✅ 30
-getProperty(user, 'id');    // ❌ Erro: 'id' nao e uma chave de user
+getProperty(user, 'id');    // ❌ Erro: 'id' não é uma chave de user
 ```
 
-### Multiplas restricoes
+### Múltiplas restrições
 
 ```typescript
-// T deve satisfazer multiplas condicoes simultaneamente
+// T deve satisfazer múltiplas condições simultaneamente
 function process<T extends string | number>(value: T): T {
   return value;
 }
 
 process('hello');  // ✅
 process(42);       // ✅
-process(true);     // ❌ Erro: boolean esta fora do escopo da restricao
+process(true);     // ❌ Erro: boolean está fora do escopo da restrição
 ```
 
 ## 4. Common Interview Questions
 
 > Perguntas comuns em entrevistas
 
-### Pergunta 1: Implementar funcao generica
+### Pergunta 1: Implementar função genérica
 
-Implemente uma funcao generica `first` que retorne o primeiro elemento de um array.
+Implemente uma função genérica `first` que retorne o primeiro elemento de um array.
 
 ```typescript
 function first<T>(arr: T[]): T | undefined {
-  // Sua implementacao
+  // Sua implementação
 }
 ```
 
@@ -184,20 +184,20 @@ const firstNumber = first<number>([1, 2, 3]);        // 1
 const firstEmpty = first<number>([]);                 // undefined
 ```
 
-**Explicacao**:
-- `<T>` define o parametro de tipo generico
+**Explicação**:
+- `<T>` define o parâmetro de tipo genérico
 - `arr: T[]` representa um array do tipo T
 - O valor de retorno `T | undefined` indica que pode ser do tipo T ou undefined
 
 </details>
 
-### Pergunta 2: Restricoes genericas
+### Pergunta 2: Restrições genéricas
 
-Implemente uma funcao que mescle dois objetos, mas apenas mesclando as propriedades existentes no primeiro objeto.
+Implemente uma função que mescle dois objetos, mas apenas mesclando as propriedades existentes no primeiro objeto.
 
 ```typescript
 function merge<T, U>(obj1: T, obj2: U): T & U {
-  // Sua implementacao
+  // Sua implementação
 }
 ```
 
@@ -217,7 +217,7 @@ const merged = merge(obj1, obj2);
 // { name: 'John', age: 31, email: 'john@example.com' }
 ```
 
-**Versao avancada (mesclar apenas propriedades do primeiro objeto)**:
+**Versão avançada (mesclar apenas propriedades do primeiro objeto)**:
 
 ```typescript
 function merge<T extends object, U extends Partial<T>>(
@@ -228,7 +228,7 @@ function merge<T extends object, U extends Partial<T>>(
 }
 
 const obj1 = { name: 'John', age: 30 };
-const obj2 = { age: 31 };  // So pode conter propriedades de obj1
+const obj2 = { age: 31 };  // Só pode conter propriedades de obj1
 
 const merged = merge(obj1, obj2);
 // { name: 'John', age: 31 }
@@ -236,13 +236,13 @@ const merged = merge(obj1, obj2);
 
 </details>
 
-### Pergunta 3: Interface generica
+### Pergunta 3: Interface genérica
 
-Defina uma interface generica `Repository` para operacoes de acesso a dados.
+Defina uma interface genérica `Repository` para operações de acesso a dados.
 
 ```typescript
 interface Repository<T> {
-  // Sua definicao
+  // Sua definição
 }
 ```
 
@@ -257,7 +257,7 @@ interface Repository<T> {
   delete(id: string): void;
 }
 
-// Exemplo de implementacao
+// Exemplo de implementação
 class UserRepository implements Repository<User> {
   private users: User[] = [];
 
@@ -286,13 +286,13 @@ class UserRepository implements Repository<User> {
 
 </details>
 
-### Pergunta 4: Restricoes genericas e keyof
+### Pergunta 4: Restrições genéricas e keyof
 
-Implemente uma funcao que obtenha o valor de uma propriedade de um objeto com base no nome da chave, garantindo a seguranca de tipos.
+Implemente uma função que obtenha o valor de uma propriedade de um objeto com base no nome da chave, garantindo a segurança de tipos.
 
 ```typescript
 function getValue<T, K extends keyof T>(obj: T, key: K): T[K] {
-  // Sua implementacao
+  // Sua implementação
 }
 ```
 
@@ -314,19 +314,19 @@ const user = {
 const name = getValue(user, 'name');   // string
 const age = getValue(user, 'age');     // number
 const email = getValue(user, 'email');  // string
-// const id = getValue(user, 'id');    // ❌ Erro: 'id' nao e uma chave de user
+// const id = getValue(user, 'id');    // ❌ Erro: 'id' não é uma chave de user
 ```
 
-**Explicacao**:
+**Explicação**:
 - `K extends keyof T` garante que K deve ser uma das chaves de T
-- `T[K]` representa o tipo do valor correspondente a chave K no objeto T
-- Isso garante a seguranca de tipos, permitindo descobrir erros em tempo de compilacao
+- `T[K]` representa o tipo do valor correspondente à chave K no objeto T
+- Isso garante a segurança de tipos, permitindo descobrir erros em tempo de compilação
 
 </details>
 
-### Pergunta 5: Tipos condicionais e genericos
+### Pergunta 5: Tipos condicionais e genéricos
 
-Explique os resultados da inferencia de tipos do codigo a seguir.
+Explique os resultados da inferência de tipos do código a seguir.
 
 ```typescript
 type NonNullable<T> = T extends null | undefined ? never : T;
@@ -347,13 +347,13 @@ type B = NonNullable<number | undefined>; // number
 type C = NonNullable<string | number>;    // string | number
 ```
 
-**Explicacao**:
-- `NonNullable<T>` e um tipo condicional (Conditional Type)
-- Se T e atribuivel a `null | undefined`, retorna `never`; caso contrario, retorna `T`
-- Em `string | null`, `string` nao atende a condicao e `null` atende, portanto o resultado e `string`
-- Em `string | number`, nenhum dos dois atende a condicao, portanto o resultado e `string | number`
+**Explicação**:
+- `NonNullable<T>` é um tipo condicional (Conditional Type)
+- Se T é atribuível a `null | undefined`, retorna `never`; caso contrário, retorna `T`
+- Em `string | null`, `string` não atende à condição e `null` atende, portanto o resultado é `string`
+- Em `string | number`, nenhum dos dois atende à condição, portanto o resultado é `string | number`
 
-**Aplicacao pratica**:
+**Aplicação prática**:
 ```typescript
 function processValue<T>(value: T): NonNullable<T> {
   if (value === null || value === undefined) {
@@ -369,20 +369,20 @@ const result = processValue<string | null>('hello');  // string
 
 ## 5. Advanced Generic Patterns
 
-> Padroes avancados de genericos
+> Padrões avançados de genéricos
 
-### Parametros de tipo padrao
+### Parâmetros de tipo padrão
 
 ```typescript
 interface Container<T = string> {
   value: T;
 }
 
-const container1: Container = { value: 'hello' };  // Usa o tipo padrao string
+const container1: Container = { value: 'hello' };  // Usa o tipo padrão string
 const container2: Container<number> = { value: 42 };
 ```
 
-### Multiplos parametros de tipo
+### Múltiplos parâmetros de tipo
 
 ```typescript
 function map<T, U>(arr: T[], fn: (item: T) => U): U[] {
@@ -393,7 +393,7 @@ const numbers = [1, 2, 3];
 const strings = map(numbers, (n) => n.toString());  // string[]
 ```
 
-### Tipos utilitarios genericos
+### Tipos utilitários genéricos
 
 ```typescript
 // Partial: todas as propriedades se tornam opcionais
@@ -401,63 +401,63 @@ type Partial<T> = {
   [P in keyof T]?: T[P];
 };
 
-// Required: todas as propriedades se tornam obrigatorias
+// Required: todas as propriedades se tornam obrigatórias
 type Required<T> = {
   [P in keyof T]-?: T[P];
 };
 
-// Pick: selecionar propriedades especificas
+// Pick: selecionar propriedades específicas
 type Pick<T, K extends keyof T> = {
   [P in K]: T[P];
 };
 
-// Omit: excluir propriedades especificas
+// Omit: excluir propriedades específicas
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 ```
 
 ## 6. Best Practices
 
-> Melhores praticas
+> Melhores práticas
 
-### Praticas recomendadas
+### Práticas recomendadas
 
 ```typescript
-// 1. Usar nomes de genericos significativos
+// 1. Usar nomes de genéricos significativos
 function process<TData, TResponse>(data: TData): TResponse {
   // ...
 }
 
-// 2. Usar restricoes para limitar o escopo dos genericos
+// 2. Usar restrições para limitar o escopo dos genéricos
 function getLength<T extends { length: number }>(arg: T): number {
   return arg.length;
 }
 
-// 3. Fornecer parametros de tipo padrao
+// 3. Fornecer parâmetros de tipo padrão
 interface Config<T = string> {
   value: T;
 }
 
-// 4. Usar tipos utilitarios genericos
+// 4. Usar tipos utilitários genéricos
 type UserUpdate = Partial<User>;
 type UserKeys = keyof User;
 ```
 
-### Praticas a evitar
+### Práticas a evitar
 
 ```typescript
-// 1. Nao abusar de genericos
-function process<T>(value: T): T {  // ⚠️ Se ha apenas um tipo, genericos nao sao necessarios
+// 1. Não abusar de genéricos
+function process<T>(value: T): T {  // ⚠️ Se há apenas um tipo, genéricos não são necessários
   return value;
 }
 
-// 2. Nao usar nomes de genericos de uma unica letra (exceto em casos simples)
+// 2. Não usar nomes de genéricos de uma única letra (exceto em casos simples)
 function process<A, B, C>(a: A, b: B, c: C) {  // ❌ Significado pouco claro
   // ...
 }
 
-// 3. Nao ignorar restricoes
-function process<T>(value: T) {  // ⚠️ Se ha limitacoes, restricoes devem ser adicionadas
-  return value.length;  // Possivel erro
+// 3. Não ignorar restrições
+function process<T>(value: T) {  // ⚠️ Se há limitações, restrições devem ser adicionadas
+  return value.length;  // Possível erro
 }
 ```
 
@@ -465,32 +465,32 @@ function process<T>(value: T) {  // ⚠️ Se ha limitacoes, restricoes devem se
 
 > Resumo para entrevistas
 
-### Referencia rapida
+### Referência rápida
 
-**Conceitos centrais de genericos**:
-- Nao especificar um tipo concreto ao definir, mas ao usar
-- Sintaxe: `<T>` define o parametro de tipo
-- Aplicavel a funcoes, interfaces, classes
+**Conceitos centrais de genéricos**:
+- Não especificar um tipo concreto ao definir, mas ao usar
+- Sintaxe: `<T>` define o parâmetro de tipo
+- Aplicável a funções, interfaces, classes
 
-**Restricoes genericas**:
-- Usar `extends` para limitar o escopo dos genericos
-- `K extends keyof T` garante que K e uma chave de T
-- Possivel combinar multiplas restricoes
+**Restrições genéricas**:
+- Usar `extends` para limitar o escopo dos genéricos
+- `K extends keyof T` garante que K é uma chave de T
+- Possível combinar múltiplas restrições
 
-**Padroes comuns**:
-- Funcao generica: `function identity<T>(arg: T): T`
-- Interface generica: `interface Box<T> { value: T; }`
-- Classe generica: `class Container<T> { ... }`
+**Padrões comuns**:
+- Função genérica: `function identity<T>(arg: T): T`
+- Interface genérica: `interface Box<T> { value: T; }`
+- Classe genérica: `class Container<T> { ... }`
 
 ### Exemplos de respostas para entrevistas
 
-**Q: O que sao genericos? Por que sao necessarios?**
+**Q: O que são genéricos? Por que são necessários?**
 
-> "Genericos sao um mecanismo no TypeScript para criar componentes reutilizaveis, onde o tipo concreto nao e especificado na definicao, mas no uso. As principais vantagens dos genericos sao: 1) Maior reutilizacao de codigo - uma funcao pode lidar com multiplos tipos; 2) Manter a seguranca de tipos - verificar erros de tipo em tempo de compilacao; 3) Reduzir codigo duplicado - nao e necessario escrever uma funcao para cada tipo. Por exemplo, `function identity<T>(arg: T): T` pode lidar com qualquer tipo sem precisar escrever funcoes separadas para string, number, etc."
+> "Genéricos são um mecanismo no TypeScript para criar componentes reutilizáveis, onde o tipo concreto não é especificado na definição, mas no uso. As principais vantagens dos genéricos são: 1) Maior reutilização de código - uma função pode lidar com múltiplos tipos; 2) Manter a segurança de tipos - verificar erros de tipo em tempo de compilação; 3) Reduzir código duplicado - não é necessário escrever uma função para cada tipo. Por exemplo, `function identity<T>(arg: T): T` pode lidar com qualquer tipo sem precisar escrever funções separadas para string, number, etc."
 
-**Q: O que sao restricoes genericas? Como usa-las?**
+**Q: O que são restrições genéricas? Como usá-las?**
 
-> "Restricoes genericas usam a palavra-chave `extends` para limitar o escopo do tipo generico. Por exemplo, `function getLength<T extends { length: number }>(arg: T)` garante que T deve ter a propriedade length. Outra restricao comum e `K extends keyof T`, que garante que K deve ser uma das chaves de T, permitindo acesso a propriedades com seguranca de tipos. Restricoes ajudam a manter a seguranca de tipos ao usar genericos, fornecendo as informacoes de tipo necessarias."
+> "Restrições genéricas usam a palavra-chave `extends` para limitar o escopo do tipo genérico. Por exemplo, `function getLength<T extends { length: number }>(arg: T)` garante que T deve ter a propriedade length. Outra restrição comum é `K extends keyof T`, que garante que K deve ser uma das chaves de T, permitindo acesso a propriedades com segurança de tipos. Restrições ajudam a manter a segurança de tipos ao usar genéricos, fornecendo as informações de tipo necessárias."
 
 ## Reference
 

@@ -1,36 +1,36 @@
 ---
 id: state-management-vue-vuex-vs-pinia
-title: 'Comparacao entre Vuex e Pinia'
+title: 'Comparação entre Vuex e Pinia'
 slug: /experience/state-management/vue/vuex-vs-pinia
 tags: [Experience, Interview, State-Management, Vue]
 ---
 
-> Comparacao das diferencas fundamentais entre Vuex e Pinia, incluindo design de API, suporte a TypeScript, modularizacao, e guia de migracao.
+> Comparação das diferenças fundamentais entre Vuex e Pinia, incluindo design de API, suporte a TypeScript, modularização, e guia de migração.
 
 ---
 
 ## 1. Eixo principal da resposta em entrevista
 
-1. **Diferencas fundamentais**: Vuex requer mutations, Pinia nao; Pinia tem melhor suporte a TypeScript; a forma de modularizacao e diferente.
-2. **Recomendacao de escolha**: Para novos projetos Vue 3, recomenda-se Pinia; para projetos Vue 2, use Vuex.
-3. **Consideracoes de migracao**: Passos e pontos de atencao para migrar de Vuex para Pinia.
+1. **Diferencas fundamentais**: Vuex requer mutations, Pinia não; Pinia tem melhor suporte a TypeScript; a forma de modularização e diferente.
+2. **Recomendação de escolha**: Para novos projetos Vue 3, recomenda-se Pinia; para projetos Vue 2, use Vuex.
+3. **Consideracoes de migração**: Passos e pontos de atenção para migrar de Vuex para Pinia.
 
 ---
 
-## 2. Visao geral das diferencas fundamentais
+## 2. Visão geral das diferenças fundamentais
 
-| Caracteristica      | Vuex                     | Pinia                      |
+| Característica      | Vuex                     | Pinia                      |
 | ------------------- | ------------------------ | -------------------------- |
 | **Versao do Vue**   | Vue 2                    | Vue 3                      |
 | **Complexidade da API** | Mais complexa (requer mutations) | Mais simples (sem mutations) |
-| **Suporte TypeScript** | Requer configuracao adicional | Suporte nativo completo    |
-| **Modularizacao**   | Modulos aninhados        | Flat, cada store e independente |
+| **Suporte TypeScript** | Requer configuração adicional | Suporte nativo completo    |
+| **Modularizacao**   | Módulos aninhados        | Flat, cada store e independente |
 | **Tamanho**         | Maior                    | Menor (aprox. 1KB)         |
-| **Experiencia de desenvolvimento** | Boa          | Melhor (HMR, Devtools)     |
+| **Experiência de desenvolvimento** | Boa          | Melhor (HMR, Devtools)     |
 
 ---
 
-## 3. Comparacao de diferencas de API
+## 3. Comparação de diferenças de API
 
 ### 3.1 Mutations vs Actions
 
@@ -53,7 +53,7 @@ export default createStore({
 });
 ```
 
-**Pinia**: Nao requer `mutations`, modifica o state diretamente nas `actions`
+**Pinia**: Não requer `mutations`, modifica o state diretamente nas `actions`
 
 ```typescript
 // Pinia
@@ -68,12 +68,12 @@ export const useCounterStore = defineStore('counter', {
 ```
 
 **Diferencas-chave**:
-- **Vuex**: Deve modificar o state de forma sincrona atraves de `mutations`, `actions` chamam `mutations` via `commit`
-- **Pinia**: Nao requer `mutations`, `actions` podem modificar o state diretamente (sincrona ou assincronamente)
+- **Vuex**: Deve modificar o state de forma sincrona através de `mutations`, `actions` chamam `mutations` via `commit`
+- **Pinia**: Não requer `mutations`, `actions` podem modificar o state diretamente (sincrona ou assincronamente)
 
 ### 3.2 Definicao do State
 
-**Vuex**: `state` pode ser um objeto ou uma funcao
+**Vuex**: `state` pode ser um objeto ou uma função
 
 ```javascript
 state: {
@@ -81,7 +81,7 @@ state: {
 }
 ```
 
-**Pinia**: `state` **deve ser uma funcao**, para evitar compartilhamento de estado entre multiplas instancias
+**Pinia**: `state` **deve ser uma função**, para evitar compartilhamento de estado entre múltiplas instâncias
 
 ```typescript
 state: () => ({
@@ -91,7 +91,7 @@ state: () => ({
 
 ### 3.3 Getters
 
-**Vuex**: getters recebem `(state, getters)` como parametros
+**Vuex**: getters recebem `(state, getters)` como parâmetros
 
 ```javascript
 getters: {
@@ -113,7 +113,7 @@ getters: {
 
 ### 3.4 Uso em componentes
 
-**Vuex**: Usa funcoes auxiliares `mapState`, `mapGetters`, `mapActions`
+**Vuex**: Usa funções auxiliares `mapState`, `mapGetters`, `mapActions`
 
 ```javascript
 computed: {
@@ -125,7 +125,7 @@ methods: {
 }
 ```
 
-**Pinia**: Usa a instancia da store diretamente, com `storeToRefs` para manter a reatividade
+**Pinia**: Usa a instância da store diretamente, com `storeToRefs` para manter a reatividade
 
 ```typescript
 const store = useCounterStore();
@@ -135,11 +135,11 @@ const { increment } = store;
 
 ---
 
-## 4. Diferencas na modularizacao
+## 4. Diferencas na modularização
 
-### 4.1 Vuex Modules (modulos aninhados)
+### 4.1 Vuex Modules (módulos aninhados)
 
-**Vuex**: Usa modulos aninhados, requer `namespaced: true`
+**Vuex**: Usa módulos aninhados, requer `namespaced: true`
 
 ```javascript
 // stores/user.js
@@ -178,7 +178,7 @@ userStore.setName('Jane'); // Chamada direta, sem namespace
 ```
 
 **Diferencas-chave**:
-- **Vuex**: Requer modulos aninhados, usa `namespaced: true`, chamadas necessitam de prefixo de namespace
+- **Vuex**: Requer módulos aninhados, usa `namespaced: true`, chamadas necessitam de prefixo de namespace
 - **Pinia**: Cada store e independente, sem namespace, chamada direta
 
 ---
@@ -187,7 +187,7 @@ userStore.setName('Jane'); // Chamada direta, sem namespace
 
 ### 5.1 Suporte TypeScript do Vuex
 
-**Vuex**: Requer configuracao adicional de tipos
+**Vuex**: Requer configuração adicional de tipos
 
 ```typescript
 // stores/types.ts
@@ -206,12 +206,12 @@ export default createStore<State>({
 
 // Uso em componentes
 const store = useStore<State>();
-// Requer definicao manual de tipos, sem inferencia de tipos completa
+// Requer definição manual de tipos, sem inferência de tipos completa
 ```
 
 ### 5.2 Suporte TypeScript do Pinia
 
-**Pinia**: Suporte nativo completo, inferencia automatica de tipos
+**Pinia**: Suporte nativo completo, inferência automática de tipos
 
 ```typescript
 // stores/counter.ts
@@ -238,14 +238,14 @@ store.increment(); // Inferencia de tipos completa
 ```
 
 **Diferencas-chave**:
-- **Vuex**: Requer definicao manual de tipos, inferencia de tipos incompleta
-- **Pinia**: Suporte nativo completo, inferencia automatica de tipos, melhor experiencia de desenvolvimento
+- **Vuex**: Requer definição manual de tipos, inferência de tipos incompleta
+- **Pinia**: Suporte nativo completo, inferência automática de tipos, melhor experiência de desenvolvimento
 
 ---
 
-## 6. Guia de migracao
+## 6. Guia de migração
 
-### 6.1 Passos basicos de migracao
+### 6.1 Passos básicos de migração
 
 1. **Instalar Pinia**
 
@@ -266,7 +266,7 @@ const pinia = createPinia();
 app.use(pinia);
 ```
 
-3. **Converter definicao da Store**
+3. **Converter definição da Store**
 
 ```javascript
 // Vuex
@@ -310,7 +310,7 @@ const { count } = storeToRefs(store);
 const { increment } = store;
 ```
 
-### 6.2 Problemas comuns de migracao
+### 6.2 Problemas comuns de migração
 
 **Problema 1: Como lidar com Vuex modules?**
 
@@ -321,7 +321,7 @@ modules: {
   product: productModule,
 }
 
-// Pinia: Cada modulo se torna uma store independente
+// Pinia: Cada módulo se torna uma store independente
 // stores/user.ts
 export const useUserStore = defineStore('user', { ... });
 
@@ -342,21 +342,21 @@ userStore.setName('John');
 
 ---
 
-## 7. Por que Pinia nao precisa de mutations?
+## 7. Por que Pinia não precisa de mutations?
 
 **Razoes**:
 
 1. **Sistema reativo do Vue 3**
    - Vue 3 usa Proxy, podendo rastrear diretamente as modificacoes de objetos
-   - Nao precisa rastrear mudancas de estado atraves de mutations como no Vue 2
+   - Não precisa rastrear mudancas de estado através de mutations como no Vue 2
 
 2. **Simplificacao da API**
-   - Remover mutations simplifica a API e reduz o codigo boilerplate
+   - Remover mutations simplifica a API e reduz o código boilerplate
    - Actions podem modificar o state diretamente, seja sincrona ou assincronamente
 
-3. **Experiencia de desenvolvimento**
-   - Reduz uma camada de abstracao, facilitando a compreensao e uso pelos desenvolvedores
-   - Nao e necessario lembrar a diferenca entre `commit` e `dispatch`
+3. **Experiência de desenvolvimento**
+   - Reduz uma camada de abstração, facilitando a compreensão e uso pelos desenvolvedores
+   - Não é necessário lembrar a diferença entre `commit` e `dispatch`
 
 **Exemplo**:
 
@@ -373,7 +373,7 @@ actions: { setCount(count) { this.count = count; } },
 
 ## 8. Como escolher entre Vuex e Pinia?
 
-**Recomendacoes de escolha**:
+**Recomendações de escolha**:
 
 1. **Novos projetos**
    - Projetos Vue 3: **Recomenda-se usar Pinia**
@@ -381,7 +381,7 @@ actions: { setCount(count) { this.count = count; } },
 
 2. **Projetos existentes**
    - Vue 2 + Vuex: Pode continuar usando Vuex, ou considerar upgrade para Vue 3 + Pinia
-   - Vue 3 + Vuex: Pode considerar migrar para Pinia (mas nao e obrigatorio)
+   - Vue 3 + Vuex: Pode considerar migrar para Pinia (mas não é obrigatório)
 
 3. **Requisitos do projeto**
    - Precisa de suporte completo a TypeScript: **Escolha Pinia**
@@ -391,7 +391,7 @@ actions: { setCount(count) { this.count = count; } },
 **Resumo**:
 - Novos projetos Vue 3: **Fortemente recomendado Pinia**
 - Projetos Vue 2: Use Vuex
-- Projetos existentes Vue 3 + Vuex: Pode considerar migracao, mas nao e obrigatorio
+- Projetos existentes Vue 3 + Vuex: Pode considerar migração, mas não é obrigatório
 
 ---
 
@@ -399,40 +399,40 @@ actions: { setCount(count) { this.count = count; } },
 
 ### 9.1 Diferencas fundamentais
 
-**Voce pode responder assim:**
+**Você pode responder assim:**
 
-> Vuex e Pinia sao ambas ferramentas de gerenciamento de estado do Vue, as principais diferencas incluem: 1) Complexidade da API: Vuex requer mutations para modificar o state de forma sincrona, Pinia nao requer mutations, actions podem modificar o state diretamente; 2) Suporte TypeScript: Vuex requer configuracao adicional, inferencia de tipos incompleta, Pinia tem suporte nativo completo, inferencia automatica de tipos; 3) Modularizacao: Vuex usa modulos aninhados, requer namespaced, Pinia cada store e independente, sem namespace; 4) Experiencia de desenvolvimento: Pinia e menor, suporta HMR, melhor suporte a Devtools; 5) Versao do Vue: Vuex e principalmente para Vue 2, Pinia e a recomendacao oficial do Vue 3. Para novos projetos Vue 3, eu recomendo usar Pinia.
+> Vuex e Pinia são ambas ferramentas de gerenciamento de estado do Vue, as principais diferenças incluem: 1) Complexidade da API: Vuex requer mutations para modificar o state de forma sincrona, Pinia não requer mutations, actions podem modificar o state diretamente; 2) Suporte TypeScript: Vuex requer configuração adicional, inferência de tipos incompleta, Pinia tem suporte nativo completo, inferência automática de tipos; 3) Modularizacao: Vuex usa módulos aninhados, requer namespaced, Pinia cada store e independente, sem namespace; 4) Experiência de desenvolvimento: Pinia é menor, suporta HMR, melhor suporte a Devtools; 5) Versao do Vue: Vuex é principalmente para Vue 2, Pinia é a recomendação oficial do Vue 3. Para novos projetos Vue 3, eu recomendo usar Pinia.
 
 **Pontos-chave:**
 - Diferencas de complexidade de API
 - Diferencas de suporte TypeScript
-- Diferencas na forma de modularizacao
-- Recomendacao de escolha
+- Diferencas na forma de modularização
+- Recomendação de escolha
 
-### 9.2 Por que Pinia nao precisa de mutations?
+### 9.2 Por que Pinia não precisa de mutations?
 
-**Voce pode responder assim:**
+**Você pode responder assim:**
 
-> Pinia nao precisa de mutations por tres razoes principais: 1) Vue 3 usa Proxy como sistema reativo, podendo rastrear diretamente as modificacoes de objetos, sem necessidade de rastrear mudancas de estado atraves de mutations como no Vue 2; 2) Simplificacao da API, remover mutations reduz o codigo boilerplate, actions podem modificar o state diretamente, seja sincrona ou assincronamente; 3) Melhoria da experiencia de desenvolvimento, reduzindo uma camada de abstracao, facilitando a compreensao e uso pelos desenvolvedores, sem necessidade de lembrar a diferenca entre commit e dispatch.
+> Pinia não precisa de mutations por três razoes principais: 1) Vue 3 usa Proxy como sistema reativo, podendo rastrear diretamente as modificacoes de objetos, sem necessidade de rastrear mudancas de estado através de mutations como no Vue 2; 2) Simplificacao da API, remover mutations reduz o código boilerplate, actions podem modificar o state diretamente, seja sincrona ou assincronamente; 3) Melhoria da experiência de desenvolvimento, reduzindo uma camada de abstração, facilitando a compreensão e uso pelos desenvolvedores, sem necessidade de lembrar a diferença entre commit e dispatch.
 
 **Pontos-chave:**
 - Sistema reativo do Vue 3
 - Simplificacao da API
-- Melhoria da experiencia de desenvolvimento
+- Melhoria da experiência de desenvolvimento
 
 ---
 
 ## 10. Resumo da entrevista
 
-**Voce pode responder assim:**
+**Você pode responder assim:**
 
-> As principais diferencas entre Vuex e Pinia estao no design da API, suporte a TypeScript e forma de modularizacao. Vuex requer mutations, Pinia nao; Pinia tem melhor suporte a TypeScript; Vuex usa modulos aninhados, Pinia usa design flat. Para novos projetos Vue 3, eu recomendo usar Pinia, pois oferece melhor experiencia de desenvolvimento e API mais simples. Se o projeto precisa migrar de Vuex para Pinia, os passos principais sao remover mutations, converter modules em stores independentes e atualizar o modo de uso nos componentes.
+> As principais diferenças entre Vuex e Pinia estao no design da API, suporte a TypeScript e forma de modularização. Vuex requer mutations, Pinia não; Pinia tem melhor suporte a TypeScript; Vuex usa módulos aninhados, Pinia usa design flat. Para novos projetos Vue 3, eu recomendo usar Pinia, pois oferece melhor experiência de desenvolvimento e API mais simples. Se o projeto precisa migrar de Vuex para Pinia, os passos principais são remover mutations, converter modules em stores independentes e atualizar o modo de uso nos componentes.
 
 **Pontos-chave:**
-- Resumo das diferencas fundamentais
-- Recomendacao de escolha
-- Guia de migracao
-- Experiencia em projetos reais
+- Resumo das diferenças fundamentais
+- Recomendação de escolha
+- Guia de migração
+- Experiência em projetos reais
 
 ## Reference
 

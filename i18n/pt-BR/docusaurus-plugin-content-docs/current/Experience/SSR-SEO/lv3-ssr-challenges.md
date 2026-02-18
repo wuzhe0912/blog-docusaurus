@@ -1,23 +1,23 @@
 ---
-title: '[Lv3] Desafios de implementacao SSR e solucoes'
+title: '[Lv3] Desafios de implementação SSR e soluções'
 slug: /experience/ssr-seo/lv3-ssr-challenges
 tags: [Experience, Interview, SSR-SEO, Lv3]
 ---
 
-> Problemas comuns em SSR e solucoes praticas: Hydration Mismatch, variaveis de ambiente, compatibilidade de bibliotecas, performance e arquitetura de deploy.
+> Problemas comuns em SSR e soluções práticas: Hydration Mismatch, variáveis de ambiente, compatibilidade de bibliotecas, performance e arquitetura de deploy.
 
 ---
 
-## Cenario de entrevista
+## Cenário de entrevista
 
-**Pergunta: Quais dificuldades voce encontrou ao implementar SSR e como resolveu?**
+**Pergunta: Quais dificuldades você encontrou ao implementar SSR e como resolveu?**
 
 O que o entrevistador quer validar:
 
-1. **Experiencia real**: se voce realmente implementou SSR.
-2. **Metodo de resolucao**: como identifica causa raiz e prioriza.
-3. **Profundidade tecnica**: rendering, hydration, cache e deploy.
-4. **Boas praticas**: solucoes robustas, mensuraveis e sustentaveis.
+1. **Experiência real**: se você realmente implementou SSR.
+2. **Método de resolução**: como identifica causa raiz e prioriza.
+3. **Profundidade técnica**: rendering, hydration, cache e deploy.
+4. **Boas práticas**: soluções robustas, mensuráveis e sustentáveis.
 
 ---
 
@@ -35,11 +35,11 @@ Causas frequentes:
 
 - Render diferente entre servidor e cliente
 - Uso de APIs exclusivas de browser em caminho SSR (`window`, `document`, `localStorage`)
-- Valores nao deterministas (`Date.now()`, `Math.random()`)
+- Valores não deterministas (`Date.now()`, `Math.random()`)
 
-### Solucoes
+### Soluções
 
-#### Opcao A: encapsular com `ClientOnly`
+#### Opção A: encapsular com `ClientOnly`
 
 ```vue
 <template>
@@ -55,7 +55,7 @@ Causas frequentes:
 </template>
 ```
 
-#### Opcao B: guardas no cliente
+#### Opção B: guardas no cliente
 
 ```vue
 <script setup lang="ts">
@@ -69,7 +69,7 @@ onMounted(() => {
 </script>
 ```
 
-**Mensagem-chave:** saida SSR precisa ser deterministica; logica browser-only deve ficar no cliente.
+**Mensagem-chave:** saída SSR precisa ser deterministica; lógica browser-only deve ficar no cliente.
 
 ---
 
@@ -78,9 +78,9 @@ onMounted(() => {
 ### Problema
 
 - Segredos do servidor podem vazar para cliente.
-- Uso desorganizado de `process.env` dificulta manutencao.
+- Uso desorganizado de `process.env` dificulta manutenção.
 
-### Solucao
+### Solução
 
 Separar com runtime config:
 
@@ -103,7 +103,7 @@ const apiBase = config.public.apiBase; // cliente + servidor
 const secret = config.apiSecret; // so servidor
 ```
 
-**Mensagem-chave:** segredo fica no servidor; configuracao publica fica no bloco `public`.
+**Mensagem-chave:** segredo fica no servidor; configuração pública fica no bloco `public`.
 
 ---
 
@@ -114,11 +114,11 @@ const secret = config.apiSecret; // so servidor
 - Algumas libs acessam DOM durante SSR.
 - Resultado: erro de build/runtime ou hydration quebrada.
 
-### Solucoes
+### Soluções
 
 1. Carregar a lib apenas no cliente (plugin `.client.ts`)
-2. Import dinamico em contexto cliente
-3. Avaliar alternativa compativel com SSR
+2. Import dinâmico em contexto cliente
+3. Avaliar alternativa compatível com SSR
 
 ```ts
 let chartLib: any;
@@ -138,7 +138,7 @@ if (process.client) {
 - Auth em SSR depende de leitura de cookie no servidor.
 - Headers precisam ser consistentes entre cliente, SSR e API.
 
-### Solucao
+### Solução
 
 ```ts
 const token = useCookie('access_token');
@@ -151,22 +151,22 @@ const { data } = await useFetch('/api/me', {
 });
 ```
 
-**Mensagem-chave:** request SSR nao pode perder contexto de autenticacao.
+**Mensagem-chave:** request SSR não pode perder contexto de autenticação.
 
 ---
 
-## Desafio 5: Timing de carga assincrona
+## Desafio 5: Timing de carga assíncrona
 
 ### Problema
 
 - Varias componentes buscam os mesmos dados.
 - Requests duplicados e estado de loading inconsistente.
 
-### Solucao
+### Solução
 
-- Definir keys unicos para deduplication
+- Definir keys únicos para deduplication
 - Centralizar acesso em composables compartilhados
-- Separar carga inicial de acao do usuario
+- Separar carga inicial de acao do usuário
 
 ```ts
 const { data, refresh } = await useFetch('/api/products', {
@@ -187,7 +187,7 @@ const { data, refresh } = await useFetch('/api/products', {
 - SSR aumenta CPU e I/O.
 - Sob carga alta, TTFB piora.
 
-### Solucoes
+### Soluções
 
 1. Cache com Nitro
 2. Otimizar query de DB
@@ -201,7 +201,7 @@ export default defineCachedEventHandler(
 );
 ```
 
-**Mensagem-chave:** performance e decisao de arquitetura, nao so detalhe de frontend.
+**Mensagem-chave:** performance e decisão de arquitetura, não so detalhe de frontend.
 
 ---
 
@@ -209,10 +209,10 @@ export default defineCachedEventHandler(
 
 ### Problema
 
-- IDs dinamicos podem ser invalidos.
-- Sem semantica 404 correta, SEO pode indexar pagina errada.
+- IDs dinâmicos podem ser invalidos.
+- Sem semantica 404 correta, SEO pode indexar página errada.
 
-### Solucao
+### Solução
 
 ```ts
 if (!product.value) {
@@ -223,7 +223,7 @@ if (!product.value) {
 Adicional:
 
 - `error.vue` para UX de erro clara
-- Pagina de erro com `noindex, nofollow`
+- Página de erro com `noindex, nofollow`
 
 **Mensagem-chave:** HTTP status, UX e SEO precisam ser consistentes.
 
@@ -233,10 +233,10 @@ Adicional:
 
 ### Problema
 
-- No SSR nao existe `window`/`document`.
+- No SSR não existe `window`/`document`.
 - Acesso direto causa erro de runtime.
 
-### Solucao
+### Solução
 
 ```ts
 const width = ref<number | null>(null);
@@ -262,12 +262,12 @@ if (process.client) {
 
 ### Problema
 
-- Processo Node de longa duracao cresce em memoria.
+- Processo Node de longa duração cresce em memória.
 - Causa comum: estado global mutavel, timers/listeners sem cleanup.
 
-### Solucoes
+### Soluções
 
-1. Nao usar estado global por request
+1. Não usar estado global por request
 2. Limpar listeners/intervals
 3. Monitorar com heap snapshot e `process.memoryUsage()`
 
@@ -278,7 +278,7 @@ setInterval(() => {
 }, 60_000);
 ```
 
-**Mensagem-chave:** leak em SSR e risco operacional e de seguranca.
+**Mensagem-chave:** leak em SSR e risco operacional e de segurança.
 
 ---
 
@@ -289,11 +289,11 @@ setInterval(() => {
 - Scripts de terceiros bloqueiam main thread ou quebram hydration.
 - CLS/FID/INP pioram.
 
-### Solucao
+### Solução
 
-- Carregar script de forma assincrona e tardia
-- Reservar espaco para ads e evitar layout shift
-- Nao acoplar UI critica ao tracking
+- Carregar script de forma assíncrona e tardia
+- Reservar espaço para ads e evitar layout shift
+- Não acoplar UI crítica ao tracking
 
 ```ts
 useHead({
@@ -303,7 +303,7 @@ useHead({
 });
 ```
 
-**Mensagem-chave:** monetizacao nao pode degradar estabilidade de rendering.
+**Mensagem-chave:** monetização não pode degradar estabilidade de rendering.
 
 ---
 
@@ -311,37 +311,37 @@ useHead({
 
 ### Problema
 
-- SPA e estatico e simples para publicar.
+- SPA é estático e simples para publicar.
 - SSR precisa de camada de compute, observabilidade e gestao de processo.
 
-### Comparacao
+### Comparação
 
 | Aspecto        | SPA (Static)        | SSR (Node/Edge)                 |
 | -------------- | ------------------- | ------------------------------- |
 | Infraestrutura | Storage + CDN       | Compute + CDN                   |
-| Operacao       | Muito simples       | Complexidade media              |
+| Operação       | Muito simples       | Complexidade média              |
 | Custo          | Baixo               | Mais alto por tempo de computo  |
 | Monitoramento  | Minimo              | Logs, metrics, memory, cold start |
 
-### Recomendacoes
+### Recomendações
 
 1. PM2 ou containers para estabilidade
 2. CDN e Cache-Control bem configurados
-3. Staging com teste de carga antes de producao
+3. Staging com teste de carga antes de produção
 4. Definir error budget e alerting
 
-**Mensagem-chave:** SSR nao e so renderizacao; tambem e arquitetura operacional.
+**Mensagem-chave:** SSR não é so renderizacao; também é arquitetura operacional.
 
 ---
 
 ## Resumo para entrevista
 
-**Resposta possivel (30-45 segundos):**
+**Resposta possível (30-45 segundos):**
 
-> Em projetos SSR eu agrupo os riscos em quatro frentes: render deterministico para evitar hydration mismatch, separacao rigorosa entre configuracao de servidor e cliente, performance com deduplication/cache/splitting, e operacao confiavel com tratamento de erros, monitoramento de memoria e arquitetura de deploy apropriada.
+> Em projetos SSR eu agrupo os riscos em quatro frentes: render deterministico para evitar hydration mismatch, separação rigorosa entre configuração de servidor e cliente, performance com deduplication/cache/splitting, e operação confiável com tratamento de erros, monitoramento de memória e arquitetura de deploy apropriada.
 
 **Checklist:**
 - ✅ Citar um problema concreto com causa
-- ✅ Mostrar contramedidas tecnicas
-- ✅ Explicar impacto em SEO/performance/operacao
+- ✅ Mostrar contramedidas técnicas
+- ✅ Explicar impacto em SEO/performance/operação
 - ✅ Encerrar com contexto real de projeto

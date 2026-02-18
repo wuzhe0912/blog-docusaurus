@@ -7,13 +7,13 @@ tags: [JavaScript, Coding, Medium]
 
 ## 1. Question Description
 
-> Descripcion del problema
+> Descripción del problema
 
 Implementar funciones de analisis de rutas de objetos que puedan obtener y establecer valores de objetos anidados basandose en cadenas de ruta.
 
 ### Requisitos
 
-1. **Funcion `get`**: Obtener el valor de un objeto segun la ruta
+1. **Función `get`**: Obtener el valor de un objeto según la ruta
 
 ```javascript
 const obj = { a: { b: { c: 1 } } };
@@ -21,7 +21,7 @@ get(obj, 'a.b.c'); // 1
 get(obj, 'a.b.d', 'default'); // 'default'
 ```
 
-2. **Funcion `set`**: Establecer el valor de un objeto segun la ruta
+2. **Función `set`**: Establecer el valor de un objeto según la ruta
 
 ```javascript
 const obj = {};
@@ -31,9 +31,9 @@ set(obj, 'a.b.c', 1);
 
 ## 2. Implementation: get Function
 
-> Implementacion de la funcion get
+> Implementación de la función get
 
-### Metodo 1: Usando split y reduce
+### Método 1: Usando split y reduce
 
 **Enfoque**: Dividir la cadena de ruta en un array y luego usar `reduce` para acceder al objeto nivel por nivel.
 
@@ -50,14 +50,14 @@ function get(obj, path, defaultValue) {
 
 const obj = { a: { b: { c: 1, d: [2, 3, { e: 4 }] } }, x: null };
 console.log(get(obj, 'a.b.c')); // 1
-console.log(get(obj, 'a.b.d[2].e')); // undefined (necesita manejar indices de array)
+console.log(get(obj, 'a.b.d[2].e')); // undefined (necesita manejar índices de array)
 console.log(get(obj, 'a.b.f', 'default')); // 'default'
 console.log(get(obj, 'x.y', 'default')); // 'default'
 ```
 
-### Metodo 2: Soporte para indices de array
+### Método 2: Soporte para índices de array
 
-**Enfoque**: Manejar indices de array en la ruta, como `'a.b[0].c'`.
+**Enfoque**: Manejar índices de array en la ruta, como `'a.b[0].c'`.
 
 ```javascript
 function get(obj, path, defaultValue) {
@@ -80,7 +80,7 @@ console.log(get(obj, 'a.b.d[0]')); // 2
 console.log(get(obj, 'a.b.d[5]', 'not found')); // 'not found'
 ```
 
-### Metodo 3: Implementacion completa (manejo de casos limite)
+### Método 3: Implementación completa (manejo de casos limite)
 
 ```javascript
 function get(obj, path, defaultValue) {
@@ -111,11 +111,11 @@ console.log(get(obj, '', obj)); // obj (ruta vacia devuelve el objeto original)
 
 ## 3. Implementation: set Function
 
-> Implementacion de la funcion set
+> Implementación de la función set
 
-### Metodo 1: Implementacion basica
+### Método 1: Implementación básica
 
-**Enfoque**: Crear la estructura de objetos anidados segun la ruta y luego establecer el valor.
+**Enfoque**: Crear la estructura de objetos anidados según la ruta y luego establecer el valor.
 
 ```javascript
 function set(obj, path, value) {
@@ -154,7 +154,7 @@ set(obj, 'a.b.d[0]', 2);
 console.log(obj); // { a: { b: { c: 1, d: [2] } } }
 ```
 
-### Metodo 2: Implementacion completa (manejo de arrays y objetos)
+### Método 2: Implementación completa (manejo de arrays y objetos)
 
 ```javascript
 function set(obj, path, value) {
@@ -207,7 +207,7 @@ set(obj, 'x[0].y', 3);
 console.log(obj); // { a: { b: { c: 1, d: [2] } }, x: [{ y: 3 }] }
 ```
 
-### Metodo 3: Version simplificada (solo objetos, sin indices de array)
+### Método 3: Versión simplificada (solo objetos, sin índices de array)
 
 ```javascript
 function set(obj, path, value) {
@@ -232,9 +232,9 @@ console.log(obj); // { a: { b: { c: 1 } } }
 
 > Preguntas frecuentes en entrevistas
 
-### Pregunta 1: Funcion get basica
+### Pregunta 1: Función get básica
 
-Implemente una funcion `get` que obtenga el valor de un objeto anidado segun una cadena de ruta.
+Implemente una función `get` que obtenga el valor de un objeto anidado según una cadena de ruta.
 
 <details>
 <summary>Haga clic para ver la respuesta</summary>
@@ -260,9 +260,9 @@ console.log(get(obj, 'a.b.d', 'default')); // 'default'
 
 </details>
 
-### Pregunta 2: Funcion get con soporte para indices de array
+### Pregunta 2: Función get con soporte para índices de array
 
-Extienda la funcion `get` para soportar indices de array como `'a.b[0].c'`.
+Extienda la función `get` para soportar índices de array como `'a.b[0].c'`.
 
 <details>
 <summary>Haga clic para ver la respuesta</summary>
@@ -289,13 +289,13 @@ console.log(get(obj, 'a.b[2].c')); // 4
 console.log(get(obj, 'a.b[5]', 'not found')); // 'not found'
 ```
 
-**Puntos clave**: Usar expresion regular `/[^.[\]]+|\[(\d+)\]/g` para analizar la ruta, manejar indices de array en formato `[0]`, convertir indice de string a numero.
+**Puntos clave**: Usar expresion regular `/[^.[\]]+|\[(\d+)\]/g` para analizar la ruta, manejar índices de array en formato `[0]`, convertir índice de string a número.
 
 </details>
 
-### Pregunta 3: Funcion set
+### Pregunta 3: Función set
 
-Implemente una funcion `set` que establezca el valor de un objeto anidado segun una cadena de ruta.
+Implemente una función `set` que establezca el valor de un objeto anidado según una cadena de ruta.
 
 <details>
 <summary>Haga clic para ver la respuesta</summary>
@@ -323,9 +323,9 @@ console.log(obj); // { a: { b: { c: 1 } } }
 
 </details>
 
-### Pregunta 4: Implementacion completa de get y set
+### Pregunta 4: Implementación completa de get y set
 
-Implemente funciones `get` y `set` completas con soporte para indices de array y manejo de casos limite.
+Implemente funciones `get` y `set` completas con soporte para índices de array y manejo de casos limite.
 
 <details>
 <summary>Haga clic para ver la respuesta</summary>
@@ -380,9 +380,9 @@ set(obj, 'a.b.d[0]', 2); console.log(get(obj, 'a.b.d[0]')); // 2
 
 ## 5. Best Practices
 
-> Mejores practicas
+> Mejores prácticas
 
-### Practicas recomendadas
+### Prácticas recomendadas
 
 ```javascript
 // 1. Manejar casos limite
@@ -401,7 +401,7 @@ current[key] = nextKey.startsWith('[') ? [] : {};
 return result ?? defaultValue;
 ```
 
-### Practicas a evitar
+### Prácticas a evitar
 
 ```javascript
 // 1. ❌ No olvidar manejar null/undefined
@@ -413,31 +413,31 @@ return result ?? defaultValue;
 
 > Resumen para entrevistas
 
-### Referencia rapida
+### Referencia rápida
 
 **Analisis de rutas de objetos**:
 
-- **Funcion get**: Obtener valor segun ruta, manejar null/undefined, soportar valor por defecto
-- **Funcion set**: Establecer valor segun ruta, crear estructura anidada automaticamente
+- **Función get**: Obtener valor según ruta, manejar null/undefined, soportar valor por defecto
+- **Función set**: Establecer valor según ruta, crear estructura anidada automáticamente
 - **Analisis de ruta**: Usar expresiones regulares para formatos `'a.b.c'` y `'a.b[0].c'`
 - **Manejo de limites**: Manejar null, undefined, cadenas vacias, etc.
 
-**Puntos de implementacion**:
+**Puntos de implementación**:
 
 1. Analisis de ruta: `split('.')` o expresion regular
 2. Acceso por niveles: Usar bucle o `reduce`
 3. Manejo de limites: Verificar null/undefined
-4. Soporte de arrays: Manejar indices en formato `[0]`
+4. Soporte de arrays: Manejar índices en formato `[0]`
 
 ### Ejemplo de respuesta en entrevista
 
-**Q: Implemente una funcion que obtenga el valor de un objeto segun una ruta.**
+**Q: Implemente una función que obtenga el valor de un objeto según una ruta.**
 
-> "Implemento una funcion `get` que recibe un objeto, una cadena de ruta y un valor por defecto. Primero manejo los casos limite: si el objeto es null o la ruta no es un string, devuelvo el valor por defecto. Luego divido la ruta en un array de claves con `split('.')` y accedo a las propiedades del objeto nivel por nivel usando un bucle. En cada acceso verifico si el valor actual es null o undefined, y en ese caso devuelvo el valor por defecto. Finalmente, si el resultado es undefined devuelvo el valor por defecto, de lo contrario el resultado. Para soportar indices de array, puedo usar la expresion regular `/[^.[\]]+|\[(\d+)\]/g` para analizar la ruta."
+> "Implemento una función `get` que recibe un objeto, una cadena de ruta y un valor por defecto. Primero manejo los casos limite: si el objeto es null o la ruta no es un string, devuelvo el valor por defecto. Luego divido la ruta en un array de claves con `split('.')` y accedo a las propiedades del objeto nivel por nivel usando un bucle. En cada acceso verifico si el valor actual es null o undefined, y en ese caso devuelvo el valor por defecto. Finalmente, si el resultado es undefined devuelvo el valor por defecto, de lo contrario el resultado. Para soportar índices de array, puedo usar la expresion regular `/[^.[\]]+|\[(\d+)\]/g` para analizar la ruta."
 
-**Q: Como implementar una funcion que establezca el valor de un objeto segun una ruta?**
+**Q: Cómo implementar una función que establezca el valor de un objeto según una ruta?**
 
-> "Implemento una funcion `set` que recibe un objeto, una cadena de ruta y un valor. Primero analizo la ruta en un array de claves, luego recorro hasta la penultima clave, creando la estructura de objetos anidados nivel por nivel. Para cada clave intermedia que no existe o no es un objeto, creo un nuevo objeto. Si la siguiente clave tiene formato de indice de array, creo un array. Finalmente establezco el valor de la ultima clave."
+> "Implemento una función `set` que recibe un objeto, una cadena de ruta y un valor. Primero analizo la ruta en un array de claves, luego recorro hasta la penultima clave, creando la estructura de objetos anidados nivel por nivel. Para cada clave intermedia que no existe o no es un objeto, creo un nuevo objeto. Si la siguiente clave tiene formato de índice de array, creo un array. Finalmente establezco el valor de la última clave."
 
 ## Reference
 

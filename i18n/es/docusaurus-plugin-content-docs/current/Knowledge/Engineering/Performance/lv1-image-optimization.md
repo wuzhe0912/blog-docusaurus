@@ -1,53 +1,53 @@
 ---
 id: performance-lv1-image-optimization
-title: '[Lv1] Optimizacion de carga de imagenes: Lazy Load en 4 niveles'
+title: '[Lv1] Optimización de carga de imágenes: Lazy Load en 4 niveles'
 slug: /experience/performance/lv1-image-optimization
 tags: [Experience, Interview, Performance, Lv1]
 ---
 
-> Mediante una estrategia de Lazy Loading de imagenes en 4 niveles, se redujo el trafico de imagenes de la primera pantalla de 60MB a 2MB, mejorando el tiempo de carga en un 85%.
+> Mediante una estrategia de Lazy Loading de imágenes en 4 niveles, se redujo el trafico de imágenes de la primera pantalla de 60MB a 2MB, mejorando el tiempo de carga en un 85%.
 
 ---
 
 ## Contexto del problema (Situation)
 
-> Imagina que estas navegando una pagina web en tu telefono, la pantalla solo muestra 10 imagenes, pero la pagina carga los datos completos de 500 imagenes de golpe. Tu telefono se congela y el consumo de datos se dispara a 50MB instantaneamente.
+> Imagina que estas navegando una página web en tu telefono, la pantalla solo muestra 10 imágenes, pero la página carga los datos completos de 500 imágenes de golpe. Tu telefono se congela y el consumo de datos se dispara a 50MB instantaneamente.
 
 **Situacion real del proyecto:**
 
 ```markdown
-📊 Estadisticas de una pagina principal
+📊 Estadísticas de una página principal
 ├─ 300+ miniaturas (cada una 150-300KB)
 ├─ 50+ banners promocionales
 └─ Si se cargan todas: 300 × 200KB = 60MB+ de datos de imagen
 
 ❌ Problemas reales
-├─ Primera pantalla solo muestra 8-12 imagenes
+├─ Primera pantalla solo muestra 8-12 imágenes
 ├─ El usuario puede desplazarse solo hasta la imagen 30 y salir
-└─ Las 270 imagenes restantes son carga desperdiciada (trafico + velocidad)
+└─ Las 270 imágenes restantes son carga desperdiciada (trafico + velocidad)
 
 📉 Impacto
 ├─ Tiempo de primera carga: 15-20 segundos
 ├─ Consumo de trafico: 60MB+ (usuarios molestos)
-├─ Pagina lenta: desplazamiento no fluido
+├─ Página lenta: desplazamiento no fluido
 └─ Tasa de rebote: 42% (muy alta)
 ```
 
-## Objetivo de optimizacion (Task)
+## Objetivo de optimización (Task)
 
-1. **Cargar solo imagenes dentro del area visible**
-2. **Precargar imagenes que estan por entrar al viewport** (comenzar a cargar 50px antes)
-3. **Controlar la cantidad de cargas simultaneas** (evitar cargar demasiadas imagenes a la vez)
-4. **Prevenir desperdicio de recursos por cambio rapido**
-5. **Trafico de imagenes de primera pantalla < 3MB**
+1. **Cargar solo imágenes dentro del area visible**
+2. **Precargar imágenes que estan por entrar al viewport** (comenzar a cargar 50px antes)
+3. **Controlar la cantidad de cargas simultaneas** (evitar cargar demasiadas imágenes a la vez)
+4. **Prevenir desperdicio de recursos por cambio rápido**
+5. **Trafico de imágenes de primera pantalla < 3MB**
 
-## Solucion (Action)
+## Solución (Action)
 
-### Implementacion de v-lazy-load.ts
+### Implementación de v-lazy-load.ts
 
-> Lazy load de imagenes en 4 niveles
+> Lazy load de imágenes en 4 niveles
 
-#### Nivel 1: Deteccion de visibilidad en viewport (IntersectionObserver)
+#### Nivel 1: Detección de visibilidad en viewport (IntersectionObserver)
 
 ```js
 // Crear observador, monitorear si la imagen entra al viewport
@@ -68,15 +68,15 @@ const observer = new IntersectionObserver(
 ```
 
 - Uso de la API nativa IntersectionObserver del navegador (rendimiento muy superior al evento scroll)
-- rootMargin: "50px" → Cuando la imagen esta a 50px debajo, comienza a cargar; cuando el usuario llega, ya esta lista (experiencia mas fluida)
-- Las imagenes fuera del viewport no se cargan en absoluto
+- rootMargin: "50px" → Cuándo la imagen esta a 50px debajo, comienza a cargar; cuando el usuario llega, ya esta lista (experiencia más fluida)
+- Las imágenes fuera del viewport no se cargan en absoluto
 
-#### Nivel 2: Mecanismo de control de concurrencia (Gestion de cola)
+#### Nivel 2: Mecanismo de control de concurrencia (Gestión de cola)
 
 ```js
 class LazyLoadQueue {
   private loadingCount = 0
-  private maxConcurrent = 6  // Maximo 6 cargas simultaneas
+  private maxConcurrent = 6  // Máximo 6 cargas simultaneas
   private queue: (() => void)[] = []
 
   enqueue(loadFn: () => void) {
@@ -89,29 +89,29 @@ class LazyLoadQueue {
 }
 ```
 
-- Aunque 20 imagenes entren al viewport simultaneamente, solo se cargan 6 a la vez
-- Evita la "carga en cascada" que bloquea el navegador (Chrome permite maximo 6 solicitudes simultaneas)
-- Al completar una carga, se procesa automaticamente la siguiente en cola
+- Aunque 20 imágenes entren al viewport simultaneamente, solo se cargan 6 a la vez
+- Evita la "carga en cascada" que bloquea el navegador (Chrome permite máximo 6 solicitudes simultaneas)
+- Al completar una carga, se procesa automáticamente la siguiente en cola
 
 ```md
-Usuario desplaza rapidamente hasta el final → 30 imagenes se activan simultaneamente
-Sin gestion de cola: 30 solicitudes simultaneas → Navegador se congela
-Con gestion de cola: Primeras 6 se cargan → Al completar, las siguientes 6 → Fluido
+Usuario desplaza rápidamente hasta el final → 30 imágenes se activan simultaneamente
+Sin gestión de cola: 30 solicitudes simultaneas → Navegador se congela
+Con gestión de cola: Primeras 6 se cargan → Al completar, las siguientes 6 → Fluido
 ```
 
-#### Nivel 3: Resolucion de condiciones de carrera (Control de version)
+#### Nivel 3: Resolución de condiciones de carrera (Control de versión)
 
 ```js
-// Establecer numero de version al cargar
+// Establecer número de versión al cargar
 el.setAttribute('data-version', Date.now().toString());
 
-// Verificar version al completar la carga
+// Verificar versión al completar la carga
 img.onload = () => {
   const currentVersion = img.getAttribute('data-version');
   if (loadVersion === currentVersion) {
-    // Version coincide, mostrar imagen
+    // Versión coincide, mostrar imagen
   } else {
-    // Version no coincide, el usuario ya cambio a otro contenido, no mostrar
+    // Versión no coincide, el usuario ya cambio a otro contenido, no mostrar
   }
 };
 ```
@@ -121,12 +121,12 @@ Caso real:
 ```md
 Operaciones del usuario:
 
-1. Clic en categoria "Noticias" → Activa carga de 100 imagenes (version 1001)
-2. 0.5 segundos despues clic en "Promociones" → Activa carga de 80 imagenes (version 1002)
-3. Las imagenes de noticias terminan de cargar 1 segundo despues
+1. Clic en categoría "Noticias" → Activa carga de 100 imágenes (versión 1001)
+2. 0.5 segundos después clic en "Promociones" → Activa carga de 80 imágenes (versión 1002)
+3. Las imágenes de noticias terminan de cargar 1 segundo después
 
-Sin control de version: Muestra imagenes de noticias (incorrecto!)
-Con control de version: Detecta version diferente, descarta imagenes de noticias (correcto!)
+Sin control de versión: Muestra imágenes de noticias (incorrecto!)
+Con control de versión: Detecta versión diferente, descarta imágenes de noticias (correcto!)
 ```
 
 #### Nivel 4: Estrategia de placeholder (Imagen transparente Base64)
@@ -141,23 +141,23 @@ el.setAttribute('data-src', realImageUrl);
 
 - Uso de SVG transparente codificado en Base64 (solo 100 bytes)
 - Evita CLS (Cumulative Layout Shift)
-- El usuario no ve el fenomeno de "imagenes apareciendo de repente"
+- El usuario no ve el fenómeno de "imágenes apareciendo de repente"
 
-## Resultados de la optimizacion (Result)
+## Resultados de la optimización (Result)
 
-**Antes de la optimizacion:**
+**Antes de la optimización:**
 
 ```markdown
-Imagenes primera pantalla: Carga de 300 imagenes de golpe (60MB)
+Imágenes primera pantalla: Carga de 300 imágenes de golpe (60MB)
 Tiempo de carga: 15-20 segundos
 Fluidez de desplazamiento: Muy lento
 Tasa de rebote: 42%
 ```
 
-**Despues de la optimizacion:**
+**Después de la optimización:**
 
 ```markdown
-Imagenes primera pantalla: Solo 8-12 imagenes (2MB) ↓ 97%
+Imágenes primera pantalla: Solo 8-12 imágenes (2MB) ↓ 97%
 Tiempo de carga: 2-3 segundos ↑ 85%
 Fluidez de desplazamiento: Fluido (60fps)
 Tasa de rebote: 28% ↓ 33%
@@ -165,39 +165,39 @@ Tasa de rebote: 28% ↓ 33%
 
 **Datos concretos:**
 
-- Trafico de imagenes primera pantalla: **60 MB → 2 MB (reduccion del 97%)**
-- Tiempo de carga de imagenes: **15 segundos → 2 segundos (mejora del 85%)**
+- Trafico de imágenes primera pantalla: **60 MB → 2 MB (reducción del 97%)**
+- Tiempo de carga de imágenes: **15 segundos → 2 segundos (mejora del 85%)**
 - FPS de desplazamiento: **De 20-30 a 55-60**
-- Uso de memoria: **Reduccion del 65%** (imagenes no cargadas no ocupan memoria)
+- Uso de memoria: **Reducción del 65%** (imágenes no cargadas no ocupan memoria)
 
-**Indicadores tecnicos:**
+**Indicadores técnicos:**
 
 - Rendimiento de IntersectionObserver: Muy superior al evento scroll tradicional (CPU reducido en 80%)
 - Efecto del control de concurrencia: Evita bloqueo de solicitudes del navegador
-- Tasa de acierto del control de version: 99.5% (imagenes incorrectas casi inexistentes)
+- Tasa de acierto del control de versión: 99.5% (imágenes incorrectas casi inexistentes)
 
 ## Puntos clave para entrevistas
 
-**Preguntas de extension frecuentes:**
+**Preguntas de extensión frecuentes:**
 
 1. **P: Por que no usar directamente el atributo `loading="lazy"`?**
    R: El `loading="lazy"` nativo tiene varias limitaciones:
 
    - No se puede controlar la distancia de precarga (lo decide el navegador)
    - No se puede controlar la cantidad de cargas simultaneas
-   - No se puede manejar el control de version (problema de cambio rapido)
+   - No se puede manejar el control de versión (problema de cambio rápido)
    - Navegadores antiguos no lo soportan
 
-   La directiva personalizada proporciona un control mas fino, adecuado para nuestros escenarios complejos.
+   La directiva personalizada proporciona un control más fino, adecuado para nuestros escenarios complejos.
 
-2. **P: En que es mejor IntersectionObserver que el evento scroll?**
+2. **P: En qué es mejor IntersectionObserver que el evento scroll?**
    R:
 
    ```javascript
    // ❌ Evento scroll tradicional
    window.addEventListener('scroll', () => {
      // Se activa en cada desplazamiento (60 veces/segundo)
-     // Necesita calcular posicion del elemento (getBoundingClientRect)
+     // Necesita calcular posición del elemento (getBoundingClientRect)
      // Puede causar reflow forzado (asesino de rendimiento)
    });
 
@@ -208,23 +208,23 @@ Tasa de rebote: 28% ↓ 33%
    // Mejora de rendimiento del 80%
    ```
 
-3. **P: De donde viene el limite de 6 imagenes simultaneas?**
+3. **P: De dónde viene el limite de 6 imágenes simultaneas?**
    R: Esta basado en el **limite de conexiones simultaneas HTTP/1.1 del mismo origen** del navegador:
 
-   - Chrome/Firefox: Maximo 6 conexiones simultaneas por dominio
+   - Chrome/Firefox: Máximo 6 conexiones simultaneas por dominio
    - Solicitudes que excedan el limite esperan en cola
-   - HTTP/2 permite mas, pero por compatibilidad se controla en 6
-   - Pruebas reales: 6 cargas simultaneas es el punto optimo de equilibrio entre rendimiento y experiencia
+   - HTTP/2 permite más, pero por compatibilidad se controla en 6
+   - Pruebas reales: 6 cargas simultaneas es el punto óptimo de equilibrio entre rendimiento y experiencia
 
-4. **P: Por que se usa timestamp en lugar de UUID para el control de version?**
+4. **P: Por que se usa timestamp en lugar de UUID para el control de versión?**
    R:
 
    - Timestamp: `Date.now()` (simple, suficiente, ordenable)
-   - UUID: `crypto.randomUUID()` (mas riguroso, pero sobredisenado)
-   - Nuestro escenario: Timestamp es suficientemente unico (nivel de milisegundos)
-   - Consideracion de rendimiento: Generar timestamp es mas rapido
+   - UUID: `crypto.randomUUID()` (más riguroso, pero sobrediseñado)
+   - Nuestro escenario: Timestamp es suficientemente único (nivel de milisegundos)
+   - Consideración de rendimiento: Generar timestamp es más rápido
 
-5. **P: Como se manejan las fallas de carga de imagenes?**
+5. **P: Cómo se manejan las fallas de carga de imágenes?**
    R: Se implemento un fallback multinivel:
 
    ```javascript

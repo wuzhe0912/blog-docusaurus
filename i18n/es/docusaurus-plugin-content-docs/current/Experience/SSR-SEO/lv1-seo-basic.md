@@ -1,29 +1,29 @@
 ---
-title: '[Lv1] Implementacion basica de SEO: Modos de Router y Meta Tags'
+title: '[Lv1] Implementación básica de SEO: Modos de Router y Meta Tags'
 slug: /experience/ssr-seo/lv1-seo-basic
 tags: [Experience, Interview, SSR-SEO, Lv1]
 ---
 
-> En un proyecto de plataforma multi-marca, implementacion de la configuracion basica de SEO: Router History Mode, estructura de Meta Tags y SEO de paginas estaticas.
+> En un proyecto de plataforma multi-marca, implementación de la configuración básica de SEO: Router History Mode, estructura de Meta Tags y SEO de páginas estáticas.
 
 ---
 
 ## 1. Puntos clave de respuesta en entrevista
 
-1. **Seleccion del modo de Router**: Usar History Mode en lugar de Hash Mode para proporcionar una estructura de URL limpia.
+1. **Selección del modo de Router**: Usar History Mode en lugar de Hash Mode para proporcionar una estructura de URL limpia.
 2. **Fundamentos de Meta Tags**: Implementar meta tags SEO completos, incluyendo Open Graph y Twitter Card.
-3. **SEO de paginas estaticas**: Configurar elementos SEO completos para la Landing Page.
+3. **SEO de páginas estáticas**: Configurar elementos SEO completos para la Landing Page.
 
 ---
 
-## 2. Configuracion de Router History Mode
+## 2. Configuración de Router History Mode
 
-### 2.1 Por que elegir History Mode?
+### 2.1 Por qué elegir History Mode?
 
-**Ubicacion del archivo:** `quasar.config.js`
+**Ubicación del archivo:** `quasar.config.js`
 
 ```javascript
-// Linea 82
+// Línea 82
 vueRouterMode: "history", // Usar modo history en lugar de modo hash
 ```
 
@@ -31,19 +31,19 @@ vueRouterMode: "history", // Usar modo history en lugar de modo hash
 
 | Modo             | Ejemplo de URL | Impacto en SEO                        |
 | ---------------- | -------------- | ------------------------------------- |
-| **Hash Mode**    | `/#/home`      | ❌ Dificil de indexar por buscadores   |
-| **History Mode** | `/home`        | ✅ URL limpia, facil de indexar        |
+| **Hash Mode**    | `/#/home`      | ❌ Difícil de indexar por buscadores   |
+| **History Mode** | `/home`        | ✅ URL limpia, fácil de indexar        |
 
 **Diferencias clave:**
 
 - History Mode genera URLs limpias (ej: `/home` en lugar de `/#/home`)
-- Los motores de busqueda pueden indexar y rastrear mas facilmente
+- Los motores de busqueda pueden indexar y rastrear más fácilmente
 - Mejor experiencia de usuario y al compartir
-- Requiere configuracion del backend (para evitar errores 404)
+- Requiere configuración del backend (para evitar errores 404)
 
-### 2.2 Requisitos de configuracion del backend
+### 2.2 Requisitos de configuración del backend
 
-Al usar History Mode, se necesita configuracion del backend:
+Al usar History Mode, se necesita configuración del backend:
 
 ```nginx
 # Ejemplo de Nginx
@@ -56,11 +56,11 @@ Esto asegura que todas las rutas devuelvan `index.html`, y el Router del fronten
 
 ---
 
-## 3. Estructura basica de Meta Tags
+## 3. Estructura básica de Meta Tags
 
-### 3.1 Meta Tags SEO basicos
+### 3.1 Meta Tags SEO básicos
 
-**Ubicacion del archivo:** `template/*/public/landingPage/index.html`
+**Ubicación del archivo:** `template/*/public/landingPage/index.html`
 
 ```html
 <!-- Meta Tags basicos -->
@@ -75,9 +75,9 @@ Esto asegura que todas las rutas devuelvan `index.html`, y el Router del fronten
 
 **Explicacion:**
 
-- `title`: Titulo de la pagina, afecta la visualizacion en resultados de busqueda
+- `title`: Titulo de la página, afecta la visualización en resultados de busqueda
 - `keywords`: Palabras clave (importancia menor en SEO moderno, pero se recomienda configurar)
-- `description`: Descripcion de la pagina, se muestra en los resultados de busqueda
+- `description`: Descripción de la página, se muestra en los resultados de busqueda
 
 ### 3.2 Open Graph Tags (compartir en redes sociales)
 
@@ -96,7 +96,7 @@ Esto asegura que todas las rutas devuelvan `index.html`, y el Router del fronten
 **Uso:**
 
 - Vista previa mostrada al compartir en redes sociales como Facebook, LinkedIn
-- Tamano recomendado de `og:image`: 1200x630px
+- Tamaño recomendado de `og:image`: 1200x630px
 - `og:type` se puede configurar como `website`, `article`, etc.
 
 ### 3.3 Twitter Card Tags
@@ -111,12 +111,12 @@ Esto asegura que todas las rutas devuelvan `index.html`, y el Router del fronten
 
 **Tipos de Twitter Card:**
 
-- `summary`: Tarjeta pequena
+- `summary`: Tarjeta pequeña
 - `summary_large_image`: Tarjeta con imagen grande (recomendado)
 
 ---
 
-## 4. Implementacion de SEO para Landing Page estatica
+## 4. Implementación de SEO para Landing Page estática
 
 ### 4.1 Lista completa de elementos SEO
 
@@ -128,7 +128,7 @@ tags (Facebook, LinkedIn, etc.) ✅ Twitter Card tags ✅ Canonical URL ✅ Conf
 de Favicon
 ```
 
-### 4.2 Ejemplo de implementacion
+### 4.2 Ejemplo de implementación
 
 ```html
 <!DOCTYPE html>
@@ -137,7 +137,7 @@ de Favicon
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- SEO basico -->
+    <!-- SEO básico -->
     <title>AMUSE VIP</title>
     <meta name="keywords" content="カジノ,Jackpot,オンカジ,VIP" />
     <meta
@@ -168,7 +168,7 @@ de Favicon
     <link rel="icon" type="image/png" href="favicon.png" />
   </head>
   <body>
-    <!-- Contenido de la pagina -->
+    <!-- Contenido de la página -->
   </body>
 </html>
 ```
@@ -177,24 +177,24 @@ de Favicon
 
 ## 5. Puntos clave para la entrevista
 
-### 5.1 Seleccion del modo de Router
+### 5.1 Selección del modo de Router
 
-**Por que elegir History Mode?**
+**Por qué elegir History Mode?**
 
 - Proporciona URLs limpias, mejorando el efecto SEO
-- Los motores de busqueda pueden indexar mas facilmente
+- Los motores de busqueda pueden indexar más fácilmente
 - Mejor experiencia de usuario
 
-**Que hay que tener en cuenta?**
+**Qué hay que tener en cuenta?**
 
-- Necesita soporte de configuracion del backend (evitar 404 al acceder directamente a rutas)
+- Necesita soporte de configuración del backend (evitar 404 al acceder directamente a rutas)
 - Necesita configurar mecanismo de fallback
 
 ### 5.2 Importancia de los Meta Tags
 
-**Meta Tags basicos:**
+**Meta Tags básicos:**
 
-- `title`: Afecta la visualizacion en resultados de busqueda
+- `title`: Afecta la visualización en resultados de busqueda
 - `description`: Afecta la tasa de clics
 - `keywords`: Importancia menor en SEO moderno, pero se recomienda configurar
 
@@ -202,45 +202,45 @@ de Favicon
 
 - Open Graph: Vista previa al compartir en plataformas como Facebook, LinkedIn
 - Twitter Card: Vista previa al compartir en Twitter
-- Tamano de imagen recomendado: 1200x630px
+- Tamaño de imagen recomendado: 1200x630px
 
 ---
 
-## 6. Mejores practicas
+## 6. Mejores prácticas
 
 1. **Etiqueta Title**
 
    - Controlar la longitud entre 50-60 caracteres
    - Incluir palabras clave principales
-   - Cada pagina debe tener un title unico
+   - Cada página debe tener un title único
 
 2. **Description**
 
    - Controlar la longitud entre 150-160 caracteres
-   - Describir el contenido de la pagina de forma concisa
+   - Describir el contenido de la página de forma concisa
    - Incluir llamada a la accion (CTA)
 
 3. **Imagen Open Graph**
 
-   - Tamano: 1200x630px
-   - Tamano de archivo: < 1MB
-   - Usar imagenes de alta calidad
+   - Tamaño: 1200x630px
+   - Tamaño de archivo: < 1MB
+   - Usar imágenes de alta calidad
 
 4. **Canonical URL**
    - Evitar problemas de contenido duplicado
-   - Apuntar a la URL de la version principal
+   - Apuntar a la URL de la versión principal
 
 ---
 
 ## 7. Resumen de entrevista
 
-**Puedes responder asi:**
+**Puedes responder así:**
 
-> En el proyecto, elegi usar History Mode de Vue Router en lugar de Hash Mode, porque History Mode proporciona una estructura de URL limpia que es mas amigable para SEO. Al mismo tiempo, implemente meta tags SEO completos para la Landing Page, incluyendo title, description, keywords basicos, asi como Open Graph y Twitter Card tags, asegurando que la vista previa se muestre correctamente al compartir en redes sociales.
+> En el proyecto, elegi usar History Mode de Vue Router en lugar de Hash Mode, porque History Mode proporciona una estructura de URL limpia que es más amigable para SEO. Al mismo tiempo, implemente meta tags SEO completos para la Landing Page, incluyendo title, description, keywords básicos, así como Open Graph y Twitter Card tags, asegurando que la vista previa se muestre correctamente al compartir en redes sociales.
 
 **Puntos clave:**
 
-- ✅ Seleccion y razones del Router History Mode
+- ✅ Selección y razones del Router History Mode
 - ✅ Estructura completa de Meta Tags
-- ✅ Optimizacion para compartir en redes sociales
+- ✅ Optimización para compartir en redes sociales
 - ✅ Experiencia real en proyectos

@@ -1,28 +1,28 @@
 ---
 id: performance-interview-index
-title: 'Visao geral de otimizacao de performance web'
+title: 'Visão geral de otimização de performance web'
 slug: /experience/performance
 tags: [Experience, Interview, Performance]
 ---
 
-> Acumulando continuamente experiencias praticas e pontos-chave de entrevista sobre otimizacao de performance web, organizados por nivel de dificuldade.
+> Acumulando continuamente experiências práticas e pontos-chave de entrevista sobre otimização de performance web, organizados por nível de dificuldade.
 
 ---
 
 ## Trilha de aprendizado
 
-### Lv1 Basico
+### Lv1 Básico
 
-- [Otimizacao a nivel de rota: tres camadas de Lazy Loading](/docs/experience/performance/lv1-route-optimization)
-- [Otimizacao de carregamento de imagens: quatro camadas de Lazy Load](/docs/experience/performance/lv1-image-optimization)
+- [Otimização a nível de rota: três camadas de Lazy Loading](/docs/experience/performance/lv1-route-optimization)
+- [Otimização de carregamento de imagens: quatro camadas de Lazy Load](/docs/experience/performance/lv1-image-optimization)
 
-### Lv2 Intermediario
+### Lv2 Intermediário
 
-- [Otimizacao de performance computacional JavaScript: debounce, throttle, time slicing](/docs/experience/performance/lv2-js-optimization)
+- [Otimização de performance computacional JavaScript: debounce, throttle, time slicing](/docs/experience/performance/lv2-js-optimization)
 
-### Lv3 Avancado
+### Lv3 Avançado
 
-- [Implementacao de Virtual Scroll: lidando com renderizacao de grandes volumes de dados](/docs/experience/performance/lv3-virtual-scroll)
-- [Aplicacao de Web Worker: computacao em segundo plano sem bloquear a UI](/docs/experience/performance/lv3-web-worker)
-- [Estrategias de otimizacao para grandes volumes de dados: selecao e implementacao de solucoes](/docs/experience/performance/lv3-large-data-optimization)
-- [Otimizacao de performance no Nuxt 3: Bundle Size, velocidade SSR e otimizacao de imagens](/docs/experience/performance/lv3-nuxt-performance)
+- [Implementação de Virtual Scroll: lidando com renderizacao de grandes volumes de dados](/docs/experience/performance/lv3-virtual-scroll)
+- [Aplicação de Web Worker: computação em segundo plano sem bloquear a UI](/docs/experience/performance/lv3-web-worker)
+- [Estratégias de otimização para grandes volumes de dados: seleção e implementação de soluções](/docs/experience/performance/lv3-large-data-optimization)
+- [Otimização de performance no Nuxt 3: Bundle Size, velocidade SSR e otimização de imagens](/docs/experience/performance/lv3-nuxt-performance)

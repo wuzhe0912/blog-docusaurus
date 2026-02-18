@@ -1,17 +1,17 @@
 ---
 id: performance-lv3-virtual-scroll
-title: '[Lv3] Implementacion de Virtual Scroll: Manejo de renderizado de grandes volumenes de datos'
+title: '[Lv3] Implementación de Virtual Scroll: Manejo de renderizado de grandes volúmenes de datos'
 slug: /experience/performance/lv3-virtual-scroll
 tags: [Experience, Interview, Performance, Lv3]
 ---
 
-> Cuando la pagina necesita renderizar mas de 1000 registros, Virtual Scroll puede reducir los nodos DOM de 1000+ a 20-30, disminuyendo el uso de memoria en un 80%.
+> Cuándo la página necesita renderizar más de 1000 registros, Virtual Scroll puede reducir los nodos DOM de 1000+ a 20-30, disminuyendo el uso de memoria en un 80%.
 
 ---
 
 ## Pregunta de entrevista
 
-**P: Si la pantalla tiene mas de una tabla, cada una con mas de cien registros, y ademas hay eventos que actualizan el DOM frecuentemente, que metodo usarias para optimizar el rendimiento de esta pagina?**
+**P: Si la pantalla tiene más de una tabla, cada una con más de cien registros, y además hay eventos que actualizan el DOM frecuentemente, qué método usarias para optimizar el rendimiento de esta página?**
 
 ---
 
@@ -19,10 +19,10 @@ tags: [Experience, Interview, Performance, Lv3]
 
 ### Escenario real del proyecto
 
-En el proyecto de plataforma, hay paginas que necesitan manejar grandes volumenes de datos:
+En el proyecto de plataforma, hay páginas que necesitan manejar grandes volúmenes de datos:
 
 ```markdown
-📊 Pagina de historial de transacciones
+📊 Página de historial de transacciones
 ├─ Tabla de depositos: 1000+ registros
 ├─ Tabla de retiros: 800+ registros
 ├─ Tabla de apuestas: 5000+ registros
@@ -38,22 +38,22 @@ En el proyecto de plataforma, hay paginas que necesitan manejar grandes volumene
 
 ---
 
-## Solucion (Action)
+## Solución (Action)
 
 ### Virtual Scrolling
 
-Primero consideremos la optimizacion con Virtual Scroll. Hay dos enfoques: usar el paquete de terceros con soporte oficial [vue-virtual-scroller](https://github.com/Akryum/vue-virtual-scroller), o implementarlo manualmente. Considerando el costo de desarrollo y los escenarios a cubrir, me inclinaria por adoptar el paquete con soporte oficial.
+Primero consideremos la optimización con Virtual Scroll. Hay dos enfoques: usar el paquete de terceros con soporte oficial [vue-virtual-scroller](https://github.com/Akryum/vue-virtual-scroller), o implementarlo manualmente. Considerando el costo de desarrollo y los escenarios a cubrir, me inclinaría por adoptar el paquete con soporte oficial.
 
 ```js
 // Solo renderizar las filas visibles, por ejemplo:
 // - De 100 registros, solo renderizar los 20 visibles
-// - Reduccion significativa de nodos DOM
+// - Reducción significativa de nodos DOM
 ```
 
-### Control de frecuencia de actualizacion de datos
+### Control de frecuencia de actualización de datos
 
-> Solucion 1: requestAnimationFrame (RAF)
-> Concepto: El navegador repinta maximo 60 veces por segundo (60 FPS); actualizar mas rapido es invisible para el ojo humano, asi que nos sincronizamos con la tasa de refresco de la pantalla
+> Solución 1: requestAnimationFrame (RAF)
+> Concepto: El navegador repinta máximo 60 veces por segundo (60 FPS); actualizar más rápido es invisible para el ojo humano, así que nos sincronizamos con la tasa de refresco de la pantalla
 
 ```js
 // ❌ Original: Actualizar inmediatamente al recibir datos (100 veces/segundo posible)
@@ -61,7 +61,7 @@ socket.on('price', (newPrice) => {
   btcPrice.value = newPrice;
 });
 
-// ✅ Mejorado: Recopilar datos y actualizar sincronizado con el refresco de pantalla (maximo 60/segundo)
+// ✅ Mejorado: Recopilar datos y actualizar sincronizado con el refresco de pantalla (máximo 60/segundo)
 let latestPrice = null;
 let isScheduled = false;
 
@@ -78,8 +78,8 @@ socket.on('price', (newPrice) => {
 });
 ```
 
-Solucion 2: Throttle
-Concepto: Limitar forzosamente la frecuencia de actualizacion, por ejemplo "maximo 1 actualizacion cada 100ms"
+Solución 2: Throttle
+Concepto: Limitar forzosamente la frecuencia de actualización, por ejemplo "máximo 1 actualización cada 100ms"
 
 ```js
 import { throttle } from 'lodash-es';
@@ -91,7 +91,7 @@ const updatePrice = throttle((newPrice) => {
 socket.on('price', updatePrice);
 ```
 
-### Optimizaciones especificas de Vue3
+### Optimizaciones específicas de Vue3
 
 Algunas utilidades de Vue3 proporcionan optimizaciones de rendimiento, como v-memo, aunque personalmente lo uso raramente.
 
@@ -102,7 +102,7 @@ Algunas utilidades de Vue3 proporcionan optimizaciones de rendimiento, como v-me
   v-memo="[row.price, row.volume]">  // Solo re-renderizar cuando estos campos cambien
 </tr>
 
-// 2. Congelar datos estaticos, evitar overhead de reactividad
+// 2. Congelar datos estáticos, evitar overhead de reactividad
 const staticData = Object.freeze(largeDataArray)
 
 // 3. shallowRef para arrays grandes
@@ -112,7 +112,7 @@ const tableData = shallowRef([...])  // Solo rastrear el array, no los objetos i
 <tr v-for="row in data" :key="row.id">  // key estable
 ```
 
-### Optimizacion de renderizado DOM
+### Optimización de renderizado DOM
 
 ```scss
 // Usar CSS transform en vez de top/left
@@ -129,23 +129,23 @@ const tableData = shallowRef([...])  // Solo rastrear el array, no los objetos i
 
 ---
 
-## Resultados de la optimizacion (Result)
+## Resultados de la optimización (Result)
 
 ### Comparativa de rendimiento
 
-| Indicador  | Antes      | Despues     | Mejora   |
+| Indicador  | Antes      | Después     | Mejora   |
 | ---------- | ---------- | ----------- | -------- |
 | Nodos DOM  | 10,000+    | 20-30       | ↓ 99.7%  |
 | Memoria    | 150-200 MB | 30-40 MB    | ↓ 80%    |
 | Primer renderizado | 3-5s | 0.3-0.5s   | ↑ 90%    |
 | FPS scroll | < 20       | 55-60       | ↑ 200%   |
-| Respuesta de actualizacion | 500-800 ms | 16-33 ms | ↑ 95% |
+| Respuesta de actualización | 500-800 ms | 16-33 ms | ↑ 95% |
 
 ---
 
 ## Puntos clave para entrevistas
 
-### Preguntas de extension frecuentes
+### Preguntas de extensión frecuentes
 
 **P: Si no puedes usar bibliotecas de terceros?**
 R: Implementar la logica central de Virtual Scroll manualmente:
@@ -165,15 +165,15 @@ const paddingTop = startIndex * itemHeight;
 const paddingBottom = (allItems.length - endIndex) * itemHeight;
 ```
 
-**P: Cuales son las desventajas de Virtual Scroll?**
+**P: Cuáles son las desventajas de Virtual Scroll?**
 R: Trade-offs a considerar:
 
 ```markdown
 ❌ Desventajas
-├─ No se puede usar busqueda nativa del navegador (Ctrl+F)
+├─ No se puede usar búsqueda nativa del navegador (Ctrl+F)
 ├─ No se puede usar "seleccionar todo" (requiere tratamiento especial)
-├─ Alta complejidad de implementacion
-├─ Requiere altura fija o calculo previo de altura
+├─ Alta complejidad de implementación
+├─ Requiere altura fija o cálculo previo de altura
 └─ Accesibilidad requiere tratamiento adicional
 
 ✅ Escenarios adecuados
@@ -184,13 +184,13 @@ R: Trade-offs a considerar:
 
 ❌ Escenarios no adecuados
 ├─ Volumen de datos < 50 (sobrediseno)
-├─ Altura variable (dificil implementacion)
-├─ Mucha interaccion (seleccion multiple, arrastrar)
+├─ Altura variable (difícil implementación)
+├─ Mucha interaccion (selección multiple, arrastrar)
 └─ Necesidad de imprimir tabla completa
 ```
 
-**P: Como optimizar listas con alturas desiguales?**
-R: Usar Virtual Scroll con altura dinamica:
+**P: Cómo optimizar listas con alturas desiguales?**
+R: Usar Virtual Scroll con altura dinámica:
 
 ```javascript
 // Opcion 1: Altura estimada + medicion real
@@ -204,7 +204,7 @@ onMounted(() => {
   });
 });
 
-// Opcion 2: Usar paquete que soporte altura dinamica
+// Opcion 2: Usar paquete que soporte altura dinámica
 <DynamicScroller
   :items="items"
   :min-item-size="50"
@@ -214,20 +214,20 @@ onMounted(() => {
 
 ---
 
-## Comparativa tecnica
+## Comparativa técnica
 
-### Virtual Scroll vs Paginacion
+### Virtual Scroll vs Paginación
 
-| Aspecto    | Virtual Scroll     | Paginacion tradicional |
+| Aspecto    | Virtual Scroll     | Paginación tradicional |
 | ---------- | ------------------ | ---------------------- |
-| Experiencia | Scroll continuo (mejor) | Requiere cambiar pagina (interrupcion) |
-| Rendimiento | Solo renderiza area visible | Renderiza toda la pagina |
-| Dificultad | Mas complejo       | Simple                 |
-| SEO        | Menos favorable    | Mas favorable          |
+| Experiencia | Scroll continuo (mejor) | Requiere cambiar página (interrupcion) |
+| Rendimiento | Solo renderiza area visible | Renderiza toda la página |
+| Dificultad | Más complejo       | Simple                 |
+| SEO        | Menos favorable    | Más favorable          |
 | Accesibilidad | Tratamiento especial | Soporte nativo       |
 
 **Recomendaciones:**
 
 - Sistemas back-office, Dashboard → Virtual Scroll
-- Sitios web publicos, blogs → Paginacion tradicional
-- Solucion hibrida: Virtual Scroll + boton "Cargar mas"
+- Sitios web públicos, blogs → Paginación tradicional
+- Solución híbrida: Virtual Scroll + boton "Cargar más"

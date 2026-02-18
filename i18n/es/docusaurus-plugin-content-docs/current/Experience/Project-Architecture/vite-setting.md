@@ -1,15 +1,15 @@
 ---
 id: project-architecture-vite-setting
-title: 'Configuracion de Vite y sistema multi-tenant'
+title: 'Configuración de Vite y sistema multi-tenant'
 slug: /experience/project-architecture/vite-setting
 tags: [Experience, Interview, Project-Architecture]
 ---
 
-> Como gestionar un sistema multi-tenant de 27 plantillas de marca con Vite, implementando compilacion dinamica y aislamiento de entornos.
+> Cómo gestionar un sistema multi-tenant de 27 plantillas de marca con Vite, implementando compilación dinámica y aislamiento de entornos.
 
 ---
 
-## 1. Carga dinamica de las rutas de plantilla correspondientes mediante SiteKey
+## 1. Carga dinámica de las rutas de plantilla correspondientes mediante SiteKey
 
 ```typescript
 function writeBuildRouter() {
@@ -39,19 +39,19 @@ function writeBuildRouter() {
 }
 ```
 
-- Durante el build, las rutas de plantilla correspondientes se cargan dinamicamente mediante SiteKey
+- Durante el build, las rutas de plantilla correspondientes se cargan dinámicamente mediante SiteKey
 - Se utiliza la variable de entorno `SITE_KEY` para seleccionar la plantilla a compilar
-- Un unico repositorio gestiona multiples plantillas, evitando codigo duplicado
+- Un único repositorio gestiona múltiples plantillas, evitando código duplicado
 
-## 2. Sistema de inyeccion de variables de entorno personalizadas
+## 2. Sistema de inyección de variables de entorno personalizadas
 
-## 3. Integracion de TailwindCSS y diseno de breakpoints RWD
+## 3. Integración de TailwindCSS y diseño de breakpoints RWD
 
-## 4. Configuracion de Proxy del entorno de desarrollo
+## 4. Configuración de Proxy del entorno de desarrollo
 
-## 5. Integracion del plugin Vite de Vue i18n
+## 5. Integración del plugin Vite de Vue i18n
 
-## 6. Configuracion de compatibilidad
+## 6. Configuración de compatibilidad
 
 ```js
       target: {
@@ -61,4 +61,4 @@ function writeBuildRouter() {
 ```
 
 - Control preciso de compatibilidad del navegador
-- Equilibrio entre caracteristicas modernas y compatibilidad
+- Equilibrio entre características modernas y compatibilidad

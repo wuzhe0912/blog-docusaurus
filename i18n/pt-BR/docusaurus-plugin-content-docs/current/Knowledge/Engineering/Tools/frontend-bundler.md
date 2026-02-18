@@ -4,28 +4,28 @@ title: Bundler
 slug: /frontend-bundler
 ---
 
-## Por que um bundler e necessario no desenvolvimento front-end? Qual e sua funcao principal?
+## Por que um bundler é necessário no desenvolvimento front-end? Qual é sua função principal?
 
 > Why is a bundler necessary for front-end development? What is its primary function?
 
-### Gerenciamento de modulos e plugins
+### Gerenciamento de módulos e plugins
 
-Antes da existencia de ferramentas de empacotamento front-end, usavamos CDN ou tags `<script>` para carregar nossos arquivos (incluindo js, css, html). Essa abordagem, alem do desperdicio de performance (HTTP pode precisar de multiplas requisicoes), tambem era propensa a erros frequentes causados por diferencas na ordem de carregamento, dificeis de diagnosticar. O bundler ajuda os desenvolvedores a combinar multiplos arquivos em um unico ou poucos arquivos. Esse gerenciamento modular, alem de facilitar a manutencao no desenvolvimento, tambem torna futuras extensoes mais convenientes. Por outro lado, como os arquivos sao combinados, o numero de requisicoes HTTP tambem e reduzido, melhorando naturalmente a performance.
+Antes da existência de ferramentas de empacotamento front-end, usavamos CDN ou tags `<script>` para carregar nossos arquivos (incluindo js, css, html). Essa abordagem, além do desperdício de performance (HTTP pode precisar de múltiplas requisições), também era propensa a erros frequentes causados por diferenças na ordem de carregamento, difíceis de diagnosticar. O bundler ajuda os desenvolvedores a combinar múltiplos arquivos em um único ou poucos arquivos. Esse gerenciamento modular, além de facilitar a manutenção no desenvolvimento, também torna futuras extensões mais convenientes. Por outro lado, como os arquivos são combinados, o número de requisições HTTP também é reduzido, melhorando naturalmente a performance.
 
-### Traducao e compatibilidade
+### Tradução e compatibilidade
 
-Os fabricantes de navegadores nao conseguem acompanhar completamente o lancamento de novas sintaxes, e as diferencas entre sintaxes novas e antigas podem causar erros na implementacao. Para melhor compatibilidade entre ambas, precisamos do bundler para converter novas sintaxes em antigas, garantindo que o codigo funcione corretamente. O caso tipico e o Babel, que converte sintaxe ES6+ para ES5.
+Os fabricantes de navegadores não conseguem acompanhar completamente o lançamento de novas sintaxes, e as diferenças entre sintaxes novas e antigas podem causar erros na implementação. Para melhor compatibilidade entre ambas, precisamos do bundler para converter novas sintaxes em antigas, garantindo que o código funcione corretamente. O caso típico é o Babel, que converte sintaxe ES6+ para ES5.
 
-### Otimizacao de recursos
+### Otimização de recursos
 
-Para reduzir efetivamente o tamanho do projeto e melhorar a otimizacao de performance, configurar o bundler para processamento e a abordagem mainstream atualmente:
+Para reduzir efetivamente o tamanho do projeto e melhorar a otimização de performance, configurar o bundler para processamento é a abordagem mainstream atualmente:
 
-- Minification (minificacao, ofuscacao): comprimir codigo JavaScript, CSS e HTML, removendo espacos, comentarios e indentacao desnecessarios para reduzir o tamanho do arquivo (afinal, e para leitura de maquina, nao humana).
-- Tree Shaking: remover codigo nao utilizado ou inacessivel, reduzindo ainda mais o tamanho do bundle.
-- Code Splitting: dividir o codigo em varios blocos pequenos (chunks) para carregamento sob demanda, melhorando ao maximo a velocidade de carregamento da pagina.
-- Lazy Loading: carregamento sob demanda - carregar apenas quando o usuario precisa, reduzindo o tempo de carregamento inicial (tambem em prol da experiencia do usuario).
-- Cache de longo prazo: adicionar hash do conteudo ao nome do arquivo do bundle, permitindo uso permanente do cache do navegador enquanto o conteudo nao mudar. Isso garante que em cada deploy, apenas arquivos alterados sejam atualizados, sem recarregar tudo.
+- Minification (minificação, ofuscação): comprimir código JavaScript, CSS e HTML, removendo espaços, comentários e indentação desnecessários para reduzir o tamanho do arquivo (afinal, é para leitura de máquina, não humana).
+- Tree Shaking: remover código não utilizado ou inacessível, reduzindo ainda mais o tamanho do bundle.
+- Code Splitting: dividir o código em vários blocos pequenos (chunks) para carregamento sob demanda, melhorando ao máximo a velocidade de carregamento da página.
+- Lazy Loading: carregamento sob demanda - carregar apenas quando o usuário precisa, reduzindo o tempo de carregamento inicial (também em prol da experiência do usuário).
+- Cache de longo prazo: adicionar hash do conteúdo ao nome do arquivo do bundle, permitindo uso permanente do cache do navegador enquanto o conteúdo não mudar. Isso garante que em cada deploy, apenas arquivos alterados sejam atualizados, sem recarregar tudo.
 
 ### Ambiente de deploy
 
-Na pratica de deploy, os ambientes sao separados em desenvolvimento, teste e producao. Para garantir comportamento consistente, geralmente configuramos o bundler para garantir o carregamento correto em cada ambiente correspondente.
+Na prática de deploy, os ambientes são separados em desenvolvimento, teste e produção. Para garantir comportamento consistente, geralmente configuramos o bundler para garantir o carregamento correto em cada ambiente correspondente.

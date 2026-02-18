@@ -1,6 +1,6 @@
 ---
 id: performance-lv3-web-worker
-title: '[Lv3] Aplicacion de Web Worker: Computo en segundo plano sin bloquear la UI'
+title: '[Lv3] Aplicación de Web Worker: Computo en segundo plano sin bloquear la UI'
 slug: /experience/performance/lv3-web-worker
 tags: [Experience, Interview, Performance, Lv3]
 ---
@@ -11,10 +11,10 @@ tags: [Experience, Interview, Performance, Lv3]
 
 ### Contexto del problema
 
-JavaScript es originalmente **de hilo unico**, todo el codigo se ejecuta en el hilo principal:
+JavaScript es originalmente **de hilo único**, todo el código se ejecuta en el hilo principal:
 
 ```javascript
-// ❌ Operacion costosa bloquea el hilo principal
+// ❌ Operación costosa bloquea el hilo principal
 function heavyComputation() {
   for (let i = 0; i < 10000000000; i++) {
     // Calculo complejo
@@ -22,17 +22,17 @@ function heavyComputation() {
   return result;
 }
 
-// Al ejecutarse, toda la pagina se congela
+// Al ejecutarse, toda la página se congela
 const result = heavyComputation(); // UI no puede interactuar
 ```
 
 **Problemas:**
 
-- La pagina se congela, el usuario no puede hacer clic ni desplazarse
+- La página se congela, el usuario no puede hacer clic ni desplazarse
 - Las animaciones se detienen
 - Experiencia de usuario muy mala
 
-### Solucion con Web Worker
+### Solución con Web Worker
 
 Web Worker proporciona capacidad **multi-hilo**, permitiendo ejecutar tareas costosas en segundo plano:
 
@@ -40,7 +40,7 @@ Web Worker proporciona capacidad **multi-hilo**, permitiendo ejecutar tareas cos
 // ✅ Usar Worker para ejecutar en segundo plano
 const worker = new Worker('worker.js');
 
-// El hilo principal no se bloquea, la pagina sigue siendo interactiva
+// El hilo principal no se bloquea, la página sigue siendo interactiva
 worker.postMessage({ data: largeData });
 
 worker.onmessage = (e) => {
@@ -50,7 +50,7 @@ worker.onmessage = (e) => {
 
 ---
 
-## Escenario 1: Procesamiento de grandes volumenes de datos
+## Escenario 1: Procesamiento de grandes volúmenes de datos
 
 ```javascript
 // main.js
@@ -77,15 +77,15 @@ self.onmessage = function (e) {
 };
 ```
 
-## Escenario 2: Procesamiento de imagenes
+## Escenario 2: Procesamiento de imágenes
 
 Procesamiento de filtros, compresion y operaciones de pixeles sin congelar la UI.
 
 ## Escenario 3: Calculos complejos
 
-Operaciones matematicas (calculo de numeros primos, cifrado/descifrado)
+Operaciones matematicas (calculo de números primos, cifrado/descifrado)
 Calculo de hash de archivos grandes
-Analisis de datos y estadisticas
+Analisis de datos y estadísticas
 
 ## Limitaciones y precauciones
 
@@ -108,20 +108,20 @@ Analisis de datos y estadisticas
 // 1. Calculos simples y rapidos (crear un Worker tiene overhead)
 const result = 1 + 1; // No necesita Worker
 
-// 2. Comunicacion frecuente con el hilo principal
-// El costo de comunicacion puede superar la ventaja del multi-hilo
+// 2. Comunicación frecuente con el hilo principal
+// El costo de comunicación puede superar la ventaja del multi-hilo
 
 // Casos donde SI conviene usar Worker
-// 1. Una sola operacion de larga duracion
+// 1. Una sola operación de larga duración
 const result = calculatePrimes(1000000);
 
-// 2. Procesamiento por lotes de grandes volumenes
+// 2. Procesamiento por lotes de grandes volúmenes
 const processed = largeArray.map(complexOperation);
 ```
 
 ---
 
-## Caso de aplicacion real
+## Caso de aplicación real
 
 ### Caso: Cifrado de datos de juego
 
@@ -150,7 +150,7 @@ function encryptPlayerData(data) {
 }
 
 const encrypted = await encryptPlayerData(sensitiveData);
-// La pagina no se congela, el usuario puede seguir interactuando
+// La página no se congela, el usuario puede seguir interactuando
 
 // crypto-worker.js - Hilo Worker
 self.onmessage = function (e) {
@@ -198,7 +198,7 @@ filterWorker.onmessage = (e) => {
 
 ### Preguntas frecuentes
 
-**P1: Como se comunican Web Worker y el hilo principal?**
+**P1: Cómo se comunican Web Worker y el hilo principal?**
 
 R: Mediante `postMessage` y `onmessage`:
 
@@ -215,15 +215,15 @@ self.postMessage({ type: 'RESULT', result: processedData });
 // ❌ No se pueden enviar: Function, elementos DOM, Symbol
 ```
 
-**P2: Cual es el overhead de rendimiento de Web Worker?**
+**P2: Cuál es el overhead de rendimiento de Web Worker?**
 
 R: Principalmente dos overheads:
 
 ```javascript
-// 1. Overhead de creacion del Worker (~30-50ms)
+// 1. Overhead de creación del Worker (~30-50ms)
 const worker = new Worker('worker.js'); // Necesita cargar archivo
 
-// 2. Overhead de comunicacion (copia de datos)
+// 2. Overhead de comunicación (copia de datos)
 worker.postMessage(largeData); // Copiar datos grandes toma tiempo
 
 // Soluciones:
@@ -233,20 +233,20 @@ const buffer = new ArrayBuffer(1024 * 1024); // 1MB
 worker.postMessage(buffer, [buffer]); // Transferir propiedad
 ```
 
-**P3: Que son los Transferable Objects?**
+**P3: Qué son los Transferable Objects?**
 
 R: Transferir la propiedad de los datos en lugar de copiarlos:
 
 ```javascript
-// ❌ Metodo normal: Copiar datos (lento)
+// ❌ Método normal: Copiar datos (lento)
 const largeArray = new Uint8Array(10000000); // 10MB
 worker.postMessage(largeArray); // Copia 10MB (costoso)
 
-// ✅ Transferable: Transferir propiedad (rapido)
+// ✅ Transferable: Transferir propiedad (rápido)
 const buffer = largeArray.buffer;
 worker.postMessage(buffer, [buffer]); // Transferir propiedad (milisegundos)
 
-// Nota: Despues de transferir, el hilo principal ya no puede usar esos datos
+// Nota: Después de transferir, el hilo principal ya no puede usar esos datos
 console.log(largeArray.length); // 0 (ya transferido)
 ```
 
@@ -271,7 +271,7 @@ Es una operacion costosa (> 50ms)?
 **Escenarios adecuados:**
 
 - Cifrado/descifrado
-- Procesamiento de imagenes (filtros, compresion)
+- Procesamiento de imágenes (filtros, compresion)
 - Ordenamiento/filtrado de grandes datos
 - Calculos matematicos complejos
 - Parseo de archivos (JSON, CSV)
@@ -279,46 +279,46 @@ Es una operacion costosa (> 50ms)?
 **Escenarios no adecuados:**
 
 - Calculos simples (overhead mayor que beneficio)
-- Comunicacion frecuente necesaria
+- Comunicación frecuente necesaria
 - Manipulacion de DOM necesaria
 - APIs no soportadas necesarias
 
-**P5: Que tipos de Web Worker existen?**
+**P5: Qué tipos de Web Worker existen?**
 
 R: Tres tipos:
 
 ```javascript
 // 1. Dedicated Worker (Dedicado)
 const worker = new Worker('worker.js');
-// Solo se comunica con la pagina que lo creo
+// Solo se comunica con la página que lo creo
 
 // 2. Shared Worker (Compartido)
 const sharedWorker = new SharedWorker('shared-worker.js');
-// Puede ser compartido por multiples paginas/pestanas
+// Puede ser compartido por múltiples páginas/pestanas
 
 // 3. Service Worker (De servicio)
 navigator.serviceWorker.register('sw.js');
 // Usado para cache, soporte offline, notificaciones push
 ```
 
-**Comparacion:**
+**Comparación:**
 
-| Caracteristica | Dedicated  | Shared           | Service    |
+| Característica | Dedicated  | Shared           | Service    |
 | -------------- | ---------- | ---------------- | ---------- |
-| Compartibilidad | Pagina unica | Multiples paginas | Todo el sitio |
-| Ciclo de vida  | Se cierra con la pagina | Al cerrar la ultima pagina | Independiente de la pagina |
-| Uso principal  | Computo en segundo plano | Comunicacion entre paginas | Cache, offline |
+| Compartibilidad | Página única | Múltiples páginas | Todo el sitio |
+| Ciclo de vida  | Se cierra con la página | Al cerrar la última página | Independiente de la página |
+| Uso principal  | Computo en segundo plano | Comunicación entre páginas | Cache, offline |
 
-**P6: Como depurar Web Workers?**
+**P6: Cómo depurar Web Workers?**
 
 R: Chrome DevTools lo soporta:
 
 ```javascript
 // 1. En el panel Sources se pueden ver los archivos Worker
 // 2. Se pueden establecer breakpoints
-// 3. Se puede ejecutar codigo en la Console
+// 3. Se puede ejecutar código en la Console
 
-// Consejo practico: Usar console en el Worker
+// Consejo práctico: Usar console en el Worker
 self.addEventListener('message', (e) => {
   console.log('Worker received:', e.data);
   // Visible en la Console de DevTools
@@ -338,25 +338,25 @@ worker.onerror = (error) => {
 
 ### Datos de prueba real (procesando 1 millon de registros)
 
-| Metodo                  | Tiempo    | UI se congela? | Pico de memoria |
+| Método                  | Tiempo    | UI se congela? | Pico de memoria |
 | ----------------------- | --------- | -------------- | --------------- |
-| Hilo principal (sincrono) | 2.5s    | Completamente congelado | 250 MB |
+| Hilo principal (síncrono) | 2.5s    | Completamente congelado | 250 MB |
 | Hilo principal (Time Slicing) | 3.2s | Lag ocasional  | 280 MB          |
 | Web Worker              | 2.3s      | Completamente fluido | 180 MB      |
 
-**Conclusion:**
+**Conclusión:**
 
-- Web Worker no solo no congela la UI, sino que es mas rapido gracias al paralelismo multi-nucleo
-- Menor uso de memoria (el hilo principal no necesita retener grandes volumenes de datos)
+- Web Worker no solo no congela la UI, sino que es más rápido gracias al paralelismo multi-núcleo
+- Menor uso de memoria (el hilo principal no necesita retener grandes volúmenes de datos)
 
 ---
 
-## Tecnologias relacionadas
+## Tecnologías relacionadas
 
 ### Web Worker vs otras soluciones
 
 ```javascript
-// 1. setTimeout (pseudo-asincrono)
+// 1. setTimeout (pseudo-asíncrono)
 setTimeout(() => heavyTask(), 0);
 // ❌ Sigue en el hilo principal, causara lag
 
@@ -369,7 +369,7 @@ worker.postMessage(task);
 // ✅ Verdadero paralelismo, no bloquea UI
 ```
 
-### Avanzado: Simplificar comunicacion con Comlink
+### Avanzado: Simplificar comunicación con Comlink
 
 [Comlink](https://github.com/GoogleChromeLabs/comlink) permite usar Workers como funciones normales:
 
@@ -384,7 +384,7 @@ import * as Comlink from 'comlink';
 const worker = new Worker('worker.js');
 const api = Comlink.wrap(worker);
 
-// Usar como una llamada a funcion normal
+// Usar como una llamada a función normal
 const result = await api.add(1, 2);
 console.log(result); // 3
 ```
@@ -395,9 +395,9 @@ console.log(result); // 3
 
 **Preparacion para entrevistas:**
 
-1. Entender "por que se necesitan Workers" (problema de hilo unico)
+1. Entender "por que se necesitan Workers" (problema de hilo único)
 2. Saber "cuando usarlos" (operaciones costosas)
-3. Comprender "mecanismo de comunicacion" (postMessage)
+3. Comprender "mecanismo de comunicación" (postMessage)
 4. Conocer "limitaciones" (no puede manipular DOM)
 5. Haber implementado al menos un caso con Worker
 
@@ -412,7 +412,7 @@ console.log(result); // 3
 
 ## Temas relacionados
 
-- [Optimizacion a nivel de rutas →](/docs/experience/performance/lv1-route-optimization)
-- [Optimizacion de carga de imagenes →](/docs/experience/performance/lv1-image-optimization)
-- [Implementacion de Virtual Scroll →](/docs/experience/performance/lv3-virtual-scroll)
-- [Estrategias de optimizacion para grandes volumenes de datos →](/docs/experience/performance/lv3-large-data-optimization)
+- [Optimización a nivel de rutas →](/docs/experience/performance/lv1-route-optimization)
+- [Optimización de carga de imágenes →](/docs/experience/performance/lv1-image-optimization)
+- [Implementación de Virtual Scroll →](/docs/experience/performance/lv3-virtual-scroll)
+- [Estrategias de optimización para grandes volúmenes de datos →](/docs/experience/performance/lv3-large-data-optimization)

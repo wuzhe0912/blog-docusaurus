@@ -1,33 +1,33 @@
 ---
 id: login-lv1-jwt-structure
-title: '[Lv1] Qual e a estrutura de um JWT?'
+title: '[Lv1] Qual é a estrutura de um JWT?'
 slug: /experience/login/lv1-jwt-structure
 tags: [Experience, Interview, Login, Lv1, JWT]
 ---
 
-> O entrevistador costuma perguntar em seguida: "Como e a aparencia de um JWT? Por que foi projetado assim?" Entender a estrutura, o metodo de codificacao e o fluxo de verificacao permite responder rapidamente.
+> O entrevistador costuma perguntar em seguida: "Como e a aparencia de um JWT? Por que foi projetado assim?" Entender a estrutura, o método de codificação e o fluxo de verificação permite responder rapidamente.
 
 ---
 
-## 1. Visao geral
+## 1. Visão geral
 
-JWT (JSON Web Token) e um formato de Token **autocontido (self-contained)**, usado para transmitir informacoes de forma segura entre duas partes. O conteudo e composto por tres partes de strings, concatenadas com `.`:
+JWT (JSON Web Token) é um formato de Token **autocontido (self-contained)**, usado para transmitir informações de forma segura entre duas partes. O conteúdo é composto por três partes de strings, concatenadas com `.`:
 
 ```
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkphbmUgRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
 ```
 
-Separando, temos tres JSONs codificados em Base64URL:
+Separando, temos três JSONs codificados em Base64URL:
 
 1. **Header**: descreve o algoritmo e o tipo do Token.
-2. **Payload**: armazena informacoes do usuario e claims (declaracoes).
-3. **Signature**: assinatura com chave secreta, garantindo que o conteudo nao foi alterado.
+2. **Payload**: armazena informações do usuário e claims (declarações).
+3. **Signature**: assinatura com chave secreta, garantindo que o conteúdo não foi alterado.
 
 ---
 
 ## 2. Detalhes de Header, Payload e Signature
 
-### 2.1 Header (Cabecalho)
+### 2.1 Header (Cabeçalho)
 
 ```json
 {
@@ -39,7 +39,7 @@ Separando, temos tres JSONs codificados em Base64URL:
 - `alg`: algoritmo de assinatura, por exemplo `HS256` (HMAC + SHA-256), `RS256` (RSA + SHA-256).
 - `typ`: tipo do Token, geralmente `JWT`.
 
-### 2.2 Payload (Carga util)
+### 2.2 Payload (Carga útil)
 
 ```json
 {
@@ -51,19 +51,19 @@ Separando, temos tres JSONs codificados em Base64URL:
 }
 ```
 
-- **Registered Claims (reservadas oficialmente, mas nao obrigatorias)**:
+- **Registered Claims (reservadas oficialmente, mas não obrigatórias)**:
   - `iss` (Issuer): emissor
-  - `sub` (Subject): assunto (geralmente o ID do usuario)
-  - `aud` (Audience): destinatario
-  - `exp` (Expiration Time): tempo de expiracao (Unix timestamp, em segundos)
-  - `nbf` (Not Before): invalido antes deste momento
+  - `sub` (Subject): assunto (geralmente o ID do usuário)
+  - `aud` (Audience): destinatário
+  - `exp` (Expiration Time): tempo de expiração (Unix timestamp, em segundos)
+  - `nbf` (Not Before): inválido antes deste momento
   - `iat` (Issued At): momento da emissao
-  - `jti` (JWT ID): identificador unico do Token
-- **Public / Private Claims**: voce pode adicionar campos personalizados (como `role`, `permissions`), mas evite torna-los excessivamente longos.
+  - `jti` (JWT ID): identificador único do Token
+- **Public / Private Claims**: você pode adicionar campos personalizados (como `role`, `permissions`), mas evite torna-los excessivamente longos.
 
 ### 2.3 Signature (Assinatura)
 
-Fluxo de geracao da assinatura:
+Fluxo de geração da assinatura:
 
 ```text
 signature = HMACSHA256(
@@ -73,49 +73,49 @@ signature = HMACSHA256(
 ```
 
 - Utiliza uma chave secreta (`secret` ou chave privada) para assinar as duas primeiras partes.
-- O servidor recalcula a assinatura ao receber o Token. Se coincidir, significa que o Token nao foi adulterado e foi emitido por uma fonte legitima.
+- O servidor recalcula a assinatura ao receber o Token. Se coincidir, significa que o Token não foi adulterado e foi emitido por uma fonte legítima.
 
-> Observacao: JWT garante apenas a integridade dos dados (Integrity), nao a confidencialidade (Confidentiality), a menos que haja criptografia adicional.
+> Observação: JWT garante apenas a integridade dos dados (Integrity), não a confidencialidade (Confidentiality), a menos que haja criptografia adicional.
 
 ---
 
-## 3. O que e a codificacao Base64URL?
+## 3. O que é a codificação Base64URL?
 
-JWT utiliza **Base64URL** em vez de Base64, com as seguintes diferencas:
+JWT utiliza **Base64URL** em vez de Base64, com as seguintes diferenças:
 
 - Substitui `+` por `-` e `/` por `_`.
 - Remove o `=` final.
 
-A vantagem e que o Token pode ser colocado com seguranca em URLs, Cookies ou Headers, sem problemas causados por caracteres especiais.
+A vantagem é que o Token pode ser colocado com segurança em URLs, Cookies ou Headers, sem problemas causados por caracteres especiais.
 
 ---
 
-## 4. Diagrama simplificado do fluxo de verificacao
+## 4. Diagrama simplificado do fluxo de verificação
 
 1. O cliente inclui no Header `Authorization: Bearer <JWT>`.
 2. O servidor ao receber:
    - Analisa o Header e o Payload.
    - Obtem o algoritmo especificado em `alg`.
-   - Recalcula a assinatura usando a chave compartilhada ou chave publica.
+   - Recalcula a assinatura usando a chave compartilhada ou chave pública.
    - Compara se a assinatura confere e verifica campos de tempo como `exp` e `nbf`.
-3. So apos a verificacao bem-sucedida o conteudo do Payload pode ser confiavel.
+3. So após a verificação bem-sucedida o conteúdo do Payload pode ser confiável.
 
 ---
 
 ## 5. Modelo de resposta para entrevista
 
-> "JWT e composto por tres partes: Header, Payload e Signature, concatenadas com `.`.
-> O Header descreve o algoritmo e o tipo; o Payload armazena informacoes do usuario e alguns campos padrao, como `iss`, `sub`, `exp`; a Signature usa uma chave secreta para assinar as duas primeiras partes, confirmando que o conteudo nao foi alterado.
-> O conteudo e JSON codificado em Base64URL, mas nao e criptografado, apenas codificado, entao dados sensiveis nao devem ser colocados diretamente nele. O servidor recalcula a assinatura para comparacao ao receber o Token. Se for identica e nao estiver expirado, o Token e valido."
+> "JWT é composto por três partes: Header, Payload e Signature, concatenadas com `.`.
+> O Header descreve o algoritmo e o tipo; o Payload armazena informações do usuário e alguns campos padrão, como `iss`, `sub`, `exp`; a Signature usa uma chave secreta para assinar as duas primeiras partes, confirmando que o conteúdo não foi alterado.
+> O conteúdo é JSON codificado em Base64URL, mas não é criptografado, apenas codificado, então dados sensíveis não devem ser colocados diretamente nele. O servidor recalcula a assinatura para comparação ao receber o Token. Se for idêntica e não estiver expirado, o Token é válido."
 
 ---
 
-## 6. Lembretes para extensao na entrevista
+## 6. Lembretes para extensão na entrevista
 
-- **Seguranca**: o Payload pode ser decodificado; nao coloque senhas, cartoes de credito ou outras informacoes sensiveis.
-- **Expiracao e renovacao**: geralmente combinado com Access Token de curta duracao + Refresh Token de longa duracao.
-- **Algoritmos de assinatura**: mencione a diferenca entre simetricos (HMAC) e assimetricos (RSA, ECDSA).
-- **Por que nao pode ser infinitamente longo?**: Tokens muito grandes aumentam o custo de transmissao na rede e podem ser rejeitados pelo navegador.
+- **Seguranca**: o Payload pode ser decodificado; não coloque senhas, cartoes de crédito ou outras informações sensíveis.
+- **Expiracao e renovacao**: geralmente combinado com Access Token de curta duração + Refresh Token de longa duração.
+- **Algoritmos de assinatura**: mencione a diferença entre simétricos (HMAC) e assimétricos (RSA, ECDSA).
+- **Por que não pode ser infinitamente longo?**: Tokens muito grandes aumentam o custo de transmissão na rede e podem ser rejeitados pelo navegador.
 
 ---
 

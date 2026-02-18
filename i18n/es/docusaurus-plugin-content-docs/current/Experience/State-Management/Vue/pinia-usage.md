@@ -1,25 +1,25 @@
 ---
 id: state-management-vue-pinia-usage
-title: 'Practica de uso de Pinia'
+title: 'Práctica de uso de Pinia'
 slug: /experience/state-management/vue/pinia-usage
 tags: [Experience, Interview, State-Management, Vue]
 ---
 
-> En un proyecto de plataforma multimarca, formas de uso de Pinia Store en componentes y Composables, asi como patrones de comunicacion entre Stores.
+> En un proyecto de plataforma multimarca, formas de uso de Pinia Store en componentes y Composables, así como patrones de comunicación entre Stores.
 
 ---
 
 ## 1. Eje principal de respuesta en entrevista
 
 1. **Uso en componentes**: Usar `storeToRefs` para mantener la reactividad, Actions se pueden desestructurar directamente.
-2. **Composicion con Composables**: Componer multiples Stores en Composables, encapsulando la logica de negocio.
-3. **Comunicacion entre Stores**: Se recomienda componer en Composable, evitando dependencias circulares.
+2. **Composicion con Composables**: Componer múltiples Stores en Composables, encapsulando la logica de negocio.
+3. **Comunicación entre Stores**: Se recomienda componer en Composable, evitando dependencias circulares.
 
 ---
 
 ## 2. Uso del Store en componentes
 
-### 2.1 Uso basico
+### 2.1 Uso básico
 
 ```vue
 <script setup lang="ts">
@@ -39,7 +39,7 @@ console.log(authStore.isLogin);
 </script>
 ```
 
-### 2.2 Desestructuracion con `storeToRefs` (importante!)
+### 2.2 Desestructuración con `storeToRefs` (importante!)
 
 ```vue
 <script setup lang="ts">
@@ -59,10 +59,10 @@ const { setToptVerified } = authStore;
 </script>
 ```
 
-**Por que la desestructuracion directa pierde la reactividad?**
+**Por que la desestructuración directa pierde la reactividad?**
 
 - El state y los getters de Pinia son reactivos
-- La desestructuracion directa rompe la conexion reactiva
+- La desestructuración directa rompe la conexión reactiva
 - `storeToRefs` convierte cada propiedad en un `ref`, manteniendo la reactividad
 - Las Actions en si no son reactivas, por lo que se pueden desestructurar directamente
 
@@ -80,7 +80,7 @@ import { useProductStore } from 'stores/productStore';
 import { storeToRefs } from 'pinia';
 
 export function useGame() {
-  // 1. Importar multiples stores
+  // 1. Importar múltiples stores
   const gameStore = useGameStore();
   const productStore = useProductStore();
 
@@ -88,7 +88,7 @@ export function useGame() {
   const { gameState } = storeToRefs(gameStore);
   const { productState } = storeToRefs(productStore);
 
-  // 3. Desestructurar actions (desestructuracion directa)
+  // 3. Desestructurar actions (desestructuración directa)
   const { initAllGameList, updateAllGameList } = gameStore;
 
   // 4. Componer logica
@@ -118,9 +118,9 @@ export function useGame() {
 
 ---
 
-## 4. Comunicacion entre Stores
+## 4. Comunicación entre Stores
 
-### 4.1 Metodo 1: Llamar a otro Store dentro de un Store
+### 4.1 Método 1: Llamar a otro Store dentro de un Store
 
 ```typescript
 import { defineStore } from 'pinia';
@@ -133,7 +133,7 @@ export const useAuthStore = defineStore('authStore', {
       if (status) {
         this.access_token = data.access_token;
 
-        // Llamar al metodo de otro store
+        // Llamar al método de otro store
         const userInfoStore = useUserInfoStore();
         userInfoStore.setStoreUserInfo(data.user);
       }
@@ -142,7 +142,7 @@ export const useAuthStore = defineStore('authStore', {
 });
 ```
 
-### 4.2 Metodo 2: Componer multiples Stores en Composable (recomendado)
+### 4.2 Método 2: Componer múltiples Stores en Composable (recomendado)
 
 ```typescript
 export function useInit() {
@@ -151,7 +151,7 @@ export function useInit() {
   const gameStore = useGameStore();
 
   async function initialize() {
-    // Ejecutar la inicializacion de multiples stores en secuencia
+    // Ejecutar la inicializacion de múltiples stores en secuencia
     await authStore.checkAuth();
     if (authStore.isLogin) {
       await userInfoStore.getUserInfo();
@@ -164,42 +164,42 @@ export function useInit() {
 ```
 
 **Puntos clave de entrevista**:
-- Se recomienda componer multiples Stores en Composable
+- Se recomienda componer múltiples Stores en Composable
 - Evitar dependencias circulares entre Stores
-- Mantener el principio de responsabilidad unica del Store
+- Mantener el principio de responsabilidad única del Store
 
 ---
 
-## 5. Caso practico: Flujo de inicio de sesion de usuario
+## 5. Caso práctico: Flujo de inicio de sesión de usuario
 
-Este es un flujo completo de uso del Store, que abarca la colaboracion de multiples Stores.
+Este es un flujo completo de uso del Store, que abarca la colaboracion de múltiples Stores.
 
 ### 5.1 Diagrama de flujo
 
 ```
-El usuario hace clic en el boton de inicio de sesion
+El usuario hace clic en el botón de inicio de sesión
      |
 Llamar a useAuth().handleLogin()
      |
-Solicitud API de inicio de sesion
+Solicitud API de inicio de sesión
      |
 Exito -> authStore guarda el token
      |
 useUserInfo().getUserInfo()
      |
-userInfoStore guarda la informacion del usuario
+userInfoStore guarda la información del usuario
      |
 useGame().initGameList()
      |
 gameStore guarda la lista de juegos
      |
-Redirigir a la pagina principal
+Redirigir a la página principal
 ```
 
-### 5.2 Implementacion del codigo
+### 5.2 Implementación del código
 
 ```typescript
-// 1. authStore.ts - Gestionar el estado de autenticacion
+// 1. authStore.ts - Gestionar el estado de autenticación
 export const useAuthStore = defineStore('authStore', {
   state: () => ({
     access_token: undefined as string | undefined,
@@ -208,10 +208,10 @@ export const useAuthStore = defineStore('authStore', {
   getters: {
     isLogin: (state) => !!state.access_token,
   },
-  persist: true, // Persistir la informacion de autenticacion
+  persist: true, // Persistir la información de autenticación
 });
 
-// 2. userInfoStore.ts - Gestionar la informacion del usuario
+// 2. userInfoStore.ts - Gestionar la información del usuario
 export const useUserInfoStore = defineStore('useInfoStore', {
   state: () => ({
     info: {} as Response.UserInfo,
@@ -221,10 +221,10 @@ export const useUserInfoStore = defineStore('useInfoStore', {
       this.info = userInfo;
     },
   },
-  persist: false, // No persistir (informacion sensible)
+  persist: false, // No persistir (información sensible)
 });
 
-// 3. useAuth.ts - Componer la logica de autenticacion
+// 3. useAuth.ts - Componer la logica de autenticación
 export function useAuth() {
   const authStore = useAuthStore();
   const { access_token } = storeToRefs(authStore);
@@ -250,7 +250,7 @@ export function useAuth() {
   };
 }
 
-// 4. LoginPage.vue - Pagina de inicio de sesion
+// 4. LoginPage.vue - Página de inicio de sesión
 <script setup lang="ts">
 import { useAuth } from 'src/common/hooks/useAuth';
 import { useUserInfo } from 'src/common/composables/useUserInfo';
@@ -263,14 +263,14 @@ const { initGameList } = useGame();
 const router = useRouter();
 
 const onSubmit = async (formData: LoginForm) => {
-  // Paso 1: Iniciar sesion
+  // Paso 1: Iniciar sesión
   const success = await handleLogin(formData);
   if (success) {
-    // Paso 2: Obtener informacion del usuario
+    // Paso 2: Obtener información del usuario
     await getUserInfo();
     // Paso 3: Inicializar la lista de juegos
     await initGameList();
-    // Paso 4: Redirigir a la pagina principal
+    // Paso 4: Redirigir a la página principal
     router.push('/');
   }
 };
@@ -279,18 +279,18 @@ const onSubmit = async (formData: LoginForm) => {
 
 **Puntos clave de entrevista**:
 
-1. **Separacion de responsabilidades**
-   - `authStore`: Solo gestiona el estado de autenticacion
-   - `userInfoStore`: Solo gestiona la informacion del usuario
-   - `useAuth`: Encapsula la logica de negocio relacionada con la autenticacion
-   - `useUserInfo`: Encapsula la logica de negocio relacionada con la informacion del usuario
+1. **Separación de responsabilidades**
+   - `authStore`: Solo gestiona el estado de autenticación
+   - `userInfoStore`: Solo gestiona la información del usuario
+   - `useAuth`: Encapsula la logica de negocio relacionada con la autenticación
+   - `useUserInfo`: Encapsula la logica de negocio relacionada con la información del usuario
 
 2. **Flujo de datos reactivo**
    - Usar `storeToRefs` para mantener la reactividad
-   - Las actualizaciones del Store activan automaticamente las actualizaciones del componente
+   - Las actualizaciones del Store activan automáticamente las actualizaciones del componente
 
 3. **Estrategia de persistencia**
-   - `authStore` se persiste (el usuario mantiene la sesion despues de refrescar la pagina)
+   - `authStore` se persiste (el usuario mantiene la sesión después de refrescar la página)
    - `userInfoStore` no se persiste (por consideraciones de seguridad)
 
 ---
@@ -299,23 +299,23 @@ const onSubmit = async (formData: LoginForm) => {
 
 ### 6.1 Uso de storeToRefs
 
-**Se puede responder asi:**
+**Se puede responder así:**
 
-> Al usar Pinia Store en componentes, si se quiere desestructurar state y getters, se debe usar `storeToRefs` para mantener la reactividad. La desestructuracion directa rompe la conexion reactiva porque el state y los getters de Pinia son reactivos. `storeToRefs` convierte cada propiedad en un `ref`, manteniendo la reactividad. Las Actions se pueden desestructurar directamente, sin necesidad de `storeToRefs`, porque no son reactivas en si mismas.
+> Al usar Pinia Store en componentes, si se quiere desestructurar state y getters, se debe usar `storeToRefs` para mantener la reactividad. La desestructuración directa rompe la conexión reactiva porque el state y los getters de Pinia son reactivos. `storeToRefs` convierte cada propiedad en un `ref`, manteniendo la reactividad. Las Actions se pueden desestructurar directamente, sin necesidad de `storeToRefs`, porque no son reactivas en si mismas.
 
 **Puntos clave:**
-- Funcion de `storeToRefs`
+- Función de `storeToRefs`
 - Por que se necesita `storeToRefs`
 - Las Actions se pueden desestructurar directamente
 
-### 6.2 Comunicacion entre Stores
+### 6.2 Comunicación entre Stores
 
-**Se puede responder asi:**
+**Se puede responder así:**
 
-> La comunicacion entre Stores tiene dos formas: 1) Llamar a otro Store dentro de un Store, pero hay que tener cuidado de evitar dependencias circulares; 2) Componer multiples Stores en Composable, esta es la forma recomendada. La mejor practica es mantener el principio de responsabilidad unica del Store, encapsular la logica de negocio compleja en el Composable y evitar dependencias directas entre Stores.
+> La comunicación entre Stores tiene dos formas: 1) Llamar a otro Store dentro de un Store, pero hay que tener cuidado de evitar dependencias circulares; 2) Componer múltiples Stores en Composable, esta es la forma recomendada. La mejor práctica es mantener el principio de responsabilidad única del Store, encapsular la logica de negocio compleja en el Composable y evitar dependencias directas entre Stores.
 
 **Puntos clave:**
-- Dos formas de comunicacion
+- Dos formas de comunicación
 - Se recomienda componer en Composable
 - Evitar dependencias circulares
 
@@ -323,12 +323,12 @@ const onSubmit = async (formData: LoginForm) => {
 
 ## 7. Resumen de entrevista
 
-**Se puede responder asi:**
+**Se puede responder así:**
 
-> Al usar Pinia Store en proyectos, hay varias practicas clave: 1) Usar `storeToRefs` en componentes para desestructurar state y getters, manteniendo la reactividad; 2) Componer multiples Stores en Composables, encapsulando la logica de negocio; 3) La comunicacion entre Stores se recomienda componer en Composable, evitando dependencias circulares; 4) Mantener el principio de responsabilidad unica del Store, colocando la logica compleja en el Composable.
+> Al usar Pinia Store en proyectos, hay varias prácticas clave: 1) Usar `storeToRefs` en componentes para desestructurar state y getters, manteniendo la reactividad; 2) Componer múltiples Stores en Composables, encapsulando la logica de negocio; 3) La comunicación entre Stores se recomienda componer en Composable, evitando dependencias circulares; 4) Mantener el principio de responsabilidad única del Store, colocando la logica compleja en el Composable.
 
 **Puntos clave:**
 - Uso de `storeToRefs`
 - Composicion de Stores con Composables
-- Patrones de comunicacion entre Stores
-- Principio de separacion de responsabilidades
+- Patrones de comunicación entre Stores
+- Principio de separación de responsabilidades

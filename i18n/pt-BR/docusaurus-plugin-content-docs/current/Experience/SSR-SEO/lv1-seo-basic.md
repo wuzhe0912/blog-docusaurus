@@ -1,18 +1,18 @@
 ---
-title: '[Lv1] Implementacao basica de SEO: Modos de Router e Meta Tags'
+title: '[Lv1] Implementação básica de SEO: Modos de Router e Meta Tags'
 slug: /experience/ssr-seo/lv1-seo-basic
 tags: [Experience, Interview, SSR-SEO, Lv1]
 ---
 
-> Em um projeto de plataforma multi-marca, implementacao da configuracao basica de SEO: Router History Mode, estrutura de Meta Tags e SEO de paginas estaticas.
+> Em um projeto de plataforma multi-marca, implementação da configuração básica de SEO: Router History Mode, estrutura de Meta Tags e SEO de páginas estáticas.
 
 ---
 
 ## 1. Pontos-chave de resposta em entrevista
 
-1. **Selecao do modo de Router**: Usar History Mode em vez de Hash Mode para fornecer uma estrutura de URL limpa.
+1. **Seleção do modo de Router**: Usar History Mode em vez de Hash Mode para fornecer uma estrutura de URL limpa.
 2. **Fundamentos de Meta Tags**: Implementar meta tags SEO completas, incluindo Open Graph e Twitter Card.
-3. **SEO de paginas estaticas**: Configurar elementos SEO completos para a Landing Page.
+3. **SEO de páginas estáticas**: Configurar elementos SEO completos para a Landing Page.
 
 ---
 
@@ -32,18 +32,18 @@ vueRouterMode: "history", // Usar modo history em vez de modo hash
 | Modo             | Exemplo de URL | Impacto no SEO                          |
 | ---------------- | -------------- | --------------------------------------- |
 | **Hash Mode**    | `/#/home`      | ❌ Dificil de indexar pelos buscadores   |
-| **History Mode** | `/home`        | ✅ URL limpa, facil de indexar           |
+| **History Mode** | `/home`        | ✅ URL limpa, fácil de indexar           |
 
 **Diferencas principais:**
 
 - History Mode gera URLs limpas (ex: `/home` em vez de `/#/home`)
 - Motores de busca podem indexar e rastrear mais facilmente
-- Melhor experiencia do usuario e de compartilhamento
-- Requer configuracao de backend (para evitar erros 404)
+- Melhor experiência do usuário e de compartilhamento
+- Requer configuração de backend (para evitar erros 404)
 
-### 2.2 Requisitos de configuracao do backend
+### 2.2 Requisitos de configuração do backend
 
-Ao usar o History Mode, e necessaria configuracao do backend:
+Ao usar o History Mode, é necessária configuração do backend:
 
 ```nginx
 # Exemplo Nginx
@@ -56,14 +56,14 @@ Isso garante que todas as rotas retornem `index.html`, e o Router do frontend cu
 
 ---
 
-## 3. Estrutura basica de Meta Tags
+## 3. Estrutura básica de Meta Tags
 
-### 3.1 Meta Tags SEO basicas
+### 3.1 Meta Tags SEO básicas
 
 **Localizacao do arquivo:** `template/*/public/landingPage/index.html`
 
 ```html
-<!-- Meta Tags basicas -->
+<!-- Meta Tags básicas -->
 <meta charset="UTF-8" />
 <title>AMUSE VIP</title>
 <meta name="keywords" content="カジノ,Jackpot,オンカジ,VIP" />
@@ -75,9 +75,9 @@ Isso garante que todas as rotas retornem `index.html`, e o Router do frontend cu
 
 **Explicacao:**
 
-- `title`: Titulo da pagina, afeta a exibicao nos resultados de busca
-- `keywords`: Palavras-chave (menor importancia no SEO moderno, mas configuracao recomendada)
-- `description`: Descricao da pagina, exibida nos resultados de busca
+- `title`: Titulo da página, afeta a exibição nos resultados de busca
+- `keywords`: Palavras-chave (menor importancia no SEO moderno, mas configuração recomendada)
+- `description`: Descrição da página, exibida nos resultados de busca
 
 ### 3.2 Open Graph Tags (compartilhamento em redes sociais)
 
@@ -95,7 +95,7 @@ Isso garante que todas as rotas retornem `index.html`, e o Router do frontend cu
 
 **Uso:**
 
-- Pre-visualizacao exibida ao compartilhar em redes sociais como Facebook, LinkedIn
+- Pre-visualização exibida ao compartilhar em redes sociais como Facebook, LinkedIn
 - Tamanho recomendado para `og:image`: 1200x630px
 - `og:type` pode ser definido como `website`, `article`, etc.
 
@@ -116,7 +116,7 @@ Isso garante que todas as rotas retornem `index.html`, e o Router do frontend cu
 
 ---
 
-## 4. Implementacao de SEO para Landing Page estatica
+## 4. Implementação de SEO para Landing Page estática
 
 ### 4.1 Lista completa de elementos SEO
 
@@ -128,7 +128,7 @@ tags (Facebook, LinkedIn, etc.) ✅ Twitter Card tags ✅ Canonical URL ✅ Conf
 de Favicon
 ```
 
-### 4.2 Exemplo de implementacao
+### 4.2 Exemplo de implementação
 
 ```html
 <!DOCTYPE html>
@@ -137,7 +137,7 @@ de Favicon
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- SEO basico -->
+    <!-- SEO básico -->
     <title>AMUSE VIP</title>
     <meta name="keywords" content="カジノ,Jackpot,オンカジ,VIP" />
     <meta
@@ -168,7 +168,7 @@ de Favicon
     <link rel="icon" type="image/png" href="favicon.png" />
   </head>
   <body>
-    <!-- Conteudo da pagina -->
+    <!-- Conteúdo da página -->
   </body>
 </html>
 ```
@@ -177,47 +177,47 @@ de Favicon
 
 ## 5. Pontos-chave para entrevista
 
-### 5.1 Selecao do modo de Router
+### 5.1 Seleção do modo de Router
 
 **Por que escolher o History Mode?**
 
 - Fornece URLs limpas, melhorando o efeito SEO
 - Motores de busca podem indexar mais facilmente
-- Melhor experiencia do usuario
+- Melhor experiência do usuário
 
 **O que observar?**
 
-- Necessita suporte de configuracao do backend (evitar 404 ao acessar rotas diretamente)
+- Necessita suporte de configuração do backend (evitar 404 ao acessar rotas diretamente)
 - Necessita configurar mecanismo de fallback
 
 ### 5.2 Importancia das Meta Tags
 
-**Meta Tags basicas:**
+**Meta Tags básicas:**
 
-- `title`: Afeta a exibicao nos resultados de busca
+- `title`: Afeta a exibição nos resultados de busca
 - `description`: Afeta a taxa de cliques
-- `keywords`: Menor importancia no SEO moderno, mas configuracao recomendada
+- `keywords`: Menor importancia no SEO moderno, mas configuração recomendada
 
 **Meta Tags para redes sociais:**
 
-- Open Graph: Pre-visualizacao ao compartilhar em plataformas como Facebook, LinkedIn
-- Twitter Card: Pre-visualizacao ao compartilhar no Twitter
+- Open Graph: Pre-visualização ao compartilhar em plataformas como Facebook, LinkedIn
+- Twitter Card: Pre-visualização ao compartilhar no Twitter
 - Tamanho de imagem recomendado: 1200x630px
 
 ---
 
-## 6. Melhores praticas
+## 6. Melhores práticas
 
 1. **Tag Title**
 
    - Controlar o comprimento entre 50-60 caracteres
    - Incluir palavras-chave principais
-   - Cada pagina deve ter um title unico
+   - Cada página deve ter um title único
 
 2. **Description**
 
    - Controlar o comprimento entre 150-160 caracteres
-   - Descrever o conteudo da pagina de forma concisa
+   - Descrever o conteúdo da página de forma concisa
    - Incluir chamada para acao (CTA)
 
 3. **Imagem Open Graph**
@@ -227,20 +227,20 @@ de Favicon
    - Usar imagens de alta qualidade
 
 4. **Canonical URL**
-   - Evitar problemas de conteudo duplicado
-   - Apontar para a URL da versao principal
+   - Evitar problemas de conteúdo duplicado
+   - Apontar para a URL da versão principal
 
 ---
 
 ## 7. Resumo da entrevista
 
-**Voce pode responder assim:**
+**Você pode responder assim:**
 
-> No projeto, escolhi usar o History Mode do Vue Router em vez do Hash Mode, porque o History Mode fornece uma estrutura de URL limpa mais favoravel ao SEO. Ao mesmo tempo, implementei meta tags SEO completas para a Landing Page, incluindo title, description, keywords basicos, alem de Open Graph e Twitter Card tags, garantindo que a pre-visualizacao seja exibida corretamente ao compartilhar em redes sociais.
+> No projeto, escolhi usar o History Mode do Vue Router em vez do Hash Mode, porque o History Mode fornece uma estrutura de URL limpa mais favoravel ao SEO. Ao mesmo tempo, implementei meta tags SEO completas para a Landing Page, incluindo title, description, keywords básicos, além de Open Graph e Twitter Card tags, garantindo que a pre-visualização seja exibida corretamente ao compartilhar em redes sociais.
 
 **Pontos-chave:**
 
-- ✅ Selecao e razoes do Router History Mode
+- ✅ Seleção e razoes do Router History Mode
 - ✅ Estrutura completa de Meta Tags
-- ✅ Otimizacao de compartilhamento em redes sociais
-- ✅ Experiencia real em projetos
+- ✅ Otimização de compartilhamento em redes sociais
+- ✅ Experiência real em projetos

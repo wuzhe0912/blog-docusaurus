@@ -1,17 +1,17 @@
 ---
 id: performance-lv3-web-worker
-title: '[Lv3] Aplicacao de Web Worker: computacao em segundo plano sem bloquear a UI'
+title: '[Lv3] Aplicação de Web Worker: computação em segundo plano sem bloquear a UI'
 slug: /experience/performance/lv3-web-worker
 tags: [Experience, Interview, Performance, Lv3]
 ---
 
-> **Web Worker** e uma API que executa JavaScript em uma thread de segundo plano no navegador, permitindo realizar computacoes demoradas sem bloquear a thread principal (thread da UI).
+> **Web Worker** é uma API que executa JavaScript em uma thread de segundo plano no navegador, permitindo realizar computacoes demoradas sem bloquear a thread principal (thread da UI).
 
 ## Conceito central
 
 ### Contexto do problema
 
-JavaScript e originalmente **single-threaded**, com todo o codigo executado na thread principal:
+JavaScript é originalmente **single-threaded**, com todo o código executado na thread principal:
 
 ```javascript
 // Computacao demorada bloqueando a thread principal
@@ -22,25 +22,25 @@ function heavyComputation() {
   return result;
 }
 
-// A pagina inteira congela durante a execucao
+// A página inteira congela durante a execução
 const result = heavyComputation(); // UI nao pode interagir
 ```
 
 **Problema:**
 
-- Pagina travada, usuario nao consegue clicar ou rolar
+- Página travada, usuário não consegue clicar ou rolar
 - Animacoes param
-- Experiencia do usuario pessima
+- Experiência do usuário pessima
 
-### Solucao com Web Worker
+### Solução com Web Worker
 
 Web Worker fornece capacidade de **multi-threading**, permitindo tarefas demoradas em segundo plano:
 
 ```javascript
-// Usando Worker para execucao em segundo plano
+// Usando Worker para execução em segundo plano
 const worker = new Worker('worker.js');
 
-// Thread principal nao bloqueia, pagina continua interativa
+// Thread principal não bloqueia, página contínua interativa
 worker.postMessage({ data: largeData });
 
 worker.onmessage = (e) => {
@@ -50,7 +50,7 @@ worker.onmessage = (e) => {
 
 ---
 
-## Cenario 1: processamento de grandes volumes de dados
+## Cenário 1: processamento de grandes volumes de dados
 
 ```javascript
 // main.js
@@ -79,17 +79,17 @@ self.onmessage = function (e) {
 };
 ```
 
-## Cenario 2: processamento de imagens
+## Cenário 2: processamento de imagens
 
-Processamento de filtros, compressao e operacoes em pixels de imagens, evitando congelamento da UI.
+Processamento de filtros, compressão e operações em pixels de imagens, evitando congelamento da UI.
 
-## Cenario 3: calculos complexos
+## Cenário 3: cálculos complexos
 
-Operacoes matematicas (como calculo de primos, criptografia/descriptografia)
+Operacoes matemáticas (como cálculo de primos, criptografia/descriptografia)
 Calculo de hash de arquivos grandes
-Analise e estatisticas de dados
+Análise e estatísticas de dados
 
-## Limitacoes e cuidados
+## Limitações e cuidados
 
 ### O que NAO pode ser feito no Worker
 
@@ -107,14 +107,14 @@ Analise e estatisticas de dados
 
 ```javascript
 // Situacoes em que NAO se deve usar Worker
-// 1. Calculos simples e rapidos (criar Worker tem overhead)
+// 1. Calculos simples e rápidos (criar Worker tem overhead)
 const result = 1 + 1; // Nao precisa de Worker
 
-// 2. Necessidade de comunicacao frequente com a thread principal
-// O custo de comunicacao pode anular a vantagem do multi-threading
+// 2. Necessidade de comunicação frequente com a thread principal
+// O custo de comunicação pode anular a vantagem do multi-threading
 
 // Situacoes em que se DEVE usar Worker
-// 1. Computacao unica de longa duracao
+// 1. Computacao única de longa duração
 const result = calculatePrimes(1000000);
 
 // 2. Processamento em lote de grandes volumes de dados
@@ -123,11 +123,11 @@ const processed = largeArray.map(complexOperation);
 
 ---
 
-## Casos de aplicacao em projetos reais
+## Casos de aplicação em projetos reais
 
 ### Caso: processamento criptografico de dados de jogos
 
-Na plataforma de jogos, precisamos criptografar/descriptografar dados sensiveis:
+Na plataforma de jogos, precisamos criptografar/descriptografar dados sensíveis:
 
 ```javascript
 // main.js - Thread principal
@@ -154,7 +154,7 @@ function encryptPlayerData(data) {
 
 // Uso
 const encrypted = await encryptPlayerData(sensitiveData);
-// Pagina nao trava, usuario pode continuar operando
+// Página não trava, usuário pode continuar operando
 
 // crypto-worker.js - Thread do Worker
 self.onmessage = function (e) {
@@ -162,7 +162,7 @@ self.onmessage = function (e) {
 
   try {
     if (action === 'encrypt') {
-      // Operacao demorada de criptografia
+      // Operação demorada de criptografia
       const encrypted = performHeavyEncryption(data, key);
       self.postMessage({ success: true, encrypted });
     }
@@ -195,7 +195,7 @@ filterWorker.onmessage = (e) => {
   displayGames(e.data.filtered); // Exibir resultados filtrados
 };
 
-// Thread principal nao trava, usuario pode continuar rolando e clicando
+// Thread principal não trava, usuário pode continuar rolando e clicando
 ```
 
 ---
@@ -206,7 +206,7 @@ filterWorker.onmessage = (e) => {
 
 **P1: Como o Web Worker se comunica com a thread principal?**
 
-R: Atraves de `postMessage` e `onmessage`:
+R: Através de `postMessage` e `onmessage`:
 
 ```javascript
 // Thread principal -> Worker
@@ -215,31 +215,31 @@ worker.postMessage({ type: 'START', data: [1, 2, 3] });
 // Worker -> Thread principal
 self.postMessage({ type: 'RESULT', result: processedData });
 
-// Observacao: os dados sao "clonados estruturalmente" (Structured Clone)
+// Observação: os dados são "clonados estruturalmente" (Structured Clone)
 // Isso significa:
 // Pode transmitir: Number, String, Object, Array, Date, RegExp
-// Nao pode transmitir: Function, elementos DOM, Symbol
+// Não pode transmitir: Function, elementos DOM, Symbol
 ```
 
-**P2: Qual e o custo de performance do Web Worker?**
+**P2: Qual é o custo de performance do Web Worker?**
 
 R: Existem dois custos principais:
 
 ```javascript
-// 1. Custo de criacao do Worker (aproximadamente 30-50ms)
+// 1. Custo de criação do Worker (aproximadamente 30-50ms)
 const worker = new Worker('worker.js'); // Necessita carregar arquivo
 
-// 2. Custo de comunicacao (copia de dados)
+// 2. Custo de comunicação (copia de dados)
 worker.postMessage(largeData); // Copia de dados grandes leva tempo
 
-// Solucoes:
-// 1. Reutilizar Workers (nao criar toda vez)
+// Soluções:
+// 1. Reutilizar Workers (não criar toda vez)
 // 2. Usar Transferable Objects (transferir propriedade, sem copia)
 const buffer = new ArrayBuffer(1024 * 1024); // 1MB
 worker.postMessage(buffer, [buffer]); // Transferir propriedade
 ```
 
-**P3: O que sao Transferable Objects?**
+**P3: O que são Transferable Objects?**
 
 R: Transferencia de propriedade dos dados, em vez de copia:
 
@@ -248,11 +248,11 @@ R: Transferencia de propriedade dos dados, em vez de copia:
 const largeArray = new Uint8Array(10000000); // 10MB
 worker.postMessage(largeArray); // Copiar 10MB (demorado)
 
-// Transferable: transferir propriedade (rapido)
+// Transferable: transferir propriedade (rápido)
 const buffer = largeArray.buffer;
 worker.postMessage(buffer, [buffer]); // Transferir propriedade (nivel de milissegundos)
 
-// Atencao: apos transferencia, a thread principal nao pode mais usar esses dados
+// Atenção: após transferência, a thread principal não pode mais usar esses dados
 console.log(largeArray.length); // 0 (ja transferido)
 ```
 
@@ -265,7 +265,7 @@ console.log(largeArray.length); // 0 (ja transferido)
 
 **P4: Quando usar Web Worker?**
 
-R: Arvore de decisao:
+R: Árvore de decisão:
 
 ```
 E computacao demorada (> 50ms)?
@@ -281,57 +281,57 @@ E computacao demorada (> 50ms)?
         |- Nao -> Adequado para usar Worker
 ```
 
-**Cenarios adequados:**
+**Cenários adequados:**
 
 - Criptografia/descriptografia
-- Processamento de imagens (filtros, compressao)
+- Processamento de imagens (filtros, compressão)
 - Ordenacao/filtragem de grandes volumes de dados
-- Calculos matematicos complexos
+- Calculos matemáticos complexos
 - Parsing de arquivos (JSON, CSV)
 
-**Cenarios nao adequados:**
+**Cenários não adequados:**
 
 - Calculos simples (overhead maior que beneficio)
-- Necessidade de comunicacao frequente
+- Necessidade de comunicação frequente
 - Necessidade de manipular DOM
-- Necessidade de APIs nao suportadas
+- Necessidade de APIs não suportadas
 
-**P5: Quais sao os tipos de Web Worker?**
+**P5: Quais são os tipos de Web Worker?**
 
-R: Tres tipos:
+R: Três tipos:
 
 ```javascript
 // 1. Dedicated Worker (dedicado)
 const worker = new Worker('worker.js');
-// So pode se comunicar com a pagina que o criou
+// So pode se comunicar com a página que o criou
 
 // 2. Shared Worker (compartilhado)
 const sharedWorker = new SharedWorker('shared-worker.js');
-// Pode ser compartilhado entre multiplas paginas/abas
+// Pode ser compartilhado entre múltiplas páginas/abas
 
-// 3. Service Worker (servico)
+// 3. Service Worker (serviço)
 navigator.serviceWorker.register('sw.js');
-// Usado para cache, suporte offline, notificacoes push
+// Usado para cache, suporte offline, notificações push
 ```
 
-**Comparacao:**
+**Comparação:**
 
-| Caracteristica | Dedicated  | Shared             | Service    |
+| Característica | Dedicated  | Shared             | Service    |
 | -------------- | ---------- | ------------------ | ---------- |
-| Compartilhamento | Pagina unica | Multiplas paginas | Todo o site |
-| Ciclo de vida | Fecha com a pagina | Ultima pagina fechar | Independente da pagina |
-| Uso principal | Computacao em segundo plano | Comunicacao entre paginas | Cache, offline |
+| Compartilhamento | Página única | Múltiplas páginas | Todo o site |
+| Ciclo de vida | Fecha com a página | Ultima página fechar | Independente da página |
+| Uso principal | Computacao em segundo plano | Comunicacao entre páginas | Cache, offline |
 
 **P6: Como debugar Web Worker?**
 
 R: Chrome DevTools suporta:
 
 ```javascript
-// 1. No painel Sources, voce pode ver arquivos do Worker
+// 1. No painel Sources, você pode ver arquivos do Worker
 // 2. Pode definir breakpoints
-// 3. Pode executar codigo no Console
+// 3. Pode executar código no Console
 
-// Dica util: usar console no Worker
+// Dica útil: usar console no Worker
 self.addEventListener('message', (e) => {
   console.log('Worker recebeu:', e.data);
   // Visivel no Console do DevTools
@@ -347,44 +347,44 @@ worker.onerror = (error) => {
 
 ---
 
-## Comparacao de performance
+## Comparação de performance
 
 ### Dados de teste real (processamento de 1 milhao de registros)
 
-| Metodo                    | Tempo de execucao | UI trava? | Pico de memoria |
+| Método                    | Tempo de execução | UI trava? | Pico de memória |
 | ------------------------- | ----------------- | --------- | --------------- |
-| Thread principal (sincrono) | 2.5 s            | Trava completamente | 250 MB    |
+| Thread principal (síncrono) | 2.5 s            | Trava completamente | 250 MB    |
 | Thread principal (time slicing) | 3.2 s        | Trava ocasionalmente | 280 MB   |
 | Web Worker                | 2.3 s             | Completamente fluido | 180 MB   |
 
 **Conclusao:**
 
-- Web Worker nao apenas nao trava a UI, mas tambem e mais rapido devido ao paralelismo multi-core
-- Menor uso de memoria (thread principal nao precisa reter grandes volumes de dados)
+- Web Worker não apenas não trava a UI, mas também é mais rápido devido ao paralelismo multi-core
+- Menor uso de memória (thread principal não precisa reter grandes volumes de dados)
 
 ---
 
 ## Tecnologias relacionadas
 
-### Web Worker vs outras solucoes
+### Web Worker vs outras soluções
 
 ```javascript
-// 1. setTimeout (pseudo-assincrono)
+// 1. setTimeout (pseudo-assíncrono)
 setTimeout(() => heavyTask(), 0);
 // Ainda na thread principal, vai travar
 
-// 2. requestIdleCallback (execucao em tempo ocioso)
+// 2. requestIdleCallback (execução em tempo ocioso)
 requestIdleCallback(() => heavyTask());
-// Executa apenas em momentos ociosos, sem garantia de tempo de conclusao
+// Executa apenas em momentos ociosos, sem garantia de tempo de conclusão
 
 // 3. Web Worker (verdadeiro multi-threading)
 worker.postMessage(task);
-// Verdadeiramente paralelo, nao bloqueia UI
+// Verdadeiramente paralelo, não bloqueia UI
 ```
 
-### Avancado: simplificar comunicacao do Worker com Comlink
+### Avançado: simplificar comunicação do Worker com Comlink
 
-[Comlink](https://github.com/GoogleChromeLabs/comlink) permite usar Worker como funcoes normais:
+[Comlink](https://github.com/GoogleChromeLabs/comlink) permite usar Worker como funções normais:
 
 ```javascript
 // Forma tradicional (verbosa)
@@ -397,7 +397,7 @@ import * as Comlink from 'comlink';
 const worker = new Worker('worker.js');
 const api = Comlink.wrap(worker);
 
-// Chamar como funcao normal
+// Chamar como função normal
 const result = await api.add(1, 2);
 console.log(result); // 3
 ```
@@ -408,24 +408,24 @@ console.log(result); // 3
 
 **Preparacao para entrevista:**
 
-1. Entender "por que Worker e necessario" (problema da single thread)
-2. Saber "quando usar" (computacao demorada)
-3. Compreender "mecanismo de comunicacao" (postMessage)
-4. Conhecer "limitacoes" (sem acesso ao DOM)
+1. Entender "por que Worker é necessário" (problema da single thread)
+2. Saber "quando usar" (computação demorada)
+3. Compreender "mecanismo de comunicação" (postMessage)
+4. Conhecer "limitações" (sem acesso ao DOM)
 5. Ter implementado pelo menos um caso com Worker
 
-**Sugestoes praticas:**
+**Sugestoes práticas:**
 
-- Comecar com casos simples (como calculo de primos)
+- Começar com casos simples (como cálculo de primos)
 - Usar Chrome DevTools para debug
-- Medir diferencas de performance
+- Medir diferenças de performance
 - Considerar ferramentas como Comlink
 
 ---
 
 ## Topicos relacionados
 
-- [Otimizacao a nivel de rota ->](/docs/experience/performance/lv1-route-optimization)
-- [Otimizacao de carregamento de imagens ->](/docs/experience/performance/lv1-image-optimization)
-- [Implementacao de Virtual Scroll ->](/docs/experience/performance/lv3-virtual-scroll)
-- [Estrategias de otimizacao para grandes volumes de dados ->](/docs/experience/performance/lv3-large-data-optimization)
+- [Otimização a nível de rota ->](/docs/experience/performance/lv1-route-optimization)
+- [Otimização de carregamento de imagens ->](/docs/experience/performance/lv1-image-optimization)
+- [Implementação de Virtual Scroll ->](/docs/experience/performance/lv3-virtual-scroll)
+- [Estratégias de otimização para grandes volumes de dados ->](/docs/experience/performance/lv3-large-data-optimization)

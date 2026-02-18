@@ -7,9 +7,9 @@ tags: [JavaScript, Coding, Easy]
 
 ## 1. Question Description
 
-> Descricao do problema
+> Descrição do problema
 
-Implemente uma funcao que receba uma string e retorne o caractere que aparece com mais frequencia.
+Implemente uma função que receba uma string e retorne o caractere que aparece com mais frequência.
 
 ### Exemplos
 
@@ -21,24 +21,24 @@ findMostFrequentChar('javascript'); // 'a'
 
 ## 2. Implementation Methods
 
-> Metodos de implementacao
+> Metodos de implementação
 
-### Metodo 1: Contagem com objeto (versao basica)
+### Método 1: Contagem com objeto (versão básica)
 
-**Abordagem**: Percorrer a string, usar um objeto para registrar o numero de aparicoes de cada caractere e depois encontrar o mais frequente.
+**Abordagem**: Percorrer a string, usar um objeto para registrar o número de aparicoes de cada caractere e depois encontrar o mais frequente.
 
 ```javascript
 function findMostFrequentChar(str) {
   // Inicializar objeto para armazenar caracteres e contagens
   const charCount = {};
 
-  // Inicializar variaveis para contagem maxima e caractere
+  // Inicializar variáveis para contagem máxima e caractere
   let maxCount = 0;
   let maxChar = '';
 
   // Percorrer a string
   for (let char of str) {
-    // Se o caractere nao esta no objeto, definir contagem como 0
+    // Se o caractere não está no objeto, definir contagem como 0
     if (!charCount[char]) {
       charCount[char] = 0;
     }
@@ -46,15 +46,15 @@ function findMostFrequentChar(str) {
     // Incrementar a contagem deste caractere
     charCount[char]++;
 
-    // Se a contagem deste caractere e maior que a contagem maxima
-    // Atualizar contagem maxima e caractere maximo
+    // Se a contagem deste caractere e maior que a contagem máxima
+    // Atualizar contagem máxima e caractere máximo
     if (charCount[char] > maxCount) {
       maxCount = charCount[char];
       maxChar = char;
     }
   }
 
-  // Retornar o caractere maximo
+  // Retornar o caractere máximo
   return maxChar;
 }
 
@@ -64,11 +64,11 @@ console.log(findMostFrequentChar('hello world')); // 'l'
 ```
 
 **Complexidade temporal**: O(n), onde n e o comprimento da string
-**Complexidade espacial**: O(k), onde k e o numero de caracteres diferentes
+**Complexidade espacial**: O(k), onde k e o número de caracteres diferentes
 
-### Metodo 2: Contar primeiro e depois encontrar o maximo (duas fases)
+### Método 2: Contar primeiro e depois encontrar o máximo (duas fases)
 
-**Abordagem**: Primeiro percorrer uma vez para calcular as aparicoes de todos os caracteres, depois percorrer novamente para encontrar o maximo.
+**Abordagem**: Primeiro percorrer uma vez para calcular as aparicoes de todos os caracteres, depois percorrer novamente para encontrar o máximo.
 
 ```javascript
 function findMostFrequentChar(str) {
@@ -99,9 +99,9 @@ console.log(findMostFrequentChar('abcccccccd')); // 'c'
 **Vantagens**: Logica mais clara, processamento por fases
 **Desvantagens**: Requer duas travessias
 
-### Metodo 3: Usando Map (ES6)
+### Método 3: Usando Map (ES6)
 
-**Abordagem**: Usar Map para armazenar a relacao entre caracteres e contagens.
+**Abordagem**: Usar Map para armazenar a relação entre caracteres e contagens.
 
 ```javascript
 function findMostFrequentChar(str) {
@@ -126,10 +126,10 @@ function findMostFrequentChar(str) {
 console.log(findMostFrequentChar('abcccccccd')); // 'c'
 ```
 
-**Vantagens**: Usar Map e mais adequado ao estilo moderno do JavaScript
-**Desvantagens**: Para cenarios simples, um objeto pode ser mais intuitivo
+**Vantagens**: Usar Map é mais adequado ao estilo moderno do JavaScript
+**Desvantagens**: Para cenários simples, um objeto pode ser mais intuitivo
 
-### Metodo 4: Usando reduce (estilo funcional)
+### Método 4: Usando reduce (estilo funcional)
 
 **Abordagem**: Usar `reduce` e `Object.entries` para implementar.
 
@@ -151,12 +151,12 @@ function findMostFrequentChar(str) {
 console.log(findMostFrequentChar('abcccccccd')); // 'c'
 ```
 
-**Vantagens**: Estilo funcional, codigo conciso
+**Vantagens**: Estilo funcional, código conciso
 **Desvantagens**: Menor legibilidade, desempenho ligeiramente inferior
 
-### Metodo 5: Tratamento de multiplos valores maximos iguais
+### Método 5: Tratamento de múltiplos valores maximos iguais
 
-**Abordagem**: Se varios caracteres tem a mesma frequencia maxima, retornar um array ou o primeiro encontrado.
+**Abordagem**: Se vários caracteres tem a mesma frequência máxima, retornar um array ou o primeiro encontrado.
 
 ```javascript
 function findMostFrequentChar(str) {
@@ -169,7 +169,7 @@ function findMostFrequentChar(str) {
     maxCount = Math.max(maxCount, charCount[char]);
   }
 
-  // Encontrar todos os caracteres com frequencia igual ao maximo
+  // Encontrar todos os caracteres com frequência igual ao máximo
   const mostFrequentChars = [];
   for (let char in charCount) {
     if (charCount[char] === maxCount) {
@@ -268,9 +268,9 @@ console.log(findMostFrequentChar('hello world', false)); // ' ' (espaco)
 
 > Perguntas frequentes em entrevistas
 
-### Questao 1: Implementacao basica
+### Questão 1: Implementação básica
 
-Implemente uma funcao que encontre o caractere mais frequente em uma string.
+Implemente uma função que encontre o caractere mais frequente em uma string.
 
 <details>
 <summary>Clique para ver a resposta</summary>
@@ -299,15 +299,15 @@ console.log(findMostFrequentChar('hello world')); // 'l'
 
 **Pontos-chave**:
 
-- Usar objeto ou Map para registrar a frequencia de cada caractere
-- Atualizar o maximo durante a travessia
+- Usar objeto ou Map para registrar a frequência de cada caractere
+- Atualizar o máximo durante a travessia
 - Complexidade temporal O(n), complexidade espacial O(k)
 
 </details>
 
-### Questao 2: Versao otimizada
+### Questão 2: Versao otimizada
 
-Otimize a funcao acima para tratar multiplos valores maximos iguais.
+Otimize a função acima para tratar múltiplos valores maximos iguais.
 
 <details>
 <summary>Clique para ver a resposta</summary>
@@ -323,7 +323,7 @@ function findMostFrequentChar(str) {
     maxCount = Math.max(maxCount, charCount[char]);
   }
 
-  // Fase 2: Encontrar todos os caracteres com frequencia maxima
+  // Fase 2: Encontrar todos os caracteres com frequência máxima
   const mostFrequentChars = [];
   for (let char in charCount) {
     if (charCount[char] === maxCount) {
@@ -341,9 +341,9 @@ console.log(findMostFrequentChar('aabbcc')); // 'a'
 
 </details>
 
-### Questao 3: Implementacao com Map
+### Questão 3: Implementação com Map
 
-Implemente esta funcao usando Map do ES6.
+Implemente esta função usando Map do ES6.
 
 <details>
 <summary>Clique para ver a resposta</summary>
@@ -373,19 +373,19 @@ console.log(findMostFrequentChar('abcccccccd')); // 'c'
 
 **Map vs Object**:
 
-- **Map**: Mais adequado para pares chave-valor dinamicos, as chaves podem ser de qualquer tipo
+- **Map**: Mais adequado para pares chave-valor dinâmicos, as chaves podem ser de qualquer tipo
 - **Object**: Mais simples e intuitivo, adequado para chaves do tipo string
 
 </details>
 
 ## 5. Best Practices
 
-> Melhores praticas
+> Melhores práticas
 
 ### Praticas recomendadas
 
 ```javascript
-// 1. Usar nomes de variaveis claros
+// 1. Usar nomes de variáveis claros
 function findMostFrequentChar(str) {
   const charCount = {}; // Expressar claramente o proposito
   let maxCount = 0;
@@ -401,7 +401,7 @@ function findMostFrequentChar(str) {
   // ...
 }
 
-// 3. Atualizar o maximo durante a travessia (uma unica travessia)
+// 3. Atualizar o máximo durante a travessia (uma única travessia)
 function findMostFrequentChar(str) {
   const charCount = {};
   let maxCount = 0;
@@ -422,7 +422,7 @@ function findMostFrequentChar(str) {
 ### Praticas a evitar
 
 ```javascript
-// 1. Nao usar duas travessias (a menos que necessario)
+// 1. Não usar duas travessias (a menos que necessário)
 // ❌ Desempenho inferior
 function findMostFrequentChar(str) {
   const charCount = {};
@@ -433,7 +433,7 @@ function findMostFrequentChar(str) {
   return Object.entries(charCount).sort((a, b) => b[1] - a[1])[0][0];
 }
 
-// 2. Nao esquecer de tratar strings vazias
+// 2. Não esquecer de tratar strings vazias
 // ❌ Pode retornar undefined
 function findMostFrequentChar(str) {
   const charCount = {};
@@ -441,7 +441,7 @@ function findMostFrequentChar(str) {
   return maxChar; // Com string vazia, maxChar e ''
 }
 
-// 3. Nao usar estilos funcionais excessivamente complexos (a menos que seja convencao da equipe)
+// 3. Não usar estilos funcionais excessivamente complexos (a menos que seja convencao da equipe)
 // ❌ Menor legibilidade
 const findMostFrequentChar = (str) =>
   Object.entries(
@@ -456,27 +456,27 @@ const findMostFrequentChar = (str) =>
 
 > Resumo para entrevistas
 
-### Referencia rapida
+### Referencia rápida
 
-**Pontos de implementacao**:
+**Pontos de implementação**:
 
-1. Usar objeto ou Map para registrar a frequencia de cada caractere
-2. Atualizar o maximo durante a travessia
+1. Usar objeto ou Map para registrar a frequência de cada caractere
+2. Atualizar o máximo durante a travessia
 3. Complexidade temporal O(n), complexidade espacial O(k)
 4. Tratar casos limite (string vazia, maiusculas/minusculas, etc.)
 
-**Direcoes de otimizacao**:
+**Direcoes de otimização**:
 
-- Completar em uma unica travessia (contar e encontrar o maximo simultaneamente)
-- Usar Map para cenarios complexos
-- Tratar multiplos valores maximos iguais
-- Considerar maiusculas/minusculas, espacos e outros casos especiais
+- Completar em uma única travessia (contar e encontrar o máximo simultaneamente)
+- Usar Map para cenários complexos
+- Tratar múltiplos valores maximos iguais
+- Considerar maiusculas/minusculas, espaços e outros casos especiais
 
 ### Exemplo de resposta em entrevista
 
-**Q: Implemente uma funcao que encontre o caractere mais frequente em uma string.**
+**Q: Implemente uma função que encontre o caractere mais frequente em uma string.**
 
-> "Eu usaria um objeto para registrar a frequencia de cada caractere e atualizaria o maximo durante a travessia da string. A implementacao concreta e: inicializar um objeto vazio charCount para armazenar caracteres e contagens, inicializar as variaveis maxCount e maxChar. Depois percorrer a string, para cada caractere, se nao estiver no objeto, inicializar em 0, depois incrementar a contagem. Se a contagem do caractere atual for maior que maxCount, atualizar maxCount e maxChar. Finalmente retornar maxChar. A complexidade temporal deste metodo e O(n) e a complexidade espacial e O(k), onde n e o comprimento da string e k e o numero de caracteres diferentes."
+> "Eu usaria um objeto para registrar a frequência de cada caractere e atualizaria o máximo durante a travessia da string. A implementação concreta e: inicializar um objeto vazio charCount para armazenar caracteres e contagens, inicializar as variáveis maxCount e maxChar. Depois percorrer a string, para cada caractere, se não estiver no objeto, inicializar em 0, depois incrementar a contagem. Se a contagem do caractere atual for maior que maxCount, atualizar maxCount e maxChar. Finalmente retornar maxChar. A complexidade temporal deste método e O(n) e a complexidade espacial e O(k), onde n e o comprimento da string e k e o número de caracteres diferentes."
 
 ## Reference
 

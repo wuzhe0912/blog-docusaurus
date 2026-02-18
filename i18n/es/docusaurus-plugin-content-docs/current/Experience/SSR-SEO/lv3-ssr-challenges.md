@@ -1,23 +1,23 @@
 ---
-title: '[Lv3] Retos de implementacion SSR y soluciones'
+title: '[Lv3] Retos de implementación SSR y soluciones'
 slug: /experience/ssr-seo/lv3-ssr-challenges
 tags: [Experience, Interview, SSR-SEO, Lv3]
 ---
 
-> Problemas comunes en SSR y soluciones practicas: Hydration Mismatch, variables de entorno, compatibilidad de librerias, rendimiento y arquitectura de despliegue.
+> Problemas comunes en SSR y soluciones prácticas: Hydration Mismatch, variables de entorno, compatibilidad de librerias, rendimiento y arquitectura de despliegue.
 
 ---
 
 ## Escenario de entrevista
 
-**Pregunta: Que problemas encontraste al implementar SSR y como los resolviste?**
+**Pregunta: Qué problemas encontraste al implementar SSR y como los resolviste?**
 
-Que quiere validar el entrevistador:
+Qué quiere validar el entrevistador:
 
 1. **Experiencia real**: si implementaste SSR en un entorno real.
-2. **Metodo de resolucion**: como detectas causa raiz y priorizas.
-3. **Profundidad tecnica**: rendering, hydration, cache, despliegue.
-4. **Buenas practicas**: soluciones mantenibles y medibles.
+2. **Método de resolución**: cómo detectas causa raiz y priorizas.
+3. **Profundidad técnica**: rendering, hydration, cache, despliegue.
+4. **Buenas prácticas**: soluciones mantenibles y medibles.
 
 ---
 
@@ -25,7 +25,7 @@ Que quiere validar el entrevistador:
 
 ### Problema
 
-Mensaje comun:
+Mensaje común:
 
 ```text
 [Vue warn]: The client-side rendered virtual DOM tree is not matching server-rendered content.
@@ -80,7 +80,7 @@ onMounted(() => {
 - Secretos de servidor expuestos accidentalmente al cliente.
 - Uso desordenado de `process.env` complica trazabilidad.
 
-### Solucion
+### Solución
 
 Separar con runtime config:
 
@@ -103,7 +103,7 @@ const apiBase = config.public.apiBase; // cliente + servidor
 const secret = config.apiSecret; // solo servidor
 ```
 
-**Idea clave:** secretos solo en servidor, valores publicos en bloque `public`.
+**Idea clave:** secretos solo en servidor, valores públicos en bloque `public`.
 
 ---
 
@@ -117,7 +117,7 @@ const secret = config.apiSecret; // solo servidor
 ### Soluciones
 
 1. Cargar libreria solo en cliente (plugin `.client.ts`)
-2. Import dinamico en contexto cliente
+2. Import dinámico en contexto cliente
 3. Evaluar alternativa SSR-friendly
 
 ```ts
@@ -138,7 +138,7 @@ if (process.client) {
 - SSR con auth requiere leer cookies en servidor.
 - Headers deben mantenerse consistentes entre cliente, SSR y API.
 
-### Solucion
+### Solución
 
 ```ts
 const token = useCookie('access_token');
@@ -151,18 +151,18 @@ const { data } = await useFetch('/api/me', {
 });
 ```
 
-**Idea clave:** una request SSR no debe perder contexto de autenticacion.
+**Idea clave:** una request SSR no debe perder contexto de autenticación.
 
 ---
 
-## Reto 5: Timing en carga asincrona
+## Reto 5: Timing en carga asíncrona
 
 ### Problema
 
-- Multiples componentes piden el mismo recurso.
+- Múltiples componentes piden el mismo recurso.
 - Hay requests duplicados y estados de carga inconsistentes.
 
-### Solucion
+### Solución
 
 - Definir keys unificados para deduplication
 - Centralizar acceso a datos en composables
@@ -209,10 +209,10 @@ export default defineCachedEventHandler(
 
 ### Problema
 
-- IDs dinamicos invalidos.
-- Sin semantica 404 correcta, SEO indexa paginas invalidas.
+- IDs dinámicos invalidos.
+- Sin semántica 404 correcta, SEO indexa páginas inválidas.
 
-### Solucion
+### Solución
 
 ```ts
 if (!product.value) {
@@ -236,7 +236,7 @@ Adicional:
 - En SSR no existe `window` ni `document`.
 - Acceso directo rompe en runtime.
 
-### Solucion
+### Solución
 
 ```ts
 const width = ref<number | null>(null);
@@ -278,7 +278,7 @@ setInterval(() => {
 }, 60_000);
 ```
 
-**Idea clave:** un leak en SSR es riesgo operativo y tambien de seguridad.
+**Idea clave:** un leak en SSR es riesgo operativo y también de seguridad.
 
 ---
 
@@ -289,11 +289,11 @@ setInterval(() => {
 - Scripts de terceros bloquean main thread o rompen hydration.
 - CLS/FID/INP empeoran.
 
-### Solucion
+### Solución
 
-- Cargar scripts de forma asincrona y tardia
+- Cargar scripts de forma asíncrona y tardia
 - Reservar espacio para ads para evitar layout shift
-- No depender de tracking para UI critica
+- No depender de tracking para UI crítica
 
 ```ts
 useHead({
@@ -311,17 +311,17 @@ useHead({
 
 ### Problema
 
-- SPA se despliega como estatico y es simple.
-- SSR necesita capa de computo, observabilidad y gestion de procesos.
+- SPA se despliega como estático y es simple.
+- SSR necesita capa de computo, observabilidad y gestión de procesos.
 
-### Comparacion
+### Comparación
 
 | Aspecto        | SPA (Static)         | SSR (Node/Edge)                  |
 | -------------- | -------------------- | -------------------------------- |
 | Infraestructura| Storage + CDN        | Compute + CDN                    |
-| Operacion      | Muy simple           | Complejidad media                |
-| Costo          | Bajo                 | Mas alto por tiempo de computo   |
-| Monitoreo      | Minimo               | Logs, metrics, memory, cold start|
+| Operación      | Muy simple           | Complejidad media                |
+| Costo          | Bajo                 | Más alto por tiempo de computo   |
+| Monitoreo      | Mínimo               | Logs, metrics, memory, cold start|
 
 ### Recomendaciones
 
@@ -330,7 +330,7 @@ useHead({
 3. Staging con pruebas de carga antes de produccion
 4. Definir error budget y alerting
 
-**Idea clave:** SSR no es solo render; tambien es arquitectura operativa.
+**Idea clave:** SSR no es solo render; también es arquitectura operativa.
 
 ---
 
@@ -338,10 +338,10 @@ useHead({
 
 **Respuesta posible (30-45 segundos):**
 
-> En SSR suelo dividir los riesgos en cuatro grupos: rendering determinista para evitar hydration mismatch, separacion estricta entre configuracion de servidor y cliente, optimizacion de performance con deduplication/cache/splitting, y operacion robusta con manejo de errores, monitoreo de memoria y arquitectura de despliegue adecuada.
+> En SSR suelo dividir los riesgos en cuatro grupos: rendering determinista para evitar hydration mismatch, separación estricta entre configuración de servidor y cliente, optimización de performance con deduplication/cache/splitting, y operación robusta con manejo de errores, monitoreo de memoria y arquitectura de despliegue adecuada.
 
 **Checklist:**
 - ✅ Mencionar un problema concreto con causa
-- ✅ Explicar contramedidas tecnicas
-- ✅ Conectar impacto en SEO/performance/operacion
+- ✅ Explicar contramedidas técnicas
+- ✅ Conectar impacto en SEO/performance/operación
 - ✅ Cerrar con contexto real de proyecto

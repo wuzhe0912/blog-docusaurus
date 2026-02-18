@@ -1,32 +1,32 @@
 ---
-title: '[Lv3] Nuxt 3 Multilenguaje (i18n) y mejores practicas de SEO'
+title: '[Lv3] Nuxt 3 Multilenguaje (i18n) y mejores prácticas de SEO'
 slug: /experience/ssr-seo/lv3-i18n-seo
 tags: [Experience, Interview, SSR-SEO, Nuxt, Lv3, i18n]
 ---
 
-> Implementar multilenguaje (Internationalization) bajo una arquitectura SSR no solo implica traducir texto, sino tambien estrategias de enrutamiento, etiquetas SEO (hreflang), gestion de estado y consistencia de Hydration.
+> Implementar multilenguaje (Internationalization) bajo una arquitectura SSR no solo implica traducir texto, sino también estrategias de enrutamiento, etiquetas SEO (hreflang), gestión de estado y consistencia de Hydration.
 
 ---
 
 ## 1. Puntos clave de respuesta en entrevista
 
-1.  **Estrategia de enrutamiento**: Usar la estrategia de prefijo URL de `@nuxtjs/i18n` (como `/en/about`, `/jp/about`) para distinguir idiomas. Esto es lo mas amigable para SEO.
-2.  **Etiquetas SEO**: Asegurar la generacion automatica correcta de `<link rel="alternate" hreflang="..." />` y Canonical URL, evitando penalizaciones por contenido duplicado.
-3.  **Gestion de estado**: Detectar correctamente el idioma del usuario en la fase SSR (Cookie/Header) y asegurar que el idioma sea consistente durante la Hydration del Client.
+1.  **Estrategia de enrutamiento**: Usar la estrategia de prefijo URL de `@nuxtjs/i18n` (como `/en/about`, `/jp/about`) para distinguir idiomas. Esto es lo más amigable para SEO.
+2.  **Etiquetas SEO**: Asegurar la generación automática correcta de `<link rel="alternate" hreflang="..." />` y Canonical URL, evitando penalizaciones por contenido duplicado.
+3.  **Gestión de estado**: Detectar correctamente el idioma del usuario en la fase SSR (Cookie/Header) y asegurar que el idioma sea consistente durante la Hydration del Client.
 
 ---
 
-## 2. Estrategia de implementacion de i18n en Nuxt 3
+## 2. Estrategia de implementación de i18n en Nuxt 3
 
-### 2.1 Por que elegir `@nuxtjs/i18n`?
+### 2.1 Por qué elegir `@nuxtjs/i18n`?
 
 El modulo oficial `@nuxtjs/i18n` esta basado en `vue-i18n`, optimizado especificamente para Nuxt. Resuelve los problemas comunes de implementar i18n manualmente:
 
-- Generacion automatica de rutas con prefijo de idioma (Auto-generated routes).
-- Manejo automatico de SEO Meta Tags (hreflang, og:locale).
-- Soporte para Lazy Loading de paquetes de idiomas (optimizacion del Bundle Size).
+- Generación automática de rutas con prefijo de idioma (Auto-generated routes).
+- Manejo automático de SEO Meta Tags (hreflang, og:locale).
+- Soporte para Lazy Loading de paquetes de idiomas (optimización del Bundle Size).
 
-### 2.2 Instalacion y configuracion
+### 2.2 Instalación y configuración
 
 ```bash
 npm install @nuxtjs/i18n
@@ -67,7 +67,7 @@ Esta es la clave para SEO. `@nuxtjs/i18n` ofrece varias estrategias:
 2.  **prefix_and_default**:
 
     - Todos los idiomas con prefijo: `example.com/tw/about`, `example.com/en/about`
-    - Ventaja: Estructura uniforme, facil manejo de redireccionamientos.
+    - Ventaja: Estructura uniforme, fácil manejo de redireccionamientos.
 
 3.  **no_prefix** (no recomendado para SEO):
     - Todos los idiomas con la misma URL, cambio por Cookie.
@@ -75,11 +75,11 @@ Esta es la clave para SEO. `@nuxtjs/i18n` ofrece varias estrategias:
 
 ---
 
-## 3. Implementacion clave de SEO
+## 3. Implementación clave de SEO
 
 ### 3.1 Etiqueta hreflang
 
-Los motores de busqueda necesitan saber "que versiones de idioma tiene esta pagina". `@nuxtjs/i18n` genera automaticamente en `<head>`:
+Los motores de busqueda necesitan saber "qué versiones de idioma tiene esta página". `@nuxtjs/i18n` genera automáticamente en `<head>`:
 
 ```html
 <link rel="alternate" href="https://example.com/about" hreflang="zh-TW" />
@@ -87,7 +87,7 @@ Los motores de busqueda necesitan saber "que versiones de idioma tiene esta pagi
 <link rel="alternate" href="https://example.com/about" hreflang="x-default" />
 ```
 
-**Nota:** Se debe configurar `baseUrl` en `nuxt.config.ts`, de lo contrario hreflang generara rutas relativas (invalidas).
+**Nota:** Se debe configurar `baseUrl` en `nuxt.config.ts`, de lo contrario hreflang generara rutas relativas (inválidas).
 
 ```typescript
 export default defineNuxtConfig({
@@ -99,11 +99,11 @@ export default defineNuxtConfig({
 
 ### 3.2 Canonical URL
 
-Asegurar que cada version de idioma de la pagina tenga un Canonical URL que apunte a si misma, evitando ser considerada contenido duplicado.
+Asegurar que cada versión de idioma de la página tenga un Canonical URL que apunte a si misma, evitando ser considerada contenido duplicado.
 
-### 3.3 Traduccion de contenido dinamico (API)
+### 3.3 Traduccion de contenido dinámico (API)
 
-La API backend tambien necesita soportar multilenguaje. Normalmente se incluye el header `Accept-Language` en las solicitudes.
+La API backend también necesita soportar multilenguaje. Normalmente se incluye el header `Accept-Language` en las solicitudes.
 
 ```typescript
 // composables/useApi.ts
@@ -125,10 +125,10 @@ export const useApi = (url: string) => {
 
 **Problema:** El Server detecta ingles y renderiza HTML en ingles; el navegador del Client tiene chino como predeterminado, Vue i18n se inicializa en chino, causando parpadeo de pantalla o Hydration Error.
 
-**Solucion:**
+**Solución:**
 
-- Usar la configuracion `detectBrowserLanguage` para que el Client al inicializarse respete la configuracion de URL o Cookie, en lugar de la configuracion del navegador.
-- Asegurar que la configuracion de `defaultLocale` del Server y Client sea consistente.
+- Usar la configuración `detectBrowserLanguage` para que el Client al inicializarse respete la configuración de URL o Cookie, en lugar de la configuración del navegador.
+- Asegurar que la configuración de `defaultLocale` del Server y Client sea consistente.
 
 ### 4.2 Cambio de idioma
 
@@ -153,26 +153,26 @@ const switchLocalePath = useSwitchLocalePath();
 
 ### 5.1 i18n y SEO
 
-**Q: Que hay que tener en cuenta con multilenguaje (i18n) en un entorno SSR? Como manejar el SEO?**
+**Q: Qué hay que tener en cuenta con multilenguaje (i18n) en un entorno SSR? Cómo manejar el SEO?**
 
 > **Ejemplo de respuesta:**
-> Al hacer i18n en un entorno SSR, lo mas importante es el **SEO** y la **consistencia de Hydration**.
+> Al hacer i18n en un entorno SSR, lo más importante es el **SEO** y la **consistencia de Hydration**.
 >
 > Sobre **SEO**:
 >
 > 1.  **Estructura de URL**: Uso la estrategia de "subruta" (como `/en/`, `/tw/`), dando a cada idioma una URL independiente para que los motores de busqueda puedan indexar.
-> 2.  **hreflang**: Se debe configurar correctamente `<link rel="alternate" hreflang="..." />`, indicando a Google que estas paginas son versiones en diferentes idiomas del mismo contenido, evitando penalizaciones por contenido duplicado. Normalmente uso el modulo `@nuxtjs/i18n` para generar automaticamente estas etiquetas.
+> 2.  **hreflang**: Se debe configurar correctamente `<link rel="alternate" hreflang="..." />`, indicando a Google que estas páginas son versiones en diferentes idiomas del mismo contenido, evitando penalizaciones por contenido duplicado. Normalmente uso el modulo `@nuxtjs/i18n` para generar automáticamente estas etiquetas.
 >
 > Sobre **Hydration**:
-> Asegurar que el idioma renderizado por el Server y el idioma inicializado por el Client sean consistentes. Configuro la determinacion del idioma desde el prefijo URL o Cookie, y agrego el locale correspondiente en el header de solicitudes API.
+> Asegurar que el idioma renderizado por el Server y el idioma inicializado por el Client sean consistentes. Configuro la determinación del idioma desde el prefijo URL o Cookie, y agrego el locale correspondiente en el header de solicitudes API.
 
 ### 5.2 Enrutamiento y estado
 
-**Q: Como implementar la funcionalidad de cambio de idioma?**
+**Q: Cómo implementar la funcionalidad de cambio de idioma?**
 
 > **Ejemplo de respuesta:**
 > Uso el composable `useSwitchLocalePath` proporcionado por `@nuxtjs/i18n`.
-> Genera automaticamente la URL del idioma correspondiente basandose en la ruta actual (manteniendo query parameters), y maneja la conversion de prefijos de ruta. Esto evita errores de concatenacion manual de cadenas, y asegura que el usuario permanezca en el contenido de la pagina original al cambiar de idioma.
+> Genera automáticamente la URL del idioma correspondiente basandose en la ruta actual (manteniendo query parameters), y maneja la conversión de prefijos de ruta. Esto evita errores de concatenacion manual de cadenas, y asegura que el usuario permanezca en el contenido de la página original al cambiar de idioma.
 
 ---
 

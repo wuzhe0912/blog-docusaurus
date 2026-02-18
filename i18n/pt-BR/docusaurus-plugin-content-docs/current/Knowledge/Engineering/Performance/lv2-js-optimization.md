@@ -1,28 +1,28 @@
 ---
 id: performance-lv2-js-optimization
-title: '[Lv2] Otimizacao de performance computacional JavaScript: Debounce, Throttle, Time Slicing'
+title: '[Lv2] Otimização de performance computacional JavaScript: Debounce, Throttle, Time Slicing'
 slug: /experience/performance/lv2-js-optimization
 tags: [Experience, Interview, Performance, Lv2]
 ---
 
-> Atraves de tecnicas como debounce, throttle, time slicing e requestAnimationFrame, otimizamos a performance computacional do JavaScript e melhoramos a experiencia do usuario.
+> Através de técnicas como debounce, throttle, time slicing e requestAnimationFrame, otimizamos a performance computacional do JavaScript e melhoramos a experiência do usuário.
 
 ---
 
 ## Contexto do problema
 
-No projeto da plataforma, os usuarios realizam frequentemente as seguintes operacoes:
+No projeto da plataforma, os usuários realizam frequentemente as seguintes operações:
 
 - **Busca** (digitando palavras-chave para filtrar 3000+ produtos em tempo real)
-- **Rolagem de listas** (rastreando posicao e carregando mais itens durante a rolagem)
-- **Troca de categorias** (filtrando para exibir tipos especificos de produtos)
-- **Efeitos de animacao** (rolagem suave, efeitos de presentes)
+- **Rolagem de listas** (rastreando posição e carregando mais itens durante a rolagem)
+- **Troca de categorias** (filtrando para exibir tipos específicos de produtos)
+- **Efeitos de animação** (rolagem suave, efeitos de presentes)
 
-Essas operacoes, sem otimizacao, causam travamento da pagina e uso excessivo de CPU.
+Essas operações, sem otimização, causam travamento da página e uso excessivo de CPU.
 
 ---
 
-## Estrategia 1: Debounce - Otimizacao de entrada de busca
+## Estratégia 1: Debounce - Otimização de entrada de busca
 
 ```javascript
 import { useDebounceFn } from '@vueuse/core';
@@ -55,14 +55,14 @@ Apos otimizacao: digitando "slot game"
 - Melhoria de performance: 90%
 ```
 
-## Estrategia 2: Throttle - Otimizacao de eventos de rolagem
+## Estratégia 2: Throttle - Otimização de eventos de rolagem
 
-> Cenario de aplicacao: rastreamento de posicao de rolagem, carregamento infinito
+> Cenário de aplicação: rastreamento de posição de rolagem, carregamento infinito
 
 ```javascript
 import { throttle } from 'lodash';
 
-// Funcao throttle: executa no maximo 1 vez a cada 100ms
+// Funcao throttle: executa no máximo 1 vez a cada 100ms
 const handleScroll = throttle(() => {
   scrollTop.value = document.documentElement.scrollTop;
 }, 100);
@@ -84,9 +84,9 @@ Apos otimizacao:
 - Melhoria de performance: 90%
 ```
 
-## Estrategia 3: Time Slicing - Processamento de grandes volumes de dados
+## Estratégia 3: Time Slicing - Processamento de grandes volumes de dados
 
-> Cenario de aplicacao: nuvem de tags, combinacoes de menu, filtragem de 3000+ jogos, renderizacao de historico de transacoes
+> Cenário de aplicação: nuvem de tags, combinações de menu, filtragem de 3000+ jogos, renderizacao de histórico de transacoes
 
 ```javascript
 // Funcao personalizada de time slicing
@@ -127,9 +127,9 @@ function searchGameKeyword(games: GameList, keyword: string) {
 }
 ```
 
-## Estrategia 4: requestAnimationFrame - Otimizacao de animacoes
+## Estratégia 4: requestAnimationFrame - Otimização de animações
 
-> Cenario de aplicacao: rolagem suave, animacoes Canvas, efeitos de presentes
+> Cenário de aplicação: rolagem suave, animações Canvas, efeitos de presentes
 
 ```javascript
 const scrollToTopAnimated = (el: any, speed = 500) => {
@@ -173,15 +173,15 @@ setInterval(() => {
   el.scrollTop += 10;
 }, 16); // Tentando 60fps (1000ms / 60 = 16ms)
 // Problemas:
-// 1. Nao sincroniza com o repaint do navegador (pode executar multiplas vezes entre repaints)
-// 2. Executa mesmo em abas em segundo plano (desperdicio de recursos)
+// 1. Não sincroniza com o repaint do navegador (pode executar múltiplas vezes entre repaints)
+// 2. Executa mesmo em abas em segundo plano (desperdício de recursos)
 // 3. Pode causar jank (perda de frames)
 
 // Abordagem correta: usar requestAnimationFrame
 requestAnimationFrame(animateScroll);
 // Vantagens:
 // 1. Sincronizado com o repaint do navegador (60fps ou 120fps)
-// 2. Pausa automaticamente quando a aba nao esta visivel (economia de bateria)
+// 2. Pausa automaticamente quando a aba não está visível (economia de bateria)
 // 3. Mais fluido, sem perda de frames
 ```
 
@@ -191,43 +191,43 @@ requestAnimationFrame(animateScroll);
 
 ### Debounce vs Throttle
 
-| Caracteristica | Debounce                            | Throttle                            |
+| Característica | Debounce                            | Throttle                            |
 | -------------- | ----------------------------------- | ----------------------------------- |
-| Momento de disparo | Apos parar a acao, espera um periodo | Executa no maximo uma vez em intervalo fixo |
-| Cenario adequado | Entrada de busca, resize de janela | Eventos de rolagem, movimento do mouse |
-| Numero de execucoes | Pode nao executar (se continuar acionando) | Garante execucao (frequencia fixa) |
-| Atraso | Com atraso (espera parar) | Execucao imediata, limitacao subsequente |
+| Momento de disparo | Após parar a acao, espera um período | Executa no máximo uma vez em intervalo fixo |
+| Cenário adequado | Entrada de busca, resize de janela | Eventos de rolagem, movimento do mouse |
+| Numero de execuções | Pode não executar (se continuar acionando) | Garante execução (frequência fixa) |
+| Atraso | Com atraso (espera parar) | Execucao imediata, limitação subsequente |
 
 ### Time Slicing vs Web Worker
 
-| Caracteristica | Time Slicing                       | Web Worker                          |
+| Característica | Time Slicing                       | Web Worker                          |
 | -------------- | ----------------------------------- | ----------------------------------- |
-| Ambiente de execucao | Thread principal                | Thread em segundo plano             |
-| Cenario adequado | Tarefas que precisam manipular DOM | Tarefas de computacao pura          |
-| Complexidade de implementacao | Mais simples              | Mais complexa (requer comunicacao)  |
+| Ambiente de execução | Thread principal                | Thread em segundo plano             |
+| Cenário adequado | Tarefas que precisam manipular DOM | Tarefas de computação pura          |
+| Complexidade de implementação | Mais simples              | Mais complexa (requer comunicação)  |
 | Melhoria de performance | Evita bloquear thread principal | Computacao verdadeiramente paralela |
 
 ### Perguntas comuns de entrevista
 
 **P: Como escolher entre debounce e throttle?**
 
-R: Depende do cenario de uso:
+R: Depende do cenário de uso:
 
-- **Debounce**: adequado para cenarios de "esperar o usuario completar a acao" (como entrada de busca)
-- **Throttle**: adequado para cenarios de "precisa atualizar continuamente mas nao muito frequentemente" (como rastreamento de rolagem)
+- **Debounce**: adequado para cenários de "esperar o usuário completar a acao" (como entrada de busca)
+- **Throttle**: adequado para cenários de "precisa atualizar continuamente mas não muito frequentemente" (como rastreamento de rolagem)
 
 **P: Como escolher entre time slicing e Web Worker?**
 
 R:
 
 - **Time Slicing**: precisa manipular DOM, processamento simples de dados
-- **Web Worker**: computacao pura, processamento de grandes volumes de dados, sem necessidade de manipulacao DOM
+- **Web Worker**: computação pura, processamento de grandes volumes de dados, sem necessidade de manipulação DOM
 
-**P: Quais sao as vantagens do requestAnimationFrame?**
+**P: Quais são as vantagens do requestAnimationFrame?**
 
 R:
 
 1. Sincronizado com o repaint do navegador (60fps)
-2. Pausa automaticamente quando a aba nao esta visivel (economia de bateria)
+2. Pausa automaticamente quando a aba não está visível (economia de bateria)
 3. Evita perda de frames (Jank)
 4. Performance superior a setInterval/setTimeout

@@ -1,7 +1,7 @@
 ---
-id: vue-component-commúnication
+id: vue-component-communication
 title: '[Medium] Comúnicação entre Componentes'
-slug: /vue-component-commúnication
+slug: /vue-component-communication
 tags: [Vue, Quiz, Medium]
 ---
 

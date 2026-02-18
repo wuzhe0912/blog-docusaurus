@@ -36,7 +36,7 @@ Os dados precisam ser atualizados em tempo real?
 
 Qual e o padrão de operação do usuario?
 -> Navegacao principal -> virtual scroll
--> Buscar dados especificos -> busca + páginação
+-> Buscar dados especificos -> busca + paginação
 -> Visualizar registro por registro -> scroll infinito
 
 A estrutura de dados e fixa?
@@ -53,7 +53,7 @@ E necessario selecionar tudo, imprimir ou exportar?
 ```javascript
 // Caso 1: Historico de transações (10.000+ registros)
 Comportamento do usuario: ver transações recentes, buscar datas especificas ocasionalmente
-Melhor solução: páginação no back-end + busca
+Melhor solução: paginação no back-end + busca
 
 // Caso 2: Lista de jogos em tempo real (3.000+ jogos)
 Comportamento do usuario: navegar, filtrar por categoria, rolagem fluida
@@ -65,7 +65,7 @@ Melhor solução: scroll infinito + carregamento em lotes
 
 // Caso 4: Relatorios de dados (tabelas complexas)
 Comportamento do usuario: visualizar, ordenar, exportar
-Melhor solução: páginação no back-end + API de exportacao
+Melhor solução: paginação no back-end + API de exportacao
 ```
 
 ---
@@ -76,9 +76,9 @@ Melhor solução: páginação no back-end + API de exportacao
 
 | Solução           | Cenário adequado          | Vantagens                | Desvantagens             | Dificuldade | Performance |
 | ----------------- | ------------------------- | ------------------------ | ------------------------ | ----------- | ----------- |
-| **Paginacao back-end** | Maioria dos cenários  | Simples é confiável, SEO friendly | Necessita páginação, experiência interrompida | 1/5 Simples | 3/5 Média |
+| **Paginação back-end** | Maioria dos cenários  | Simples é confiável, SEO friendly | Necessita paginação, experiência interrompida | 1/5 Simples | 3/5 Média |
 | **Virtual scroll** | Grandes volumes com altura fixa | Performance máxima, rolagem fluida | Implementação complexa, sem busca nativa | 4/5 Complexa | 5/5 Excelente |
-| **Scroll infinito** | Redes sociais, feeds de notícias | Experiência contínua, implementação simples | Acúmulo de memória, sem páginação | 2/5 Simples | 3/5 Média |
+| **Scroll infinito** | Redes sociais, feeds de notícias | Experiência contínua, implementação simples | Acúmulo de memória, sem paginação | 2/5 Simples | 3/5 Média |
 | **Carregamento em lotes** | Otimização do carregamento inicial | Carregamento progressivo, combina com skeleton screen | Requer cooperacao do back-end | 2/5 Simples | 3/5 Média |
 | **Web Worker** | Computacao pesada, ordenação, filtragem | Não bloqueia thread principal | Custo de comunicação, debug difícil | 3/5 Média | 4/5 Boa |
 | **Solução híbrida** | Requisitos complexos | Combina vantagens de múltiplas soluções | Alta complexidade | 4/5 Complexa | 4/5 Boa |
@@ -87,7 +87,7 @@ Melhor solução: páginação no back-end + API de exportacao
 
 ## Detalhes das soluções
 
-### 1. Paginacao back-end (Pagination) - Solução preferencial
+### 1. Paginação back-end (Pagination) - Solução preferencial
 
 > **Índice de recomendação: 5/5 (altamente recomendado)**
 > A solução mais comum é confiável, adequada para 80% dos cenários
@@ -126,7 +126,7 @@ app.get('/api/data', async (req, res) => {
 #### Tecnicas de otimização
 
 ```javascript
-// 1. Paginacao baseada em cursor (Cursor-based Pagination)
+// 1. Paginação baseada em cursor (Cursor-based Pagination)
 // Adequada para dados com atualização em tempo real, evita duplicatas ou omissoes
 const data = await Collection.find({ _id: { $gt: cursor } })
   .limit(20)
@@ -155,7 +155,7 @@ Adequado
 
 Nao adequado
 - Necessidade de experiencia de rolagem fluida
-- Listas com atualização em tempo real (páginação pode saltar)
+- Listas com atualização em tempo real (paginação pode saltar)
 - Aplicacoes tipo rede social
 ```
 
@@ -444,7 +444,7 @@ Detalhes: [Aplicação de Web Worker ->](/docs/experience/performance/lv3-web-wo
 
 Para cenários complexos, combine múltiplas soluções:
 
-#### Opção A: Virtual scroll + páginação back-end
+#### Opção A: Virtual scroll + paginação back-end
 
 ```javascript
 // A cada vez, buscar 500 registros do back-end
@@ -505,7 +505,7 @@ async function search(keyword) {
 Inicio: dezenas de milhares de registros precisam ser exibidos
     |
 P1: O usuario precisa ver todos os dados?
-    |- Nao -> Paginacao back-end + busca/filtro
+    |- Nao -> Paginação back-end + busca/filtro
     |
     Sim
     |
@@ -515,7 +515,7 @@ P2: A altura dos dados e fixa?
     |
 P3: E necessaria experiencia de navegacao continua?
     |- Sim -> Scroll infinito
-    |- Nao -> Paginacao back-end
+    |- Nao -> Paginação back-end
     |
 P4: Existem necessidades de computacao pesada (ordenacao, filtragem)?
     |- Sim -> Web Worker + virtual scroll
@@ -702,7 +702,7 @@ Após escolher a solução, use estes indicadores para avaliar os resultados:
 >
 > Dependendo do cenário, eu escolheria:
 >
-> - **Painel administrativo geral** -> Paginacao back-end (mais simples e confiável)
+> - **Painel administrativo geral** -> Paginação back-end (mais simples e confiável)
 > - **Necessidade de rolagem fluida** -> Virtual scroll (melhor performance)
 > - **Tipo rede social** -> Scroll infinito (melhor experiência)
 > - **Necessidade de computação complexa** -> Web Worker + virtual scroll
@@ -769,7 +769,7 @@ R: Usando combinação de várias ferramentas:
 Ao enfrentar a questão "otimização de dezenas de milhares de dados":
 
 1. **Avalie os requisitos primeiro**: não se apresse em escolher a tecnologia
-2. **Conheca múltiplas soluções**: páginação back-end, virtual scroll, scroll infinito, etc.
+2. **Conheca múltiplas soluções**: paginação back-end, virtual scroll, scroll infinito, etc.
 3. **Pondere os trade-offs**: performance vs custo de desenvolvimento vs experiência do usuário
 4. **Otimize continuamente**: use ferramentas de monitoramento para melhorias continuas
 5. **Deixe os dados falarem**: comprove a eficacia da otimização com dados reais de performance

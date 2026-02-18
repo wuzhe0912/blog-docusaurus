@@ -189,21 +189,21 @@ export default defineNuxtConfig({
 
 ---
 
-## 5. Paginacao e rolagem para grandes volumes de dados
+## 5. Paginação e rolagem para grandes volumes de dados
 
 ### 5.1 Seleção de solução
 Para grandes volumes de dados (ex: 10.000 produtos), existem três estratégias principais, considerando **SEO**:
 
 | Estratégia | Cenário adequado | Compatibilidade com SEO |
 | :--- | :--- | :--- |
-| **Paginacao tradicional (Pagination)** | Listas de e-commerce, listas de artigos | Excelente (melhor) |
+| **Paginação tradicional (Pagination)** | Listas de e-commerce, listas de artigos | Excelente (melhor) |
 | **Scroll infinito (Infinite Scroll)** | Feeds sociais, galerias de fotos | Baixa (requer tratamento especial) |
 | **Virtual Scroll** | Relatorios complexos, listas muito longas | Muito baixa (conteúdo não está no DOM) |
 
 ### 5.2 Como manter SEO com scroll infinito?
 Com scroll infinito, motores de busca geralmente rastreiam apenas a primeira página. Soluções:
-1. **Combinar com páginação**: fornecer tags `<link rel="next" href="...">` para que os crawlers saibam que ha próxima página.
-2. **Noscript Fallback**: fornecer uma versão de páginação tradicional em `<noscript>` para crawlers.
+1. **Combinar com paginação**: fornecer tags `<link rel="next" href="...">` para que os crawlers saibam que ha próxima página.
+2. **Noscript Fallback**: fornecer uma versão de paginação tradicional em `<noscript>` para crawlers.
 3. **Botao "Carregar mais"**: SSR renderiza os primeiros 20 registros; cliques subsequentes em "Carregar mais" ou rolagem acionam Client-side fetch.
 
 ### 5.3 Exemplo de implementação (Load More + SEO)
@@ -339,4 +339,4 @@ export default defineEventHandler((event) => {
 > Uso o módulo `@nuxt/image`, que converte automaticamente para WebP, redimensiona automaticamente, e suporta Lazy Loading, reduzindo significativamente o volume de transferência.
 
 **P: Como manter SEO com scroll infinito?**
-> Scroll infinito não é amigavel para SEO. Se for um site de conteúdo, priorizo páginação tradicional. Se scroll infinito for obrigatório, renderizo a primeira página com SSR e uso Meta Tags (`rel="next"`) para informar crawlers sobre a estrutura de páginação, ou forneco links de páginação via Noscript.
+> Scroll infinito não é amigavel para SEO. Se for um site de conteúdo, priorizo paginação tradicional. Se scroll infinito for obrigatório, renderizo a primeira página com SSR e uso Meta Tags (`rel="next"`) para informar crawlers sobre a estrutura de paginação, ou forneco links de paginação via Noscript.

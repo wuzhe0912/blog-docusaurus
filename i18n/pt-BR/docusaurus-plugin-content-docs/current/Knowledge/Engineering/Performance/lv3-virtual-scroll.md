@@ -349,11 +349,11 @@ onMounted(() => {
 
 ## Comparação técnica
 
-### Virtual Scroll vs Paginacao
+### Virtual Scroll vs Paginação
 
-| Criterio         | Virtual Scroll            | Paginacao tradicional    |
+| Criterio         | Virtual Scroll            | Paginação tradicional    |
 | ---------------- | ------------------------- | ------------------------ |
-| Experiência do usuário | Rolagem contínua (melhor) | Necessita páginação (interrompida) |
+| Experiência do usuário | Rolagem contínua (melhor) | Necessita paginação (interrompida) |
 | Performance      | Sempre renderiza apenas área visível | Renderiza tudo por página |
 | Dificuldade de implementação | Mais complexa      | Simples                  |
 | SEO friendly     | Pior                      | Melhor                   |
@@ -362,5 +362,5 @@ onMounted(() => {
 **Recomendação:**
 
 - Sistemas back-office, Dashboard -> Virtual Scroll
-- Sites públicos, blogs -> Paginacao tradicional
+- Sites públicos, blogs -> Paginação tradicional
 - Solução híbrida: Virtual Scroll + botao "Carregar mais"

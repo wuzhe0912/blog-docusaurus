@@ -119,7 +119,7 @@
 - [x] `docs/Knowledge/CSS-UI/CSS/selector-weight.md` (57 lines)
 - [x] `docs/Knowledge/CSS-UI/CSS/theme-switching.md` (1,172 lines)
 - [x] Batch 4 build 驗證
-- [ ] Batch 4 commit
+- [x] Batch 4 commit (99bbf2e)
 
 ---
 

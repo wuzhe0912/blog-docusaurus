@@ -51,7 +51,8 @@
       "Bash(bun add:*)",
       "Bash(git mv:*)",
       "Bash(mkdir:*)",
-      "Bash(tail:*)"
+      "Bash(tail:*)",
+      "Bash(done)"
     ]
   }
 }

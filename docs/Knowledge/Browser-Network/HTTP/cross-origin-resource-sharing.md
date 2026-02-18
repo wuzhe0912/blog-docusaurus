@@ -6,11 +6,11 @@ slug: /cross-origin-resource-sharing
 
 ## 1. What is between JSONP and CORS ?
 
-JSONP（JSON with Padding）和 CORS（跨來源資源共享）是兩種實現跨來源請求的技術，允許網頁從不同的域名（網站）請求資料。
+JSONP (JSON with Padding) and CORS (Cross-Origin Resource Sharing) are two techniques for implementing cross-origin requests, allowing web pages to request data from different domains.
 
 ### JSONP
 
-JSONP 是一種較為老舊的技術，用來解決早期的同源政策限制，允許網頁從不同的來源（域、協議或端口）請求數據。因為 `<script>` 標籤的載入不受同源政策限制，JSONP 通過動態添加 `<script>` 標籤並指向一個返回 JSON 數據的 URL 來工作。該 URL 的響應會包裹在一個函式調用中，網頁上的 JavaScript 會提前定義這個函式以接收數據。
+JSONP is an older technique used to work around the same-origin policy restrictions, allowing web pages to request data from different origins (domain, protocol, or port). Since `<script>` tag loading is not subject to the same-origin policy, JSONP works by dynamically adding a `<script>` tag that points to a URL returning JSON data. The response from that URL is wrapped in a function call, and the JavaScript on the page defines this function in advance to receive the data.
 
 ```javascript
 // client-side
@@ -28,22 +28,22 @@ document.body.appendChild(script);
 receiveData({ name: 'PittWu', type: 'player' });
 ```
 
-缺點是安全風險較高（因為可執行任意 JavaScript）且僅支援 GET 請求。
+The downside is a higher security risk (since it can execute arbitrary JavaScript) and it only supports GET requests.
 
 ### CORS
 
-CORS 是一種比 JSONP 更安全、更現代的技術。它通過 HTTP 頭部 `Access-Control-Allow-Origin` 來告訴瀏覽器該請求是被允許的。伺服器設定相關的 CORS 頭部信息來決定哪些來源可以訪問它的資源。
+CORS is a safer and more modern technique than JSONP. It uses the HTTP header `Access-Control-Allow-Origin` to inform the browser that the request is permitted. The server configures the relevant CORS headers to determine which origins can access its resources.
 
-假如 `http://client.com` 的前端想要訪問 `http://api.example.com` 的資源，`api.example.com` 需要在其響應中包含下列 HTTP header：
+For example, if the frontend at `http://client.com` wants to access resources at `http://api.example.com`, `api.example.com` needs to include the following HTTP header in its response:
 
 ```http
 Access-Control-Allow-Origin: http://client.com
 ```
 
-或者如果允許任何來源：
+Or to allow any origin:
 
 ```http
 Access-Control-Allow-Origin: *
 ```
 
-CORS 可以用於任何類型的 HTTP 請求，是一種標準化且安全的方式來執行跨來源請求。
+CORS can be used with any type of HTTP request and is a standardized, secure way to perform cross-origin requests.

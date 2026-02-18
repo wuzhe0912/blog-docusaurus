@@ -1,79 +1,79 @@
 ---
 id: login-lv1-project-implementation
-title: '[Lv1] 過往專案的登入機制是怎麼實作的？'
+title: '[Lv1] How Was Authentication Implemented in Past Projects?'
 slug: /experience/login/lv1-project-implementation
 tags: [Experience, Interview, Login, Lv1]
 ---
 
-> 目標：用 3 ～ 5 分鐘清楚交代「前端如何處理登入、狀態維護與保護頁面」，方便面試時快速回想。
+> Goal: Clearly explain "how the frontend handles login, state management, and page protection" in 3–5 minutes, making it easy to recall during interviews.
 
 ---
 
-## 1. 面試回答主軸
+## 1. Interview Answer Key Points
 
-1. **登入流程三階段**：送出表單 → 後端驗證 → 儲存 Token 與導頁。
-2. **狀態與 Token 管理**：Pinia 搭配持久化，Axios Interceptor 自動附加 Bearer Token。
-3. **後續處理與保護**：初始化共用資料、路由守衛、登出與例外情境（OTP、強制換密碼）。
+1. **Three Stages of Login Flow**: Submit form → Backend verification → Store token and redirect.
+2. **State and Token Management**: Pinia with persistence, Axios Interceptor to automatically attach Bearer Token.
+3. **Post-login Handling and Protection**: Initialize shared data, route guards, logout, and edge cases (OTP, forced password change).
 
-先以這三個重點破題，再依需求展開細節，讓面試官感受到你具備整體視角。
-
----
-
-## 2. 系統組成與責任分工
-
-| 模組           | 位置                                | 角色                                         |
-| -------------- | ----------------------------------- | -------------------------------------------- |
-| `authStore`    | `src/stores/authStore.ts`           | 儲存登入狀態、持久化 Token、提供 getter      |
-| `useAuth` Hook | `src/common/hooks/useAuth.ts`       | 封裝登入 / 登出流程、統一回傳格式            |
-| 登入 API       | `src/api/login.ts`                  | 呼叫後端 `POST /login`、`POST /logout`       |
-| Axios 工具     | `src/common/utils/request.ts`       | Request / Response Interceptor、統一錯誤處理 |
-| 路由守衛       | `src/router/index.ts`               | 依 `meta` 判斷是否需要登入、導向登入頁       |
-| 初始化流程     | `src/common/composables/useInit.ts` | App 啟動時判斷是否已有 Token、載入必要資料   |
-
-> 記憶法：**「Store 管狀態、Hook 管流程、Interceptor 管通道、Guard 管頁面」**。
+Lead with these three key points, then expand into details as needed, showing the interviewer that you have a holistic perspective.
 
 ---
 
-## 3. 登入流程（一步步拆解）
+## 2. System Components and Responsibilities
 
-### Step 0. 表單與前置驗證
+| Module           | Location                            | Role                                                     |
+| ---------------- | ----------------------------------- | -------------------------------------------------------- |
+| `authStore`      | `src/stores/authStore.ts`           | Stores login state, persists token, provides getters     |
+| `useAuth` Hook   | `src/common/hooks/useAuth.ts`       | Encapsulates login/logout flow, unified return format    |
+| Login API        | `src/api/login.ts`                  | Calls backend `POST /login`, `POST /logout`              |
+| Axios Utility    | `src/common/utils/request.ts`       | Request/Response Interceptor, unified error handling     |
+| Route Guard      | `src/router/index.ts`               | Checks `meta` to determine if login is required          |
+| Initialization   | `src/common/composables/useInit.ts` | Checks for existing token on app startup, loads required data |
 
-- 支援一般密碼與 SMS 驗證碼兩種登入方式。
-- 送出前先做基本驗證（必填、格式、防重送）。
+> Mnemonic: **"Store manages state, Hook manages flow, Interceptor manages the channel, Guard manages the pages."**
 
-### Step 1. 呼叫登入 API
+---
+
+## 3. Login Flow (Step by Step)
+
+### Step 0. Form and Pre-validation
+
+- Supports two login methods: password and SMS verification code.
+- Basic validation before submission (required fields, format, debounce).
+
+### Step 1. Call the Login API
 
 ```typescript
 const { status, data, code } = await useApi(login, payload);
 ```
 
-- `useApi` 統一錯誤處理與 loading 管理。
-- 成功時 `data` 會帶回 Token 與使用者核心資訊。
+- `useApi` handles error management and loading state uniformly.
+- On success, `data` returns the token and core user information.
 
-### Step 2. 處理後端回應
+### Step 2. Handle Backend Response
 
-| 情況                                     | 行為                                              |
-| ---------------------------------------- | ------------------------------------------------- |
-| **需要補驗證**（例如首次登入要身分確認） | 將 `authStore.onBoarding` 設為 `true`，導向驗證頁 |
-| **強制修改密碼**                         | 依回傳旗標導向變更密碼流程並帶入必要參數          |
-| **一般成功**                             | 呼叫 `authStore.$patch()` 儲存 Token 與使用者資訊 |
+| Scenario                                            | Behavior                                                         |
+| --------------------------------------------------- | ---------------------------------------------------------------- |
+| **Additional verification required** (e.g., first login identity confirmation) | Set `authStore.onBoarding` to `true`, redirect to verification page |
+| **Forced password change**                          | Redirect to password change flow with necessary parameters        |
+| **Normal success**                                  | Call `authStore.$patch()` to store token and user information     |
 
-### Step 3. 登入完成後的共用動作
+### Step 3. Shared Actions After Login
 
-1. 取得使用者基本資料與錢包清單。
-2. 初始化個人化內容（例如禮物列表、通知）。
-3. 依 `redirect` 或既定路由導向內頁。
+1. Fetch user profile and wallet list.
+2. Initialize personalized content (e.g., gift list, notifications).
+3. Redirect to the inner page based on `redirect` or predefined route.
 
-> 登入成功只是一半，**後續共用資料要在這個時機補齊**，避免每個頁面再各自打一次 API。
+> A successful login is only half the job — **shared data should be loaded at this point** to avoid each page making separate API calls.
 
 ---
 
-## 4. Token 生命週期管理
+## 4. Token Lifecycle Management
 
-### 4.1 儲存策略
+### 4.1 Storage Strategy
 
-- `authStore` 啟用 `persist: true`，將關鍵欄位寫入 `localStorage`。
-- 優點：重新整理後狀態自動恢復；缺點：需自行注意 XSS 與安全性。
+- `authStore` enables `persist: true`, writing key fields to `localStorage`.
+- Pros: State automatically recovers after page refresh. Cons: Must be mindful of XSS and security.
 
 ### 4.2 Axios Request Interceptor
 
@@ -84,19 +84,19 @@ if (needToken) {
 }
 ```
 
-- 需要授權的 API 會自動帶入 Bearer Token。
-- 若 API 明確標記 `needToken: false`（登入、註冊等），則跳過帶入流程。
+- APIs requiring authorization automatically include the Bearer Token.
+- APIs explicitly marked with `needToken: false` (login, registration, etc.) skip the token attachment.
 
-### 4.3 過期與例外處理
+### 4.3 Expiration and Exception Handling
 
-- 後端若回傳 Token 過期或無效，Response Interceptor 會統一轉為錯誤提示並觸發登出流程。
-- 若要延伸可加入 Refresh Token 機制，目前專案採用簡化策略。
+- If the backend returns a token-expired or invalid-token response, the Response Interceptor uniformly converts it to an error notification and triggers the logout flow.
+- A Refresh Token mechanism can be added as an extension, but the current project uses a simplified strategy.
 
 ---
 
-## 5. 路由保護與初始化
+## 5. Route Protection and Initialization
 
-### 5.1 路由守衛
+### 5.1 Route Guard
 
 ```typescript
 router.beforeEach((to, from, next) => {
@@ -108,48 +108,47 @@ router.beforeEach((to, from, next) => {
 });
 ```
 
-- 透過 `meta.needAuth` 決定是否檢查登入狀態。
-- 未登入時導向登入頁或指定公共頁面。
+- Uses `meta.needAuth` to determine whether to check login status.
+- Redirects to the login page or a designated public page when not logged in.
 
-### 5.2 應用啟動初始化
+### 5.2 App Startup Initialization
 
-`useInit` 在 App 啟動時處理：
+`useInit` handles the following on app startup:
 
-1. 檢查 URL 是否帶有 `login_token` 或 `platform_token`，若有就自動登入或設定 Token。
-2. 如果 Store 已有 Token，就載入使用者資訊與共用資料。
-3. 沒有 Token 則停留在公共頁面，等待使用者手動登入。
-
----
-
-## 6. 登出流程（收尾與清理）
-
-1. 呼叫 `POST /logout` 告知後端。
-2. 執行 `reset()`：
-   - `authStore.$reset()` 清除登入資訊。
-   - 相關 Store（使用者資訊、收藏、邀請碼等）一併重置。
-3. 清理瀏覽器端暫存（例如 localStorage 中的快取）。
-4. 導回登入頁或首頁。
-
-> 登出是登入的鏡射：不只是刪 Token，還要確保所有依賴狀態被清除，避免殘留資料。
+1. Checks if the URL contains `login_token` or `platform_token` — if so, performs automatic login or sets the token.
+2. If the Store already has a token, loads user information and shared data.
+3. If there's no token, stays on the public page and waits for the user to log in manually.
 
 ---
 
-## 7. 常見問題與最佳實務
+## 6. Logout Flow (Cleanup)
 
-- **流程拆解**：登入與登入後初始化分開，讓 hook 保持精簡。
-- **錯誤處理**：統一透過 `useApi` 與 Response Interceptor，確保 UI 顯示一致。
-- **安全性**：
-  - 全程使用 HTTPS。
-  - Token 放在 `localStorage` 時，敏感操作需留意 XSS。
-  - 視情況延伸 httpOnly Cookie 或 Refresh Token。
-- **延伸備案**：OTP、強制換密碼等情境保留彈性，由 hook 回傳狀態交由畫面處理。
+1. Call `POST /logout` to notify the backend.
+2. Execute `reset()`:
+   - `authStore.$reset()` clears login information.
+   - Related stores (user info, favorites, invitation codes, etc.) are also reset.
+3. Clear browser-side caches (e.g., localStorage caches).
+4. Redirect to the login page or homepage.
+
+> Logout is the mirror image of login: it's not just about deleting the token — you must ensure all dependent state is cleared to avoid data leaks.
 
 ---
 
-## 8. 面試快速備忘口訣
+## 7. Common Questions and Best Practices
 
-1. **「輸入 → 驗證 → 儲存 → 導頁」**：用這個順序描述整體流程。
-2. **「Store 記狀態、Interceptor 幫帶頭、Guard 擋路人」**：凸顯架構分工。
-3. **「登入後立刻補齊共用資料」**：展現對使用者體驗的敏感度。
-4. **「登出是一鍵重置 + 導回安全頁」**：顧到安全與流程收斂。
+- **Flow Decomposition**: Separate login and post-login initialization to keep hooks concise.
+- **Error Handling**: Unified through `useApi` and Response Interceptor to ensure consistent UI behavior.
+- **Security**:
+  - Always use HTTPS.
+  - When storing tokens in `localStorage`, be cautious of XSS for sensitive operations.
+  - Consider extending with httpOnly Cookies or Refresh Token as needed.
+- **Extensibility**: Edge cases like OTP and forced password changes are handled flexibly — the hook returns status for the view layer to process.
 
+---
+
+## 8. Interview Quick Reference Mnemonics
+
+1. **"Input → Validate → Store → Redirect"**: Use this order to describe the overall flow.
+2. **"Store manages state, Interceptor handles headers, Guard blocks unauthorized access"**: Highlight architectural separation.
+3. **"Load shared data immediately after login"**: Demonstrates sensitivity to user experience.
+4. **"Logout is a one-click reset + redirect to a safe page"**: Covers security and flow completion.

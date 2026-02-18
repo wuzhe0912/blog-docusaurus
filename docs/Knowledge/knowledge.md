@@ -1,6 +1,6 @@
 ---
 id: knowledge
-title: 技術筆記
+title: Technical Notes
 slug: /knowledge
 ---
 
@@ -8,7 +8,7 @@ slug: /knowledge
 >
 > _It's never too late to learn._
 
-這裡收錄了我在前端開發過程中整理的技術筆記與問答。如果你想看更完整的思考脈絡和職涯故事，歡迎到 [Blog](/blog) 逛逛。
+This is a collection of technical notes and Q&A compiled during my journey in frontend development. If you'd like to read more about my thought processes and career stories, feel free to visit the [Blog](/blog).
 
 ---
 
@@ -16,44 +16,44 @@ slug: /knowledge
 
 ### 🌐 Browser & Network
 
-探討瀏覽器渲染原理、HTTP 協定與網路傳輸機制。
+Exploring browser rendering principles, HTTP protocols, and network transmission mechanisms.
 
 ### 📒 JavaScript Ecosystem
 
-涵蓋 JavaScript 與 TypeScript 的核心概念、閉包、原型鏈等深度解析。
+Covering core concepts of JavaScript and TypeScript, including closures, prototype chains, and other in-depth analyses.
 
 ### ⚛️ Frontend Frameworks
 
-React 與 Vue 的框架原理、生命週期、狀態管理與最佳實踐。
+Framework principles, lifecycle, state management, and best practices for React and Vue.
 
 ### 🎨 CSS & UI
 
-樣式處理、版面配置與現代 CSS 特性。
+Style handling, layout techniques, and modern CSS features.
 
 ### 🛡️ Web Security
 
-從 CSRF/XSS 攻擊原理到 JWT/Session 認證機制的完整實作解析。
+A comprehensive analysis from CSRF/XSS attack principles to JWT/Session authentication implementation.
 
 ### 🛠️ Engineering & Tools
 
-前端工程化工具、打包策略以及效能優化 (Performance) 的進階技巧。
+Frontend engineering tools, bundling strategies, and advanced performance optimization techniques.
 
 ### 💼 Experience
 
-面試準備與實戰經驗分享。
+Interview preparation and real-world experience sharing.
 
 ### ⌨️ Coding
 
-Lodash 函式手寫實現與 JavaScript 進階練習。
+Hand-written Lodash function implementations and advanced JavaScript exercises.
 
 ### 📊 LeetCode
 
-演算法題解與思路筆記。
+Algorithm solutions and approach notes.
 
 ### 🤖 AI
 
-AI Prompts 與工具應用筆記。
+AI Prompts and tool application notes.
 
 ---
 
-> 當發現自己無法順暢闡述筆記的內容時，代表不夠淺白易懂。盡可能添加案例來強化記憶。
+> When you find yourself unable to explain the content of your notes fluently, it means it's not simple enough. Add examples wherever possible to reinforce understanding.

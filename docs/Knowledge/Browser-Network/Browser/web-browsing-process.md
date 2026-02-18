@@ -6,74 +6,74 @@ slug: /web-browsing-process
 
 ## 1. Please explain how the browser obtains HTML from the server and how the browser renders the HTML on the screen
 
-> 請說明瀏覽器如何從 server 端取得 HTML，並如何在瀏覽器上渲染 HTML
+> Explain how the browser fetches HTML from the server and renders it on the screen.
 
-### 1. 發起請求
+### 1. Initiating the Request
 
-- **網址輸入**：使用者在瀏覽器上輸入網址，或是點擊一個連結，瀏覽器會開始解析這串 URL，確認要向哪個伺服器發起請求。
-- **DNS 查找**：瀏覽器開始執行查找 DNS，以及對應的伺服器 IP 地址。
-- **建立連結**：瀏覽器透過網際網路使用 HTTP 或 HTTPS 協議，向伺服器的 IP 地址發出請求，同時如果是 HTTPS 協議，還需要進行 SSL/TLS 連接。
+- **URL Input**: When a user enters a URL in the browser or clicks a link, the browser begins parsing the URL to determine which server to send the request to.
+- **DNS Lookup**: The browser performs a DNS lookup to resolve the corresponding server IP address.
+- **Establishing a Connection**: The browser sends a request to the server's IP address over the internet using the HTTP or HTTPS protocol. If it's HTTPS, an SSL/TLS connection must also be established.
 
-### 2. Server 端響應
+### 2. Server Response
 
-- **處理請求**：伺服器接收到請求後，會根據請求的路徑與參數，從資料庫中讀取對應的資料數據。
-- **發送 Response**：接著會將 HTML 文件作為 HTTP Response 的一部分發送回瀏覽器，Response 本身還會包含諸如狀態碼或其他參數(cors, content-type)等。
+- **Processing the Request**: After receiving the request, the server reads the corresponding data from the database based on the request path and parameters.
+- **Sending the Response**: The server then sends the HTML document as part of the HTTP response back to the browser. The response also includes information such as status codes and other parameters (CORS, content-type, etc.).
 
-### 3. 解析 HTML
+### 3. Parsing HTML
 
-- **構建 DOM Tree**：瀏覽器開始讀取 HTML 文件，並根據 HTML 文件的標籤與屬性，轉換成 DOM 並開始在記憶體中構建 DOM Tree。
-- **requesting subresources(請求子資源)**：解析 HTML 文件時，如果遇到外部資源，例如 CSS、JavaScript、圖片等，瀏覽器會進一步向伺服器發起請求，獲取這些資料。
+- **Building the DOM Tree**: The browser reads the HTML document and converts it into DOM nodes based on HTML tags and attributes, building the DOM Tree in memory.
+- **Requesting Subresources**: While parsing the HTML, if the browser encounters external resources such as CSS, JavaScript, or images, it sends additional requests to the server to fetch those resources.
 
-### 4. Render Page(渲染頁面)
+### 4. Rendering the Page
 
-- **構建 CSSOM Tree**：瀏覽器開始解析 CSS 文件，構建 CSSOM Tree。
-- **Render Tree**：瀏覽器將 DOM Tree 和 CSSOM Tree 合併成一個 Render Tree，包含所有要渲染的節點與對應樣式。
-- **Layout(佈局)**：瀏覽器開始進行版面設定(Layout 或 Reflow)，計算每個節點的位置與大小。
-- **Paint(繪製)**：最後瀏覽器經過繪製(painting)階段，將每個節點的內容畫到頁面上。
+- **Building the CSSOM Tree**: The browser parses CSS files to construct the CSSOM Tree.
+- **Render Tree**: The browser merges the DOM Tree and CSSOM Tree into a Render Tree, which contains all visible nodes and their corresponding styles.
+- **Layout**: The browser performs layout (also called Reflow), calculating the position and size of each node.
+- **Paint**: Finally, the browser goes through the painting stage, drawing each node's content onto the page.
 
-### 5. JavaScript 交互
+### 5. JavaScript Interaction
 
-- **執行 JavaScript**：如果 HTML 中包含有 JavaScript，則瀏覽器會解析並執行，這個動作可能會改變 DOM 和修改樣式。
+- **Executing JavaScript**: If the HTML contains JavaScript, the browser parses and executes it. This may modify the DOM and update styles.
 
-整個流程上是一種漸進的狀態，理論上，使用者會會先看到部分網頁內容，最後才看到完整的網頁，這個過程中，可能會觸發多次回流與重繪，尤其是網頁本身包含複雜的樣式或是交互效果尤為明顯。這時除了瀏覽器本身執行的優化外，開發者通常也會盡可能採用一些手段，讓使用體驗更為平滑。
+The entire process is progressive in nature. In theory, users will first see partial page content before the complete page loads. During this process, multiple reflows and repaints may be triggered, especially when the page contains complex styles or interactive effects. In addition to the browser's own optimizations, developers typically employ various techniques to make the user experience smoother.
 
 ## 2. Please describe Reflow and Repaint
 
-### Reflow(回流/重排)
+### Reflow
 
-泛指網頁中的 DOM 產生變化，導致瀏覽器需要重新計算元素的位置，將其擺放到正確位置，比較白話來說，就是 Layout 要重新產生排列元素。
+Reflow refers to changes in the DOM of a web page that cause the browser to recalculate element positions and place them in the correct locations. In simpler terms, the layout needs to be regenerated to rearrange elements.
 
-#### 觸發 Reflow
+#### Triggering Reflow
 
-回流存在兩種情境，一種是全域整個頁面都出現變化，另一，則是部分 component 區塊產生變化。
+Reflow occurs in two scenarios: one is a global change affecting the entire page, and the other is a partial change affecting specific component areas.
 
-- 初始進入頁面時，是影響最大的一次回流
-- 添加或刪除 DOM 元素。
-- 針對元素改變它的尺寸大小，譬如內文增加，或是文字大小變化等等。
-- 元素的排版方式調整，譬如透過 margin 或 padding 來調整移動。
-- 瀏覽器本身的視窗大小出現變化。
-- 觸發偽類，例如 hover 效果。
+- The initial page load is the most significant reflow.
+- Adding or removing DOM elements.
+- Changing an element's dimensions, such as increasing content or changing font size.
+- Adjusting element layout, such as modifying margin or padding.
+- Resizing the browser window.
+- Triggering pseudo-classes, such as hover effects.
 
-### Repaint(重繪)
+### Repaint
 
-沒有改變 Layout，單純更新或改變元素，因為元素本身是內含在 Layout 中，所以如果觸發回流必然會導致重繪，反之，僅觸發重繪則不一定會回流。
+Repaint occurs when an element's appearance changes without affecting the layout. Since elements are contained within the layout, a reflow will always trigger a repaint. However, a repaint alone does not necessarily cause a reflow.
 
-#### 觸發 Repaint
+#### Triggering Repaint
 
-- 改變元素的顏色或背景，譬如添加 color 或是調整 background 的屬性等等。
-- 改變元素的陰影或是 border 也屬於重繪。
+- Changing an element's color or background, such as adding a color or modifying background properties.
+- Changing an element's box-shadow or border also qualifies as a repaint.
 
-### 如何優化 Reflow 或 Repaint
+### How to Optimize Reflow and Repaint
 
-- 不要使用 table 排版，table 的屬性容易因為改動屬性，而導致排版會重新排列，若不得已需要使用的話，建議添加以下屬性，使其每次僅渲染一行，避免影響整個表單範圍，例如 `table-layout: auto;` or `table-layout: fixed;`。
-- 不應該操作 DOM 去逐一調整樣式，而是應該將需要改變的樣式透過 class 定義好之後，再透過 JS 進行切換。
-  - 以 Vue 框架為例，可以用綁定 class 的方式來切換樣式，而不是用 function 來直接修改樣式。
-- 如果是一個需要頻繁切換的場景，譬如 tab 切換，應該優先考慮使用 `v-show` 而非 `v-if`，前者僅使用 css 的 `display: none;` 屬性來做隱藏，而後者卻會觸發生命週期，重新創建或銷毀元素，自然會有更大的性能消耗。
-- 如果真的不得已需要觸發回流，可以透過 `requestAnimationFrame` 來進行優化(主要是因為這個 api 有針對動畫來設計，可以和瀏覽器繪製的帧數同步)，這樣可以將多次回流合併成一次，減少重繪的次數。
-  - 譬如某個動畫，需要在頁面上向目標移動，這邊就可以透過 `requestAnimationFrame` 來計算每一次移動。
-  - 同樣的，CSS3 的部分屬性，可以觸發 client 端的硬體加速，可以提升動畫的效能，例如 `transform` `opacity` `filters` `Will-change`。
-- 如果條件允許，盡可能在較低層級的 DOM 節點上來改動樣式，避免因為觸發父元素樣式變動，導致其下所有子元素全部被影響。
-- 如果需要執行動畫，可以在絕對定位的元素 `absolute` , `fixed` 上使用，這樣對其他元素影響不大，僅會觸發重繪，可以避免回流。
+- Avoid using table layouts. Table properties tend to cause layout recalculations when modified. If tables are unavoidable, consider adding properties like `table-layout: auto;` or `table-layout: fixed;` to render one row at a time and limit the affected area.
+- Instead of manipulating the DOM to change styles one by one, define the required styles in a CSS class and toggle it via JavaScript.
+  - For example, in Vue, you can use class binding to toggle styles rather than directly modifying styles through a function.
+- For scenarios requiring frequent toggling (e.g., tab switching), prefer `v-show` over `v-if`. The former simply uses CSS `display: none;` to hide elements, while the latter triggers the component lifecycle by creating or destroying elements, resulting in greater performance overhead.
+- If reflow is unavoidable, use `requestAnimationFrame` for optimization (since this API is designed for animations and syncs with the browser's frame rate). This can batch multiple reflows into one, reducing the number of repaints.
+  - For example, if an animation needs to move toward a target on the page, you can use `requestAnimationFrame` to calculate each movement step.
+  - Similarly, certain CSS3 properties can trigger hardware acceleration on the client side, improving animation performance, such as `transform`, `opacity`, `filters`, and `Will-change`.
+- When possible, modify styles on lower-level DOM nodes to avoid triggering parent element style changes that cascade to all child elements.
+- For animations, use elements with `absolute` or `fixed` positioning. This minimizes impact on other elements, only triggering repaint without reflow.
 
 ### Example
 
@@ -105,8 +105,8 @@ element.classList.add('update');
 
 ## 3. Please describe when will the browser send the options to the server
 
-> 請說明瀏覽器何時會向 server 端發送 options
+> Explain when the browser sends an OPTIONS request to the server.
 
-多數情況下，是應用在 CORS 場景，在實際送出請求之前，會先有一個 preflight(預檢) 的動作，瀏覽器會先發送一個 OPTIONS 請求，詢問 server 是否允許這個跨域請求，如果 server 回應允許，瀏覽器才會發送真正的請求，反之，如果不允許，則瀏覽器跳出 error。
+In most cases, this applies to CORS scenarios. Before sending the actual request, a preflight check occurs where the browser first sends an OPTIONS request to ask the server whether the cross-origin request is allowed. If the server responds with permission, the browser proceeds to send the actual request. Otherwise, the browser throws an error.
 
-另外，假如請求的 method 不是 `GET`, `HEAD`, `POST` 也會觸發 OPTIONS 請求。
+Additionally, if the request method is not `GET`, `HEAD`, or `POST`, it will also trigger an OPTIONS request.

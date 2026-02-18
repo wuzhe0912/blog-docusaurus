@@ -1,33 +1,33 @@
 ---
 id: login-interview-index
-title: '登入機制面試題總覽'
+title: 'Authentication Interview Overview'
 slug: /experience/login
 tags: [Experience, Interview, Login]
 ---
 
-> 持續累積登入相關的面試題與應答重點，依難度由淺入深整理。
+> Continuously accumulating authentication-related interview questions and key points, organized from basic to advanced.
 
 ---
 
-## Lv1 基礎
+## Lv1 Basics
 
-- [過往專案的登入機制是怎麼實作的？](/docs/experience/login/lv1-project-implementation)
-- [Session-based 和 Token-based 有什麼差異？](/docs/experience/login/lv1-session-vs-token)
-- [JWT 的結構是什麼？](/docs/experience/login/lv1-jwt-structure)
+- [How was authentication implemented in your past projects?](/docs/experience/login/lv1-project-implementation)
+- [What are the differences between Session-based and Token-based authentication?](/docs/experience/login/lv1-session-vs-token)
+- [What is the structure of JWT?](/docs/experience/login/lv1-jwt-structure)
 
-## Lv2 進階
+## Lv2 Advanced
 
-- Token 可能存放在哪些位置？需要注意哪些安全議題？（待整理）
-- 前端如何自動在每個 API 請求中帶上 Token？（待整理）
-- Token 過期應如何處理？（待整理）
+- Where can tokens be stored? What security concerns should be considered? (To be added)
+- How does the frontend automatically attach a token to every API request? (To be added)
+- How should token expiration be handled? (To be added)
 
-## Lv3 系統設計題
+## Lv3 System Design
 
-- 為何微服務架構偏好使用 JWT？（待整理）
-- JWT 有哪些缺點？要如何處理主動登出？（待整理）
-- 如何減少或阻止 Token 被盜用？（待整理）
+- Why do microservice architectures prefer JWT? (To be added)
+- What are the drawbacks of JWT? How do you handle active logout? (To be added)
+- How can you reduce or prevent token theft? (To be added)
 
-## Lv4 進階延伸題
+## Lv4 Advanced Extensions
 
-- 若要實作「強制登出所有裝置」，Session 與 Token 架構分別怎麼做？（待整理）
-- SSO（Single Sign-On）常見搭配哪種登入策略？（待整理）
+- To implement "force logout on all devices," how would you do it with Session vs Token architectures? (To be added)
+- What authentication strategy is commonly used with SSO (Single Sign-On)? (To be added)

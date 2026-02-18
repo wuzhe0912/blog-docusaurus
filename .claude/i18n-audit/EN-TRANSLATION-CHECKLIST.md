@@ -106,7 +106,7 @@
 - [x] `docs/Knowledge/JavaScript-Ecosystem/TypeScript/typescript-vs-javascript.md` (428 lines)
 - [x] `docs/Knowledge/Frontend-Frameworks/React/react-useeffect-virtual-dom.md` (246 lines)
 - [x] Batch 3 build 驗證
-- [ ] Batch 3 commit
+- [x] Batch 3 commit (e04a843)
 
 ---
 

@@ -58,7 +58,9 @@
       "Bash(fi)",
       "Bash(while read f)",
       "Bash(do if grep '[^\\\\x00-\\\\x7F]' \"$f\")",
-      "Bash(then echo \"NON-ASCII: $f\")"
+      "Bash(then echo \"NON-ASCII: $f\")",
+      "Bash(git -C /Volumes/SSD/2026/blog-docusaurus config hooks.hooksPath)",
+      "Bash(git -C /Volumes/SSD/2026/blog-docusaurus config --list)"
     ]
   }
 }

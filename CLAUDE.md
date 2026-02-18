@@ -103,4 +103,5 @@ Ex.
 - Sidebar 重組：已完成，拆成 3 個獨立 sidebar，LeetCode 併入 Coding
 - Sidebar 翻譯：已完成，category label 全 10 語系翻譯 + 清除 206 個歷史殘留 key
 - Theme 翻譯：已補齊全 10 語系的 `code.json`、`current.json`、`footer.json`
+- i18n 審計（2026/02/18）：全 9 語系 docs 89/89 = 100%、code.json 全數翻譯完成、修正中文殘留 bug
 - Blog：layoff-negotiation-playbook 已完成全 10 語系（2025/12/25）

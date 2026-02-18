@@ -78,7 +78,7 @@
 - [x] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/this-binding.md` (844 lines)
 - [x] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/web-storage.md` (41 lines)
 - [x] Batch 1 build 驗證
-- [ ] Batch 1 commit
+- [x] Batch 1 commit (f83e514)
 
 ---
 

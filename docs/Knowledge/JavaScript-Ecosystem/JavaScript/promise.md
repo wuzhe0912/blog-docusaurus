@@ -5,58 +5,59 @@ slug: /promise
 tags: [JavaScript, Quiz, Medium]
 ---
 
-## 什麼是 Promise？
+## What is a Promise?
 
-Promise 是 ES6 的新特性，主要是用來解決 callback hell 的問題，並且讓程式碼更容易閱讀。Promise 代表一個非同步操作的最終完成或失敗，以及其結果值。
+Promise is an ES6 feature mainly introduced to solve callback hell and make asynchronous code easier to read and maintain.
+A Promise represents the eventual completion (or failure) of an async operation and its resulting value.
 
-Promise 有三種狀態：
+A Promise has three states:
 
-- **pending**（進行中）：初始狀態
-- **fulfilled**（已完成）：操作成功完成
-- **rejected**（已拒絕）：操作失敗
+- **pending**: initial state
+- **fulfilled**: operation completed successfully
+- **rejected**: operation failed
 
-## 基本用法
+## Basic Usage
 
-### 建立 Promise
+### Create a Promise
 
 ```js
 const myPromise = new Promise((resolve, reject) => {
-  // 非同步操作
+  // asynchronous operation
   const success = true;
 
   if (success) {
-    resolve('成功！'); // 將 Promise 狀態改為 fulfilled
+    resolve('Success!'); // Promise becomes fulfilled
   } else {
-    reject('失敗！'); // 將 Promise 狀態改為 rejected
+    reject('Failed!'); // Promise becomes rejected
   }
 });
 
 myPromise
   .then((result) => {
-    console.log(result); // '成功！'
+    console.log(result); // 'Success!'
   })
   .catch((error) => {
-    console.log(error); // '失敗！'
+    console.log(error); // 'Failed!'
   });
 ```
 
-### 實際應用：處理 API 請求
+### Real-world Example: handling API requests
 
 ```js
-// 建立一個共用 function 來處理 api 請求
+// shared function for API requests
 function fetchData(url) {
   return fetch(url)
     .then((response) => {
-      // 檢查 response 是否落在 200 ~ 299 的區間
+      // check whether response is in the 200~299 range
       if (!response.ok) {
         throw new Error('Network response was not ok ' + response.statusText);
       }
-      return response.json(); // 將 response 轉成 json，並回傳
+      return response.json(); // convert response to JSON and return
     })
     .catch((error) => {
-      // 檢查網路是否異常，或者請求被拒絕
+      // handle network issues or request failures
       console.log('There has been a problem with your fetch operation:', error);
-      throw error; // 將錯誤拋出
+      throw error; // rethrow for upstream handling
     });
 }
 
@@ -69,29 +70,29 @@ fetchData('https://jsonplaceholder.typicode.com/users/1')
   });
 ```
 
-## Promise 的方法
+## Promise Methods
 
-### .then() / .catch() / .finally()
+### `.then()` / `.catch()` / `.finally()`
 
 ```js
 promise
   .then((result) => {
-    // 處理成功的情況
+    // handle success
     return result;
   })
   .catch((error) => {
-    // 處理錯誤
+    // handle error
     console.error(error);
   })
   .finally(() => {
-    // 無論成功或失敗都會執行
-    console.log('Promise 完成');
+    // runs regardless of success or failure
+    console.log('Promise completed');
   });
 ```
 
-### Promise.all()
+### `Promise.all()`
 
-當所有 Promise 都完成時才會完成，只要有一個失敗就會失敗。
+Resolves when all Promises resolve, and rejects immediately when any Promise rejects.
 
 ```js
 const promise1 = Promise.resolve(3);
@@ -105,71 +106,71 @@ Promise.all([promise1, promise2, promise3]).then((values) => {
 });
 ```
 
-**使用時機**：需要等待多個 API 請求都完成後才繼續執行。
+**When to use**: continue only after multiple API calls all succeed.
 
-### Promise.race()
+### `Promise.race()`
 
-回傳第一個完成（無論成功或失敗）的 Promise 結果。
+Returns the result of the first Promise that settles (fulfilled or rejected).
 
 ```js
 const promise1 = new Promise((resolve) =>
-  setTimeout(() => resolve('一號'), 500)
+  setTimeout(() => resolve('first'), 500)
 );
 const promise2 = new Promise((resolve) =>
-  setTimeout(() => resolve('二號'), 100)
+  setTimeout(() => resolve('second'), 100)
 );
 
 Promise.race([promise1, promise2]).then((value) => {
-  console.log(value); // '二號'（因為較快完成）
+  console.log(value); // 'second' (faster)
 });
 ```
 
-**使用時機**：設定請求超時、只取最快回應的結果。
+**When to use**: request timeout handling, or taking the fastest response.
 
-### Promise.allSettled()
+### `Promise.allSettled()`
 
-等待所有 Promise 完成（無論成功或失敗），回傳所有結果。
+Waits for all Promises to settle (fulfilled/rejected), then returns all outcomes.
 
 ```js
 const promise1 = Promise.resolve(3);
-const promise2 = Promise.reject('錯誤');
+const promise2 = Promise.reject('Error');
 const promise3 = Promise.resolve(42);
 
 Promise.allSettled([promise1, promise2, promise3]).then((results) => {
   console.log(results);
   // [
   //   { status: 'fulfilled', value: 3 },
-  //   { status: 'rejected', reason: '錯誤' },
+  //   { status: 'rejected', reason: 'Error' },
   //   { status: 'fulfilled', value: 42 }
   // ]
 });
 ```
 
-**使用時機**：需要知道所有 Promise 的執行結果，即使某些失敗也要繼續處理。
+**When to use**: you need all outcomes, even if some fail.
 
-### Promise.any()
+### `Promise.any()`
 
-回傳第一個成功的 Promise，所有都失敗才會失敗。
+Resolves with the first fulfilled Promise. Rejects only if all Promises reject.
 
 ```js
-const promise1 = Promise.reject('錯誤 1');
+const promise1 = Promise.reject('Error 1');
 const promise2 = new Promise((resolve) =>
-  setTimeout(() => resolve('成功'), 100)
+  setTimeout(() => resolve('Success'), 100)
 );
-const promise3 = Promise.reject('錯誤 2');
+const promise3 = Promise.reject('Error 2');
 
 Promise.any([promise1, promise2, promise3]).then((value) => {
-  console.log(value); // '成功'
+  console.log(value); // 'Success'
 });
 ```
 
-**使用時機**：多個備用資源，只要有一個成功即可。
+**When to use**: fallback resources where one success is enough.
 
-## 面試題目
+## Interview Questions
 
-### 題目 1：Promise 鏈式調用與錯誤處理
+### Question 1: Promise chaining and error handling
 
-試判斷以下程式碼的輸出結果：
+Predict the output:
 
 ```js
 Promise.resolve(1)
@@ -183,31 +184,29 @@ Promise.resolve(1)
   .catch((e) => console.log('This will not run'));
 ```
 
-#### 解析
-
-讓我們逐步分析執行過程：
+#### Walkthrough
 
 ```js
-Promise.resolve(1) // 回傳值：1
-  .then((x) => x + 1) // x = 1，回傳 2
+Promise.resolve(1) // returns 1
+  .then((x) => x + 1) // x = 1, returns 2
   .then(() => {
-    throw new Error('My Error'); // 拋出錯誤，進入 catch
+    throw new Error('My Error'); // throws -> go to catch
   })
-  .catch((e) => 1) // 捕捉錯誤，回傳 1（重要：這裡回傳的是正常值）
-  .then((x) => x + 1) // x = 1，回傳 2
-  .then((x) => console.log(x)) // 輸出 2
-  .catch((e) => console.log('This will not run')); // 不會執行
+  .catch((e) => 1) // catches and returns normal value 1
+  .then((x) => x + 1) // x = 1, returns 2
+  .then((x) => console.log(x)) // prints 2
+  .catch((e) => console.log('This will not run')); // not executed
 ```
 
-**答案：2**
+**Answer: `2`**
 
-#### 關鍵概念
+#### Key Concepts
 
-1. **catch 會捕捉錯誤並回傳正常值**：當 `catch()` 回傳一個正常值時，Promise 鏈會繼續執行後續的 `.then()`
-2. **catch 之後的 then 會繼續執行**：因為錯誤已經被處理，Promise 鏈恢復正常狀態
-3. **最後的 catch 不會執行**：因為沒有新的錯誤被拋出
+1. **`catch` can recover with a normal value**: when `catch()` returns a normal value, the chain continues in fulfilled mode.
+2. **`then` after `catch` still runs**: because the error has been handled.
+3. **Final `catch` does not run**: no new error is thrown.
 
-如果想讓錯誤繼續傳遞，需要在 `catch` 中重新拋出錯誤：
+If you want the error to keep propagating, rethrow it in `catch`:
 
 ```js
 Promise.resolve(1)
@@ -216,19 +215,19 @@ Promise.resolve(1)
     throw new Error('My Error');
   })
   .catch((e) => {
-    console.log('捕捉到錯誤');
-    throw e; // 重新拋出錯誤
+    console.log('Error caught');
+    throw e; // rethrow
   })
-  .then((x) => x + 1) // 不會執行
-  .then((x) => console.log(x)) // 不會執行
-  .catch((e) => console.log('This will run')); // 會執行
+  .then((x) => x + 1) // will not run
+  .then((x) => console.log(x)) // will not run
+  .catch((e) => console.log('This will run')); // will run
 ```
 
-### 題目 2：Event Loop 與執行順序
+### Question 2: Event Loop and execution order
 
-> 本題包含 Event Loop 的觀念
+> This question also tests Event Loop understanding.
 
-試判斷以下程式碼的輸出結果：
+Predict the output:
 
 ```js
 function a() {
@@ -256,30 +255,28 @@ function d() {
 d();
 ```
 
-#### 理解執行順序
-
-首先看 `d()`：
+#### Understand order in `d()`
 
 ```js
 function d() {
-  setTimeout(c, 100); // 4. Macro task，延遲 100ms，最後執行
-  const temp = Promise.resolve().then(a); // 2. Micro task，同步執行完後執行
-  console.log('Warrior'); // 1. 同步執行，立即輸出
-  setTimeout(b, 0); // 3. Macro task，延遲 0ms，但仍是 macro task
+  setTimeout(c, 100); // 4. macro task (100ms delay)
+  const temp = Promise.resolve().then(a); // 2. micro task (after sync code)
+  console.log('Warrior'); // 1. sync code
+  setTimeout(b, 0); // 3. macro task (0ms, still macro)
 }
 ```
 
-執行順序分析：
+Execution order:
 
-1. **同步程式碼**：`console.log('Warrior')` → 輸出 `Warrior`
-2. **Micro task**：`Promise.resolve().then(a)` → 執行 `a()`，輸出 `Warlock`
-3. **Macro task**：
-   - `setTimeout(b, 0)` 先執行（延遲 0ms）
-   - 執行 `b()`，輸出 `Druid`
-   - `b()` 內的 `Promise.resolve().then(...)` 是 micro task，立即執行，輸出 `Rogue`
-4. **Macro task**：`setTimeout(c, 100)` 最後執行（延遲 100ms），輸出 `Mage`
+1. **Synchronous code**: `console.log('Warrior')` -> `Warrior`
+2. **Micro task**: `Promise.resolve().then(a)` -> run `a()` -> `Warlock`
+3. **Macro tasks**:
+   - `setTimeout(b, 0)` runs first
+   - run `b()` -> `Druid`
+   - inside `b`, `Promise.resolve().then(...)` is a micro task -> `Rogue`
+4. **Macro task**: `setTimeout(c, 100)` runs later -> `Mage`
 
-#### 答案
+#### Answer
 
 ```
 Warrior
@@ -289,15 +286,15 @@ Rogue
 Mage
 ```
 
-#### 關鍵概念
+#### Key Concepts
 
-- **同步程式碼** > **Micro task (Promise)** > **Macro task (setTimeout)**
-- Promise 的 `.then()` 屬於 micro task，會在當前 macro task 結束後、下一個 macro task 開始前執行
-- `setTimeout` 即使延遲時間為 0，仍屬於 macro task，會在所有 micro task 之後執行
+- **Sync code** > **Micro tasks (`Promise`)** > **Macro tasks (`setTimeout`)**
+- `.then()` callbacks are micro tasks: they run after current macro task, before next macro task
+- `setTimeout(..., 0)` is still macro task and runs after micro tasks
 
-### 題目 3：Promise 建構函數的同步與非同步
+### Question 3: Promise constructor sync vs async behavior
 
-試判斷以下程式碼的輸出結果：
+Predict the output:
 
 ```js
 function printing() {
@@ -324,34 +321,35 @@ printing();
 // output ?
 ```
 
-#### 注意 Promise 的區塊
+#### Important detail
 
-這題的關鍵在於：**Promise 建構函數內的程式碼是同步執行的**，只有 `.then()` 和 `.catch()` 才是非同步。
+The key point: **code inside the Promise constructor runs synchronously**.
+Only `.then()` / `.catch()` callbacks are asynchronous.
 
-執行順序分析：
+Execution analysis:
 
 ```js
-console.log(1); // 1. 同步，輸出 1
-setTimeout(() => console.log(2), 1000); // 5. Macro task，延遲 1000ms
-setTimeout(() => console.log(3), 0); // 4. Macro task，延遲 0ms
+console.log(1); // 1. sync
+setTimeout(() => console.log(2), 1000); // 5. macro task (1000ms)
+setTimeout(() => console.log(3), 0); // 4. macro task (0ms)
 
 new Promise((resolve, reject) => {
-  console.log(4); // 2. 同步！Promise 建構函數內是同步的，輸出 4
+  console.log(4); // 2. sync (inside constructor)
   resolve(5);
 }).then((foo) => {
-  console.log(6); // 3. Micro task，輸出 6
+  console.log(6); // micro task
 });
 
-console.log(7); // 3. 同步，輸出 7
+console.log(7); // 3. sync
 ```
 
-執行流程：
+Execution flow:
 
-1. **同步執行**：1 → 4 → 7
-2. **Micro task**：6
-3. **Macro task**（依延遲時間）：3 → 2
+1. **Sync**: 1 -> 4 -> 7
+2. **Micro task**: 6
+3. **Macro tasks** (by delay): 3 -> 2
 
-#### 答案
+#### Answer
 
 ```
 1
@@ -362,44 +360,44 @@ console.log(7); // 3. 同步，輸出 7
 2
 ```
 
-#### 關鍵概念
+#### Key Concepts
 
-1. **Promise 建構函數內的程式碼是同步執行的**：`console.log(4)` 不屬於非同步狀態
-2. **只有 `.then()` 和 `.catch()` 才是非同步**：它們屬於 micro task
-3. **執行順序**：同步程式碼 → micro task → macro task
+1. **Promise constructor body is synchronous**: `console.log(4)` is not async.
+2. **Only `.then()` and `.catch()` are asynchronous micro tasks**.
+3. **Order**: sync code -> micro tasks -> macro tasks.
 
-## 常見陷阱
+## Common Pitfalls
 
-### 1. 忘記 return
+### 1. Forgetting to `return`
 
-在 Promise 鏈中忘記 `return` 會導致後續的 `.then()` 收到 `undefined`：
+If you forget `return` in a Promise chain, the next `.then()` receives `undefined`.
 
 ```js
-// ❌ 錯誤
+// ❌ wrong
 fetchUser()
   .then((user) => {
-    fetchPosts(user.id); // 忘記 return
+    fetchPosts(user.id); // forgot return
   })
   .then((posts) => {
     console.log(posts); // undefined
   });
 
-// ✅ 正確
+// ✅ correct
 fetchUser()
   .then((user) => {
-    return fetchPosts(user.id); // 記得 return
+    return fetchPosts(user.id);
   })
   .then((posts) => {
-    console.log(posts); // 正確的資料
+    console.log(posts); // correct data
   });
 ```
 
-### 2. 忘記 catch 錯誤
+### 2. Forgetting to catch errors
 
-未捕捉的 Promise 錯誤會導致 UnhandledPromiseRejection：
+Unhandled Promise rejections can crash flow and create noisy runtime errors.
 
 ```js
-// ❌ 可能導致未捕捉的錯誤
+// ❌ may cause unhandled rejection
 fetchData()
   .then((data) => {
     return processData(data);
@@ -408,7 +406,7 @@ fetchData()
     console.log(result);
   });
 
-// ✅ 加上 catch
+// ✅ add catch
 fetchData()
   .then((data) => {
     return processData(data);
@@ -417,16 +415,16 @@ fetchData()
     console.log(result);
   })
   .catch((error) => {
-    console.error('發生錯誤:', error);
+    console.error('Error occurred:', error);
   });
 ```
 
-### 3. Promise 建構函數濫用
+### 3. Overusing `new Promise(...)`
 
-不需要用 Promise 包裝已經是 Promise 的函數：
+Do not wrap a function that already returns a Promise.
 
 ```js
-// ❌ 不必要的包裝
+// ❌ unnecessary wrapping
 function fetchData() {
   return new Promise((resolve, reject) => {
     fetch(url)
@@ -435,15 +433,15 @@ function fetchData() {
   });
 }
 
-// ✅ 直接回傳
+// ✅ return directly
 function fetchData() {
   return fetch(url);
 }
 ```
 
-### 4. 串聯多個 catch
+### 4. Chaining multiple catches incorrectly
 
-每個 `catch()` 只能捕捉它之前的錯誤：
+Each `catch()` handles errors from earlier parts of the chain.
 
 ```js
 Promise.resolve()
@@ -451,20 +449,20 @@ Promise.resolve()
     throw new Error('Error 1');
   })
   .catch((e) => {
-    console.log('捕捉到:', e.message); // 捕捉到: Error 1
+    console.log('Caught:', e.message); // Caught: Error 1
   })
   .then(() => {
     throw new Error('Error 2');
   })
   .catch((e) => {
-    console.log('捕捉到:', e.message); // 捕捉到: Error 2
+    console.log('Caught:', e.message); // Caught: Error 2
   });
 ```
 
-## 相關主題
+## Related Topics
 
-- [async/await](/docs/async-await) - 更優雅的 Promise 語法糖
-- [Event Loop](/docs/event-loop) - 深入理解 JavaScript 的非同步機制
+- [async/await](/docs/async-await) - cleaner Promise syntax sugar
+- [Event Loop](/docs/event-loop) - deeper async model understanding
 
 ## Reference
 

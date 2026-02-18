@@ -7,28 +7,29 @@ tags: [JavaScript, Quiz, Medium]
 
 ## 1. What are Primitive Types and Reference Types?
 
-> 什麼是原始型別（Primitive Types）和參考型別（Reference Types）？
+> What are Primitive Types and Reference Types?
 
-JavaScript 的資料型別分為兩大類：**原始型別**和**參考型別**。它們在記憶體儲存方式和傳遞行為上有本質的差異。
+JavaScript data types can be grouped into two categories: **primitive types** and **reference types**.
+They differ fundamentally in memory behavior and passing semantics.
 
-### 原始型別（Primitive Types）
+### Primitive Types
 
-**特點**：
+**Characteristics**:
 
-- 儲存在**堆疊（Stack）**中
-- 傳遞時**複製值本身**（Call by Value）
-- 不可變的（Immutable）
+- Stored as direct values (commonly conceptualized in **stack**)
+- Passed by **value copy**
+- Immutable
 
-**包含 7 種**：
+**7 primitive types**:
 
 ```javascript
-// 1. String（字串）
+// 1. String
 const str = 'hello';
 
-// 2. Number（數字）
+// 2. Number
 const num = 42;
 
-// 3. Boolean（布林值）
+// 3. Boolean
 const bool = true;
 
 // 4. Undefined
@@ -37,31 +38,31 @@ let undef;
 // 5. Null
 const n = null;
 
-// 6. Symbol（ES6）
+// 6. Symbol (ES6)
 const sym = Symbol('unique');
 
-// 7. BigInt（ES2020）
+// 7. BigInt (ES2020)
 const bigInt = 9007199254740991n;
 ```
 
-### 參考型別（Reference Types）
+### Reference Types
 
-**特點**：
+**Characteristics**:
 
-- 儲存在**堆積（Heap）**中
-- 傳遞時**複製參考（記憶體地址）**（Call by Reference）
-- 可變的（Mutable）
+- Objects are allocated in **heap** memory
+- Variables hold references (addresses)
+- Mutable
 
-**包含**：
+**Examples**:
 
 ```javascript
-// 1. Object（物件）
+// 1. Object
 const obj = { name: 'John' };
 
-// 2. Array（陣列）
+// 2. Array
 const arr = [1, 2, 3];
 
-// 3. Function（函式）
+// 3. Function
 const func = function () {};
 
 // 4. Date
@@ -77,52 +78,50 @@ const set = new Set();
 
 ## 2. Call by Value vs Call by Reference
 
-> 傳值（Call by Value）vs 傳址（Call by Reference）
+> Call by Value vs Call by Reference
 
-### 傳值（Call by Value）- 原始型別
+### Call by Value (primitive behavior)
 
-**行為**：複製值本身，修改副本不影響原值。
+**Behavior**: value is copied; editing the copy does not affect the original.
 
 ```javascript
-// 原始型別：傳值
 let a = 10;
-let b = a; // 複製值
+let b = a; // copy value
 
-b = 20; // 修改 b
+b = 20;
 
-console.log(a); // 10（不受影響）
+console.log(a); // 10
 console.log(b); // 20
 ```
 
-**記憶體示意圖**：
+**Memory diagram**:
 
 ```text
 ┌─────────┐
 │ Stack   │
 ├─────────┤
-│ a: 10   │ ← 獨立的值
+│ a: 10   │ <- independent value
 ├─────────┤
-│ b: 20   │ ← 獨立的值（複製後修改）
+│ b: 20   │ <- independent value after copy/update
 └─────────┘
 ```
 
-### 傳址（Call by Reference）- 參考型別
+### Reference behavior (objects)
 
-**行為**：複製記憶體地址，兩個變數指向同一個物件。
+**Behavior**: reference is copied; both variables can point to the same object.
 
 ```javascript
-// 參考型別：傳址
 let obj1 = { name: 'John' };
-let obj2 = obj1; // 複製記憶體地址
+let obj2 = obj1; // copy reference
 
-obj2.name = 'Jane'; // 透過 obj2 修改
+obj2.name = 'Jane';
 
-console.log(obj1.name); // 'Jane'（被影響！）
+console.log(obj1.name); // 'Jane'
 console.log(obj2.name); // 'Jane'
-console.log(obj1 === obj2); // true（指向同一個物件）
+console.log(obj1 === obj2); // true
 ```
 
-**記憶體示意圖**：
+**Memory diagram**:
 
 ```text
 ┌─────────┐                    ┌──────────────────┐
@@ -130,98 +129,97 @@ console.log(obj1 === obj2); // true（指向同一個物件）
 ├─────────┤                    ├──────────────────┤
 │ obj1 ───┼───────────────────>│ { name: 'Jane' } │
 ├─────────┤                    │                  │
-│ obj2 ───┼───────────────────>│ (同一個物件)     │
+│ obj2 ───┼───────────────────>│ (same object)    │
 └─────────┘                    └──────────────────┘
 ```
 
 ## 3. Common Quiz Questions
 
-> 常見測驗題
+> Common quiz questions
 
-### 題目 1：原始型別的傳遞
+### Question 1: passing primitive values
 
 ```javascript
 function changeValue(x) {
   x = 100;
-  console.log('函式內 x:', x);
+  console.log('Inside function x:', x);
 }
 
 let num = 50;
 changeValue(num);
-console.log('函式外 num:', num);
+console.log('Outside function num:', num);
 ```
 
 <details>
-<summary>點擊查看答案</summary>
+<summary>Click to view answer</summary>
 
 ```javascript
-// 函式內 x: 100
-// 函式外 num: 50
+// Inside function x: 100
+// Outside function num: 50
 ```
 
-**解釋**：
+**Explanation:**
 
-- `num` 是原始型別（Number）
-- 傳入函式時**複製值**，`x` 和 `num` 是兩個獨立的變數
-- 修改 `x` 不會影響 `num`
+- `num` is primitive (`Number`)
+- function argument gets a copied value
+- changing `x` does not change `num`
 
 ```javascript
-// 執行流程
+// flow
 let num = 50; // Stack: num = 50
-changeValue(num); // Stack: x = 50（複製）
-x = 100; // Stack: x = 100（只修改 x）
-console.log(num); // Stack: num = 50（不受影響）
+changeValue(num); // Stack: x = 50 (copy)
+x = 100; // only x changes
+console.log(num); // still 50
 ```
 
 </details>
 
-### 題目 2：參考型別的傳遞
+### Question 2: passing objects
 
 ```javascript
 function changeObject(obj) {
   obj.name = 'Changed';
-  console.log('函式內 obj.name:', obj.name);
+  console.log('Inside function obj.name:', obj.name);
 }
 
 let person = { name: 'Original' };
 changeObject(person);
-console.log('函式外 person.name:', person.name);
+console.log('Outside function person.name:', person.name);
 ```
 
 <details>
-<summary>點擊查看答案</summary>
+<summary>Click to view answer</summary>
 
 ```javascript
-// 函式內 obj.name: Changed
-// 函式外 person.name: Changed
+// Inside function obj.name: Changed
+// Outside function person.name: Changed
 ```
 
-**解釋**：
+**Explanation:**
 
-- `person` 是參考型別（Object）
-- 傳入函式時**複製記憶體地址**
-- `obj` 和 `person` 指向**同一個物件**
-- 透過 `obj` 修改物件內容，`person` 也會被影響
+- `person` is a reference type (`Object`)
+- function argument copies the reference
+- `obj` and `person` point to the same object
 
 ```javascript
-// 記憶體示意
-let person = { name: 'Original' }; // Heap: 建立物件 @0x001
-changeObject(person); // Stack: obj = @0x001（複製地址）
-obj.name = 'Changed'; // Heap: @0x001.name = 'Changed'
-console.log(person.name); // Heap: @0x001.name（同一個物件）
+// memory sketch
+let person = { name: 'Original' }; // heap @0x001
+changeObject(person); // obj -> @0x001
+obj.name = 'Changed'; // mutate @0x001
+console.log(person.name); // reads from @0x001
 ```
 
 </details>
 
-### 題目 3：重新賦值 vs 修改屬性
+### Question 3: reassignment vs property mutation
 
 ```javascript
 function test1(obj) {
-  obj.name = 'Modified'; // 修改屬性
+  obj.name = 'Modified'; // mutate property
 }
 
 function test2(obj) {
-  obj = { name: 'New Object' }; // 重新賦值
+  obj = { name: 'New Object' }; // reassign local parameter
 }
 
 let person = { name: 'Original' };
@@ -234,56 +232,55 @@ console.log('B:', person.name);
 ```
 
 <details>
-<summary>點擊查看答案</summary>
+<summary>Click to view answer</summary>
 
 ```javascript
 // A: Modified
-// B: Modified（不是 'New Object'！）
+// B: Modified (not 'New Object')
 ```
 
-**解釋**：
+**Explanation:**
 
-**test1：修改屬性**
+**test1: property mutation**
 
 ```javascript
 function test1(obj) {
-  obj.name = 'Modified'; // ✅ 修改原物件的屬性
+  obj.name = 'Modified'; // mutates original object
 }
-// person 和 obj 指向同一個物件，所以會被修改
 ```
 
-**test2：重新賦值**
+**test2: reassignment**
 
 ```javascript
 function test2(obj) {
-  obj = { name: 'New Object' }; // ❌ 只改變 obj 的指向
+  obj = { name: 'New Object' }; // changes only local binding
 }
-// obj 現在指向新物件，但 person 仍指向原物件
+// person still points to original object
 ```
 
-**記憶體示意圖**：
+**Memory sketch**:
 
 ```text
-// test1 之前
-person ────> { name: 'Original' }
-obj    ────> { name: 'Original' } (同一個)
+// before test1
+person ---> { name: 'Original' }
+obj    ---> { name: 'Original' } (same)
 
-// test1 之後
-person ────> { name: 'Modified' }
-obj    ────> { name: 'Modified' } (同一個)
+// after test1
+person ---> { name: 'Modified' }
+obj    ---> { name: 'Modified' } (same)
 
-// test2 執行
-person ────> { name: 'Modified' }    (不變)
-obj    ────> { name: 'New Object' }  (新物件)
+// inside test2
+person ---> { name: 'Modified' } (unchanged)
+obj    ---> { name: 'New Object' } (new object)
 
-// test2 結束後
-person ────> { name: 'Modified' }    (仍然不變)
-// obj 被銷毀，新物件被垃圾回收
+// after test2
+person ---> { name: 'Modified' }
+// local obj is gone
 ```
 
 </details>
 
-### 題目 4：陣列的傳遞
+### Question 4: array passing
 
 ```javascript
 function modifyArray(arr) {
@@ -305,7 +302,7 @@ console.log('4:', numbers);
 ```
 
 <details>
-<summary>點擊查看答案</summary>
+<summary>Click to view answer</summary>
 
 ```javascript
 // 1: [1, 2, 3, 4]
@@ -314,22 +311,22 @@ console.log('4:', numbers);
 // 4: [1, 2, 3, 4]
 ```
 
-**解釋**：
+**Explanation:**
 
-- `modifyArray`：修改原陣列內容，`numbers` 被影響
-- `reassignArray`：只改變參數的指向，`numbers` 不受影響
+- `modifyArray`: mutates original array
+- `reassignArray`: only rebinds local parameter
 
 </details>
 
-### 題目 5：比較運算
+### Question 5: equality comparison
 
 ```javascript
-// 原始型別比較
+// primitives
 let a = 10;
 let b = 10;
 console.log('A:', a === b);
 
-// 參考型別比較
+// references
 let obj1 = { value: 10 };
 let obj2 = { value: 10 };
 let obj3 = obj1;
@@ -338,7 +335,7 @@ console.log('C:', obj1 === obj3);
 ```
 
 <details>
-<summary>點擊查看答案</summary>
+<summary>Click to view answer</summary>
 
 ```javascript
 // A: true
@@ -346,40 +343,26 @@ console.log('C:', obj1 === obj3);
 // C: true
 ```
 
-**解釋**：
+**Explanation:**
 
-**原始型別**：比較值
-
-```javascript
-10 === 10; // true（值相同）
-```
-
-**參考型別**：比較記憶體地址
+Primitives compare by value; objects compare by reference.
 
 ```javascript
-obj1 === obj2; // false（不同物件，不同地址）
-obj1 === obj3; // true（指向同一個物件）
-```
-
-**記憶體示意**：
-
-```text
-obj1 ────> @0x001: { value: 10 }
-obj2 ────> @0x002: { value: 10 } (內容相同但地址不同)
-obj3 ────> @0x001: { value: 10 } (與 obj1 相同地址)
+obj1 === obj2; // false (different references)
+obj1 === obj3; // true (same reference)
 ```
 
 </details>
 
 ## 4. Shallow Copy vs Deep Copy
 
-> 淺拷貝 vs 深拷貝
+> Shallow copy vs deep copy
 
-### 淺拷貝（Shallow Copy）
+### Shallow Copy
 
-**定義**：只複製第一層，巢狀物件仍然是參考。
+**Definition**: only top level is copied; nested objects remain shared references.
 
-#### 方法 1：展開運算子（Spread Operator）
+#### Method 1: spread operator
 
 ```javascript
 const original = {
@@ -389,48 +372,41 @@ const original = {
 
 const copy = { ...original };
 
-// 修改第一層：不影響原物件
 copy.name = 'Jane';
-console.log(original.name); // 'John'（不受影響）
+console.log(original.name); // 'John'
 
-// 修改巢狀物件：影響原物件！
 copy.address.city = 'Kaohsiung';
-console.log(original.address.city); // 'Kaohsiung'（被影響！）
+console.log(original.address.city); // 'Kaohsiung' (affected)
 ```
 
-#### 方法 2：Object.assign()
+#### Method 2: `Object.assign()`
 
 ```javascript
 const original = { name: 'John', age: 30 };
 const copy = Object.assign({}, original);
 
 copy.name = 'Jane';
-console.log(original.name); // 'John'（不受影響）
+console.log(original.name); // 'John'
 ```
 
-#### 方法 3：陣列的淺拷貝
+#### Method 3: array shallow copy
 
 ```javascript
 const arr1 = [1, 2, 3];
 
-// 方法 1：展開運算子
 const arr2 = [...arr1];
-
-// 方法 2：slice()
 const arr3 = arr1.slice();
-
-// 方法 3：Array.from()
 const arr4 = Array.from(arr1);
 
 arr2[0] = 999;
-console.log(arr1[0]); // 1（不受影響）
+console.log(arr1[0]); // 1
 ```
 
-### 深拷貝（Deep Copy）
+### Deep Copy
 
-**定義**：完全複製所有層級，包括巢狀物件。
+**Definition**: all levels are copied recursively.
 
-#### 方法 1：JSON.parse + JSON.stringify（最常用）
+#### Method 1: `JSON.parse(JSON.stringify(...))`
 
 ```javascript
 const original = {
@@ -441,31 +417,30 @@ const original = {
 
 const copy = JSON.parse(JSON.stringify(original));
 
-// 修改巢狀物件：不影響原物件
 copy.address.city = 'Kaohsiung';
-console.log(original.address.city); // 'Taipei'（不受影響）
+console.log(original.address.city); // 'Taipei'
 
 copy.hobbies.push('coding');
-console.log(original.hobbies); // ['reading', 'gaming']（不受影響）
+console.log(original.hobbies); // ['reading', 'gaming']
 ```
 
-**限制**：
+**Limitations**:
 
 ```javascript
 const obj = {
-  date: new Date(), // ❌ 會變成字串
-  func: () => {}, // ❌ 會被忽略
-  undef: undefined, // ❌ 會被忽略
-  symbol: Symbol('test'), // ❌ 會被忽略
-  regexp: /abc/, // ❌ 會變成 {}
-  circular: null, // ❌ 循環參考會報錯
+  date: new Date(), // -> string
+  func: () => {}, // ignored
+  undef: undefined, // ignored
+  symbol: Symbol('test'), // ignored
+  regexp: /abc/, // -> {}
+  circular: null, // circular reference throws
 };
-obj.circular = obj; // 循環參考
+obj.circular = obj;
 
-JSON.parse(JSON.stringify(obj)); // 會出錯或遺失資料
+JSON.parse(JSON.stringify(obj)); // error or data loss
 ```
 
-#### 方法 2：structuredClone()（現代瀏覽器）
+#### Method 2: `structuredClone()`
 
 ```javascript
 const original = {
@@ -476,46 +451,40 @@ const original = {
 
 const copy = structuredClone(original);
 
-// 可以正確複製 Date 等特殊物件
 console.log(copy.date instanceof Date); // true
 ```
 
-**優點**：
+**Pros**:
 
-- ✅ 支援 Date、RegExp、Map、Set 等
-- ✅ 支援循環參考
-- ✅ 效能較好
+- Supports Date, RegExp, Map, Set, etc.
+- Supports circular references
+- Usually better performance than manual deep clone
 
-**限制**：
+**Limitations**:
 
-- ❌ 不支援函式
-- ❌ 不支援 Symbol
+- Does not clone functions
+- Does not clone Symbol values in all usage patterns
 
-#### 方法 3：遞迴實作深拷貝
+#### Method 3: recursive deep clone
 
 ```javascript
 function deepClone(obj) {
-  // 處理 null 和非物件
   if (obj === null || typeof obj !== 'object') {
     return obj;
   }
 
-  // 處理陣列
   if (Array.isArray(obj)) {
     return obj.map((item) => deepClone(item));
   }
 
-  // 處理 Date
   if (obj instanceof Date) {
     return new Date(obj);
   }
 
-  // 處理 RegExp
   if (obj instanceof RegExp) {
     return new RegExp(obj);
   }
 
-  // 處理物件
   const cloned = {};
   for (const key in obj) {
     if (obj.hasOwnProperty(key)) {
@@ -526,7 +495,6 @@ function deepClone(obj) {
   return cloned;
 }
 
-// 使用範例
 const original = {
   name: 'John',
   address: { city: 'Taipei' },
@@ -536,10 +504,10 @@ const original = {
 
 const copy = deepClone(original);
 copy.address.city = 'Kaohsiung';
-console.log(original.address.city); // 'Taipei'（不受影響）
+console.log(original.address.city); // 'Taipei'
 ```
 
-#### 方法 4：使用 Lodash
+#### Method 4: Lodash
 
 ```javascript
 import _ from 'lodash';
@@ -552,24 +520,23 @@ const original = {
 const copy = _.cloneDeep(original);
 ```
 
-### 淺拷貝 vs 深拷貝比較
+### Shallow vs Deep comparison
 
-| 特性     | 淺拷貝       | 深拷貝       |
-| -------- | ------------ | ------------ |
-| 複製層級 | 只複製第一層 | 複製所有層級 |
-| 巢狀物件 | 仍是參考     | 完全獨立     |
-| 效能     | 快           | 慢           |
-| 記憶體   | 省           | 多           |
-| 使用場景 | 簡單物件     | 複雜巢狀結構 |
+| Feature | Shallow Copy | Deep Copy |
+| ------- | ------------ | --------- |
+| Copy depth | Top level only | All levels |
+| Nested objects | Shared references | Fully independent |
+| Performance | Faster | Slower |
+| Memory use | Lower | Higher |
+| Use case | Simple structures | Complex nested structures |
 
 ## 5. Common Pitfalls
 
-> 常見陷阱
+> Common pitfalls
 
-### 陷阱 1：以為參數傳遞可以改變原始型別
+### Pitfall 1: expecting primitive args to mutate outer value
 
 ```javascript
-// ❌ 錯誤理解
 function increment(num) {
   num = num + 1;
   return num;
@@ -577,192 +544,163 @@ function increment(num) {
 
 let count = 5;
 increment(count);
-console.log(count); // 5（不會變成 6！）
+console.log(count); // 5
 
-// ✅ 正確寫法
-count = increment(count); // 需要接收回傳值
+count = increment(count);
 console.log(count); // 6
 ```
 
-### 陷阱 2：以為重新賦值可以改變外部物件
+### Pitfall 2: expecting reassignment to replace outer object
 
 ```javascript
-// ❌ 錯誤理解
 function resetObject(obj) {
-  obj = { name: 'Reset' }; // 只改變參數指向
+  obj = { name: 'Reset' }; // local rebinding only
 }
 
 let person = { name: 'Original' };
 resetObject(person);
-console.log(person.name); // 'Original'（沒有被 reset！）
+console.log(person.name); // 'Original'
 
-// ✅ 正確寫法 1：修改屬性
-function resetObject(obj) {
+// correct approach 1: mutate property
+function resetObject1(obj) {
   obj.name = 'Reset';
 }
 
-// ✅ 正確寫法 2：回傳新物件
-function resetObject(obj) {
+// correct approach 2: return new object
+function resetObject2(obj) {
   return { name: 'Reset' };
 }
-person = resetObject(person);
+person = resetObject2(person);
 ```
 
-### 陷阱 3：以為展開運算子是深拷貝
+### Pitfall 3: assuming spread is deep copy
 
 ```javascript
-// ❌ 錯誤理解
 const original = {
   user: { name: 'John' },
 };
 
-const copy = { ...original }; // 淺拷貝！
+const copy = { ...original }; // shallow
 
 copy.user.name = 'Jane';
-console.log(original.user.name); // 'Jane'（被影響了！）
+console.log(original.user.name); // 'Jane'
 
-// ✅ 正確寫法：深拷貝
-const copy = JSON.parse(JSON.stringify(original));
-// 或
-const copy = structuredClone(original);
+const deep = structuredClone(original);
 ```
 
-### 陷阱 4：const 的誤解
+### Pitfall 4: misunderstanding `const`
 
 ```javascript
-// const 只是不能重新賦值，不是不可變！
-
 const obj = { name: 'John' };
 
-// ❌ 不能重新賦值
-obj = { name: 'Jane' }; // TypeError: Assignment to constant variable
+// obj = { name: 'Jane' }; // TypeError
 
-// ✅ 可以修改屬性
-obj.name = 'Jane'; // 正常運作
-obj.age = 30; // 正常運作
+obj.name = 'Jane'; // allowed
+obj.age = 30; // allowed
 
-// 如果要真正的不可變
 const immutableObj = Object.freeze({ name: 'John' });
-immutableObj.name = 'Jane'; // 靜默失敗（嚴格模式下會報錯）
-console.log(immutableObj.name); // 'John'（沒有被修改）
+immutableObj.name = 'Jane';
+console.log(immutableObj.name); // 'John'
 ```
 
-### 陷阱 5：迴圈中的參考問題
+### Pitfall 5: shared reference in loops
 
 ```javascript
-// ❌ 常見錯誤
 const arr = [];
 const obj = { value: 0 };
 
 for (let i = 0; i < 3; i++) {
   obj.value = i;
-  arr.push(obj); // 都指向同一個物件！
+  arr.push(obj); // same object reference each time
 }
 
 console.log(arr);
 // [{ value: 2 }, { value: 2 }, { value: 2 }]
-// 都是同一個物件，最終值都是 2
 
-// ✅ 正確寫法：每次創建新物件
-const arr = [];
-
+const arr2 = [];
 for (let i = 0; i < 3; i++) {
-  arr.push({ value: i }); // 每次創建新物件
+  arr2.push({ value: i }); // new object each iteration
 }
 
-console.log(arr);
+console.log(arr2);
 // [{ value: 0 }, { value: 1 }, { value: 2 }]
 ```
 
 ## 6. Best Practices
 
-> 最佳實踐
+> Best practices
 
-### ✅ 推薦做法
+### ✅ Recommended
 
 ```javascript
-// 1. 需要複製物件時，明確使用拷貝方法
+// 1. choose explicit copy strategy
 const original = { name: 'John', age: 30 };
 
-// 淺拷貝（簡單物件）
-const copy1 = { ...original };
+const copy1 = { ...original }; // shallow
+const copy2 = structuredClone(original); // deep
 
-// 深拷貝（巢狀物件）
-const copy2 = structuredClone(original);
-
-// 2. 函式不要依賴副作用來修改參數
-// ❌ 不好
+// 2. avoid mutation side effects in functions
 function addItem(arr, item) {
-  arr.push(item); // 修改原陣列
+  return [...arr, item]; // immutable style
 }
 
-// ✅ 好
-function addItem(arr, item) {
-  return [...arr, item]; // 回傳新陣列
-}
-
-// 3. 使用 const 防止意外重新賦值
+// 3. use const to prevent accidental rebinding
 const config = { theme: 'dark' };
-// config = {}; // 會報錯
 
-// 4. 需要不可變物件時使用 Object.freeze
+// 4. use Object.freeze for immutable constants
 const constants = Object.freeze({
   PI: 3.14159,
   MAX_SIZE: 100,
 });
 ```
 
-### ❌ 避免的做法
+### ❌ Avoid
 
 ```javascript
-// 1. 不要依賴參數傳遞來修改原始型別
 function increment(num) {
-  num++; // ❌ 無效
+  num++; // ineffective for outer primitive
 }
 
-// 2. 不要混淆淺拷貝和深拷貝
-const copy = { ...nested }; // ❌ 以為是深拷貝
+const copy = { ...nested }; // not deep copy
 
-// 3. 不要在迴圈中重複使用同一個物件參考
 for (let i = 0; i < 3; i++) {
-  arr.push(obj); // ❌ 都指向同一個物件
+  arr.push(obj); // same object reference reused
 }
 ```
 
 ## 7. Interview Summary
 
-> 面試總結
+> Interview summary
 
-### 快速記憶
+### Quick memory
 
-**原始型別（Primitive）**：
+**Primitive**:
 
 - String, Number, Boolean, Undefined, Null, Symbol, BigInt
-- 傳值（Call by Value）
-- 儲存在 Stack
-- 不可變（Immutable）
+- Passed by value
+- Immutable
 
-**參考型別（Reference）**：
+**Reference**:
 
 - Object, Array, Function, Date, RegExp, etc.
-- 傳址（Call by Reference）
-- 儲存在 Heap
-- 可變（Mutable）
+- Variable stores reference to heap object
+- Mutable
 
-### 面試回答範例
+### Sample interview answer
 
-**Q: JavaScript 是 Call by Value 還是 Call by Reference？**
+**Q: Is JavaScript call-by-value or call-by-reference?**
 
-> JavaScript **對所有型別都是 Call by Value**，但參考型別傳遞的「值」是記憶體地址。
+> JavaScript is call-by-value for all arguments.
+> For objects, the value being copied is the reference (memory address).
 >
-> - 原始型別：傳遞值的副本，修改不影響原值
-> - 參考型別：傳遞地址的副本，透過地址可以修改原物件
-> - 但如果重新賦值（改變地址），則不影響原物件
+> - Primitive arguments: copying value does not affect outer variable.
+> - Object arguments: copying reference allows mutation of the same object.
+> - Reassigning the local parameter does not change the outer binding.
 
 ## Reference
 
-- [MDN - Data Structures](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Data_structures)
-- [MDN - Object.assign()](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
+- [MDN - Data Structures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures)
+- [MDN - Object.assign()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
 - [MDN - structuredClone()](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone)
-- [MDN - Spread Syntax](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
-- [深入淺出 JavaScript](https://javascript.info/object-copy)
+- [MDN - Spread Syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
+- [JavaScript.info - Object copy](https://javascript.info/object-copy)

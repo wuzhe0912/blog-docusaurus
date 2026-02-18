@@ -7,14 +7,14 @@ tags: [JavaScript, Quiz, Medium]
 
 ## 1. What's Hoisting ?
 
-JS 的運行可以拆解為兩階段，分別是創造與執行：
+JavaScript execution can be viewed as two phases: creation and execution.
 
 ```js
 var name = 'Pitt';
 console.log(name); // print Pitt
 ```
 
-在 Hoisting 特性下，上面這段程式實際運作上，需要理解為先宣告變數再執行賦值。
+With hoisting, the engine conceptually handles declaration first and assignment later:
 
 ```js
 // create
@@ -25,7 +25,7 @@ name = 'Pitt';
 console.log(name);
 ```
 
-而 function 又和變數不同，在創造階段就會指給記憶體，陳述式如下：
+Functions behave differently from variables. A function declaration is bound during the creation phase:
 
 ```js
 getName();
@@ -35,7 +35,7 @@ function getName() {
 }
 ```
 
-上面這段之所以能正常運行印出 console.log，而不會報錯，在於以下邏輯，function 先被提升到最上方，接著才做呼叫 function 的動作。
+This works because the function declaration is hoisted before runtime calls:
 
 ```js
 // create
@@ -47,9 +47,9 @@ function getName() {
 getName();
 ```
 
-但需要注意的是，這種 Hoisting 特性，在表達式時需要注意撰寫順序。
+Note: with function expressions, declaration and assignment order still matters.
 
-在創造階段時，function 是最優先的，其次才是變數。
+In the creation phase, function declarations have higher priority than variable declarations.
 
 ### Correct
 
@@ -80,7 +80,7 @@ var name = 'Jane';
 var name;
 
 // execute
-console.log(name); // print undefined，因為還未拿到賦值，只拿到預設的 undefined
+console.log(name); // print undefined, because assignment has not happened yet
 name = 'Pitt';
 ```
 
@@ -116,17 +116,16 @@ name = 'Pitt';
 console.log(name); // print Pitt
 ```
 
-name 在 `whoseName()` 中，雖然因為拿到 undefined，不會往下走判斷。
-
-但因為陳述式的下方，又有一個賦值，所以即使在 function 有進入判斷條件，最終仍會印出 Pitt。
+Inside `whoseName()`, `name` starts as `undefined`, so the `if (name)` branch does not run.
+After that, `name` gets assigned `'Pitt'`, so the final output is still `Pitt`.
 
 ---
 
-## 3. 函式聲明 vs 變數聲明：提升優先級
+## 3. Function Declaration vs Variable Declaration: Hoisting Priority
 
-### 題目：同名的函式和變數
+### Question: function and variable with the same name
 
-試判斷以下程式碼的輸出結果：
+Predict the output of this code:
 
 ```js
 console.log(foo);
@@ -134,45 +133,45 @@ var foo = '1';
 function foo() {}
 ```
 
-### 錯誤答案（常見誤解）
+### Common wrong answers
 
-很多人會以為：
+Many people think it will:
 
-- 輸出 `undefined`（認為 var 先提升）
-- 輸出 `'1'`（認為賦值會影響）
-- 報錯（認為同名衝突）
+- Output `undefined` (assuming `var` is hoisted first)
+- Output `'1'` (assuming assignment already took effect)
+- Throw an error (assuming same-name conflict)
 
-### 實際輸出
+### Actual output
 
 ```js
 [Function: foo]
 ```
 
-### 為什麼？
+### Why?
 
-這題考察 Hoisting 的**優先級規則**：
+This question tests the **hoisting priority rule**:
 
-**提升優先級：函式聲明 > 變數聲明**
+**Hoisting priority: function declaration > variable declaration**
 
 ```js
-// 原始程式碼
+// Original code
 console.log(foo);
 var foo = '1';
 function foo() {}
 
-// 等價於（經過 Hoisting）
-// 階段 1：創造階段（Hoisting）
-function foo() {} // 1. 函式聲明先提升
-var foo; // 2. 變數聲明提升（但不覆蓋已存在的函式）
+// Equivalent after hoisting
+// Phase 1: creation (hoisting)
+function foo() {} // 1. function declaration is hoisted first
+var foo; // 2. variable declaration is hoisted (does not overwrite function)
 
-// 階段 2：執行階段
-console.log(foo); // 此時 foo 是函式，輸出 [Function: foo]
-foo = '1'; // 3. 變數賦值（會覆蓋函式）
+// Phase 2: execution
+console.log(foo); // foo is a function here
+foo = '1'; // 3. assignment overwrites function
 ```
 
-### 關鍵概念
+### Key Concepts
 
-**1. 函式聲明會完整提升**
+**1. Function declarations are fully hoisted**
 
 ```js
 console.log(myFunc); // [Function: myFunc]
@@ -182,7 +181,7 @@ function myFunc() {
 }
 ```
 
-**2. var 變數聲明只提升聲明，不提升賦值**
+**2. `var` hoists declaration only, not assignment**
 
 ```js
 console.log(myVar); // undefined
@@ -190,103 +189,103 @@ console.log(myVar); // undefined
 var myVar = 'Hello';
 ```
 
-**3. 當函式聲明和變數聲明同名時**
+**3. When function and variable declarations share a name**
 
 ```js
-// 提升後的順序
-function foo() {} // 函式先提升並賦值
-var foo; // 變數聲明提升，但不會覆蓋已存在的函式
+// Hoisted order
+function foo() {} // function is hoisted and initialized first
+var foo; // declaration hoisted, but does not overwrite function
 
-// 因此 foo 是函式
+// Therefore foo is still a function
 console.log(foo); // [Function: foo]
 ```
 
-### 完整執行流程
+### Full Execution Flow
 
 ```js
-// 原始程式碼
+// Original code
 console.log(foo); // ?
 var foo = '1';
 function foo() {}
 console.log(foo); // ?
 
-// ======== 等價於 ========
+// ======== Equivalent ========
 
-// 創造階段（Hoisting）
-function foo() {} // 1️⃣ 函式聲明提升（完整提升，包含函式體）
-var foo; // 2️⃣ 變數聲明提升（但不覆蓋 foo，因為已經是函式了）
+// Creation phase (hoisting)
+function foo() {} // 1️⃣ function declaration is fully hoisted
+var foo; // 2️⃣ variable declaration is hoisted but does not replace function
 
-// 執行階段
-console.log(foo); // [Function: foo] - foo 是函式
-foo = '1'; // 3️⃣ 變數賦值（此時才覆蓋函式）
-console.log(foo); // '1' - foo 變成字串
-```
-
-### 延伸題目
-
-#### 題目 A：順序影響
-
-```js
-console.log(foo); // ?
-function foo() {}
-var foo = '1';
-console.log(foo); // ?
-```
-
-**答案：**
-
-```js
-[Function: foo] // 第一次輸出
-'1' // 第二次輸出
-```
-
-**原因：** 程式碼順序不影響 Hoisting 的結果，提升優先級依然是函式 > 變數。
-
-#### 題目 B：多個同名函式
-
-```js
-console.log(foo); // ?
-
-function foo() {
-  return 1;
-}
-
-var foo = '1';
-
-function foo() {
-  return 2;
-}
-
-console.log(foo); // ?
-```
-
-**答案：**
-
-```js
-[Function: foo] { return 2; } // 第一次輸出（後面的函式覆蓋前面的）
-'1' // 第二次輸出（變數賦值覆蓋函式）
-```
-
-**原因：**
-
-```js
-// 提升後
-function foo() {
-  return 1;
-} // 第一個函式
-
-function foo() {
-  return 2;
-} // 第二個函式覆蓋第一個
-
-var foo; // 變數聲明（不覆蓋函式）
-
-console.log(foo); // [Function: foo] { return 2; }
-foo = '1'; // 變數賦值（覆蓋函式）
+// Execution phase
+console.log(foo); // [Function: foo]
+foo = '1'; // 3️⃣ assignment now overwrites function
 console.log(foo); // '1'
 ```
 
-#### 題目 C：函式表達式 vs 函式聲明
+### Extended Questions
+
+#### Question A: does order change the result?
+
+```js
+console.log(foo); // ?
+function foo() {}
+var foo = '1';
+console.log(foo); // ?
+```
+
+**Answer:**
+
+```js
+[Function: foo] // first output
+'1' // second output
+```
+
+**Reason:** source order does not change hoisting priority. Function declaration still wins over variable declaration in creation phase.
+
+#### Question B: multiple functions with the same name
+
+```js
+console.log(foo); // ?
+
+function foo() {
+  return 1;
+}
+
+var foo = '1';
+
+function foo() {
+  return 2;
+}
+
+console.log(foo); // ?
+```
+
+**Answer:**
+
+```js
+[Function: foo] // first output (later function declaration overrides earlier one)
+'1' // second output (assignment overrides function)
+```
+
+**Reason:**
+
+```js
+// After hoisting
+function foo() {
+  return 1;
+} // first function
+
+function foo() {
+  return 2;
+} // second function overrides first
+
+var foo; // declaration only (does not overwrite function)
+
+console.log(foo); // function returning 2
+foo = '1'; // assignment overwrites function
+console.log(foo); // '1'
+```
+
+#### Question C: function expression vs function declaration
 
 ```js
 console.log(foo); // ?
@@ -301,95 +300,95 @@ function bar() {
 }
 ```
 
-**答案：**
+**Answer:**
 
 ```js
-undefined; // foo 是 undefined
-[Function: bar] // bar 是函式
+undefined // foo is undefined
+[Function: bar] // bar is a function
 ```
 
-**原因：**
+**Reason:**
 
 ```js
-// 提升後
-var foo; // 變數聲明提升（函式表達式只提升變數名）
+// After hoisting
+var foo; // variable declaration is hoisted (function body is not)
 function bar() {
   return 2;
-} // 函式聲明完整提升
+} // function declaration is fully hoisted
 
 console.log(foo); // undefined
-console.log(bar); // [Function: bar]
+console.log(bar); // function
 
 foo = function () {
   return 1;
-}; // 函式表達式賦值
+}; // assignment at runtime
 ```
 
-**關鍵差異：**
+**Key difference:**
 
-- **函式聲明**：`function foo() {}` → 完整提升（包含函式體）
-- **函式表達式**：`var foo = function() {}` → 只提升變數名，函式體不提升
+- **Function declaration**: `function foo() {}` -> fully hoisted (including body)
+- **Function expression**: `var foo = function() {}` -> only variable name is hoisted
 
-### let/const 不會有這個問題
+### `let`/`const` avoid this pattern
 
 ```js
-// ❌ var 會有提升問題
+// ❌ `var` has hoisting pitfalls
 console.log(foo); // undefined
 var foo = '1';
 
-// ✅ let/const 有暫時性死區（TDZ）
-console.log(bar); // ReferenceError: Cannot access 'bar' before initialization
+// ✅ let/const are in TDZ before initialization
+console.log(bar); // ReferenceError
 let bar = '1';
 
-// ✅ let/const 與函式同名會報錯
-function baz() {} // SyntaxError: Identifier 'baz' has already been declared
-let baz = '1';
+// ✅ using same name with function and let/const throws
+function baz() {}
+let baz = '1'; // SyntaxError: Identifier 'baz' has already been declared
 ```
 
-### 提升優先級總結
+### Hoisting Priority Summary
 
 ```
-Hoisting 優先級（從高到低）：
+Hoisting priority (high -> low):
 
-1. 函式聲明（Function Declaration）
-   ├─ function foo() {} ✅ 完整提升
-   └─ 優先級最高
+1. Function Declaration
+   - function foo() {} ✅ fully hoisted
+   - highest priority
 
-2. 變數聲明（Variable Declaration）
-   ├─ var foo ⚠️ 只提升聲明，不提升賦值
-   └─ 不會覆蓋已存在的函式
+2. Variable Declaration
+   - var foo ⚠️ declaration only (no assignment)
+   - does not overwrite existing function declaration
 
-3. 變數賦值（Variable Assignment）
-   ├─ foo = '1' ✅ 會覆蓋函式
-   └─ 執行階段才發生
+3. Variable Assignment
+   - foo = '1' ✅ can overwrite function
+   - happens only in execution phase
 
-4. 函式表達式（Function Expression）
-   ├─ var foo = function() {} ⚠️ 視為變數賦值
-   └─ 只提升變數名，不提升函式體
+4. Function Expression
+   - var foo = function() {} ⚠️ treated as assignment
+   - only variable name is hoisted
 ```
 
-### 面試重點
+### Interview Focus
 
-回答這類問題時，建議：
+When answering this type of question, you can follow this structure:
 
-1. **說明 Hoisting 機制**：分為創造和執行兩階段
-2. **強調優先級**：函式聲明 > 變數聲明
-3. **畫出提升後的程式碼**：讓面試官看到你的理解
-4. **提到最佳實踐**：使用 let/const，避免 var 的提升問題
+1. Explain hoisting as two phases: creation and execution.
+2. Emphasize priority: function declaration > variable declaration.
+3. Rewrite the code into the hoisted form to show reasoning.
+4. Mention best practices: prefer `let`/`const`, and avoid confusing `var` patterns.
 
-**面試回答範例：**
+**Sample interview answer:**
 
-> "這道題考察 Hoisting 的優先級。在 JavaScript 中，函式聲明的提升優先級高於變數聲明。
+> This question is about hoisting priority. In JavaScript, function declarations are hoisted before variable declarations.
 >
-> 執行過程分為兩階段：
+> The engine goes through two phases:
 >
-> 1. 創造階段：`function foo() {}` 完整提升到最上方，接著 `var foo` 聲明提升但不覆蓋已存在的函式。
-> 2. 執行階段：`console.log(foo)` 此時 foo 是函式，所以輸出 `[Function: foo]`，之後 `foo = '1'` 才將 foo 覆蓋為字串。
+> 1. Creation phase: `function foo() {}` is hoisted first, then `var foo` is hoisted without overwriting the function.
+> 2. Execution phase: `console.log(foo)` prints the function, and only later `foo = '1'` overwrites it.
 >
-> 最佳實踐是使用 `let`/`const` 取代 `var`，並將函式聲明放在最上方，避免這類混淆。"
+> In practice, use `let`/`const` instead of `var` to avoid this confusion.
 
 ---
 
-## 相關主題
+## Related Topics
 
-- [var, let, const 差異](/docs/let-var-const-differences)
+- [var, let, const differences](/docs/let-var-const-differences)

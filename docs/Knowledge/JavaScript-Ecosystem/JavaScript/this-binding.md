@@ -7,30 +7,31 @@ tags: [JavaScript, Quiz, Medium]
 
 ## 1. What is `this` in JavaScript?
 
-> JavaScript 中的 `this` 是什麼？
+> What is `this` in JavaScript?
 
-`this` 是 JavaScript 中的一個關鍵字，它指向函式執行時的上下文物件。`this` 的值取決於**函式如何被呼叫**，而不是在哪裡定義。
+`this` is a keyword in JavaScript that points to the execution context object of a function.
+The value of `this` depends on **how the function is called**, not where it is defined.
 
-### `this` 的綁定規則
+### `this` binding rules
 
-JavaScript 中 `this` 的綁定有四種規則（按優先級從高到低）：
+There are four binding rules for `this` in JavaScript (highest to lowest priority):
 
-1. **new 綁定**：使用 `new` 關鍵字呼叫建構函式
-2. **顯式綁定**：使用 `call`、`apply`、`bind` 明確指定 `this`
-3. **隱式綁定**：透過物件方法呼叫
-4. **預設綁定**：其他情況下的預設行為
+1. **new binding**: function called with `new`
+2. **explicit binding**: `call`, `apply`, or `bind` explicitly sets `this`
+3. **implicit binding**: called as an object method
+4. **default binding**: fallback behavior in other call sites
 
 ## 2. Please explain the difference of `this` in different contexts
 
-> 請解釋 `this` 在不同情境下的差異
+> Explain how `this` behaves in different contexts.
 
-### 1. 全域環境中的 `this`
+### 1. `this` in global context
 
 ```javascript
-console.log(this); // 瀏覽器：window，Node.js：global
+console.log(this); // browser: window, Node.js: global
 
 function globalFunction() {
-  console.log(this); // 非嚴格模式：window/global，嚴格模式：undefined
+  console.log(this); // non-strict: window/global, strict: undefined
 }
 
 globalFunction();
@@ -46,57 +47,58 @@ function strictFunction() {
 strictFunction();
 ```
 
-### 2. 一般函式（Function）中的 `this`
+### 2. `this` in regular functions
 
-一般函式的 `this` 取決於**呼叫方式**：
+For regular functions, `this` depends on **call site**:
 
 ```javascript
 function regularFunction() {
   console.log(this);
 }
 
-// 直接呼叫：this 指向全域物件（非嚴格模式）或 undefined（嚴格模式）
-regularFunction(); // window (非嚴格模式) 或 undefined (嚴格模式)
+// direct call
+regularFunction(); // window (non-strict) or undefined (strict)
 
-// 作為物件方法呼叫：this 指向該物件
+// method call
 const obj = {
   method: regularFunction,
 };
 obj.method(); // obj
 
-// 使用 call/apply/bind：this 指向指定的物件
+// call/apply/bind
 const customObj = { name: 'Custom' };
 regularFunction.call(customObj); // customObj
 ```
 
-### 3. 箭頭函式（Arrow Function）中的 `this`
+### 3. `this` in arrow functions
 
-**箭頭函式沒有自己的 `this`**，它會**繼承外層作用域的 `this`**（詞法作用域）。
+**Arrow functions do not have their own `this`**.
+They **inherit `this` from outer lexical scope**.
 
 ```javascript
 const obj = {
   name: 'Object',
-  
-  // 一般函式
+
+  // regular method
   regularMethod: function () {
     console.log('regularMethod this:', this); // obj
-    
-    // 內部一般函式：this 會改變
+
+    // inner regular function: this changes
     function innerRegular() {
       console.log('innerRegular this:', this); // window/undefined
     }
     innerRegular();
-    
-    // 內部箭頭函式：this 繼承外層
+
+    // inner arrow function: this is inherited
     const innerArrow = () => {
       console.log('innerArrow this:', this); // obj
     };
     innerArrow();
   },
-  
-  // 箭頭函式
+
+  // arrow function as object property
   arrowMethod: () => {
-    console.log('arrowMethod this:', this); // window（繼承全域）
+    console.log('arrowMethod this:', this); // window/global lexical scope
   },
 };
 
@@ -104,65 +106,65 @@ obj.regularMethod();
 obj.arrowMethod();
 ```
 
-### 4. 物件方法中的 `this`
+### 4. `this` in object methods
 
 ```javascript
 const person = {
   name: 'John',
   age: 30,
-  
-  // 一般函式：this 指向 person
+
+  // regular function: this -> person
   greet: function () {
     console.log(`Hello, I'm ${this.name}`); // "Hello, I'm John"
   },
-  
-  // ES6 簡寫方法：this 指向 person
+
+  // ES6 method shorthand: this -> person
   introduce() {
     console.log(`I'm ${this.name}, ${this.age} years old`);
   },
-  
-  // 箭頭函式：this 繼承外層（這裡是全域）
+
+  // arrow function: this inherited from outer scope
   arrowGreet: () => {
-    console.log(`Hello, I'm ${this.name}`); // "Hello, I'm undefined"
+    console.log(`Hello, I'm ${this.name}`); // usually undefined for name
   },
 };
 
-person.greet(); // "Hello, I'm John"
-person.introduce(); // "I'm John, 30 years old"
-person.arrowGreet(); // "Hello, I'm undefined"
+person.greet();
+person.introduce();
+person.arrowGreet();
 ```
 
-### 5. 建構函式中的 `this`
+### 5. `this` in constructor functions
 
 ```javascript
 function Person(name, age) {
   this.name = name;
   this.age = age;
-  
+
   this.greet = function () {
     console.log(`Hello, I'm ${this.name}`);
   };
 }
 
 const john = new Person('John', 30);
-john.greet(); // "Hello, I'm John"
+john.greet();
 console.log(john.name); // "John"
 ```
 
-### 6. Class 中的 `this`
+### 6. `this` in classes
 
 ```javascript
 class Person {
   constructor(name) {
     this.name = name;
   }
-  
-  // 一般方法：this 指向實例
+
+  // regular method: this -> instance
   greet() {
     console.log(`Hello, I'm ${this.name}`);
   }
-  
-  // 箭頭函式屬性：this 綁定到實例
+
+  // arrow function class field: this permanently bound to instance
   arrowGreet = () => {
     console.log(`Hi, I'm ${this.name}`);
   };
@@ -171,20 +173,20 @@ class Person {
 const john = new Person('John');
 john.greet(); // "Hello, I'm John"
 
-// 方法賦值給變數會失去 this 綁定
+// method extraction loses this
 const greet = john.greet;
-greet(); // 錯誤：Cannot read property 'name' of undefined
+greet(); // error in strict mode
 
-// 箭頭函式屬性不會失去 this 綁定
+// arrow field keeps this
 const arrowGreet = john.arrowGreet;
 arrowGreet(); // "Hi, I'm John"
 ```
 
 ## 3. Quiz: What will be printed?
 
-> 測驗題：以下程式碼會印出什麼？
+> Quiz: what will the following code print?
 
-### 題目 1：物件方法與箭頭函式
+### Question 1: object method vs arrow function
 
 ```javascript
 const obj = {
@@ -202,20 +204,21 @@ obj.arrowFunc();
 ```
 
 <details>
-<summary>點擊查看答案</summary>
+<summary>Click to view answer</summary>
 
 ```javascript
 // A: Object
 // B: undefined
 ```
 
-**解釋**：
-- `regularFunc` 是一般函式，透過 `obj.regularFunc()` 呼叫，`this` 指向 `obj`，所以印出 `"A: Object"`
-- `arrowFunc` 是箭頭函式，沒有自己的 `this`，繼承外層（全域）的 `this`，全域沒有 `name` 屬性，所以印出 `"B: undefined"`
+**Explanation:**
+
+- `regularFunc` is called as `obj.regularFunc()`, so `this` is `obj`
+- `arrowFunc` has no own `this`; it inherits outer/global lexical `this`
 
 </details>
 
-### 題目 2：函式作為參數傳遞
+### Question 2: passing function as argument
 
 ```javascript
 const person = {
@@ -234,34 +237,35 @@ setTimeout(person.greet, 1000); // 3
 ```
 
 <details>
-<summary>點擊查看答案</summary>
+<summary>Click to view answer</summary>
 
 ```javascript
 // 1: "Hello, John"
-// 2: "Hello, undefined" 或錯誤（嚴格模式）
-// 3: "Hello, undefined" 或錯誤（嚴格模式）
+// 2: "Hello, undefined" or error in strict mode
+// 3: "Hello, undefined" or error in strict mode
 ```
 
-**解釋**：
-1. `person.greet()` - 透過物件呼叫，`this` 指向 `person`
-2. `greet()` - 將方法賦值給變數後直接呼叫，`this` 丟失，指向全域或 `undefined`
-3. `setTimeout(person.greet, 1000)` - 方法作為回呼函式傳遞，`this` 丟失
+**Explanation:**
+
+1. `person.greet()` -> implicit binding, `this` is `person`
+2. Extracted function call -> `this` is lost
+3. Callback passed to `setTimeout` -> `this` is not `person`
 
 </details>
 
-### 題目 3：巢狀函式
+### Question 3: nested functions
 
 ```javascript
 const obj = {
   name: 'Outer',
   method: function () {
     console.log('A:', this.name);
-    
+
     function inner() {
       console.log('B:', this.name);
     }
     inner();
-    
+
     const arrow = () => {
       console.log('C:', this.name);
     };
@@ -273,7 +277,7 @@ obj.method();
 ```
 
 <details>
-<summary>點擊查看答案</summary>
+<summary>Click to view answer</summary>
 
 ```javascript
 // A: Outer
@@ -281,25 +285,26 @@ obj.method();
 // C: Outer
 ```
 
-**解釋**：
-- `A` - `method` 透過 `obj` 呼叫，`this` 指向 `obj`
-- `B` - `inner` 是一般函式，直接呼叫，`this` 指向全域或 `undefined`
-- `C` - `arrow` 是箭頭函式，繼承外層 `method` 的 `this`，指向 `obj`
+**Explanation:**
+
+- `A`: `method` is called by `obj`
+- `B`: `inner` is a regular direct call
+- `C`: arrow function inherits outer `method` `this`
 
 </details>
 
-### 題目 4：setTimeout 與箭頭函式
+### Question 4: `setTimeout` and arrow function
 
 ```javascript
 const obj = {
   name: 'Object',
-  
+
   method1: function () {
     setTimeout(function () {
       console.log('A:', this.name);
     }, 100);
   },
-  
+
   method2: function () {
     setTimeout(() => {
       console.log('B:', this.name);
@@ -312,20 +317,21 @@ obj.method2();
 ```
 
 <details>
-<summary>點擊查看答案</summary>
+<summary>Click to view answer</summary>
 
 ```javascript
 // A: undefined
 // B: Object
 ```
 
-**解釋**：
-- `A` - `setTimeout` 的回呼是一般函式，執行時 `this` 指向全域
-- `B` - `setTimeout` 的回呼是箭頭函式，繼承外層 `method2` 的 `this`，指向 `obj`
+**Explanation:**
+
+- `A`: regular callback in `setTimeout` loses method context
+- `B`: arrow callback inherits `this` from `method2`
 
 </details>
 
-### 題目 5：複雜的 this 綁定
+### Question 5: complex `this` binding
 
 ```javascript
 const obj1 = {
@@ -342,7 +348,7 @@ const obj2 = {
 console.log('A:', obj1.getThis().name);
 
 const getThis = obj1.getThis;
-console.log('B:', getThis() === window); // 假設在瀏覽器環境
+console.log('B:', getThis() === window); // browser assumption
 
 obj2.getThis = obj1.getThis;
 console.log('C:', obj2.getThis().name);
@@ -352,7 +358,7 @@ console.log('D:', boundGetThis().name);
 ```
 
 <details>
-<summary>點擊查看答案</summary>
+<summary>Click to view answer</summary>
 
 ```javascript
 // A: obj1
@@ -361,15 +367,16 @@ console.log('D:', boundGetThis().name);
 // D: obj2
 ```
 
-**解釋**：
-- `A` - 透過 `obj1` 呼叫，`this` 指向 `obj1`
-- `B` - 直接呼叫，`this` 指向全域（window）
-- `C` - 透過 `obj2` 呼叫，`this` 指向 `obj2`
-- `D` - 使用 `bind` 綁定 `this` 為 `obj2`
+**Explanation:**
+
+- `A`: called from `obj1`
+- `B`: direct call uses default binding (window in browser non-strict)
+- `C`: called from `obj2`
+- `D`: explicitly bound with `bind(obj2)`
 
 </details>
 
-### 題目 6：建構函式與原型
+### Question 6: constructor and prototype
 
 ```javascript
 function Person(name) {
@@ -398,20 +405,21 @@ john.arrowDelayedGreet();
 ```
 
 <details>
-<summary>點擊查看答案</summary>
+<summary>Click to view answer</summary>
 
 ```javascript
 // A: undefined
 // B: John
 ```
 
-**解釋**：
-- `A` - `setTimeout` 的一般函式回呼，`this` 指向全域
-- `B` - `setTimeout` 的箭頭函式回呼，繼承外層 `arrowDelayedGreet` 的 `this`，指向 `john`
+**Explanation:**
+
+- `A`: regular timeout callback uses default/global binding
+- `B`: arrow timeout callback inherits instance `this`
 
 </details>
 
-### 題目 7：全域變數 vs 物件屬性
+### Question 7: global variable vs object property
 
 ```javascript
 var name = 'jjjj';
@@ -427,84 +435,57 @@ obj.a();
 ```
 
 <details>
-<summary>點擊查看答案</summary>
+<summary>Click to view answer</summary>
 
 ```javascript
 // undefined
 ```
 
-**解釋**：
+**Explanation:**
 
-這題的關鍵在於理解**全域變數**和**物件屬性**的差異：
+The key is the difference between **global variables** and **object properties**.
 
-1. **`obj.a()` 的 `this` 指向**：
-   - 透過 `obj.a()` 呼叫，`this` 指向 `obj`
+1. `this` in `obj.a()` points to `obj`
+2. `name = 'john'` (without declaration) updates the global variable
+3. `this.name` reads `obj.name`
+4. `obj` has no `name` property, so it is `undefined`
 
-2. **`name = 'john'` 修改的是全域變數**：
-   ```javascript
-   name = 'john'; // 沒有 var/let/const，修改全域 name
-   // 等同於
-   window.name = 'john'; // 瀏覽器環境
-   ```
-
-3. **`this.name` 訪問的是物件屬性**：
-   ```javascript
-   console.log(this.name); // 等同於 console.log(obj.name)
-   ```
-
-4. **`obj` 物件沒有 `name` 屬性**：
-   ```javascript
-   obj.name; // undefined（obj 物件內沒有定義 name）
-   ```
-
-**完整執行過程**：
+**Execution flow:**
 
 ```javascript
-// 初始狀態
-window.name = 'jjjj'; // 全域變數
+// initial
+window.name = 'jjjj';
 obj = {
-  a: function () { /* ... */ },
-  // 注意：obj 沒有 name 屬性！
+  a: function () {
+    /* ... */
+  },
+  // obj has no name property
 };
 
-// 執行 obj.a()
 obj.a();
   ↓
-// 1. name = 'john' → 修改全域 window.name
-window.name = 'john'; // ✅ 全域變數被修改
-
-// 2. this.name → 訪問 obj.name
-this.name; // 等於 obj.name
-obj.name; // undefined（obj 沒有 name 屬性）
+window.name = 'john'; // global value changed
+this.name; // equals obj.name
+obj.name; // undefined
 ```
 
-**常見誤解**：
-
-很多人以為會印出 `'john'`，因為：
-- ❌ 誤以為 `name = 'john'` 會給 `obj` 增加屬性
-- ❌ 誤以為 `this.name` 會訪問全域變數
-
-**正確理解**：
-- ✅ `name = 'john'` 只修改全域變數，不影響 `obj`
-- ✅ `this.name` 訪問的是 `obj.name`，而非全域 `name`
-
-**如果要印出 `'john'`，應該這樣寫**：
+If you want `'john'`, assign via `this.name = 'john'`.
 
 ```javascript
 var obj = {
   a: function () {
-    this.name = 'john'; // ✅ 給 obj 增加 name 屬性
+    this.name = 'john';
     console.log(this.name); // 'john'
   },
 };
 
-obj.a(); // 印出 'john'
+obj.a();
 console.log(obj.name); // 'john'
 ```
 
 </details>
 
-### 題目 8：全域變數陷阱（延伸）
+### Question 8: global variable trap (extended)
 
 ```javascript
 var name = 'global';
@@ -512,19 +493,19 @@ var name = 'global';
 var obj = {
   name: 'object',
   a: function () {
-    name = 'modified'; // 注意：沒有 var/let/const
-    console.log('1:', name); // 訪問全域變數
-    console.log('2:', this.name); // 訪問物件屬性
+    name = 'modified';
+    console.log('1:', name); // global variable
+    console.log('2:', this.name); // object property
   },
 };
 
 obj.a();
-console.log('3:', name); // 全域變數
-console.log('4:', obj.name); // 物件屬性
+console.log('3:', name); // global variable
+console.log('4:', obj.name); // object property
 ```
 
 <details>
-<summary>點擊查看答案</summary>
+<summary>Click to view answer</summary>
 
 ```javascript
 // 1: modified
@@ -533,43 +514,25 @@ console.log('4:', obj.name); // 物件屬性
 // 4: object
 ```
 
-**解釋**：
+**Key point:**
 
-```javascript
-// 初始狀態
-window.name = 'global'; // 全域變數
-obj.name = 'object'; // 物件屬性
-
-// 執行 obj.a()
-name = 'modified'; // 修改全域 window.name
-
-console.log('1:', name); // 訪問全域：'modified'
-console.log('2:', this.name); // 訪問 obj.name：'object'
-
-// 執行完畢後
-console.log('3:', name); // 全域：'modified'
-console.log('4:', obj.name); // 物件：'object'（未被修改）
-```
-
-**關鍵概念**：
-- `name`（沒有 `this.`）→ 訪問全域變數
-- `this.name`（有 `this.`）→ 訪問物件屬性
-- 兩者是**完全不同的變數**！
+- `name` without `this.` -> global variable
+- `this.name` -> object property
+- They are different values
 
 </details>
 
 ## 4. How to preserve `this` in callbacks?
 
-> 如何在回呼函式中保留 `this`？
+> How to preserve `this` inside callback functions?
 
-### 方法 1：使用箭頭函式
+### Method 1: arrow function
 
 ```javascript
 const obj = {
   name: 'Object',
-  
+
   method: function () {
-    // ✅ 箭頭函式會繼承外層的 this
     setTimeout(() => {
       console.log(this.name); // "Object"
     }, 1000);
@@ -579,14 +542,13 @@ const obj = {
 obj.method();
 ```
 
-### 方法 2：使用 `bind()`
+### Method 2: `bind()`
 
 ```javascript
 const obj = {
   name: 'Object',
-  
+
   method: function () {
-    // ✅ bind 綁定 this
     setTimeout(
       function () {
         console.log(this.name); // "Object"
@@ -599,14 +561,13 @@ const obj = {
 obj.method();
 ```
 
-### 方法 3：儲存 `this` 到變數（舊方法）
+### Method 3: store `this` in variable (legacy pattern)
 
 ```javascript
 const obj = {
   name: 'Object',
-  
+
   method: function () {
-    // ✅ 將 this 儲存到變數
     const self = this;
     setTimeout(function () {
       console.log(self.name); // "Object"
@@ -617,7 +578,7 @@ const obj = {
 obj.method();
 ```
 
-### 方法 4：使用 `call()` 或 `apply()`
+### Method 4: `call()` / `apply()`
 
 ```javascript
 function greet() {
@@ -633,9 +594,9 @@ greet.apply(person2); // "Hello, I'm Jane"
 
 ## 5. Common `this` pitfalls
 
-> 常見的 `this` 陷阱
+> Common `this` pitfalls
 
-### 陷阱 1：物件方法賦值給變數
+### Pitfall 1: extracting object method
 
 ```javascript
 const obj = {
@@ -648,32 +609,31 @@ const obj = {
 obj.greet(); // ✅ "Object"
 
 const greet = obj.greet;
-greet(); // ❌ undefined（this 丟失）
+greet(); // ❌ this lost
 
-// 解決方法：使用 bind
 const boundGreet = obj.greet.bind(obj);
 boundGreet(); // ✅ "Object"
 ```
 
-### 陷阱 2：事件監聽器中的 `this`
+### Pitfall 2: `this` in event listeners
 
 ```javascript
 const button = document.querySelector('button');
 
 const obj = {
   name: 'Object',
-  
-  // ❌ 箭頭函式：this 不指向 button
+
+  // ❌ arrow function here does not bind to button
   handleClick1: () => {
-    console.log(this); // window
+    console.log(this); // window/global lexical
   },
-  
-  // ✅ 一般函式：this 指向觸發事件的元素
+
+  // ✅ regular function in listener gets event target as this
   handleClick2: function () {
-    console.log(this); // button 元素
+    console.log(this); // button element
   },
-  
-  // ✅ 如果需要存取物件的 this，使用箭頭函式包裝
+
+  // ✅ use arrow wrapper when you need object this inside callback
   handleClick3: function () {
     button.addEventListener('click', () => {
       console.log(this.name); // "Object"
@@ -682,154 +642,149 @@ const obj = {
 };
 ```
 
-### 陷阱 3：陣列方法中的回呼
+### Pitfall 3: callback in array methods
 
 ```javascript
 const obj = {
   name: 'Object',
   items: [1, 2, 3],
-  
-  // ❌ 一般函式回呼會失去 this
+
+  // ❌ regular callback loses this
   processItems1: function () {
     this.items.forEach(function (item) {
-      console.log(this.name, item); // undefined 1, undefined 2, undefined 3
+      console.log(this.name, item);
     });
   },
-  
-  // ✅ 箭頭函式回呼保留 this
+
+  // ✅ arrow callback keeps lexical this
   processItems2: function () {
     this.items.forEach((item) => {
-      console.log(this.name, item); // "Object" 1, "Object" 2, "Object" 3
+      console.log(this.name, item);
     });
   },
-  
-  // ✅ 使用 forEach 的 thisArg 參數
+
+  // ✅ use thisArg
   processItems3: function () {
     this.items.forEach(function (item) {
-      console.log(this.name, item); // "Object" 1, "Object" 2, "Object" 3
-    }, this); // 第二個參數指定 this
+      console.log(this.name, item);
+    }, this);
   },
 };
 ```
 
 ## 6. `this` binding rules summary
 
-> `this` 綁定規則總結
+> Summary of `this` binding rules
 
-### 優先級（從高到低）
+### Priority (high -> low)
 
 ```javascript
-// 1. new 綁定（最高優先級）
+// 1. new binding (highest)
 function Person(name) {
   this.name = name;
 }
 const john = new Person('John');
 console.log(john.name); // "John"
 
-// 2. 顯式綁定（call/apply/bind）
+// 2. explicit binding (call/apply/bind)
 function greet() {
   console.log(this.name);
 }
 const obj = { name: 'Object' };
 greet.call(obj); // "Object"
 
-// 3. 隱式綁定（物件方法）
+// 3. implicit binding (object method)
 const obj2 = {
   name: 'Object2',
   greet: greet,
 };
 obj2.greet(); // "Object2"
 
-// 4. 預設綁定（最低優先級）
-greet(); // undefined（嚴格模式）或 window.name
+// 4. default binding (lowest)
+greet(); // undefined (strict) or global name (non-strict)
 ```
 
-### Function vs Arrow Function 比較表
+### Function vs Arrow Function
 
-| 特性 | Function | Arrow Function |
+| Feature | Function | Arrow Function |
 | --- | --- | --- |
-| 有自己的 `this` | ✅ 有 | ❌ 沒有 |
-| `this` 取決於 | 呼叫方式 | 定義位置（詞法作用域）|
-| 可用 `call`/`apply`/`bind` 改變 `this` | ✅ 可以 | ❌ 不可以 |
-| 可作為建構函式 | ✅ 可以 | ❌ 不可以 |
-| 有 `arguments` 物件 | ✅ 有 | ❌ 沒有 |
-| 適合場景 | 物件方法、建構函式 | 回呼函式、需要繼承外層 this |
+| Has its own `this` | ✅ Yes | ❌ No |
+| `this` determined by | Call site | Lexical definition scope |
+| `call`/`apply`/`bind` can change `this` | ✅ Yes | ❌ No |
+| Can be constructor | ✅ Yes | ❌ No |
+| Has `arguments` | ✅ Yes | ❌ No |
+| Best for | Object methods, constructors | Callbacks, inherited outer `this` |
 
-### 記憶口訣
+### Memory phrase
 
-> **「箭頭繼承，函式呼叫」**
+> **“Arrow inherits, function depends on call.”**
 >
-> - **箭頭函式**：`this` 繼承外層作用域，定義時就決定
-> - **一般函式**：`this` 取決於呼叫方式，執行時才決定
+> - Arrow function: `this` is inherited from outer lexical scope
+> - Regular function: `this` is decided at runtime by call site
 
 ## 7. Best practices
 
-> 最佳實踐
+> Best practices
 
-### ✅ 推薦做法
+### ✅ Recommended
 
 ```javascript
-// 1. 物件方法使用一般函式或 ES6 方法簡寫
+// 1. Use regular function or method shorthand for object methods
 const obj = {
   name: 'Object',
-  
-  // ✅ 好：一般函式
+
+  // ✅ good
   greet: function () {
     console.log(this.name);
   },
-  
-  // ✅ 好：ES6 簡寫
+
+  // ✅ good
   introduce() {
     console.log(this.name);
   },
 };
 
-// 2. 回呼函式使用箭頭函式
+// 2. Use arrow functions for callbacks that should keep outer this
 class Component {
   constructor() {
     this.name = 'Component';
   }
-  
+
   mount() {
-    // ✅ 好：箭頭函式保留 this
     setTimeout(() => {
       console.log(this.name);
     }, 1000);
   }
 }
 
-// 3. 需要動態 this 時使用一般函式
+// 3. Use regular function when dynamic this is needed
 const button = {
   label: 'Click me',
-  
-  // ✅ 好：需要存取 DOM 元素的 this
+
   handleClick: function () {
-    console.log(this); // button DOM 元素
+    console.log(this); // event target / receiver object
   },
 };
 ```
 
-### ❌ 不推薦做法
+### ❌ Not recommended
 
 ```javascript
-// 1. 物件方法不要使用箭頭函式
+// 1. Avoid arrow function as object methods
 const obj = {
   name: 'Object',
-  
-  // ❌ 壞：this 不指向 obj
+
   greet: () => {
-    console.log(this.name); // undefined
+    console.log(this.name); // undefined in most cases
   },
 };
 
-// 2. 建構函式不要使用箭頭函式
-// ❌ 壞：箭頭函式不能作為建構函式
+// 2. Avoid arrow function as constructor
 const Person = (name) => {
-  this.name = name; // 錯誤！
+  this.name = name; // wrong
 };
 
-// 3. 需要存取 arguments 時不要使用箭頭函式
-// ❌ 壞：箭頭函式沒有 arguments
+// 3. Avoid arrow when you need arguments object
 const sum = () => {
   console.log(arguments); // ReferenceError
 };
@@ -837,8 +792,7 @@ const sum = () => {
 
 ## Reference
 
-- [MDN - this](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Operators/this)
-- [MDN - Arrow Functions](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
-- [MDN - Function.prototype.bind()](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
+- [MDN - this](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this)
+- [MDN - Arrow Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
+- [MDN - Function.prototype.bind()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
 - [You Don't Know JS: this & Object Prototypes](https://github.com/getify/You-Dont-Know-JS/tree/1st-ed/this%20%26%20object%20prototypes)
-

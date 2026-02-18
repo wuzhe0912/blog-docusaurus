@@ -7,11 +7,12 @@ tags: [JavaScript, Quiz, Easy]
 
 ## 1. What is the difference between `==` and `===` ?
 
-> `==` 和 `===` 有什麼差異？
+> What is the difference between `==` and `===`?
 
-兩者都是比較運算符號，`==` 是比較兩個值是否相等，`===` 是比較兩個值是否相等且型別也相等。因此後者也可以視為嚴格模式。
+Both are comparison operators.
+`==` compares values with type coercion, while `===` compares both value and type (strict equality).
 
-其中前者受限於 JavaScript 的設計，會自動轉換類型，導致出現很多不直覺的結果，例如：
+Because of JavaScript coercion rules, `==` can produce surprising results:
 
 ```js
 1 == '1'; // true
@@ -22,88 +23,87 @@ tags: [JavaScript, Quiz, Easy]
 0 == false; // true
 ```
 
-這對開發者來說，是很大的心智負擔，因此普遍建議使用 `===` 來取代 `==`，避免預期外的錯誤。
+This increases cognitive load, so in most cases `===` is recommended to avoid unexpected bugs.
 
-**最佳實踐**：永遠使用 `===` 和 `!==`，除非你非常清楚為什麼要用 `==`。
+**Best practice**: always use `===` and `!==`, unless you clearly know why `==` is needed.
 
-### 面試題目
+### Interview Questions
 
-#### 題目 1：基本類型比較
+#### Question 1: primitive comparison
 
-試判斷以下表達式的結果：
+Predict the result:
 
 ```javascript
 1 == '1'; // ?
 1 === '1'; // ?
 ```
 
-**答案：**
+**Answer:**
 
 ```javascript
 1 == '1'; // true
 1 === '1'; // false
 ```
 
-**解析：**
+**Explanation:**
 
-- **`==`（相等運算符）**：會進行類型轉換
-  - 字串 `'1'` 會被轉換為數字 `1`
-  - 然後比較 `1 == 1`，結果為 `true`
-- **`===`（嚴格相等運算符）**：不進行類型轉換
-  - `number` 和 `string` 類型不同，直接返回 `false`
+- **`==` (loose equality)** performs type coercion
+  - `'1'` is converted to `1`
+  - then it compares `1 == 1` -> `true`
+- **`===` (strict equality)** does not perform coercion
+  - `number` and `string` are different types -> `false`
 
-**類型轉換規則：**
+**Coercion rules (common cases):**
 
 ```javascript
-// == 的類型轉換優先順序
-// 1. 如果有 number，將另一邊轉為 number
-'1' == 1; // '1' → 1，結果 true
-'2' == 2; // '2' → 2，結果 true
-'0' == 0; // '0' → 0，結果 true
+// == coercion priority examples
+// 1. if one side is number, convert the other side to number
+'1' == 1; // true
+'2' == 2; // true
+'0' == 0; // true
 
-// 2. 如果有 boolean，將 boolean 轉為 number
-true == 1; // true → 1，結果 true
-false == 0; // false → 0，結果 true
-'1' == true; // '1' → 1, true → 1，結果 true
+// 2. if one side is boolean, convert boolean to number
+true == 1; // true
+false == 0; // true
+'1' == true; // true
 
-// 3. 字串轉數字的陷阱
-'' == 0; // '' → 0，結果 true
-' ' == 0; // ' ' → 0，結果 true（空白字串轉為 0）
+// 3. string-to-number pitfalls
+'' == 0; // true
+' ' == 0; // true (whitespace string converts to 0)
 ```
 
-#### 題目 2：null 和 undefined 的比較
+#### Question 2: `null` vs `undefined`
 
-試判斷以下表達式的結果：
+Predict the result:
 
 ```javascript
 undefined == null; // ?
 undefined === null; // ?
 ```
 
-**答案：**
+**Answer:**
 
 ```javascript
 undefined == null; // true
 undefined === null; // false
 ```
 
-**解析：**
+**Explanation:**
 
-這是 JavaScript 的**特殊規則**：
+This is a **special JavaScript rule**:
 
-- **`undefined == null`**：`true`
-  - ES 規範特別規定：`null` 和 `undefined` 用 `==` 比較時相等
-  - 這是唯一一個 `==` 有用的場景：檢查變數是否為 `null` 或 `undefined`
-- **`undefined === null`**：`false`
-  - 它們是不同類型（`undefined` 是 `undefined` 類型，`null` 是 `object` 類型）
-  - 嚴格比較時不相等
+- **`undefined == null`** is `true`
+  - the spec explicitly defines loose equality between them
+  - this is one valid use case for `==`: checking both `null` and `undefined`
+- **`undefined === null`** is `false`
+  - different types, so strict equality fails
 
-**實務應用：**
+**Practical usage:**
 
 ```javascript
-// 檢查變數是否為 null 或 undefined
+// check whether value is null or undefined
 function isNullOrUndefined(value) {
-  return value == null; // 同時檢查 null 和 undefined
+  return value == null;
 }
 
 isNullOrUndefined(null); // true
@@ -111,16 +111,16 @@ isNullOrUndefined(undefined); // true
 isNullOrUndefined(0); // false
 isNullOrUndefined(''); // false
 
-// 等價於（但更簡潔）
+// equivalent verbose form
 function isNullOrUndefined(value) {
   return value === null || value === undefined;
 }
 ```
 
-**注意陷阱：**
+**Pitfalls:**
 
 ```javascript
-// null 和 undefined 只與彼此相等
+// null and undefined are only loosely equal to each other
 null == undefined; // true
 null == 0; // false
 null == false; // false
@@ -130,15 +130,15 @@ undefined == 0; // false
 undefined == false; // false
 undefined == ''; // false
 
-// 但用 === 時，只與自己相等
+// with ===, each only equals itself
 null === null; // true
 undefined === undefined; // true
 null === undefined; // false
 ```
 
-#### 題目 3：綜合比較
+#### Question 3: mixed comparisons
 
-試判斷以下表達式的結果：
+Predict the result:
 
 ```javascript
 0 == false; // ?
@@ -149,40 +149,40 @@ null == false; // ?
 undefined == false; // ?
 ```
 
-**答案：**
+**Answer:**
 
 ```javascript
-0 == false; // true（false → 0）
-0 === false; // false（類型不同：number vs boolean）
-'' == false; // true（'' → 0, false → 0）
-'' === false; // false（類型不同：string vs boolean）
-null == false; // false（null 只等於 null 和 undefined）
-undefined == false; // false（undefined 只等於 null 和 undefined）
+0 == false; // true (false -> 0)
+0 === false; // false (number vs boolean)
+'' == false; // true ('' -> 0, false -> 0)
+'' === false; // false (string vs boolean)
+null == false; // false (null only loosely equals null/undefined)
+undefined == false; // false (undefined only loosely equals null/undefined)
 ```
 
-**轉換流程圖：**
+**Conversion flow:**
 
 ```javascript
-// 0 == false 的轉換過程
+// 0 == false
 0 == false;
-0 == 0; // false 轉為數字 0
-true; // 結果
+0 == 0;
+true;
 
-// '' == false 的轉換過程
+// '' == false
 '' == false;
-'' == 0; // false 轉為數字 0
-0 == 0; // '' 轉為數字 0
-true; // 結果
+'' == 0;
+0 == 0;
+true;
 
-// null == false 的特殊情況
+// null == false
 null == false;
-// null 不會轉換！根據規範，null 只等於 null 和 undefined
-false; // 結果
+// null does not convert in this comparison path
+false;
 ```
 
-#### 題目 4：對象比較
+#### Question 4: object comparison
 
-試判斷以下表達式的結果：
+Predict the result:
 
 ```javascript
 [] == []; // ?
@@ -191,7 +191,7 @@ false; // 結果
 {} === {}; // ?
 ```
 
-**答案：**
+**Answer:**
 
 ```javascript
 [] == []; // false
@@ -200,103 +200,104 @@ false; // 結果
 {} === {}; // false
 ```
 
-**解析：**
+**Explanation:**
 
-- 對象（包括陣列、物件）的比較是**引用比較**
-- 即使內容相同，但如果是不同的對象實例，就不相等
-- `==` 和 `===` 對對象的行為一致（都比較引用）
+- Objects (including arrays) are compared by **reference**, not by content.
+- Two different object instances are never equal, even with the same content.
+- For objects, `==` and `===` both compare references.
 
 ```javascript
-// 只有引用相同才相等
+// same reference -> equal
 const arr1 = [];
-const arr2 = arr1; // 引用相同的陣列
+const arr2 = arr1;
 arr1 == arr2; // true
 arr1 === arr2; // true
 
-// 即使內容相同，但是不同實例
+// same content but different instances -> not equal
 const arr3 = [1, 2, 3];
 const arr4 = [1, 2, 3];
-arr3 == arr4; // false（不同引用）
-arr3 === arr4; // false（不同引用）
+arr3 == arr4; // false
+arr3 === arr4; // false
 
-// 物件同理
+// same for objects
 const obj1 = { name: 'Alice' };
 const obj2 = { name: 'Alice' };
 obj1 == obj2; // false
 obj1 === obj2; // false
 ```
 
-#### 面試快速記憶
+#### Quick interview memory
 
-**`==` 的類型轉換規則（從上到下優先）：**
+**`==` coercion rules (practical order):**
 
-1. `null == undefined` → `true`（特殊規則）
-2. `number == string` → 將 string 轉為 number
-3. `number == boolean` → 將 boolean 轉為 number
-4. `string == boolean` → 都轉為 number
-5. 對象比較引用，不進行轉換
+1. `null == undefined` -> `true` (special rule)
+2. `number == string` -> convert string to number
+3. `number == boolean` -> convert boolean to number
+4. `string == boolean` -> both converted to number
+5. Objects compare by reference
 
-**`===` 的規則（簡單）：**
+**`===` rules (simple):**
 
-1. 類型不同 → `false`
-2. 類型相同 → 比較值（基本類型）或引用（對象類型）
+1. Different type -> `false`
+2. Same type -> compare value (primitives) or reference (objects)
 
-**最佳實踐：**
+**Best practices:**
 
 ```javascript
-// ✅ 永遠使用 ===
+// ✅ use === by default
 if (value === 0) {
 }
 if (name === 'Alice') {
 }
 
-// ✅ 唯一例外：檢查 null/undefined
+// ✅ one common exception: null/undefined check
 if (value == null) {
-  // value 是 null 或 undefined
+  // value is null or undefined
 }
 
-// ❌ 避免使用 ==（除了上述例外）
+// ❌ avoid == in general
 if (value == 0) {
-} // 不好
+}
 if (name == 'Alice') {
-} // 不好
+}
 ```
 
-**面試回答範例：**
+**Sample interview answer:**
 
-> "`==` 會進行類型轉換，可能導致不直覺的結果，例如 `0 == '0'` 為 `true`。`===` 是嚴格比較，不進行類型轉換，類型不同就直接返回 `false`。
+> `==` performs type coercion and may produce surprising results, for example `0 == '0'` is `true`.
+> `===` is strict equality, so type mismatch returns `false` directly.
 >
-> 最佳實踐是永遠使用 `===`，唯一例外是 `value == null` 可以同時檢查 `null` 和 `undefined`。
+> Best practice is to use `===` everywhere, except for `value == null` when intentionally checking both `null` and `undefined`.
 >
-> 特別注意 `null == undefined` 為 `true`，但 `null === undefined` 為 `false`，這是 JavaScript 的特殊規定。"
+> Also note: `null == undefined` is `true`, but `null === undefined` is `false`.
 
 ---
 
 ## 2. What is the difference between `&&` and `||` ? Please explain short-circuit evaluation
 
-> `&&` 和 `||` 有什麼差異？請解釋短路求值
+> What is the difference between `&&` and `||`? Explain short-circuit evaluation.
 
-### 基本概念
+### Core idea
 
-- **`&&`（AND）**：當左邊為 `falsy` 時，直接返回左邊的值，不會執行右邊
-- **`||`（OR）**：當左邊為 `truthy` 時，直接返回左邊的值，不會執行右邊
+- **`&&` (AND)**: if the left side is `falsy`, return the left side immediately (right side is not evaluated)
+- **`||` (OR)**: if the left side is `truthy`, return the left side immediately (right side is not evaluated)
 
-### 短路求值範例
+### Short-circuit examples
 
 ```js
-// && 短路求值
+// && short-circuit
 const user = null;
-const name = user && user.name; // user 為 falsy，直接返回 null，不會訪問 user.name
-console.log(name); // null（不會報錯）
+const name = user && user.name; // user is falsy, returns null, no user.name access
+console.log(name); // null (no error)
 
-// || 短路求值
+// || short-circuit
 const defaultName = 'Guest';
-const userName = user || defaultName; // user 為 falsy，返回右邊的 defaultName
+const userName = user || defaultName;
 console.log(userName); // 'Guest'
 
-// 實務應用
+// practical usage
 function greet(name) {
-  const displayName = name || 'Anonymous'; // 如果沒傳 name，使用預設值
+  const displayName = name || 'Anonymous';
   console.log(`Hello, ${displayName}!`);
 }
 
@@ -304,16 +305,16 @@ greet('Alice'); // Hello, Alice!
 greet(); // Hello, Anonymous!
 ```
 
-### 常見陷阱 ⚠️
+### Common pitfall ⚠️
 
 ```js
-// 問題：0 和 '' 也是 falsy
+// problem: 0 and '' are also falsy
 const count = 0;
-const result = count || 10; // 0 是 falsy，返回 10
-console.log(result); // 10（可能不是你想要的結果）
+const result = count || 10; // returns 10
+console.log(result); // 10 (possibly unintended)
 
-// 解決方案：使用 ?? (Nullish Coalescing)
-const betterResult = count ?? 10; // 只有 null/undefined 才會返回 10
+// solution: use ??
+const betterResult = count ?? 10; // only null/undefined fallback
 console.log(betterResult); // 0
 ```
 
@@ -321,11 +322,11 @@ console.log(betterResult); // 0
 
 ## 3. What is the `?.` (Optional Chaining) operator ?
 
-> 可選鏈運算符 `?.` 是什麼？
+> What is optional chaining `?.`?
 
-### 問題場景
+### Problem scenario
 
-傳統寫法容易出錯：
+Traditional access can throw errors:
 
 ```js
 const user = {
@@ -335,32 +336,32 @@ const user = {
   },
 };
 
-// ❌ 危險：如果 address 不存在會報錯
-console.log(user.address.city); // 正常
-console.log(otherUser.address.city); // TypeError: Cannot read property 'city' of undefined
+// ❌ risky: throws if address is missing
+console.log(user.address.city); // ok
+console.log(otherUser.address.city); // TypeError
 
-// ✅ 安全但冗長
+// ✅ safe but verbose
 const city = user && user.address && user.address.city;
 ```
 
-### 使用 Optional Chaining
+### Optional chaining usage
 
 ```js
-// ✅ 簡潔且安全
+// ✅ concise and safe
 const city = user?.address?.city; // 'Taipei'
-const missingCity = otherUser?.address?.city; // undefined（不會報錯）
+const missingCity = otherUser?.address?.city; // undefined (no error)
 
-// 也可用於方法調用
-user?.getName?.(); // 如果 getName 存在才執行
+// for method calls
+user?.getName?.();
 
-// 也可用於陣列
-const firstItem = users?.[0]?.name; // 安全訪問第一個用戶的名字
+// for arrays
+const firstItem = users?.[0]?.name;
 ```
 
-### 實務應用
+### Practical usage
 
 ```js
-// API 回應處理
+// API response handling
 function displayUserInfo(response) {
   const userName = response?.data?.user?.name ?? 'Unknown User';
   const email = response?.data?.user?.email ?? 'No email';
@@ -369,7 +370,7 @@ function displayUserInfo(response) {
   console.log(`Email: ${email}`);
 }
 
-// DOM 操作
+// DOM access
 const buttonText = document.querySelector('.submit-btn')?.textContent;
 ```
 
@@ -377,17 +378,17 @@ const buttonText = document.querySelector('.submit-btn')?.textContent;
 
 ## 4. What is the `??` (Nullish Coalescing) operator ?
 
-> 空值合併運算符 `??` 是什麼？
+> What is nullish coalescing `??`?
 
-### 與 `||` 的差異
+### Difference from `||`
 
 ```js
-// || 會把所有 falsy 值視為假
+// || treats all falsy values as fallback triggers
 const value1 = 0 || 'default'; // 'default'
 const value2 = '' || 'default'; // 'default'
 const value3 = false || 'default'; // 'default'
 
-// ?? 只把 null 和 undefined 視為空值
+// ?? only treats null and undefined as nullish
 const value4 = 0 ?? 'default'; // 0
 const value5 = '' ?? 'default'; // ''
 const value6 = false ?? 'default'; // false
@@ -395,13 +396,12 @@ const value7 = null ?? 'default'; // 'default'
 const value8 = undefined ?? 'default'; // 'default'
 ```
 
-### 實務應用
+### Practical usage
 
 ```js
-// 處理可能為 0 的數值
+// preserve valid 0 values
 function updateScore(newScore) {
-  // ✅ 正確：0 是有效分數
-  const score = newScore ?? 100; // 如果是 0 保留 0，只有 null/undefined 才用 100
+  const score = newScore ?? 100;
   return score;
 }
 
@@ -409,27 +409,27 @@ updateScore(0); // 0
 updateScore(null); // 100
 updateScore(undefined); // 100
 
-// 處理設定值
+// config defaults
 const config = {
-  timeout: 0, // 0 毫秒是有效設定
+  timeout: 0, // valid config
   maxRetries: null,
 };
 
-const timeout = config.timeout ?? 3000; // 0（保留 0 的設定）
-const retries = config.maxRetries ?? 3; // 3（null 使用預設值）
+const timeout = config.timeout ?? 3000; // 0
+const retries = config.maxRetries ?? 3; // 3
 ```
 
-### 組合使用
+### Combined usage
 
 ```js
-// ?? 和 ?. 常常一起使用
-const userAge = user?.profile?.age ?? 18; // 如果沒有年齡資料，預設 18
+// ?? and ?. are often used together
+const userAge = user?.profile?.age ?? 18;
 
-// 實務案例：表單預設值
+// form defaults
 function initForm(data) {
   return {
     name: data?.name ?? '',
-    age: data?.age ?? 0, // 0 是有效年齡
+    age: data?.age ?? 0,
     isActive: data?.isActive ?? true,
   };
 }
@@ -439,67 +439,67 @@ function initForm(data) {
 
 ## 5. What is the difference between `i++` and `++i` ?
 
-> `i++` 和 `++i` 有什麼差異？
+> What is the difference between `i++` and `++i`?
 
-### 基本差異
+### Core difference
 
-- **`i++`（後綴）**：先返回當前值，再加 1
-- **`++i`（前綴）**：先加 1，再返回新值
+- **`i++` (postfix)**: return current value first, then increment
+- **`++i` (prefix)**: increment first, then return new value
 
-### 範例
+### Example
 
 ```js
 let a = 5;
-let b = a++; // b = 5, a = 6（先賦值給 b，再自增）
+let b = a++; // b = 5, a = 6
 console.log(a, b); // 6, 5
 
 let c = 5;
-let d = ++c; // d = 6, c = 6（先自增，再賦值給 d）
+let d = ++c; // d = 6, c = 6
 console.log(c, d); // 6, 6
 ```
 
-### 實務影響
+### Practical impact
 
 ```js
-// 在迴圈中通常沒差異（因為不使用返回值）
-for (let i = 0; i < 5; i++) {} // ✅ 常見
-for (let i = 0; i < 5; ++i) {} // ✅ 也可以，某些人認為稍快（實際上現代 JS 引擎沒差）
+// usually no difference in loops if return value isn't used
+for (let i = 0; i < 5; i++) {}
+for (let i = 0; i < 5; ++i) {}
 
-// 但在表達式中有差異
+// but there is difference inside expressions
 let arr = [1, 2, 3];
 let i = 0;
-console.log(arr[i++]); // 1（先用 i=0 取值，再 i 變 1）
-console.log(arr[++i]); // 3（i 先變 2，再取值）
+console.log(arr[i++]); // 1
+console.log(arr[++i]); // 3
 ```
 
-### 最佳實踐
+### Best practice
 
 ```js
-// ✅ 清晰：分開寫
+// ✅ clearer: split into steps
 let count = 0;
 const value = arr[count];
 count++;
 
-// ⚠️ 不建議：容易混淆
-const value = arr[count++];
+// ⚠️ less readable when overused
+const value2 = arr[count++];
 ```
 
 ---
 
 ## 6. What is the Ternary Operator ? When should you use it ?
 
-> 三元運算符是什麼？什麼時候應該使用？
+> What is the ternary operator? When should you use it?
 
-### 基本語法
+### Syntax
 
 ```js
 condition ? valueIfTrue : valueIfFalse;
 ```
 
-### 簡單範例
+### Simple example
 
 ```js
-// 傳統 if-else
+// if-else
 let message;
 if (age >= 18) {
   message = 'Adult';
@@ -507,33 +507,33 @@ if (age >= 18) {
   message = 'Minor';
 }
 
-// ✅ 三元運算符：更簡潔
-const message = age >= 18 ? 'Adult' : 'Minor';
+// ✅ ternary
+const message2 = age >= 18 ? 'Adult' : 'Minor';
 ```
 
-### 適合使用的場景
+### Good use cases
 
 ```js
-// 1. 簡單的條件賦值
+// 1. simple conditional assignment
 const status = isLoggedIn ? 'Online' : 'Offline';
 
-// 2. JSX/模板中的條件渲染
+// 2. JSX/template conditional rendering
 return <div>{isLoading ? <Spinner /> : <Content />}</div>;
 
-// 3. 設定預設值（配合其他運算符）
+// 3. defaulting with other operators
 const displayName = user?.name ?? 'Guest';
 const greeting = isVIP ? `Welcome, ${displayName}!` : `Hello, ${displayName}`;
 
-// 4. 函數返回值
+// 4. function return value
 function getDiscount(isMember) {
   return isMember ? 0.2 : 0;
 }
 ```
 
-### 不建議使用的場景
+### Cases to avoid
 
 ```js
-// ❌ 巢狀過深，難以閱讀
+// ❌ deeply nested ternary hurts readability
 const result = condition1
   ? value1
   : condition2
@@ -542,14 +542,14 @@ const result = condition1
   ? value3
   : value4;
 
-// ✅ 使用 if-else 或 switch 更清楚
-let result;
-if (condition1) result = value1;
-else if (condition2) result = value2;
-else if (condition3) result = value3;
-else result = value4;
+// ✅ clearer with if-else/switch
+let result2;
+if (condition1) result2 = value1;
+else if (condition2) result2 = value2;
+else if (condition3) result2 = value3;
+else result2 = value4;
 
-// ❌ 複雜邏輯
+// ❌ complex business logic in ternary
 const canAccess =
   user?.role === 'admin'
     ? true
@@ -557,25 +557,25 @@ const canAccess =
     ? true
     : false;
 
-// ✅ 拆解成多行
+// ✅ split into readable steps
 const isAdmin = user?.role === 'admin';
 const hasReadPermission = user?.permissions?.includes('read');
-const canAccess = isAdmin || hasReadPermission;
+const canAccess2 = isAdmin || hasReadPermission;
 ```
 
 ---
 
-## 快速記憶卡
+## Quick Cheat Sheet
 
-| 運算符        | 用途       | 記憶點                 |
-| ------------- | ---------- | ---------------------- |
-| `===`         | 嚴格相等   | 永遠用這個，忘掉 `==`  |
-| `&&`          | 短路 AND   | 左假即停，返回假值     |
-| `\|\|`        | 短路 OR    | 左真即停，返回真值     |
-| `?.`          | 可選鏈     | 安全訪問，不報錯       |
-| `??`          | 空值合併   | 只管 null/undefined    |
-| `++i` / `i++` | 自增       | 前綴先加，後綴後加     |
-| `? :`         | 三元運算符 | 簡單條件用，巢狀要避免 |
+| Operator            | Purpose                | Memory Tip |
+| ------------------- | ---------------------- | ---------- |
+| `===`               | Strict equality        | Use this by default, avoid `==` |
+| `&&`                | Short-circuit AND      | Stop on left falsy |
+| `\|\|`            | Short-circuit OR       | Stop on left truthy |
+| `?.`                | Optional chaining      | Safe access without throwing |
+| `??`                | Nullish coalescing     | Only null/undefined fallback |
+| `++i` / `i++`       | Increment              | Prefix first, postfix after |
+| `? :`               | Ternary operator       | Good for simple conditions only |
 
 ## Reference
 

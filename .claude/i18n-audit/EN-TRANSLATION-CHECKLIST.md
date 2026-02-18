@@ -60,24 +60,24 @@
 
 ## Batch 1: Knowledge / JavaScript（17 files, ~5,580 lines）
 
-- [ ] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/async-await.md` (557 lines)
-- [ ] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/closure.md` (444 lines)
-- [ ] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/event-loop.md` (82 lines)
-- [ ] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/framework.md` (87 lines)
-- [ ] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/hoisting.md` (395 lines)
-- [ ] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/http-caching.md` (858 lines)
-- [ ] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/IIFE.md` (149 lines)
-- [ ] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/javascript-best-practices.md` (16 lines)
-- [ ] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/js-null-undefined.md` (44 lines)
-- [ ] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/let-var-const-differences.md` (350 lines)
-- [ ] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/operators.md` (585 lines)
-- [ ] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/primitive-vs-reference.md` (768 lines)
-- [ ] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/promise.md` (473 lines)
-- [ ] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/script-loading-strategies.md` (78 lines)
-- [ ] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/set-map.md` (809 lines)
-- [ ] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/this-binding.md` (844 lines)
-- [ ] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/web-storage.md` (41 lines)
-- [ ] Batch 1 build 驗證
+- [x] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/async-await.md` (557 lines)
+- [x] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/closure.md` (444 lines)
+- [x] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/event-loop.md` (82 lines)
+- [x] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/framework.md` (87 lines)
+- [x] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/hoisting.md` (395 lines)
+- [x] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/http-caching.md` (858 lines)
+- [x] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/IIFE.md` (149 lines)
+- [x] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/javascript-best-practices.md` (16 lines)
+- [x] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/js-null-undefined.md` (44 lines)
+- [x] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/let-var-const-differences.md` (350 lines)
+- [x] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/operators.md` (585 lines)
+- [x] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/primitive-vs-reference.md` (768 lines)
+- [x] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/promise.md` (473 lines)
+- [x] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/script-loading-strategies.md` (78 lines)
+- [x] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/set-map.md` (809 lines)
+- [x] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/this-binding.md` (844 lines)
+- [x] `docs/Knowledge/JavaScript-Ecosystem/JavaScript/web-storage.md` (41 lines)
+- [x] Batch 1 build 驗證
 - [ ] Batch 1 commit
 
 ---

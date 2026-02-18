@@ -7,7 +7,8 @@ tags: [JavaScript, Quiz, Hard]
 
 ## 1. What's the IIFE ?
 
-IIFE 又稱立即執行函式，與一般函式的寫法有所差異，外層需多包裹一層 `()`，並且具有立即被執行的特性 :
+IIFE stands for Immediately Invoked Function Expression.  
+Compared with a normal function declaration, it wraps the function with an extra `()` and executes immediately:
 
 ```js
 (() => {
@@ -21,7 +22,7 @@ IIFE 又稱立即執行函式，與一般函式的寫法有所差異，外層需
 })();
 ```
 
-除此之外，也可以透過 recursion(遞迴) 的方式來重複執行，直到中斷條件，同時，結尾的 `()` 則能用傳入參數。
+It can also run repeatedly through recursion until a stop condition is reached, and the trailing `()` can pass in parameters.
 
 ```js
 (function myIIFE() {
@@ -31,13 +32,13 @@ IIFE 又稱立即執行函式，與一般函式的寫法有所差異，外層需
 })((num = 0));
 ```
 
-但需要注意的是，IIFE 僅能在初始時被執行，或是透過其本身內部重複呼叫，而無法透過外部再次呼叫執行。
+Note that an IIFE runs at initialization time (or via internal self-calls), but cannot be called again directly from outside.
 
 ## 2. Why use IIFE ?
 
 ### scope
 
-基於變數在 function 中被銷毀的特性，可以透過 IIFE 來達到隔離的效果，避免污染全域的變數。如下圖：
+Because variables declared inside a function are scoped to that function, IIFE can isolate state and avoid polluting globals:
 
 ```js
 // global
@@ -61,7 +62,8 @@ console.log(Hello()); // result Hello Yumi!
 
 ### private variable and methods
 
-使用 IIFE 搭配 closure 可以建立 Private variable and methods，也就意味著可以在 function 中保存變數，每次呼叫這個 function，可以根據前一次的結果進行調整，譬如遞增或遞減。
+Using IIFE with closure can create private variables and methods.  
+That means state can be preserved inside the function and updated on each call (for example, increment/decrement).
 
 ```js
 const increment = (() => {
@@ -80,11 +82,12 @@ increment(); // I have 1 credits.
 increment(); // I have 2 credits.
 ```
 
-但需要注意的是，變數因為沒有被銷毀，如果濫用的話，會佔用記憶體，影響效能。
+Be careful: because those variables persist, overuse can consume memory and hurt performance.
 
 ### module
 
-透過物件的形式來執行，可以透過下面的案例看到，除了遞增變數也能進行初始化：
+You can expose functionality in object form as a module pattern.  
+In the example below, you can increment and also reset state:
 
 ```js
 const Score = (() => {
@@ -113,7 +116,7 @@ Score.reset();
 console.log(Score.current()); // result 0 => reset = 0
 ```
 
-另一種寫法：
+Another style:
 
 ```js
 const Score = (() => {
@@ -145,5 +148,5 @@ Score.reset();
 console.log(Score.current());
 ```
 
-最後特別注意一點，因為 IIFE 的立即執行特性，倘若連續兩個立即函式，會造成`ASI(自動補全分號)`的規則沒有運作。因此在連續兩組 IIFE 的狀況下，需要自己補上分號。
-
+One more note: because IIFEs execute immediately, placing two IIFEs back-to-back can break `ASI` (Automatic Semicolon Insertion).  
+When chaining IIFEs, add semicolons explicitly.

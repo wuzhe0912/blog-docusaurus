@@ -5,24 +5,24 @@ slug: /script-loading-strategies
 tags: [JavaScript, Quiz, Easy]
 ---
 
-## 概述
+## Overview
 
-在 HTML 中，我們有三種主要的方式來載入 JavaScript 檔案：
+In HTML, there are three primary ways to load JavaScript files:
 
 1. `<script>`
 2. `<script async>`
 3. `<script defer>`
 
-這三種方式在載入和執行腳本時有不同的行為。
+These three methods behave differently during script loading and execution.
 
-## 詳細比較
+## Detailed Comparison
 
 ### `<script>`
 
-- **行為**：當瀏覽器遇到這種標籤時，會停止解析 HTML，下載並執行腳本，然後再繼續解析 HTML。
-- **使用時機**：適用於對頁面渲染至關重要的腳本。
-- **優點**：確保腳本按順序執行。
-- **缺點**：可能會延遲頁面的渲染。
+- **Behavior**: When the browser encounters this tag, it pauses HTML parsing, downloads and executes the script, then continues parsing.
+- **When to use**: For scripts that are critical to rendering.
+- **Pros**: Ensures scripts execute in order.
+- **Cons**: Can delay page rendering.
 
 ```html
 <script src="important.js"></script>
@@ -30,10 +30,10 @@ tags: [JavaScript, Quiz, Easy]
 
 ### `<script async>`
 
-- **行為**：瀏覽器會在背景下載腳本，同時繼續解析 HTML。腳本下載完成後立即執行，可能會中斷 HTML 的解析。
-- **使用時機**：適用於獨立的腳本，如分析或廣告腳本。
-- **優點**：不會阻塞 HTML 解析，可以提高頁面載入速度。
-- **缺點**：執行順序不保證，可能在 DOM 未完全載入時執行。
+- **Behavior**: The browser downloads the script in the background while continuing to parse HTML. Once downloaded, the script executes immediately and may interrupt parsing.
+- **When to use**: For independent scripts such as analytics or ads.
+- **Pros**: Does not block HTML parsing and can improve loading speed.
+- **Cons**: Execution order is not guaranteed and the script may run before the DOM is fully ready.
 
 ```html
 <script async src="analytics.js"></script>
@@ -41,37 +41,38 @@ tags: [JavaScript, Quiz, Easy]
 
 ### `<script defer>`
 
-- **行為**：瀏覽器會在背景下載腳本，但會等到 HTML 解析完成後才執行。多個 defer 腳本會按照它們在 HTML 中的順序執行。
-- **使用時機**：適用於需要完整 DOM 結構，但不是立即需要的腳本。
-- **優點**：不會阻塞 HTML 解析，保證執行順序，適合依賴 DOM 的腳本。
-- **缺點**：如果腳本很重要，可能會延遲頁面的互動時間。
+- **Behavior**: The browser downloads the script in the background but executes it only after HTML parsing completes. Multiple deferred scripts execute in document order.
+- **When to use**: For scripts that need a complete DOM but are not needed immediately.
+- **Pros**: Does not block HTML parsing, preserves order, and works well for DOM-dependent scripts.
+- **Cons**: If the script is critical, it may delay interactivity.
 
 ```html
 <script defer src="ui-enhancements.js"></script>
 ```
 
-## 案例
+## Analogy
 
-假設以你正在準備一場約會：
+Imagine you are preparing for a date:
 
 1. **`<script>`**：
-   就像你停下所有準備工作，專心打電話給另一半確認約會細節。雖然確保了溝通，但可能會延誤你的準備時間。
+   You stop everything and call your partner to confirm details. Communication is clear, but preparation is delayed.
 
 2. **`<script async>`**：
-   相當於你一邊準備一邊用藍牙耳機與另一半通話。效率提高了，但可能會因為太專注通話而穿錯衣服。
+   You prepare while talking through Bluetooth earbuds. It's efficient, but you might lose focus and make mistakes.
 
 3. **`<script defer>`**：
-   等同於你先發訊息給另一半，告訴他們你會在準備完畢後回電。這樣你可以專心準備，等一切就緒後再好好溝通。
+   You send a message saying you'll call after getting ready. You can finish preparation first, then communicate properly.
 
-## 目前使用概況
+## Current Usage
 
-現代框架的開發體系下，通常不需要手動設定 `<script>`，例如 Vite 預設採用 module 即 defer 的行為。
+In modern frameworks, you usually do not configure `<script>` behavior manually.  
+For example, Vite defaults to `type="module"`, which behaves similarly to `defer`.
 
 ```javascript
 <script type="module" src="/src/main.js"></script>
 ```
 
-除非是特例的三方腳本，例如 google analytics 等。
+Exceptions are third-party scripts, such as Google Analytics.
 
 ```javascript
 <script async src="https://www.google-analytics.com/analytics.js"></script>

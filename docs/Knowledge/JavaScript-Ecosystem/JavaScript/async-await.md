@@ -5,55 +5,56 @@ slug: /async-await
 tags: [JavaScript, Quiz, Medium]
 ---
 
-> 💡 建議先閱讀 [Promise](/docs/promise) 了解基礎概念
+> 💡 Recommended: read [Promise](/docs/promise) first for the core concepts.
 
-## 什麼是 async/await？
+## What is async/await?
 
-`async/await` 是 ES2017 (ES8) 引入的語法糖，建立在 Promise 之上，讓非同步程式碼看起來像同步程式碼，更容易閱讀和維護。
+`async/await` is syntax sugar introduced in ES2017 (ES8), built on top of Promise.
+It makes asynchronous code look more like synchronous code, which improves readability and maintainability.
 
-**核心概念**：
+**Core concepts:**
 
-- `async` 函數總是回傳一個 Promise
-- `await` 只能在 `async` 函數內使用
-- `await` 會暫停函數執行，等待 Promise 完成
+- An `async` function always returns a Promise.
+- `await` can only be used inside an `async` function.
+- `await` pauses function execution until the Promise settles.
 
-## 基本語法
+## Basic Syntax
 
-### async 函數
+### `async` function
 
-`async` 關鍵字讓函數自動回傳 Promise：
+The `async` keyword makes a function return a Promise automatically:
 
 ```js
-// 傳統 Promise 寫法
+// Traditional Promise style
 function fetchData() {
-  return Promise.resolve('資料');
+  return Promise.resolve('data');
 }
 
-// async 寫法（等價）
+// async style (equivalent)
 async function fetchData() {
-  return '資料'; // 自動包裝成 Promise.resolve('資料')
+  return 'data'; // automatically wrapped as Promise.resolve('data')
 }
 
-// 呼叫方式相同
-fetchData().then((data) => console.log(data)); // '資料'
+// same calling pattern
+fetchData().then((data) => console.log(data)); // 'data'
 ```
 
-### await 關鍵字
+### `await` keyword
 
-`await` 會等待 Promise 完成並回傳結果：
+`await` waits for a Promise and returns its resolved value:
 
 ```js
 async function getData() {
-  const result = await Promise.resolve('完成');
-  console.log(result); // '完成'
+  const result = await Promise.resolve('done');
+  console.log(result); // 'done'
 }
 ```
 
-## Promise vs async/await 對比
+## Promise vs async/await
 
-### 範例 1：簡單的 API 請求
+### Example 1: simple API request
 
-**Promise 寫法**：
+**Promise style:**
 
 ```js
 function getUserData(userId) {
@@ -64,13 +65,13 @@ function getUserData(userId) {
       return user;
     })
     .catch((error) => {
-      console.error('錯誤:', error);
+      console.error('Error:', error);
       throw error;
     });
 }
 ```
 
-**async/await 寫法**：
+**async/await style:**
 
 ```js
 async function getUserData(userId) {
@@ -80,15 +81,15 @@ async function getUserData(userId) {
     console.log(user);
     return user;
   } catch (error) {
-    console.error('錯誤:', error);
+    console.error('Error:', error);
     throw error;
   }
 }
 ```
 
-### 範例 2：串聯多個非同步操作
+### Example 2: chaining multiple async operations
 
-**Promise 寫法**：
+**Promise style:**
 
 ```js
 function processUserData(userId) {
@@ -104,12 +105,12 @@ function processUserData(userId) {
       return comments;
     })
     .catch((error) => {
-      console.error('錯誤:', error);
+      console.error('Error:', error);
     });
 }
 ```
 
-**async/await 寫法**：
+**async/await style:**
 
 ```js
 async function processUserData(userId) {
@@ -120,16 +121,16 @@ async function processUserData(userId) {
     console.log(comments);
     return comments;
   } catch (error) {
-    console.error('錯誤:', error);
+    console.error('Error:', error);
   }
 }
 ```
 
-## 錯誤處理
+## Error Handling
 
-### try/catch vs .catch()
+### `try/catch` vs `.catch()`
 
-**async/await 使用 try/catch**：
+**Use `try/catch` with async/await:**
 
 ```js
 async function fetchData() {
@@ -138,22 +139,22 @@ async function fetchData() {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error('請求失敗:', error);
-    // 可以在這裡處理不同類型的錯誤
+    console.error('Request failed:', error);
+    // You can handle different error types here
     if (error.name === 'NetworkError') {
-      // 處理網路錯誤
+      // handle network error
     }
-    throw error; // 重新拋出或回傳預設值
+    throw error; // rethrow or return fallback value
   }
 }
 ```
 
-**混合使用（不推薦但有效）**：
+**Mixed usage (not recommended, but works):**
 
 ```js
 async function fetchData() {
   const response = await fetch('/api/data').catch((error) => {
-    console.error('請求失敗:', error);
+    console.error('Request failed:', error);
     return null;
   });
 
@@ -164,9 +165,9 @@ async function fetchData() {
 }
 ```
 
-### 多層 try/catch
+### Nested `try/catch`
 
-針對不同階段的錯誤，可以使用多層 try/catch：
+Use layered `try/catch` when different steps need different fallback behavior:
 
 ```js
 async function complexOperation() {
@@ -174,7 +175,7 @@ async function complexOperation() {
   try {
     user = await fetchUser();
   } catch (error) {
-    console.error('取得使用者失敗:', error);
+    console.error('Failed to fetch user:', error);
     return null;
   }
 
@@ -182,20 +183,20 @@ async function complexOperation() {
     const posts = await fetchPosts(user.id);
     return posts;
   } catch (error) {
-    console.error('取得文章失敗:', error);
-    return []; // 回傳空陣列作為預設值
+    console.error('Failed to fetch posts:', error);
+    return []; // fallback empty array
   }
 }
 ```
 
-## 實際應用範例
+## Practical Examples
 
-### 範例：批改作業流程
+### Example: grading workflow
 
-> 流程：批改作業 → 檢查獎勵 → 給予獎勵 → 退學或懲罰
+> Flow: grade assignment -> check reward -> grant reward -> dismissal or penalty
 
 ```js
-// 批改作業
+// grade assignment
 function correctTest(name) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -206,29 +207,29 @@ function correctTest(name) {
           score,
         });
       } else {
-        reject('您已達退學門檻');
+        reject('You have reached the dismissal threshold');
       }
     }, 2000);
   });
 }
 
-// 檢查獎勵
+// check reward
 function checkReward(data) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (data.score >= 90) {
-        resolve(`${data.name} 獲得電影票`);
+        resolve(`${data.name} receives movie tickets`);
       } else if (data.score >= 60 && data.score < 90) {
-        resolve(`${data.name} 獲得嘉獎`);
+        resolve(`${data.name} receives a merit award`);
       } else {
-        reject('您沒有獎品');
+        reject('No reward');
       }
     }, 2000);
   });
 }
 ```
 
-**Promise 寫法**：
+**Promise style:**
 
 ```js
 correctTest('John Doe')
@@ -237,7 +238,7 @@ correctTest('John Doe')
   .catch((error) => console.log(error));
 ```
 
-**async/await 改寫**：
+**async/await rewrite:**
 
 ```js
 async function processStudent(name) {
@@ -255,38 +256,38 @@ async function processStudent(name) {
 processStudent('John Doe');
 ```
 
-### 範例：並發執行多個請求
+### Example: concurrent requests
 
-當多個請求之間沒有依賴關係時，應該並發執行：
+When requests are independent, run them concurrently.
 
-**❌ 錯誤：依序執行（較慢）**：
+**❌ Wrong: sequential execution (slower):**
 
 ```js
 async function fetchAllData() {
-  const users = await fetchUsers(); // 等待 1 秒
-  const posts = await fetchPosts(); // 再等待 1 秒
-  const comments = await fetchComments(); // 再等待 1 秒
-  // 總共 3 秒
+  const users = await fetchUsers(); // wait 1 sec
+  const posts = await fetchPosts(); // another 1 sec
+  const comments = await fetchComments(); // another 1 sec
+  // total 3 sec
   return { users, posts, comments };
 }
 ```
 
-**✅ 正確：並發執行（較快）**：
+**✅ Correct: concurrent execution (faster):**
 
 ```js
 async function fetchAllData() {
-  // 同時發起三個請求
+  // start three requests at the same time
   const [users, posts, comments] = await Promise.all([
     fetchUsers(),
     fetchPosts(),
     fetchComments(),
   ]);
-  // 只需要 1 秒（最慢的那個請求的時間）
+  // only takes the slowest request time
   return { users, posts, comments };
 }
 ```
 
-**使用 Promise.allSettled() 處理部分失敗**：
+**Use `Promise.allSettled()` for partial failures:**
 
 ```js
 async function fetchAllData() {
@@ -304,25 +305,25 @@ async function fetchAllData() {
 }
 ```
 
-## 常見陷阱
+## Common Pitfalls
 
-### 1. 在迴圈中使用 await（序列執行）
+### 1. Using `await` inside loops (sequential by accident)
 
-**❌ 錯誤：每次迴圈都等待，效率低**：
+**❌ Wrong: waits per iteration, poor performance:**
 
 ```js
 async function processUsers(userIds) {
   const results = [];
   for (const id of userIds) {
-    const user = await fetchUser(id); // 依序執行，很慢！
+    const user = await fetchUser(id); // sequential, slow
     results.push(user);
   }
   return results;
 }
-// 如果有 10 個使用者，每個請求 1 秒，總共需要 10 秒
+// 10 users * 1s each = 10 seconds
 ```
 
-**✅ 正確：使用 Promise.all() 並發執行**：
+**✅ Correct: `Promise.all()` for concurrency:**
 
 ```js
 async function processUsers(userIds) {
@@ -330,10 +331,10 @@ async function processUsers(userIds) {
   const results = await Promise.all(promises);
   return results;
 }
-// 10 個使用者並發請求，只需要 1 秒
+// concurrent requests, around 1 second total
 ```
 
-**折衷方案：限制並發數量**：
+**Compromise: limit concurrency:**
 
 ```js
 async function processUsersWithLimit(userIds, limit = 3) {
@@ -345,107 +346,107 @@ async function processUsersWithLimit(userIds, limit = 3) {
   }
   return results;
 }
-// 每次處理 3 個，避免一次發太多請求
+// process 3 at a time to avoid too many simultaneous requests
 ```
 
-### 2. 忘記使用 await
+### 2. Forgetting `await`
 
-忘記 `await` 會得到 Promise 而不是實際值：
+Without `await`, you get a Promise instead of the resolved value.
 
 ```js
-// ❌ 錯誤
+// ❌ wrong
 async function getUser() {
-  const user = fetchUser(1); // 忘記 await，user 是 Promise
-  console.log(user.name); // undefined（Promise 沒有 name 屬性）
+  const user = fetchUser(1); // forgot await, user is Promise
+  console.log(user.name); // undefined (Promise has no name property)
 }
 
-// ✅ 正確
+// ✅ correct
 async function getUser() {
   const user = await fetchUser(1);
-  console.log(user.name); // 正確的名稱
+  console.log(user.name); // correct name
 }
 ```
 
-### 3. 忘記 async 就使用 await
+### 3. Using `await` without `async`
 
-`await` 只能在 `async` 函數內使用：
+`await` can only be used inside an `async` function.
 
 ```js
-// ❌ 錯誤：語法錯誤
+// ❌ wrong: syntax error
 function getData() {
   const data = await fetchData(); // SyntaxError
   return data;
 }
 
-// ✅ 正確
+// ✅ correct
 async function getData() {
   const data = await fetchData();
   return data;
 }
 ```
 
-**頂層 await（Top-level await）**：
+**Top-level await:**
 
-在 ES2022 和模組環境中，可以在模組頂層使用 await：
+In ES2022 module environments, you can use `await` at module top level:
 
 ```js
 // ES2022 module
-const data = await fetchData(); // 可以在模組頂層使用
+const data = await fetchData();
 console.log(data);
 ```
 
-### 4. 錯誤處理遺漏
+### 4. Missing error handling
 
-沒有 try/catch 會導致錯誤未被捕捉：
+Without `try/catch`, errors may become unhandled rejections.
 
 ```js
-// ❌ 可能導致未捕捉的錯誤
+// ❌ may cause unhandled errors
 async function fetchData() {
-  const response = await fetch('/api/data'); // 如果失敗會拋出錯誤
+  const response = await fetch('/api/data'); // throws if request fails
   return response.json();
 }
 
-// ✅ 加上錯誤處理
+// ✅ add error handling
 async function fetchData() {
   try {
     const response = await fetch('/api/data');
     return response.json();
   } catch (error) {
-    console.error('錯誤:', error);
-    return null; // 或回傳預設值
+    console.error('Error:', error);
+    return null; // or fallback value
   }
 }
 ```
 
-### 5. async 函數總是回傳 Promise
+### 5. `async` always returns Promise
 
-即使沒有使用 `await`，`async` 函數也會回傳 Promise：
+Even without `await`, an `async` function still returns Promise.
 
 ```js
 async function getValue() {
-  return 42; // 實際上回傳 Promise.resolve(42)
+  return 42; // actually Promise.resolve(42)
 }
 
-// 必須使用 .then() 或 await 取得值
+// use .then() or await to get value
 getValue().then((value) => console.log(value)); // 42
 
-// 或
+// or
 async function printValue() {
   const value = await getValue();
   console.log(value); // 42
 }
 ```
 
-## 進階應用
+## Advanced Usage
 
-### 處理超時
+### Timeout handling
 
-使用 Promise.race() 實作超時機制：
+Implement timeout with `Promise.race()`:
 
 ```js
 function timeout(ms) {
   return new Promise((_, reject) => {
-    setTimeout(() => reject(new Error('請求超時')), ms);
+    setTimeout(() => reject(new Error('Request timed out')), ms);
   });
 }
 
@@ -454,18 +455,18 @@ async function fetchWithTimeout(url, ms = 5000) {
     const response = await Promise.race([fetch(url), timeout(ms)]);
     return await response.json();
   } catch (error) {
-    console.error('請求失敗:', error.message);
+    console.error('Request failed:', error.message);
     throw error;
   }
 }
 
-// 使用
-fetchWithTimeout('/api/data', 3000); // 3 秒超時
+// usage
+fetchWithTimeout('/api/data', 3000); // 3-second timeout
 ```
 
-### 重試機制
+### Retry mechanism
 
-實作失敗自動重試：
+Auto-retry on failure:
 
 ```js
 async function fetchWithRetry(url, retries = 3, delay = 1000) {
@@ -474,21 +475,21 @@ async function fetchWithRetry(url, retries = 3, delay = 1000) {
       const response = await fetch(url);
       return await response.json();
     } catch (error) {
-      if (i === retries - 1) throw error; // 最後一次重試失敗，拋出錯誤
+      if (i === retries - 1) throw error;
 
-      console.log(`第 ${i + 1} 次嘗試失敗，${delay}ms 後重試...`);
+      console.log(`Attempt ${i + 1} failed, retrying in ${delay}ms...`);
       await new Promise((resolve) => setTimeout(resolve, delay));
     }
   }
 }
 
-// 使用
-fetchWithRetry('/api/data', 3, 2000); // 最多重試 3 次，間隔 2 秒
+// usage
+fetchWithRetry('/api/data', 3, 2000); // up to 3 attempts, 2s interval
 ```
 
-### 依序處理但保持狀態
+### Sequential processing with state retention
 
-有時需要依序執行但保留所有結果：
+Sometimes sequential execution is required, while keeping all intermediate results:
 
 ```js
 async function processInOrder(items) {
@@ -498,7 +499,7 @@ async function processInOrder(items) {
     const result = await processItem(item);
     results.push(result);
 
-    // 可以根據前一個結果決定下一步
+    // decide next step based on previous result
     if (result.shouldStop) {
       break;
     }
@@ -508,9 +509,9 @@ async function processInOrder(items) {
 }
 ```
 
-## Event Loop 中的 async/await
+## async/await in the Event Loop
 
-async/await 本質上還是 Promise，因此遵循相同的 Event Loop 規則：
+`async/await` is still Promise-based, so it follows the same Event Loop rules:
 
 ```js
 console.log('1');
@@ -525,30 +526,30 @@ test();
 
 console.log('4');
 
-// 輸出順序：1, 2, 4, 3
+// output order: 1, 2, 4, 3
 ```
 
-解析：
+Explanation:
 
-1. `console.log('1')` - 同步執行
-2. `test()` 被調用，`console.log('2')` - 同步執行
-3. `await Promise.resolve()` - 將後續程式碼放入 micro task
-4. `console.log('4')` - 同步執行
-5. micro task 執行，`console.log('3')`
+1. `console.log('1')` - synchronous
+2. `test()` is called, `console.log('2')` - synchronous
+3. `await Promise.resolve()` - schedules remaining code as micro task
+4. `console.log('4')` - synchronous
+5. micro task runs, `console.log('3')`
 
-## 面試重點
+## Interview Key Points
 
-1. **async/await 是 Promise 的語法糖**：更易讀但本質相同
-2. **錯誤處理使用 try/catch**：而非 `.catch()`
-3. **注意並發 vs 序列執行**：不要在迴圈中無腦使用 await
-4. **async 函數總是回傳 Promise**：即使沒有明確 return Promise
-5. **await 只能在 async 函數內使用**：除非是頂層 await（ES2022）
-6. **理解 Event Loop**：await 後的程式碼是 micro task
+1. **`async/await` is syntax sugar over Promise**: cleaner syntax, same underlying model.
+2. **Use `try/catch` for error handling**: preferred over chained `.catch()` in async/await style.
+3. **Concurrency vs sequence matters**: avoid blind `await` inside loops.
+4. **`async` always returns Promise**: even without explicit Promise returns.
+5. **`await` requires async context**: except top-level await in ES2022 modules.
+6. **Understand Event Loop behavior**: code after `await` runs as micro task.
 
-## 相關主題
+## Related Topics
 
-- [Promise](/docs/promise) - async/await 的基礎
-- [Event Loop](/docs/event-loop) - 理解執行順序
+- [Promise](/docs/promise) - async/await foundation
+- [Event Loop](/docs/event-loop) - execution order model
 
 ## Reference
 

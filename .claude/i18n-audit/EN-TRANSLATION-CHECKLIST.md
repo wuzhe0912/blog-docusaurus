@@ -35,6 +35,7 @@
 ### 驗證方式
 
 每批次完成後：
+
 1. 確認 `bun run build` 無錯誤
 2. 抽查 2-3 個檔案確認翻譯品質
 3. 確認 frontmatter id/slug 未被修改
@@ -43,18 +44,18 @@
 
 ## 狀態總覽
 
-| Batch | 範圍 | 檔案數 | 行數 | 狀態 |
-|-------|------|--------|------|------|
-| 1 | Knowledge / JavaScript | 17 | ~5,580 | ✅ |
-| 2 | Knowledge / Vue | 9 | ~6,505 | ✅ |
-| 3 | Knowledge / TypeScript + React | 5 | ~2,270 | ✅ |
-| 4 | Knowledge / CSS | 6 | ~2,168 | ✅ |
-| 5 | Knowledge / Engineering | 9 | ~2,634 | ✅ |
-| 6 | Knowledge / Browser-Network + Security + index | 10 | ~843 | ✅ |
-| 7 | Experience / SSR-SEO | 9 | ~3,094 | ✅ |
-| 8 | Experience / State-Management + misc | 11 | ~1,903 | ✅ |
-| 9 | Coding + LeetCode | 13 | ~2,632 | ✅ |
-| — | **合計** | **89** | **~27,629** | |
+| Batch | 範圍                                           | 檔案數 | 行數        | 狀態 |
+| ----- | ---------------------------------------------- | ------ | ----------- | ---- |
+| 1     | Knowledge / JavaScript                         | 17     | ~5,580      | ✅   |
+| 2     | Knowledge / Vue                                | 9      | ~6,505      | ✅   |
+| 3     | Knowledge / TypeScript + React                 | 5      | ~2,270      | ✅   |
+| 4     | Knowledge / CSS                                | 6      | ~2,168      | ✅   |
+| 5     | Knowledge / Engineering                        | 9      | ~2,634      | ✅   |
+| 6     | Knowledge / Browser-Network + Security + index | 10     | ~843        | ✅   |
+| 7     | Experience / SSR-SEO                           | 9      | ~3,094      | ✅   |
+| 8     | Experience / State-Management + misc           | 11     | ~1,903      | ✅   |
+| 9     | Coding + LeetCode                              | 13     | ~2,632      | ✅   |
+| —     | **合計**                                       | **89** | **~27,629** |      |
 
 ---
 

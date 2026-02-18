@@ -94,7 +94,7 @@
 - [x] `docs/Knowledge/Frontend-Frameworks/Vue/vue3-new-features.md` (755 lines)
 - [x] `docs/Knowledge/Frontend-Frameworks/Vue/watch-vs-watcheffect.md` (507 lines)
 - [x] Batch 2 build 驗證
-- [ ] Batch 2 commit
+- [x] Batch 2 commit (fd7ebdd)
 
 ---
 

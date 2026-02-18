@@ -135,7 +135,7 @@
 - [x] `docs/Knowledge/Engineering/Performance/lv3-web-worker.md` (431 lines)
 - [x] `docs/Knowledge/Engineering/Tools/frontend-bundler.md` (31 lines)
 - [x] Batch 5 build 驗證
-- [ ] Batch 5 commit
+- [x] Batch 5 commit (3ca83a0)
 
 ---
 

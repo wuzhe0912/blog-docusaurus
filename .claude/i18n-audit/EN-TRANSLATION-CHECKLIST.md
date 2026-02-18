@@ -125,16 +125,16 @@
 
 ## Batch 5: Knowledge / Engineering（9 files, ~2,634 lines）
 
-- [ ] `docs/Knowledge/Engineering/Performance/index.md` (28 lines)
-- [ ] `docs/Knowledge/Engineering/Performance/lv1-image-optimization.md` (257 lines)
-- [ ] `docs/Knowledge/Engineering/Performance/lv1-route-optimization.md` (165 lines)
-- [ ] `docs/Knowledge/Engineering/Performance/lv2-js-optimization.md` (234 lines)
-- [ ] `docs/Knowledge/Engineering/Performance/lv3-large-data-optimization.md` (777 lines)
-- [ ] `docs/Knowledge/Engineering/Performance/lv3-nuxt-performance.md` (344 lines)
-- [ ] `docs/Knowledge/Engineering/Performance/lv3-virtual-scroll.md` (367 lines)
-- [ ] `docs/Knowledge/Engineering/Performance/lv3-web-worker.md` (431 lines)
-- [ ] `docs/Knowledge/Engineering/Tools/frontend-bundler.md` (31 lines)
-- [ ] Batch 5 build 驗證
+- [x] `docs/Knowledge/Engineering/Performance/index.md` (28 lines)
+- [x] `docs/Knowledge/Engineering/Performance/lv1-image-optimization.md` (257 lines)
+- [x] `docs/Knowledge/Engineering/Performance/lv1-route-optimization.md` (165 lines)
+- [x] `docs/Knowledge/Engineering/Performance/lv2-js-optimization.md` (234 lines)
+- [x] `docs/Knowledge/Engineering/Performance/lv3-large-data-optimization.md` (777 lines)
+- [x] `docs/Knowledge/Engineering/Performance/lv3-nuxt-performance.md` (344 lines)
+- [x] `docs/Knowledge/Engineering/Performance/lv3-virtual-scroll.md` (367 lines)
+- [x] `docs/Knowledge/Engineering/Performance/lv3-web-worker.md` (431 lines)
+- [x] `docs/Knowledge/Engineering/Tools/frontend-bundler.md` (31 lines)
+- [x] Batch 5 build 驗證
 - [ ] Batch 5 commit
 
 ---

@@ -1,28 +1,28 @@
 ---
 id: performance-interview-index
-title: '網頁效能優化實作總覽'
+title: 'Web Performance Optimization Playbook'
 slug: /experience/performance
 tags: [Experience, Interview, Performance]
 ---
 
-> 持續累積網頁效能優化相關的實作經驗與面試重點，依難度由淺入深整理。
+> A practical roadmap for web performance optimization, organized from fundamentals to advanced scenarios.
 
 ---
 
-## 學習路徑
+## Learning Path
 
-### Lv1 基礎
+### Lv1 Fundamentals
 
-- [路由層級優化：三層 Lazy Loading](/docs/experience/performance/lv1-route-optimization)
-- [圖片載入優化：四層 Lazy Load](/docs/experience/performance/lv1-image-optimization)
+- [Route-level optimization: three-layer lazy loading](/docs/experience/performance/lv1-route-optimization)
+- [Image loading optimization: four-layer lazy loading](/docs/experience/performance/lv1-image-optimization)
 
-### Lv2 進階
+### Lv2 Advanced JavaScript
 
-- [JavaScript 運算效能優化：防抖、節流、時間切片](/docs/experience/performance/lv2-js-optimization)
+- [JavaScript runtime optimization: debounce, throttle, and time slicing](/docs/experience/performance/lv2-js-optimization)
 
-### Lv3 延伸
+### Lv3 Scaling and Architecture
 
-- [虛擬滾動實作：處理大量資料渲染](/docs/experience/performance/lv3-virtual-scroll)
-- [Web Worker 應用：背景運算不阻塞 UI](/docs/experience/performance/lv3-web-worker)
-- [大量資料優化策略：方案選擇與實作](/docs/experience/performance/lv3-large-data-optimization)
-- [Nuxt 3 效能優化：Bundle Size、SSR 速度與圖片優化](/docs/experience/performance/lv3-nuxt-performance)
+- [Virtual scrolling for large lists](/docs/experience/performance/lv3-virtual-scroll)
+- [Web Worker for background computation](/docs/experience/performance/lv3-web-worker)
+- [Large-data optimization strategy and trade-offs](/docs/experience/performance/lv3-large-data-optimization)
+- [Nuxt 3 performance optimization](/docs/experience/performance/lv3-nuxt-performance)

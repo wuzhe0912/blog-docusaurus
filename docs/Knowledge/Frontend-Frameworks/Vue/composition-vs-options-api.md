@@ -7,11 +7,12 @@ tags: [Vue, Quiz, Medium]
 
 ## 1. What is Composition API?
 
-> 什麼是 Composition API？
+> What is Composition API?
 
-Composition API 是 Vue 3 引入的一種新的組件寫法，它提供了一種更靈活的方式來組織組件邏輯。與傳統的 Options API 不同，Composition API 允許我們將相關的邏輯組織在一起，而不是分散在不同的選項中。
+Composition API is a Vue 3 component authoring style that provides a more flexible way to organize logic.
+Unlike Options API, which splits logic by option type (`data`, `methods`, `computed`, etc.), Composition API groups related logic together.
 
-### Options API（傳統寫法）
+### Options API (traditional style)
 
 ```vue
 <template>
@@ -47,7 +48,7 @@ export default {
 </script>
 ```
 
-### Composition API（新寫法）
+### Composition API (new style)
 
 ```vue
 <template>
@@ -60,7 +61,7 @@ export default {
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 
-// 相關的邏輯組織在一起
+// related logic grouped together
 const firstName = ref('John');
 const lastName = ref('Doe');
 const fullName = computed(() => `${firstName.value} ${lastName.value}`);
@@ -78,16 +79,16 @@ onMounted(() => {
 
 ## 2. Composition API vs Options API: Key Differences
 
-> Composition API 與 Options API 的主要差異
+> Main differences between Composition API and Options API
 
-### 1. 邏輯組織方式
+### 1. Logic organization
 
-**Options API**：邏輯分散在不同的選項中
+**Options API**: logic is split across option blocks.
 
 ```vue
 <script>
 export default {
-  // 資料分散在各處
+  // state is spread across options
   data() {
     return {
       user: null,
@@ -96,7 +97,7 @@ export default {
     };
   },
   computed: {
-    // 計算屬性分散
+    // computed is in a different section
     userName() {
       return this.user?.name;
     },
@@ -105,7 +106,7 @@ export default {
     },
   },
   methods: {
-    // 方法分散
+    // behavior is in another section
     fetchUser() {
       /* ... */
     },
@@ -117,7 +118,7 @@ export default {
     },
   },
   mounted() {
-    // 生命週期分散
+    // lifecycle is in another section
     this.fetchUser();
     this.fetchPosts();
   },
@@ -125,33 +126,33 @@ export default {
 </script>
 ```
 
-**Composition API**：相關邏輯組織在一起
+**Composition API**: related logic is colocated.
 
 ```vue
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 
-// 使用者相關邏輯
+// user logic
 const user = ref(null);
 const userName = computed(() => user.value?.name);
 const fetchUser = async () => {
   // ...
 };
 
-// 文章相關邏輯
+// post logic
 const posts = ref([]);
 const postCount = computed(() => posts.value.length);
 const fetchPosts = async () => {
   // ...
 };
 
-// 評論相關邏輯
+// comment logic
 const comments = ref([]);
 const fetchComments = async () => {
   // ...
 };
 
-// 生命週期
+// lifecycle
 onMounted(() => {
   fetchUser();
   fetchPosts();
@@ -159,9 +160,9 @@ onMounted(() => {
 </script>
 ```
 
-### 2. 程式碼重用
+### 2. Code reuse
 
-**Options API**：使用 Mixins（容易產生命名衝突）
+**Options API**: commonly uses Mixins (can cause naming collisions).
 
 ```vue
 <script>
@@ -183,12 +184,12 @@ export default {
 import UserMixin from './UserMixin';
 export default {
   mixins: [UserMixin],
-  // 如果有多個 mixin，容易產生命名衝突
+  // multiple mixins can lead to name collisions
 };
 </script>
 ```
 
-**Composition API**：使用 Composables（更靈活）
+**Composition API**: uses Composables (more explicit and flexible).
 
 ```vue
 <script setup>
@@ -206,13 +207,13 @@ export function useUser() {
 // Component.vue
 import { useUser } from './useUser';
 const { user, fetchUser } = useUser();
-// 可以選擇性地使用，避免命名衝突
+// selective usage, avoids implicit collisions
 </script>
 ```
 
-### 3. TypeScript 支援
+### 3. TypeScript support
 
-**Options API**：TypeScript 支援有限
+**Options API**: TS support is usable but less ergonomic in some `this` scenarios.
 
 ```vue
 <script lang="ts">
@@ -221,89 +222,87 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   data() {
     return {
-      count: 0, // 型別推斷可能不準確
+      count: 0, // inference can be less direct in larger components
     };
   },
   methods: {
     increment() {
-      this.count++; // this 的型別可能不準確
+      this.count++;
     },
   },
 });
 </script>
 ```
 
-**Composition API**：完整的 TypeScript 支援
+**Composition API**: strong, explicit typing.
 
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue';
 
-const count = ref<number>(0); // 明確的型別
+const count = ref<number>(0);
 const increment = (): void => {
   count.value++;
 };
 </script>
 ```
 
-### 3. 比較表
+### Comparison table
 
-| 特性            | Options API        | Composition API     |
-| --------------- | ------------------ | ------------------- |
-| 學習曲線        | 較低               | 較高                |
-| 邏輯組織        | 分散在不同選項     | 相關邏輯集中        |
-| 程式碼重用      | Mixins（容易衝突） | Composables（靈活） |
-| TypeScript 支援 | 有限               | 完整支援            |
-| 適用場景        | 簡單組件           | 複雜組件、大型專案  |
-| 向後相容        | Vue 2/3 都支援     | Vue 3 專屬          |
+| Feature | Options API | Composition API |
+| --- | --- | --- |
+| Learning curve | Lower | Higher |
+| Logic organization | Split by option blocks | Grouped by feature/domain |
+| Code reuse | Mixins (collision risk) | Composables (flexible) |
+| TypeScript support | Limited ergonomics in some cases | Strong support |
+| Best fit | Simple components | Complex components / large projects |
+| Backward compatibility | Vue 2 and Vue 3 | Vue 3 |
 
 ## 4. Common Interview Questions
 
-> 常見面試題目
+> Common interview questions
 
-### 題目 1：選擇 API 風格
+### Question 1: Choosing API style
 
-請說明在什麼情況下應該使用 Composition API，什麼情況下使用 Options API？
+When should you use Composition API, and when should you use Options API?
 
 <details>
-<summary>點擊查看答案</summary>
+<summary>Click to view answer</summary>
 
-**使用 Composition API 的情況**：
+**Use Composition API when:**
 
-1. **複雜組件**：邏輯複雜，需要更好的組織
+1. **Complex components** need clearer logic grouping.
 
    ```vue
    <script setup>
-   // 多個功能模組，使用 Composition API 更清晰
+   // multiple feature modules are easier to compose
    const { user, fetchUser } = useUser();
    const { posts, fetchPosts } = usePosts();
    const { comments, fetchComments } = useComments();
    </script>
    ```
 
-2. **需要程式碼重用**：多個組件共享邏輯
+2. **Code reuse** is important across many components.
 
    ```vue
    <script setup>
-   // 使用 composable 函式，易於重用
    const { count, increment, decrement } = useCounter();
    </script>
    ```
 
-3. **TypeScript 專案**：需要完整的型別支援
+3. **TypeScript-heavy projects** need explicit typing.
 
    ```vue
    <script setup lang="ts">
-   // Composition API 對 TypeScript 支援更好
    const count = ref<number>(0);
    </script>
    ```
 
-4. **大型專案**：需要更好的邏輯組織和維護
+4. **Large codebases** require maintainable logic structure.
 
-**使用 Options API 的情況**：
+**Use Options API when:**
 
-1. **簡單組件**：邏輯簡單，不需要複雜組織
+1. **Simple components** with straightforward behavior.
 
    ```vue
    <script>
@@ -320,20 +319,20 @@ const increment = (): void => {
    </script>
    ```
 
-2. **Vue 2 專案**：需要向後相容
-3. **團隊熟悉度**：團隊更熟悉 Options API
+2. **Vue 2 compatibility** is required.
+3. Team is significantly more familiar with Options API.
 
-**建議**：
+**Recommendation:**
 
-- 新專案優先使用 Composition API
-- 簡單組件可以繼續使用 Options API
-- 複雜組件建議使用 Composition API
+- New projects: prefer Composition API
+- Simple components: Options API remains fine
+- Complex components: Composition API is usually better
 
 </details>
 
-### 題目 2：邏輯組織
+### Question 2: Logic organization
 
-請將以下 Options API 的程式碼改寫為 Composition API。
+Rewrite this Options API component with Composition API.
 
 ```vue
 <script>
@@ -378,15 +377,15 @@ export default {
 ```
 
 <details>
-<summary>點擊查看答案</summary>
+<summary>Click to view answer</summary>
 
-**Composition API 寫法**：
+**Composition API version:**
 
 ```vue
 <template>
   <div>
     <input v-model="searchQuery" />
-    <div v-if="isLoading">載入中...</div>
+    <div v-if="isLoading">Loading...</div>
     <ul>
       <li v-for="item in filteredResults" :key="item.id">
         {{ item.name }}
@@ -398,7 +397,7 @@ export default {
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue';
 
-// 相關的邏輯組織在一起
+// related logic grouped together
 const searchQuery = ref('');
 const results = ref([]);
 const isLoading = ref(false);
@@ -429,7 +428,7 @@ onMounted(() => {
 </script>
 ```
 
-**改進：使用 Composable**：
+**Further improvement (extract to composable):**
 
 ```vue
 <script setup>
@@ -485,14 +484,14 @@ export function useSearch() {
 
 </details>
 
-### 題目 3：程式碼重用
+### Question 3: Code reuse
 
-請說明如何使用 Composition API 實現程式碼重用，並比較與 Mixins 的差異。
+How do you use Composition API for reuse, and how is it different from Mixins?
 
 <details>
-<summary>點擊查看答案</summary>
+<summary>Click to view answer</summary>
 
-**Mixins 的問題**：
+**Problems with Mixins:**
 
 ```vue
 <script>
@@ -530,15 +529,15 @@ import PostMixin from './PostMixin';
 
 export default {
   mixins: [UserMixin, PostMixin],
-  // 問題：
-  // 1. 命名衝突：如果兩個 mixin 有同名屬性
-  // 2. 不清楚資料來源：不知道 user 來自哪個 mixin
-  // 3. 難以追蹤：無法清楚看到所有可用的屬性和方法
+  // problems:
+  // 1) naming conflicts
+  // 2) unclear source of fields/methods
+  // 3) harder tracing/autocomplete
 };
 </script>
 ```
 
-**Composition API 的解決方案**：
+**Composition API solution:**
 
 ```vue
 <script setup>
@@ -568,72 +567,71 @@ export function usePosts() {
 import { useUser } from './composables/useUser';
 import { usePosts } from './composables/usePosts';
 
-// 優點：
-// 1. 明確的命名：清楚知道資料來源
-// 2. 可選擇性使用：只使用需要的部分
-// 3. 易於追蹤：IDE 可以自動完成
+// benefits:
+// 1) explicit naming and source
+// 2) selective usage
+// 3) better IDE support and tracing
 const { user, fetchUser } = useUser();
 const { posts, fetchPosts } = usePosts();
 </script>
 ```
 
-**差異比較**：
+**Comparison:**
 
-| 特性            | Mixins   | Composables |
-| --------------- | -------- | ----------- |
-| 命名衝突        | 容易發生 | 可以避免    |
-| 可追蹤性        | 低       | 高          |
-| 可選擇性        | 無       | 有          |
-| TypeScript 支援 | 有限     | 完整        |
-| 適用場景        | Vue 2    | Vue 3       |
+| Feature | Mixins | Composables |
+| --- | --- | --- |
+| Naming collision | Easy to happen | Avoidable |
+| Traceability | Lower | Higher |
+| Selective usage | No | Yes |
+| TypeScript support | Limited | Strong |
+| Best fit | Vue 2 legacy reuse | Vue 3 reuse |
 
 </details>
 
 ## 5. Best Practices
 
-> 最佳實踐
+> Best practices
 
-### 推薦做法
+### Recommended
 
 ```vue
 <script setup>
-// 1. 使用 <script setup> 語法糖
+// 1. Prefer <script setup>
 import { ref, computed } from 'vue';
 
-// 2. 相關邏輯組織在一起
+// 2. Group related logic together
 const count = ref(0);
 const doubleCount = computed(() => count.value * 2);
 const increment = () => count.value++;
 
-// 3. 複雜邏輯抽取為 composable
+// 3. Extract complex logic into composables
 import { useCounter } from './composables/useCounter';
-const { count, increment } = useCounter();
+const { count: c2, increment: inc2 } = useCounter();
 
-// 4. 明確的命名
-const userName = ref(''); // ✅ 清楚
-const u = ref(''); // ❌ 不清楚
+// 4. Use explicit names
+const userName = ref(''); // ✅ clear
+const u = ref(''); // ❌ unclear
 </script>
 ```
 
-### 避免的做法
+### Avoid
 
 ```vue
 <script setup>
-// 1. 不要混用 Options API 和 Composition API（除非必要）
+// 1. Avoid mixing Options API and Composition API without clear reason
 export default {
   setup() {
     // ...
   },
   data() {
-    // ❌ 混用容易造成混淆
+    // ❌ mixing styles may confuse maintenance
   },
 };
 
-// 2. 不要過度抽取 composable
-// 簡單的邏輯不需要抽取
-const count = ref(0); // ✅ 簡單，不需要抽取
+// 2. Avoid over-extracting composables
+const count = ref(0); // simple logic can stay local
 
-// 3. 不要在 composable 中直接操作 DOM
+// 3. Avoid direct DOM manipulation inside composables
 function useCounter() {
   const count = ref(0);
   document.getElementById('counter').textContent = count.value; // ❌
@@ -644,33 +642,37 @@ function useCounter() {
 
 ## 6. Interview Summary
 
-> 面試總結
+> Interview summary
 
-### 快速記憶
+### Quick memory
 
-**Composition API 核心概念**：
+**Composition API core points:**
 
-- 相關邏輯組織在一起
-- 使用 composables 實現程式碼重用
-- 更好的 TypeScript 支援
-- 適用於複雜組件和大型專案
+- Group related logic together
+- Reuse with composables
+- Better TypeScript support
+- Better fit for complex/large projects
 
-**選擇建議**：
+**Selection guide:**
 
-- 新專案：優先使用 Composition API
-- 簡單組件：可以使用 Options API
-- 複雜組件：建議使用 Composition API
-- TypeScript 專案：推薦使用 Composition API
+- New projects: prefer Composition API
+- Simple components: Options API is still fine
+- Complex components: Composition API is recommended
+- TypeScript projects: Composition API is typically better
 
-### 面試回答範例
+### Sample interview answers
 
-**Q: Composition API 和 Options API 的差異是什麼？**
+**Q: What is the difference between Composition API and Options API?**
 
-> "Composition API 是 Vue 3 引入的新寫法，主要差異在於邏輯組織方式。Options API 將邏輯分散在 data、computed、methods 等選項中，而 Composition API 允許將相關邏輯組織在一起。Composition API 的優點包括：1) 更好的邏輯組織，相關程式碼集中；2) 更容易實現程式碼重用，使用 composables 而非 mixins；3) 完整的 TypeScript 支援；4) 適用於複雜組件和大型專案。Options API 的優點是學習曲線較低，適合簡單組件。兩者可以共存，Vue 3 同時支援兩種寫法。"
+> Composition API (introduced in Vue 3) changes how logic is organized.
+> Options API splits logic by option blocks (`data`, `computed`, `methods`), while Composition API groups related logic by feature.
+> Main benefits: better organization for complex components, better reuse with composables, and stronger TypeScript ergonomics.
+> Options API has a lower learning curve and works well for simple components.
 
-**Q: 什麼時候應該使用 Composition API？**
+**Q: When should I use Composition API?**
 
-> "建議在以下情況使用 Composition API：1) 複雜組件，邏輯複雜需要更好的組織；2) 需要程式碼重用，多個組件共享邏輯時；3) TypeScript 專案，需要完整的型別支援；4) 大型專案，需要更好的維護性。對於簡單組件或團隊更熟悉 Options API 的情況，可以繼續使用 Options API。Vue 3 同時支援兩種寫法，可以根據專案需求選擇。"
+> Use it for complex components, shared reusable logic, TypeScript-heavy projects, and large codebases.
+> For simple components or teams heavily familiar with Options API, Options API remains valid.
 
 ## Reference
 

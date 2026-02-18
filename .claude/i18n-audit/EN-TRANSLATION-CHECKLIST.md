@@ -84,16 +84,16 @@
 
 ## Batch 2: Knowledge / Vue（9 files, ~6,505 lines）
 
-- [ ] `docs/Knowledge/Frontend-Frameworks/Vue/component-communication.md` (934 lines)
-- [ ] `docs/Knowledge/Frontend-Frameworks/Vue/composition-vs-options-api.md` (679 lines)
-- [ ] `docs/Knowledge/Frontend-Frameworks/Vue/ref-vs-reactive.md` (500 lines)
-- [ ] `docs/Knowledge/Frontend-Frameworks/Vue/static-hoisting.md` (583 lines)
-- [ ] `docs/Knowledge/Frontend-Frameworks/Vue/two-way-data-binding.md` (260 lines)
-- [ ] `docs/Knowledge/Frontend-Frameworks/Vue/vue-basic-api.md` (1,337 lines)
-- [ ] `docs/Knowledge/Frontend-Frameworks/Vue/vue-lifecycle.md` (950 lines)
-- [ ] `docs/Knowledge/Frontend-Frameworks/Vue/vue3-new-features.md` (755 lines)
-- [ ] `docs/Knowledge/Frontend-Frameworks/Vue/watch-vs-watcheffect.md` (507 lines)
-- [ ] Batch 2 build 驗證
+- [x] `docs/Knowledge/Frontend-Frameworks/Vue/component-communication.md` (934 lines)
+- [x] `docs/Knowledge/Frontend-Frameworks/Vue/composition-vs-options-api.md` (679 lines)
+- [x] `docs/Knowledge/Frontend-Frameworks/Vue/ref-vs-reactive.md` (500 lines)
+- [x] `docs/Knowledge/Frontend-Frameworks/Vue/static-hoisting.md` (583 lines)
+- [x] `docs/Knowledge/Frontend-Frameworks/Vue/two-way-data-binding.md` (260 lines)
+- [x] `docs/Knowledge/Frontend-Frameworks/Vue/vue-basic-api.md` (1,337 lines)
+- [x] `docs/Knowledge/Frontend-Frameworks/Vue/vue-lifecycle.md` (950 lines)
+- [x] `docs/Knowledge/Frontend-Frameworks/Vue/vue3-new-features.md` (755 lines)
+- [x] `docs/Knowledge/Frontend-Frameworks/Vue/watch-vs-watcheffect.md` (507 lines)
+- [x] Batch 2 build 驗證
 - [ ] Batch 2 commit
 
 ---

@@ -7,27 +7,27 @@ tags: [Vue, Quiz, Hard]
 
 ## 1. Please explain the underlying principle of how Vue2 and Vue3 each implement two-way binding
 
-> 請解釋 Vue2 和 Vue3 各自如何實現雙向綁定的底層原理？
+> Please explain the underlying mechanism of two-way binding in Vue2 and Vue3.
 
-要理解 Vue 的雙向綁定，需要先明白響應式系統的運作機制，以及 Vue2 與 Vue3 在實作上的差異。
+To understand Vue two-way binding, you need to understand how the reactivity system works and how Vue2 and Vue3 implement it differently.
 
-### Vue2 的實作方式
+### Vue2 implementation
 
-Vue2 使用 `Object.defineProperty` 來實現雙向綁定，這個方法可以將一個物件的屬性包裝成 `getter` 和 `setter`，並且可以監聽物件屬性的變化。流程如下：
+Vue2 uses `Object.defineProperty` to implement reactivity. It wraps object properties with `getter` and `setter`, so reads/writes can be tracked.
 
-#### 1. Data Hijacking（資料劫持）
+#### 1. Data hijacking
 
-在 Vue2 中，當一個元件中某個資料的物件被建立時，Vue 會遍歷整個物件中的所有屬性，並使用 `Object.defineProperty` 將這些屬性轉換成 `getter` 和 `setter`，這才使 Vue 可以追蹤資料的讀取和修改。
+When component data is initialized in Vue2, Vue traverses each property and converts it into `getter`/`setter` via `Object.defineProperty`, so reads and writes can be observed.
 
-#### 2. Dependency Collection（依賴收集）
+#### 2. Dependency collection
 
-每當元件中的渲染函式被執行時，會讀取 data 中的屬性，這時候就會觸發 `getter`，Vue 會記錄這些依賴，確保當資料變化時，能夠通知到依賴這些資料的元件。
+When a render function executes and reads reactive properties, the `getter` runs. Vue records dependencies so affected components can be notified later.
 
-#### 3. Dispatching Updates（派發更新）
+#### 3. Dispatching updates
 
-當資料被修改時，會觸發 `setter`，這時候 Vue 會通知到所有依賴這些資料的元件，並且重新執行渲染函式，更新 DOM。
+When data changes, the `setter` runs. Vue notifies dependent watchers/components and triggers re-render to update DOM.
 
-#### Vue2 程式碼範例
+#### Vue2 example
 
 ```js
 function defineReactive(obj, key, val) {
@@ -48,47 +48,47 @@ function defineReactive(obj, key, val) {
 const data = { name: 'Pitt' };
 defineReactive(data, 'name', data.name);
 
-console.log(data.name); // 觸發 getter，印出 "get name: Pitt"
-data.name = 'Vue2 Reactivity'; // 觸發 setter，印出 "set name: Vue2 Reactivity"
+console.log(data.name); // triggers getter
+data.name = 'Vue2 Reactivity'; // triggers setter
 ```
 
-#### Vue2 的限制
+#### Vue2 limitations
 
-使用 `Object.defineProperty` 存在一些限制：
+`Object.defineProperty` has several limitations:
 
-- **無法偵測物件屬性的新增或刪除**：必須使用 `Vue.set()` 或 `Vue.delete()`
-- **無法偵測陣列索引的變化**：必須使用 Vue 提供的陣列方法（如 `push`、`pop` 等）
-- **效能問題**：需要遞迴遍歷所有屬性，預先定義 getter 和 setter
+- **Cannot detect property addition/deletion** without `Vue.set()` / `Vue.delete()`
+- **Cannot detect direct array index mutation** reliably without patched array methods
+- **Performance overhead** from deep traversal and upfront getter/setter definition
 
-### Vue3 的實作方式
+### Vue3 implementation
 
-Vue3 引入了 ES6 的 `Proxy`，這個方法可以將一個物件包裝成一個代理，並且可以監聽物件屬性的變化，同時效能更加優化。流程如下：
+Vue3 uses ES6 `Proxy`, which provides broader interception capability and better performance characteristics.
 
-#### 1. 使用 Proxy 進行資料劫持
+#### 1. Proxy-based data hijacking
 
-在 Vue3 中會使用 `new Proxy` 建立對資料的代理，而不再是逐一對資料的屬性進行定義 `getter` 和 `setter`，這樣除了可以針對更細緻的層面追蹤資料變化，同時也能攔截更多類型的操作，例如屬性的新增或刪除。
+Vue3 wraps whole objects with `new Proxy` instead of defining getter/setter per key. This allows interception of more operations, including property add/delete.
 
-#### 2. 更高效的依賴追蹤
+#### 2. More efficient dependency tracking
 
-使用 Proxy，Vue3 能夠更高效追蹤依賴，因為不再需要預先定義 `getter / setter`，而且 Proxy 的攔截能力更強，可以攔截多達 13 種操作（如 `get`、`set`、`has`、`deleteProperty` 等）。
+Vue3 no longer needs upfront getter/setter definition for every property. Proxy traps can handle operations dynamically (e.g., `get`, `set`, `has`, `deleteProperty`, etc.).
 
-#### 3. 自動的最小化重新渲染
+#### 3. More precise update triggering
 
-當資料變化時，Vue3 可以更精準地確定哪部分的 UI 需要進行更新，從而減少不必要的重新渲染，提升網頁效能。
+Vue3 can track dependencies more precisely and reduce unnecessary re-renders.
 
-#### Vue3 程式碼範例
+#### Vue3 example
 
 ```js
 function reactive(target) {
   const handler = {
     get(target, key, receiver) {
       const result = Reflect.get(target, key, receiver);
-      console.log(`獲取 ${key}: ${result}`);
+      console.log(`get ${key}: ${result}`);
       return result;
     },
     set(target, key, value, receiver) {
       const success = Reflect.set(target, key, value, receiver);
-      console.log(`設置 ${key}: ${value}`);
+      console.log(`set ${key}: ${value}`);
       return success;
     },
   };
@@ -98,163 +98,160 @@ function reactive(target) {
 
 const data = reactive({ name: 'Vue 3' });
 
-console.log(data.name); // 讀取資料，觸發 Proxy 的 get，印出 "獲取 name: Vue 3"
-data.name = 'Vue 3 Reactivity'; // 修改資料，觸發 Proxy 的 set，印出 "設置 name: Vue 3 Reactivity"
-console.log(data.name); // 印出 "獲取 name: Vue 3 Reactivity"
+console.log(data.name);
+data.name = 'Vue 3 Reactivity';
+console.log(data.name);
 ```
 
-### Vue2 vs Vue3 比較表
+### Vue2 vs Vue3 comparison
 
-| 特性 | Vue2 | Vue3 |
+| Feature | Vue2 | Vue3 |
 | --- | --- | --- |
-| 實作方式 | `Object.defineProperty` | `Proxy` |
-| 偵測新增屬性 | ❌ 需使用 `Vue.set()` | ✅ 原生支援 |
-| 偵測屬性刪除 | ❌ 需使用 `Vue.delete()` | ✅ 原生支援 |
-| 偵測陣列索引 | ❌ 需使用特定方法 | ✅ 原生支援 |
-| 效能 | 需遞迴遍歷所有屬性 | 惰性處理，效能更好 |
-| 瀏覽器支援 | IE9+ | 不支援 IE11 |
+| Core mechanism | `Object.defineProperty` | `Proxy` |
+| Detect new properties | ❌ requires `Vue.set()` | ✅ native support |
+| Detect property deletion | ❌ requires `Vue.delete()` | ✅ native support |
+| Detect array index assignment | ❌ limited | ✅ native support |
+| Performance | upfront deep walk | lazy + more efficient |
+| Browser support | IE9+ | no IE11 support |
 
-### 結論
+### Conclusion
 
-Vue2 使用 `Object.defineProperty` 來實現雙向綁定，但這種方法存在一定的限制（比如無法偵測物件的屬性新增或刪除）。Vue3 引入了 ES6 的 `Proxy`，提供了更強大與靈活的響應式系統，同時也能提升效能。這是 Vue3 相較於 Vue2 的重大改進之一。
+Vue2 uses `Object.defineProperty`, which works but has known limitations.
+Vue3 uses `Proxy`, giving a more complete and flexible reactivity system with better performance.
 
 ## 2. Why does Vue3 use `Proxy` instead of `Object.defineProperty`?
 
-> 為什麼 Vue3 要使用 `Proxy` 而不是 `Object.defineProperty`？
+> Why did Vue3 choose `Proxy` over `Object.defineProperty`?
 
-### 主要原因
+### Main reasons
 
-#### 1. 更強大的攔截能力
+#### 1. Stronger interception capability
 
-`Proxy` 可以攔截多達 13 種操作，而 `Object.defineProperty` 只能攔截屬性的讀取和設置：
+`Proxy` can intercept many operations, while `Object.defineProperty` only covers property get/set.
 
 ```js
-// Proxy 可以攔截的操作
+// Operations Proxy can intercept
 const handler = {
-  get() {},              // 屬性讀取
-  set() {},              // 屬性設置
-  has() {},              // in 運算符
-  deleteProperty() {},   // delete 運算符
-  ownKeys() {},          // Object.keys()
+  get() {},
+  set() {},
+  has() {},
+  deleteProperty() {},
+  ownKeys() {},
   getOwnPropertyDescriptor() {},
   defineProperty() {},
   preventExtensions() {},
   getPrototypeOf() {},
   isExtensible() {},
   setPrototypeOf() {},
-  apply() {},            // 函式呼叫
-  construct() {}         // new 運算符
+  apply() {},
+  construct() {},
 };
 ```
 
-#### 2. 原生支援陣列索引監聽
+#### 2. Native array index tracking
 
 ```js
-// Vue2 無法偵測
+// Vue2 limitation
 const arr = [1, 2, 3];
-arr[0] = 10; // ❌ 無法觸發更新
+arr[0] = 10; // often not tracked in Vue2-style defineProperty model
 
-// Vue3 可以偵測
-const arr = reactive([1, 2, 3]);
-arr[0] = 10; // ✅ 可以觸發更新
+// Vue3
+const arr2 = reactive([1, 2, 3]);
+arr2[0] = 10; // tracked
 ```
 
-#### 3. 原生支援物件屬性的動態新增/刪除
+#### 3. Native support for dynamic property add/delete
 
 ```js
-// Vue2 需要特殊處理
-Vue.set(obj, 'newKey', 'value'); // ✅
-obj.newKey = 'value'; // ❌ 無法觸發更新
+// Vue2 needs special API
+Vue.set(obj, 'newKey', 'value');
 
-// Vue3 原生支援
+// Vue3 native
 const obj = reactive({});
-obj.newKey = 'value'; // ✅ 可以觸發更新
-delete obj.newKey; // ✅ 也可以觸發更新
+obj.newKey = 'value';
+delete obj.newKey;
 ```
 
-#### 4. 效能更好
+#### 4. Better performance model
 
 ```js
-// Vue2：需要遞迴遍歷所有屬性
+// Vue2: deep traversal + defineReactive for each key
 function observe(obj) {
-  Object.keys(obj).forEach(key => {
+  Object.keys(obj).forEach((key) => {
     defineReactive(obj, key, obj[key]);
-    // 如果值是物件，需要遞迴處理
     if (typeof obj[key] === 'object') {
       observe(obj[key]);
     }
   });
 }
 
-// Vue3：惰性處理，只在存取時才進行代理
+// Vue3: proxy wrapper
 function reactive(obj) {
-  return new Proxy(obj, handler); // 不需要遞迴
+  return new Proxy(obj, handler);
 }
 ```
 
-#### 5. 程式碼更簡潔
+#### 5. Simpler internal implementation
 
-Vue3 的響應式實作程式碼量大幅減少，維護成本更低。
+Vue3 reactivity core is cleaner and easier to maintain.
 
-### 為什麼 Vue2 不使用 Proxy？
+### Why Vue2 did not use Proxy
 
-主要是因為**瀏覽器相容性**：
+Mainly **browser compatibility**:
 
-- Vue2 發布時（2016年），Proxy 還未被廣泛支援
-- Vue2 需要支援 IE9+，而 Proxy 無法被 polyfill
-- Vue3 放棄了對 IE11 的支援，因此可以採用 Proxy
+- Vue2 (released in 2016) needed broad support including IE
+- `Proxy` cannot be fully polyfilled
+- Vue3 dropped IE11 support, so Proxy became viable
 
-### 實際範例對比
+### Practical comparison
 
 ```js
-// ===== Vue2 的限制 =====
+// ===== Vue2 limitations =====
 const vm = new Vue({
   data: {
     obj: { a: 1 },
-    arr: [1, 2, 3]
-  }
+    arr: [1, 2, 3],
+  },
 });
 
-// ❌ 以下操作無法觸發更新
-vm.obj.b = 2;           // 新增屬性
-delete vm.obj.a;        // 刪除屬性
-vm.arr[0] = 10;         // 修改陣列索引
-vm.arr.length = 0;      // 修改陣列長度
+// not reliably reactive in Vue2 without special APIs
+vm.obj.b = 2;
+delete vm.obj.a;
+vm.arr[0] = 10;
+vm.arr.length = 0;
 
-// ✅ 需要使用特殊方法
+// Vue2 workaround
 Vue.set(vm.obj, 'b', 2);
 Vue.delete(vm.obj, 'a');
 vm.arr.splice(0, 1, 10);
 
-// ===== Vue3 原生支援 =====
+// ===== Vue3 native support =====
 const state = reactive({
   obj: { a: 1 },
-  arr: [1, 2, 3]
+  arr: [1, 2, 3],
 });
 
-// ✅ 以下操作都可以觸發更新
-state.obj.b = 2;        // 新增屬性
-delete state.obj.a;     // 刪除屬性
-state.arr[0] = 10;      // 修改陣列索引
-state.arr.length = 0;   // 修改陣列長度
+state.obj.b = 2;
+delete state.obj.a;
+state.arr[0] = 10;
+state.arr.length = 0;
 ```
 
-### 總結
+### Summary
 
-Vue3 使用 `Proxy` 是為了：
+Vue3 uses `Proxy` to:
 
-1. ✅ 提供更完整的響應式支援（物件屬性新增/刪除、陣列索引等）
-2. ✅ 提升效能（惰性處理，不需要預先遞迴）
-3. ✅ 簡化程式碼（實作更簡潔）
-4. ✅ 提供更好的開發體驗（不需要記憶特殊 API）
+1. ✅ Provide complete reactivity coverage (add/delete/index changes)
+2. ✅ Improve performance (less upfront traversal)
+3. ✅ Simplify implementation
+4. ✅ Improve developer experience (fewer special APIs)
 
-唯一的代價是放棄對舊版瀏覽器（IE11）的支援，但這是值得的取捨。
+Tradeoff: no support for legacy IE11, which is acceptable for modern web targets.
 
 ## Reference
 
 - [Vue 2 Reactivity in Depth](https://v2.vuejs.org/v2/guide/reactivity.html)
 - [Vue 3 Reactivity in Depth](https://vuejs.org/guide/extras/reactivity-in-depth.html)
-- [MDN - Object.defineProperty](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)
-- [MDN - Proxy](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
-- [MDN - Reflect](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Reflect)
-
+- [MDN - Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty)
+- [MDN - Proxy](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
+- [MDN - Reflect](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect)

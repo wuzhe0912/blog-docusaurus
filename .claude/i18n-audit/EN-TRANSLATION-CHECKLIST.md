@@ -100,12 +100,12 @@
 
 ## Batch 3: Knowledge / TypeScript + React（5 files, ~2,270 lines）
 
-- [ ] `docs/Knowledge/JavaScript-Ecosystem/TypeScript/basic-types.md` (486 lines)
-- [ ] `docs/Knowledge/JavaScript-Ecosystem/TypeScript/generics.md` (500 lines)
-- [ ] `docs/Knowledge/JavaScript-Ecosystem/TypeScript/interface-vs-type.md` (610 lines)
-- [ ] `docs/Knowledge/JavaScript-Ecosystem/TypeScript/typescript-vs-javascript.md` (428 lines)
-- [ ] `docs/Knowledge/Frontend-Frameworks/React/react-useeffect-virtual-dom.md` (246 lines)
-- [ ] Batch 3 build 驗證
+- [x] `docs/Knowledge/JavaScript-Ecosystem/TypeScript/basic-types.md` (486 lines)
+- [x] `docs/Knowledge/JavaScript-Ecosystem/TypeScript/generics.md` (500 lines)
+- [x] `docs/Knowledge/JavaScript-Ecosystem/TypeScript/interface-vs-type.md` (610 lines)
+- [x] `docs/Knowledge/JavaScript-Ecosystem/TypeScript/typescript-vs-javascript.md` (428 lines)
+- [x] `docs/Knowledge/Frontend-Frameworks/React/react-useeffect-virtual-dom.md` (246 lines)
+- [x] Batch 3 build 驗證
 - [ ] Batch 3 commit
 
 ---

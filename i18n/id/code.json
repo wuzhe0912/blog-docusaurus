@@ -1,0 +1,745 @@
+{
+  "homepage.features.fairWorld.title": {
+    "message": "Dunia yang Adil"
+  },
+  "homepage.features.fairWorld.description": {
+    "message": "Uang mengalir ke mereka yang tak membutuhkan, cinta datang ke mereka yang sudah cukup, dan penderitaan menghampiri mereka yang paling kuat menanggung."
+  },
+  "homepage.features.lifeJourney.title": {
+    "message": "Perjalanan Hidup"
+  },
+  "homepage.features.lifeJourney.description": {
+    "message": "Kegembiraan terbesar dalam hidup adalah berkelana tanpa arah seperti lalat tanpa kepala, merayakan tikungan tak terduga dan bencana mendadak. Apa lagi yang lebih membuktikan kamu hidup selain benar-benar kehilangan arah?"
+  },
+  "homepage.features.dreamReality.title": {
+    "message": "Mimpi dan Kenyataan"
+  },
+  "homepage.features.dreamReality.description": {
+    "message": "Saat masih muda, jangan pikir hidupmu sudah ditentukan. Nanti kalau sudah tua, kamu akan sadar bahwa mempertahankan keadaan sekarang saja sudah cukup berat."
+  },
+  "about.role": {
+    "message": "Software / Product Engineer"
+  },
+  "about.expertise.heading": {
+    "message": "Keahlian"
+  },
+  "about.workWithMe.heading": {
+    "message": "Bekerja Sama"
+  },
+  "about.workWithMe.intro": {
+    "message": "Saat ini saya terbuka untuk peluang berikut:"
+  },
+  "about.workWithMe.contact": {
+    "message": "Jika Anda merasa ada ruang untuk kolaborasi, silakan hubungi saya melalui {linkedinLink}."
+  },
+  "about.meta.title": {
+    "message": "Tentang"
+  },
+  "about.meta.description": {
+    "message": "Tentang Pitt Wu - Software / Product Engineer."
+  },
+  "homepage.hero.readBlog": {
+    "message": "Baca Blog"
+  },
+  "homepage.hero.aboutMe": {
+    "message": "Tentang Saya"
+  },
+  "homepage.cta.title": {
+    "message": "Terbuka untuk Peluang"
+  },
+  "homepage.cta.description": {
+    "message": "Saat ini saya terbuka untuk kerja remote, kolaborasi teknis, atau obrolan menarik."
+  },
+  "homepage.cta.learnMore": {
+    "message": "Pelajari lebih lanjut"
+  },
+  "homepage.meta.description": {
+    "message": "Software / Product Engineer. Writing about engineering decisions, production lessons, and AI-augmented development."
+  },
+  "theme.ErrorPageContent.title": {
+    "message": "Halaman ini mengalami error.",
+    "description": "The title of the fallback page when the page crashed"
+  },
+  "theme.BackToTopButton.buttonAriaLabel": {
+    "message": "Gulir ke atas",
+    "description": "The ARIA label for the back to top button"
+  },
+  "theme.blog.archive.title": {
+    "message": "Arsip",
+    "description": "The page & hero title of the blog archive page"
+  },
+  "theme.blog.archive.description": {
+    "message": "Arsip",
+    "description": "The page & hero description of the blog archive page"
+  },
+  "theme.blog.paginator.navAriaLabel": {
+    "message": "Navigasi halaman daftar blog",
+    "description": "The ARIA label for the blog pagination"
+  },
+  "theme.blog.paginator.newerEntries": {
+    "message": "Posting lebih baru",
+    "description": "The label used to navigate to the newer blog posts page (previous page)"
+  },
+  "theme.blog.paginator.olderEntries": {
+    "message": "Posting lebih lama",
+    "description": "The label used to navigate to the older blog posts page (next page)"
+  },
+  "theme.blog.post.paginator.navAriaLabel": {
+    "message": "Navigasi halaman posting blog",
+    "description": "The ARIA label for the blog posts pagination"
+  },
+  "theme.blog.post.paginator.newerPost": {
+    "message": "Posting lebih baru",
+    "description": "The blog post button label to navigate to the newer/previous post"
+  },
+  "theme.blog.post.paginator.olderPost": {
+    "message": "Posting lebih lama",
+    "description": "The blog post button label to navigate to the older/next post"
+  },
+  "theme.tags.tagsPageLink": {
+    "message": "Lihat semua tag",
+    "description": "The label of the link targeting the tag list page"
+  },
+  "theme.colorToggle.ariaLabel.mode.system": {
+    "message": "mode sistem",
+    "description": "The name for the system color mode"
+  },
+  "theme.colorToggle.ariaLabel.mode.light": {
+    "message": "mode terang",
+    "description": "The name for the light color mode"
+  },
+  "theme.colorToggle.ariaLabel.mode.dark": {
+    "message": "mode gelap",
+    "description": "The name for the dark color mode"
+  },
+  "theme.colorToggle.ariaLabel": {
+    "message": "Beralih antara mode gelap dan terang (saat ini {mode})",
+    "description": "The ARIA label for the color mode toggle"
+  },
+  "theme.docs.breadcrumbs.navAriaLabel": {
+    "message": "Navigasi breadcrumb",
+    "description": "The ARIA label for the breadcrumbs"
+  },
+  "theme.docs.DocCard.categoryDescription.plurals": {
+    "message": "1 dokumen|{count} dokumen",
+    "description": "The default description for a category card in the generated index about how many items this category includes"
+  },
+  "theme.docs.paginator.navAriaLabel": {
+    "message": "Halaman dokumentasi",
+    "description": "The ARIA label for the docs pagination"
+  },
+  "theme.docs.paginator.previous": {
+    "message": "Sebelumnya",
+    "description": "The label used to navigate to the previous doc"
+  },
+  "theme.docs.paginator.next": {
+    "message": "Selanjutnya",
+    "description": "The label used to navigate to the next doc"
+  },
+  "theme.docs.tagDocListPageTitle.nDocsTagged": {
+    "message": "1 dokumen ditandai|{count} dokumen ditandai",
+    "description": "Pluralized label for \"{count} docs tagged\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.docs.tagDocListPageTitle": {
+    "message": "{nDocsTagged} dengan \"{tagName}\"",
+    "description": "The title of the page for a docs tag"
+  },
+  "theme.docs.versionBadge.label": {
+    "message": "Versi: {versionLabel}"
+  },
+  "theme.docs.versions.unreleasedVersionLabel": {
+    "message": "Ini adalah dokumentasi yang belum dirilis untuk {siteTitle} {versionLabel}.",
+    "description": "The label used to tell the user that he's browsing an unreleased doc version"
+  },
+  "theme.docs.versions.unmaintainedVersionLabel": {
+    "message": "Ini adalah dokumentasi untuk {siteTitle} {versionLabel} yang sudah tidak dipelihara lagi.",
+    "description": "The label used to tell the user that he's browsing an unmaintained doc version"
+  },
+  "theme.docs.versions.latestVersionSuggestionLabel": {
+    "message": "Untuk dokumentasi terbaru, silakan kunjungi {latestVersionLink} ({versionLabel}).",
+    "description": "The label used to tell the user to check the latest version"
+  },
+  "theme.docs.versions.latestVersionLinkLabel": {
+    "message": "versi terbaru",
+    "description": "The label used for the latest version suggestion link label"
+  },
+  "theme.common.editThisPage": {
+    "message": "Edit halaman ini",
+    "description": "The link label to edit the current page"
+  },
+  "theme.common.headingLinkTitle": {
+    "message": "Tautan langsung ke {heading}",
+    "description": "Title for link to heading"
+  },
+  "theme.lastUpdated.atDate": {
+    "message": " pada {date}",
+    "description": "The words used to describe on which date a page has been last updated"
+  },
+  "theme.lastUpdated.byUser": {
+    "message": " oleh {user}",
+    "description": "The words used to describe by who the page has been last updated"
+  },
+  "theme.lastUpdated.lastUpdatedAtBy": {
+    "message": "Terakhir diperbarui{atDate}{byUser}",
+    "description": "The sentence used to display when a page has been last updated, and by who"
+  },
+  "theme.navbar.mobileVersionsDropdown.label": {
+    "message": "Versi",
+    "description": "The label for the navbar versions dropdown on mobile view"
+  },
+  "theme.NotFound.title": {
+    "message": "Halaman tidak ditemukan",
+    "description": "The title of the 404 page"
+  },
+  "theme.tags.tagsListLabel": {
+    "message": "Tag:",
+    "description": "The label alongside a tag list"
+  },
+  "theme.admonition.caution": {
+    "message": "perhatian",
+    "description": "The default label used for the Caution admonition (:::caution)"
+  },
+  "theme.admonition.danger": {
+    "message": "bahaya",
+    "description": "The default label used for the Danger admonition (:::danger)"
+  },
+  "theme.admonition.info": {
+    "message": "info",
+    "description": "The default label used for the Info admonition (:::info)"
+  },
+  "theme.admonition.note": {
+    "message": "catatan",
+    "description": "The default label used for the Note admonition (:::note)"
+  },
+  "theme.admonition.tip": {
+    "message": "tips",
+    "description": "The default label used for the Tip admonition (:::tip)"
+  },
+  "theme.admonition.warning": {
+    "message": "peringatan",
+    "description": "The default label used for the Warning admonition (:::warning)"
+  },
+  "theme.AnnouncementBar.closeButtonAriaLabel": {
+    "message": "Tutup",
+    "description": "The ARIA label for close button of announcement bar"
+  },
+  "theme.blog.sidebar.navAriaLabel": {
+    "message": "Navigasi posting terbaru di blog",
+    "description": "The ARIA label for recent posts in the blog sidebar"
+  },
+  "theme.DocSidebarItem.expandCategoryAriaLabel": {
+    "message": "Buka kategori sidebar '{label}'",
+    "description": "The ARIA label to expand the sidebar category"
+  },
+  "theme.DocSidebarItem.collapseCategoryAriaLabel": {
+    "message": "Tutup kategori sidebar '{label}'",
+    "description": "The ARIA label to collapse the sidebar category"
+  },
+  "theme.IconExternalLink.ariaLabel": {
+    "message": "(buka di tab baru)",
+    "description": "The ARIA label for the external link icon"
+  },
+  "theme.NavBar.navAriaLabel": {
+    "message": "Navigasi utama",
+    "description": "The ARIA label for the main navigation"
+  },
+  "theme.navbar.mobileLanguageDropdown.label": {
+    "message": "Bahasa",
+    "description": "The label for the mobile language switcher dropdown"
+  },
+  "theme.TOCCollapsible.toggleButtonLabel": {
+    "message": "Di halaman ini",
+    "description": "The label used by the button on the collapsible TOC component"
+  },
+  "theme.NotFound.p1": {
+    "message": "Kami tidak dapat menemukan apa yang Anda cari.",
+    "description": "The first paragraph of the 404 page"
+  },
+  "theme.NotFound.p2": {
+    "message": "Silakan hubungi pemilik situs yang menautkan Anda ke URL asli dan beri tahu mereka bahwa tautan tersebut sudah tidak berfungsi.",
+    "description": "The 2nd paragraph of the 404 page"
+  },
+  "theme.blog.post.readMore": {
+    "message": "Baca selengkapnya",
+    "description": "The label used in blog post item excerpts to link to full blog posts"
+  },
+  "theme.blog.post.readMoreLabel": {
+    "message": "Baca selengkapnya tentang {title}",
+    "description": "The ARIA label for the link to full blog posts from excerpts"
+  },
+  "theme.blog.post.readingTime.plurals": {
+    "message": "1 menit membaca|{readingTime} menit membaca",
+    "description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.CodeBlock.wordWrapToggle": {
+    "message": "Alihkan pemotongan baris",
+    "description": "The title attribute for toggle word wrapping button of code block lines"
+  },
+  "theme.CodeBlock.copy": {
+    "message": "Salin",
+    "description": "The copy button label on code blocks"
+  },
+  "theme.CodeBlock.copied": {
+    "message": "Tersalin",
+    "description": "The copied button label on code blocks"
+  },
+  "theme.CodeBlock.copyButtonAriaLabel": {
+    "message": "Salin ke clipboard",
+    "description": "The ARIA label for copy code blocks button"
+  },
+  "theme.docs.breadcrumbs.home": {
+    "message": "Beranda",
+    "description": "The ARIA label for the home page in the breadcrumbs"
+  },
+  "theme.docs.sidebar.collapseButtonTitle": {
+    "message": "Tutup sidebar",
+    "description": "The title attribute for collapse button of doc sidebar"
+  },
+  "theme.docs.sidebar.collapseButtonAriaLabel": {
+    "message": "Tutup sidebar",
+    "description": "The title attribute for collapse button of doc sidebar"
+  },
+  "theme.docs.sidebar.navAriaLabel": {
+    "message": "Sidebar dokumentasi",
+    "description": "The ARIA label for the sidebar navigation"
+  },
+  "theme.docs.sidebar.closeSidebarButtonAriaLabel": {
+    "message": "Tutup bilah navigasi",
+    "description": "The ARIA label for close button of mobile sidebar"
+  },
+  "theme.navbar.mobileSidebarSecondaryMenu.backButtonLabel": {
+    "message": "\u2190 Kembali ke menu utama",
+    "description": "The label of the back button to return to main menu, inside the mobile navbar sidebar secondary menu (notably used to display the docs sidebar)"
+  },
+  "theme.docs.sidebar.toggleSidebarButtonAriaLabel": {
+    "message": "Alihkan bilah navigasi",
+    "description": "The ARIA label for hamburger menu button of mobile navigation"
+  },
+  "theme.navbar.mobileDropdown.collapseButton.expandAriaLabel": {
+    "message": "Buka menu dropdown",
+    "description": "The ARIA label of the button to expand the mobile dropdown navbar item"
+  },
+  "theme.navbar.mobileDropdown.collapseButton.collapseAriaLabel": {
+    "message": "Tutup menu dropdown",
+    "description": "The ARIA label of the button to collapse the mobile dropdown navbar item"
+  },
+  "theme.docs.sidebar.expandButtonTitle": {
+    "message": "Buka sidebar",
+    "description": "The ARIA label and title attribute for expand button of doc sidebar"
+  },
+  "theme.docs.sidebar.expandButtonAriaLabel": {
+    "message": "Buka sidebar",
+    "description": "The ARIA label and title attribute for expand button of doc sidebar"
+  },
+  "theme.SearchPage.documentsFound.plurals": {
+    "message": "1 dokumen ditemukan|{count} dokumen ditemukan",
+    "description": "Pluralized label for \"{count} documents found\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.SearchPage.existingResultsTitle": {
+    "message": "Hasil pencarian untuk \"{query}\"",
+    "description": "The search page title for non-empty query"
+  },
+  "theme.SearchPage.emptyResultsTitle": {
+    "message": "Cari di dokumentasi",
+    "description": "The search page title for empty query"
+  },
+  "theme.SearchPage.inputPlaceholder": {
+    "message": "Ketik pencarian Anda di sini",
+    "description": "The placeholder for search page input"
+  },
+  "theme.SearchPage.inputLabel": {
+    "message": "Cari",
+    "description": "The ARIA label for search page input"
+  },
+  "theme.SearchPage.algoliaLabel": {
+    "message": "Didukung oleh Algolia",
+    "description": "The description label for Algolia mention"
+  },
+  "theme.SearchPage.noResultsText": {
+    "message": "Tidak ada hasil yang ditemukan",
+    "description": "The paragraph for empty search result"
+  },
+  "theme.SearchPage.fetchingNewResults": {
+    "message": "Mengambil hasil baru...",
+    "description": "The paragraph for fetching new search results"
+  },
+  "theme.SearchBar.label": {
+    "message": "Cari",
+    "description": "The ARIA label and placeholder for search button"
+  },
+  "theme.SearchModal.searchBox.resetButtonTitle": {
+    "message": "Hapus pencarian",
+    "description": "The label and ARIA label for search box reset button"
+  },
+  "theme.SearchModal.searchBox.cancelButtonText": {
+    "message": "Batal",
+    "description": "The label and ARIA label for search box cancel button"
+  },
+  "theme.SearchModal.searchBox.placeholderText": {
+    "message": "Cari di dokumentasi",
+    "description": "The placeholder text for the main search input field"
+  },
+  "theme.SearchModal.searchBox.placeholderTextAskAi": {
+    "message": "Ajukan pertanyaan lain...",
+    "description": "The placeholder text when in AI question mode"
+  },
+  "theme.SearchModal.searchBox.placeholderTextAskAiStreaming": {
+    "message": "Menjawab...",
+    "description": "The placeholder text for search box when AI is streaming an answer"
+  },
+  "theme.SearchModal.searchBox.enterKeyHint": {
+    "message": "cari",
+    "description": "The hint for the search box enter key text"
+  },
+  "theme.SearchModal.searchBox.enterKeyHintAskAi": {
+    "message": "kirim",
+    "description": "The hint for the Ask AI search box enter key text"
+  },
+  "theme.SearchModal.searchBox.searchInputLabel": {
+    "message": "Cari",
+    "description": "The ARIA label for search input"
+  },
+  "theme.SearchModal.searchBox.backToKeywordSearchButtonText": {
+    "message": "Kembali ke pencarian kata kunci",
+    "description": "The text for back to keyword search button"
+  },
+  "theme.SearchModal.searchBox.backToKeywordSearchButtonAriaLabel": {
+    "message": "Kembali ke pencarian kata kunci",
+    "description": "The ARIA label for back to keyword search button"
+  },
+  "theme.SearchModal.startScreen.recentSearchesTitle": {
+    "message": "Pencarian terakhir",
+    "description": "The title for recent searches"
+  },
+  "theme.SearchModal.startScreen.noRecentSearchesText": {
+    "message": "Tidak ada pencarian terakhir",
+    "description": "The text when there are no recent searches"
+  },
+  "theme.SearchModal.startScreen.saveRecentSearchButtonTitle": {
+    "message": "Simpan pencarian ini",
+    "description": "The title for save recent search button"
+  },
+  "theme.SearchModal.startScreen.removeRecentSearchButtonTitle": {
+    "message": "Hapus pencarian ini dari riwayat",
+    "description": "The title for remove recent search button"
+  },
+  "theme.SearchModal.startScreen.favoriteSearchesTitle": {
+    "message": "Favorit",
+    "description": "The title for favorite searches"
+  },
+  "theme.SearchModal.startScreen.removeFavoriteSearchButtonTitle": {
+    "message": "Hapus pencarian ini dari favorit",
+    "description": "The title for remove favorite search button"
+  },
+  "theme.SearchModal.startScreen.recentConversationsTitle": {
+    "message": "Percakapan terakhir",
+    "description": "The title for recent conversations"
+  },
+  "theme.SearchModal.startScreen.removeRecentConversationButtonTitle": {
+    "message": "Hapus percakapan ini dari riwayat",
+    "description": "The title for remove recent conversation button"
+  },
+  "theme.SearchModal.errorScreen.titleText": {
+    "message": "Tidak dapat mengambil hasil",
+    "description": "The title for error screen"
+  },
+  "theme.SearchModal.errorScreen.helpText": {
+    "message": "Periksa koneksi jaringan Anda.",
+    "description": "The help text for error screen"
+  },
+  "theme.SearchModal.resultsScreen.askAiPlaceholder": {
+    "message": "Tanya AI: ",
+    "description": "The placeholder text for Ask AI input"
+  },
+  "theme.SearchModal.askAiScreen.disclaimerText": {
+    "message": "Jawaban dihasilkan oleh AI dan mungkin mengandung kesalahan. Silakan verifikasi jawabannya.",
+    "description": "The disclaimer text for AI answers"
+  },
+  "theme.SearchModal.askAiScreen.relatedSourcesText": {
+    "message": "Sumber terkait",
+    "description": "The text for related sources"
+  },
+  "theme.SearchModal.askAiScreen.thinkingText": {
+    "message": "Sedang berpikir...",
+    "description": "The text when AI is thinking"
+  },
+  "theme.SearchModal.askAiScreen.copyButtonText": {
+    "message": "Salin",
+    "description": "The text for copy button"
+  },
+  "theme.SearchModal.askAiScreen.copyButtonCopiedText": {
+    "message": "Tersalin!",
+    "description": "The text for copy button when copied"
+  },
+  "theme.SearchModal.askAiScreen.copyButtonTitle": {
+    "message": "Salin",
+    "description": "The title for copy button"
+  },
+  "theme.SearchModal.askAiScreen.likeButtonTitle": {
+    "message": "Suka",
+    "description": "The title for like button"
+  },
+  "theme.SearchModal.askAiScreen.dislikeButtonTitle": {
+    "message": "Tidak suka",
+    "description": "The title for dislike button"
+  },
+  "theme.SearchModal.askAiScreen.thanksForFeedbackText": {
+    "message": "Terima kasih atas masukan Anda!",
+    "description": "The text for thanks for feedback"
+  },
+  "theme.SearchModal.askAiScreen.preToolCallText": {
+    "message": "Mencari...",
+    "description": "The text before tool call"
+  },
+  "theme.SearchModal.askAiScreen.duringToolCallText": {
+    "message": "Mencari ",
+    "description": "The text during tool call"
+  },
+  "theme.SearchModal.askAiScreen.afterToolCallText": {
+    "message": "Telah mencari ",
+    "description": "The text after tool call"
+  },
+  "theme.SearchModal.footer.selectText": {
+    "message": "untuk memilih",
+    "description": "The select text for footer"
+  },
+  "theme.SearchModal.footer.submitQuestionText": {
+    "message": "Kirim pertanyaan",
+    "description": "The submit question text for footer"
+  },
+  "theme.SearchModal.footer.selectKeyAriaLabel": {
+    "message": "Tombol Enter",
+    "description": "The ARIA label for select key in footer"
+  },
+  "theme.SearchModal.footer.navigateText": {
+    "message": "untuk navigasi",
+    "description": "The navigate text for footer"
+  },
+  "theme.SearchModal.footer.navigateUpKeyAriaLabel": {
+    "message": "Panah atas",
+    "description": "The ARIA label for navigate up key in footer"
+  },
+  "theme.SearchModal.footer.navigateDownKeyAriaLabel": {
+    "message": "Panah bawah",
+    "description": "The ARIA label for navigate down key in footer"
+  },
+  "theme.SearchModal.footer.closeText": {
+    "message": "untuk menutup",
+    "description": "The close text for footer"
+  },
+  "theme.SearchModal.footer.closeKeyAriaLabel": {
+    "message": "Tombol Escape",
+    "description": "The ARIA label for close key in footer"
+  },
+  "theme.SearchModal.footer.searchByText": {
+    "message": "Powered by",
+    "description": "The 'Powered by' text for footer"
+  },
+  "theme.SearchModal.footer.backToSearchText": {
+    "message": "Kembali ke pencarian",
+    "description": "The back to search text for footer"
+  },
+  "theme.SearchModal.noResultsScreen.noResultsText": {
+    "message": "Tidak ada hasil untuk",
+    "description": "The text when there are no results"
+  },
+  "theme.SearchModal.noResultsScreen.suggestedQueryText": {
+    "message": "Coba cari",
+    "description": "The text for suggested query"
+  },
+  "theme.SearchModal.noResultsScreen.reportMissingResultsText": {
+    "message": "Menurut Anda pencarian ini seharusnya memberikan hasil?",
+    "description": "The text for reporting missing results"
+  },
+  "theme.SearchModal.noResultsScreen.reportMissingResultsLinkText": {
+    "message": "Beri tahu kami.",
+    "description": "The link text for reporting missing results"
+  },
+  "theme.SearchModal.placeholder": {
+    "message": "Cari di dokumentasi",
+    "description": "The placeholder of the input of the DocSearch pop-up modal"
+  },
+  "theme.SearchBar.seeAll": {
+    "message": "Lihat semua {count} hasil"
+  },
+  "theme.ErrorPageContent.tryAgain": {
+    "message": "Coba lagi",
+    "description": "The label of the button to try again rendering when the React error boundary captures an error"
+  },
+  "theme.common.skipToMainContent": {
+    "message": "Langsung ke konten utama",
+    "description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+  },
+  "theme.tags.tagsPageTitle": {
+    "message": "Tag",
+    "description": "The title of the tag list page"
+  },
+  "theme.blog.post.plurals": {
+    "message": "1 pos|{count} pos",
+    "description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
+  },
+  "theme.blog.tagTitle": {
+    "message": "{nPosts} ditandai dengan \"{tagName}\"",
+    "description": "The title of the page for a blog tag"
+  },
+  "theme.blog.author.pageTitle": {
+    "message": "{authorName} - {nPosts}",
+    "description": "The title of the page for a blog author"
+  },
+  "theme.blog.authorsList.pageTitle": {
+    "message": "Penulis",
+    "description": "The title of the authors page"
+  },
+  "theme.blog.authorsList.viewAll": {
+    "message": "Lihat semua penulis",
+    "description": "The label of the link targeting the blog authors page"
+  },
+  "theme.blog.author.noPosts": {
+    "message": "Penulis ini belum memiliki posting.",
+    "description": "The text for authors with 0 blog post"
+  },
+  "theme.contentVisibility.unlistedBanner.title": {
+    "message": "Halaman tidak terdaftar",
+    "description": "The unlisted content banner title"
+  },
+  "theme.contentVisibility.unlistedBanner.message": {
+    "message": "Halaman ini tidak terdaftar. Mesin pencari tidak akan mengindeksnya, dan hanya pengguna dengan tautan langsung yang dapat mengaksesnya.",
+    "description": "The unlisted content banner message"
+  },
+  "theme.contentVisibility.draftBanner.title": {
+    "message": "Halaman draf",
+    "description": "The draft content banner title"
+  },
+  "theme.contentVisibility.draftBanner.message": {
+    "message": "Halaman ini adalah draf. Halaman ini hanya terlihat di lingkungan pengembangan dan tidak akan disertakan dalam build produksi.",
+    "description": "The draft content banner message"
+  },
+  "about.expertise.vueNuxt.title": {
+    "message": "Ekosistem Vue / Nuxt"
+  },
+  "about.expertise.vueNuxt.item1": {
+    "message": "Vue 3 Composition API"
+  },
+  "about.expertise.vueNuxt.item2": {
+    "message": "Nuxt SSR / SSG"
+  },
+  "about.expertise.vueNuxt.item3": {
+    "message": "Mekanisme Hydration"
+  },
+  "about.expertise.vueNuxt.item4": {
+    "message": "Manajemen Lifecycle"
+  },
+  "about.expertise.frontend.title": {
+    "message": "Arsitektur Frontend"
+  },
+  "about.expertise.frontend.item1": {
+    "message": "Desain State Management (Pinia)"
+  },
+  "about.expertise.frontend.item2": {
+    "message": "Pola Komunikasi Komponen"
+  },
+  "about.expertise.frontend.item3": {
+    "message": "Perencanaan Arsitektur Proyek"
+  },
+  "about.expertise.frontend.item4": {
+    "message": "Konfigurasi & Optimasi Bundler"
+  },
+  "about.expertise.performance.title": {
+    "message": "Optimasi Performa"
+  },
+  "about.expertise.performance.item1": {
+    "message": "Core Web Vitals"
+  },
+  "about.expertise.performance.item2": {
+    "message": "Optimasi Gambar & Aset"
+  },
+  "about.expertise.performance.item3": {
+    "message": "Virtual Scroll"
+  },
+  "about.expertise.performance.item4": {
+    "message": "Web Workers"
+  },
+  "about.expertise.ai.title": {
+    "message": "Alur Kerja Pengembangan AI"
+  },
+  "about.expertise.ai.item1": {
+    "message": "Proses Pengembangan Terintegrasi LLM"
+  },
+  "about.expertise.ai.item2": {
+    "message": "Praktik Engineering Berbantuan AI"
+  },
+  "about.expertise.ai.item3": {
+    "message": "Prompt Engineering"
+  },
+  "about.expertise.ai.item4": {
+    "message": "Desain Alur Kerja Otomasi"
+  },
+  "about.workWithMe.opportunity1": {
+    "message": "Posisi Remote / Hybrid sebagai Software Engineer atau Product Engineer"
+  },
+  "about.workWithMe.opportunity2": {
+    "message": "Kolaborasi Side Project"
+  },
+  "about.workWithMe.opportunity3": {
+    "message": "Presentasi dan diskusi di komunitas teknologi"
+  },
+  "homepage.hero.title.1": {
+    "message": "Kode dan Cerita"
+  },
+  "homepage.hero.title.2": {
+    "message": "Merangkai Kode Menjadi Cerita"
+  },
+  "homepage.hero.title.3": {
+    "message": "Baris dari Kode, Halaman dari Cerita"
+  },
+  "homepage.hero.title.4": {
+    "message": "Di Mana Teknologi Menciptakan Cerita"
+  },
+  "homepage.hero.title.5": {
+    "message": "Membangun Dunia dengan Ketukan Keyboard"
+  },
+  "homepage.hero.subtitle.1": {
+    "message": "Melawan Sihir dengan Sihir"
+  },
+  "homepage.hero.subtitle.2": {
+    "message": "Mengubah Mimpi Menjadi Kode"
+  },
+  "homepage.hero.subtitle.3": {
+    "message": "Kode yang Memukau, Cerita yang Memikat"
+  },
+  "homepage.hero.subtitle.4": {
+    "message": "Men-debug Kehidupan, Satu Cerita Demi Satu Cerita"
+  },
+  "projects.title": {
+    "message": "Proyek"
+  },
+  "projects.description": {
+    "message": "Side project dan kontribusi open-source yang telah saya bangun atau kontribusikan."
+  },
+  "projects.search.placeholder": {
+    "message": "Cari proyek..."
+  },
+  "projects.filters.count": {
+    "message": "{filtered} dari {total} proyek"
+  },
+  "projects.filters.clearAll": {
+    "message": "Hapus semua"
+  },
+  "projects.card.source": {
+    "message": "Kode sumber"
+  },
+  "projects.card.website": {
+    "message": "Situs web"
+  },
+  "projects.noResults": {
+    "message": "Tidak ada proyek yang sesuai dengan filter Anda."
+  },
+  "theme.unlistedContent.title": {
+    "message": "Halaman tidak terdaftar",
+    "description": "The unlisted content banner title"
+  },
+  "theme.unlistedContent.message": {
+    "message": "Halaman ini tidak terdaftar. Mesin pencari tidak akan mengindeksnya, dan hanya pengguna dengan tautan langsung yang dapat mengaksesnya.",
+    "description": "The unlisted content banner message"
+  }
+}

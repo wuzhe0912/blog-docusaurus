@@ -1,0 +1,38 @@
+{
+  "title": {
+    "message": "Pitt Wu's Story",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Pitt Wu's Story Logo",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Blog": {
+    "message": "Blog",
+    "description": "Navbar item with label Blog"
+  },
+  "item.label.Projects": {
+    "message": "Progetti",
+    "description": "Navbar item with label Projects"
+  },
+  "item.label.Notes": {
+    "message": "Note",
+    "description": "Navbar item with label Notes"
+  },
+  "item.label.About": {
+    "message": "Chi sono",
+    "description": "Navbar item with label About"
+  },
+  "item.label.Knowledge": {
+    "message": "Conoscenze",
+    "description": "Navbar item with label Knowledge"
+  },
+  "item.label.Experience": {
+    "message": "Esperienza",
+    "description": "Navbar item with label Experience"
+  },
+  "item.label.Coding": {
+    "message": "Programmazione",
+    "description": "Navbar item with label Coding"
+  }
+}

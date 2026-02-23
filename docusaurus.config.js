@@ -129,6 +129,6 @@ module.exports = {
   ],
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'zh-tw', 'zh-cn', 'ja', 'ko', 'es', 'pt-BR', 'de', 'fr', 'vi'],
+    locales: ['en', 'zh-tw', 'zh-cn', 'ja', 'ko', 'es', 'pt-BR', 'de', 'fr', 'vi', 'it', 'ru', 'id'],
   },
 };

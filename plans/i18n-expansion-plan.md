@@ -32,15 +32,15 @@
 
 ## 進度總覽
 
-| Phase | 描述 | 狀態 |
-|-------|------|------|
-| 1 | 設定檔與基礎架構 | ✅ 已完成（commit c44625a） |
-| 2 | i18n JSON 翻譯檔 | ⚠️ 已完成但需校正（commit 04600b0） |
-| 3 | Docs 翻譯（89 × 3 = 267 檔） | ⏳ 未開始 |
-| 4 | Blog 翻譯（7 × 3 = 21 檔） | ⏳ 未開始（目錄已建立，無 .md 檔） |
-| 5 | README 檔案 | ⏳ 未開始 |
-| 6 | Build 驗證 | ⏳ 未開始 |
-| 7 | 翻譯品質抽測 | ⏳ 未開始 |
+| Phase | 描述                         | 狀態                                |
+| ----- | ---------------------------- | ----------------------------------- |
+| 1     | 設定檔與基礎架構             | ✅ 已完成（commit c44625a）         |
+| 2     | i18n JSON 翻譯檔             | ⚠️ 已完成但需校正（commit 04600b0） |
+| 3     | Docs 翻譯（89 × 3 = 267 檔） | ⏳ 未開始                           |
+| 4     | Blog 翻譯（7 × 3 = 21 檔）   | ⏳ 未開始（目錄已建立，無 .md 檔）  |
+| 5     | README 檔案                  | ⏳ 未開始                           |
+| 6     | Build 驗證                   | ⏳ 未開始                           |
+| 7     | 翻譯品質抽測                 | ⏳ 未開始                           |
 
 ---
 
@@ -67,6 +67,7 @@
 校正方式：讀取 `i18n/{locale}/code.json`，對照英文原意（key 名本身即語意說明），確認翻譯準確。
 
 重點抽查 key：
+
 ```
 homepage.features.fairWorld.title
 homepage.features.fairWorld.description
@@ -83,6 +84,7 @@ about.workWithMe.cta
 ```
 
 校正標準：
+
 - 對照 `i18n/en/code.json`（Docusaurus theme 預設 key）及其他已驗證語系（如 `ja`, `zh-tw`）的對應 key
 - 確認非從德文直譯，而是符合該語系的自然表達
 - 技術名詞保持英文
@@ -92,6 +94,7 @@ about.workWithMe.cta
 路徑：`i18n/{locale}/docusaurus-plugin-content-docs/current.json`
 
 大部分 sidebar label 為英文技術名詞（不需翻譯），但以下 key 需確認有正確的語系翻譯：
+
 ```
 sidebar.experience.category.🏗️ 專案架構  → 需翻譯
 sidebar.experience.category.📦 狀態管理  → 需翻譯
@@ -106,6 +109,7 @@ sidebar.experience.category.📦 狀態管理  → 需翻譯
 #### 2.1.3 `navbar.json` / `footer.json` / `options.json` — 低優先
 
 路徑：
+
 - `i18n/{locale}/docusaurus-theme-classic/navbar.json`
 - `i18n/{locale}/docusaurus-theme-classic/footer.json`
 - `i18n/{locale}/docusaurus-plugin-content-blog/options.json`
@@ -178,19 +182,19 @@ mkdir -p i18n/$LOCALE/docusaurus-plugin-content-docs/current/LeetCode/Easy
 
 ```markdown
 ---
-id: closure                          # ← 不翻譯
-title: '[Hard] 📄 Closure'          # ← 翻譯（保留 prefix）
-slug: /closure                       # ← 不翻譯
-tags: [JavaScript, Quiz, Hard]       # ← 不翻譯
+id: closure # ← 不翻譯
+title: '[Hard] 📄 Closure' # ← 翻譯（保留 prefix）
+slug: /closure # ← 不翻譯
+tags: [JavaScript, Quiz, Hard] # ← 不翻譯
 ---
 
-## 1. Che cos'è la Closure?           ← 翻譯
+## 1. Che cos'è la Closure? ← 翻譯
 
-> Che cos'è una closure?              ← 翻譯
+> Che cos'è una closure? ← 翻譯
 
 Per comprendere le closure, è necessario prima capire lo scope delle variabili JavaScript e come una funzione accede alle variabili esterne.
 
-### Variable Scope（Ambito delle variabili）  ← 技術名詞+括號翻譯
+### Variable Scope（Ambito delle variabili） ← 技術名詞+括號翻譯
 ```
 
 ### 3.3 分批執行清單
@@ -326,22 +330,22 @@ Commit: [Docs][docs] Translate Batch 4 Engineering and Security docs for it/ru/i
 
 #### Batch 5：Experience（14 檔 × 3 = 42 檔）
 
-| # | 來源檔案 |
-|---|---------|
-| 1 | `docs/Experience/2023-experience.md` |
-| 2 | `docs/Experience/2025-11-interview-prep.md` |
-| 3 | `docs/Experience/Project-Architecture/browser-compatibility.md` |
-| 4 | `docs/Experience/Project-Architecture/vite-setting.md` |
-| 5 | `docs/Experience/SSR-SEO/index.md` |
-| 6 | `docs/Experience/SSR-SEO/lv1-seo-basic.md` |
-| 7 | `docs/Experience/SSR-SEO/lv2-nuxt-lifecycle-hydration.md` |
-| 8 | `docs/Experience/SSR-SEO/lv2-nuxt-rendering-modes.md` |
-| 9 | `docs/Experience/SSR-SEO/lv2-nuxt-server-features.md` |
-| 10 | `docs/Experience/SSR-SEO/lv2-seo-optimization.md` |
-| 11 | `docs/Experience/SSR-SEO/lv2-ssr-implementation.md` |
-| 12 | `docs/Experience/SSR-SEO/lv3-i18n-seo.md` |
-| 13 | `docs/Experience/SSR-SEO/lv3-ssr-challenges.md` |
-| 14 | `docs/Experience/State-Management/index.md` |
+| #   | 來源檔案                                                        |
+| --- | --------------------------------------------------------------- |
+| 1   | `docs/Experience/2023-experience.md`                            |
+| 2   | `docs/Experience/2025-11-interview-prep.md`                     |
+| 3   | `docs/Experience/Project-Architecture/browser-compatibility.md` |
+| 4   | `docs/Experience/Project-Architecture/vite-setting.md`          |
+| 5   | `docs/Experience/SSR-SEO/index.md`                              |
+| 6   | `docs/Experience/SSR-SEO/lv1-seo-basic.md`                      |
+| 7   | `docs/Experience/SSR-SEO/lv2-nuxt-lifecycle-hydration.md`       |
+| 8   | `docs/Experience/SSR-SEO/lv2-nuxt-rendering-modes.md`           |
+| 9   | `docs/Experience/SSR-SEO/lv2-nuxt-server-features.md`           |
+| 10  | `docs/Experience/SSR-SEO/lv2-seo-optimization.md`               |
+| 11  | `docs/Experience/SSR-SEO/lv2-ssr-implementation.md`             |
+| 12  | `docs/Experience/SSR-SEO/lv3-i18n-seo.md`                       |
+| 13  | `docs/Experience/SSR-SEO/lv3-ssr-challenges.md`                 |
+| 14  | `docs/Experience/State-Management/index.md`                     |
 
 ```
 Commit: [Docs][docs] Translate Batch 5 Experience docs for it/ru/id
@@ -419,15 +423,15 @@ find i18n/id/docusaurus-plugin-content-docs/current/ -name "*.md" | wc -l
 
 對每個 locale（it / ru / id）翻譯以下 7 檔：
 
-| # | 來源檔案 | 目標路徑 |
-|---|---------|---------|
-| 1 | `blog/2023/07-22.md` | `i18n/{locale}/docusaurus-plugin-content-blog/2023/07-22.md` |
-| 2 | `blog/2023/12-31.md` | `i18n/{locale}/docusaurus-plugin-content-blog/2023/12-31.md` |
-| 3 | `blog/2024/08-11.md` | `i18n/{locale}/docusaurus-plugin-content-blog/2024/08-11.md` |
-| 4 | `blog/2024/12-31.md` | `i18n/{locale}/docusaurus-plugin-content-blog/2024/12-31.md` |
-| 5 | `blog/2025/12-25-layoff-negotiation-playbook.md` | `i18n/{locale}/docusaurus-plugin-content-blog/2025/12-25-layoff-negotiation-playbook.md` |
-| 6 | `blog/2025/12-31.md` | `i18n/{locale}/docusaurus-plugin-content-blog/2025/12-31.md` |
-| 7 | `blog/2026/02-18-rebuilding-blog-with-ai.md` | `i18n/{locale}/docusaurus-plugin-content-blog/2026/02-18-rebuilding-blog-with-ai.md` |
+| #   | 來源檔案                                         | 目標路徑                                                                                 |
+| --- | ------------------------------------------------ | ---------------------------------------------------------------------------------------- |
+| 1   | `blog/2023/07-22.md`                             | `i18n/{locale}/docusaurus-plugin-content-blog/2023/07-22.md`                             |
+| 2   | `blog/2023/12-31.md`                             | `i18n/{locale}/docusaurus-plugin-content-blog/2023/12-31.md`                             |
+| 3   | `blog/2024/08-11.md`                             | `i18n/{locale}/docusaurus-plugin-content-blog/2024/08-11.md`                             |
+| 4   | `blog/2024/12-31.md`                             | `i18n/{locale}/docusaurus-plugin-content-blog/2024/12-31.md`                             |
+| 5   | `blog/2025/12-25-layoff-negotiation-playbook.md` | `i18n/{locale}/docusaurus-plugin-content-blog/2025/12-25-layoff-negotiation-playbook.md` |
+| 6   | `blog/2025/12-31.md`                             | `i18n/{locale}/docusaurus-plugin-content-blog/2025/12-31.md`                             |
+| 7   | `blog/2026/02-18-rebuilding-blog-with-ai.md`     | `i18n/{locale}/docusaurus-plugin-content-blog/2026/02-18-rebuilding-blog-with-ai.md`     |
 
 ### 4.2 Blog 翻譯格式
 
@@ -451,11 +455,13 @@ Commit: [Docs][blog] Translate all blog posts for it/ru/id locales
 參考 `README.de.md` 的**格式結構**（非翻譯內容），以 `README.md`（英文）為翻譯基底。
 
 建立：
+
 - `README.it.md`（Italiano）
 - `README.ru.md`（Русский）
 - `README.id.md`（Bahasa Indonesia）
 
 每個 README 須包含：
+
 1. **Badge 列**：13 個語系切換 badge（排除自己，連結其餘 12 個）
 2. **簡介段落**
 3. **Tech-Stack 段落**
@@ -464,6 +470,7 @@ Commit: [Docs][blog] Translate all blog posts for it/ru/id locales
 6. **License 段落**
 
 新增的 3 個 badge：
+
 ```markdown
 [![it](https://img.shields.io/badge/Italiano-grey?style=flat-square)](./README.it.md)
 [![ru](https://img.shields.io/badge/Русский-grey?style=flat-square)](./README.ru.md)
@@ -473,6 +480,7 @@ Commit: [Docs][blog] Translate all blog posts for it/ru/id locales
 ### 5.2 更新現有 10+1 個 README 的 badge
 
 需更新的檔案（共 11 檔）：
+
 1. `README.md`
 2. `README.zh-tw.md`
 3. `README.zh-cn.md`
@@ -485,6 +493,7 @@ Commit: [Docs][blog] Translate all blog posts for it/ru/id locales
 10. `README.vi.md`
 
 每個檔案需要：
+
 - badge 列補上 3 個新語系連結
 - i18n 段落語系數從 10 更新為 13
 
@@ -506,11 +515,11 @@ bun run build:id  # 預期：Build 成功，無錯誤
 
 ### 6.2 常見 Build 錯誤處理
 
-| 錯誤類型 | 原因 | 修復方式 |
-|---------|------|---------|
-| `SidebarItemsGeneratorError` | docs 目錄結構不匹配 | 對照 `docs/` 確認路徑 |
-| `BrokenMarkdownLink` | 內部連結 slug 被翻譯 | 檢查 slug/id 是否與英文一致 |
-| `Missing frontmatter id` | frontmatter 格式錯誤 | 確認 YAML 格式正確 |
+| 錯誤類型                     | 原因                 | 修復方式                    |
+| ---------------------------- | -------------------- | --------------------------- |
+| `SidebarItemsGeneratorError` | docs 目錄結構不匹配  | 對照 `docs/` 確認路徑       |
+| `BrokenMarkdownLink`         | 內部連結 slug 被翻譯 | 檢查 slug/id 是否與英文一致 |
+| `Missing frontmatter id`     | frontmatter 格式錯誤 | 確認 YAML 格式正確          |
 
 ### 6.3 Build 成功後
 
@@ -534,66 +543,66 @@ done
 
 ### JSON 翻譯（UI 層）
 
-| # | 檢查項目 | it | ru | id |
-|---|---------|----|----|-----|
-| 1 | code.json：首頁 Hero rotating titles（5 組）自然且語意正確 | ☐ | ☐ | ☐ |
-| 2 | code.json：About 頁 Role / Expertise 描述通順 | ☐ | ☐ | ☐ |
-| 3 | code.json：技術專有名詞保持英文（SSR、Hydration、Bundle 等） | ☐ | ☐ | ☐ |
-| 4 | navbar.json：所有導覽項目翻譯正確 | ☐ | ☐ | ☐ |
-| 5 | footer.json：社群連結標籤正確（GitHub / LinkedIn / CakeResume） | ☐ | ☐ | ☐ |
-| 6 | current.json：sidebar category labels 翻譯且 emoji 保留 | ☐ | ☐ | ☐ |
-| 7 | options.json：blog sidebar title 翻譯正確 | ☐ | ☐ | ☐ |
+| #   | 檢查項目                                                        | it  | ru  | id  |
+| --- | --------------------------------------------------------------- | --- | --- | --- |
+| 1   | code.json：首頁 Hero rotating titles（5 組）自然且語意正確      | ☐   | ☐   | ☐   |
+| 2   | code.json：About 頁 Role / Expertise 描述通順                   | ☐   | ☐   | ☐   |
+| 3   | code.json：技術專有名詞保持英文（SSR、Hydration、Bundle 等）    | ☐   | ☐   | ☐   |
+| 4   | navbar.json：所有導覽項目翻譯正確                               | ☐   | ☐   | ☐   |
+| 5   | footer.json：社群連結標籤正確（GitHub / LinkedIn / CakeResume） | ☐   | ☐   | ☐   |
+| 6   | current.json：sidebar category labels 翻譯且 emoji 保留         | ☐   | ☐   | ☐   |
+| 7   | options.json：blog sidebar title 翻譯正確                       | ☐   | ☐   | ☐   |
 
 ### Docs 翻譯（內容層）
 
-| # | 檢查項目 | it | ru | id |
-|---|---------|----|----|-----|
-| 8 | 抽查 Knowledge/JS 1 篇：程式碼區塊未被翻譯、註解已翻譯 | ☐ | ☐ | ☐ |
-| 9 | 抽查 Knowledge/CSS 1 篇：CSS 屬性名保持英文 | ☐ | ☐ | ☐ |
-| 10 | 抽查 Knowledge/Vue 或 React 1 篇：元件名/hook 名保持英文 | ☐ | ☐ | ☐ |
-| 11 | 抽查 Experience 1 篇：面試情境描述符合該語系慣用表達 | ☐ | ☐ | ☐ |
-| 12 | 抽查 LeetCode 1 篇：題目標題保持英文、解題說明已翻譯 | ☐ | ☐ | ☐ |
-| 13 | frontmatter `id` 和 `slug` 與 en 版一致（未被翻譯） | ☐ | ☐ | ☐ |
-| 14 | 內部連結（doc links / anchor links）未損壞 | ☐ | ☐ | ☐ |
+| #   | 檢查項目                                                 | it  | ru  | id  |
+| --- | -------------------------------------------------------- | --- | --- | --- |
+| 8   | 抽查 Knowledge/JS 1 篇：程式碼區塊未被翻譯、註解已翻譯   | ☐   | ☐   | ☐   |
+| 9   | 抽查 Knowledge/CSS 1 篇：CSS 屬性名保持英文              | ☐   | ☐   | ☐   |
+| 10  | 抽查 Knowledge/Vue 或 React 1 篇：元件名/hook 名保持英文 | ☐   | ☐   | ☐   |
+| 11  | 抽查 Experience 1 篇：面試情境描述符合該語系慣用表達     | ☐   | ☐   | ☐   |
+| 12  | 抽查 LeetCode 1 篇：題目標題保持英文、解題說明已翻譯     | ☐   | ☐   | ☐   |
+| 13  | frontmatter `id` 和 `slug` 與 en 版一致（未被翻譯）      | ☐   | ☐   | ☐   |
+| 14  | 內部連結（doc links / anchor links）未損壞               | ☐   | ☐   | ☐   |
 
 ### Blog 翻譯
 
-| # | 檢查項目 | it | ru | id |
-|---|---------|----|----|-----|
-| 15 | 抽查最新 1 篇 blog：標題與內容語意通順 | ☐ | ☐ | ☐ |
-| 16 | 抽查 layoff-negotiation-playbook：專業用語翻譯正確 | ☐ | ☐ | ☐ |
-| 17 | blog frontmatter `slug` 保持英文 | ☐ | ☐ | ☐ |
+| #   | 檢查項目                                           | it  | ru  | id  |
+| --- | -------------------------------------------------- | --- | --- | --- |
+| 15  | 抽查最新 1 篇 blog：標題與內容語意通順             | ☐   | ☐   | ☐   |
+| 16  | 抽查 layoff-negotiation-playbook：專業用語翻譯正確 | ☐   | ☐   | ☐   |
+| 17  | blog frontmatter `slug` 保持英文                   | ☐   | ☐   | ☐   |
 
 ### 整合驗證
 
-| # | 檢查項目 | it | ru | id |
-|---|---------|----|----|-----|
-| 18 | `bun run build:{locale}` 零錯誤 | ☐ | ☐ | ☐ |
-| 19 | `bun run dev:{locale}` 啟動後首頁正常渲染 | ☐ | ☐ | ☐ |
-| 20 | Navbar locale dropdown 正確顯示新語系名稱 | ☐ | ☐ | ☐ |
-| 21 | 從其他語系切換至新語系，頁面不出現 404 | ☐ | ☐ | ☐ |
-| 22 | README badge 連結全部可正常跳轉（13 語系互通） | ☐ | ☐ | ☐ |
-| 23 | ru 語系特別檢查：Cyrillic 字元正確渲染、無亂碼 | ☐ | ☐ | ☐ |
-| 24 | id 語系特別檢查：印尼語拼寫無殘留馬來語混用 | ☐ | ☐ | ☐ |
+| #   | 檢查項目                                       | it  | ru  | id  |
+| --- | ---------------------------------------------- | --- | --- | --- |
+| 18  | `bun run build:{locale}` 零錯誤                | ☐   | ☐   | ☐   |
+| 19  | `bun run dev:{locale}` 啟動後首頁正常渲染      | ☐   | ☐   | ☐   |
+| 20  | Navbar locale dropdown 正確顯示新語系名稱      | ☐   | ☐   | ☐   |
+| 21  | 從其他語系切換至新語系，頁面不出現 404         | ☐   | ☐   | ☐   |
+| 22  | README badge 連結全部可正常跳轉（13 語系互通） | ☐   | ☐   | ☐   |
+| 23  | ru 語系特別檢查：Cyrillic 字元正確渲染、無亂碼 | ☐   | ☐   | ☐   |
+| 24  | id 語系特別檢查：印尼語拼寫無殘留馬來語混用    | ☐   | ☐   | ☐   |
 
 ---
 
 ## Commit 計劃總覽
 
-| 順序 | Commit Message | 涵蓋範圍 |
-|-----|---------------|---------|
-| ~~1~~ | ~~`[Chore][config] Add it/ru/id locales to i18n config and scripts`~~ | ~~Phase 1~~ ✅ |
-| ~~2~~ | ~~`[Docs][config] Add i18n JSON translation files for it/ru/id locales`~~ | ~~Phase 2~~ ✅ |
-| 3 | `[Fix][config] Proofread i18n JSON translations against English source` | Phase 2 校正 |
-| 4 | `[Docs][docs] Translate Batch 1 JavaScript-Ecosystem docs for it/ru/id` | Phase 3 Batch 1 |
-| 5 | `[Docs][docs] Translate Batch 2 Frontend-Frameworks docs for it/ru/id` | Phase 3 Batch 2 |
-| 6 | `[Docs][docs] Translate Batch 3 CSS-UI and Browser-Network docs for it/ru/id` | Phase 3 Batch 3 |
-| 7 | `[Docs][docs] Translate Batch 4 Engineering and Security docs for it/ru/id` | Phase 3 Batch 4 |
-| 8 | `[Docs][docs] Translate Batch 5 Experience docs for it/ru/id` | Phase 3 Batch 5 |
-| 9 | `[Docs][docs] Translate Batch 6 State-Management, Coding, and LeetCode docs for it/ru/id` | Phase 3 Batch 6 |
-| 10 | `[Docs][blog] Translate all blog posts for it/ru/id locales` | Phase 4 |
-| 11 | `[Docs][config] Add README files for it/ru/id and update badge links` | Phase 5 |
-| 12 | （若 build 修復）`[Fix][config] Fix build errors for it/ru/id locales` | Phase 6 |
+| 順序  | Commit Message                                                                            | 涵蓋範圍        |
+| ----- | ----------------------------------------------------------------------------------------- | --------------- |
+| ~~1~~ | ~~`[Chore][config] Add it/ru/id locales to i18n config and scripts`~~                     | ~~Phase 1~~ ✅  |
+| ~~2~~ | ~~`[Docs][config] Add i18n JSON translation files for it/ru/id locales`~~                 | ~~Phase 2~~ ✅  |
+| 3     | `[Fix][config] Proofread i18n JSON translations against English source`                   | Phase 2 校正    |
+| 4     | `[Docs][docs] Translate Batch 1 JavaScript-Ecosystem docs for it/ru/id`                   | Phase 3 Batch 1 |
+| 5     | `[Docs][docs] Translate Batch 2 Frontend-Frameworks docs for it/ru/id`                    | Phase 3 Batch 2 |
+| 6     | `[Docs][docs] Translate Batch 3 CSS-UI and Browser-Network docs for it/ru/id`             | Phase 3 Batch 3 |
+| 7     | `[Docs][docs] Translate Batch 4 Engineering and Security docs for it/ru/id`               | Phase 3 Batch 4 |
+| 8     | `[Docs][docs] Translate Batch 5 Experience docs for it/ru/id`                             | Phase 3 Batch 5 |
+| 9     | `[Docs][docs] Translate Batch 6 State-Management, Coding, and LeetCode docs for it/ru/id` | Phase 3 Batch 6 |
+| 10    | `[Docs][blog] Translate all blog posts for it/ru/id locales`                              | Phase 4         |
+| 11    | `[Docs][config] Add README files for it/ru/id and update badge links`                     | Phase 5         |
+| 12    | （若 build 修復）`[Fix][config] Fix build errors for it/ru/id locales`                    | Phase 6         |
 
 ### Commit 注意事項
 

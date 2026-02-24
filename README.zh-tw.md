@@ -1,6 +1,6 @@
 # Pitt Wu's Story
 
-[![en](https://img.shields.io/badge/English-grey?style=flat-square)](./README.md) [![zh-CN](https://img.shields.io/badge/简体中文-grey?style=flat-square)](./README.zh-cn.md) [![ja](https://img.shields.io/badge/日本語-grey?style=flat-square)](./README.ja.md) [![ko](https://img.shields.io/badge/한국어-grey?style=flat-square)](./README.ko.md) [![es](https://img.shields.io/badge/Español-grey?style=flat-square)](./README.es.md) [![pt-BR](https://img.shields.io/badge/Português-grey?style=flat-square)](./README.pt-BR.md) [![de](https://img.shields.io/badge/Deutsch-grey?style=flat-square)](./README.de.md) [![fr](https://img.shields.io/badge/Français-grey?style=flat-square)](./README.fr.md) [![vi](https://img.shields.io/badge/Tiếng_Việt-grey?style=flat-square)](./README.vi.md)
+[![en](https://img.shields.io/badge/English-grey?style=flat-square)](./README.md) [![zh-CN](https://img.shields.io/badge/简体中文-grey?style=flat-square)](./README.zh-cn.md) [![ja](https://img.shields.io/badge/日本語-grey?style=flat-square)](./README.ja.md) [![ko](https://img.shields.io/badge/한국어-grey?style=flat-square)](./README.ko.md) [![es](https://img.shields.io/badge/Español-grey?style=flat-square)](./README.es.md) [![pt-BR](https://img.shields.io/badge/Português-grey?style=flat-square)](./README.pt-BR.md) [![de](https://img.shields.io/badge/Deutsch-grey?style=flat-square)](./README.de.md) [![fr](https://img.shields.io/badge/Français-grey?style=flat-square)](./README.fr.md) [![vi](https://img.shields.io/badge/Tiếng_Việt-grey?style=flat-square)](./README.vi.md) [![it](https://img.shields.io/badge/Italiano-grey?style=flat-square)](./README.it.md) [![ru](https://img.shields.io/badge/Русский-grey?style=flat-square)](./README.ru.md) [![id](https://img.shields.io/badge/Bahasa_Indonesia-grey?style=flat-square)](./README.id.md)
 
 以 Docusaurus 打造的個人部落格與知識庫。
 
@@ -28,13 +28,13 @@
 │   ├── components/    #   React 元件
 │   └── css/           #   全域樣式（CSS Modules + Infima）
 ├── sidebar/           # 模組化側邊欄設定
-├── i18n/              # 翻譯檔（10 語系）
+├── i18n/              # 翻譯檔（13 語系）
 └── static/img/        # 靜態資源
 ```
 
 ## 多語系
 
-支援 10 個語系 — `en`（預設）、`zh-tw`、`zh-cn`、`ja`、`ko`、`es`、`pt-BR`、`de`、`fr`、`vi`。
+支援 13 個語系 — `en`（預設）、`zh-tw`、`zh-cn`、`ja`、`ko`、`es`、`pt-BR`、`de`、`fr`、`vi`、`it`、`ru`、`id`。
 
 ## 快速開始
 

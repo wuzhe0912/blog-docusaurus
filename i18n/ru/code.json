@@ -54,7 +54,7 @@
     "message": "Узнать больше"
   },
   "homepage.meta.description": {
-    "message": "Software / Product Engineer. Writing about engineering decisions, production lessons, and AI-augmented development."
+    "message": "Software / Product Engineer. Пишу об инженерных решениях, производственных уроках и разработке с применением ИИ."
   },
   "theme.ErrorPageContent.title": {
     "message": "Страница завершилась с ошибкой.",
@@ -89,11 +89,11 @@
     "description": "The ARIA label for the blog posts pagination"
   },
   "theme.blog.post.paginator.newerPost": {
-    "message": "Следующая запись",
+    "message": "Новая запись",
     "description": "The blog post button label to navigate to the newer/previous post"
   },
   "theme.blog.post.paginator.olderPost": {
-    "message": "Предыдущая запись",
+    "message": "Старая запись",
     "description": "The blog post button label to navigate to the older/next post"
   },
   "theme.tags.tagsPageLink": {
@@ -240,7 +240,7 @@
     "description": "The ARIA label for the external link icon"
   },
   "theme.NavBar.navAriaLabel": {
-    "message": "Главная навигация",
+    "message": "Главная",
     "description": "The ARIA label for the main navigation"
   },
   "theme.navbar.mobileLanguageDropdown.label": {
@@ -352,7 +352,7 @@
     "description": "The ARIA label for search page input"
   },
   "theme.SearchPage.algoliaLabel": {
-    "message": "Работает на Algolia",
+    "message": "Поиск от Algolia",
     "description": "The description label for Algolia mention"
   },
   "theme.SearchPage.noResultsText": {
@@ -396,7 +396,7 @@
     "description": "The hint for the Ask AI search box enter key text"
   },
   "theme.SearchModal.searchBox.searchInputLabel": {
-    "message": "Искать",
+    "message": "Поиск",
     "description": "The ARIA label for search input"
   },
   "theme.SearchModal.searchBox.backToKeywordSearchButtonText": {
@@ -408,7 +408,7 @@
     "description": "The ARIA label for back to keyword search button"
   },
   "theme.SearchModal.startScreen.recentSearchesTitle": {
-    "message": "Недавние поиски",
+    "message": "Недавние",
     "description": "The title for recent searches"
   },
   "theme.SearchModal.startScreen.noRecentSearchesText": {
@@ -496,7 +496,7 @@
     "description": "The text during tool call"
   },
   "theme.SearchModal.askAiScreen.afterToolCallText": {
-    "message": "Найдено по запросу ",
+    "message": "Искал ",
     "description": "The text after tool call"
   },
   "theme.SearchModal.footer.selectText": {
@@ -512,7 +512,7 @@
     "description": "The ARIA label for select key in footer"
   },
   "theme.SearchModal.footer.navigateText": {
-    "message": "навигация",
+    "message": "перейти",
     "description": "The navigate text for footer"
   },
   "theme.SearchModal.footer.navigateUpKeyAriaLabel": {
@@ -660,7 +660,7 @@
     "message": "Web Workers"
   },
   "about.expertise.ai.title": {
-    "message": "ИИ-ориентированный рабочий процесс"
+    "message": "Рабочий процесс ИИ-разработки"
   },
   "about.expertise.ai.item1": {
     "message": "Процесс разработки с интеграцией LLM"

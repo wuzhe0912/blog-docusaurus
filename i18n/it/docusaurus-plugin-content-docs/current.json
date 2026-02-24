@@ -156,7 +156,7 @@
     "description": "The label for category 'SSR' in sidebar 'experience'"
   },
   "sidebar.experience.category.📦 狀態管理": {
-    "message": "📦 State Management",
+    "message": "📦 Gestione dello Stato",
     "description": "The label for category '📦 狀態管理' in sidebar 'experience'"
   },
   "sidebar.experience.category.state-management-vue": {

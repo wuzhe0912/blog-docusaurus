@@ -24,7 +24,7 @@
     "message": "Keahlian"
   },
   "about.workWithMe.heading": {
-    "message": "Bekerja Sama"
+    "message": "Bekerja Dengan Saya"
   },
   "about.workWithMe.intro": {
     "message": "Saat ini saya terbuka untuk peluang berikut:"
@@ -54,7 +54,7 @@
     "message": "Pelajari lebih lanjut"
   },
   "homepage.meta.description": {
-    "message": "Software / Product Engineer. Writing about engineering decisions, production lessons, and AI-augmented development."
+    "message": "Software / Product Engineer. Menulis tentang keputusan engineering, pelajaran dari produksi, dan pengembangan berbantuan AI."
   },
   "theme.ErrorPageContent.title": {
     "message": "Halaman ini mengalami error.",
@@ -77,23 +77,23 @@
     "description": "The ARIA label for the blog pagination"
   },
   "theme.blog.paginator.newerEntries": {
-    "message": "Posting lebih baru",
+    "message": "Postingan lebih baru",
     "description": "The label used to navigate to the newer blog posts page (previous page)"
   },
   "theme.blog.paginator.olderEntries": {
-    "message": "Posting lebih lama",
+    "message": "Postingan lebih lama",
     "description": "The label used to navigate to the older blog posts page (next page)"
   },
   "theme.blog.post.paginator.navAriaLabel": {
-    "message": "Navigasi halaman posting blog",
+    "message": "Navigasi halaman postingan blog",
     "description": "The ARIA label for the blog posts pagination"
   },
   "theme.blog.post.paginator.newerPost": {
-    "message": "Posting lebih baru",
+    "message": "Postingan lebih baru",
     "description": "The blog post button label to navigate to the newer/previous post"
   },
   "theme.blog.post.paginator.olderPost": {
-    "message": "Posting lebih lama",
+    "message": "Postingan lebih lama",
     "description": "The blog post button label to navigate to the older/next post"
   },
   "theme.tags.tagsPageLink": {
@@ -121,7 +121,7 @@
     "description": "The ARIA label for the breadcrumbs"
   },
   "theme.docs.DocCard.categoryDescription.plurals": {
-    "message": "1 dokumen|{count} dokumen",
+    "message": "{count} item",
     "description": "The default description for a category card in the generated index about how many items this category includes"
   },
   "theme.docs.paginator.navAriaLabel": {
@@ -137,7 +137,7 @@
     "description": "The label used to navigate to the next doc"
   },
   "theme.docs.tagDocListPageTitle.nDocsTagged": {
-    "message": "1 dokumen ditandai|{count} dokumen ditandai",
+    "message": "{count} dokumen ditandai",
     "description": "Pluralized label for \"{count} docs tagged\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.docs.tagDocListPageTitle": {
@@ -224,7 +224,7 @@
     "description": "The ARIA label for close button of announcement bar"
   },
   "theme.blog.sidebar.navAriaLabel": {
-    "message": "Navigasi posting terbaru di blog",
+    "message": "Navigasi postingan terbaru di blog",
     "description": "The ARIA label for recent posts in the blog sidebar"
   },
   "theme.DocSidebarItem.expandCategoryAriaLabel": {
@@ -268,11 +268,11 @@
     "description": "The ARIA label for the link to full blog posts from excerpts"
   },
   "theme.blog.post.readingTime.plurals": {
-    "message": "1 menit membaca|{readingTime} menit membaca",
+    "message": "{readingTime} menit membaca",
     "description": "Pluralized label for \"{readingTime} min read\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.CodeBlock.wordWrapToggle": {
-    "message": "Alihkan pemotongan baris",
+    "message": "Alihkan word wrap",
     "description": "The title attribute for toggle word wrapping button of code block lines"
   },
   "theme.CodeBlock.copy": {
@@ -284,7 +284,7 @@
     "description": "The copied button label on code blocks"
   },
   "theme.CodeBlock.copyButtonAriaLabel": {
-    "message": "Salin ke clipboard",
+    "message": "Salin kode ke clipboard",
     "description": "The ARIA label for copy code blocks button"
   },
   "theme.docs.breadcrumbs.home": {
@@ -332,7 +332,7 @@
     "description": "The ARIA label and title attribute for expand button of doc sidebar"
   },
   "theme.SearchPage.documentsFound.plurals": {
-    "message": "1 dokumen ditemukan|{count} dokumen ditemukan",
+    "message": "{count} dokumen ditemukan",
     "description": "Pluralized label for \"{count} documents found\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.SearchPage.existingResultsTitle": {
@@ -352,7 +352,7 @@
     "description": "The ARIA label for search page input"
   },
   "theme.SearchPage.algoliaLabel": {
-    "message": "Didukung oleh Algolia",
+    "message": "Pencarian oleh Algolia",
     "description": "The description label for Algolia mention"
   },
   "theme.SearchPage.noResultsText": {
@@ -368,7 +368,7 @@
     "description": "The ARIA label and placeholder for search button"
   },
   "theme.SearchModal.searchBox.resetButtonTitle": {
-    "message": "Hapus pencarian",
+    "message": "Hapus kueri",
     "description": "The label and ARIA label for search box reset button"
   },
   "theme.SearchModal.searchBox.cancelButtonText": {
@@ -392,7 +392,7 @@
     "description": "The hint for the search box enter key text"
   },
   "theme.SearchModal.searchBox.enterKeyHintAskAi": {
-    "message": "kirim",
+    "message": "enter",
     "description": "The hint for the Ask AI search box enter key text"
   },
   "theme.SearchModal.searchBox.searchInputLabel": {
@@ -408,7 +408,7 @@
     "description": "The ARIA label for back to keyword search button"
   },
   "theme.SearchModal.startScreen.recentSearchesTitle": {
-    "message": "Pencarian terakhir",
+    "message": "Terbaru",
     "description": "The title for recent searches"
   },
   "theme.SearchModal.startScreen.noRecentSearchesText": {
@@ -444,7 +444,7 @@
     "description": "The title for error screen"
   },
   "theme.SearchModal.errorScreen.helpText": {
-    "message": "Periksa koneksi jaringan Anda.",
+    "message": "Anda mungkin perlu memeriksa koneksi jaringan Anda.",
     "description": "The help text for error screen"
   },
   "theme.SearchModal.resultsScreen.askAiPlaceholder": {
@@ -496,7 +496,7 @@
     "description": "The text during tool call"
   },
   "theme.SearchModal.askAiScreen.afterToolCallText": {
-    "message": "Telah mencari ",
+    "message": "Telah mencari",
     "description": "The text after tool call"
   },
   "theme.SearchModal.footer.selectText": {
@@ -532,7 +532,7 @@
     "description": "The ARIA label for close key in footer"
   },
   "theme.SearchModal.footer.searchByText": {
-    "message": "Powered by",
+    "message": "Pencarian oleh",
     "description": "The 'Powered by' text for footer"
   },
   "theme.SearchModal.footer.backToSearchText": {
@@ -575,7 +575,7 @@
     "description": "The title of the tag list page"
   },
   "theme.blog.post.plurals": {
-    "message": "1 pos|{count} pos",
+    "message": "{count} postingan",
     "description": "Pluralized label for \"{count} posts\". Use as much plural forms (separated by \"|\") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)"
   },
   "theme.blog.tagTitle": {
@@ -595,7 +595,7 @@
     "description": "The label of the link targeting the blog authors page"
   },
   "theme.blog.author.noPosts": {
-    "message": "Penulis ini belum memiliki posting.",
+    "message": "Penulis ini belum menulis postingan apa pun.",
     "description": "The text for authors with 0 blog post"
   },
   "theme.contentVisibility.unlistedBanner.title": {
@@ -690,7 +690,7 @@
     "message": "Merangkai Kode Menjadi Cerita"
   },
   "homepage.hero.title.3": {
-    "message": "Baris dari Kode, Halaman dari Cerita"
+    "message": "Baris Kode, Halaman Cerita"
   },
   "homepage.hero.title.4": {
     "message": "Di Mana Teknologi Menciptakan Cerita"
@@ -726,7 +726,7 @@
     "message": "Hapus semua"
   },
   "projects.card.source": {
-    "message": "Kode sumber"
+    "message": "Sumber"
   },
   "projects.card.website": {
     "message": "Situs web"

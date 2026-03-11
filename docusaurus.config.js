@@ -48,14 +48,14 @@ module.exports = {
       style: 'light',
       links: [
         {
-          title: 'Community',
+          title: 'Professional',
           items: [
             {
               label: 'GitHub',
               href: 'https://github.com/wuzhe0912',
             },
             {
-              label: 'Linkedin',
+              label: 'LinkedIn',
               href: 'https://linkedin.com/in/pitt-wu',
             },
             {
@@ -64,15 +64,15 @@ module.exports = {
             },
           ],
         },
-        // {
-        //   title: 'More',
-        //   items: [
-        //     {
-        //       label: '',
-        //       href: '',
-        //     },
-        //   ],
-        // },
+        {
+          title: 'Social',
+          items: [
+            {
+              label: 'Threads',
+              href: 'https://www.threads.com/@pittwuzhe',
+            },
+          ],
+        },
       ],
       copyright: `Copyright © ${currentYear} Pitt Wu Built with Docusaurus.`,
     },

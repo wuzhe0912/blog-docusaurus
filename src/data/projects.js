@@ -7,6 +7,7 @@ export const tags = {
   vue: { label: 'Vue', color: '#42b883' },
   nuxt: { label: 'Nuxt', color: '#00dc82' },
   node: { label: 'Node.js', color: '#68a063' },
+  ai: { label: 'AI Crafted', color: '#c084fc' },
 };
 
 export const projects = [
@@ -37,5 +38,17 @@ export const projects = [
         'https://github.com/North-Cat/true-salary-story-admin-api',
     },
     tags: ['fullstack', 'vue', 'nuxt', 'node'],
+  },
+];
+
+export const sideQuests = [
+  {
+    title: 'Long Night Tarot',
+    description:
+      'A tarot-history storytelling app featuring 78 cards tied to historical figures and events. Built entirely through AI collaboration as an experiment in how far vibe coding can push a product.',
+    preview: '/img/showcase/history-tarot.png',
+    website: 'https://history-tarot.vercel.app',
+    source: 'https://github.com/wuzhe0912/history-tarot',
+    tags: ['frontend', 'opensource', 'vue', 'ai'],
   },
 ];

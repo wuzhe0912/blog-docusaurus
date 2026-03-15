@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import Translate, { translate } from '@docusaurus/Translate';
 import ShowcaseCard from '../../components/ShowcaseCard';
-import { projects, tags as tagDefinitions } from '../../data/projects';
+import { projects, sideQuests, tags as tagDefinitions } from '../../data/projects';
 import styles from './index.module.css';
 
 function ShowcaseHeader() {
@@ -130,6 +130,23 @@ export default function Projects() {
           <p className={styles.noResults}>
             <Translate id="projects.noResults">No projects match your filters.</Translate>
           </p>
+        )}
+        {sideQuests.length > 0 && (
+          <div className={styles.sideQuests}>
+            <h2 className={styles.sectionTitle}>
+              <Translate id="projects.sideQuests.title">Side Quests</Translate>
+            </h2>
+            <p className={styles.sectionSubtitle}>
+              <Translate id="projects.sideQuests.description">
+                Experimental projects built with AI collaboration.
+              </Translate>
+            </p>
+            <div className={styles.grid}>
+              {sideQuests.map((project) => (
+                <ShowcaseCard key={project.title} project={project} />
+              ))}
+            </div>
+          </div>
         )}
       </main>
     </Layout>

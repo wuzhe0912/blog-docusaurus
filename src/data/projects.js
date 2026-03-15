@@ -15,7 +15,7 @@ export const projects = [
     title: 'Chatify',
     description:
       'A real-time messaging app with private/group chat, message status tracking, image sharing, and multiple themes.',
-    preview: '/img/showcase/chatify.png',
+    preview: '/img/showcase/chatify.webp',
     website: 'https://chatify-app-client.vercel.app/login',
     source: {
       client: 'https://github.com/wuzhe0912/chatify-app-client',
@@ -27,7 +27,7 @@ export const projects = [
     title: 'True Salary Story',
     description:
       'A salary sharing platform where users can anonymously post and search real salary data by company, job title, and industry. Built with Nuxt 3 SSR, LINE Pay integration, and a 6-person team.',
-    preview: '/img/showcase/true-salary-story.png',
+    preview: '/img/showcase/true-salary-story.webp',
     website: 'https://true-salary-story-client.vercel.app/',
     source: {
       'front-client': 'https://github.com/North-Cat/true-salary-story-client',
@@ -46,9 +46,8 @@ export const sideQuests = [
     title: 'Long Night Tarot',
     description:
       'A tarot-history storytelling app featuring 78 cards tied to historical figures and events. Built entirely through AI collaboration as an experiment in how far vibe coding can push a product.',
-    preview: '/img/showcase/history-tarot.png',
+    preview: '/img/showcase/history-tarot.webp',
     website: 'https://history-tarot.vercel.app',
-    source: 'https://github.com/wuzhe0912/history-tarot',
-    tags: ['frontend', 'opensource', 'vue', 'ai'],
+    tags: ['frontend', 'vue', 'ai'],
   },
 ];

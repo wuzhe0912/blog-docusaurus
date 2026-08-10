@@ -100,8 +100,8 @@ export default function Home() {
     >
       <HomepageHeader />
       <main>
-        <HomepageFeatures />
         <WhisperIslePromo />
+        <HomepageFeatures />
         <ContactCTA />
       </main>
     </Layout>

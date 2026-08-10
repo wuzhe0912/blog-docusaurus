@@ -710,6 +710,21 @@
   "homepage.hero.subtitle.4": {
     "message": "한 번에 하나씩, 인생을 디버깅"
   },
+  "homepage.whisperIsle.eyebrow": {
+    "message": "아이소메트릭 브라우저 MMO"
+  },
+  "homepage.whisperIsle.tagline": {
+    "message": "바람은 섬을 찾은 모든 이를 기억합니다"
+  },
+  "homepage.whisperIsle.description": {
+    "message": "클라이언트, 서버, 월드 구축까지 혼자 만든 실시간 멀티플레이어 게임입니다. 다운로드 없이 브라우저만 열면 바로 섬입니다."
+  },
+  "homepage.whisperIsle.play": {
+    "message": "브라우저에서 플레이"
+  },
+  "homepage.whisperIsle.details": {
+    "message": "프로젝트 보기"
+  },
   "projects.title": {
     "message": "프로젝트"
   },

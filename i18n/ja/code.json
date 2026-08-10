@@ -570,6 +570,21 @@
   "homepage.hero.subtitle.4": {
     "message": "人生をデバッグ、一つずつ"
   },
+  "homepage.whisperIsle.eyebrow": {
+    "message": "アイソメトリック・ブラウザ MMO"
+  },
+  "homepage.whisperIsle.tagline": {
+    "message": "風は島を訪れた者を覚えている"
+  },
+  "homepage.whisperIsle.description": {
+    "message": "クライアント・サーバー・ワールド構築まで一人で作ったリアルタイム多人数オンラインゲーム。ダウンロード不要、ブラウザを開けばそこが島です。"
+  },
+  "homepage.whisperIsle.play": {
+    "message": "ブラウザでプレイする"
+  },
+  "homepage.whisperIsle.details": {
+    "message": "プロジェクトを見る"
+  },
   "projects.title": {
     "message": "プロジェクト"
   },

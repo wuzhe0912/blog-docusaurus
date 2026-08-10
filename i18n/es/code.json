@@ -710,6 +710,21 @@
   "homepage.hero.subtitle.4": {
     "message": "Depurando la Vida, Una Historia a la Vez"
   },
+  "homepage.whisperIsle.eyebrow": {
+    "message": "Un MMO isométrico en el navegador"
+  },
+  "homepage.whisperIsle.tagline": {
+    "message": "El viento recuerda cada llegada"
+  },
+  "homepage.whisperIsle.description": {
+    "message": "Un juego multijugador en tiempo real que construí de principio a fin: cliente, servidor y herramientas de mundo. Sin descargas: abre el navegador y ya estás en la isla."
+  },
+  "homepage.whisperIsle.play": {
+    "message": "Jugar en el navegador"
+  },
+  "homepage.whisperIsle.details": {
+    "message": "Ver el proyecto"
+  },
   "projects.title": {
     "message": "Proyectos"
   },

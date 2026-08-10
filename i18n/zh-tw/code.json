@@ -570,6 +570,21 @@
   "homepage.hero.subtitle.4": {
     "message": "一次 Debug 一段人生"
   },
+  "homepage.whisperIsle.eyebrow": {
+    "message": "等距視角瀏覽器 MMO"
+  },
+  "homepage.whisperIsle.tagline": {
+    "message": "風會記得每一位登島者"
+  },
+  "homepage.whisperIsle.description": {
+    "message": "一個人做完 client、server 與世界建置的即時多人線上遊戲。開瀏覽器就能玩，不用下載。"
+  },
+  "homepage.whisperIsle.play": {
+    "message": "在瀏覽器開始遊玩"
+  },
+  "homepage.whisperIsle.details": {
+    "message": "看專案細節"
+  },
   "projects.title": {
     "message": "作品集"
   },

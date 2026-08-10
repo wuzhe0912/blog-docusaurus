@@ -710,6 +710,21 @@
   "homepage.hero.subtitle.4": {
     "message": "Дебажить жизнь, одна история за другой"
   },
+  "homepage.whisperIsle.eyebrow": {
+    "message": "Изометрическая браузерная MMO"
+  },
+  "homepage.whisperIsle.tagline": {
+    "message": "Ветер помнит каждого, кто ступил на остров"
+  },
+  "homepage.whisperIsle.description": {
+    "message": "Многопользовательская игра в реальном времени, которую я собрал целиком сам — клиент, сервер и инструменты мира. Ничего не нужно скачивать: откройте браузер, и вы уже на острове."
+  },
+  "homepage.whisperIsle.play": {
+    "message": "Играть в браузере"
+  },
+  "homepage.whisperIsle.details": {
+    "message": "Посмотреть проект"
+  },
   "projects.title": {
     "message": "Проекты"
   },

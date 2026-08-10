@@ -710,6 +710,21 @@
   "homepage.hero.subtitle.4": {
     "message": "Men-debug Kehidupan, Satu Cerita Demi Satu Cerita"
   },
+  "homepage.whisperIsle.eyebrow": {
+    "message": "MMO isometrik di peramban"
+  },
+  "homepage.whisperIsle.tagline": {
+    "message": "Angin mengingat setiap kedatangan"
+  },
+  "homepage.whisperIsle.description": {
+    "message": "Game multipemain waktu nyata yang saya bangun dari hulu ke hilir — klien, server, dan perkakas dunia. Tanpa unduhan: buka peramban dan Anda sudah di pulau."
+  },
+  "homepage.whisperIsle.play": {
+    "message": "Main di peramban"
+  },
+  "homepage.whisperIsle.details": {
+    "message": "Lihat proyek"
+  },
   "projects.title": {
     "message": "Proyek"
   },

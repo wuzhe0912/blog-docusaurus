@@ -570,6 +570,21 @@
   "homepage.hero.subtitle.4": {
     "message": "Debugging Life, One Story at a Time"
   },
+  "homepage.whisperIsle.eyebrow": {
+    "message": "An Isometric Browser MMO"
+  },
+  "homepage.whisperIsle.tagline": {
+    "message": "The wind remembers every arrival"
+  },
+  "homepage.whisperIsle.description": {
+    "message": "A real-time multiplayer game I built end to end — client, server, and world tooling. No download: open a browser and you are on the isle."
+  },
+  "homepage.whisperIsle.play": {
+    "message": "Play in your browser"
+  },
+  "homepage.whisperIsle.details": {
+    "message": "See the project"
+  },
   "projects.title": {
     "message": "Projects"
   },

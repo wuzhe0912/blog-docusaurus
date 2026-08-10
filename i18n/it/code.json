@@ -710,6 +710,21 @@
   "homepage.hero.subtitle.4": {
     "message": "Fare il debug della vita, una storia alla volta"
   },
+  "homepage.whisperIsle.eyebrow": {
+    "message": "Un MMO isometrico nel browser"
+  },
+  "homepage.whisperIsle.tagline": {
+    "message": "Il vento ricorda ogni arrivo"
+  },
+  "homepage.whisperIsle.description": {
+    "message": "Un gioco multigiocatore in tempo reale che ho costruito da cima a fondo: client, server e strumenti di mondo. Nessun download: apri il browser e sei sull'isola."
+  },
+  "homepage.whisperIsle.play": {
+    "message": "Gioca nel browser"
+  },
+  "homepage.whisperIsle.details": {
+    "message": "Guarda il progetto"
+  },
   "projects.title": {
     "message": "Progetti"
   },

@@ -710,6 +710,21 @@
   "homepage.hero.subtitle.4": {
     "message": "一次 Debug 一段人生"
   },
+  "homepage.whisperIsle.eyebrow": {
+    "message": "等距视角浏览器 MMO"
+  },
+  "homepage.whisperIsle.tagline": {
+    "message": "风会记得每一位登岛者"
+  },
+  "homepage.whisperIsle.description": {
+    "message": "一个人做完 client、server 与世界建置的实时多人在线游戏。打开浏览器就能玩，不用下载。"
+  },
+  "homepage.whisperIsle.play": {
+    "message": "在浏览器开始游玩"
+  },
+  "homepage.whisperIsle.details": {
+    "message": "查看项目细节"
+  },
   "projects.title": {
     "message": "作品集"
   },

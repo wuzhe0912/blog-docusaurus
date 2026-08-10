@@ -710,6 +710,21 @@
   "homepage.hero.subtitle.4": {
     "message": "Das Leben debuggen, eine Geschichte nach der anderen"
   },
+  "homepage.whisperIsle.eyebrow": {
+    "message": "Ein isometrisches Browser-MMO"
+  },
+  "homepage.whisperIsle.tagline": {
+    "message": "Der Wind erinnert sich an jede Ankunft"
+  },
+  "homepage.whisperIsle.description": {
+    "message": "Ein Echtzeit-Multiplayer-Spiel, das ich von Grund auf selbst gebaut habe — Client, Server und World-Tooling. Kein Download: Browser öffnen und du bist auf der Insel."
+  },
+  "homepage.whisperIsle.play": {
+    "message": "Im Browser spielen"
+  },
+  "homepage.whisperIsle.details": {
+    "message": "Projekt ansehen"
+  },
   "projects.title": {
     "message": "Projekte"
   },

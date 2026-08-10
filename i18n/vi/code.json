@@ -710,6 +710,21 @@
   "homepage.hero.subtitle.4": {
     "message": "Debug cuộc đời, từng bước một"
   },
+  "homepage.whisperIsle.eyebrow": {
+    "message": "MMO góc nhìn đẳng cự trên trình duyệt"
+  },
+  "homepage.whisperIsle.tagline": {
+    "message": "Gió nhớ từng người đặt chân lên đảo"
+  },
+  "homepage.whisperIsle.description": {
+    "message": "Một trò chơi nhiều người chơi thời gian thực tôi tự làm từ đầu đến cuối — client, server và công cụ dựng thế giới. Không cần tải: mở trình duyệt là bạn đã ở trên đảo."
+  },
+  "homepage.whisperIsle.play": {
+    "message": "Chơi ngay trên trình duyệt"
+  },
+  "homepage.whisperIsle.details": {
+    "message": "Xem dự án"
+  },
   "projects.title": {
     "message": "Dự án"
   },

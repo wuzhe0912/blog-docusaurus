@@ -1,0 +1,174 @@
+/**
+ * Whisper Isle 推廣橫幅。
+ *
+ * 這一段刻意不跟著 blog 的 light/dark mode 翻轉——它是遊戲海報，
+ * 用的是遊戲本身的深色羊皮紙／燙金配色，翻成淺色會毀掉調性。
+ */
+
+.promo {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: #080b0e;
+  background-image: url('/img/promo/whisper-isle-banner.webp');
+  background-size: cover;
+  background-position: center 40%;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+/* 由左至右漸淡：文字壓在暗側，右側留給碼頭與船 */
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    90deg,
+    rgb(8 11 14 / 95%) 0%,
+    rgb(8 11 14 / 88%) 34%,
+    rgb(8 11 14 / 55%) 66%,
+    rgb(8 11 14 / 30%) 100%
+  );
+}
+
+.inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 5rem 20px;
+}
+
+.eyebrow {
+  margin: 0 0 1rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #c9a227;
+}
+
+.title {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', 'Noto Serif TC', serif;
+  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.03em;
+  color: #e8d9b5;
+}
+
+.tagline {
+  margin: 0.75rem 0 0;
+  font-family: Georgia, 'Times New Roman', 'Noto Serif TC', serif;
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  letter-spacing: 0.06em;
+  color: rgb(232 217 181 / 72%);
+}
+
+.description {
+  max-width: 34rem;
+  margin: 1.5rem 0 0;
+  font-size: 1rem;
+  line-height: 1.85;
+  color: rgb(226 232 240 / 78%);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2.25rem;
+}
+
+.playButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.9rem;
+  border-radius: 6px;
+  background: linear-gradient(180deg, #d8b23c, #b8891d);
+  color: #1a1410;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 2px 12px rgb(0 0 0 / 45%);
+  transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+}
+
+.playButton:hover {
+  color: #1a1410;
+  text-decoration: none;
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+  box-shadow: 0 6px 18px rgb(0 0 0 / 55%);
+}
+
+.arrow {
+  transition: transform 0.2s;
+}
+
+.playButton:hover .arrow {
+  transform: translateX(3px);
+}
+
+.secondaryLink {
+  color: rgb(232 217 181 / 85%);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgb(232 217 181 / 35%);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.secondaryLink:hover {
+  color: #e8d9b5;
+  text-decoration: none;
+  border-bottom-color: #c9a227;
+}
+
+@media only screen and (max-width: 768px) {
+  .promo {
+    background-position: center;
+  }
+
+  /* 手機沒有「右半邊」可以留白，改成整片壓暗才讀得到字 */
+  .overlay {
+    background: linear-gradient(
+      180deg,
+      rgb(8 11 14 / 74%) 0%,
+      rgb(8 11 14 / 88%) 100%
+    );
+  }
+
+  .inner {
+    padding: 3.5rem 1.5rem;
+    text-align: center;
+  }
+
+  .description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .actions {
+    justify-content: center;
+    gap: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .playButton,
+  .arrow {
+    transition: none;
+  }
+
+  .playButton:hover {
+    transform: none;
+  }
+
+  .playButton:hover .arrow {
+    transform: none;
+  }
+}

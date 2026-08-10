@@ -1,6 +1,6 @@
 ---
 slug: senior-without-pm
-title: 'Pas de PM dans l'équipe : que doit faire un Senior ?'
+title: "Pas de PM dans l'équipe : que doit faire un Senior ?"
 authors: wuzhe0912
 tags: [career, engineering]
 ---

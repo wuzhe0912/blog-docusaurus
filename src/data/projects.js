@@ -8,9 +8,18 @@ export const tags = {
   nuxt: { label: 'Nuxt', color: '#00dc82' },
   node: { label: 'Node.js', color: '#68a063' },
   ai: { label: 'AI Crafted', color: '#c084fc' },
+  game: { label: 'Game', color: '#d64550' },
 };
 
 export const projects = [
+  {
+    title: 'Whisper Isle',
+    description:
+      'An isometric browser MMO with real-time combat on a shared, persistent island. Built end to end — server-authoritative simulation, client rendering, world tooling, and 13-language localisation. No download: open a browser and you are on the isle.',
+    preview: '/img/showcase/whisper-isle.webp',
+    website: 'https://whisper-isle.zeabur.app/',
+    tags: ['fullstack', 'game', 'node'],
+  },
   {
     title: 'Chatify',
     description:
